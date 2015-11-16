@@ -1,0 +1,2 @@
+C:\Users\Child\Desktop\R54IN0\DY.Inven\bin\Debug\DY.Inven.exe.config
+C:\Users\Child\Github\R54IN0\DY.Inven\bin\Debug\DY.Inven.exe.config

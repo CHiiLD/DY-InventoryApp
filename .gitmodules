@@ -1,0 +1,6 @@
+[submodule "lex.db"]
+	path = lex.db
+	url = https://github.com/CHiiLD/lex.db.git
+[submodule "TreeViewEx"]
+	path = TreeViewEx
+	url = https://github.com/CHiiLD/TreeViewEx.git
