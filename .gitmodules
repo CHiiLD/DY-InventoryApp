@@ -1,3 +1,6 @@
+[submodule "MahApps.Metro"]
+	path = MahApps.Metro
+	url = https://github.com/MahApps/MahApps.Metro.git
 [submodule "lex.db"]
 	path = lex.db
 	url = https://github.com/CHiiLD/lex.db.git
