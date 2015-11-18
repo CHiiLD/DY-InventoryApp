@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace DY.Inven
 {
+    using DY.Inven.DB;
+
     public static class DatabaseDirector
     {
         private static Base _base = new Base();

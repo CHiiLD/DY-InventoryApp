@@ -51,15 +51,17 @@
   <ItemGroup>
     <Compile Include="LexDBTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
       <Project>{04608184-27b9-42a2-9e5e-69a6cb21ecfe}</Project>
       <Name>Lex.Db.Net45</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\R54IN0\R54IN0.csproj">
+      <Project>{b69caaa1-3fd1-4c1a-90cc-2e63504b6ccb}</Project>
+      <Name>R54IN0</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

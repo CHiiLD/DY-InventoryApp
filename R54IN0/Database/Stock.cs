@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lex.Db;
 
-namespace DY.Inven
+namespace DY.Inven.DB
 {
     public class Stock
     {
@@ -13,7 +13,8 @@ namespace DY.Inven
         {
             DbInstance db = new DbInstance("./stock_item_management.db");
 
-            db.Map<StockItem>().Automap(i => i.ItemStandardUUID).
+            db.Map<StockItem>().Automap(i => i.UUID).
+                WithIndex("ItemStandardUUID", i => i.ItemStandardUUID).
                 WithIndex("Warehouse", i => i.Warehouse);
 
             db.Map<InStock>().Automap(i => i.UUID).

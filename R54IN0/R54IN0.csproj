@@ -41,21 +41,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Base.cs" />
-    <Compile Include="BasicManagement\Currency.cs" />
-    <Compile Include="BasicManagement\Employee.cs" />
-    <Compile Include="BasicManagement\IBase.cs" />
+    <Compile Include="Management\BasicManagement\Currency.cs" />
+    <Compile Include="Management\BasicManagement\Employee.cs" />
+    <Compile Include="Management\BasicManagement\IBasic.cs" />
     <Compile Include="Database\DatabaseDirector.cs" />
     <Compile Include="Database\Stock.cs" />
-    <Compile Include="StockManagement\IInOutStock.cs" />
-    <Compile Include="StockManagement\StockItem.cs" />
-    <Compile Include="StockManagement\InStock.cs" />
-    <Compile Include="StockManagement\OutStock.cs" />
-    <Compile Include="StockConditionRecode.cs" />
-    <Compile Include="BasicManagement\Item.cs" />
-    <Compile Include="BasicManagement\Measure.cs" />
-    <Compile Include="BasicManagement\Seller.cs" />
-    <Compile Include="BasicManagement\ItemStandard.cs" />
-    <Compile Include="BasicManagement\Warehouse.cs" />
+    <Compile Include="Management\BasicManagement\ItemExtension.cs" />
+    <Compile Include="Management\IInOutStockExtension.cs" />
+    <Compile Include="Management\IItemStandardUUID.cs" />
+    <Compile Include="Management\IItemStandardUUIDExtension.cs" />
+    <Compile Include="Record\Register\InOutStockRecordRegister.cs" />
+    <Compile Include="Record\Register\StockItemRecordRegister.cs" />
+    <Compile Include="Record\InOutStockConditionRecord.cs" />
+    <Compile Include="Management\StockManagement\IInOutStock.cs" />
+    <Compile Include="Management\IUUID.cs" />
+    <Compile Include="Management\IUUIDExtension.cs" />
+    <Compile Include="Management\StockManagement\StockItem.cs" />
+    <Compile Include="Management\StockManagement\InStock.cs" />
+    <Compile Include="Management\StockManagement\OutStock.cs" />
+    <Compile Include="Record\StockConditionRecord.cs" />
+    <Compile Include="Management\BasicManagement\Item.cs" />
+    <Compile Include="Management\BasicManagement\Measure.cs" />
+    <Compile Include="Management\BasicManagement\Seller.cs" />
+    <Compile Include="Management\BasicManagement\ItemStandard.cs" />
+    <Compile Include="Management\BasicManagement\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
