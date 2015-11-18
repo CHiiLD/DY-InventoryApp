@@ -40,7 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Database\Base.cs" />
+    <Compile Include="BasicManagement\Currency.cs" />
+    <Compile Include="BasicManagement\Employee.cs" />
+    <Compile Include="BasicManagement\IBase.cs" />
+    <Compile Include="Database\DatabaseDirector.cs" />
+    <Compile Include="Database\Stock.cs" />
+    <Compile Include="StockManagement\IInOutStock.cs" />
+    <Compile Include="StockManagement\StockItem.cs" />
+    <Compile Include="StockManagement\InStock.cs" />
+    <Compile Include="StockManagement\OutStock.cs" />
+    <Compile Include="StockConditionRecode.cs" />
+    <Compile Include="BasicManagement\Item.cs" />
+    <Compile Include="BasicManagement\Measure.cs" />
+    <Compile Include="BasicManagement\Seller.cs" />
+    <Compile Include="BasicManagement\ItemStandard.cs" />
+    <Compile Include="BasicManagement\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

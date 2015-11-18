@@ -1,0 +1,7 @@
+C:\Users\Child\Github\R54IN0\Test\bin\Debug\Test.dll
+C:\Users\Child\Github\R54IN0\Test\bin\Debug\Test.pdb
+C:\Users\Child\Github\R54IN0\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\Child\Github\R54IN0\Test\obj\Debug\Test.dll
+C:\Users\Child\Github\R54IN0\Test\obj\Debug\Test.pdb
+C:\Users\Child\Github\R54IN0\Test\bin\Debug\Lex.Db.dll
+C:\Users\Child\Github\R54IN0\Test\bin\Debug\Lex.Db.pdb

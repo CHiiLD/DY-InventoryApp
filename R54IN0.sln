@@ -19,6 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodule", "submodule", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit test", "unit test", "{9AE1E4FC-EB54-4016-84CD-48D91E121B8A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "memo", "memo", "{74C2AF70-B3DA-4589-B10A-D776E6986A6A}"
+	ProjectSection(SolutionItems) = preProject
+		memo.txt = memo.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		lex.db\lib\Lex.Db.Shared\Lex.Db.Shared.projitems*{04608184-27b9-42a2-9e5e-69a6cb21ecfe}*SharedItemsImports = 4
