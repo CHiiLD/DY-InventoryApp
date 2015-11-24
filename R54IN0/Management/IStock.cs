@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace R54IN0.Lib
 {
-    public interface IUUID
+    public interface IStock
     {
-        string UUID { get; set; }
+        string SpecificationUUID { get; set; }
+        string WarehouseUUID { get; set; }
+        int ItemCount { get; set; }
     }
 }

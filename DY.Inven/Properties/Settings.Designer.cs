@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DY.Inven.Properties
+namespace R54IN0.Lib.Properties
 {
 
 

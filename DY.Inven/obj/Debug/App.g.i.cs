@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DY.Inven;
+using R54IN0.Lib;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -32,7 +32,7 @@ using System.Windows.Shapes;
 using System.Windows.Shell;
 
 
-namespace DY.Inven {
+namespace R54IN0.Lib {
     
     
     /// <summary>
@@ -61,7 +61,7 @@ namespace DY.Inven {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main() {
-            DY.Inven.App app = new DY.Inven.App();
+            R54IN0.Lib.App app = new R54IN0.Lib.App();
             app.InitializeComponent();
             app.Run();
         }

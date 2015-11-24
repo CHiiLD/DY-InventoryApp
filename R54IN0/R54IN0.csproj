@@ -7,8 +7,8 @@
     <ProjectGuid>{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DY.Inven</RootNamespace>
-    <AssemblyName>R54IN0</AssemblyName>
+    <RootNamespace>R54IN0.Lib</RootNamespace>
+    <AssemblyName>R54IN0.Lib</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,31 +40,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\Base.cs" />
-    <Compile Include="Management\BasicManagement\Currency.cs" />
-    <Compile Include="Management\BasicManagement\Employee.cs" />
-    <Compile Include="Management\BasicManagement\IBasic.cs" />
+    <Compile Include="DataGrid\Register\InOutStockRRRHelper.cs" />
+    <Compile Include="Management\Field\Currency.cs" />
+    <Compile Include="Management\Field\Employee.cs" />
+    <Compile Include="Management\IBasic.cs" />
     <Compile Include="Database\DatabaseDirector.cs" />
-    <Compile Include="Database\Stock.cs" />
-    <Compile Include="Management\BasicManagement\ItemExtension.cs" />
-    <Compile Include="Management\IInOutStockExtension.cs" />
-    <Compile Include="Management\IItemStandardUUID.cs" />
-    <Compile Include="Management\IItemStandardUUIDExtension.cs" />
-    <Compile Include="Record\Register\InOutStockRecordRegister.cs" />
-    <Compile Include="Record\Register\StockItemRecordRegister.cs" />
-    <Compile Include="Record\InOutStockConditionRecord.cs" />
-    <Compile Include="Management\StockManagement\IInOutStock.cs" />
+    <Compile Include="Management\InOutStockExtension.cs" />
+    <Compile Include="Management\IStock.cs" />
+    <Compile Include="Management\IStockExtension.cs" />
+    <Compile Include="DataGrid\Register\InventoryRRRHelper.cs" />
+    <Compile Include="DataGrid\InOutStockReportRecord.cs" />
     <Compile Include="Management\IUUID.cs" />
     <Compile Include="Management\IUUIDExtension.cs" />
-    <Compile Include="Management\StockManagement\StockItem.cs" />
-    <Compile Include="Management\StockManagement\InStock.cs" />
-    <Compile Include="Management\StockManagement\OutStock.cs" />
-    <Compile Include="Record\StockConditionRecord.cs" />
-    <Compile Include="Management\BasicManagement\Item.cs" />
-    <Compile Include="Management\BasicManagement\Measure.cs" />
-    <Compile Include="Management\BasicManagement\Seller.cs" />
-    <Compile Include="Management\BasicManagement\ItemStandard.cs" />
-    <Compile Include="Management\BasicManagement\Warehouse.cs" />
+    <Compile Include="Management\Record\CurrentStock.cs" />
+    <Compile Include="Management\Record\InOutStock.cs" />
+    <Compile Include="DataGrid\InventoryReportRecord.cs" />
+    <Compile Include="Management\Field\Item.cs" />
+    <Compile Include="Management\Field\Measure.cs" />
+    <Compile Include="Management\Field\Seller.cs" />
+    <Compile Include="Management\Field\Specification.cs" />
+    <Compile Include="Management\Field\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

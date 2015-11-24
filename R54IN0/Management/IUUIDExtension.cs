@@ -2,23 +2,13 @@
 using System.Diagnostics;
 using Lex.Db;
 
-namespace DY.Inven
+namespace R54IN0.Lib
 {
     public static class IUUIDExtension
     {
-        private static DbInstance GetDbInstance(IUUID iuuid)
-        {
-            DbInstance db = null;
-            if (iuuid is IBasic)
-                db = DatabaseDirector.GetBase().GetDbInstance();
-            else //if (iuuid is IInOutStock || iuuid is StockItem)
-                db = DatabaseDirector.GetStock().GetDbInstance();
-            return db;
-        }
-
         public static ClassT Save<ClassT>(this IUUID iuuid) where ClassT : class
         {
-            using (var db = GetDbInstance(iuuid))
+            using (var db = DatabaseDirector.GetDbInstance())
             {
                 if (string.IsNullOrEmpty(iuuid.UUID))
                     iuuid.UUID = Guid.NewGuid().ToString();
@@ -29,7 +19,7 @@ namespace DY.Inven
 
         public static void Delete<ClassT>(this IUUID iuuid) where ClassT : class
         {
-            using (var db = GetDbInstance(iuuid))
+            using (var db = DatabaseDirector.GetDbInstance())
             {
                 if (string.IsNullOrEmpty(iuuid.UUID))
                     Debug.Assert(false);
