@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace R54IN0.Test
 {
@@ -47,7 +48,7 @@ namespace R54IN0.Test
             Assert.AreEqual(1, viewModel.Nodes.Count);
         }
 
-        private IEnumerable<IFinderNode> FindParentNodes(IEnumerable<IFinderNode> root, IFinderNode node)
+        private IEnumerable<DirectoryNode> FindParentNodes(IEnumerable<DirectoryNode> root, DirectoryNode node)
         {
             foreach (var i in root)
             {
@@ -83,7 +84,7 @@ namespace R54IN0.Test
             node2.Nodes.Add(node21);
             node2.Nodes.Add(node22);
 
-            IEnumerable<IFinderNode> parent = FindParentNodes(root.Nodes, node22);
+            IEnumerable<DirectoryNode> parent = FindParentNodes(root.Nodes, node22);
             Assert.AreEqual(parent, node2.Nodes);
         }
 
@@ -144,6 +145,94 @@ namespace R54IN0.Test
             view.DeleteSelectedDirectories();
 
             Assert.IsTrue(view.Nodes.Any(node => node.UUID == itemNode.UUID));
+        }
+
+        [TestMethod]
+        public void IFinderModeDescendantsTest()
+        {
+            InventoryFinderViewModel view = new InventoryFinderViewModel();
+            DirectoryNode root = new DirectoryNode("ROOT");
+            DirectoryNode node1 = new DirectoryNode("node1");
+            DirectoryNode node2 = new DirectoryNode("node2");
+            DirectoryNode node21 = new DirectoryNode("node21");
+            DirectoryNode node22 = new DirectoryNode("node22");
+            DirectoryNode node11 = new DirectoryNode("node11");
+            DirectoryNode node12 = new DirectoryNode("node12");
+            DirectoryNode node121 = new DirectoryNode("node121");
+
+            root.Nodes.Add(node1);
+            root.Nodes.Add(node2);
+            node1.Nodes.Add(node11);
+            node1.Nodes.Add(node12);
+            node12.Nodes.Add(node121);
+            node2.Nodes.Add(node21);
+            node2.Nodes.Add(node22);
+
+            view.Nodes.Add(root);
+
+            var result = root.Descendants();
+            Assert.AreEqual(8, result.Count());
+        }
+
+        [TestMethod]
+        public void SaveByjsonFormatTest()
+        {
+            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
+            DirectoryNode root = new DirectoryNode("ROOT");
+            DirectoryNode node1 = new DirectoryNode("node1");
+            DirectoryNode node2 = new DirectoryNode("node2");
+            DirectoryNode node21 = new DirectoryNode("node21");
+            DirectoryNode node22 = new DirectoryNode("node22");
+            DirectoryNode node11 = new DirectoryNode("node11");
+            DirectoryNode node12 = new DirectoryNode("node12");
+            DirectoryNode node121 = new DirectoryNode("node121");
+            root.Nodes.Add(node1);
+            root.Nodes.Add(node2);
+            node1.Nodes.Add(node11);
+            node1.Nodes.Add(node12);
+            node12.Nodes.Add(node121);
+            node2.Nodes.Add(node21);
+            node2.Nodes.Add(node22);
+            viewModel.Nodes.Add(root);
+
+            string json = JsonConvert.SerializeObject(viewModel);
+            InventoryFinderViewModel newViewModel = JsonConvert.DeserializeObject<InventoryFinderViewModel>(json);
+
+            Assert.AreEqual(viewModel.Nodes.First().Descendants().Count(), newViewModel.Nodes.First().Descendants().Count());
+        }
+
+        interface inter
+        {
+            int i { get; set; }
+        }
+
+        class clazz : inter
+        {
+            public int i { get; set; }
+        }
+
+        class box
+        {
+            public clazz zz { get; set; }
+        }
+
+        [TestMethod]
+        public void JsonLibTest()
+        {
+            clazz z = new clazz();
+            z.i = 10;
+            string json = JsonConvert.SerializeObject(z);
+            clazz newZ = JsonConvert.DeserializeObject<clazz>(json);
+
+            Assert.AreEqual(z.i, newZ.i);
+
+            var box = new box();
+            box.zz = newZ;
+
+            json = JsonConvert.SerializeObject(box);
+            box newbox = JsonConvert.DeserializeObject<box>(json);
+
+            Assert.AreEqual(box.zz.i, newbox.zz.i);
         }
     }
 }

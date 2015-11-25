@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows.Controls.DragNDrop;
+using System.Diagnostics;
 
 namespace R54IN0
 {
@@ -17,7 +18,7 @@ namespace R54IN0
         {
             DragParameters dragParameters = args as DragParameters;
             TreeViewExItem treeviewExitem = dragParameters.DragItem;
-            IFinderNode finderNode = treeviewExitem.DataContext as IFinderNode;
+            DirectoryNode finderNode = treeviewExitem.DataContext as DirectoryNode;
             if (finderNode != null)
                 return finderNode.AllowDrag;
             return false;

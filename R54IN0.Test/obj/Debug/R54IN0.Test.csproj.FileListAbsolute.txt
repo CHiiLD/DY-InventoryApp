@@ -9,3 +9,6 @@ C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\R54IN0.dll
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\R54IN0.pdb
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\TreeViewEx.dll
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\TreeViewEx.pdb
+C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Newtonsoft.Json.xml

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:R54IN0.WPF"
              xmlns:r54in0="clr-namespace:R54IN0;assembly=R54IN0"
              xmlns:tree="clr-namespace:System.Windows.Controls;assembly=TreeViewEx"
+             xmlns:edttxt="clr-namespace:Custom.Controls;assembly=Custom.Controls.EditableTextBlock"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -13,9 +14,10 @@
         <HierarchicalDataTemplate DataType="{x:Type r54in0:DirectoryNode}" ItemsSource="{Binding Nodes}">
             <StackPanel Orientation="Horizontal">
                 <Border CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0"/>
-                <TextBlock Text="{Binding Name}" />
+                <edttxt:EditableTextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEditable}" IsInEditMode="{Binding IsInEditMode, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </HierarchicalDataTemplate>
+
     </UserControl.Resources>
 
     <Grid>

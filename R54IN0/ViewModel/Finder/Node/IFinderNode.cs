@@ -8,14 +8,14 @@ using System.Windows.Media;
 
 namespace R54IN0
 {
-    public interface IFinderNode
-    {
-        ObservableCollection<IFinderNode> Nodes { get; set; }
-        Brush Color { get; set; }
-        string Name { get; set; }
-        bool AllowDrag { get; set; }
-        bool AllowDrop { get; set; }
-        bool AllowInsert { get; set; }
-        string UUID { get; set; }
-    }
+    //public interface DirectoryNode
+    //{
+    //    ObservableCollection<DirectoryNode> Nodes { get; set; }
+    //    Brush Color { get; set; }
+    //    string Name { get; set; }
+    //    bool AllowDrag { get; set; }
+    //    bool AllowDrop { get; set; }
+    //    bool AllowInsert { get; set; }
+    //    string UUID { get; set; }
+    //}
 }

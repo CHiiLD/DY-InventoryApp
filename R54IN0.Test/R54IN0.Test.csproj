@@ -64,6 +64,10 @@
       <Project>{04608184-27b9-42a2-9e5e-69a6cb21ecfe}</Project>
       <Name>Lex.Db.Net45</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
+      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
+      <Name>Newtonsoft.Json.Net40</Name>
+    </ProjectReference>
     <ProjectReference Include="..\R54IN0\R54IN0.csproj">
       <Project>{b69caaa1-3fd1-4c1a-90cc-2e63504b6ccb}</Project>
       <Name>R54IN0</Name>

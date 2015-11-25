@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public static class IFinderNodeExtention
+    public static class IDirectoryNodeExtention
     {
-        public static IEnumerable<IFinderNode> Descendants(this IFinderNode root)
+        public static IEnumerable<DirectoryNode> Descendants(this DirectoryNode root)
         {
-            var nodes = new Stack<IFinderNode>(new[] { root });
+            //yield return root;
+            var nodes = new Stack<DirectoryNode>(new[] { root });
             while (nodes.Any())
             {
-                IFinderNode node = nodes.Pop();
+                DirectoryNode node = nodes.Pop();
                 yield return node;
                 foreach (var n in node.Nodes)
                     nodes.Push(n);

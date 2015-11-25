@@ -7,3 +7,9 @@
 [submodule "TreeViewEx"]
 	path = TreeViewEx
 	url = https://github.com/CHiiLD/TreeViewEx.git
+[submodule "WPFEditableTextBlock"]
+	path = WPFEditableTextBlock
+	url = https://github.com/CHiiLD/WPFEditableTextBlock.git
+[submodule "Newtonsoft.Json"]
+	path = Newtonsoft.Json
+	url = https://github.com/CHiiLD/Newtonsoft.Json.git

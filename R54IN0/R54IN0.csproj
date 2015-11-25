@@ -48,7 +48,7 @@
     <Compile Include="ViewModel\Finder\Command\DropCommand.cs" />
     <Compile Include="ViewModel\Finder\Command\NewDirectoryAddCommand.cs" />
     <Compile Include="ViewModel\Finder\Node\IFinderNode.cs" />
-    <Compile Include="ViewModel\Finder\Node\IFinderNodeExtention.cs" />
+    <Compile Include="ViewModel\Finder\Node\IDirectoryNodeExtention.cs" />
     <Compile Include="ViewModel\InventoryDataGridViewModel.cs" />
     <Compile Include="ViewModel\Finder\InventoryFinderViewModel.cs" />
     <Compile Include="ViewModel\Finder\Node\ItemNode.cs" />

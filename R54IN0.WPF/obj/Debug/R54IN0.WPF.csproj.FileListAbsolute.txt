@@ -27,3 +27,8 @@ C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.Test.dll
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.Test.pdb
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ko\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Custom.Controls.EditableTextBlock.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Custom.Controls.EditableTextBlock.pdb
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.xml

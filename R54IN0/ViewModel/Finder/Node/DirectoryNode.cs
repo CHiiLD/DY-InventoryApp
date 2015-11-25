@@ -8,49 +8,47 @@ using System.Windows.Media;
 
 namespace R54IN0
 {
-    public class DirectoryNode : IFinderNode
+    public class DirectoryNode //: DirectoryNode
     {
-        public ObservableCollection<IFinderNode> Nodes { get; set; }
+        public ObservableCollection<DirectoryNode> Nodes { get; set; }
 
         public virtual string Name { get; set; }
 
-        public virtual bool AllowDrag { get; set; }
+        public bool AllowDrag { get { return !IsInEditMode; } }
 
         public virtual bool AllowDrop { get; set; }
 
         public virtual bool AllowInsert { get; set; }
 
-        public virtual Brush Color
+        public virtual Brush Color { get { return Brushes.Tan; } }
+
+        public virtual bool IsEditable
         {
             get
             {
-                return Brushes.Tan;
-            }
-            set
-            {
-
+                return true;
             }
         }
 
+        public bool IsInEditMode { get; set; }
+
+        public string UUID { get; set; }
+
         public DirectoryNode()
         {
-            Nodes = new ObservableCollection<IFinderNode>();
-            AllowDrag = true;
+            Nodes = new ObservableCollection<DirectoryNode>();
             AllowDrop = true;
             AllowInsert = true;
             UUID = Guid.NewGuid().ToString();
         }
 
-        public string UUID { get; set; }
-
         public DirectoryNode(DirectoryNode thiz) : this()
         {
-            AllowDrag = thiz.AllowDrag;
             AllowDrop = thiz.AllowDrop;
             AllowInsert = thiz.AllowInsert;
             Name = thiz.Name;
             UUID = thiz.UUID;
-            foreach (IFinderNode i in thiz.Nodes)
+            foreach (DirectoryNode i in thiz.Nodes)
             {
                 if (i.GetType() == typeof(DirectoryNode))
                     Nodes.Add(new DirectoryNode(i as DirectoryNode));

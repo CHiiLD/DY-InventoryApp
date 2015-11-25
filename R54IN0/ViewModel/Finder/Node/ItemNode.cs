@@ -21,9 +21,6 @@ namespace R54IN0
                 Debug.Assert(item != null);
                 return item.Name;
             }
-            set
-            {
-            }
         }
 
         public override bool AllowDrop
@@ -31,9 +28,6 @@ namespace R54IN0
             get
             {
                 return false;
-            }
-            set
-            {
             }
         }
 
@@ -43,9 +37,6 @@ namespace R54IN0
             {
                 return false;
             }
-            set
-            {
-            }
         }
 
         public override Brush Color
@@ -54,9 +45,13 @@ namespace R54IN0
             {
                 return Brushes.DeepPink;
             }
-            set
-            {
+        }
 
+        public override bool IsEditable
+        {
+            get
+            {
+                return false;
             }
         }
 

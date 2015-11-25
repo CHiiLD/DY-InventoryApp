@@ -128,6 +128,10 @@
       <Project>{2854814f-ea3c-41d4-aa94-460c4694f430}</Project>
       <Name>TreeViewEx</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WPFEditableTextBlock\EditableTextBlock.csproj">
+      <Project>{f33e2408-9254-4bae-9b0a-52acdee00bd9}</Project>
+      <Name>EditableTextBlock</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
