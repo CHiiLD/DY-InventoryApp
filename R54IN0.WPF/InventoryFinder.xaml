@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="R54IN0.WPF.InventoryFinder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:R54IN0.WPF"
+             xmlns:r54in0="clr-namespace:R54IN0;assembly=R54IN0"
+             xmlns:tree="clr-namespace:System.Windows.Controls;assembly=TreeViewEx"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <HierarchicalDataTemplate DataType="{x:Type r54in0:DirectoryNode}" ItemsSource="{Binding Nodes}">
+            <StackPanel Orientation="Horizontal">
+                <Border CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding Name}" />
+            </StackPanel>
+        </HierarchicalDataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="추가하기" Command="{Binding CategoryAddCommand}" Click="AddButton_Click"/>
+            <!--<Button Content="오려두기" Command="{Binding CategoryCutCommand}"/>
+            <Button Content="이동하기" Command="{Binding CategoryMovCommand}"/>-->
+            <Button Content="삭제하기" Command="{Binding CategoryDelCommand}" Click="RemoveButton_Click"/>
+        </StackPanel>
+        <tree:TreeViewEx x:Name="FinderTreeView"
+            ItemsSource="{Binding Nodes}"
+            DragCommand="{Binding DragCommand}"
+            DropCommand="{Binding DropCommand}"
+            SelectedItems="{Binding SelectedNodes}"
+            Grid.Row="1"/>
+    </Grid>
+</UserControl>

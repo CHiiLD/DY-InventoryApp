@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using Lex.Db;
 
-namespace R54IN0.Lib
+namespace R54IN0
 {
     public static class IUUIDExtension
     {

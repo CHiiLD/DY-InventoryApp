@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "memo", "memo", "{74C2AF70-B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.Test", "R54IN0.Test\R54IN0.Test.csproj", "{EC787DFF-E080-4A02-958E-111AD0534DE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.WPF", "R54IN0.WPF\R54IN0.WPF.csproj", "{5A0C4CA1-B587-42A9-8DF0-3151B1B33784}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		lex.db\lib\Lex.Db.Shared\Lex.Db.Shared.projitems*{04608184-27b9-42a2-9e5e-69a6cb21ecfe}*SharedItemsImports = 4
@@ -71,6 +73,14 @@ Global
 		{EC787DFF-E080-4A02-958E-111AD0534DE8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC787DFF-E080-4A02-958E-111AD0534DE8}.Release|x86.ActiveCfg = Release|Any CPU
 		{EC787DFF-E080-4A02-958E-111AD0534DE8}.Release|x86.Build.0 = Release|Any CPU
+		{5A0C4CA1-B587-42A9-8DF0-3151B1B33784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0C4CA1-B587-42A9-8DF0-3151B1B33784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0C4CA1-B587-42A9-8DF0-3151B1B33784}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5A0C4CA1-B587-42A9-8DF0-3151B1B33784}.Debug|x86.Build.0 = Debug|Any CPU
+		{5A0C4CA1-B587-42A9-8DF0-3151B1B33784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0C4CA1-B587-42A9-8DF0-3151B1B33784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0C4CA1-B587-42A9-8DF0-3151B1B33784}.Release|x86.ActiveCfg = Release|Any CPU
+		{5A0C4CA1-B587-42A9-8DF0-3151B1B33784}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

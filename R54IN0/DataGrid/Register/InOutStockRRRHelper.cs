@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lex.Db;
 
-namespace R54IN0.Lib
+namespace R54IN0
 {
     /// <summary>
     /// in out stock report record register/edit helper

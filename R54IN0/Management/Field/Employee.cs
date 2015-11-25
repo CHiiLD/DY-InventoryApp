@@ -1,4 +1,4 @@
-﻿namespace R54IN0.Lib
+﻿namespace R54IN0
 {
     /// <summary>
     /// 자사원

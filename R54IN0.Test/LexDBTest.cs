@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
-using R54IN0.Lib;
 using Lex.Db;
 
 namespace R54IN0.Test
@@ -85,6 +84,24 @@ namespace R54IN0.Test
         public string UUID { get; set; }
     }
 
+    public class Node
+    {
+        public string UUID{ get; set;} 
+        public Node Link { get; set; }
+        public string Str { get; set; }
+
+        public Node()
+        {
+            UUID = Guid.NewGuid().ToString();
+        }
+    }
+
+    public class Class
+    {
+        public string UUID { get; set; }
+        public ClassF classF { get; set; }
+    }
+
     [TestClass]
     [Ignore]
     public class LexDBTest
@@ -101,6 +118,8 @@ namespace R54IN0.Test
                 db.Map<ClassD>().Automap(i => i.UUID).WithIndex("Value", i => i.Value);
                 db.Map<ClassE>().Automap(i => i.UUID).WithIndex("Value", i => i.Value);
                 db.Map<ClassF>().Automap(i => i.UUID).WithIndex("Value", i => i.Value);
+                db.Map<Class>().Automap(i => i.UUID).WithIndex("classF", i => i.classF);
+                //db.Map<Node>().Automap(i => i.UUID).WithIndex("Str", i => i.Str).WithIndex("Link", i => i.Link);
                 db.Initialize();
                 db.Purge();
 
@@ -207,6 +226,24 @@ namespace R54IN0.Test
                 db.Save(newF);
                 findF = db.LoadByKey<ClassF, string>(newF.UUID);
                 Assert.AreEqual(newF.Value.SequenceEqual(findF.Value), true);
+
+                //트리형 Node
+                Node root = new Node();
+                Node i1 = new Node();
+                Node i2 = new Node();
+
+                Node i11 = new Node();
+                Node i12 = new Node();
+                Node i111 = new Node();
+
+                i11.Link = i111;
+                i1.Link = i11;
+                i1.Link = i12;
+                root.Link = i1;
+                root.Link = i2;
+
+                db.Save(root);
+                Node node = db.LoadByKey<Node>(root.UUID);
             }
         }
     }

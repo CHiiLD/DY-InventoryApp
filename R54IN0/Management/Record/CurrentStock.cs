@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace R54IN0.Lib
+namespace R54IN0
 {
     /// <summary>
     /// DB재고품목 기록 클래스

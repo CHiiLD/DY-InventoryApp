@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using R54IN0.Lib;
 
 namespace R54IN0.Test
 {
@@ -31,13 +30,13 @@ namespace R54IN0.Test
             Assert.AreEqual(cur_stock.TraceItem().UUID, item.UUID);
 
             //재고관리 데이터 체크
-            var inventoryRR = new InventoryReportRecord(cur_stock);
-            Assert.AreEqual(inventoryRR.Name, item.Name);
-            Assert.AreEqual(inventoryRR.Spec, spec.Name);
+            var inventoryRR = new InventoryRecord(cur_stock);
+            Assert.AreEqual(inventoryRR.ItemName, item.Name);
+            Assert.AreEqual(inventoryRR.Specification, spec.Name);
             Assert.AreEqual(inventoryRR.Measure, meas.Name);
             Assert.AreEqual(inventoryRR.Currency, curr.Name);
-            Assert.AreEqual(inventoryRR.PurchasePrice, spec.PurchaseUnitPrice);
-            Assert.AreEqual(inventoryRR.SalesPrice, spec.SalesUnitPrice);
+            Assert.AreEqual(inventoryRR.PurchaseUnitPrice, spec.PurchaseUnitPrice);
+            Assert.AreEqual(inventoryRR.SalesUnitPrice, spec.SalesUnitPrice);
 
             //입고 관리 데이터 추가 20개 등록
             InOutStock in_stock = new InOutStockRRRHelper().Save(StockType.IN, DateTime.Now, spec, 20, seller, eep, ware, remark_str);

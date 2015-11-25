@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Lex.Db;
 using System.Diagnostics;
 
-namespace R54IN0.Lib
+namespace R54IN0
 {
     /// <summary>
     /// inventory report record register/edit helper

@@ -1,5 +1,4 @@
 ﻿using System;
-using R54IN0.Lib;
 
 namespace R54IN0.Test
 {
