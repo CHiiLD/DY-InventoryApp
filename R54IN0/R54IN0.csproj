@@ -46,9 +46,9 @@
     <Compile Include="DataGrid\Register\InOutStockRRRHelper.cs" />
     <Compile Include="ViewModel\Finder\Command\DragCommand.cs" />
     <Compile Include="ViewModel\Finder\Command\DropCommand.cs" />
-    <Compile Include="ViewModel\Finder\Command\NewDirectoryAddCommand.cs" />
     <Compile Include="ViewModel\Finder\Node\IFinderNode.cs" />
     <Compile Include="ViewModel\Finder\Node\IDirectoryNodeExtention.cs" />
+    <Compile Include="ViewModel\Finder\SimpleStringFormat.cs" />
     <Compile Include="ViewModel\InventoryDataGridViewModel.cs" />
     <Compile Include="ViewModel\Finder\InventoryFinderViewModel.cs" />
     <Compile Include="ViewModel\Finder\Node\ItemNode.cs" />
@@ -78,6 +78,10 @@
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
       <Project>{04608184-27b9-42a2-9e5e-69a6cb21ecfe}</Project>
       <Name>Lex.Db.Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
+      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
+      <Name>Newtonsoft.Json.Net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\TreeViewEx\TreeViewEx\TreeViewEx.csproj">
       <Project>{2854814f-ea3c-41d4-aa94-460c4694f430}</Project>

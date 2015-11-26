@@ -148,33 +148,6 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void IFinderModeDescendantsTest()
-        {
-            InventoryFinderViewModel view = new InventoryFinderViewModel();
-            DirectoryNode root = new DirectoryNode("ROOT");
-            DirectoryNode node1 = new DirectoryNode("node1");
-            DirectoryNode node2 = new DirectoryNode("node2");
-            DirectoryNode node21 = new DirectoryNode("node21");
-            DirectoryNode node22 = new DirectoryNode("node22");
-            DirectoryNode node11 = new DirectoryNode("node11");
-            DirectoryNode node12 = new DirectoryNode("node12");
-            DirectoryNode node121 = new DirectoryNode("node121");
-
-            root.Nodes.Add(node1);
-            root.Nodes.Add(node2);
-            node1.Nodes.Add(node11);
-            node1.Nodes.Add(node12);
-            node12.Nodes.Add(node121);
-            node2.Nodes.Add(node21);
-            node2.Nodes.Add(node22);
-
-            view.Nodes.Add(root);
-
-            var result = root.Descendants();
-            Assert.AreEqual(8, result.Count());
-        }
-
-        [TestMethod]
         public void SaveByjsonFormatTest()
         {
             InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
@@ -200,6 +173,107 @@ namespace R54IN0.Test
 
             Assert.AreEqual(viewModel.Nodes.First().Descendants().Count(), newViewModel.Nodes.First().Descendants().Count());
         }
+
+        [TestMethod]
+        public void AddRemoveItemNodeTest()
+        {
+            DummyDbData dummy = new DummyDbData();
+            dummy.Create();
+            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
+            Item item = DatabaseDirector.GetDbInstance().LoadAll<Item>()[0];
+
+            viewModel.AddNewItemInNodes(item.UUID);
+            viewModel.AddNewItemInNodes(DatabaseDirector.GetDbInstance().LoadAll<Item>()[1].UUID);
+            viewModel.AddNewItemInNodes(DatabaseDirector.GetDbInstance().LoadAll<Item>()[2].UUID);
+
+            Assert.AreEqual(item.Name, viewModel.Nodes.First().Name);
+            viewModel.RemoveItemInNodes(item.UUID);
+            Assert.AreEqual(2, viewModel.Nodes.Count());
+        }
+
+        [TestMethod]
+        public void SaveLoadVIewModelNodes()
+        {
+            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
+            DirectoryNode root1 = new DirectoryNode("ROOT1");
+            DirectoryNode root2 = new DirectoryNode("root2");
+            viewModel.Nodes.Add(root1);
+            viewModel.Nodes.Add(root2);
+
+            viewModel.SaveTree();
+            var newViewModel = InventoryFinderViewModel.CreateInventoryFinderViewModel();
+
+            Assert.AreEqual(2 + DatabaseDirector.GetDbInstance().LoadAll<Item>().Count(), newViewModel.Nodes.Count());
+        }
+
+        [TestMethod]
+        public void RefreshTest()
+        {
+            DummyDbData dummy = new DummyDbData();
+            dummy.Create();
+
+            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
+            viewModel.Refresh();
+
+            Assert.AreNotEqual(0, viewModel.Nodes.Count());
+            Assert.AreEqual(DatabaseDirector.GetDbInstance().LoadAll<Item>().Count(), viewModel.Nodes.Count());
+        }
+
+        [Ignore]
+        [TestMethod]
+        public void LinqOfTypeTest()
+        {
+            DummyDbData dummy = new DummyDbData();
+            dummy.Create();
+            Item item = DatabaseDirector.GetDbInstance().LoadAll<Item>()[0];
+            DirectoryNode root1 = new DirectoryNode("ROOT1");
+            ItemNode root2 = new ItemNode(item.UUID);
+            List<DirectoryNode> d = new List<DirectoryNode>();
+            d.Add(root1);
+            d.Add(root2);
+
+            var newList = d.OfType<ItemNode>();
+            Assert.AreEqual(1, newList.Count());
+        }
+
+        [Ignore]
+        [TestMethod]
+        public void SingleOrDefaultTest()
+        {
+            List<DirectoryNode> d = new List<DirectoryNode>();
+            Assert.AreEqual(null, d.SingleOrDefault());
+            DirectoryNode root1 = new DirectoryNode("ROOT1");
+            //DirectoryNode root2 = new DirectoryNode("ROOT2");
+            d.Add(root1);
+            //d.Add(root2);
+            Assert.AreEqual(root1, d.SingleOrDefault());
+        }
+
+        [TestMethod]
+        public void DescendantsTest()
+        {
+            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
+            DirectoryNode root = new DirectoryNode("ROOT");
+            DirectoryNode node1 = new DirectoryNode("node1");
+            DirectoryNode node2 = new DirectoryNode("node2");
+            DirectoryNode node21 = new DirectoryNode("node21");
+            DirectoryNode node22 = new DirectoryNode("node22");
+            DirectoryNode node11 = new DirectoryNode("node11");
+            DirectoryNode node12 = new DirectoryNode("node12");
+            DirectoryNode node121 = new DirectoryNode("node121");
+            root.Nodes.Add(node1);
+            root.Nodes.Add(node2);
+            node1.Nodes.Add(node11);
+            node1.Nodes.Add(node12);
+            node12.Nodes.Add(node121);
+            node2.Nodes.Add(node21);
+            node2.Nodes.Add(node22);
+            viewModel.Nodes.Add(root);
+
+            var result = viewModel.Nodes.SelectMany(x => x.Descendants());
+            Assert.AreEqual(8, result.Count());
+        }
+
 
         interface inter
         {

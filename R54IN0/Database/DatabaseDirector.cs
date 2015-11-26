@@ -81,6 +81,9 @@ namespace R54IN0
                 WithIndex("WarehouseUUID", i => i.WarehouseUUID).
                 WithIndex("Remark", i => i.Remark);
 
+            db.Map<SimpleStringFormat>().Automap(i => i.UUID).
+                WithIndex("Data", i => i.Data);
+
             db.Initialize();
             //RegisterVitalData(db);
             return db;

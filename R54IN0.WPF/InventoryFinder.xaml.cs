@@ -25,7 +25,7 @@ namespace R54IN0.WPF
         public InventoryFinder()
         {
             InitializeComponent();
-            DataContext = _viewModel = new InventoryFinderViewModel();
+            DataContext = _viewModel = InventoryFinderViewModel.CreateInventoryFinderViewModel();
             FinderTreeView.OnSelecting += _viewModel.OnSelectNodes;
         }
 

@@ -40,7 +40,7 @@ namespace R54IN0.WPF
 
             var viewModel = InvenDataGrid.DataContext as InventoryDataGridViewModel;
             viewModel.ChangeInventoryItems(new InventoryRecord[] { new InventoryRecord(cur_stock) });
-#endif
+
             Test.DummyDbData dummy = new Test.DummyDbData();
             dummy.Create();
 
@@ -55,9 +55,9 @@ namespace R54IN0.WPF
             node1.Nodes.Add(itemNode1);
             root.Nodes.Add(node1);
             root.Nodes.Add(node2);
-
             var viewModel = Finder.DataContext as InventoryFinderViewModel;
             viewModel.Nodes.Add(root);
+#endif
         }
     }
 }

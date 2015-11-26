@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace R54IN0
 {
-    public class DirectoryNode //: DirectoryNode
+    public class DirectoryNode
     {
         public ObservableCollection<DirectoryNode> Nodes { get; set; }
 
