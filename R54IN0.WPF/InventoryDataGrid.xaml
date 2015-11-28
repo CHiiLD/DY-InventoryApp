@@ -8,21 +8,33 @@
              d:DesignHeight="300" d:DesignWidth="600">
     <!--- 코드, 품명, 규격, 총재고수량, 단위, 입고단가, 입고총금액, 출고단가, 출고총금액, 화폐, 비고-->
     <Grid>
-        <DataGrid ItemsSource="{Binding InventoryItems}" AutoGenerateColumns="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="68*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        
+        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" Grid.RowSpan="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="코드" Binding="{Binding Code}"/>
-                <DataGridTextColumn Header="품명" Binding="{Binding ItemName}"/>
-                <DataGridTextColumn Header="규격" Binding="{Binding Specification}"/>
-                <DataGridTextColumn Header="수량" Binding="{Binding Count}"/>
-                <DataGridTextColumn Header="단위" Binding="{Binding Measure}"/>
+                <DataGridTextColumn Header="품명" Binding="{Binding Item.Name}"/>
+                <DataGridTextColumn Header="규격" Binding="{Binding Specification.Name}"/>
+                <DataGridTextColumn Header="제조사" Binding="{Binding Maker.Name}"/>
+                <DataGridTextColumn Header="수량" Binding="{Binding ItemCount}"/>
+                <DataGridTextColumn Header="단위" Binding="{Binding Measure.Name}"/>
                 <DataGridTextColumn Header="입고단가" Binding="{Binding SalesUnitPrice}"/>
                 <DataGridTextColumn Header="입고총금액" Binding="{Binding SelesPriceAmount}"/>
                 <DataGridTextColumn Header="출고단가" Binding="{Binding PurchaseUnitPrice}"/>
                 <DataGridTextColumn Header="출고총금액" Binding="{Binding PurchasePriceAmount}"/>
-                <DataGridTextColumn Header="화폐" Binding="{Binding Currency}"/>
-                <DataGridTextColumn Header="보관장소" Binding="{Binding Warehousing}"/>
+                <DataGridTextColumn Header="화폐" Binding="{Binding Currency.Name}"/>
+                <DataGridTextColumn Header="보관장소" Binding="{Binding Warehousing.Name}"/>
                 <DataGridTextColumn Header="비고" Binding="{Binding Remark}"/>
             </DataGrid.Columns>
+            
         </DataGrid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" >
+            <Button Content="추가" Width="100"/>
+            <Button Content="삭제" Width="100"/>
+            <Button Content="변경" Width="100"/>
+        </StackPanel>
     </Grid>
 </UserControl>

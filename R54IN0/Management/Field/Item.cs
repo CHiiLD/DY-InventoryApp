@@ -12,5 +12,6 @@ namespace R54IN0
         public bool IsDeleted { get; set; }
         public string MeasureUUID { get; set; }
         public string CurrencyUUID { get; set; }
+        public string MakerUUID { get; set; }
     }
 }

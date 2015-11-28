@@ -8,84 +8,59 @@ using System.Diagnostics;
 
 namespace R54IN0
 {
-    public class InOutStockPipe
+    public class InOutStockPipe : InvenPipe<InOutStock>
     {
-        private InOutStock _inOutStock;
+        Account _account;
+        Employee _eeployee;
 
-        public InOutStockPipe(InOutStock stock)
+        public InOutStockPipe(InOutStock ioStock)
+            : base(ioStock)
         {
-            _inOutStock = stock;
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                _account = db.LoadByKey<Account>(ioStock.EnterpriseUUID);
+                _eeployee = db.LoadByKey<Employee>(ioStock.EmployeeUUID);
+            }
         }
 
         public DateTime Date
         {
             get
             {
-                return _inOutStock.Date;
+                return Inven.Date;
+            }
+            set
+            {
+                Inven.Date = value;
+                OnPropertyChanged("Date");
             }
         }
 
-        public string ItemName
+        public Account Account
         {
             get
             {
-                return _inOutStock.TraceItem().Name;
+                return _account;
+            }
+            set
+            {
+                _account = value;
+                Inven.EnterpriseUUID = _account.UUID;
+                OnPropertyChanged("Account");
             }
         }
 
-        public string ItemStandardName
+        public Employee Employee
         {
             get
             {
-                return _inOutStock.TraceItemStandard().Name;
+                return _eeployee;
             }
-        }
-
-        public int Count
-        {
-            get
+            set
             {
-                return _inOutStock.ItemCount;
-            }
-        }
-
-        public string Measure
-        {
-            get
-            {
-                return _inOutStock.TraceMeasure().Name;
-            }
-        }
-
-        public string Enterprise
-        {
-            get
-            {
-                return _inOutStock.TraceSeller().Name;
-            }
-        }
-
-        public string Employee
-        {
-            get
-            {
-                return _inOutStock.TraceEmployee().Name;
-            }
-        }
-
-        public string Warehouse
-        {
-            get
-            {
-                return _inOutStock.TraceWarehouse().Name;
-            }
-        }
-
-        public string Remark
-        {
-            get
-            {
-                return _inOutStock.Remark;
+                _eeployee = value;
+                Inven.EmployeeUUID = _eeployee.UUID;
+                OnPropertyChanged("Employee");
             }
         }
     }

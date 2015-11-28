@@ -8,11 +8,11 @@ namespace R54IN0
 {
     public static class InOutStockExtension
     {
-        public static Seller TraceSeller(this InOutStock iios)
+        public static Account TraceSeller(this InOutStock iios)
         {
             using (var db = DatabaseDirector.GetDbInstance())
             {
-                Seller seller = db.LoadByKey<Seller>(iios.EnterpriseUUID);
+                Account seller = db.LoadByKey<Account>(iios.EnterpriseUUID);
                 return seller;
             }
         }

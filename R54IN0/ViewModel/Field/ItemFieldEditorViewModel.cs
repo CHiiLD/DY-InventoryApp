@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace R54IN0
 {
-    public class FieldItemListEditorViewModel
+    public class ItemFieldEditorViewModel : IFieldEditorViewModel
     {
         ItemPipe _selectedItem;
         SpecificationPipe _selectedSpecification { get; set; }
@@ -26,8 +26,12 @@ namespace R54IN0
                 _selectedItem = value;
                 if(_selectedItem != null)
                 {
-                    IEnumerable<Specification> specs = _selectedItem.GetSpecifications();
-                    foreach (var i in specs)
+                    IEnumerable<Specification> result = null;
+                    using (var db = DatabaseDirector.GetDbInstance())
+                    {
+                        result = db.Table<Specification>().IndexQueryByKey("ItemUUID", _selectedItem.Field.UUID).ToList().Where(x => !x.IsDeleted);
+                    }
+                    foreach (var i in result)
                         Specifications.Add(new SpecificationPipe(i));
                 }
                 SelectedSpecification = Specifications.FirstOrDefault();
@@ -48,7 +52,7 @@ namespace R54IN0
             }
         }
 
-        public FieldItemListEditorViewModel()
+        public ItemFieldEditorViewModel()
         {
             Item[] items = null;
             using (var db = DatabaseDirector.GetDbInstance())
@@ -71,7 +75,7 @@ namespace R54IN0
         {
             if (SelectedItem != null)
             {
-                var spec = new Specification() { ItemUUID = SelectedItem.Item.UUID }.Save<Specification>();
+                var spec = new Specification() { ItemUUID = SelectedItem.Field.UUID }.Save<Specification>();
                 Specifications.Add(new SpecificationPipe(spec));
                 SelectedSpecification = Specifications.LastOrDefault();
             }
@@ -81,8 +85,8 @@ namespace R54IN0
         {
             if (SelectedItem != null)
             {
-                SelectedItem.Item.IsDeleted = true;
-                SelectedItem.Item.Save<Item>();
+                SelectedItem.Field.IsDeleted = true;
+                SelectedItem.Field.Save<Item>();
                 Items.Remove(SelectedItem);
                 SelectedItem = Items.FirstOrDefault();
             }
@@ -92,11 +96,16 @@ namespace R54IN0
         {
             if (SelectedSpecification != null)
             {
-                SelectedSpecification.Specification.IsDeleted = true;
-                SelectedSpecification.Specification.Save<Specification>();
+                SelectedSpecification.Field.IsDeleted = true;
+                SelectedSpecification.Field.Save<Specification>();
                 Specifications.Remove(SelectedSpecification);
                 SelectedSpecification = Specifications.FirstOrDefault();
             }
+        }
+
+        public void Save()
+        {
+
         }
     }
 }

@@ -57,7 +57,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="FieldItemListEditor.xaml">
+    <Page Include="FieldEditorControl\MakerFieldEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FieldEditorControl\WarehouseFieldEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FieldEditorControl\EmployeeFieldEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FieldEditorControl\CurrencyFieldEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FieldEditorControl\MeasureFieldEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FieldEditorControl\ItemFieldEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -77,8 +97,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FieldItemListEditor.xaml.cs">
-      <DependentUpon>FieldItemListEditor.xaml</DependentUpon>
+    <Compile Include="FieldEditorControl\MakerFieldEditor.xaml.cs">
+      <DependentUpon>MakerFieldEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FieldEditorControl\WarehouseFieldEditor.xaml.cs">
+      <DependentUpon>WarehouseFieldEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FieldEditorControl\EmployeeFieldEditor.xaml.cs">
+      <DependentUpon>EmployeeFieldEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FieldEditorControl\CurrencyFieldEditor.xaml.cs">
+      <DependentUpon>CurrencyFieldEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FieldEditorControl\MeasureFieldEditor.xaml.cs">
+      <DependentUpon>MeasureFieldEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FieldEditorControl\ItemFieldEditor.xaml.cs">
+      <DependentUpon>ItemFieldEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="InventoryDataGrid.xaml.cs">
       <DependentUpon>InventoryDataGrid.xaml</DependentUpon>

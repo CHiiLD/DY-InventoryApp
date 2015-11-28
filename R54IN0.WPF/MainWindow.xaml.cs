@@ -51,11 +51,11 @@ namespace R54IN0.WPF
             //vmt.list.Add(new TestItem() { Name = "b" });
             //PaList.Add(vmt);
 
-            //InitializeComponent();
-            //DataContext = this;
-
             InitializeComponent();
-            DataContext = new FieldItemListEditorViewModel();
+            DataContext = new InventoryDataGridViewModel();
+
+            //InitializeComponent();
+            //DataContext = new ItemEditViewModel();
 #if false
 
             Itemsadsfsdf = new List<TestItem>();

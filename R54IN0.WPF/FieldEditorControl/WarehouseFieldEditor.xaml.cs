@@ -16,16 +16,16 @@ using System.Windows.Shapes;
 namespace R54IN0.WPF
 {
     /// <summary>
-    /// FieldItemListEditor.xaml에 대한 상호 작용 논리
+    /// FieldEditor.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class FieldItemListEditor : UserControl
+    public partial class WarehouseFieldEditor : UserControl
     {
-        FieldItemListEditorViewModel _viewModel;
+        FieldEditorViewModel<Warehouse> _viewModel;
 
-        public FieldItemListEditor()
+        public WarehouseFieldEditor()
         {
             InitializeComponent();
-            DataContext = _viewModel = new FieldItemListEditorViewModel();
+            DataContext = _viewModel = new FieldEditorViewModel<Warehouse>();
         }
 
         private void ItemAddButton_Click(object sender, RoutedEventArgs e)
@@ -36,16 +36,6 @@ namespace R54IN0.WPF
         private void ItemRemoveButton_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.RemoveSelectedItem();
-        }
-
-        private void SpecAddButton_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.AddNewSpecification();
-        }
-
-        private void SpecRemoveButton_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.RemoveSelectedSpecification();
         }
     }
 }

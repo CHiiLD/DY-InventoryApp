@@ -11,5 +11,6 @@ namespace R54IN0
         string SpecificationUUID { get; set; }
         string WarehouseUUID { get; set; }
         int ItemCount { get; set; }
+        string Remark { get; set; }
     }
 }

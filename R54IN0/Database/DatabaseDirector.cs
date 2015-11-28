@@ -23,7 +23,7 @@ namespace R54IN0
             db.Save(new Warehouse() { UUID = "WAR000", Name = "본사창고", IsDeleted = true });
 
             db.Save(new Employee() { UUID = "EEP000", Name = "관리자", IsDeleted = true });
-            db.Save(new Seller() { UUID = "SLL000", Name = "본사", IsDeleted = true });
+            db.Save(new Account() { UUID = "SLL000", Name = "본사", IsDeleted = true });
         }
 
         public static DbInstance GetDbInstance()
@@ -42,7 +42,8 @@ namespace R54IN0
             WithIndex("Name", i => i.Name).
             WithIndex("IsEnable", i => i.IsDeleted).
             WithIndex("MeasureUUID", i => i.MeasureUUID).
-            WithIndex("CurrencyUUID", i => i.CurrencyUUID);
+            WithIndex("CurrencyUUID", i => i.CurrencyUUID).
+            WithIndex("MakerUUID", i => i.MakerUUID);
 
             db.Map<Specification>().Automap(i => i.UUID).
             WithIndex("Name", i => i.Name).
@@ -55,7 +56,7 @@ namespace R54IN0
             WithIndex("Name", i => i.Name).
             WithIndex("IsEnable", i => i.IsDeleted);
 
-            db.Map<Seller>().Automap(i => i.UUID).
+            db.Map<Account>().Automap(i => i.UUID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsEnable", i => i.IsDeleted).
             WithIndex("Delegator", i => i.Delegator).

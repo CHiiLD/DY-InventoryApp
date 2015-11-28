@@ -10,7 +10,33 @@ namespace R54IN0.Test
             {
                 db.Purge();
             }
+            new Employee() { Name = "지창훈" }.Save<Employee>();
+            new Employee() { Name = "박재현" }.Save<Employee>();
+            new Employee() { Name = "김택윤" }.Save<Employee>();
+            new Employee() { Name = "김연청" }.Save<Employee>();
+            new Employee() { Name = "천두관" }.Save<Employee>();
+            new Employee() { Name = "이도희" }.Save<Employee>();
 
+            new Account() { Name = "여명FA", Delegator = "이양원", PhoneNumber = "053) 604-5656" }.Save<Account>();
+            new Account() { Name = "예시스템", Delegator = "지창훈", PhoneNumber = "053) 587-3013" }.Save<Account>();
+            new Account() { Name = "이오텍", Delegator = "김택윤", PhoneNumber = "053) 600-8220" }.Save<Account>();
+            new Account() { Name = "네오테크", Delegator = "김연청", PhoneNumber = "054) 275-8403" }.Save<Account>();
+            new Account() { Name = "덕성전기", Delegator = "천두관", PhoneNumber = "053) 604-4242" }.Save<Account>();
+            new Account() { Name = "풍림", Delegator = "이도희", PhoneNumber = "053) 604-4321" }.Save<Account>();
+
+            var m = new Measure() { Name = "EA" }.Save<Measure>();
+            new Measure() { Name = "SET" }.Save<Measure>();
+
+            new Warehouse() { Name = "1층" }.Save<Warehouse>();
+            new Warehouse() { Name = "연구실" }.Save<Warehouse>();
+
+            var c = new Currency() { Name = "원" }.Save<Currency>();
+            new Currency() { Name = "미국달러" }.Save<Currency>();
+
+            var item = new Item() { Name = "PBL", CurrencyUUID = c.UUID, MeasureUUID = m.UUID }.Save<Item>();
+            new Specification() { Name = "CR254-24V 녹색", ItemUUID = item.UUID, PurchaseUnitPrice = 1000, SalesUnitPrice = 1505 }.Save<Specification>();
+
+#if false
             //기본정보 등록 테스트
             new Employee() { Name = "지창훈" }.Save<Employee>();
             new Employee() { Name = "박재현" }.Save<Employee>();
@@ -19,12 +45,12 @@ namespace R54IN0.Test
             var eep = new Employee() { Name = "천두관" }.Save<Employee>();
             new Employee() { Name = "이도희" }.Save<Employee>();
 
-            new Seller() { Name = "(법)부천종합법률사무소", Delegator = "이양원", MobileNumber = "", PhoneNumber = "" }.Save<Seller>();
-            new Seller() { Name = "(사)한국관세무역개발원 인천공항", Delegator = "정세화", MobileNumber = "", PhoneNumber = "" }.Save<Seller>();
-            new Seller() { Name = "(사)한국의료기기산업협회", Delegator = "윤대영", MobileNumber = "", PhoneNumber = "" }.Save<Seller>();
-            var seller = new Seller() { Name = "(주) 비즈메디코리아", Delegator = "김성남", MobileNumber = "", PhoneNumber = "" }.Save<Seller>();
-            new Seller() { Name = "(주) 엠에스비", Delegator = "황선숭", MobileNumber = "010-821-6980", PhoneNumber = "032-821-6980" }.Save<Seller>();
-            new Seller() { Name = "(주) 오토매틱코리아", Delegator = "이식영", MobileNumber = "010-466-7981", PhoneNumber = "02-466-7981" }.Save<Seller>();
+            new Account() { Name = "(법)부천종합법률사무소", Delegator = "이양원", MobileNumber = "", PhoneNumber = "" }.Save<Account>();
+            new Account() { Name = "(사)한국관세무역개발원 인천공항", Delegator = "정세화", MobileNumber = "", PhoneNumber = "" }.Save<Account>();
+            new Account() { Name = "(사)한국의료기기산업협회", Delegator = "윤대영", MobileNumber = "", PhoneNumber = "" }.Save<Account>();
+            var seller = new Account() { Name = "(주) 비즈메디코리아", Delegator = "김성남", MobileNumber = "", PhoneNumber = "" }.Save<Account>();
+            new Account() { Name = "(주) 엠에스비", Delegator = "황선숭", MobileNumber = "010-821-6980", PhoneNumber = "032-821-6980" }.Save<Account>();
+            new Account() { Name = "(주) 오토매틱코리아", Delegator = "이식영", MobileNumber = "010-466-7981", PhoneNumber = "02-466-7981" }.Save<Account>();
 
             var meas = new Measure() { Name = "개" }.Save<Measure>();
             new Measure() { Name = "박스" }.Save<Measure>();
@@ -59,6 +85,7 @@ namespace R54IN0.Test
 
             item = new Item() { Name = "냅킨", CurrencyUUID = curr.UUID, MeasureUUID = meas.UUID }.Save<Item>();
             new Specification() { Name = "독일 직수입", ItemUUID = item.UUID, PurchaseUnitPrice = 2212, SalesUnitPrice = 3212 }.Save<Specification>();
+#endif
         }
     }
 }

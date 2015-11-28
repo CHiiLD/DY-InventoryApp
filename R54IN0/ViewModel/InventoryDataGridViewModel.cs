@@ -9,18 +9,23 @@ namespace R54IN0
 {
     public class InventoryDataGridViewModel
     {
-        public ObservableCollection<InventoryPipe> InventoryItems { get; set; }
+        public ObservableCollection<InventoryPipe> Items { get; set; }
 
         public InventoryDataGridViewModel()
         {
-            InventoryItems = new ObservableCollection<InventoryPipe>();
+            IEnumerable<Inventory> items = null;
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                items = db.LoadAll<Inventory>();
+            }
+            Items = new ObservableCollection<InventoryPipe>(items.Select(x => new InventoryPipe(x)));
         }
 
         public void ChangeInventoryItems(IEnumerable<InventoryPipe> items)
         {
-            InventoryItems.Clear();
+            Items.Clear();
             foreach (var i in items)
-                InventoryItems.Add(i);
+                Items.Add(i);
         }
     }
 }

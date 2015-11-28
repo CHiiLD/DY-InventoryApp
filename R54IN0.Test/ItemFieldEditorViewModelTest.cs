@@ -5,19 +5,19 @@ using System.Linq;
 namespace R54IN0.Test
 {
     [TestClass]
-    public class FieldItemListEditorViewModelTest
+    public class ItemFieldEditorViewModelTest
     {
         [TestMethod]
-        public void CanCreateFieldItemListEditorViewModel()
+        public void CanCreateItemFieldEditorViewModelTest()
         {
-            var viewModel = new FieldItemListEditorViewModel();
+            var viewModel = new ItemFieldEditorViewModel();
         }
 
         [TestMethod]
         public void CheckViewModelLoadedItems()
         {
             new DummyDbData().Create();
-            var viewModel = new FieldItemListEditorViewModel();
+            var viewModel = new ItemFieldEditorViewModel();
             int viewmodelItemsCount = viewModel.Items.Count;
             int dbItemCount = DatabaseDirector.GetDbInstance().LoadAll<Item>().Length;
             Assert.AreEqual(dbItemCount, viewmodelItemsCount);
@@ -27,18 +27,18 @@ namespace R54IN0.Test
         public void AutoLoadSpecificationWhenSelectItem()
         {
             new DummyDbData().Create();
-            var viewModel = new FieldItemListEditorViewModel();
+            var viewModel = new ItemFieldEditorViewModel();
             var items = DatabaseDirector.GetDbInstance().LoadAll<Item>();
             viewModel.SelectedItem = viewModel.Items.First();
-            if (viewModel.SelectedItem != null)
-                Assert.AreEqual(viewModel.SelectedItem.Item.UUID, viewModel.Specifications.First().Specification.ItemUUID);
+            if (viewModel.SelectedSpecification != null)
+                Assert.AreEqual(viewModel.SelectedItem.Field.UUID, viewModel.Specifications.First().Field.ItemUUID);
         }
 
         [TestMethod]
         public void FindMeasureAutomatically()
         {
             new DummyDbData().Create();
-            var viewModel = new FieldItemListEditorViewModel();
+            var viewModel = new ItemFieldEditorViewModel();
             var items = DatabaseDirector.GetDbInstance().LoadAll<Item>();
 
             var measure = viewModel.Items.First().SelectedMeasure;
@@ -49,7 +49,7 @@ namespace R54IN0.Test
         public void SpecificationAddRemoveTest()
         {
             new DummyDbData().Create();
-            var viewModel = new FieldItemListEditorViewModel();
+            var viewModel = new ItemFieldEditorViewModel();
 
             viewModel.AddNewItem();
 
@@ -69,7 +69,7 @@ namespace R54IN0.Test
         public void ItemAddRemoveTest()
         {
             new DummyDbData().Create();
-            var viewModel = new FieldItemListEditorViewModel();
+            var viewModel = new ItemFieldEditorViewModel();
             var count = viewModel.Items.Count;
             viewModel.AddNewItem();
             Assert.AreEqual(count + 1, viewModel.Items.Count);

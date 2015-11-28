@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <!--<local:InventoryDataGrid x:Name="InvenDataGrid"/>-->
+        <local:InventoryDataGrid x:Name="InvenDataGrid"/>
         <!--<local:InventoryFinder x:Name="Finder"/>-->
         <!--<DataGrid ItemsSource="{Binding Iitems}" AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -16,8 +16,10 @@
                 <DataGridTextColumn Header="비고" Binding="{Binding Remark}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>-->
-        
-        <local:FieldItemListEditor/>
+
+        <!--<local:ItemFieldEditor/>-->
+
+        <!--<local:MeasureFieldEditor/>-->
 
         <!--<DataGrid ItemsSource="{Binding PaList}" AutoGenerateColumns="False">
             <DataGrid.Columns>
