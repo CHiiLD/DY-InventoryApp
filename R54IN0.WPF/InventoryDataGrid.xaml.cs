@@ -20,10 +20,12 @@ namespace R54IN0.WPF
     /// </summary>
     public partial class InventoryDataGrid : UserControl
     {
+        InventoryDataGridViewModel _viewModel;
+
         public InventoryDataGrid()
         {
             InitializeComponent();
-            DataContext = new InventoryDataGridViewModel();
+            DataContext = _viewModel = new InventoryDataGridViewModel();
         }
     }
 }

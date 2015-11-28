@@ -11,11 +11,11 @@ namespace R54IN0
     /// <summary>
     /// inventory report record register/edit helper
     /// </summary>
-    public class InventoryRRRHelper
+    public class InventoryHelper
     {
-        private CurrentStock _stockItem;
+        private Inventory _stockItem;
 
-        public CurrentStock StockItem
+        public Inventory StockItem
         {
             get
             {
@@ -26,27 +26,27 @@ namespace R54IN0
         /// <summary>
         /// for 새로운 기록 추가
         /// </summary>
-        public InventoryRRRHelper()
+        public InventoryHelper()
         {
-            _stockItem = new CurrentStock();
+            _stockItem = new Inventory();
         }
 
         /// <summary>
         /// for 기존 기록 수정
         /// </summary>
         /// <param name="stockItem"></param>
-        public InventoryRRRHelper(CurrentStock stockItem)
+        public InventoryHelper(Inventory stockItem)
         {
             _stockItem = stockItem;
         }
 
-        public CurrentStock Save(Specification istd, Warehouse warehouse, int itemCount, string remark)
+        public Inventory Save(Specification istd, Warehouse warehouse, int itemCount, string remark)
         {
             _stockItem.SpecificationUUID = istd.UUID;
             _stockItem.WarehouseUUID = warehouse.UUID;
             _stockItem.ItemCount = itemCount;
             _stockItem.Remark = remark;
-            return _stockItem.Save<CurrentStock>();
+            return _stockItem.Save<Inventory>();
         }
 
         /// <summary>

@@ -3,7 +3,7 @@
     /// <summary>
     /// 단위
     /// </summary>
-    public class Measure : IBasic
+    public class Measure : IField
     {
         public string UUID { get; set; }
         public string Name { get; set; }

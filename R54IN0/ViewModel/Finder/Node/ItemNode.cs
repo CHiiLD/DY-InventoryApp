@@ -17,7 +17,11 @@ namespace R54IN0
         {
             get
             {
-                var item = DatabaseDirector.GetDbInstance().LoadByKey<Item>(_itemUUID);
+                Item item;
+                using (var db = DatabaseDirector.GetDbInstance())
+                {
+                    item = db.LoadByKey<Item>(_itemUUID);
+                }
                 Debug.Assert(item != null);
                 return item.Name;
             }
@@ -59,7 +63,11 @@ namespace R54IN0
         {
             get
             {
-                var item = DatabaseDirector.GetDbInstance().LoadByKey<Item>(_itemUUID);
+                Item item = null;
+                using (var db = DatabaseDirector.GetDbInstance())
+                {
+                    item = db.LoadByKey<Item>(_itemUUID);
+                }
                 Debug.Assert(item != null);
                 return item.IsDeleted;
             }

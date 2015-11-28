@@ -3,7 +3,7 @@
     /// <summary>
     /// 제품의 규격
     /// </summary>
-    public class Specification : IBasic
+    public class Specification : IField
     {
         public string UUID { get; set; }
         public string Name { get; set; }

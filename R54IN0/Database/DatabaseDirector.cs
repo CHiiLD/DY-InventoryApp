@@ -66,7 +66,7 @@ namespace R54IN0
             WithIndex("Name", i => i.Name).
             WithIndex("IsEnable", i => i.IsDeleted);
 
-            db.Map<CurrentStock>().Automap(i => i.UUID).
+            db.Map<Inventory>().Automap(i => i.UUID).
                 WithIndex("SpecificationUUID", i => i.SpecificationUUID).
                 WithIndex("WarehouseUUID", i => i.WarehouseUUID).
                 WithIndex("ItemCount", i => i.ItemCount);

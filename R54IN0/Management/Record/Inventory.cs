@@ -5,7 +5,7 @@ namespace R54IN0
     /// <summary>
     /// DB재고품목 기록 클래스
     /// </summary>
-    public class CurrentStock : IUUID, IStock
+    public class Inventory : IUUID, IInventory
     {
         public string UUID { get; set; }
         public string SpecificationUUID { get; set; }

@@ -16,7 +16,6 @@ C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.exe
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.pdb
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Lex.Db.dll
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Lex.Db.pdb
-C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.dll
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\TreeViewEx.dll
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.pdb
@@ -32,3 +31,6 @@ C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Custom.Controls.EditableTextBl
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldItemListEditor.g.cs
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldItemListEditor.baml
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs

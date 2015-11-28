@@ -122,11 +122,11 @@ namespace R54IN0
             try
             {
 #endif
-                IEnumerable<ItemNode> itemNodes = Nodes.SelectMany(n => n.Descendants().OfType<ItemNode>());
-                itemNodes = itemNodes.Where(t => t.ItemUUID == itemUUID);
-                var node = itemNodes.SingleOrDefault();
-                if (node != null)
-                    RemoveNodeInRoot(node);
+            IEnumerable<ItemNode> itemNodes = Nodes.SelectMany(n => n.Descendants().OfType<ItemNode>());
+            itemNodes = itemNodes.Where(t => t.ItemUUID == itemUUID);
+            var node = itemNodes.SingleOrDefault();
+            if (node != null)
+                RemoveNodeInRoot(node);
 #if !DEBUG
         }
             catch(Exception e)
@@ -139,12 +139,19 @@ namespace R54IN0
         public void SaveTree()
         {
             string json = JsonConvert.SerializeObject(this);
-            DatabaseDirector.GetDbInstance().Save(new SimpleStringFormat(JSON_TREE_KEY, json));
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                db.Save(new SimpleStringFormat(JSON_TREE_KEY, json));
+            }
         }
 
         public void Refresh()
         {
-            List<Item> items = DatabaseDirector.GetDbInstance().LoadAll<Item>().ToList();
+            IEnumerable<Item> items = null;
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                items = db.LoadAll<Item>().ToList().Where(x => !x.IsDeleted);
+            }
             foreach (var item in items)
             {
                 bool result = Nodes.Any(n => n.Descendants().OfType<ItemNode>().Any(x => ((ItemNode)x).ItemUUID == item.UUID));
@@ -156,7 +163,11 @@ namespace R54IN0
         public static InventoryFinderViewModel CreateInventoryFinderViewModel()
         {
             InventoryFinderViewModel viewModel = null;
-            SimpleStringFormat ssf = DatabaseDirector.GetDbInstance().LoadByKey<SimpleStringFormat>(JSON_TREE_KEY);
+            SimpleStringFormat ssf = null;
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                ssf = db.LoadByKey<SimpleStringFormat>(JSON_TREE_KEY);
+            }
             if (ssf != null)
                 viewModel = JsonConvert.DeserializeObject<InventoryFinderViewModel>(ssf.Data);
             if (viewModel == null)

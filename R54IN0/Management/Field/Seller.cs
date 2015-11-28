@@ -3,7 +3,7 @@
     /// <summary>
     /// 거래처
     /// </summary>
-    public class Seller : IBasic
+    public class Seller : IField
     {
         public string UUID { get; set; }
         public string Name { get; set; }

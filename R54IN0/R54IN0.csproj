@@ -43,7 +43,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataGrid\Register\InOutStockRRRHelper.cs" />
+    <Compile Include="DataGrid\FieldPipe.cs" />
+    <Compile Include="DataGrid\ItemPipe.cs" />
+    <Compile Include="DataGrid\SpecificationPipe.cs" />
+    <Compile Include="ViewModel\Field\FieldItemListEditorViewModel.cs" />
     <Compile Include="ViewModel\Finder\Command\DragCommand.cs" />
     <Compile Include="ViewModel\Finder\Command\DropCommand.cs" />
     <Compile Include="ViewModel\Finder\Node\IFinderNode.cs" />
@@ -54,18 +57,17 @@
     <Compile Include="ViewModel\Finder\Node\ItemNode.cs" />
     <Compile Include="Management\Field\Currency.cs" />
     <Compile Include="Management\Field\Employee.cs" />
-    <Compile Include="Management\IBasic.cs" />
+    <Compile Include="Management\Field\IField.cs" />
     <Compile Include="Database\DatabaseDirector.cs" />
     <Compile Include="Management\InOutStockExtension.cs" />
-    <Compile Include="Management\IStock.cs" />
-    <Compile Include="Management\IStockExtension.cs" />
-    <Compile Include="DataGrid\Register\InventoryRRRHelper.cs" />
-    <Compile Include="DataGrid\InOutStockRecord.cs" />
+    <Compile Include="Management\IInventory.cs" />
+    <Compile Include="Management\IInventoryExtension.cs" />
+    <Compile Include="DataGrid\InOutStockPipe.cs" />
     <Compile Include="Management\IUUID.cs" />
     <Compile Include="Management\IUUIDExtension.cs" />
-    <Compile Include="Management\Record\CurrentStock.cs" />
+    <Compile Include="Management\Record\Inventory.cs" />
     <Compile Include="Management\Record\InOutStock.cs" />
-    <Compile Include="DataGrid\InventoryRecord.cs" />
+    <Compile Include="DataGrid\InventoryPipe.cs" />
     <Compile Include="Management\Field\Item.cs" />
     <Compile Include="Management\Field\Measure.cs" />
     <Compile Include="Management\Field\Seller.cs" />

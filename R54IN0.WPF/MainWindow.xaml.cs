@@ -18,15 +18,56 @@ using Lex.Db;
 
 namespace R54IN0.WPF
 {
+    public class TestItem
+    {
+        public string Name { get; set; }
+        public string Remark { get; set; }
+    }
+
+    public class ViewModelTest
+    {
+        public ObservableCollection<TestItem> list { get; set; }
+
+        public ViewModelTest()
+        {
+            list = new ObservableCollection<TestItem>();
+        }
+    }
+
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<TestItem> Itemsadsfsdf { get; set; }
+
+        public ObservableCollection<ViewModelTest> PaList { get; set; }
+
         public MainWindow()
         {
+            //PaList = new ObservableCollection<ViewModelTest>();
+            //var vmt = new ViewModelTest();
+            //vmt.list.Add(new TestItem() { Name = "a" });
+            //vmt.list.Add(new TestItem() { Name = "b" });
+            //PaList.Add(vmt);
+
+            //InitializeComponent();
+            //DataContext = this;
+
             InitializeComponent();
+            DataContext = new FieldItemListEditorViewModel();
 #if false
+
+            Itemsadsfsdf = new List<TestItem>();
+            Itemsadsfsdf.Add(new TestItem() { Name = "name1" });
+            Itemsadsfsdf.Add(new TestItem() { Name = "name2" });
+
+            
+
+            DataContext = this;
+
+            DataContext = this;
+            //
             var eep = new Employee() { Name = "천두관" }.Save<Employee>();
             var seller = new Seller() { Name = "(주) 비즈메디코리아", Delegator = "김성남", MobileNumber = "", PhoneNumber = "" }.Save<Seller>();
             var meas = new Measure() { Name = "개" }.Save<Measure>();
@@ -58,6 +99,26 @@ namespace R54IN0.WPF
             var viewModel = Finder.DataContext as InventoryFinderViewModel;
             viewModel.Nodes.Add(root);
 #endif
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

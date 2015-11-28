@@ -9,13 +9,13 @@ using System.Diagnostics;
 namespace R54IN0
 {
     /// <summary>
-    /// 재고 현황
+    /// 재고 현황 CurrentStockWrapping
     /// </summary>
-    public class InventoryRecord
+    public class InventoryPipe
     {
-        private CurrentStock _stockItem;
+        private Inventory _stockItem;
 
-        public InventoryRecord(CurrentStock stockItem)
+        public InventoryPipe(Inventory stockItem)
         {
             _stockItem = stockItem;
         }

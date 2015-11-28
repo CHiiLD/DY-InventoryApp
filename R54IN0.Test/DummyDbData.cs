@@ -52,9 +52,6 @@ namespace R54IN0.Test
             new Specification() { Name = "슈프리모", ItemUUID = item.UUID, PurchaseUnitPrice = 1100, SalesUnitPrice = 1700 }.Save<Specification>();
             new Specification() { Name = "모카 하라", ItemUUID = item.UUID, PurchaseUnitPrice = 2100, SalesUnitPrice = 3000 }.Save<Specification>();
 
-            Console.WriteLine("*제품의 규격 등록한 것 확인하기");
-            Console.WriteLine("품목: " + item.Name);
-
             item = new Item() { Name = "머플러세트", CurrencyUUID = curr.UUID, MeasureUUID = meas.UUID }.Save<Item>();
             new Specification() { Name = "에바주니", ItemUUID = item.UUID, PurchaseUnitPrice = 1000, SalesUnitPrice = 1505 }.Save<Specification>();
             new Specification() { Name = "샤넬", ItemUUID = item.UUID, PurchaseUnitPrice = 1100, SalesUnitPrice = 1700 }.Save<Specification>();

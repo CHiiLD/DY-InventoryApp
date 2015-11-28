@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public interface IStock
+    public interface IInventory
     {
         string SpecificationUUID { get; set; }
         string WarehouseUUID { get; set; }

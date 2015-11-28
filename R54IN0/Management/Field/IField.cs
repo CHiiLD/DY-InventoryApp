@@ -2,7 +2,7 @@
 
 namespace R54IN0
 {
-    public interface IBasic : IUUID
+    public interface IField : IUUID
     {
         string Name { get; set; }
         bool IsDeleted { get; set; }

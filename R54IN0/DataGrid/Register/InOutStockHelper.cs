@@ -10,14 +10,14 @@ namespace R54IN0
     /// <summary>
     /// in out stock report record register/edit helper
     /// </summary>
-    public class InOutStockRRRHelper
+    public class InOutStockHelper
     {
         InOutStock _InOutStock;
 
         /// <summary>
         /// for register
         /// </summary>
-        public InOutStockRRRHelper()
+        public InOutStockHelper()
         {
             _InOutStock = new InOutStock();
         }
@@ -26,7 +26,7 @@ namespace R54IN0
         /// for edit
         /// </summary>
         /// <param name="inOutStock"></param>
-        public InOutStockRRRHelper(InOutStock inOutStock)
+        public InOutStockHelper(InOutStock inOutStock)
         {
             _InOutStock = inOutStock;
         }
@@ -52,15 +52,19 @@ namespace R54IN0
             _InOutStock.WarehouseUUID = warehouse.UUID;
             _InOutStock.Remark = remark;
 
-            var queryResult = DatabaseDirector.GetDbInstance().Table<CurrentStock>().IndexQueryByKey("SpecificationUUID", spec.UUID);
-            CurrentStock stockItem = queryResult.Count() == 0 ? 
-                new CurrentStock() { SpecificationUUID = spec.UUID, WarehouseUUID = warehouse.UUID } : queryResult.ToList().First();
+            IIndexQuery<Inventory, string> queryResult = null;
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                queryResult = db.Table<Inventory>().IndexQueryByKey("SpecificationUUID", spec.UUID);
+            }
+            Inventory stockItem = queryResult.Count() == 0 ? 
+                new Inventory() { SpecificationUUID = spec.UUID, WarehouseUUID = warehouse.UUID } : queryResult.ToList().First();
             switch (_InOutStock.StockType)
             {
                 case StockType.IN: stockItem.ItemCount += count; break;
                 case StockType.OUT: stockItem.ItemCount -= count; break;
             }
-            stockItem.Save<CurrentStock>();
+            stockItem.Save<Inventory>();
             return _InOutStock.Save<InOutStock>();
         }
 

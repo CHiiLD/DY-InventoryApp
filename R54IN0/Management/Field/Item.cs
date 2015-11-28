@@ -1,9 +1,11 @@
-﻿namespace R54IN0
+﻿using System.Collections.Generic;
+
+namespace R54IN0
 {
     /// <summary>
     /// 품목
     /// </summary>
-    public class Item : IBasic
+    public class Item : IField
     {
         public string UUID { get; set; }
         public string Name { get; set; }

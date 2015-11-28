@@ -3,7 +3,7 @@
     /// <summary>
     /// 자사원
     /// </summary>
-    public class Employee : IBasic
+    public class Employee : IField
     {
         public string UUID { get; set; }
         public string Name { get; set; }

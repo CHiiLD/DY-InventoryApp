@@ -16,7 +16,7 @@ namespace R54IN0
     /// <summary>
     /// DB 입고 기록 클래스
     /// </summary>
-    public class InOutStock : IUUID, IStock
+    public class InOutStock : IUUID, IInventory
     {
         public StockType StockType { get; set; }
         public string UUID { get; set; }

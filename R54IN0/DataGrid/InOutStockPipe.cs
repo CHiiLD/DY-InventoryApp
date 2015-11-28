@@ -8,11 +8,11 @@ using System.Diagnostics;
 
 namespace R54IN0
 {
-    public class InOutStockRecord
+    public class InOutStockPipe
     {
         private InOutStock _inOutStock;
 
-        public InOutStockRecord(InOutStock stock)
+        public InOutStockPipe(InOutStock stock)
         {
             _inOutStock = stock;
         }

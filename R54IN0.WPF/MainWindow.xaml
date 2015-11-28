@@ -4,10 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:R54IN0.WPF"
+        xmlns:name="thiz"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <!--<local:InventoryDataGrid x:Name="InvenDataGrid"/>-->
-        <local:InventoryFinder x:Name="Finder"/>
+        <!--<local:InventoryFinder x:Name="Finder"/>-->
+        <!--<DataGrid ItemsSource="{Binding Iitems}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="코드" Binding="{Binding Name}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="비고" Binding="{Binding Remark}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>-->
+        
+        <local:FieldItemListEditor/>
+
+        <!--<DataGrid ItemsSource="{Binding PaList}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                --><!--<DataGridComboBoxColumn Header="Test" ItemsSource="{Binding list}" >
+                </DataGridComboBoxColumn>--><!--
+                <DataGridTemplateColumn Header="Street Address">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding list}" DisplayMemberPath="Name" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>-->
+        
+        <!--<ComboBox ItemsSource="{Binding Itemsadsfsdf}" DisplayMemberPath="Name" Width="200" Height="30" SelectionChanged="ComboBox_SelectionChanged" DataContextChanged="ComboBox_DataContextChanged" LostFocus="ComboBox_LostFocus" GotFocus="ComboBox_GotFocus"/>-->
     </Grid>
 </Window>
