@@ -11,6 +11,7 @@ namespace R54IN0
     {
         ItemPipe _selectedItem;
         SpecificationPipe _selectedSpecification { get; set; }
+        SortedDictionary<string, List<SpecificationPipe>> _awaters;
 
         public ObservableCollection<ItemPipe> Items { get; set; }
 
@@ -22,9 +23,9 @@ namespace R54IN0
             }
             set
             {
-                Specifications.Clear();
                 _selectedItem = value;
-                if(_selectedItem != null)
+                Specifications.Clear();
+                if (_selectedItem != null)
                 {
                     IEnumerable<Specification> result = null;
                     using (var db = DatabaseDirector.GetDbInstance())
@@ -35,6 +36,7 @@ namespace R54IN0
                         Specifications.Add(new SpecificationPipe(i));
                 }
                 SelectedSpecification = Specifications.FirstOrDefault();
+                _awaters[_selectedItem.Field.UUID] = Specifications.ToList();
             }
         }
 
@@ -62,12 +64,13 @@ namespace R54IN0
             IEnumerable<ItemPipe> itemPipes = items.Where(x => !x.IsDeleted).Select(x => new ItemPipe(x));
             Items = new ObservableCollection<ItemPipe>(itemPipes);
             Specifications = new ObservableCollection<SpecificationPipe>();
+            _awaters = new SortedDictionary<string, List<SpecificationPipe>>();
             SelectedItem = Items.FirstOrDefault();
         }
 
         public void AddNewItem()
         {
-            Items.Add(new ItemPipe(new Item().Save<Item>()));
+            Items.Add(new ItemPipe(new Item() { UUID = Guid.NewGuid().ToString() }));
             SelectedItem = Items.LastOrDefault();
         }
 
@@ -75,9 +78,12 @@ namespace R54IN0
         {
             if (SelectedItem != null)
             {
-                var spec = new Specification() { ItemUUID = SelectedItem.Field.UUID }.Save<Specification>();
-                Specifications.Add(new SpecificationPipe(spec));
+                var spec = new Specification() { ItemUUID = SelectedItem.Field.UUID };
+                var specPipe = new SpecificationPipe(spec);
+                Specifications.Add(specPipe);
                 SelectedSpecification = Specifications.LastOrDefault();
+                if (_awaters.ContainsKey(spec.ItemUUID))
+                    _awaters[spec.ItemUUID].Add(specPipe);
             }
         }
 
@@ -86,7 +92,6 @@ namespace R54IN0
             if (SelectedItem != null)
             {
                 SelectedItem.Field.IsDeleted = true;
-                SelectedItem.Field.Save<Item>();
                 Items.Remove(SelectedItem);
                 SelectedItem = Items.FirstOrDefault();
             }
@@ -97,7 +102,6 @@ namespace R54IN0
             if (SelectedSpecification != null)
             {
                 SelectedSpecification.Field.IsDeleted = true;
-                SelectedSpecification.Field.Save<Specification>();
                 Specifications.Remove(SelectedSpecification);
                 SelectedSpecification = Specifications.FirstOrDefault();
             }
@@ -105,7 +109,11 @@ namespace R54IN0
 
         public void Save()
         {
-
+            foreach (var field in Items)
+                field.Field.Save<Item>();
+            foreach (var awaiter in _awaters)
+                foreach (var spec in awaiter.Value)
+                    spec.Field.Save<Specification>();
         }
     }
 }

@@ -11,5 +11,22 @@
         public decimal PurchaseUnitPrice { get; set; }
         public decimal SalesUnitPrice { get; set; }
         public string ItemUUID { get; set; }
+        public string Remark { get; set; }
+
+        public Specification()
+        {
+
+        }
+
+        public Specification(Specification thiz)
+        {
+            UUID = thiz.UUID;
+            Name = thiz.Name;
+            IsDeleted = thiz.IsDeleted;
+            PurchaseUnitPrice = thiz.PurchaseUnitPrice;
+            SalesUnitPrice = thiz.SalesUnitPrice;
+            ItemUUID = thiz.ItemUUID;
+            Remark = thiz.Remark;
+        }
     }
 }

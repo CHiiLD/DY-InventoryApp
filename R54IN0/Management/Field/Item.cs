@@ -13,5 +13,20 @@ namespace R54IN0
         public string MeasureUUID { get; set; }
         public string CurrencyUUID { get; set; }
         public string MakerUUID { get; set; }
+
+        public Item()
+        {
+
+        }
+
+        public Item(Item thiz)
+        {
+            UUID = thiz.UUID;
+            Name = thiz.Name;
+            IsDeleted = thiz.IsDeleted;
+            MeasureUUID = thiz.MeasureUUID;
+            CurrencyUUID = thiz.CurrencyUUID;
+            MakerUUID = thiz.MakerUUID;
+        }
     }
 }

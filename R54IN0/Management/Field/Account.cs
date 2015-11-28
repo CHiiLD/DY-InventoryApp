@@ -11,5 +11,20 @@
         public string Delegator { get; set; }
         public string PhoneNumber { get; set; }
         public string MobileNumber { get; set; }
+
+        public Account()
+        {
+
+        }
+
+        public Account(Account thiz)
+        {
+            UUID = thiz.UUID;
+            Name = thiz.Name;
+            IsDeleted = thiz.IsDeleted;
+            Delegator = thiz.Delegator;
+            PhoneNumber = thiz.PhoneNumber;
+            MobileNumber = thiz.MobileNumber;
+        }
     }
 }

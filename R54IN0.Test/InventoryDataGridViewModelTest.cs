@@ -11,5 +11,17 @@ namespace R54IN0.Test
         {
             InventoryDataGridViewModel viewModel = new InventoryDataGridViewModel();
         }
+
+        [TestMethod]
+        public void RemoveSelectedItemTest()
+        {
+            InventoryDataGridViewModel viewModel = new InventoryDataGridViewModel();
+            if (viewModel.Items.Count != 0)
+            {
+                int cnt = viewModel.Items.Count;
+                viewModel.RemoveSelectedItem();
+                Assert.AreEqual(cnt - 1, viewModel.Items.Count);
+            }
+        }
     }
 }

@@ -38,6 +38,10 @@ namespace R54IN0
             WithIndex("Name", i => i.Name).
             WithIndex("IsEnable", i => i.IsDeleted);
 
+            db.Map<Maker>().Automap(i => i.UUID).
+            WithIndex("Name", i => i.Name).
+            WithIndex("IsEnable", i => i.IsDeleted);
+
             db.Map<Item>().Automap(i => i.UUID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsEnable", i => i.IsDeleted).
@@ -50,7 +54,8 @@ namespace R54IN0
             WithIndex("IsEnable", i => i.IsDeleted).
             WithIndex("PurchaseUnitPrice", i => i.PurchaseUnitPrice).
             WithIndex("SalesUnitPrice", i => i.SalesUnitPrice).
-            WithIndex("ItemUUID", i => i.ItemUUID);
+            WithIndex("ItemUUID", i => i.ItemUUID).
+            WithIndex("Remark", i => i.Remark);
 
             db.Map<Measure>().Automap(i => i.UUID).
             WithIndex("Name", i => i.Name).

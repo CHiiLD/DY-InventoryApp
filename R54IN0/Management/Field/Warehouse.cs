@@ -8,5 +8,17 @@
         public string UUID { get; set; }
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
+
+        public Warehouse()
+        {
+
+        }
+
+        public Warehouse(Warehouse thiz)
+        {
+            UUID = thiz.UUID;
+            Name = thiz.Name;
+            IsDeleted = thiz.IsDeleted;
+        }
     }
 }

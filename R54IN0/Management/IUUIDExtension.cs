@@ -19,13 +19,13 @@ namespace R54IN0
             return iuuid as T;
         }
 
-        public static void Delete<ClassT>(this IUUID iuuid) where ClassT : class, IUUID
+        public static void Delete<T>(this IUUID iuuid) where T : class, IUUID
         {
             using (var db = DatabaseDirector.GetDbInstance())
             {
                 if (string.IsNullOrEmpty(iuuid.UUID))
                     Debug.Assert(false);
-                db.Delete(iuuid as ClassT);
+                db.Delete(iuuid as T);
             }
         }
     }

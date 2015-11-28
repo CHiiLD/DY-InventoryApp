@@ -12,5 +12,23 @@ namespace R54IN0
         public string WarehouseUUID { get; set; }
         public int ItemCount { get; set; }
         public string Remark { get; set; }
+
+        public Inventory()
+        {
+        }
+
+        public Inventory(Inventory thiz)
+        {
+            UUID = thiz.UUID;
+            SpecificationUUID = thiz.SpecificationUUID;
+            WarehouseUUID = thiz.WarehouseUUID;
+            ItemCount = thiz.ItemCount;
+            Remark = thiz.Remark;
+        }
+
+        public object Clone()
+        {
+            return new Inventory(this);
+        }
     }
 }

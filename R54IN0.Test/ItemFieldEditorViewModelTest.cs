@@ -76,5 +76,54 @@ namespace R54IN0.Test
             viewModel.RemoveSelectedItem();
             Assert.AreEqual(count, viewModel.Items.Count);
         }
+
+        [TestMethod]
+        public void ItemsSaveTest()
+        {
+            new DummyDbData().Create();
+            var viewModel = new ItemFieldEditorViewModel();
+            var count = viewModel.Items.Count;
+
+            viewModel.AddNewItem();
+            viewModel.AddNewItem();
+            viewModel.AddNewItem();
+            viewModel.AddNewItem();
+            viewModel = new ItemFieldEditorViewModel();
+
+            Assert.AreEqual(count, viewModel.Items.Count);
+
+            viewModel.AddNewItem();
+            viewModel.AddNewItem();
+            viewModel.AddNewItem();
+            viewModel.AddNewItem();
+            viewModel.Save();
+
+            Assert.AreEqual(count + 4, viewModel.Items.Count);
+        }
+
+        [TestMethod]
+        public void SpecificationsSaveTest()
+        {
+            new DummyDbData().Create();
+            var viewModel = new ItemFieldEditorViewModel();
+
+            var count = viewModel.Specifications.Count;
+
+            viewModel.AddNewSpecification();
+            viewModel.AddNewSpecification();
+            viewModel.AddNewSpecification();
+            viewModel.AddNewSpecification();
+            viewModel = new ItemFieldEditorViewModel();
+
+            Assert.AreEqual(count, viewModel.Specifications.Count);
+
+            viewModel.AddNewSpecification();
+            viewModel.AddNewSpecification();
+            viewModel.AddNewSpecification();
+            viewModel.AddNewSpecification();
+            viewModel.Save();
+
+            Assert.AreEqual(count + 4, viewModel.Specifications.Count);
+        }
     }
 }

@@ -39,5 +39,18 @@ namespace R54IN0
                 OnPropertyChanged("SalesUnitPrice");
             }
         }
+
+        public string Remark
+        {
+            get
+            {
+                return Field.Remark;
+            }
+            set
+            {
+                Field.Remark = value;
+                OnPropertyChanged("Remark");
+            }
+        }
     }
 }

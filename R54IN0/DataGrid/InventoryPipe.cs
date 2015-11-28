@@ -13,8 +13,19 @@ namespace R54IN0
     /// </summary>
     public class InventoryPipe : InvenPipe<Inventory>
     {
-        public InventoryPipe(Inventory inventory) : base(inventory)
+        public InventoryPipe(Inventory inventory)
+            : base(inventory)
         {
+        }
+
+        public InventoryPipe(InventoryPipe thiz)
+            : base(thiz)
+        {
+        }
+
+        public InventoryPipe() : base(new Inventory())
+        {
+
         }
 
         public string Code
@@ -22,6 +33,19 @@ namespace R54IN0
             get
             {
                 return Inven.SpecificationUUID.Substring(0, 6).ToUpper();
+            }
+        }
+
+        public override string Remark
+        {
+            get
+            {
+                return Specification.Remark;
+            }
+            set
+            {
+                Specification.Remark = value;
+                OnPropertyChanged("Remark");
             }
         }
     }

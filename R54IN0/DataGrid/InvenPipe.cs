@@ -147,7 +147,7 @@ namespace R54IN0
             }
         }
 
-        public string Remark
+        public virtual string Remark
         {
             get
             {
@@ -165,11 +165,30 @@ namespace R54IN0
             _inven = iinven;
             using (var db = DatabaseDirector.GetDbInstance())
             {
-                var spec = db.LoadByKey<Specification>(_inven.SpecificationUUID);
-                Item = db.LoadByKey<Item>(spec.ItemUUID);
-                _specification = spec;
+                Specification spec = db.LoadByKey<Specification>(_inven.SpecificationUUID);
+                if (spec != null)
+                {
+                    Item = db.LoadByKey<Item>(spec.ItemUUID);
+                    _specification = spec;
+                }
                 _warehouse = db.LoadByKey<Warehouse>(_inven.WarehouseUUID);
             }
+        }
+
+        //public InvenPipe()
+        //{
+            
+        //}
+
+        public InvenPipe(InvenPipe<T> thiz)
+        {
+            _inven = thiz._inven.Clone() as T;
+            _specification = new Specification(thiz._specification);
+            _warehouse = new Warehouse(thiz._warehouse);
+            _item = new Item(thiz._item);
+            _measure = new Measure(thiz._measure);
+            _currency = new Currency(thiz._currency);
+            _maker = new Maker(thiz._maker);
         }
 
         protected void OnPropertyChanged(string name)

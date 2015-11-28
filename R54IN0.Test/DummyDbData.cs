@@ -28,14 +28,94 @@ namespace R54IN0.Test
             new Measure() { Name = "SET" }.Save<Measure>();
 
             new Warehouse() { Name = "1층" }.Save<Warehouse>();
-            new Warehouse() { Name = "연구실" }.Save<Warehouse>();
+            var w = new Warehouse() { Name = "연구실" }.Save<Warehouse>();
 
             var c = new Currency() { Name = "원" }.Save<Currency>();
             new Currency() { Name = "미국달러" }.Save<Currency>();
 
-            var item = new Item() { Name = "PBL", CurrencyUUID = c.UUID, MeasureUUID = m.UUID }.Save<Item>();
-            new Specification() { Name = "CR254-24V 녹색", ItemUUID = item.UUID, PurchaseUnitPrice = 1000, SalesUnitPrice = 1505 }.Save<Specification>();
+            var gunhng = new Maker() { Name = "건흥" }.Save<Maker>();
+            var hanyung = new Maker() { Name = "한영넉스" }.Save<Maker>();
+            var shunaider = new Maker() { Name = "슈나이더" }.Save<Maker>();
 
+            int pPrice = 1000;
+            int sPrice = 1400;
+
+            var item = new Item() { Name = "PBL", MakerUUID = hanyung.UUID, CurrencyUUID = c.UUID, MeasureUUID = m.UUID }.Save<Item>();
+            var spec = new Specification() { Remark = "녹색", Name = "CR254-24V 녹색", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
+            new Inventory()
+            {
+                ItemCount = 10,
+                Remark = "",
+                SpecificationUUID = spec.UUID,
+                WarehouseUUID = w.UUID
+            }.Save<Inventory>();
+            spec = new Specification() { Name = "CR254-24V 황색", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
+            new Inventory()
+            {
+                ItemCount = 10,
+                Remark = "",
+                SpecificationUUID = spec.UUID,
+                WarehouseUUID = w.UUID
+            }.Save<Inventory>();
+            item = new Item() { Name = "스위치 박스", MakerUUID = gunhng.UUID, CurrencyUUID = c.UUID, MeasureUUID = m.UUID }.Save<Item>();
+            spec = new Specification() { Name = "KCB-304D", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
+            new Inventory()
+            {
+                ItemCount = 10,
+                Remark = "",
+                SpecificationUUID = spec.UUID,
+                WarehouseUUID = w.UUID
+            }.Save<Inventory>();
+            spec = new Specification() { Name = "KCB-303D", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
+            new Inventory()
+            {
+                ItemCount = 10,
+                Remark = "",
+                SpecificationUUID = spec.UUID,
+                WarehouseUUID = w.UUID
+            }.Save<Inventory>();
+            spec = new Specification() { Name = "KCB-302D", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
+            new Inventory()
+            {
+                ItemCount = 10,
+                Remark = "",
+                SpecificationUUID = spec.UUID,
+                WarehouseUUID = w.UUID
+            }.Save<Inventory>();
+            spec = new Specification() { Name = "KCB-301D", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
+            new Inventory()
+            {
+                ItemCount = 10,
+                Remark = "",
+                SpecificationUUID = spec.UUID,
+                WarehouseUUID = w.UUID
+            }.Save<Inventory>();
+            spec = new Specification() { Name = "KCB-254D", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
+            new Inventory()
+            {
+                ItemCount = 10,
+                Remark = "",
+                SpecificationUUID = spec.UUID,
+                WarehouseUUID = w.UUID
+            }.Save<Inventory>();
+            spec = new Specification() { Name = "KCB-253D", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
+            new Inventory()
+            {
+                ItemCount = 10,
+                Remark = "",
+                SpecificationUUID = spec.UUID,
+                WarehouseUUID = w.UUID
+            }.Save<Inventory>();
+
+            item = new Item() { Name = "단자부", MakerUUID = shunaider.UUID, CurrencyUUID = c.UUID, MeasureUUID = m.UUID }.Save<Item>();
+            spec = new Specification() { Name = "2B 접점", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
+            new Inventory()
+            {
+                ItemCount = 10,
+                Remark = "",
+                SpecificationUUID = spec.UUID,
+                WarehouseUUID = w.UUID
+            }.Save<Inventory>();
 #if false
             //기본정보 등록 테스트
             new Employee() { Name = "지창훈" }.Save<Employee>();

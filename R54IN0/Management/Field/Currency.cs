@@ -10,5 +10,17 @@ namespace R54IN0
         public string UUID { get; set; }
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
+
+        public Currency()
+        {
+
+        }
+
+        public Currency(Currency thiz)
+        {
+            UUID = thiz.UUID;
+            Name = thiz.Name;
+            IsDeleted = thiz.IsDeleted;
+        }
     }
 }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\App.xaml
-91859970229
+10-1560259564
 
-13-2064840684
+141914967789
 201560344696
-FieldEditorControl\MakerFieldEditor.xaml;FieldEditorControl\WarehouseFieldEditor.xaml;FieldEditorControl\EmployeeFieldEditor.xaml;FieldEditorControl\CurrencyFieldEditor.xaml;FieldEditorControl\MeasureFieldEditor.xaml;FieldEditorControl\ItemFieldEditor.xaml;InventoryDataGrid.xaml;InventoryFinder.xaml;MainWindow.xaml;
+FieldEditorControl\MakerFieldEditor.xaml;FieldEditorControl\WarehouseFieldEditor.xaml;FieldEditorControl\EmployeeFieldEditor.xaml;FieldEditorControl\CurrencyFieldEditor.xaml;FieldEditorControl\MeasureFieldEditor.xaml;FieldEditorControl\ItemFieldEditor.xaml;InventoryDataGrid.xaml;InventoryFinder.xaml;InventoryItemEditorWindow.xaml;MainWindow.xaml;
 
 False
 

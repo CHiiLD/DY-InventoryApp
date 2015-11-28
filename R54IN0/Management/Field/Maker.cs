@@ -11,5 +11,17 @@ namespace R54IN0
         public string UUID { get; set; }
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
+
+        public Maker()
+        {
+
+        }
+
+        public Maker(Maker thiz)
+        {
+            UUID = thiz.UUID;
+            Name = thiz.Name;
+            IsDeleted = thiz.IsDeleted;
+        }
     }
 }

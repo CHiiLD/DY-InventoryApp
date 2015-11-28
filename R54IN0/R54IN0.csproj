@@ -50,17 +50,17 @@
     <Compile Include="DataGrid\Field\SpecificationPipe.cs" />
     <Compile Include="DataGrid\InvenPipe.cs" />
     <Compile Include="Management\Field\Maker.cs" />
-    <Compile Include="ViewModel\Field\AccountFieldEditorViewModel.cs" />
-    <Compile Include="ViewModel\Field\IFieldEditorViewModel.cs" />
-    <Compile Include="ViewModel\Field\ItemFieldEditorViewModel.cs" />
-    <Compile Include="ViewModel\Field\FieldEditorViewModel.cs" />
-    <Compile Include="ViewModel\Finder\Command\DragCommand.cs" />
-    <Compile Include="ViewModel\Finder\Command\DropCommand.cs" />
-    <Compile Include="ViewModel\Finder\Node\IDirectoryNodeExtention.cs" />
-    <Compile Include="ViewModel\Finder\SimpleStringFormat.cs" />
-    <Compile Include="ViewModel\InventoryDataGridViewModel.cs" />
-    <Compile Include="ViewModel\Finder\InventoryFinderViewModel.cs" />
-    <Compile Include="ViewModel\Finder\Node\ItemNode.cs" />
+    <Compile Include="Management\ViewModel\Field\AccountFieldEditorViewModel.cs" />
+    <Compile Include="Management\ViewModel\Field\IFieldEditorViewModel.cs" />
+    <Compile Include="Management\ViewModel\Field\ItemFieldEditorViewModel.cs" />
+    <Compile Include="Management\ViewModel\Field\FieldEditorViewModel.cs" />
+    <Compile Include="Management\ViewModel\Finder\Command\DragCommand.cs" />
+    <Compile Include="Management\ViewModel\Finder\Command\DropCommand.cs" />
+    <Compile Include="Management\ViewModel\Finder\Node\IDirectoryNodeExtention.cs" />
+    <Compile Include="Management\ViewModel\Finder\SimpleStringFormat.cs" />
+    <Compile Include="Management\ViewModel\InventoryDataGridViewModel.cs" />
+    <Compile Include="Management\ViewModel\Finder\InventoryFinderViewModel.cs" />
+    <Compile Include="Management\ViewModel\Finder\Node\ItemNode.cs" />
     <Compile Include="Management\Field\Currency.cs" />
     <Compile Include="Management\Field\Employee.cs" />
     <Compile Include="Management\Field\IField.cs" />
@@ -80,7 +80,8 @@
     <Compile Include="Management\Field\Specification.cs" />
     <Compile Include="Management\Field\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\Finder\Node\DirectoryNode.cs" />
+    <Compile Include="Management\ViewModel\Finder\Node\DirectoryNode.cs" />
+    <Compile Include="Management\ViewModel\InventoryEditorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">

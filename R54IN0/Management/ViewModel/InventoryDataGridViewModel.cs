@@ -10,6 +10,7 @@ namespace R54IN0
     public class InventoryDataGridViewModel
     {
         public ObservableCollection<InventoryPipe> Items { get; set; }
+        public InventoryPipe SelectedItem { get; set; }
 
         public InventoryDataGridViewModel()
         {
@@ -19,6 +20,7 @@ namespace R54IN0
                 items = db.LoadAll<Inventory>();
             }
             Items = new ObservableCollection<InventoryPipe>(items.Select(x => new InventoryPipe(x)));
+            SelectedItem = Items.FirstOrDefault();
         }
 
         public void ChangeInventoryItems(IEnumerable<InventoryPipe> items)
@@ -26,6 +28,24 @@ namespace R54IN0
             Items.Clear();
             foreach (var i in items)
                 Items.Add(i);
+            SelectedItem = Items.FirstOrDefault();
+        }
+
+        public void RemoveSelectedItem()
+        {
+            if (SelectedItem != null)
+            {
+                SelectedItem.Inven.Delete<Inventory>();
+                Items.Remove(SelectedItem);
+                SelectedItem = Items.FirstOrDefault();
+            }
+        }
+
+        public void Add(InventoryPipe inventoryPipe)
+        {
+            inventoryPipe.Inven.Save<Inventory>();
+            Items.Add(inventoryPipe);
+            SelectedItem = inventoryPipe;
         }
     }
 }

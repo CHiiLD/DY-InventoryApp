@@ -42,3 +42,5 @@ C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\ItemFieldEd
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\ItemFieldEditor.baml
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\MakerFieldEditor.baml
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\MakerFieldEditor.g.cs
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InventoryItemEditorWindow.g.cs
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InventoryItemEditorWindow.baml

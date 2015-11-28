@@ -27,5 +27,28 @@ namespace R54IN0
         public string EmployeeUUID { get; set; }
         public string WarehouseUUID { get; set; }
         public string Remark { get; set; }
+
+        public InOutStock()
+        {
+
+        }
+
+        public InOutStock(InOutStock thiz)
+        {
+            StockType = thiz.StockType;
+            UUID = thiz.UUID;
+            Date = thiz.Date;
+            SpecificationUUID = thiz.SpecificationUUID;
+            ItemCount = thiz.ItemCount;
+            EnterpriseUUID = thiz.EnterpriseUUID;
+            EmployeeUUID = thiz.EmployeeUUID;
+            WarehouseUUID = thiz.WarehouseUUID;
+            Remark = thiz.Remark;
+        }
+
+        public object Clone()
+        {
+            return new InOutStock(this);
+        }
     }
 }

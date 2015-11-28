@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public interface IInventory
+    public interface IInventory : ICloneable
     {
         string SpecificationUUID { get; set; }
         string WarehouseUUID { get; set; }

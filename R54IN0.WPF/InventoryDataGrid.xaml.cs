@@ -21,11 +21,43 @@ namespace R54IN0.WPF
     public partial class InventoryDataGrid : UserControl
     {
         InventoryDataGridViewModel _viewModel;
+        InventoryEditorViewModel _editorViewModel;
 
         public InventoryDataGrid()
         {
             InitializeComponent();
             DataContext = _viewModel = new InventoryDataGridViewModel();
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.RemoveSelectedItem();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            _editorViewModel = new InventoryEditorViewModel();
+            InventoryItemEditorWindow editWindow = new InventoryItemEditorWindow(_editorViewModel);
+            editWindow.Closed += OnEditorWindowClosed;
+            editWindow.Show();
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_viewModel.SelectedItem != null)
+            {
+                _editorViewModel = new InventoryEditorViewModel(_viewModel.SelectedItem);
+                InventoryItemEditorWindow editWindow = new InventoryItemEditorWindow(_editorViewModel);
+                editWindow.Closed += OnEditorWindowClosed;
+                editWindow.Show();
+            }
+        }
+
+        public void OnEditorWindowClosed(object sender, EventArgs e)
+        {
+            InventoryItemEditorWindow eidtWindow = sender as InventoryItemEditorWindow;
+            if (eidtWindow.IsApply)
+                _viewModel.Add(_editorViewModel.InventoryPipe);
         }
     }
 }

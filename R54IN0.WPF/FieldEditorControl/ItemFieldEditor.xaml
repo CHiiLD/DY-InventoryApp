@@ -72,6 +72,7 @@
                 <DataGridTextColumn Header="규격" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="입고단가" Binding="{Binding PurchaseUnitPrice}"/>
                 <DataGridTextColumn Header="출고단가" Binding="{Binding SalesUnitPrice}"/>
+                <DataGridTextColumn Header="비고" Binding="{Binding Remark}"/>
             </DataGrid.Columns>
         </DataGrid>
 
