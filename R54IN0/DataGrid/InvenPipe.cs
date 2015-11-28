@@ -163,22 +163,13 @@ namespace R54IN0
         public InvenPipe(T iinven)
         {
             _inven = iinven;
-            using (var db = DatabaseDirector.GetDbInstance())
-            {
-                Specification spec = db.LoadByKey<Specification>(_inven.SpecificationUUID);
-                if (spec != null)
-                {
-                    Item = db.LoadByKey<Item>(spec.ItemUUID);
-                    Specification = spec;
-                }
-                _warehouse = db.LoadByKey<Warehouse>(_inven.WarehouseUUID);
-            }
+            _item = _inven.TraceItem();
+            _specification = _inven.TraceSpecification();
+            _warehouse = _inven.TraceWarehouse();
+            _measure = _inven.TraceMeasure();
+            _currency = _inven.TraceCurrency();
+            _maker = _inven.TraceMaker();
         }
-
-        //public InvenPipe()
-        //{
-            
-        //}
 
         public InvenPipe(InvenPipe<T> thiz)
         {

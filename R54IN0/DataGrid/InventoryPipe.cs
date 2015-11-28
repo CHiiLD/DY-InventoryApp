@@ -32,6 +32,14 @@ namespace R54IN0
         {
             get
             {
+                return Inven.ItemUUID != null ? Inven.ItemUUID.Substring(0, 6).ToUpper() : "";
+            }
+        }
+
+        public string SubCode
+        {
+            get
+            {
                 return Inven.SpecificationUUID != null ? Inven.SpecificationUUID.Substring(0, 6).ToUpper() : "";
             }
         }

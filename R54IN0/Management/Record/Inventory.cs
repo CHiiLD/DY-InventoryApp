@@ -7,6 +7,7 @@ namespace R54IN0
     /// </summary>
     public class Inventory : IUUID, IInventory
     {
+        public string ItemUUID { get; set; }
         public string UUID { get; set; }
         public string SpecificationUUID { get; set; }
         public string WarehouseUUID { get; set; }
@@ -24,6 +25,7 @@ namespace R54IN0
             WarehouseUUID = thiz.WarehouseUUID;
             ItemCount = thiz.ItemCount;
             Remark = thiz.Remark;
+            ItemUUID = thiz.ItemUUID;
         }
 
         public object Clone()

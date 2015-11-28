@@ -19,6 +19,7 @@ namespace R54IN0
     public class InOutStock : IUUID, IInventory
     {
         public StockType StockType { get; set; }
+        public string ItemUUID { get; set; }
         public string UUID { get; set; }
         public DateTime Date { get; set; }
         public string SpecificationUUID { get; set; }
@@ -44,6 +45,7 @@ namespace R54IN0
             EmployeeUUID = thiz.EmployeeUUID;
             WarehouseUUID = thiz.WarehouseUUID;
             Remark = thiz.Remark;
+            ItemUUID = thiz.ItemUUID;
         }
 
         public object Clone()

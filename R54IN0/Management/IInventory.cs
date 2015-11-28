@@ -8,6 +8,7 @@ namespace R54IN0
 {
     public interface IInventory : ICloneable
     {
+        string ItemUUID { get; set; }
         string SpecificationUUID { get; set; }
         string WarehouseUUID { get; set; }
         int ItemCount { get; set; }

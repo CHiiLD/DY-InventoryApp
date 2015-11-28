@@ -70,23 +70,21 @@ namespace R54IN0
 
         public void AddNewItem()
         {
-            Items.Add(new ItemPipe(new Item() { UUID = Guid.NewGuid().ToString() }));
+            Items.Add(new ItemPipe(new Item() { Name = "new item", UUID = Guid.NewGuid().ToString() }));
             SelectedItem = Items.LastOrDefault();
             /// 새로 아이템을 등록할 시 베이스 규격을 등록, 규격 리스트는 최소 하나 이상을 가져야 한다.
-            //AddNewSpecification();
-            //SelectedSpecification.Field.Name = "Standard";
         }
 
         public void AddNewSpecification()
         {
             if (SelectedItem != null)
             {
-                var spec = new Specification() { ItemUUID = SelectedItem.Field.UUID };
-                var specPipe = new SpecificationPipe(spec);
-                Specifications.Add(specPipe);
+                var newSpecification = new Specification() { Name = "new specification", ItemUUID = SelectedItem.Field.UUID };
+                var newSpecificationPipe = new SpecificationPipe(newSpecification);
+                Specifications.Add(newSpecificationPipe);
                 SelectedSpecification = Specifications.LastOrDefault();
-                if (_awaters.ContainsKey(spec.ItemUUID))
-                    _awaters[spec.ItemUUID].Add(specPipe);
+                if (_awaters.ContainsKey(newSpecification.ItemUUID))
+                    _awaters[newSpecification.ItemUUID].Add(newSpecificationPipe);
             }
         }
 

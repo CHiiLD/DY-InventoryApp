@@ -43,7 +43,15 @@ namespace R54IN0
 
         public void Add(Inventory inventory)
         {
-            InventoryPipe overlap = Items.Where(x => x.Inven.SpecificationUUID == inventory.SpecificationUUID).SingleOrDefault();
+            //InventoryPipe overlap = Items.Where(
+            //    x => x.Inven.ItemUUID == inventory.ItemUUID &&
+            //    x.Inven.SpecificationUUID == inventory.SpecificationUUID).SingleOrDefault();
+
+            IEnumerable<InventoryPipe> overlaps = Items.Where(x => x.Inven.ItemUUID.CompareTo(inventory.ItemUUID) == 0).
+                Where(x => x.Inven.SpecificationUUID == inventory.SpecificationUUID);
+
+            InventoryPipe overlap = overlaps.SingleOrDefault();
+
             if (overlap != null)
                 Items.Remove(overlap);
 
@@ -62,7 +70,8 @@ namespace R54IN0
             Items.Insert(idx, newPipe);
             SelectedItem = newPipe;
 
-            InventoryPipe overlap = Items.Where(x => x.Inven.UUID != inventory.UUID && 
+            InventoryPipe overlap = Items.Where(
+                x => x.Inven.UUID != inventory.UUID && 
                 x.Inven.SpecificationUUID == inventory.SpecificationUUID).SingleOrDefault();
             if (overlap != null)
                 Items.Remove(overlap);

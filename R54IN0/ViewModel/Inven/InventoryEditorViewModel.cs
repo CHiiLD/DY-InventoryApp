@@ -76,6 +76,7 @@ namespace R54IN0
                     AllSpecification = db.Table<Specification>().IndexQueryByKey("ItemUUID", _item.UUID).ToList();
                     SelectedSpecification = AllSpecification.FirstOrDefault();
                 }
+                _inventory.ItemUUID = _item.UUID;
                 OnPropertyChanged("SelectedItem");
             }
         }
@@ -131,9 +132,13 @@ namespace R54IN0
         public InventoryEditorViewModel(Inventory inventory)
         {
             _inventory = inventory;
-            SelectedItem = _inventory.TraceItem();
-            SelectedSpecification = _inventory.TraceSpecification();
-            SelectedWarehouse = _inventory.TraceWarehouse();
+            _item = _inventory.TraceItem();
+            _specification = _inventory.TraceSpecification();
+            _warehouse = _inventory.TraceWarehouse();
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                _allSpecification = db.Table<Specification>().IndexQueryByKey("ItemUUID", _item.UUID).ToList();
+            }
             IsEditMode = true;
         }
 

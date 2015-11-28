@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace R54IN0.Test
 {
@@ -37,7 +38,7 @@ namespace R54IN0.Test
             var dgViewModel = new InventoryDataGridViewModel();
             int count = dgViewModel.Items.Count;
 
-            Assert.IsNotNull(viewModel.Inventory.SpecificationUUID);
+            //Assert.IsNotNull(viewModel.Inventory.SpecificationUUID);
             Assert.IsNotNull(viewModel.Inventory.WarehouseUUID);
 
             dgViewModel.Add(viewModel.Inventory);
@@ -171,6 +172,25 @@ namespace R54IN0.Test
             datagridViewModel.Replace(inven);
 
             Assert.AreEqual(cnt - 1, datagridViewModel.Items.Count);
+        }
+
+        [TestMethod]
+        public void NonessentialTest()
+        {
+            new DummyDbData().Create();
+            var dgViewModel = new InventoryDataGridViewModel();
+            
+
+            var copyItems = new ObservableCollection<InventoryPipe>(dgViewModel.Items);
+
+            foreach (var i in copyItems)
+            {
+                Console.WriteLine("---");
+                Console.WriteLine("{0}-{1}", i.Code, i.SubCode);
+                var editViewModel = new InventoryEditorViewModel(i.Inven);
+               // Console.WriteLine("{0}-{1}", editViewModel.Inventory.ItemUUID.Substring(0, 6).ToUpper(), editViewModel.Inventory.SpecificationUUID.Substring(0, 6).ToUpper());
+                dgViewModel.Add(editViewModel.Inventory);
+            }
         }
     }
 }

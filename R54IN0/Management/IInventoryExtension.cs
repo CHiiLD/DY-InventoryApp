@@ -20,8 +20,7 @@ namespace R54IN0
         {
             using (var db = DatabaseDirector.GetDbInstance())
             {
-                Specification istd = db.LoadByKey<Specification>(iiven.SpecificationUUID);
-                Item item = db.LoadByKey<Item>(istd.ItemUUID);
+                Item item = db.LoadByKey<Item>(iiven.ItemUUID);
                 return item;
             }
         }
@@ -30,8 +29,7 @@ namespace R54IN0
         {
             using (var db = DatabaseDirector.GetDbInstance())
             {
-                Specification istd = db.LoadByKey<Specification>(iiven.SpecificationUUID);
-                Item item = db.LoadByKey<Item>(istd.ItemUUID);
+                Item item = db.LoadByKey<Item>(iiven.ItemUUID);
                 Measure measure = db.LoadByKey<Measure>(item.MeasureUUID);
                 return measure;
             }
@@ -41,10 +39,19 @@ namespace R54IN0
         {
             using (var db = DatabaseDirector.GetDbInstance())
             {
-                Specification istd = db.LoadByKey<Specification>(iiven.SpecificationUUID);
-                Item item = db.LoadByKey<Item>(istd.ItemUUID);
+                Item item = db.LoadByKey<Item>(iiven.ItemUUID);
                 Currency currency = db.LoadByKey<Currency>(item.CurrencyUUID);
                 return currency;
+            }
+        }
+
+        public static Maker TraceMaker(this IInventory iiven)
+        {
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                Item item = db.LoadByKey<Item>(iiven.ItemUUID);
+                Maker maker = db.LoadByKey<Maker>(item.MakerUUID);
+                return maker;
             }
         }
 

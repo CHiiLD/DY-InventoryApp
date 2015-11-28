@@ -75,6 +75,8 @@ namespace R54IN0
             db.Map<Inventory>().Automap(i => i.UUID).
                 WithIndex("SpecificationUUID", i => i.SpecificationUUID).
                 WithIndex("WarehouseUUID", i => i.WarehouseUUID).
+                WithIndex("Remark", i => i.Remark).
+                WithIndex("ItemUUID", i => i.ItemUUID).
                 WithIndex("ItemCount", i => i.ItemCount);
 
             db.Map<InOutStock>().Automap(i => i.UUID).
@@ -85,6 +87,7 @@ namespace R54IN0
                 WithIndex("EnterpriseUUID", i => i.EnterpriseUUID).
                 WithIndex("EmployeeUUID", i => i.EmployeeUUID).
                 WithIndex("WarehouseUUID", i => i.WarehouseUUID).
+                WithIndex("ItemUUID", i => i.ItemUUID).
                 WithIndex("Remark", i => i.Remark);
 
             db.Map<SimpleStringFormat>().Automap(i => i.UUID).
