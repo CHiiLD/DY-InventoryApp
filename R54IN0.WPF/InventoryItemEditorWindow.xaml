@@ -9,19 +9,28 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <TextBlock Text="품목"/>
-            <ComboBox ItemsSource="{Binding AllItem}" SelectedItem="{Binding SelectedItem}" DisplayMemberPath="Name"
-                      SelectedValuePath="UUID"  SelectedValue="{Binding SelectedItem.UUID}"/>
+            <ComboBox ItemsSource="{Binding AllItem}" 
+                      SelectedItem="{Binding SelectedItem}" 
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="UUID" 
+                      SelectedValue="{Binding SelectedItem.UUID}"/>
 
             <TextBlock Text="규격"/>
-            <ComboBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedSpecification}" DisplayMemberPath="Name"
-                      SelectedValuePath="UUID"  SelectedValue="{Binding SelectedSpecification.UUID}"/>
+            <ComboBox ItemsSource="{Binding AllSpecification}" 
+                      SelectedItem="{Binding SelectedSpecification}" 
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="UUID"  
+                      SelectedValue="{Binding SelectedSpecification.UUID}"/>
 
             <TextBlock Text="수량" />
-            <TextBox Text="{Binding ItemCount}" />
+            <TextBox Text="{Binding ItemCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock Text="보관장소" />
-            <ComboBox ItemsSource="{Binding AllWarehouse}" SelectedItem="{Binding SelectedWarehouse}" DisplayMemberPath="Name"
-                      SelectedValuePath="UUID"  SelectedValue="{Binding SelectedWarehouse.UUID}"/>
+            <ComboBox ItemsSource="{Binding AllWarehouse}" 
+                      SelectedItem="{Binding SelectedWarehouse}" 
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="UUID"
+                      SelectedValue="{Binding SelectedWarehouse.UUID}"/>
         </StackPanel>
         <UniformGrid Columns="2" Rows="1" Margin="0,0,0,0" Grid.Row="1" >
             <Button Content="추가/변경" Width="100" x:Name="OkButton" Click="OkButton_Click"/>

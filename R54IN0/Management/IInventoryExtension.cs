@@ -8,7 +8,7 @@ namespace R54IN0
 {
     public static class IInventoryExtension
     {
-        public static Specification TraceItemStandard(this IInventory iiven)
+        public static Specification TraceSpecification(this IInventory iiven)
         {
             using (var db = DatabaseDirector.GetDbInstance())
             {

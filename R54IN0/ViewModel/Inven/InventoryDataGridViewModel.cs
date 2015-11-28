@@ -41,11 +41,31 @@ namespace R54IN0
             }
         }
 
-        public void Add(InventoryPipe inventoryPipe)
+        public void Add(Inventory inventory)
         {
-            inventoryPipe.Inven.Save<Inventory>();
+            InventoryPipe overlap = Items.Where(x => x.Inven.SpecificationUUID == inventory.SpecificationUUID).SingleOrDefault();
+            if (overlap != null)
+                Items.Remove(overlap);
+
+            inventory.Save<Inventory>();
+            InventoryPipe inventoryPipe = new InventoryPipe(inventory);
             Items.Add(inventoryPipe);
             SelectedItem = inventoryPipe;
+        }
+
+        public void Replace(Inventory inventory)
+        {
+            InventoryPipe old = Items.Where(x => x.Inven.UUID == inventory.UUID).Single();
+            int idx = Items.IndexOf(old);
+            Items.RemoveAt(idx);
+            InventoryPipe newPipe = new InventoryPipe(inventory);
+            Items.Insert(idx, newPipe);
+            SelectedItem = newPipe;
+
+            InventoryPipe overlap = Items.Where(x => x.Inven.UUID != inventory.UUID && 
+                x.Inven.SpecificationUUID == inventory.SpecificationUUID).SingleOrDefault();
+            if (overlap != null)
+                Items.Remove(overlap);
         }
     }
 }

@@ -46,7 +46,7 @@ namespace R54IN0.WPF
         {
             if (_viewModel.SelectedItem != null)
             {
-                _editorViewModel = new InventoryEditorViewModel(_viewModel.SelectedItem);
+                _editorViewModel = new InventoryEditorViewModel(_viewModel.SelectedItem.Inven);
                 InventoryItemEditorWindow editWindow = new InventoryItemEditorWindow(_editorViewModel);
                 editWindow.Closed += OnEditorWindowClosed;
                 editWindow.Show();
@@ -55,9 +55,14 @@ namespace R54IN0.WPF
 
         public void OnEditorWindowClosed(object sender, EventArgs e)
         {
-            InventoryItemEditorWindow eidtWindow = sender as InventoryItemEditorWindow;
-            if (eidtWindow.IsApply)
-                _viewModel.Add(_editorViewModel.InventoryPipe);
+            InventoryItemEditorWindow editWin = sender as InventoryItemEditorWindow;
+            if (editWin.IsApply)
+            {
+                if (!_editorViewModel.IsEditMode)
+                    _viewModel.Add(_editorViewModel.Inventory);
+                else
+                    _viewModel.Replace(_editorViewModel.Inventory);
+            }
         }
     }
 }

@@ -72,6 +72,9 @@ namespace R54IN0
         {
             Items.Add(new ItemPipe(new Item() { UUID = Guid.NewGuid().ToString() }));
             SelectedItem = Items.LastOrDefault();
+            /// 새로 아이템을 등록할 시 베이스 규격을 등록, 규격 리스트는 최소 하나 이상을 가져야 한다.
+            //AddNewSpecification();
+            //SelectedSpecification.Field.Name = "Standard";
         }
 
         public void AddNewSpecification()
@@ -99,7 +102,7 @@ namespace R54IN0
 
         public void RemoveSelectedSpecification()
         {
-            if (SelectedSpecification != null)
+            if (SelectedSpecification != null && Specifications.Count > 1)
             {
                 SelectedSpecification.Field.IsDeleted = true;
                 Specifications.Remove(SelectedSpecification);

@@ -169,7 +169,7 @@ namespace R54IN0
                 if (spec != null)
                 {
                     Item = db.LoadByKey<Item>(spec.ItemUUID);
-                    _specification = spec;
+                    Specification = spec;
                 }
                 _warehouse = db.LoadByKey<Warehouse>(_inven.WarehouseUUID);
             }

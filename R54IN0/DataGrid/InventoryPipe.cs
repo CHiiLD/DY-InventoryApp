@@ -32,7 +32,7 @@ namespace R54IN0
         {
             get
             {
-                return Inven.SpecificationUUID.Substring(0, 6).ToUpper();
+                return Inven.SpecificationUUID != null ? Inven.SpecificationUUID.Substring(0, 6).ToUpper() : "";
             }
         }
 

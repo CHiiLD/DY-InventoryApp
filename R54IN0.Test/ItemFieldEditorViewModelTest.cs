@@ -61,8 +61,7 @@ namespace R54IN0.Test
             viewModel.RemoveSelectedSpecification();
             viewModel.RemoveSelectedSpecification();
 
-            Assert.AreEqual(null, viewModel.SelectedSpecification);
-            Assert.AreEqual(0, viewModel.Specifications.Count());
+            Assert.AreEqual(1, viewModel.Specifications.Count());
         }
 
         [TestMethod]
