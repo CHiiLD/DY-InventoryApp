@@ -27,7 +27,6 @@ namespace R54IN0.WPF
         public MainWindow()
         {
             InitializeComponent();
-            this.FontFamily = new FontFamily("맑은 글꼴");
         }
 
         private void InventoryTile_Click(object sender, RoutedEventArgs e)

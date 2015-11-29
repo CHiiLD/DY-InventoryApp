@@ -16,6 +16,7 @@
 
         <DataGrid ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" Grid.RowSpan="1" IsReadOnly="True">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="T" Binding="{Binding StockType}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="날짜" Binding="{Binding Date, StringFormat='{}{0:yyyy-MM-dd}'}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="코드" Binding="{Binding Code}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="품명" Binding="{Binding Item.Name}" IsReadOnly="True"/>

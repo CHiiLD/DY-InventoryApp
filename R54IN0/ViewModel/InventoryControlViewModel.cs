@@ -16,7 +16,13 @@ namespace R54IN0
         {
             _finder = finder;
             _dataGrid = dataGrid;
-            _finder.OnSelecting = OnSelecting;
+            _finder.SelectingAction = OnSelecting;
+            _dataGrid.ItemChangeAction += OnItemChanged;
+        }
+
+        void OnItemChanged()
+        {
+            _finder.Refresh();
         }
 
         void OnSelecting(InventoryFinderViewModel finderViewModel)

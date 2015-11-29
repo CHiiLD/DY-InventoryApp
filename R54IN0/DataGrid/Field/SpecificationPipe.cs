@@ -23,6 +23,7 @@ namespace R54IN0
             set
             {
                 Field.PurchaseUnitPrice = value;
+                Field.Save<Specification>();
                 OnPropertyChanged("PurchaseUnitPrice");
             }
         }
@@ -36,6 +37,7 @@ namespace R54IN0
             set
             {
                 Field.SalesUnitPrice = value;
+                Field.Save<Specification>();
                 OnPropertyChanged("SalesUnitPrice");
             }
         }
@@ -49,6 +51,7 @@ namespace R54IN0
             set
             {
                 Field.Remark = value;
+                Field.Save<Specification>();
                 OnPropertyChanged("Remark");
             }
         }

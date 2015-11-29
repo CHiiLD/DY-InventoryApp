@@ -11,6 +11,7 @@ namespace R54IN0
     {
         public ObservableCollection<InventoryPipe> Items { get; set; }
         public InventoryPipe SelectedItem { get; set; }
+        public Action ItemChangeAction { get; set; }
 
         public InventoryDataGridViewModel()
         {
@@ -19,9 +20,7 @@ namespace R54IN0
             {
                 items = db.LoadAll<Inventory>();
             }
-            Items = new ObservableCollection<InventoryPipe>();
-            foreach (var item in items)
-                Add(item);
+            Items = new ObservableCollection<InventoryPipe>(items.Select(x => new InventoryPipe(x)));
             SelectedItem = Items.FirstOrDefault();
         }
 
@@ -40,6 +39,8 @@ namespace R54IN0
                 SelectedItem.Inven.Delete<Inventory>();
                 Items.Remove(SelectedItem);
                 SelectedItem = Items.FirstOrDefault();
+                if (ItemChangeAction != null)
+                    ItemChangeAction();
             }
         }
 
@@ -63,10 +64,13 @@ namespace R54IN0
             if (overlap != null)
                 Items.Remove(overlap);
 
-            inventory.Save<Inventory>();
             InventoryPipe inventoryPipe = new InventoryPipe(inventory);
             Items.Add(inventoryPipe);
             SelectedItem = inventoryPipe;
+
+            inventory.Save<Inventory>();
+            if (ItemChangeAction != null)
+                ItemChangeAction();
         }
 
         public void Replace(Inventory inventory)
@@ -85,6 +89,10 @@ namespace R54IN0
                 x.Inven.SpecificationUUID == inventory.SpecificationUUID).SingleOrDefault();
             if (overlap != null)
                 Items.Remove(overlap);
+
+            inventory.Save<Inventory>();
+            if (ItemChangeAction != null)
+                ItemChangeAction();
         }
     }
 }

@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class InvenPipe<T> : INotifyPropertyChanged where T : class, IInventory, new()
+    public class InvenPipe<T> : INotifyPropertyChanged where T : class, IInventory, IUUID, new()
     {
         T _inven;
         Specification _specification;
@@ -102,6 +102,7 @@ namespace R54IN0
                     _maker = db.LoadByKey<Maker>(_item.MakerUUID);
                 }
                 Specification = result.FirstOrDefault();
+                _inven.Save<T>();
                 OnPropertyChanged("Item");
             }
         }
@@ -116,6 +117,7 @@ namespace R54IN0
             {
                 _specification = value;
                 _inven.SpecificationUUID = _specification.UUID;
+                _inven.Save<T>();
                 OnPropertyChanged("Specification");
             }
         }
@@ -130,6 +132,7 @@ namespace R54IN0
             {
                 _warehouse = value;
                 _inven.WarehouseUUID = _warehouse.UUID;
+                _inven.Save<T>();
                 OnPropertyChanged("Warehouse");
             }
         }
@@ -143,6 +146,7 @@ namespace R54IN0
             set
             {
                 _inven.ItemCount = value;
+                _inven.Save<T>();
                 OnPropertyChanged("ItemCount");
             }
         }
@@ -156,6 +160,7 @@ namespace R54IN0
             set
             {
                 _inven.Remark = value;
+                _inven.Save<T>();
                 OnPropertyChanged("Remark");
             }
         }

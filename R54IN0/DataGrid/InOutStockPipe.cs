@@ -12,6 +12,7 @@ namespace R54IN0
     {
         Account _account;
         Employee _eeployee;
+
         public string Code
         {
             get
@@ -29,6 +30,7 @@ namespace R54IN0
             set
             {
                 Inven.Date = value;
+                Inven.Save<InOutStock>();
                 OnPropertyChanged("Date");
             }
         }
@@ -43,6 +45,7 @@ namespace R54IN0
             {
                 _account = value;
                 Inven.EnterpriseUUID = _account.UUID;
+                Inven.Save<InOutStock>();
                 OnPropertyChanged("Account");
             }
         }
@@ -57,7 +60,22 @@ namespace R54IN0
             {
                 _eeployee = value;
                 Inven.EmployeeUUID = _eeployee.UUID;
+                Inven.Save<InOutStock>();
                 OnPropertyChanged("Employee");
+            }
+        }
+
+        public StockType StockType
+        {
+            get
+            {
+                return Inven.StockType;
+            }
+            set
+            {
+                Inven.StockType = value;
+                Inven.Save<InOutStock>();
+                OnPropertyChanged("StockType");
             }
         }
 

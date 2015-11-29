@@ -26,7 +26,7 @@ namespace R54IN0
 
         public virtual void AddNewItem()
         {
-            Items.Add(new FieldPipe<T>(new T()));
+            Items.Add(new FieldPipe<T>(new T().Save<T>()));
             SelectedItem = Items.LastOrDefault();
         }
 

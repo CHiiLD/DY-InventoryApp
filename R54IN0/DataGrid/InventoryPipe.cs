@@ -53,6 +53,7 @@ namespace R54IN0
             set
             {
                 Specification.Remark = value;
+                Inven.Save<Inventory>();
                 OnPropertyChanged("Remark");
             }
         }

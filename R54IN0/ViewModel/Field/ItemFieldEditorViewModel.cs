@@ -11,7 +11,7 @@ namespace R54IN0
     {
         ItemPipe _selectedItem;
         SpecificationPipe _selectedSpecification { get; set; }
-        SortedDictionary<string, List<SpecificationPipe>> _awaters;
+        //SortedDictionary<string, List<SpecificationPipe>> _awaters;
 
         public ObservableCollection<ItemPipe> Items { get; set; }
 
@@ -36,7 +36,7 @@ namespace R54IN0
                         Specifications.Add(new SpecificationPipe(i));
                 }
                 SelectedSpecification = Specifications.FirstOrDefault();
-                _awaters[_selectedItem.Field.UUID] = Specifications.ToList();
+                //_awaters[_selectedItem.Field.UUID] = Specifications.ToList();
             }
         }
 
@@ -64,13 +64,13 @@ namespace R54IN0
             IEnumerable<ItemPipe> itemPipes = items.Where(x => !x.IsDeleted).Select(x => new ItemPipe(x));
             Items = new ObservableCollection<ItemPipe>(itemPipes);
             Specifications = new ObservableCollection<SpecificationPipe>();
-            _awaters = new SortedDictionary<string, List<SpecificationPipe>>();
+            //_awaters = new SortedDictionary<string, List<SpecificationPipe>>();
             SelectedItem = Items.FirstOrDefault();
         }
 
         public void AddNewItem()
         {
-            Items.Add(new ItemPipe(new Item() { Name = "new item", UUID = Guid.NewGuid().ToString() }));
+            Items.Add(new ItemPipe(new Item() { Name = "new item", UUID = Guid.NewGuid().ToString() }.Save<Item>()));
             SelectedItem = Items.LastOrDefault();
             /// 새로 아이템을 등록할 시 베이스 규격을 등록, 규격 리스트는 최소 하나 이상을 가져야 한다.
             AddNewSpecification();
@@ -80,12 +80,12 @@ namespace R54IN0
         {
             if (SelectedItem != null)
             {
-                var newSpecification = new Specification() { Name = "new specification", ItemUUID = SelectedItem.Field.UUID };
+                var newSpecification = new Specification() { Name = "new specification", ItemUUID = SelectedItem.Field.UUID }.Save<Specification>();
                 var newSpecificationPipe = new SpecificationPipe(newSpecification);
                 Specifications.Add(newSpecificationPipe);
                 SelectedSpecification = Specifications.LastOrDefault();
-                if (_awaters.ContainsKey(newSpecification.ItemUUID))
-                    _awaters[newSpecification.ItemUUID].Add(newSpecificationPipe);
+                //if (_awaters.ContainsKey(newSpecification.ItemUUID))
+                //    _awaters[newSpecification.ItemUUID].Add(newSpecificationPipe);
             }
         }
 
@@ -113,9 +113,9 @@ namespace R54IN0
         {
             foreach (var field in Items)
                 field.Field.Save<Item>();
-            foreach (var awaiter in _awaters)
-                foreach (var spec in awaiter.Value)
-                    spec.Field.Save<Specification>();
+            //foreach (var awaiter in _awaters)
+            //    foreach (var spec in awaiter.Value)
+            //        spec.Field.Save<Specification>();
         }
     }
 }

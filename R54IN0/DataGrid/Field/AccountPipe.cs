@@ -23,6 +23,7 @@ namespace R54IN0
             set
             {
                 Field.Delegator = value;
+                Field.Save<Account>();
                 OnPropertyChanged("Delegator");
             }
         }
@@ -36,6 +37,7 @@ namespace R54IN0
             set
             {
                 Field.PhoneNumber = value;
+                Field.Save<Account>();
                 OnPropertyChanged("PhoneNumber");
             }
         }
@@ -49,6 +51,7 @@ namespace R54IN0
             set
             {
                 Field.MobileNumber = value;
+                Field.Save<Account>();
                 OnPropertyChanged("MobileNumber");
             }
         }

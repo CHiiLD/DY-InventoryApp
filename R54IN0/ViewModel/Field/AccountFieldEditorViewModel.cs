@@ -26,7 +26,7 @@ namespace R54IN0
 
         public virtual void AddNewItem()
         {
-            Items.Add(new AccountPipe(new Account()));
+            Items.Add(new AccountPipe(new Account().Save<Account>()));
             SelectedItem = Items.LastOrDefault();
         }
 

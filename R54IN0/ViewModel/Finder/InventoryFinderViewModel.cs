@@ -37,7 +37,7 @@ namespace R54IN0
             }
         }
 
-        public Action<InventoryFinderViewModel> OnSelecting { get; set; }
+        public Action<InventoryFinderViewModel> SelectingAction { get; set; }
 
         public InventoryFinderViewModel()
         {
@@ -68,8 +68,8 @@ namespace R54IN0
                     SelectedNodes.Add(itemToSelect as DirectoryNode);
             }
 
-            if (OnSelecting != null)
-                OnSelecting(this);
+            if (SelectingAction != null)
+                SelectingAction(this);
         }
 
         public void AddNewDirectoryInSelectedDirectory()
@@ -100,17 +100,20 @@ namespace R54IN0
 
         public void DeleteSelectedDirectories()
         {
-            ObservableCollection<DirectoryNode> sellectNodesCopy = new ObservableCollection<DirectoryNode>(SelectedNodes);
+            ObservableCollection<DirectoryNode> selecNodeCpy = new ObservableCollection<DirectoryNode>(SelectedNodes);
             //tree구조의 노드를 일차Collection으로 모운 뒤, itemnode를 찾아서 ROOT노드에 중복 없이 추가
-            IEnumerable<ItemNode> itemNodes = sellectNodesCopy.SelectMany(x => x.Descendants().OfType<ItemNode>());
-            foreach (DirectoryNode iNode in itemNodes)
+            IEnumerable<ItemNode> itemNodes = selecNodeCpy.SelectMany(x => x.Descendants().OfType<ItemNode>());
+            foreach (DirectoryNode node in itemNodes)
             {
-                if (Nodes.All(node => node.UUID != iNode.UUID))
-                    Nodes.Add(new ItemNode(iNode as ItemNode));
+                if (Nodes.All(n => n.UUID != node.UUID))
+                    Nodes.Add(new ItemNode(node as ItemNode));
             }
             //부모노드에서 삭제
-            foreach (DirectoryNode selectNode in sellectNodesCopy)
-                RemoveNodeInRoot(selectNode);
+            foreach (DirectoryNode node in selecNodeCpy)
+            {
+                if (!(node.GetType() == typeof(ItemNode) && Nodes.Contains(node)))
+                    RemoveNodeInRoot(node);
+            }
             SelectedNodes.Clear();
         }
 
@@ -155,6 +158,7 @@ namespace R54IN0
             {
                 items = db.LoadAll<Item>().ToList().Where(x => !x.IsDeleted);
             }
+            //추가 ..
             foreach (var item in items)
             {
                 bool result = Nodes.Any(n => n.Descendants().OfType<ItemNode>().Any(x => ((ItemNode)x).ItemUUID == item.UUID));

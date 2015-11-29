@@ -46,5 +46,15 @@ namespace R54IN0.WPF
         {
             _viewModel.DeleteSelectedDirectories();
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Refresh();
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            _viewModel.SaveTree();
+        }
     }
 }

@@ -35,6 +35,7 @@ namespace R54IN0
             set
             {
                 _field.Name = value;
+                _field.Save<T>();
                 OnPropertyChanged("Name");
             }
         }
@@ -48,6 +49,7 @@ namespace R54IN0
             set
             {
                 _field.IsDeleted = value;
+                _field.Save<T>();
                 OnPropertyChanged("IsDelete");
             }
         }
