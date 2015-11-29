@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Release\
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Release\
 R54IN0.WPF
 none
 false
 TRACE
-C:\Users\Child\Github\R54IN0\R54IN0.WPF\App.xaml
-3-1320126430
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\App.xaml
+13-1021949686
 
-71640752949
-20-1079513787
-InventoryDataGrid.xaml;InventoryFinder.xaml;MainWindow.xaml;
+172107560801
+21-984831073
+FieldEditorControl\MakerFieldEditor.xaml;FieldEditorControl\WarehouseFieldEditor.xaml;FieldEditorControl\EmployeeFieldEditor.xaml;FieldEditorControl\CurrencyFieldEditor.xaml;FieldEditorControl\MeasureFieldEditor.xaml;FieldEditorControl\ItemFieldEditor.xaml;InOutStockDataGrid.xaml;InventoryControl.xaml;InventoryDataGrid.xaml;InventoryFinder.xaml;InOutStockItemEditorWindow.xaml;InventoryItemEditorWindow.xaml;MainWindow.xaml;
 
 False
 

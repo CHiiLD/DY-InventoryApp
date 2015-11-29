@@ -7,3 +7,6 @@ C:\Users\Child\Github\R54IN0\R54IN0\bin\Release\TreeViewEx.pdb
 C:\Users\Child\Github\R54IN0\R54IN0\obj\Release\R54IN0.csprojResolveAssemblyReference.cache
 C:\Users\Child\Github\R54IN0\R54IN0\obj\Release\R54IN0.dll
 C:\Users\Child\Github\R54IN0\R54IN0\obj\Release\R54IN0.pdb
+C:\Users\CHILD\GitHub\R54IN0\R54IN0\bin\Release\Newtonsoft.Json.dll
+C:\Users\CHILD\GitHub\R54IN0\R54IN0\bin\Release\Newtonsoft.Json.pdb
+C:\Users\CHILD\GitHub\R54IN0\R54IN0\bin\Release\Newtonsoft.Json.xml

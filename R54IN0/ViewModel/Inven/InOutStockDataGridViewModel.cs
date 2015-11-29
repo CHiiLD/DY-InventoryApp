@@ -16,6 +16,9 @@ namespace R54IN0
 
         public InOutStockDataGridViewModel(StockType type)
         {
+            if (type == StockType.NONE)
+                throw new ArgumentException();
+
             Items = new ObservableCollection<InOutStockPipe>();
             _stockType = type;
             using (var db = DatabaseDirector.GetDbInstance())
@@ -71,7 +74,7 @@ namespace R54IN0
             }
             if (inven != null)
             {
-                ioStock.ItemCount += inven.ItemCount;
+                inven.ItemCount += ioStock.ItemCount;
                 inven.Save<Inventory>();
             }
         }
@@ -100,6 +103,7 @@ namespace R54IN0
         {
             Check(ioStock);
 
+            ioStock.Save<InOutStock>();
             InOutStockPipe oldPipe = Items.Where(x => x.Inven.UUID == ioStock.UUID).Single();
             int count = oldPipe.ItemCount;
             int idx = Items.IndexOf(oldPipe);

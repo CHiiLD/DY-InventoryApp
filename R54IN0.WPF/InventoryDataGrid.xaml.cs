@@ -23,6 +23,14 @@ namespace R54IN0.WPF
         InventoryDataGridViewModel _viewModel;
         InventoryEditorViewModel _editorViewModel;
 
+        public InventoryDataGridViewModel ViewModel
+        {
+            get
+            {
+                return _viewModel;
+            }
+        }
+
         public InventoryDataGrid()
         {
             InitializeComponent();

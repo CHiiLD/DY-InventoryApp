@@ -48,3 +48,12 @@ C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InOutStockItemEditorWindow.bam
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InOutStockDataGrid.g.cs
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InOutStockItemEditorWindow.g.cs
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InOutStockDataGrid.baml
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InventoryControl.g.cs
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InventoryControl.baml
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.dll
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.pdb
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.xml
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\App.baml
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\AccountFieldEditor.baml
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\AccountFieldEditor.g.cs

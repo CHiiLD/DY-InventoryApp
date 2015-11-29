@@ -43,7 +43,7 @@ namespace R54IN0
         {
             get
             {
-                return _allSpecification.Where(x => !x.IsDeleted);
+                return _allSpecification == null ? null : _allSpecification.Where(x => !x.IsDeleted);
             }
             set
             {
@@ -128,6 +128,7 @@ namespace R54IN0
         {
             _inventory = new T();
             IsEdit = false;
+            _item = AllItem.FirstOrDefault();
         }
 
         public EditorViewModel(T inventory)

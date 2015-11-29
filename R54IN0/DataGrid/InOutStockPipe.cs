@@ -12,14 +12,11 @@ namespace R54IN0
     {
         Account _account;
         Employee _eeployee;
-
-        public InOutStockPipe(InOutStock ioStock)
-            : base(ioStock)
+        public string Code
         {
-            using (var db = DatabaseDirector.GetDbInstance())
+            get
             {
-                _account = db.LoadByKey<Account>(ioStock.EnterpriseUUID);
-                _eeployee = db.LoadByKey<Employee>(ioStock.EmployeeUUID);
+                return Inven.ItemUUID.Substring(0, 6).ToUpper();
             }
         }
 
@@ -61,6 +58,16 @@ namespace R54IN0
                 _eeployee = value;
                 Inven.EmployeeUUID = _eeployee.UUID;
                 OnPropertyChanged("Employee");
+            }
+        }
+
+        public InOutStockPipe(InOutStock ioStock)
+            : base(ioStock)
+        {
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                _account = db.LoadByKey<Account>(ioStock.EnterpriseUUID);
+                _eeployee = db.LoadByKey<Employee>(ioStock.EmployeeUUID);
             }
         }
     }

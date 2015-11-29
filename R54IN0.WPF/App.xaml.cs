@@ -13,5 +13,14 @@ namespace R54IN0.WPF
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            DatabaseDirector.DistroyDbInstance();
+        }
+
+        private void Application_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            
+        }
     }
 }

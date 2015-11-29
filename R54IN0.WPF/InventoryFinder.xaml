@@ -26,16 +26,14 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="추가하기" Command="{Binding CategoryAddCommand}" Click="AddButton_Click"/>
-            <!--<Button Content="오려두기" Command="{Binding CategoryCutCommand}"/>
-            <Button Content="이동하기" Command="{Binding CategoryMovCommand}"/>-->
-            <Button Content="삭제하기" Command="{Binding CategoryDelCommand}" Click="RemoveButton_Click"/>
+            <Button Content="추가하기" Margin="1" Click="AddButton_Click"/>
+            <Button Content="삭제하기" Margin="1" Click="RemoveButton_Click"/>
         </StackPanel>
-        <tree:TreeViewEx x:Name="FinderTreeView"
+        <tree:TreeViewEx x:Name="FinderTreeView" Margin="1"
             ItemsSource="{Binding Nodes}"
             DragCommand="{Binding DragCommand}"
             DropCommand="{Binding DropCommand}"
             SelectedItems="{Binding SelectedNodes}"
-            Grid.Row="1"/>
+            Grid.Row="1" BorderBrush="{DynamicResource AccentColorBrush}"/>
     </Grid>
 </UserControl>

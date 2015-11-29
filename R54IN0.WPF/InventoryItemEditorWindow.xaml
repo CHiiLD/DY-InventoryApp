@@ -1,6 +1,7 @@
-﻿<Window x:Class="R54IN0.WPF.InventoryItemEditorWindow"
+﻿<mah:MetroWindow x:Class="R54IN0.WPF.InventoryItemEditorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="InventoryItemEditorWindow" Height="300" Width="300">
     <Grid>
         <Grid.RowDefinitions>
@@ -37,4 +38,4 @@
             <Button Content="취소" Width="100" x:Name="CancelButton" Click="CancelButton_Click"/>
         </UniformGrid>
     </Grid>
-</Window>
+</mah:MetroWindow>

@@ -18,9 +18,7 @@ namespace R54IN0
         DropCommand _dropCommand;
 
         public ObservableCollection<DirectoryNode> Nodes { get; set; }
-
         public ObservableCollection<DirectoryNode> SelectedNodes { get; set; }
-
         private const string JSON_TREE_KEY = "1233kfasd-flkdks-232a";
 
         public ICommand DragCommand
@@ -38,6 +36,8 @@ namespace R54IN0
                 return _dropCommand;
             }
         }
+
+        public Action<InventoryFinderViewModel> OnSelecting { get; set; }
 
         public InventoryFinderViewModel()
         {
@@ -67,6 +67,9 @@ namespace R54IN0
                 if (!SelectedNodes.Contains(itemToSelect as DirectoryNode))
                     SelectedNodes.Add(itemToSelect as DirectoryNode);
             }
+
+            if (OnSelecting != null)
+                OnSelecting(this);
         }
 
         public void AddNewDirectoryInSelectedDirectory()

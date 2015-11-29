@@ -22,6 +22,14 @@ namespace R54IN0.WPF
     {
         InventoryFinderViewModel _viewModel;
 
+        public InventoryFinderViewModel ViewModel
+        {
+            get
+            {
+                return _viewModel;
+            }
+        }
+
         public InventoryFinder()
         {
             InitializeComponent();

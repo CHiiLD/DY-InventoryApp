@@ -8,6 +8,10 @@
             <RowDefinition Height="28*"/>
         </Grid.RowDefinitions>
         <StackPanel>
+            <TextBlock Text="입출고"/>
+            <ComboBox ItemsSource="{Binding AllStockType}" 
+                      SelectedItem="{Binding SelectedType}" />
+            
             <TextBlock Text="날짜"/>
             <DatePicker SelectedDate="{Binding Date}" />
 
@@ -43,11 +47,11 @@
                       SelectedValue="{Binding SelectedWarehouse.UUID}"/>
 
             <TextBlock Text="담당자"/>
-            <ComboBox ItemsSource="{Binding AllEemployee}" 
-                      SelectedItem="{Binding SelectedEemployee}" 
+            <ComboBox ItemsSource="{Binding AllEmployee}" 
+                      SelectedItem="{Binding SelectedEmployee}" 
                       DisplayMemberPath="Name"
                       SelectedValuePath="UUID"  
-                      SelectedValue="{Binding SelectedEemployee.UUID}"/>
+                      SelectedValue="{Binding SelectedEmployee.UUID}"/>
         </StackPanel>
         
         <UniformGrid Columns="2" Rows="1" Margin="0,0,0,0" Grid.Row="1" >

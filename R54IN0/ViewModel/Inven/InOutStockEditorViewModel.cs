@@ -25,7 +25,20 @@ namespace R54IN0
             }
         }
 
-        Account SelectedAccount
+        public StockType SelectedType
+        {
+            get
+            {
+                return Inventory.StockType;
+            }
+            set
+            {
+                Inventory.StockType = value;
+                OnPropertyChanged("SelectedType");
+            }
+        }
+
+        public Account SelectedAccount
         {
             get
             {
@@ -39,7 +52,7 @@ namespace R54IN0
             }
         }
 
-        Employee SelectedEmployee
+        public Employee SelectedEmployee
         {
             get
             {
@@ -53,7 +66,7 @@ namespace R54IN0
             }
         }
 
-        IEnumerable<Account> AllAccount
+        public IEnumerable<Account> AllAccount
         {
             get
             {
@@ -64,7 +77,7 @@ namespace R54IN0
             }
         }
 
-        IEnumerable<Employee> AllEmployee
+        public IEnumerable<Employee> AllEmployee
         {
             get
             {
@@ -75,11 +88,25 @@ namespace R54IN0
             }
         }
 
+        public IEnumerable<StockType> AllStockType
+        {
+            get
+            {
+                return new StockType[] { StockType.IN, StockType.OUT };
+            }
+        }
 
         public InOutStockEditorViewModel()
             : base()
         {
+            Date = DateTime.Now;
+            SelectedType = StockType.IN;
+        }
 
+        public InOutStockEditorViewModel(StockType type)
+            : this()
+        {
+            SelectedType = type;
         }
 
         public InOutStockEditorViewModel(InOutStock ioStock)

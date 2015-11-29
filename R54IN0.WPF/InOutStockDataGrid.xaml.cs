@@ -21,12 +21,27 @@ namespace R54IN0.WPF
     public partial class InOutStockDataGrid : UserControl
     {
         InOutStockDataGridViewModel _viewModel;
-        //InventoryEditorViewModel _editorViewModel;
+        InOutStockEditorViewModel _editorViewModel;
+        StockType _stockType;
 
         public InOutStockDataGrid()
         {
             InitializeComponent();
-            DataContext = _viewModel = new InOutStockDataGridViewModel(StockType.ALL);
+            //_stockType = StockType.ALL;
+            //DataContext = _viewModel = new InOutStockDataGridViewModel(_stockType);
+        }
+
+        public StockType StockType
+        {
+            set
+            {
+                _stockType = value;
+                DataContext = _viewModel = new InOutStockDataGridViewModel(_stockType);
+            }
+            get
+            {
+                return _stockType;
+            }
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
@@ -36,33 +51,33 @@ namespace R54IN0.WPF
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            //_editorViewModel = new InventoryEditorViewModel();
-            //InventoryItemEditorWindow editWindow = new InventoryItemEditorWindow(_editorViewModel);
-            //editWindow.Closed += OnEditorWindowClosed;
-            //editWindow.Show();
+            _editorViewModel = new InOutStockEditorViewModel();
+            InOutStockItemEditorWindow editWindow = new InOutStockItemEditorWindow(_editorViewModel);
+            editWindow.Closed += OnEditorWindowClosed;
+            editWindow.Show();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            //if (_viewModel.SelectedItem != null)
-            //{
-            //    _editorViewModel = new InventoryEditorViewModel(_viewModel.SelectedItem.Inven);
-            //    InventoryItemEditorWindow editWindow = new InventoryItemEditorWindow(_editorViewModel);
-            //    editWindow.Closed += OnEditorWindowClosed;
-            //    editWindow.Show();
-            //}
+            if (_viewModel.SelectedItem != null)
+            {
+                _editorViewModel = new InOutStockEditorViewModel(_viewModel.SelectedItem.Inven);
+                InOutStockItemEditorWindow editWindow = new InOutStockItemEditorWindow(_editorViewModel);
+                editWindow.Closed += OnEditorWindowClosed;
+                editWindow.Show();
+            }
         }
 
-        //public void OnEditorWindowClosed(object sender, EventArgs e)
-        //{
-        //    InventoryItemEditorWindow editWin = sender as InventoryItemEditorWindow;
-        //    if (editWin.IsApply)
-        //    {
-        //        if (!_editorViewModel.IsEditMode)
-        //            _viewModel.Add(_editorViewModel.Inventory);
-        //        else
-        //            _viewModel.Replace(_editorViewModel.Inventory);
-        //    }
-        //}
+        public void OnEditorWindowClosed(object sender, EventArgs e)
+        {
+            InOutStockItemEditorWindow editWin = sender as InOutStockItemEditorWindow;
+            if (editWin.IsApply)
+            {
+                if (!_editorViewModel.IsEdit)
+                    _viewModel.Add(_editorViewModel.Inventory);
+                else
+                    _viewModel.Replace(_editorViewModel.Inventory);
+            }
+        }
     }
 }

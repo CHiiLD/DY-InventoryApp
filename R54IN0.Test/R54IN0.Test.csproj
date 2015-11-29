@@ -62,6 +62,7 @@
     <Compile Include="FieldListEditorViewModelTest.cs" />
     <Compile Include="InventoryEditorViewModelTest.cs" />
     <Compile Include="InOutStockDataGridViewModelTest.cs" />
+    <Compile Include="InOutStockEditorViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">

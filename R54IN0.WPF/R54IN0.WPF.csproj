@@ -57,6 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="FieldEditorControl\AccountFieldEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="FieldEditorControl\MakerFieldEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -85,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="InventoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InventoryDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +117,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FieldEditorControl\AccountFieldEditor.xaml.cs">
+      <DependentUpon>AccountFieldEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FieldEditorControl\MakerFieldEditor.xaml.cs">
       <DependentUpon>MakerFieldEditor.xaml</DependentUpon>
     </Compile>
@@ -129,6 +140,9 @@
     </Compile>
     <Compile Include="InOutStockDataGrid.xaml.cs">
       <DependentUpon>InOutStockDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryControl.xaml.cs">
+      <DependentUpon>InventoryControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="InventoryDataGrid.xaml.cs">
       <DependentUpon>InventoryDataGrid.xaml</DependentUpon>
@@ -178,6 +192,10 @@
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
       <Project>{04608184-27b9-42a2-9e5e-69a6cb21ecfe}</Project>
       <Name>Lex.Db.Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MahApps.Metro\MahApps.Metro\MahApps.Metro.NET45.csproj">
+      <Project>{942d11c4-29f5-46c4-8c14-4b976d56c637}</Project>
+      <Name>MahApps.Metro.NET45</Name>
     </ProjectReference>
     <ProjectReference Include="..\R54IN0.Test\R54IN0.Test.csproj">
       <Project>{ec787dff-e080-4a02-958e-111ad0534de8}</Project>
