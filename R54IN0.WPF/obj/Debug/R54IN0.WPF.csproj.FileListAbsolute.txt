@@ -44,3 +44,7 @@ C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.Properties.Resource
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.csproj.GenerateResource.Cache
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.exe
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.pdb
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InOutStockItemEditorWindow.baml
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InOutStockDataGrid.g.cs
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InOutStockItemEditorWindow.g.cs
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\InOutStockDataGrid.baml

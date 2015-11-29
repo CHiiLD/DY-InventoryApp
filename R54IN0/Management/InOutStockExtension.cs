@@ -8,7 +8,7 @@ namespace R54IN0
 {
     public static class InOutStockExtension
     {
-        public static Account TraceSeller(this InOutStock iios)
+        public static Account TraceAccount(this InOutStock iios)
         {
             using (var db = DatabaseDirector.GetDbInstance())
             {

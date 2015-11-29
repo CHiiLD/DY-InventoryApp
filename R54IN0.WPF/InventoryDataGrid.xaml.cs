@@ -58,7 +58,7 @@ namespace R54IN0.WPF
             InventoryItemEditorWindow editWin = sender as InventoryItemEditorWindow;
             if (editWin.IsApply)
             {
-                if (!_editorViewModel.IsEditMode)
+                if (!_editorViewModel.IsEdit)
                     _viewModel.Add(_editorViewModel.Inventory);
                 else
                     _viewModel.Replace(_editorViewModel.Inventory);

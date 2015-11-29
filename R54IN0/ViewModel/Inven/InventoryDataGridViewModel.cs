@@ -19,7 +19,9 @@ namespace R54IN0
             {
                 items = db.LoadAll<Inventory>();
             }
-            Items = new ObservableCollection<InventoryPipe>(items.Select(x => new InventoryPipe(x)));
+            Items = new ObservableCollection<InventoryPipe>();
+            foreach (var item in items)
+                Add(item);
             SelectedItem = Items.FirstOrDefault();
         }
 
@@ -41,11 +43,17 @@ namespace R54IN0
             }
         }
 
+        void Check(Inventory inventory)
+        {
+            if (inventory.ItemUUID == null)
+                throw new ArgumentException("Item uuid 정보가 null");
+            if (inventory.SpecificationUUID == null)
+                throw new ArgumentException("specfication uuid 정보가 null");
+        }
+
         public void Add(Inventory inventory)
         {
-            //InventoryPipe overlap = Items.Where(
-            //    x => x.Inven.ItemUUID == inventory.ItemUUID &&
-            //    x.Inven.SpecificationUUID == inventory.SpecificationUUID).SingleOrDefault();
+            Check(inventory);
 
             IEnumerable<InventoryPipe> overlaps = Items.Where(x => x.Inven.ItemUUID.CompareTo(inventory.ItemUUID) == 0).
                 Where(x => x.Inven.SpecificationUUID == inventory.SpecificationUUID);
@@ -63,6 +71,8 @@ namespace R54IN0
 
         public void Replace(Inventory inventory)
         {
+            Check(inventory);
+
             InventoryPipe old = Items.Where(x => x.Inven.UUID == inventory.UUID).Single();
             int idx = Items.IndexOf(old);
             Items.RemoveAt(idx);
@@ -71,7 +81,7 @@ namespace R54IN0
             SelectedItem = newPipe;
 
             InventoryPipe overlap = Items.Where(
-                x => x.Inven.UUID != inventory.UUID && 
+                x => x.Inven.UUID != inventory.UUID &&
                 x.Inven.SpecificationUUID == inventory.SpecificationUUID).SingleOrDefault();
             if (overlap != null)
                 Items.Remove(overlap);

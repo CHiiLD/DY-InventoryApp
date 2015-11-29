@@ -81,11 +81,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InOutStockDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="InventoryDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InventoryFinder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InOutStockItemEditorWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -119,11 +127,17 @@
     <Compile Include="FieldEditorControl\ItemFieldEditor.xaml.cs">
       <DependentUpon>ItemFieldEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InOutStockDataGrid.xaml.cs">
+      <DependentUpon>InOutStockDataGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InventoryDataGrid.xaml.cs">
       <DependentUpon>InventoryDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="InventoryFinder.xaml.cs">
       <DependentUpon>InventoryFinder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InOutStockItemEditorWindow.xaml.cs">
+      <DependentUpon>InOutStockItemEditorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="InventoryItemEditorWindow.xaml.cs">
       <DependentUpon>InventoryItemEditorWindow.xaml</DependentUpon>

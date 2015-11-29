@@ -73,6 +73,7 @@ namespace R54IN0
             Items.Add(new ItemPipe(new Item() { Name = "new item", UUID = Guid.NewGuid().ToString() }));
             SelectedItem = Items.LastOrDefault();
             /// 새로 아이템을 등록할 시 베이스 규격을 등록, 규격 리스트는 최소 하나 이상을 가져야 한다.
+            AddNewSpecification();
         }
 
         public void AddNewSpecification()

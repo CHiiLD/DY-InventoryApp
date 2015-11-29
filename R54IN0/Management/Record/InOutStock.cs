@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
+    [Flags]
     public enum StockType
     {
-        NONE,
-        IN,
-        OUT
+        NONE = 0,
+        IN = 1 << 0,
+        OUT = 1 << 1,
+        ALL = IN | OUT
     }
 
     /// <summary>

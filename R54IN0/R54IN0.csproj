@@ -58,6 +58,9 @@
     <Compile Include="ViewModel\Finder\Command\DropCommand.cs" />
     <Compile Include="ViewModel\Finder\Node\IDirectoryNodeExtention.cs" />
     <Compile Include="ViewModel\Finder\SimpleStringFormat.cs" />
+    <Compile Include="ViewModel\Inven\EditorViewModel.cs" />
+    <Compile Include="ViewModel\Inven\InOutStockDataGridViewModel.cs" />
+    <Compile Include="ViewModel\Inven\InOutStockEditorViewModel.cs" />
     <Compile Include="ViewModel\Inven\InventoryDataGridViewModel.cs" />
     <Compile Include="ViewModel\Finder\InventoryFinderViewModel.cs" />
     <Compile Include="ViewModel\Finder\Node\ItemNode.cs" />
