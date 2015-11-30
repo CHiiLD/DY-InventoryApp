@@ -18,7 +18,7 @@ namespace R54IN0
         {
             DragParameters dragParameters = args as DragParameters;
             TreeViewExItem treeviewExitem = dragParameters.DragItem;
-            DirectoryNode finderNode = treeviewExitem.DataContext as DirectoryNode;
+            FinderNode finderNode = treeviewExitem.DataContext as FinderNode;
             if (finderNode != null)
                 return finderNode.AllowDrag;
             return false;

@@ -54,3 +54,8 @@ C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\bin\Release\MahApps.Metro.dll
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\bin\Release\System.Windows.Interactivity.dll
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\bin\Release\MahApps.Metro.pdb
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\bin\Release\MahApps.Metro.xml
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Release\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Release\ko\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Release\FieldEditorControl\AccountFieldEditor.baml
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Release\FieldEditorControl\AccountFieldEditor.g.cs
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Release\App.baml

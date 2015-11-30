@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace R54IN0
 {
-    public class ItemFieldEditorViewModel : IFieldEditorViewModel
+    public class ItemFieldEditorViewModel : AViewModelMediatorColleague, IFieldEditorViewModel
     {
         ItemPipe _selectedItem;
         SpecificationPipe _selectedSpecification { get; set; }
@@ -52,7 +52,7 @@ namespace R54IN0
             }
         }
 
-        public ItemFieldEditorViewModel()
+        public ItemFieldEditorViewModel() : base(ViewModelMediator.GetInstance())
         {
             Item[] items = null;
             using (var db = DatabaseDirector.GetDbInstance())
@@ -67,10 +67,12 @@ namespace R54IN0
 
         public void AddNewItem()
         {
-            Items.Add(new ItemPipe(new Item() { Name = "new item", UUID = Guid.NewGuid().ToString() }.Save<Item>()));
+            var item = new Item() { Name = "new item", UUID = Guid.NewGuid().ToString() }.Save<Item>();
+            Items.Add(new ItemPipe(item));
             SelectedItem = Items.LastOrDefault();
             /// 새로 아이템을 등록할 시 베이스 규격을 등록, 규격 리스트는 최소 하나 이상을 가져야 한다.
             AddNewSpecification();
+            Changed(item);
         }
 
         public void AddNewSpecification()
@@ -81,8 +83,6 @@ namespace R54IN0
                 var newSpecificationPipe = new SpecificationPipe(newSpecification);
                 Specifications.Add(newSpecificationPipe);
                 SelectedSpecification = Specifications.LastOrDefault();
-                //if (_awaters.ContainsKey(newSpecification.ItemUUID))
-                //    _awaters[newSpecification.ItemUUID].Add(newSpecificationPipe);
             }
         }
 
@@ -90,9 +90,11 @@ namespace R54IN0
         {
             if (SelectedItem != null)
             {
+                var item = SelectedItem.Field;
                 SelectedItem.IsDeleted = true;
                 Items.Remove(SelectedItem);
                 SelectedItem = Items.FirstOrDefault();
+                Changed(item);
             }
         }
 

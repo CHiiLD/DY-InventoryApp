@@ -23,9 +23,6 @@ namespace R54IN0.WPF
         public InventoryControl()
         {
             InitializeComponent();
-            var finderViewModel = Finder.ViewModel;
-            var invenDgViewModel = InvenDataGrid.ViewModel;
-            new InventoryControlViewModel(finderViewModel, invenDgViewModel);
         }
     }
 }

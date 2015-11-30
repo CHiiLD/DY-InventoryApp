@@ -12,13 +12,13 @@ using Lex.Db;
 
 namespace R54IN0
 {
-    public class InventoryFinderViewModel
+    public class InventoryFinderViewModel : AViewModelMediatorColleague
     {
         DragCommand _dragCommand;
         DropCommand _dropCommand;
 
-        public ObservableCollection<DirectoryNode> Nodes { get; set; }
-        public ObservableCollection<DirectoryNode> SelectedNodes { get; set; }
+        public ObservableCollection<FinderNode> Nodes { get; set; }
+        public ObservableCollection<FinderNode> SelectedNodes { get; set; }
         private const string JSON_TREE_KEY = "1233kfasd-flkdks-232a";
 
         public ICommand DragCommand
@@ -37,12 +37,10 @@ namespace R54IN0
             }
         }
 
-        public Action<InventoryFinderViewModel> SelectingAction { get; set; }
-
-        public InventoryFinderViewModel()
+        public InventoryFinderViewModel() : base(ViewModelMediator.GetInstance())
         {
-            Nodes = new ObservableCollection<DirectoryNode>();
-            SelectedNodes = new ObservableCollection<DirectoryNode>();
+            Nodes = new ObservableCollection<FinderNode>();
+            SelectedNodes = new ObservableCollection<FinderNode>();
             _dragCommand = new DragCommand();
             _dropCommand = new DropCommand(this);
         }
@@ -58,60 +56,58 @@ namespace R54IN0
 
             foreach (object itemToUnselect in e.ItemsToUnSelect)
             {
-                if (SelectedNodes.Contains(itemToUnselect as DirectoryNode))
-                    SelectedNodes.Remove(itemToUnselect as DirectoryNode);
+                if (SelectedNodes.Contains(itemToUnselect as FinderNode))
+                    SelectedNodes.Remove(itemToUnselect as FinderNode);
             }
 
             foreach (object itemToSelect in e.ItemsToSelect)
             {
-                if (!SelectedNodes.Contains(itemToSelect as DirectoryNode))
-                    SelectedNodes.Add(itemToSelect as DirectoryNode);
+                if (!SelectedNodes.Contains(itemToSelect as FinderNode))
+                    SelectedNodes.Add(itemToSelect as FinderNode);
             }
-
-            if (SelectingAction != null)
-                SelectingAction(this);
+            Changed();
         }
 
         public void AddNewDirectoryInSelectedDirectory()
         {
             if (SelectedNodes.Count == 0)
             {
-                Nodes.Add(new DirectoryNode("New Directory"));
+                Nodes.Add(new FinderNode(NodeType.DIRECTORY) { Name = "New Directory" });
                 return;
             }
-            IEnumerable<DirectoryNode> diNode = SelectedNodes.Where(x => x.GetType() == typeof(DirectoryNode));
+            IEnumerable<FinderNode> diNode = SelectedNodes.Where(x => x.Type == NodeType.DIRECTORY);
             if (diNode.Count() != 0)
-                diNode.First().Nodes.Add(new DirectoryNode("New Directory"));
+                diNode.First().Nodes.Add(new FinderNode(NodeType.DIRECTORY) { Name = "New Directory" });
             else
-                Nodes.Add(new DirectoryNode("New Directory"));
+                Nodes.Add(new FinderNode(NodeType.DIRECTORY) { Name = "New Directory" });
         }
 
-        internal void RemoveNodeInRoot(DirectoryNode node)
+        internal void RemoveNodeInRoot(FinderNode node)
         {
             if (Nodes.Contains(node))
             {
                 Nodes.Remove(node);
                 return;
             }
-            DirectoryNode result = Nodes.SelectMany(x => x.Descendants().Where(y => y.Nodes.Contains(node))).SingleOrDefault();
+            FinderNode result = Nodes.SelectMany(x => x.Descendants().Where(y => y.Nodes.Contains(node))).SingleOrDefault();
             if (result != null)
                 result.Nodes.Remove(node);
         }
 
         public void DeleteSelectedDirectories()
         {
-            ObservableCollection<DirectoryNode> selecNodeCpy = new ObservableCollection<DirectoryNode>(SelectedNodes);
+            ObservableCollection<FinderNode> selecNodeCpy = new ObservableCollection<FinderNode>(SelectedNodes);
             //tree구조의 노드를 일차Collection으로 모운 뒤, itemnode를 찾아서 ROOT노드에 중복 없이 추가
-            IEnumerable<ItemNode> itemNodes = selecNodeCpy.SelectMany(x => x.Descendants().OfType<ItemNode>());
-            foreach (DirectoryNode node in itemNodes)
+            IEnumerable<FinderNode> itemNodes = selecNodeCpy.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
+            foreach (FinderNode node in itemNodes)
             {
                 if (Nodes.All(n => n.UUID != node.UUID))
-                    Nodes.Add(new ItemNode(node as ItemNode));
+                    Nodes.Add(new FinderNode(node));
             }
             //부모노드에서 삭제
-            foreach (DirectoryNode node in selecNodeCpy)
+            foreach (FinderNode node in selecNodeCpy)
             {
-                if (!(node.GetType() == typeof(ItemNode) && Nodes.Contains(node)))
+                if (!(node.Type == NodeType.ITEM && Nodes.Contains(node)))
                     RemoveNodeInRoot(node);
             }
             SelectedNodes.Clear();
@@ -119,7 +115,7 @@ namespace R54IN0
 
         public void AddNewItemInNodes(string itemUUID)
         {
-            Nodes.Add(new ItemNode(itemUUID));
+            Nodes.Add(new FinderNode(NodeType.ITEM) { ItemUUID = itemUUID });
         }
 
         public void RemoveItemInNodes(string itemUUID)
@@ -128,7 +124,7 @@ namespace R54IN0
             try
             {
 #endif
-            IEnumerable<ItemNode> itemNodes = Nodes.SelectMany(n => n.Descendants().OfType<ItemNode>());
+            IEnumerable<FinderNode> itemNodes = Nodes.SelectMany(n => n.Descendants().Where(x => x.Type == NodeType.ITEM));
             itemNodes = itemNodes.Where(t => t.ItemUUID == itemUUID);
             var node = itemNodes.SingleOrDefault();
             if (node != null)
@@ -144,7 +140,7 @@ namespace R54IN0
 
         public void SaveTree()
         {
-            string json = JsonConvert.SerializeObject(this.Nodes);
+            string json = JsonConvert.SerializeObject(Nodes);
             using (var db = DatabaseDirector.GetDbInstance())
             {
                 db.Save(new SimpleStringFormat(JSON_TREE_KEY, json));
@@ -161,7 +157,7 @@ namespace R54IN0
             //추가 ..
             foreach (var item in items)
             {
-                bool result = Nodes.Any(n => n.Descendants().OfType<ItemNode>().Any(x => ((ItemNode)x).ItemUUID == item.UUID));
+                bool result = Nodes.Any(n => n.Descendants().Where(x => x.Type == NodeType.ITEM).Any(x => x.ItemUUID == item.UUID));
                 if (!result)
                     AddNewItemInNodes(item.UUID);
             }
@@ -169,17 +165,16 @@ namespace R54IN0
 
         public static InventoryFinderViewModel CreateInventoryFinderViewModel()
         {
-            ObservableCollection<DirectoryNode> nodes = null;
             SimpleStringFormat ssf = null;
+            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
             using (var db = DatabaseDirector.GetDbInstance())
             {
                 ssf = db.LoadByKey<SimpleStringFormat>(JSON_TREE_KEY);
             }
             if (ssf != null)
-                nodes = JsonConvert.DeserializeObject<ObservableCollection<DirectoryNode>>(ssf.Data);
-            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
-            if (nodes != null)
-                viewModel.Nodes = nodes;
+                viewModel.Nodes = JsonConvert.DeserializeObject<ObservableCollection<FinderNode>>(ssf.Data);
+            if (viewModel == null)
+                
             viewModel.Refresh();
             return viewModel;
         }

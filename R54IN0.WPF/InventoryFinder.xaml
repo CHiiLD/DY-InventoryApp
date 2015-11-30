@@ -11,7 +11,7 @@
              d:DesignHeight="300" d:DesignWidth="300" Unloaded="UserControl_Unloaded" Loaded="UserControl_Loaded">
 
     <UserControl.Resources>
-        <HierarchicalDataTemplate DataType="{x:Type r54in0:DirectoryNode}" ItemsSource="{Binding Nodes}">
+        <HierarchicalDataTemplate DataType="{x:Type r54in0:FinderNode}" ItemsSource="{Binding Nodes}">
             <StackPanel Orientation="Horizontal">
                 <Border CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0"/>
                 <edttxt:EditableTextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEditable}" IsInEditMode="{Binding IsInEditMode, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
@@ -34,6 +34,6 @@
             DragCommand="{Binding DragCommand}"
             DropCommand="{Binding DropCommand}"
             SelectedItems="{Binding SelectedNodes}"
-            Grid.Row="1" BorderBrush="{DynamicResource AccentColorBrush}"/>
+            Grid.Row="1" BorderBrush="{x:Null}"/>
     </Grid>
 </UserControl>

@@ -22,13 +22,13 @@ namespace R54IN0
 
         public virtual Brush Color { get { return Brushes.Tan; } }
 
-        public virtual bool IsEditable
-        {
-            get
-            {
-                return true;
-            }
-        }
+        //public virtual bool IsEditable
+        //{
+        //    get
+        //    {
+        //        return true;
+        //    }
+        //}
 
         public bool IsInEditMode { get; set; }
 

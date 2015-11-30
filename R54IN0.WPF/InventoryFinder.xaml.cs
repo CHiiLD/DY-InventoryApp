@@ -35,6 +35,12 @@ namespace R54IN0.WPF
             InitializeComponent();
             DataContext = _viewModel = InventoryFinderViewModel.CreateInventoryFinderViewModel();
             FinderTreeView.OnSelecting += _viewModel.OnSelectNodes;
+
+            var win = Application.Current.Windows.OfType<Window>().FirstOrDefault();
+            win.Closed += (object sender, EventArgs e) =>
+            {
+                _viewModel.SaveTree();
+            };
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -54,7 +60,7 @@ namespace R54IN0.WPF
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            _viewModel.SaveTree();
+            //_viewModel.SaveTree();
         }
     }
 }

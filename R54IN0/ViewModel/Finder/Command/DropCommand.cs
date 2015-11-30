@@ -23,9 +23,9 @@ namespace R54IN0
             _viewModel = viewModel;
         }
 
-        private void AddNode(DirectoryNode node, int index, DirectoryNode newNode)
+        private void AddNode(FinderNode node, int index, FinderNode newNode)
         {
-            ObservableCollection<DirectoryNode> children = (node == null) ? _viewModel.Nodes : node.Nodes;
+            ObservableCollection<FinderNode> children = (node == null) ? _viewModel.Nodes : node.Nodes;
             if (index == -1)
             {
                 children.Add(newNode); //drop
@@ -44,7 +44,7 @@ namespace R54IN0
             DropParameters dropParameters = args as DropParameters;
             TreeViewExItem treeviewExItem = dropParameters.DropToItem;
             IDataObject dataObject = dropParameters.DropData as IDataObject;
-            DirectoryNode destNode = (treeviewExItem == null) ? null : treeviewExItem.DataContext as DirectoryNode; //넣고자 할 장소(목적지)
+            FinderNode destNode = (treeviewExItem == null) ? null : treeviewExItem.DataContext as FinderNode; //넣고자 할 장소(목적지)
             int index = dropParameters.Index;
 
             if (treeviewExItem == null)
@@ -58,7 +58,7 @@ namespace R54IN0
                 DragContent dragContent = dataObject.GetData(fmt) as DragContent;
                 foreach (object item in dragContent.Items)
                 {
-                    DirectoryNode srcNode = item as DirectoryNode;
+                    FinderNode srcNode = item as FinderNode;
                     //자기노트에 자기자신을 하위로 다시 추가하는 것을 차단
                     if (destNode == srcNode)
                         return false;
@@ -86,7 +86,7 @@ namespace R54IN0
             TreeViewExItem treeviewExItem = dropParameters.DropToItem;
             IDataObject dataObject = dropParameters.DropData as IDataObject;
             int index = dropParameters.Index;
-            DirectoryNode destNode = (treeviewExItem == null) ? null : treeviewExItem.DataContext as DirectoryNode;
+            FinderNode destNode = (treeviewExItem == null) ? null : treeviewExItem.DataContext as FinderNode;
             foreach (string fmt in dataObject.GetFormats())
             {
                 DragContent dragContent = dataObject.GetData(fmt) as DragContent;
@@ -94,12 +94,8 @@ namespace R54IN0
                 {
                     foreach (var selectedNode in dragContent.Items.Reverse())
                     {
-                        DirectoryNode oldNode = (DirectoryNode)selectedNode;
-                        DirectoryNode newNode = null;
-                        if (oldNode.GetType() == typeof(DirectoryNode))
-                            newNode = new DirectoryNode(oldNode as DirectoryNode);
-                        else if (oldNode.GetType() == typeof(ItemNode))
-                            newNode = new ItemNode(oldNode as ItemNode);
+                        FinderNode oldNode = (FinderNode)selectedNode;
+                        FinderNode newNode = new FinderNode(oldNode);
                         _viewModel.RemoveNodeInRoot(oldNode);
                         AddNode(destNode, index, newNode);
                     }

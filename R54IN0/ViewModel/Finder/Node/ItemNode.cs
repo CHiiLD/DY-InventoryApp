@@ -51,13 +51,13 @@ namespace R54IN0
             }
         }
 
-        public override bool IsEditable
-        {
-            get
-            {
-                return false;
-            }
-        }
+        //public override bool IsEditable
+        //{
+        //    get
+        //    {
+        //        return false;
+        //    }
+        //}
 
         public bool IsDelete
         {

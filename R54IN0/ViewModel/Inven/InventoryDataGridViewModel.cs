@@ -7,12 +7,12 @@ using System.Collections.ObjectModel;
 
 namespace R54IN0
 {
-    public class InventoryDataGridViewModel
+    public class InventoryDataGridViewModel : AViewModelMediatorColleague
     {
         public ObservableCollection<InventoryPipe> Items { get; set; }
         public InventoryPipe SelectedItem { get; set; }
 
-        public InventoryDataGridViewModel()
+        public InventoryDataGridViewModel() : base(ViewModelMediator.GetInstance())
         {
             IEnumerable<Inventory> items = null;
             using (var db = DatabaseDirector.GetDbInstance())

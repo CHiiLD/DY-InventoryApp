@@ -16,25 +16,19 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void CanCreateDirectoryNode()
+        public void CanCreateFinderNode()
         {
-            DirectoryNode node = new DirectoryNode();
-        }
-
-        [TestMethod]
-        public void CanCreateItemNode()
-        {
-            ItemNode node = new ItemNode();
+            FinderNode node = new FinderNode(NodeType.DIRECTORY);
         }
 
         public InventoryFinderViewModel GetInventoryFinderViewModel()
         {
             InventoryFinderViewModel finder = new InventoryFinderViewModel();
-            DirectoryNode root = new DirectoryNode();
-            DirectoryNode node1 = new DirectoryNode();
-            DirectoryNode node2 = new DirectoryNode();
-            ItemNode itemNode = new ItemNode();
-            node1.Nodes.Add(itemNode);
+            FinderNode root = new FinderNode(NodeType.DIRECTORY);
+            FinderNode node1 = new FinderNode(NodeType.DIRECTORY);
+            FinderNode node2 = new FinderNode(NodeType.DIRECTORY);
+            FinderNode FinderNode = new FinderNode(NodeType.DIRECTORY);
+            node1.Nodes.Add(FinderNode);
             root.Nodes.Add(node1);
             root.Nodes.Add(node2);
             finder.Nodes.Add(root);
@@ -48,7 +42,7 @@ namespace R54IN0.Test
             Assert.AreEqual(1, viewModel.Nodes.Count);
         }
 
-        private IEnumerable<DirectoryNode> FindParentNodes(IEnumerable<DirectoryNode> root, DirectoryNode node)
+        private IEnumerable<FinderNode> FindParentNodes(IEnumerable<FinderNode> root, FinderNode node)
         {
             foreach (var i in root)
             {
@@ -67,14 +61,14 @@ namespace R54IN0.Test
         [TestMethod]
         public void RemoveNodeTest()
         {
-            DirectoryNode root = new DirectoryNode("ROOT");
-            DirectoryNode node1 = new DirectoryNode("ROOT_NODE1");
-            DirectoryNode node2 = new DirectoryNode("ROOT_NODE2");
-            DirectoryNode node21 = new DirectoryNode("ROOT_NODE2");
-            DirectoryNode node22 = new DirectoryNode("ROOT_NODE2");
-            DirectoryNode node11 = new DirectoryNode("ROOT_NODE2");
-            DirectoryNode node12 = new DirectoryNode("ROOT_NODE2");
-            DirectoryNode node121 = new DirectoryNode("ROOT_NODE2");
+            FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT"};
+            FinderNode node1 = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT_NODE1"};
+            FinderNode node2 = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT_NODE2"};
+            FinderNode node21 = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT_NODE2"};
+            FinderNode node22 = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT_NODE2"};
+            FinderNode node11 = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT_NODE2"};
+            FinderNode node12 = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT_NODE2"};
+            FinderNode node121 = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT_NODE2"};
 
             root.Nodes.Add(node1);
             root.Nodes.Add(node2);
@@ -84,7 +78,7 @@ namespace R54IN0.Test
             node2.Nodes.Add(node21);
             node2.Nodes.Add(node22);
 
-            IEnumerable<DirectoryNode> parent = FindParentNodes(root.Nodes, node22);
+            IEnumerable<FinderNode> parent = FindParentNodes(root.Nodes, node22);
             Assert.AreEqual(parent, node2.Nodes);
         }
 
@@ -92,14 +86,14 @@ namespace R54IN0.Test
         public void FinderViewModelDirectoryAddDeleteTest()
         {
             InventoryFinderViewModel view = new InventoryFinderViewModel();
-            DirectoryNode root = new DirectoryNode("ROOT");
-            DirectoryNode node1 = new DirectoryNode("node1");
-            DirectoryNode node2 = new DirectoryNode("node2");
-            DirectoryNode node21 = new DirectoryNode("node21");
-            DirectoryNode node22 = new DirectoryNode("node22");
-            DirectoryNode node11 = new DirectoryNode("node11");
-            DirectoryNode node12 = new DirectoryNode("node12");
-            DirectoryNode node121 = new DirectoryNode("node121");
+            FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT"};
+            FinderNode node1 = new FinderNode(NodeType.DIRECTORY) { Name = "node1"};
+            FinderNode node2 = new FinderNode(NodeType.DIRECTORY) { Name = "node2"};
+            FinderNode node21 = new FinderNode(NodeType.DIRECTORY) { Name = "node21"};
+            FinderNode node22 = new FinderNode(NodeType.DIRECTORY) { Name = "node22"};
+            FinderNode node11 = new FinderNode(NodeType.DIRECTORY) { Name = "node11"};
+            FinderNode node12 = new FinderNode(NodeType.DIRECTORY) { Name = "node12"};
+            FinderNode node121 = new FinderNode(NodeType.DIRECTORY) { Name = "node121"};
 
             root.Nodes.Add(node1);
             root.Nodes.Add(node2);
@@ -119,19 +113,21 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void WhenDeleteDirectoryThatHasItemNodeChildrenThenItemNodeIsSurvive()
+        public void WhenDeleteDirectoryThatHasFinderNodeChildrenThenFinderNodeIsSurvive()
         {
             DummyDbData db = new DummyDbData();
             InventoryFinderViewModel view = new InventoryFinderViewModel();
-            DirectoryNode root = new DirectoryNode("ROOT");
-            DirectoryNode node1 = new DirectoryNode("node1");
-            DirectoryNode node2 = new DirectoryNode("node2");
-            DirectoryNode node21 = new DirectoryNode("node21");
-            DirectoryNode node22 = new DirectoryNode("node22");
-            DirectoryNode node11 = new DirectoryNode("node11");
-            DirectoryNode node12 = new DirectoryNode("node12");
-            ItemNode itemNode = new ItemNode(DatabaseDirector.GetDbInstance().LoadAll<Item>()[0].UUID);
-
+            FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT" };
+            FinderNode node1 = new FinderNode(NodeType.DIRECTORY) { Name = "node1" };
+            FinderNode node2 = new FinderNode(NodeType.DIRECTORY) { Name = "node2" };
+            FinderNode node21 = new FinderNode(NodeType.DIRECTORY) { Name = "node21" };
+            FinderNode node22 = new FinderNode(NodeType.DIRECTORY) { Name = "node22" };
+            FinderNode node11 = new FinderNode(NodeType.DIRECTORY) { Name = "node11" };
+            FinderNode node12 = new FinderNode(NodeType.DIRECTORY) { Name = "node12" };
+            FinderNode itemNode = new FinderNode(NodeType.ITEM)
+            {
+                ItemUUID = DatabaseDirector.GetDbInstance().LoadAll<Item>()[0].UUID
+            };
             root.Nodes.Add(node1);
             root.Nodes.Add(node2);
             node1.Nodes.Add(node11);
@@ -152,14 +148,14 @@ namespace R54IN0.Test
         public void SaveByjsonFormatTest()
         {
             InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
-            DirectoryNode root = new DirectoryNode("ROOT");
-            DirectoryNode node1 = new DirectoryNode("node1");
-            DirectoryNode node2 = new DirectoryNode("node2");
-            DirectoryNode node21 = new DirectoryNode("node21");
-            DirectoryNode node22 = new DirectoryNode("node22");
-            DirectoryNode node11 = new DirectoryNode("node11");
-            DirectoryNode node12 = new DirectoryNode("node12");
-            DirectoryNode node121 = new DirectoryNode("node121");
+            FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT"};
+            FinderNode node1 = new FinderNode(NodeType.DIRECTORY) { Name = "node1"};
+            FinderNode node2 = new FinderNode(NodeType.DIRECTORY) { Name = "node2"};
+            FinderNode node21 = new FinderNode(NodeType.DIRECTORY) { Name = "node21"};
+            FinderNode node22 = new FinderNode(NodeType.DIRECTORY) { Name = "node22"};
+            FinderNode node11 = new FinderNode(NodeType.DIRECTORY) { Name = "node11"};
+            FinderNode node12 = new FinderNode(NodeType.DIRECTORY) { Name = "node12"};
+            FinderNode node121 = new FinderNode(NodeType.DIRECTORY) { Name = "node121"};
             root.Nodes.Add(node1);
             root.Nodes.Add(node2);
             node1.Nodes.Add(node11);
@@ -176,7 +172,7 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void AddRemoveItemNodeTest()
+        public void AddRemoveFinderNodeTest()
         {
             DummyDbData dummy = new DummyDbData();
             dummy.Create();
@@ -192,16 +188,17 @@ namespace R54IN0.Test
             Assert.AreEqual(2, viewModel.Nodes.Count());
         }
 
+        [Ignore]
         [TestMethod]
         public void SaveLoadVIewModelNodes()
         {
             InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
-            DirectoryNode root1 = new DirectoryNode("ROOT1");
-            DirectoryNode root2 = new DirectoryNode("root2");
-            DirectoryNode root12 = new DirectoryNode("root2");
-            DirectoryNode root112 = new DirectoryNode("root2");
-            DirectoryNode root1112 = new DirectoryNode("root2");
-            DirectoryNode root11112 = new DirectoryNode("root2");
+            FinderNode root1 = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT1"};
+            FinderNode root2 = new FinderNode(NodeType.DIRECTORY) { Name = "root2"};
+            FinderNode root12 = new FinderNode(NodeType.DIRECTORY) { Name = "root2"};
+            FinderNode root112 = new FinderNode(NodeType.DIRECTORY) { Name = "root2"};
+            FinderNode root1112 = new FinderNode(NodeType.DIRECTORY) { Name = "root2"};
+            FinderNode root11112 = new FinderNode(NodeType.DIRECTORY) { Name = "root2"};
             viewModel.Nodes.Add(root1);
             viewModel.Nodes.Add(root2);
             root1.Nodes.Add(root12);
@@ -235,13 +232,13 @@ namespace R54IN0.Test
             DummyDbData dummy = new DummyDbData();
             dummy.Create();
             Item item = DatabaseDirector.GetDbInstance().LoadAll<Item>()[0];
-            DirectoryNode root1 = new DirectoryNode("ROOT1");
-            ItemNode root2 = new ItemNode(item.UUID);
-            List<DirectoryNode> d = new List<DirectoryNode>();
+            FinderNode root1 = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT1"};
+            FinderNode root2 = new FinderNode(NodeType.ITEM) { ItemUUID = item.UUID };
+            List<FinderNode> d = new List<FinderNode>();
             d.Add(root1);
             d.Add(root2);
 
-            var newList = d.OfType<ItemNode>();
+            var newList = d.OfType<FinderNode>();
             Assert.AreEqual(1, newList.Count());
         }
 
@@ -249,10 +246,10 @@ namespace R54IN0.Test
         [TestMethod]
         public void SingleOrDefaultTest()
         {
-            List<DirectoryNode> d = new List<DirectoryNode>();
+            List<FinderNode> d = new List<FinderNode>();
             Assert.AreEqual(null, d.SingleOrDefault());
-            DirectoryNode root1 = new DirectoryNode("ROOT1");
-            //DirectoryNode root2 = new DirectoryNode("ROOT2");
+            FinderNode root1 = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT1"};
+            //FinderNode root2 = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT2"};
             d.Add(root1);
             //d.Add(root2);
             Assert.AreEqual(root1, d.SingleOrDefault());
@@ -262,14 +259,14 @@ namespace R54IN0.Test
         public void DescendantsTest()
         {
             InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
-            DirectoryNode root = new DirectoryNode("ROOT");
-            DirectoryNode node1 = new DirectoryNode("node1");
-            DirectoryNode node2 = new DirectoryNode("node2");
-            DirectoryNode node21 = new DirectoryNode("node21");
-            DirectoryNode node22 = new DirectoryNode("node22");
-            DirectoryNode node11 = new DirectoryNode("node11");
-            DirectoryNode node12 = new DirectoryNode("node12");
-            DirectoryNode node121 = new DirectoryNode("node121");
+            FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT"};
+            FinderNode node1 = new FinderNode(NodeType.DIRECTORY) { Name = "node1"};
+            FinderNode node2 = new FinderNode(NodeType.DIRECTORY) { Name = "node2"};
+            FinderNode node21 = new FinderNode(NodeType.DIRECTORY) { Name = "node21"};
+            FinderNode node22 = new FinderNode(NodeType.DIRECTORY) { Name = "node22"};
+            FinderNode node11 = new FinderNode(NodeType.DIRECTORY) { Name = "node11"};
+            FinderNode node12 = new FinderNode(NodeType.DIRECTORY) { Name = "node12"};
+            FinderNode node121 = new FinderNode(NodeType.DIRECTORY) { Name = "node121"};
             root.Nodes.Add(node1);
             root.Nodes.Add(node2);
             node1.Nodes.Add(node11);
