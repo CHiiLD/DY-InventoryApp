@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace R54IN0
 {
@@ -11,6 +12,9 @@ namespace R54IN0
     {
         public AccountPipe SelectedItem { get; set; }
         public ObservableCollection<AccountPipe> Items { get; set; }
+
+        public CommandHandler AddNewItemCommand { get; set; }
+        public CommandHandler RemoveItemCommand { get; set; }
 
         public AccountFieldEditorViewModel()
         {
@@ -22,28 +26,34 @@ namespace R54IN0
             IEnumerable<AccountPipe> fieldPipes = items.Where(x => !x.IsDeleted).Select(x => new AccountPipe(x));
             Items = new ObservableCollection<AccountPipe>(fieldPipes);
             SelectedItem = Items.FirstOrDefault();
+
+            AddNewItemCommand = new CommandHandler(AddNewItem, CanAddNewItem);
+            RemoveItemCommand = new CommandHandler(RemoveSelectedItem, CanRemoveSelectedItem);
         }
 
-        public virtual void AddNewItem()
+        public bool CanAddNewItem(object parameter)
         {
-            Items.Add(new AccountPipe(new Account().Save<Account>()));
+            return true;
+        }
+
+        public bool CanRemoveSelectedItem(object parameter)
+        {
+            return SelectedItem != null ? true : false;
+        }
+
+        public void AddNewItem(object parameter)
+        {
+            Items.Add(new AccountPipe(new Account() { Name = "new account" }.Save<Account>()));
             SelectedItem = Items.LastOrDefault();
+            RemoveItemCommand.UpdateCanExecute();
         }
 
-        public virtual void RemoveSelectedItem()
+        public void RemoveSelectedItem(object parameter)
         {
-            if (SelectedItem != null)
-            {
-                SelectedItem.IsDeleted = true;
-                Items.Remove(SelectedItem);
-                SelectedItem = Items.FirstOrDefault();
-            }
-        }
-
-        public void Save()
-        {
-            foreach (var field in Items)
-                field.Field.Save<Account>();
+            SelectedItem.IsDeleted = true;
+            Items.Remove(SelectedItem);
+            SelectedItem = Items.FirstOrDefault();
+            RemoveItemCommand.UpdateCanExecute();
         }
     }
 }

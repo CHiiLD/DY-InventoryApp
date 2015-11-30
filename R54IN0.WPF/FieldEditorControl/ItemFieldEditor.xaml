@@ -83,13 +83,13 @@
         </DataGrid>
 
         <UniformGrid Grid.Row="2" Grid.Column="0" Columns="2" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="88,0">
-            <Button Width="60" Margin="1" Content="추가" x:Name="ItemAddButton" Click="ItemAddButton_Click"/>
-            <Button Width="60" Margin="1" Content="삭제" x:Name="ItemRemoveButton" Click="ItemRemoveButton_Click"/>
+            <Button Width="60" Margin="1" Content="추가" x:Name="ItemAddButton" Command="{Binding AddNewItemCommand}"/>
+            <Button Width="60" Margin="1" Content="삭제" x:Name="ItemRemoveButton" Command="{Binding RemoveItemCommand}"/>
         </UniformGrid>
 
         <UniformGrid Grid.Row="2" Grid.Column="1" Columns="2" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="88,0">
-            <Button Width="60" Margin="1" Content="추가" x:Name="SpecAddButton" Click="SpecAddButton_Click"/>
-            <Button Width="60" Margin="1" Content="삭제" x:Name="SpecRemoveButton" Click="SpecRemoveButton_Click"/>
+            <Button Width="60" Margin="1" Content="추가" x:Name="SpecAddButton" Command="{Binding AddNewSpecCommand}"/>
+            <Button Width="60" Margin="1" Content="삭제" x:Name="SpecRemoveButton" Command="{Binding RemoveSpecCommand}"/>
         </UniformGrid>
     </Grid>
 </UserControl>

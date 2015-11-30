@@ -59,3 +59,15 @@ C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\AccountFiel
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\AccountFieldEditor.g.cs
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ko\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\EventBinding.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\EventBinding.pdb
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\de\System.Windows.Interactivity.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\en\System.Windows.Interactivity.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\es\System.Windows.Interactivity.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\it\System.Windows.Interactivity.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll

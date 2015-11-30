@@ -4,12 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Windows.Input;
+
 namespace R54IN0
 {
     public interface IFieldEditorViewModel
     {
-        void Save();
-        void AddNewItem();
-        void RemoveSelectedItem();    
+        CommandHandler AddNewItemCommand { get; set; }
+        CommandHandler RemoveItemCommand { get; set; }
+
+        bool CanAddNewItem(object parameter);
+        bool CanRemoveSelectedItem(object parameter);
+        void AddNewItem(object parameter);
+        void RemoveSelectedItem(object parameter);
     }
 }

@@ -11,11 +11,11 @@ namespace R54IN0
     public class ViewModelMediator
     {
         private static ViewModelMediator _mediator;
-        private List<AViewModelMediatorColleague> _colleagues;
+        private List<IViewModelMediatorColleaugue> _colleagues;
 
         private ViewModelMediator()
         {
-            _colleagues = new List<AViewModelMediatorColleague>();
+            _colleagues = new List<IViewModelMediatorColleaugue>();
         }
 
         public static ViewModelMediator GetInstance()

@@ -37,12 +37,44 @@ namespace R54IN0
             }
         }
 
+        public ICommand AddNewDirectoryCommand { get; set; }
+        public ICommand RemoveDirectoryCommand { get; set; }
+
+        public CommandHandler SelectedItemEventCommand { get; set; }
+
         public InventoryFinderViewModel() : base(ViewModelMediator.GetInstance())
         {
             Nodes = new ObservableCollection<FinderNode>();
             SelectedNodes = new ObservableCollection<FinderNode>();
             _dragCommand = new DragCommand();
             _dropCommand = new DropCommand(this);
+
+            RemoveDirectoryCommand = new CommandHandler(RemoveSelectedDirectories, CanRemoveSelectedDirectoies);
+            AddNewDirectoryCommand = new CommandHandler(AddNewDirectories, CanAddNewDirectory);
+        }
+
+        public bool CanAddNewDirectory(object pamateter)
+        {
+            return true;
+        }
+
+        public void AddNewDirectories(object parameter)
+        {
+            AddNewDirectoryInSelectedDirectory();
+        }
+
+        public bool CanRemoveSelectedDirectoies(object parameter)
+        {
+            if(SelectedNodes.Count == 0)
+                return false;
+            if (SelectedNodes.Any(x => x.Type == NodeType.ITEM))
+                return false;
+            return true;
+        }
+
+        public void RemoveSelectedDirectories(object parameter)
+        {
+            DeleteSelectedDirectories();
         }
 
         /// <summary>
@@ -66,6 +98,7 @@ namespace R54IN0
                     SelectedNodes.Add(itemToSelect as FinderNode);
             }
             Changed();
+            ((CommandHandler)RemoveDirectoryCommand).UpdateCanExecute();
         }
 
         public void AddNewDirectoryInSelectedDirectory()
@@ -96,16 +129,16 @@ namespace R54IN0
 
         public void DeleteSelectedDirectories()
         {
-            ObservableCollection<FinderNode> selecNodeCpy = new ObservableCollection<FinderNode>(SelectedNodes);
+            ObservableCollection<FinderNode> copy = new ObservableCollection<FinderNode>(SelectedNodes);
             //tree구조의 노드를 일차Collection으로 모운 뒤, itemnode를 찾아서 ROOT노드에 중복 없이 추가
-            IEnumerable<FinderNode> itemNodes = selecNodeCpy.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
+            IEnumerable<FinderNode> itemNodes = copy.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
             foreach (FinderNode node in itemNodes)
             {
                 if (Nodes.All(n => n.UUID != node.UUID))
                     Nodes.Add(new FinderNode(node));
             }
             //부모노드에서 삭제
-            foreach (FinderNode node in selecNodeCpy)
+            foreach (FinderNode node in copy)
             {
                 if (!(node.Type == NodeType.ITEM && Nodes.Contains(node)))
                     RemoveNodeInRoot(node);
@@ -161,6 +194,7 @@ namespace R54IN0
                 if (!result)
                     AddNewItemInNodes(item.UUID);
             }
+            ((CommandHandler)RemoveDirectoryCommand).UpdateCanExecute();
         }
 
         public static InventoryFinderViewModel CreateInventoryFinderViewModel()
@@ -173,8 +207,6 @@ namespace R54IN0
             }
             if (ssf != null)
                 viewModel.Nodes = JsonConvert.DeserializeObject<ObservableCollection<FinderNode>>(ssf.Data);
-            if (viewModel == null)
-                
             viewModel.Refresh();
             return viewModel;
         }

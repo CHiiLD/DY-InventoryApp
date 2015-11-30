@@ -22,20 +22,12 @@ namespace R54IN0.WPF
     {
         InventoryFinderViewModel _viewModel;
 
-        public InventoryFinderViewModel ViewModel
-        {
-            get
-            {
-                return _viewModel;
-            }
-        }
-
         public InventoryFinder()
         {
             InitializeComponent();
+
             DataContext = _viewModel = InventoryFinderViewModel.CreateInventoryFinderViewModel();
             FinderTreeView.OnSelecting += _viewModel.OnSelectNodes;
-
             var win = Application.Current.Windows.OfType<Window>().FirstOrDefault();
             win.Closed += (object sender, EventArgs e) =>
             {
@@ -43,24 +35,14 @@ namespace R54IN0.WPF
             };
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private void FinderTreeView_OnSelecting(object sender, SelectionChangedCancelEventArgs e)
         {
-            _viewModel.AddNewDirectoryInSelectedDirectory();
+
         }
 
-        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.DeleteSelectedDirectories();
-        }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            _viewModel.Refresh();
-        }
-
-        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
-        {
-            //_viewModel.SaveTree();
         }
     }
 }

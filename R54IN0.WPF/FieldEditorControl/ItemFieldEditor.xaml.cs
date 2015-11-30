@@ -27,25 +27,5 @@ namespace R54IN0.WPF
             InitializeComponent();
             DataContext = _viewModel = new ItemFieldEditorViewModel();
         }
-
-        private void ItemAddButton_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.AddNewItem();
-        }
-
-        private void ItemRemoveButton_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.RemoveSelectedItem();
-        }
-
-        private void SpecAddButton_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.AddNewSpecification();
-        }
-
-        private void SpecRemoveButton_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.RemoveSelectedSpecification();
-        }
     }
 }

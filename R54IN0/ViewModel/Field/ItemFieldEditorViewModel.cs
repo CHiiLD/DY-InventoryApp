@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace R54IN0
 {
@@ -11,6 +12,12 @@ namespace R54IN0
     {
         ItemPipe _selectedItem;
         SpecificationPipe _selectedSpecification { get; set; }
+
+        public CommandHandler AddNewItemCommand { get; set; }
+        public CommandHandler RemoveItemCommand { get; set; }
+
+        public CommandHandler AddNewSpecCommand { get; set; }
+        public CommandHandler RemoveSpecCommand { get; set; }
 
         public ObservableCollection<ItemPipe> Items { get; set; }
 
@@ -63,58 +70,71 @@ namespace R54IN0
             Items = new ObservableCollection<ItemPipe>(itemPipes);
             Specifications = new ObservableCollection<SpecificationPipe>();
             SelectedItem = Items.FirstOrDefault();
+
+            AddNewItemCommand = new CommandHandler(AddNewItem, CanAddNewItem);
+            RemoveItemCommand = new CommandHandler(RemoveSelectedItem, CanRemoveSelectedItem);
+
+            AddNewSpecCommand = new CommandHandler(AddNewSpecification, CanAddNewSpecficiation);
+            RemoveSpecCommand = new CommandHandler(RemoveSelectedSpecification, CanRemoveSelectedSpecfication);
         }
 
-        public void AddNewItem()
+        public bool CanAddNewItem(object parameter)
+        {
+            return true;
+        }
+
+        public bool CanRemoveSelectedItem(object parameter)
+        {
+            return SelectedItem != null ? true : false;
+        }
+
+        public bool CanAddNewSpecficiation(object parameter)
+        {
+            return true;
+        }
+
+        public bool CanRemoveSelectedSpecfication(object parameter)
+        {
+            return SelectedSpecification != null ? true : false;
+        }
+
+        public void AddNewItem(object parameter)
         {
             var item = new Item() { Name = "new item", UUID = Guid.NewGuid().ToString() }.Save<Item>();
             Items.Add(new ItemPipe(item));
             SelectedItem = Items.LastOrDefault();
             /// 새로 아이템을 등록할 시 베이스 규격을 등록, 규격 리스트는 최소 하나 이상을 가져야 한다.
-            AddNewSpecification();
+            AddNewSpecification(null);
             Changed(item);
+            RemoveItemCommand.UpdateCanExecute();
         }
 
-        public void AddNewSpecification()
+        public void RemoveSelectedItem(object parameter)
         {
-            if (SelectedItem != null)
-            {
-                var newSpecification = new Specification() { Name = "new specification", ItemUUID = SelectedItem.Field.UUID }.Save<Specification>();
-                var newSpecificationPipe = new SpecificationPipe(newSpecification);
-                Specifications.Add(newSpecificationPipe);
-                SelectedSpecification = Specifications.LastOrDefault();
-            }
+            var item = SelectedItem.Field;
+            SelectedItem.IsDeleted = true;
+            Items.Remove(SelectedItem);
+            SelectedItem = Items.FirstOrDefault();
+            Changed(item);
+            RemoveItemCommand.UpdateCanExecute();
         }
 
-        public void RemoveSelectedItem()
+        public void AddNewSpecification(object parameter)
         {
-            if (SelectedItem != null)
-            {
-                var item = SelectedItem.Field;
-                SelectedItem.IsDeleted = true;
-                Items.Remove(SelectedItem);
-                SelectedItem = Items.FirstOrDefault();
-                Changed(item);
-            }
+            var newSpecification = new Specification() { Name = "new specification", ItemUUID = SelectedItem.Field.UUID }.Save<Specification>();
+            var newSpecificationPipe = new SpecificationPipe(newSpecification);
+            Specifications.Add(newSpecificationPipe);
+            SelectedSpecification = Specifications.LastOrDefault();
+            RemoveSpecCommand.UpdateCanExecute();
         }
 
-        public void RemoveSelectedSpecification()
+        public void RemoveSelectedSpecification(object parameter)
         {
             if (SelectedSpecification != null && Specifications.Count > 1)
-            {
                 SelectedSpecification.IsDeleted = true;
-                Specifications.Remove(SelectedSpecification);
-                SelectedSpecification = Specifications.FirstOrDefault();
-            }
-        }
-
-        public void Save()
-        {
-            foreach (var field in Items)
-                field.Field.Save<Item>();
-            //foreach (var awaiter in _awaters)
-            //    foreach (var spec in awaiter.Value)
-            //        spec.Field.Save<Specification>();
+            Specifications.Remove(SelectedSpecification);
+            SelectedSpecification = Specifications.FirstOrDefault();
+            RemoveSpecCommand.UpdateCanExecute();
         }
     }
 }

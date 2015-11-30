@@ -51,15 +51,15 @@ namespace R54IN0.Test
             new DummyDbData().Create();
             var viewModel = new ItemFieldEditorViewModel();
 
-            viewModel.AddNewItem();
+            viewModel.AddNewItem(null);
 
-            viewModel.AddNewSpecification();
-            viewModel.AddNewSpecification();
-            viewModel.AddNewSpecification();
+            viewModel.AddNewSpecification(null);
+            viewModel.AddNewSpecification(null);
+            viewModel.AddNewSpecification(null);
 
-            viewModel.RemoveSelectedSpecification();
-            viewModel.RemoveSelectedSpecification();
-            viewModel.RemoveSelectedSpecification();
+            viewModel.RemoveSelectedSpecification(null);
+            viewModel.RemoveSelectedSpecification(null);
+            viewModel.RemoveSelectedSpecification(null);
 
             Assert.AreEqual(1, viewModel.Specifications.Count());
         }
@@ -70,9 +70,9 @@ namespace R54IN0.Test
             new DummyDbData().Create();
             var viewModel = new ItemFieldEditorViewModel();
             var count = viewModel.Items.Count;
-            viewModel.AddNewItem();
+            viewModel.AddNewItem(null);
             Assert.AreEqual(count + 1, viewModel.Items.Count);
-            viewModel.RemoveSelectedItem();
+            viewModel.RemoveSelectedItem(null);
             Assert.AreEqual(count, viewModel.Items.Count);
         }
 
@@ -83,19 +83,18 @@ namespace R54IN0.Test
             var viewModel = new ItemFieldEditorViewModel();
             var count = viewModel.Items.Count;
 
-            viewModel.AddNewItem();
-            viewModel.AddNewItem();
-            viewModel.AddNewItem();
-            viewModel.AddNewItem();
+            viewModel.AddNewItem(null);
+            viewModel.AddNewItem(null);
+            viewModel.AddNewItem(null);
+            viewModel.AddNewItem(null);
             viewModel = new ItemFieldEditorViewModel();
 
             //Assert.AreEqual(count, viewModel.Items.Count);
 
-            viewModel.AddNewItem();
-            viewModel.AddNewItem();
-            viewModel.AddNewItem();
-            viewModel.AddNewItem();
-            viewModel.Save();
+            viewModel.AddNewItem(null);
+            viewModel.AddNewItem(null);
+            viewModel.AddNewItem(null);
+            viewModel.AddNewItem(null);
 
             Assert.AreEqual(count + 8, viewModel.Items.Count);
         }
@@ -108,19 +107,18 @@ namespace R54IN0.Test
 
             var count = viewModel.Specifications.Count;
 
-            viewModel.AddNewSpecification();
-            viewModel.AddNewSpecification();
-            viewModel.AddNewSpecification();
-            viewModel.AddNewSpecification();
+            viewModel.AddNewSpecification(null);
+            viewModel.AddNewSpecification(null);
+            viewModel.AddNewSpecification(null);
+            viewModel.AddNewSpecification(null);
             viewModel = new ItemFieldEditorViewModel();
 
            // Assert.AreEqual(count, viewModel.Specifications.Count);
 
-            viewModel.AddNewSpecification();
-            viewModel.AddNewSpecification();
-            viewModel.AddNewSpecification();
-            viewModel.AddNewSpecification();
-            viewModel.Save();
+            viewModel.AddNewSpecification(null);
+            viewModel.AddNewSpecification(null);
+            viewModel.AddNewSpecification(null);
+            viewModel.AddNewSpecification(null);
 
             Assert.AreEqual(count + 8, viewModel.Specifications.Count);
         }

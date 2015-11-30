@@ -188,7 +188,7 @@ namespace R54IN0.Test
             Assert.AreEqual(2, viewModel.Nodes.Count());
         }
 
-        [Ignore]
+        //[Ignore]
         [TestMethod]
         public void SaveLoadVIewModelNodes()
         {
@@ -209,7 +209,29 @@ namespace R54IN0.Test
             viewModel.SaveTree();
             var newViewModel = InventoryFinderViewModel.CreateInventoryFinderViewModel();
 
-            Assert.AreEqual(2 + DatabaseDirector.GetDbInstance().LoadAll<Item>().Count(), newViewModel.Nodes.Count());
+            Assert.AreEqual(viewModel.Nodes.Count, newViewModel.Nodes.Count);
+            Assert.AreEqual(viewModel.Nodes.First().Nodes.Count, newViewModel.Nodes.First().Nodes.Count);
+            //Assert.AreEqual(2 + DatabaseDirector.GetDbInstance().LoadAll<Item>().Count(), newViewModel.Nodes.Count());
+        }
+
+        [TestMethod]
+        public void SaveLoadVIewModelNodes2()
+        {
+            new DummyDbData().Create();
+
+            var items = DatabaseDirector.GetDbInstance().LoadAll<Item>();
+
+            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
+            FinderNode root1 = new FinderNode(NodeType.ITEM) { ItemUUID = items[0].UUID };
+            FinderNode root2 = new FinderNode(NodeType.ITEM) { ItemUUID = items[1].UUID };
+            viewModel.Nodes.Add(root1);
+            viewModel.Nodes.Add(root2);
+
+            viewModel.SaveTree();
+            var newViewModel = InventoryFinderViewModel.CreateInventoryFinderViewModel();
+
+            Assert.AreEqual(2, newViewModel.Nodes.Count);
+            Assert.AreEqual(viewModel.Nodes.Count, newViewModel.Nodes.Count);
         }
 
         [TestMethod]

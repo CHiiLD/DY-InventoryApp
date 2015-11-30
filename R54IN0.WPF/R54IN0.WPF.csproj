@@ -39,6 +39,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -189,6 +190,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventBindingMarkup\src\EventBinding\EventBinding.csproj">
+      <Project>{930f1148-584e-44e2-ab79-e2a6822067cb}</Project>
+      <Name>EventBinding</Name>
+    </ProjectReference>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
       <Project>{04608184-27b9-42a2-9e5e-69a6cb21ecfe}</Project>
       <Name>Lex.Db.Net45</Name>

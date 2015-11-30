@@ -13,3 +13,6 @@
 [submodule "Newtonsoft.Json"]
 	path = Newtonsoft.Json
 	url = https://github.com/CHiiLD/Newtonsoft.Json.git
+[submodule "EventBindingMarkup"]
+	path = EventBindingMarkup
+	url = https://github.com/CHiiLD/EventBindingMarkup.git

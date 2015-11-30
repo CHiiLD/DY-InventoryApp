@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public abstract class AViewModelMediatorColleague
+    public abstract class AViewModelMediatorColleague : IViewModelMediatorColleaugue
     {
         ViewModelMediator _mediator;
 

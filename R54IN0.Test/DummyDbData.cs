@@ -10,6 +10,8 @@ namespace R54IN0.Test
             {
                 db.Purge();
             }
+            //DatabaseDirector.DistroyDbInstance();
+
             var e = new Employee() { Name = "지창훈" }.Save<Employee>();
             new Employee() { Name = "박재현" }.Save<Employee>();
             new Employee() { Name = "김택윤" }.Save<Employee>();

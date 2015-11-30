@@ -7,17 +7,19 @@
              xmlns:r54in0="clr-namespace:R54IN0;assembly=R54IN0"
              xmlns:tree="clr-namespace:System.Windows.Controls;assembly=TreeViewEx"
              xmlns:edttxt="clr-namespace:Custom.Controls;assembly=Custom.Controls.EditableTextBlock"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Unloaded="UserControl_Unloaded" Loaded="UserControl_Loaded">
+             d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
         <HierarchicalDataTemplate DataType="{x:Type r54in0:FinderNode}" ItemsSource="{Binding Nodes}">
             <StackPanel Orientation="Horizontal">
                 <Border CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0"/>
-                <edttxt:EditableTextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEditable}" IsInEditMode="{Binding IsInEditMode, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <edttxt:EditableTextBlock 
+                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                    IsInEditMode="{Binding IsInEditMode, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </HierarchicalDataTemplate>
-
     </UserControl.Resources>
 
     <Grid>
@@ -26,14 +28,16 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Margin="0,0,0,1">
-            <Button Content="디렉토리 추가" Margin="1" Click="AddButton_Click"/>
-            <Button Content="디렉토리 삭제" Margin="1" Click="RemoveButton_Click"/>
+            <Button Content="디렉토리 추가" Margin="1" Command="{Binding AddNewDirectoryCommand}"/>
+            <Button Content="디렉토리 삭제" Margin="1" Command="{Binding RemoveDirectoryCommand}"/>
         </StackPanel>
-        <tree:TreeViewEx x:Name="FinderTreeView" Margin="1"
+        <tree:TreeViewEx 
+            x:Name="FinderTreeView" Margin="1"
             ItemsSource="{Binding Nodes}"
             DragCommand="{Binding DragCommand}"
             DropCommand="{Binding DropCommand}"
             SelectedItems="{Binding SelectedNodes}"
-            Grid.Row="1" BorderBrush="{x:Null}"/>
+            Grid.Row="1" BorderBrush="{x:Null}"
+            />
     </Grid>
 </UserControl>

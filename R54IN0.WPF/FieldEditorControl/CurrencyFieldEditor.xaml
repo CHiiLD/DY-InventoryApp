@@ -17,8 +17,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <UniformGrid Grid.Row="1" Grid.Column="0" Columns="2" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Width="60" Margin="1" Content="추가" x:Name="ItemAddButton" Click="ItemAddButton_Click"/>
-            <Button Width="60" Margin="1" Content="삭제" x:Name="ItemRemoveButton" Click="ItemRemoveButton_Click"/>
+            <Button Width="60" Margin="1" Content="추가" x:Name="ItemAddButton" Command="{Binding AddNewItemCommand}" />
+            <Button Width="60" Margin="1" Content="삭제" x:Name="ItemRemoveButton" Command="{Binding RemoveItemCommand}"/>
         </UniformGrid>
     </Grid>
 </UserControl>

@@ -28,14 +28,14 @@ namespace R54IN0.WPF
             DataContext = _viewModel = new FieldEditorViewModel<Warehouse>();
         }
 
-        private void ItemAddButton_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.AddNewItem();
-        }
+        //private void ItemAddButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    _viewModel.AddNewItem();
+        //}
 
-        private void ItemRemoveButton_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.RemoveSelectedItem();
-        }
+        //private void ItemRemoveButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    _viewModel.RemoveSelectedItem();
+        //}
     }
 }

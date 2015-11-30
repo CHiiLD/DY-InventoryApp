@@ -42,8 +42,6 @@ namespace R54IN0.Test
 
             viewModel.SelectedItem.Name = name;
             string uuid = viewModel.SelectedItem.Field.UUID;
-            viewModel.Save();
-
             using (var db = DatabaseDirector.GetDbInstance())
             {
                 var measure = db.LoadByKey<Measure>(uuid);
@@ -60,7 +58,6 @@ namespace R54IN0.Test
 
             string uuid = viewModel.SelectedItem.Field.UUID;
             viewModel.SelectedItem.IsDeleted = hide;
-            viewModel.Save();
 
             using (var db = DatabaseDirector.GetDbInstance())
             {
@@ -78,7 +75,7 @@ namespace R54IN0.Test
             
             Assert.IsNotNull(selectedItem);
 
-            viewModel.RemoveSelectedItem();
+            viewModel.RemoveSelectedItem(null);
 
             if (viewModel.SelectedItem != null)
                 Assert.AreNotEqual(selectedItem.Field.UUID, viewModel.SelectedItem.Field.UUID);
@@ -92,7 +89,7 @@ namespace R54IN0.Test
             var count = viewModel.Items.Count;
             var selectedItem = viewModel.SelectedItem;
 
-            viewModel.AddNewItem();
+            viewModel.AddNewItem(null);
 
             Assert.AreNotEqual(count, viewModel.Items.Count);
             Assert.AreEqual(count + 1, viewModel.Items.Count);

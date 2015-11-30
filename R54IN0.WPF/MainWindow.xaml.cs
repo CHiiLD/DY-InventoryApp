@@ -31,32 +31,32 @@ namespace R54IN0.WPF
 
         private void InventoryTile_Click(object sender, RoutedEventArgs e)
         {
-
+            TabCenter.SelectedItem = InventoryTab;
         }
 
         private void InStockTile_Click(object sender, RoutedEventArgs e)
         {
-
+            TabCenter.SelectedItem = InStockTab;
         }
 
         private void OutStockTile_Click(object sender, RoutedEventArgs e)
         {
-
+            TabCenter.SelectedItem = OutStockTab;
         }
 
         private void InOutStockTile_Click(object sender, RoutedEventArgs e)
         {
-
+            TabCenter.SelectedItem = InOutStockTab;
         }
 
         private void ItemTile_Click(object sender, RoutedEventArgs e)
         {
-
+            TabCenter.SelectedItem = ItemTab;
         }
 
         private void AccountTile_Click(object sender, RoutedEventArgs e)
         {
-
+            TabCenter.SelectedItem = AccountTab;
         }
 
         private void ExitTile_Click(object sender, RoutedEventArgs e)
