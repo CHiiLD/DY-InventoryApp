@@ -22,12 +22,12 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="24"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="추가하기" Margin="1" Click="AddButton_Click"/>
-            <Button Content="삭제하기" Margin="1" Click="RemoveButton_Click"/>
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,1">
+            <Button Content="디렉토리 추가" Margin="1" Click="AddButton_Click"/>
+            <Button Content="디렉토리 삭제" Margin="1" Click="RemoveButton_Click"/>
         </StackPanel>
         <tree:TreeViewEx x:Name="FinderTreeView" Margin="1"
             ItemsSource="{Binding Nodes}"

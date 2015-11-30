@@ -11,7 +11,6 @@ namespace R54IN0
     {
         public ObservableCollection<InventoryPipe> Items { get; set; }
         public InventoryPipe SelectedItem { get; set; }
-        public Action ItemChangeAction { get; set; }
 
         public InventoryDataGridViewModel()
         {
@@ -39,8 +38,6 @@ namespace R54IN0
                 SelectedItem.Inven.Delete<Inventory>();
                 Items.Remove(SelectedItem);
                 SelectedItem = Items.FirstOrDefault();
-                if (ItemChangeAction != null)
-                    ItemChangeAction();
             }
         }
 
@@ -69,8 +66,6 @@ namespace R54IN0
             SelectedItem = inventoryPipe;
 
             inventory.Save<Inventory>();
-            if (ItemChangeAction != null)
-                ItemChangeAction();
         }
 
         public void Replace(Inventory inventory)
@@ -91,8 +86,6 @@ namespace R54IN0
                 Items.Remove(overlap);
 
             inventory.Save<Inventory>();
-            if (ItemChangeAction != null)
-                ItemChangeAction();
         }
     }
 }

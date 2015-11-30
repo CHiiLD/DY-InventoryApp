@@ -45,9 +45,10 @@ namespace R54IN0.WPF
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             _editorViewModel = new InventoryEditorViewModel();
-            InventoryItemEditorWindow editWindow = new InventoryItemEditorWindow(_editorViewModel);
-            editWindow.Closed += OnEditorWindowClosed;
-            editWindow.Show();
+            InventoryItemEditorWindow inventoryItemEditorWindow = new InventoryItemEditorWindow(_editorViewModel);
+            inventoryItemEditorWindow.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            inventoryItemEditorWindow.Closed += OnEditorWindowClosed;
+            inventoryItemEditorWindow.ShowDialog();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -55,9 +56,10 @@ namespace R54IN0.WPF
             if (_viewModel.SelectedItem != null)
             {
                 _editorViewModel = new InventoryEditorViewModel(_viewModel.SelectedItem.Inven);
-                InventoryItemEditorWindow editWindow = new InventoryItemEditorWindow(_editorViewModel);
-                editWindow.Closed += OnEditorWindowClosed;
-                editWindow.Show();
+                InventoryItemEditorWindow inventoryItemEditorWindow = new InventoryItemEditorWindow(_editorViewModel);
+                inventoryItemEditorWindow.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+                inventoryItemEditorWindow.Closed += OnEditorWindowClosed;
+                inventoryItemEditorWindow.ShowDialog();
             }
         }
 

@@ -147,6 +147,7 @@ namespace R54IN0.Test
             Assert.IsTrue(view.Nodes.Any(node => node.UUID == itemNode.UUID));
         }
 
+        [Ignore]
         [TestMethod]
         public void SaveByjsonFormatTest()
         {
@@ -197,8 +198,16 @@ namespace R54IN0.Test
             InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
             DirectoryNode root1 = new DirectoryNode("ROOT1");
             DirectoryNode root2 = new DirectoryNode("root2");
+            DirectoryNode root12 = new DirectoryNode("root2");
+            DirectoryNode root112 = new DirectoryNode("root2");
+            DirectoryNode root1112 = new DirectoryNode("root2");
+            DirectoryNode root11112 = new DirectoryNode("root2");
             viewModel.Nodes.Add(root1);
             viewModel.Nodes.Add(root2);
+            root1.Nodes.Add(root12);
+            root12.Nodes.Add(root112);
+            root112.Nodes.Add(root1112);
+            root1112.Nodes.Add(root11112);
 
             viewModel.SaveTree();
             var newViewModel = InventoryFinderViewModel.CreateInventoryFinderViewModel();
@@ -310,3 +319,4 @@ namespace R54IN0.Test
         }
     }
 }
+

@@ -24,8 +24,8 @@
                 <DataGridTextColumn Header="제조사" Binding="{Binding Maker.Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="수량" Binding="{Binding ItemCount}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="단위" Binding="{Binding Measure.Name}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="거래처" Binding="{Binding Employee.Name}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="담당자" Binding="{Binding Account.Name}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="거래처" Binding="{Binding Account.Name}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="담당자" Binding="{Binding Employee.Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="보관장소" Binding="{Binding Warehouse.Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="비고" Binding="{Binding Remark}" IsReadOnly="True"/>
             </DataGrid.Columns>

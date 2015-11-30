@@ -50,7 +50,7 @@ namespace R54IN0
             {
                 _field.IsDeleted = value;
                 _field.Save<T>();
-                OnPropertyChanged("IsDelete");
+                OnPropertyChanged("IsDeleted");
             }
         }
 

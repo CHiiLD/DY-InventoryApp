@@ -27,8 +27,6 @@ namespace R54IN0.WPF
         public InOutStockDataGrid()
         {
             InitializeComponent();
-            //_stockType = StockType.ALL;
-            //DataContext = _viewModel = new InOutStockDataGridViewModel(_stockType);
         }
 
         public StockType StockType
@@ -52,9 +50,10 @@ namespace R54IN0.WPF
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             _editorViewModel = new InOutStockEditorViewModel();
-            InOutStockItemEditorWindow editWindow = new InOutStockItemEditorWindow(_editorViewModel);
-            editWindow.Closed += OnEditorWindowClosed;
-            editWindow.Show();
+            InOutStockItemEditorWindow ioStockItemEditorWindow = new InOutStockItemEditorWindow(_editorViewModel);
+            ioStockItemEditorWindow.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            ioStockItemEditorWindow.Closed += OnEditorWindowClosed;
+            ioStockItemEditorWindow.ShowDialog();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -62,9 +61,10 @@ namespace R54IN0.WPF
             if (_viewModel.SelectedItem != null)
             {
                 _editorViewModel = new InOutStockEditorViewModel(_viewModel.SelectedItem.Inven);
-                InOutStockItemEditorWindow editWindow = new InOutStockItemEditorWindow(_editorViewModel);
-                editWindow.Closed += OnEditorWindowClosed;
-                editWindow.Show();
+                InOutStockItemEditorWindow ioStockItemEditorWindow = new InOutStockItemEditorWindow(_editorViewModel);
+                ioStockItemEditorWindow.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+                ioStockItemEditorWindow.Closed += OnEditorWindowClosed;
+                ioStockItemEditorWindow.ShowDialog();
             }
         }
 

@@ -11,7 +11,6 @@ namespace R54IN0
     {
         ItemPipe _selectedItem;
         SpecificationPipe _selectedSpecification { get; set; }
-        //SortedDictionary<string, List<SpecificationPipe>> _awaters;
 
         public ObservableCollection<ItemPipe> Items { get; set; }
 
@@ -36,7 +35,6 @@ namespace R54IN0
                         Specifications.Add(new SpecificationPipe(i));
                 }
                 SelectedSpecification = Specifications.FirstOrDefault();
-                //_awaters[_selectedItem.Field.UUID] = Specifications.ToList();
             }
         }
 
@@ -64,7 +62,6 @@ namespace R54IN0
             IEnumerable<ItemPipe> itemPipes = items.Where(x => !x.IsDeleted).Select(x => new ItemPipe(x));
             Items = new ObservableCollection<ItemPipe>(itemPipes);
             Specifications = new ObservableCollection<SpecificationPipe>();
-            //_awaters = new SortedDictionary<string, List<SpecificationPipe>>();
             SelectedItem = Items.FirstOrDefault();
         }
 
@@ -93,7 +90,7 @@ namespace R54IN0
         {
             if (SelectedItem != null)
             {
-                SelectedItem.Field.IsDeleted = true;
+                SelectedItem.IsDeleted = true;
                 Items.Remove(SelectedItem);
                 SelectedItem = Items.FirstOrDefault();
             }
@@ -103,7 +100,7 @@ namespace R54IN0
         {
             if (SelectedSpecification != null && Specifications.Count > 1)
             {
-                SelectedSpecification.Field.IsDeleted = true;
+                SelectedSpecification.IsDeleted = true;
                 Specifications.Remove(SelectedSpecification);
                 SelectedSpecification = Specifications.FirstOrDefault();
             }

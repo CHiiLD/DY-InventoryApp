@@ -144,7 +144,7 @@ namespace R54IN0
 
         public void SaveTree()
         {
-            string json = JsonConvert.SerializeObject(this);
+            string json = JsonConvert.SerializeObject(this.Nodes);
             using (var db = DatabaseDirector.GetDbInstance())
             {
                 db.Save(new SimpleStringFormat(JSON_TREE_KEY, json));
@@ -169,16 +169,17 @@ namespace R54IN0
 
         public static InventoryFinderViewModel CreateInventoryFinderViewModel()
         {
-            InventoryFinderViewModel viewModel = null;
+            ObservableCollection<DirectoryNode> nodes = null;
             SimpleStringFormat ssf = null;
             using (var db = DatabaseDirector.GetDbInstance())
             {
                 ssf = db.LoadByKey<SimpleStringFormat>(JSON_TREE_KEY);
             }
             if (ssf != null)
-                viewModel = JsonConvert.DeserializeObject<InventoryFinderViewModel>(ssf.Data);
-            if (viewModel == null)
-                viewModel = new InventoryFinderViewModel();
+                nodes = JsonConvert.DeserializeObject<ObservableCollection<DirectoryNode>>(ssf.Data);
+            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
+            if (nodes != null)
+                viewModel.Nodes = nodes;
             viewModel.Refresh();
             return viewModel;
         }

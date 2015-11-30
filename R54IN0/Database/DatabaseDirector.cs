@@ -119,7 +119,7 @@ namespace R54IN0
         {
             if (_customLexDb == null)
             {
-                _customLexDb = new CustomLexDb("");
+                _customLexDb = new CustomLexDb("db.db");
                 _customLexDb.LoadData();
             }
             return _customLexDb;
