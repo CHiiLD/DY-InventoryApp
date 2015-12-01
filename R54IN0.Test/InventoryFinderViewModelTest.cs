@@ -188,7 +188,7 @@ namespace R54IN0.Test
             Assert.AreEqual(2, viewModel.Nodes.Count());
         }
 
-        //[Ignore]
+        [Ignore]
         [TestMethod]
         public void SaveLoadVIewModelNodes()
         {
@@ -214,6 +214,7 @@ namespace R54IN0.Test
             //Assert.AreEqual(2 + DatabaseDirector.GetDbInstance().LoadAll<Item>().Count(), newViewModel.Nodes.Count());
         }
 
+        [Ignore]
         [TestMethod]
         public void SaveLoadVIewModelNodes2()
         {
