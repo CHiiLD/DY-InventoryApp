@@ -10,3 +10,15 @@ C:\Users\CHILD\GitHub\R54IN0\R54IN0\bin\Debug\TreeViewEx.pdb
 C:\Users\CHILD\GitHub\R54IN0\R54IN0\obj\Debug\R54IN0.csprojResolveAssemblyReference.cache
 C:\Users\CHILD\GitHub\R54IN0\R54IN0\obj\Debug\R54IN0.dll
 C:\Users\CHILD\GitHub\R54IN0\R54IN0\obj\Debug\R54IN0.pdb
+Z:\Github\R54IN0\R54IN0\bin\Debug\R54IN0.dll
+Z:\Github\R54IN0\R54IN0\bin\Debug\R54IN0.pdb
+Z:\Github\R54IN0\R54IN0\bin\Debug\Lex.Db.dll
+Z:\Github\R54IN0\R54IN0\bin\Debug\Newtonsoft.Json.dll
+Z:\Github\R54IN0\R54IN0\bin\Debug\TreeViewEx.dll
+Z:\Github\R54IN0\R54IN0\bin\Debug\Lex.Db.pdb
+Z:\Github\R54IN0\R54IN0\bin\Debug\Newtonsoft.Json.pdb
+Z:\Github\R54IN0\R54IN0\bin\Debug\Newtonsoft.Json.xml
+Z:\Github\R54IN0\R54IN0\bin\Debug\TreeViewEx.pdb
+Z:\Github\R54IN0\R54IN0\obj\Debug\R54IN0.csprojResolveAssemblyReference.cache
+Z:\Github\R54IN0\R54IN0\obj\Debug\R54IN0.dll
+Z:\Github\R54IN0\R54IN0\obj\Debug\R54IN0.pdb

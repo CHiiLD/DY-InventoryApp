@@ -19,12 +19,13 @@
                 <DataGridTextColumn Header="품명" Binding="{Binding Item.Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="규격" Binding="{Binding Specification.Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="제조사" Binding="{Binding Maker.Name}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="수량" Binding="{Binding ItemCount}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="수량" Binding="{Binding ItemCount, StringFormat='{}{0:#,#.}'}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="단위" Binding="{Binding Measure.Name}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="입고단가" Binding="{Binding SalesUnitPrice}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="입고총금액" Binding="{Binding SelesPriceAmount}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="출고단가" Binding="{Binding PurchaseUnitPrice}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="출고총금액" Binding="{Binding PurchasePriceAmount}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="입고단가" Binding="{Binding SalesUnitPrice, StringFormat='{}{0:#,#.}'}" 
+                  IsReadOnly="True"/>
+                <DataGridTextColumn Header="입고총금액" Binding="{Binding SelesPriceAmount, StringFormat='{}{0:#,#.}'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="출고단가" Binding="{Binding PurchaseUnitPrice, StringFormat='{}{0:#,#.}'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="출고총금액" Binding="{Binding PurchasePriceAmount, StringFormat='{}{0:#,#.}'}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="화폐" Binding="{Binding Currency.Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="보관장소" Binding="{Binding Warehouse.Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="비고" Binding="{Binding Remark}" IsReadOnly="True"/>
