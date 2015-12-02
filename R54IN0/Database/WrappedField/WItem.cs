@@ -17,12 +17,22 @@ namespace R54IN0
         {
             get
             {
+                if (_measure == null)
+                {
+                    using (var db = DatabaseDirector.GetFieldDb())
+                    {
+                        _measure = db.EnableSortedMeasureList.BinarySearchAsUUID(Field.MeasureUUID);
+                    }
+                }
                 return _measure;
             }
             set
             {
                 _measure = value;
-                Field.MeasureUUID = _measure.Field.UUID;
+                if (_measure != null)
+                    Field.MeasureUUID = _measure.Field.UUID;
+                else
+                    Field.MeasureUUID = null;
                 Field.Save<Item>();
                 OnPropertyChanged("SelectedMeasure");
             }
@@ -32,12 +42,22 @@ namespace R54IN0
         {
             get
             {
+                if (_maker == null)
+                {
+                    using (var db = DatabaseDirector.GetFieldDb())
+                    {
+                        _maker = db.EnableSortedMakerList.BinarySearchAsUUID(Field.MakerUUID);
+                    }
+                }
                 return _maker;
             }
             set
             {
                 _maker = value;
-                Field.MakerUUID = _maker.Field.UUID;
+                if (_maker != null)
+                    Field.MakerUUID = _maker.Field.UUID;
+                else
+                    Field.MakerUUID = null;
                 Field.Save<Item>();
                 OnPropertyChanged("SelectedMaker");
             }
@@ -47,18 +67,28 @@ namespace R54IN0
         {
             get
             {
+                if (_currency == null)
+                {
+                    using (var db = DatabaseDirector.GetFieldDb())
+                    {
+                        _currency = db.EnableSortedCurrencyList.BinarySearchAsUUID(Field.CurrencyUUID);
+                    }
+                }
                 return _currency;
             }
             set
             {
                 _currency = value;
-                Field.CurrencyUUID = _currency.Field.UUID;
+                if (_currency != null)
+                    Field.CurrencyUUID = _currency.Field.UUID;
+                else
+                    Field.CurrencyUUID = null;
                 Field.Save<Item>();
                 OnPropertyChanged("SelectedCurrency");
             }
         }
 
-        public SortedObservableCollection<WMaker> AllMaker
+        public IEnumerable<WMaker> AllMaker
         {
             get
             {
@@ -69,7 +99,7 @@ namespace R54IN0
             }
         }
 
-        public SortedObservableCollection<WMeasure> AllMeasure
+        public IEnumerable<WMeasure> AllMeasure
         {
             get
             {
@@ -80,7 +110,7 @@ namespace R54IN0
             }
         }
 
-        public SortedObservableCollection<WCurrency> AllCurrency
+        public IEnumerable<WCurrency> AllCurrency
         {
             get
             {
@@ -91,15 +121,20 @@ namespace R54IN0
             }
         }
 
+        public IEnumerable<WSpecification> AllSpecification
+        {
+            get
+            {
+                using (var db = DatabaseDirector.GetFieldDb())
+                {
+                    return db.EnableSortedSpecList.Where(x => x.Field.ItemUUID == Field.UUID);
+                }
+            }
+        }
+
         public WItem(Item item)
             : base(item)
         {
-            using (var db = DatabaseDirector.GetFieldDb())
-            {
-                _measure = db.EnableSortedMeasureList.BinarySearchAsUUID(Field.MeasureUUID);
-                _currency = db.EnableSortedCurrencyList.BinarySearchAsUUID(Field.CurrencyUUID);
-                _maker = db.EnableSortedMakerList.BinarySearchAsUUID(Field.MakerUUID);
-            }
         }
     }
 }

@@ -57,7 +57,7 @@
     <Compile Include="InventoryFinderViewModelTest.cs" />
     <Compile Include="LexDBTest.cs" />
     <Compile Include="InOutStockTest.cs" />
-    <Compile Include="new proj\FieldDatabaseTest.cs" />
+    <Compile Include="FieldDatabaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InventoryDataGridViewModelTest.cs" />
     <Compile Include="ItemFieldEditorViewModelTest.cs" />

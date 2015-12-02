@@ -11,31 +11,29 @@ namespace R54IN0
         where T : WField<IFieldType>
         where IFieldType : class, IField, new()
     {
-        int _low;
-
         public WFieldSortedObservableCollection() : base()
         {
         }
 
-        public WFieldSortedObservableCollection(IEnumerable<T> items) : base(items.OrderBy(x => x))
+        public WFieldSortedObservableCollection(IEnumerable<T> items) : base(items)
         {
         }
 
         public T BinarySearchAsUUID(string uuid)
         {
-            _low = 0;
+            int low = 0;
             int high = Count - 1;
             int mid = 0;
             string filed_uuid;
             bool isContains = false;
-            while (_low <= high)
+            while (low <= high)
             {
-                mid = (_low + high) / 2;
+                mid = (low + high) / 2;
                 filed_uuid = Items.ElementAt(mid).Field.UUID;
                 if (filed_uuid.CompareTo(uuid) > 0)
                     high = mid - 1;
                 else if (filed_uuid.CompareTo(uuid) < 0)
-                    _low = mid + 1;
+                    low = mid + 1;
                 else
                 {
                     isContains = true;

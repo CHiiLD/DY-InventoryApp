@@ -27,15 +27,5 @@ namespace R54IN0.WPF
             InitializeComponent();
             DataContext = _viewModel = new FieldEditorViewModel<Maker>();
         }
-
-        //private void ItemAddButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    _viewModel.AddNewItem();
-        //}
-
-        //private void ItemRemoveButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    _viewModel.RemoveSelectedItem();
-        //}
     }
 }

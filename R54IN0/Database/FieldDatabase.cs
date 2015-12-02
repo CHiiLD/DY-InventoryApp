@@ -10,7 +10,7 @@ namespace R54IN0
     public class FieldDatabase : IDisposable
     {
         public WFieldSortedObservableCollection<WItem, Item> SortedItemList{ get; private set; }
-        public WFieldSortedObservableCollection<WSpec, Specification> SortedSpecList{ get; private set; }
+        public WFieldSortedObservableCollection<WSpecification, Specification> SortedSpecList{ get; private set; }
         public WFieldSortedObservableCollection<WAccount, Account> SortedAccountList{ get; private set; }
         public WFieldSortedObservableCollection<WCurrency, Currency> SortedCurrencyList{ get; private set; }
         public WFieldSortedObservableCollection<WEmployee, Employee> SortedEmployeeList{ get; private set; }
@@ -19,7 +19,7 @@ namespace R54IN0
         public WFieldSortedObservableCollection<WWarehouse, Warehouse> SortedWarehouseList{ get; private set; }
 
         public WFieldSortedObservableCollection<WItem, Item> EnableSortedItemList { get; private set; }
-        public WFieldSortedObservableCollection<WSpec, Specification> EnableSortedSpecList { get; private set; }
+        public WFieldSortedObservableCollection<WSpecification, Specification> EnableSortedSpecList { get; private set; }
         public WFieldSortedObservableCollection<WAccount, Account> EnableSortedAccountList { get; private set; }
         public WFieldSortedObservableCollection<WCurrency, Currency> EnableSortedCurrencyList { get; private set; }
         public WFieldSortedObservableCollection<WEmployee, Employee> EnableSortedEmployeeList { get; private set; }
@@ -30,7 +30,7 @@ namespace R54IN0
         void InitSortedDictionary()
         {
             SortedItemList = new WFieldSortedObservableCollection<WItem, Item>();
-            SortedSpecList = new WFieldSortedObservableCollection<WSpec, Specification>();
+            SortedSpecList = new WFieldSortedObservableCollection<WSpecification, Specification>();
             SortedAccountList = new WFieldSortedObservableCollection<WAccount, Account>();
             SortedCurrencyList = new WFieldSortedObservableCollection<WCurrency, Currency>();
             SortedEmployeeList = new WFieldSortedObservableCollection<WEmployee, Employee>();
@@ -70,7 +70,7 @@ namespace R54IN0
 
                 Specification[] spec = db.LoadAll<Specification>();
                 foreach (var i in spec)
-                    SortedSpecList.Add(new WSpec(i));
+                    SortedSpecList.Add(new WSpecification(i));
             }
 
             EnableSortedAccountList = new WFieldSortedObservableCollection<WAccount, Account>(SortedAccountList.Where(x => !x.IsDeleted));
@@ -81,7 +81,7 @@ namespace R54IN0
             EnableSortedWarehouseList = new WFieldSortedObservableCollection<WWarehouse, Warehouse>(SortedWarehouseList.Where(x => !x.IsDeleted));
 
             EnableSortedItemList = new WFieldSortedObservableCollection<WItem, Item>(SortedItemList.Where(x => !x.IsDeleted));
-            EnableSortedSpecList = new WFieldSortedObservableCollection<WSpec, Specification>(SortedSpecList.Where(x => !x.IsDeleted));
+            EnableSortedSpecList = new WFieldSortedObservableCollection<WSpecification, Specification>(SortedSpecList.Where(x => !x.IsDeleted));
         }
 
         public FieldDatabase()

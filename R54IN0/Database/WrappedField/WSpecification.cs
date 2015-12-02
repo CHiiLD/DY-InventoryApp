@@ -7,9 +7,9 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class WSpec : WField<Specification>
+    public class WSpecification : WField<Specification>
     {
-        public WSpec(Specification spec)
+        public WSpecification(Specification spec)
             : base(spec)
         {
         }
