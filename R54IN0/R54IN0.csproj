@@ -44,6 +44,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\FieldDatabase.cs" />
+    <Compile Include="Database\SortedObservableCollection.cs" />
+    <Compile Include="Database\WFieldSortedObservableCollection.cs" />
+    <Compile Include="Database\WField\WWarehouse.cs" />
+    <Compile Include="Database\WField\WMeasure.cs" />
+    <Compile Include="Database\WField\WMaker.cs" />
+    <Compile Include="Database\WField\WEmployee.cs" />
+    <Compile Include="Database\WField\WCurrency.cs" />
+    <Compile Include="Database\WField\WAccount.cs" />
+    <Compile Include="Database\WField\WField.cs" />
+    <Compile Include="Database\WField\WItem.cs" />
+    <Compile Include="Database\WField\WSpec.cs" />
     <Compile Include="ViewModel\Pipe\Field\AccountPipe.cs" />
     <Compile Include="ViewModel\Pipe\Field\FieldPipe.cs" />
     <Compile Include="ViewModel\Pipe\Field\ItemPipe.cs" />

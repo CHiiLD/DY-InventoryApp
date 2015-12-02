@@ -190,10 +190,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EventBindingMarkup\src\EventBinding\EventBinding.csproj">
-      <Project>{930f1148-584e-44e2-ab79-e2a6822067cb}</Project>
-      <Name>EventBinding</Name>
-    </ProjectReference>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
       <Project>{04608184-27b9-42a2-9e5e-69a6cb21ecfe}</Project>
       <Name>Lex.Db.Net45</Name>

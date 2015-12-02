@@ -176,16 +176,16 @@ namespace R54IN0
             _maker = _inven.TraceMaker();
         }
 
-        public InvenPipe(InvenPipe<T> thiz)
-        {
-            _inven = thiz._inven.Clone() as T;
-            _specification = new Specification(thiz._specification);
-            _warehouse = new Warehouse(thiz._warehouse);
-            _item = new Item(thiz._item);
-            _measure = new Measure(thiz._measure);
-            _currency = new Currency(thiz._currency);
-            _maker = new Maker(thiz._maker);
-        }
+        //public InvenPipe(InvenPipe<T> thiz)
+        //{
+        //    _inven = thiz._inven.Clone() as T;
+        //    _specification = new Specification(thiz._specification);
+        //    _warehouse = new Warehouse(thiz._warehouse);
+        //    _item = new Item(thiz._item);
+        //    _measure = new Measure(thiz._measure);
+        //    _currency = new Currency(thiz._currency);
+        //    _maker = new Maker(thiz._maker);
+        //}
 
         protected void OnPropertyChanged(string name)
         {

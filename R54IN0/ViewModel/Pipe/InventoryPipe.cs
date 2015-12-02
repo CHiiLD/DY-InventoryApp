@@ -18,10 +18,10 @@ namespace R54IN0
         {
         }
 
-        public InventoryPipe(InventoryPipe thiz)
-            : base(thiz)
-        {
-        }
+        //public InventoryPipe(InventoryPipe thiz)
+        //    : base(thiz)
+        //{
+        //}
 
         public InventoryPipe() : base(new Inventory())
         {
