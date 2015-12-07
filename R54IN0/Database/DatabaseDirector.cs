@@ -87,7 +87,6 @@ namespace R54IN0
     public static class DatabaseDirector
     {
         private static CustomLexDb _customLexDb;
-        private static FieldDatabase _fieldDatabase;
 
         public static void DistroyDbInstance()
         {
@@ -96,13 +95,6 @@ namespace R54IN0
                 _customLexDb.RealDispose();
                 _customLexDb = null;
             }
-        }
-
-        public static FieldDatabase GetFieldDb()
-        {
-            if (_fieldDatabase == null)
-                _fieldDatabase = new FieldDatabase();
-            return _fieldDatabase;
         }
 
         public static DbInstance GetDbInstance()
