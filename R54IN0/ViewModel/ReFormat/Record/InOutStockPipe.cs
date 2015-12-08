@@ -8,10 +8,10 @@ using System.Diagnostics;
 
 namespace R54IN0
 {
-    public class InOutStockPipe : InvenPipe<InOutStock>
+    public class InOutStockPipe : RecordPipe<InOutStock>
     {
-        Account _account;
-        Employee _eeployee;
+        IFieldPipe _account;
+        IFieldPipe _eeployee;
 
         public string Code
         {
@@ -35,7 +35,7 @@ namespace R54IN0
             }
         }
 
-        public Account Account
+        public IFieldPipe Account
         {
             get
             {
@@ -44,13 +44,13 @@ namespace R54IN0
             set
             {
                 _account = value;
-                Inven.EnterpriseUUID = _account.UUID;
+                Inven.EnterpriseUUID = _account.Field.UUID;
                 Inven.Save<InOutStock>();
                 OnPropertyChanged("Account");
             }
         }
 
-        public Employee Employee
+        public IFieldPipe Employee
         {
             get
             {
@@ -59,7 +59,7 @@ namespace R54IN0
             set
             {
                 _eeployee = value;
-                Inven.EmployeeUUID = _eeployee.UUID;
+                Inven.EmployeeUUID = _eeployee.Field.UUID;
                 Inven.Save<InOutStock>();
                 OnPropertyChanged("Employee");
             }
@@ -82,11 +82,16 @@ namespace R54IN0
         public InOutStockPipe(InOutStock ioStock)
             : base(ioStock)
         {
-            using (var db = DatabaseDirector.GetDbInstance())
-            {
-                _account = db.LoadByKey<Account>(ioStock.EnterpriseUUID);
-                _eeployee = db.LoadByKey<Employee>(ioStock.EmployeeUUID);
-            }
+            //using (var db = DatabaseDirector.GetDbInstance())
+            //{
+            //    _account = db.LoadByKey<Account>(ioStock.EnterpriseUUID);
+            //    _eeployee = db.LoadByKey<Employee>(ioStock.EmployeeUUID);
+            //}
+
+            _account = FieldCollectionDirector.GetInstance().LoadPipe<Account>().
+                Where(x => x.Field.UUID == ioStock.EnterpriseUUID).SingleOrDefault();
+            _eeployee = FieldCollectionDirector.GetInstance().LoadPipe<Employee>().
+                Where(x => x.Field.UUID == ioStock.EmployeeUUID).SingleOrDefault();
         }
     }
 }

@@ -9,6 +9,8 @@ namespace R54IN0.Test
 {
     public class DataGridSource : INotifyPropertyChanged
     {
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         string name;
@@ -42,6 +44,7 @@ namespace R54IN0.Test
         {
             DataGrid db = new DataGrid();
             ObservableCollection<DataGridSource> items = new ObservableCollection<DataGridSource>();
+            
             var d = new DataGridSource() { Name = "A" };
             items.Add(d);
             db.ItemsSource = items;
@@ -52,6 +55,36 @@ namespace R54IN0.Test
             Assert.AreEqual(items.FirstOrDefault(), value);
             items.Remove(d);
             Assert.AreEqual(null, db.SelectedItem);
+        }
+
+        int _cnt = 0;
+
+        [Ignore]
+        [TestMethod]
+        public void Test2()
+        {
+            DataGrid db = new DataGrid();
+            ObservableCollection<DataGridSource> items = new ObservableCollection<DataGridSource>();
+            INotifyPropertyChanged npc = items;
+            npc.PropertyChanged += Npc_PropertyChanged;
+            var d = new DataGridSource() { Name = "A" };
+            items.Add(d);
+            db.ItemsSource = items;
+            db.SelectedItem = items.FirstOrDefault();
+
+            ObservableCollection<DataGridSource> itemsCpy = new ObservableCollection<DataGridSource>(items);
+            npc = itemsCpy;
+            npc.PropertyChanged += Npc_PropertyChanged;
+
+            items.FirstOrDefault().Name = "Change";
+
+            Assert.AreEqual(2, _cnt);
+        }
+
+        private void Npc_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(sender != null && e.PropertyName == "Name")
+                _cnt++;
         }
     }
 }

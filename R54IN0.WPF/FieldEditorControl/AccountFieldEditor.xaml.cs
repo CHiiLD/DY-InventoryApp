@@ -20,12 +20,13 @@ namespace R54IN0.WPF
     /// </summary>
     public partial class AccountFieldEditor : UserControl
     {
-        AccountFieldEditorViewModel _viewModel;
+        //AccountFieldEditorViewModel _viewModel;
+        FieldEditorViewModel<Account> _viewModel;
 
         public AccountFieldEditor()
         {
             InitializeComponent();
-            DataContext = _viewModel = new AccountFieldEditorViewModel();
+            DataContext = _viewModel = new FieldEditorViewModel<Account>();
         }
 
         //private void ItemAddButton_Click(object sender, RoutedEventArgs e)

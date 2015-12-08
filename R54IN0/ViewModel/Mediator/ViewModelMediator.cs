@@ -50,7 +50,7 @@ namespace R54IN0
                 return;
             var finders = _colleagues.OfType<InventoryFinderViewModel>();
             Item item = args as Item;
-            ObservableCollection<ItemPipe> items = itemFieldViewModel.Items;
+            ObservableCollection<IFieldPipe> items = itemFieldViewModel.Items;
             bool result = items.Any(x => x.Field.UUID == item.UUID);
             foreach (var f in finders)
             {

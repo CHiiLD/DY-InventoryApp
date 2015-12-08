@@ -10,8 +10,7 @@ namespace R54IN0
 {
     public class ItemFieldEditorViewModel : AViewModelMediatorColleague, IFieldEditorViewModel
     {
-        ItemPipe _selectedItem;
-        SpecificationPipe _selectedSpecification { get; set; }
+        IFieldPipe _selectedItem;
 
         public CommandHandler AddNewItemCommand { get; set; }
         public CommandHandler RemoveItemCommand { get; set; }
@@ -19,9 +18,10 @@ namespace R54IN0
         public CommandHandler AddNewSpecCommand { get; set; }
         public CommandHandler RemoveSpecCommand { get; set; }
 
-        public ObservableCollection<ItemPipe> Items { get; set; }
-
-        public ItemPipe SelectedItem
+        public ObservableCollection<IFieldPipe> Specifications { get; set; }
+        public IFieldPipe SelectedSpecification { get; set; }
+        public ObservableCollection<IFieldPipe> Items { get; set; }
+        public IFieldPipe SelectedItem
         {
             get
             {
@@ -33,47 +33,23 @@ namespace R54IN0
                 Specifications.Clear();
                 if (_selectedItem != null)
                 {
-                    IEnumerable<Specification> result = null;
-                    using (var db = DatabaseDirector.GetDbInstance())
-                    {
-                        result = db.Table<Specification>().IndexQueryByKey("ItemUUID", _selectedItem.Field.UUID).ToList().Where(x => !x.IsDeleted);
-                    }
-                    foreach (var i in result)
-                        Specifications.Add(new SpecificationPipe(i));
+                    ObservableCollection<IFieldPipe> specColl = FieldCollectionDirector.GetInstance().LoadEnablePipe<Specification>();
+                    IEnumerable<IFieldPipe> itemSpecColl = specColl.Where(x => ((Specification)x.Field).ItemUUID == _selectedItem.Field.UUID);
+                    foreach (var item in itemSpecColl)
+                        Specifications.Add(item);
                 }
                 SelectedSpecification = Specifications.FirstOrDefault();
             }
         }
 
-        public ObservableCollection<SpecificationPipe> Specifications { get; set; }
-
-        public SpecificationPipe SelectedSpecification
-        {
-            get
-            {
-                return _selectedSpecification;
-            }
-            set
-            {
-                _selectedSpecification = value;
-            }
-        }
-
         public ItemFieldEditorViewModel() : base(ViewModelMediator.GetInstance())
         {
-            Item[] items = null;
-            using (var db = DatabaseDirector.GetDbInstance())
-            {
-                items = db.LoadAll<Item>();
-            }
-            IEnumerable<ItemPipe> itemPipes = items.Where(x => !x.IsDeleted).Select(x => new ItemPipe(x));
-            Items = new ObservableCollection<ItemPipe>(itemPipes);
-            Specifications = new ObservableCollection<SpecificationPipe>();
+            Specifications = new ObservableCollection<IFieldPipe>();
+            Items = FieldCollectionDirector.GetInstance().LoadEnablePipe<Item>();
             SelectedItem = Items.FirstOrDefault();
 
             AddNewItemCommand = new CommandHandler(AddNewItem, CanAddNewItem);
             RemoveItemCommand = new CommandHandler(RemoveSelectedItem, CanRemoveSelectedItem);
-
             AddNewSpecCommand = new CommandHandler(AddNewSpecification, CanAddNewSpecficiation);
             RemoveSpecCommand = new CommandHandler(RemoveSelectedSpecification, CanRemoveSelectedSpecfication);
         }
@@ -103,7 +79,7 @@ namespace R54IN0
             var item = new Item() { Name = "new item", UUID = Guid.NewGuid().ToString() }.Save<Item>();
             Items.Add(new ItemPipe(item));
             SelectedItem = Items.LastOrDefault();
-            /// 새로 아이템을 등록할 시 베이스 규격을 등록, 규격 리스트는 최소 하나 이상을 가져야 한다.
+            // 새로 아이템을 등록할 시 베이스 규격을 등록, 규격 리스트는 최소 하나 이상을 가져야 한다.
             AddNewSpecification(null);
             Changed(item);
             RemoveItemCommand.UpdateCanExecute();
@@ -126,6 +102,7 @@ namespace R54IN0
             Specifications.Add(newSpecificationPipe);
             SelectedSpecification = Specifications.LastOrDefault();
             RemoveSpecCommand.UpdateCanExecute();
+            FieldCollectionDirector.GetInstance().LoadEnablePipe<Specification>().Add(newSpecificationPipe);
         }
 
         public void RemoveSelectedSpecification(object parameter)
@@ -135,6 +112,7 @@ namespace R54IN0
             Specifications.Remove(SelectedSpecification);
             SelectedSpecification = Specifications.FirstOrDefault();
             RemoveSpecCommand.UpdateCanExecute();
+            FieldCollectionDirector.GetInstance().LoadEnablePipe<Specification>().Remove(SelectedSpecification);
         }
     }
 }

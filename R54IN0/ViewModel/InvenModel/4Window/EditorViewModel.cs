@@ -11,13 +11,12 @@ namespace R54IN0
     public class EditorViewModel<T> : INotifyPropertyChanged where T : class, IInventory, new()
     {
         T _inventory;
-        IEnumerable<Specification> _allSpecification;
-        Item _item;
-        Warehouse _warehouse;
-        Specification _specification;
+        IEnumerable<IFieldPipe> _allSpecification;
+        IFieldPipe _item;
+        IFieldPipe _warehouse;
+        IFieldPipe _specification;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         public bool IsEdit { get; private set; }
 
         public T Inventory
@@ -28,18 +27,15 @@ namespace R54IN0
             }
         }
 
-        public IEnumerable<Item> AllItem
+        public IEnumerable<IFieldPipe> AllItem
         {
             get
             {
-                using (var db = DatabaseDirector.GetDbInstance())
-                {
-                    return db.LoadAll<Item>().Where(x => !x.IsDeleted);
-                }
+                return FieldCollectionDirector.GetInstance().LoadEnablePipe<Item>();
             }
         }
 
-        public IEnumerable<Specification> AllSpecification
+        public IEnumerable<IFieldPipe> AllSpecification
         {
             get
             {
@@ -52,18 +48,15 @@ namespace R54IN0
             }
         }
 
-        public IEnumerable<Warehouse> AllWarehouse
+        public IEnumerable<IFieldPipe> AllWarehouse
         {
             get
             {
-                using (var db = DatabaseDirector.GetDbInstance())
-                {
-                    return db.LoadAll<Warehouse>().Where(x => !x.IsDeleted);
-                }
+                return FieldCollectionDirector.GetInstance().LoadEnablePipe<Warehouse>();
             }
         }
 
-        public Item SelectedItem
+        public IFieldPipe SelectedItem
         {
             get
             {
@@ -72,17 +65,19 @@ namespace R54IN0
             set
             {
                 _item = value;
-                using (var db = DatabaseDirector.GetDbInstance())
+                if (_item != null)
                 {
-                    AllSpecification = db.Table<Specification>().IndexQueryByKey("ItemUUID", _item.UUID).ToList();
+                    ObservableCollection<IFieldPipe> specColl = FieldCollectionDirector.GetInstance().LoadEnablePipe<Specification>();
+                    IEnumerable<IFieldPipe> itemSpecColl = specColl.Where(x => ((Specification)x.Field).ItemUUID == _item.Field.UUID);
+                    AllSpecification = itemSpecColl;
                     SelectedSpecification = AllSpecification.FirstOrDefault();
+                    _inventory.ItemUUID = _item.Field.UUID;
                 }
-                _inventory.ItemUUID = _item.UUID;
                 OnPropertyChanged("SelectedItem");
             }
         }
 
-        public Specification SelectedSpecification
+        public IFieldPipe SelectedSpecification
         {
             get
             {
@@ -91,12 +86,12 @@ namespace R54IN0
             set
             {
                 _specification = value;
-                _inventory.SpecificationUUID  = _specification != null ? _specification.UUID : null;
+                _inventory.SpecificationUUID  = _specification != null ? _specification.Field.UUID : null;
                 OnPropertyChanged("SelectedSpecification");
             }
         }
 
-        public Warehouse SelectedWarehouse
+        public IFieldPipe SelectedWarehouse
         {
             get
             {
@@ -106,7 +101,7 @@ namespace R54IN0
             {
                 _warehouse = value;
                 if (_warehouse != null)
-                    _inventory.WarehouseUUID = _warehouse.UUID;
+                    _inventory.WarehouseUUID = _warehouse.Field.UUID;
                 OnPropertyChanged("SelectedWarehouse");
             }
         }
@@ -134,13 +129,15 @@ namespace R54IN0
         public EditorViewModel(T inventory)
         {
             _inventory = inventory;
-            _item = _inventory.TraceItem();
-            _specification = _inventory.TraceSpecification();
-            _warehouse = _inventory.TraceWarehouse();
-            using (var db = DatabaseDirector.GetDbInstance())
-            {
-                _allSpecification = db.Table<Specification>().IndexQueryByKey("ItemUUID", _item.UUID).ToList();
-            }
+            var fcd = FieldCollectionDirector.GetInstance();
+            _item = fcd.LoadPipe<Item>().Where(x=>x.Field.UUID == _inventory.ItemUUID).SingleOrDefault();
+            _specification = fcd.LoadPipe<Specification>().Where(x => x.Field.UUID == _inventory.SpecificationUUID).SingleOrDefault();
+            _warehouse = fcd.LoadPipe<Warehouse>().Where(x => x.Field.UUID == _inventory.WarehouseUUID).SingleOrDefault();
+
+            ObservableCollection<IFieldPipe> specColl = FieldCollectionDirector.GetInstance().LoadEnablePipe<Specification>();
+            IEnumerable<IFieldPipe> itemSpecColl = specColl.Where(x => ((Specification)x.Field).ItemUUID == _item.Field.UUID);
+            _allSpecification = itemSpecColl;
+
             IsEdit = true;
         }
 

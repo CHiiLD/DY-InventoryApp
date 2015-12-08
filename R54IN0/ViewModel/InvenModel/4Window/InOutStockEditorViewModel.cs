@@ -9,8 +9,8 @@ namespace R54IN0
 {
     public class InOutStockEditorViewModel : EditorViewModel<InOutStock>
     {
-        Account _account;
-        Employee _employee;
+        IFieldPipe _account;
+        IFieldPipe _employee;
 
         public DateTime Date
         {
@@ -38,7 +38,7 @@ namespace R54IN0
             }
         }
 
-        public Account SelectedAccount
+        public IFieldPipe SelectedAccount
         {
             get
             {
@@ -47,12 +47,12 @@ namespace R54IN0
             set
             {
                 _account = value;
-                Inventory.EnterpriseUUID = _account.UUID;
+                Inventory.EnterpriseUUID = _account.Field.UUID;
                 OnPropertyChanged("SelectedAccount");
             }
         }
 
-        public Employee SelectedEmployee
+        public IFieldPipe SelectedEmployee
         {
             get
             {
@@ -61,30 +61,24 @@ namespace R54IN0
             set
             {
                 _employee = value;
-                Inventory.EmployeeUUID = _employee.UUID;
+                Inventory.EmployeeUUID = _employee.Field.UUID;
                 OnPropertyChanged("SelectedEmployee");
             }
         }
 
-        public IEnumerable<Account> AllAccount
+        public IEnumerable<IFieldPipe> AllAccount
         {
             get
             {
-                using (var db = DatabaseDirector.GetDbInstance())
-                {
-                    return db.LoadAll<Account>().Where(x => !x.IsDeleted);
-                }
+                return FieldCollectionDirector.GetInstance().LoadEnablePipe<Account>();
             }
         }
 
-        public IEnumerable<Employee> AllEmployee
+        public IEnumerable<IFieldPipe> AllEmployee
         {
             get
             {
-                using (var db = DatabaseDirector.GetDbInstance())
-                {
-                    return db.LoadAll<Employee>().Where(x => !x.IsDeleted);
-                }
+                return FieldCollectionDirector.GetInstance().LoadEnablePipe<Employee>();
             }
         }
 
@@ -112,8 +106,9 @@ namespace R54IN0
         public InOutStockEditorViewModel(InOutStock ioStock)
             : base(ioStock)
         {
-            _account = ioStock.TraceAccount();
-            _employee = ioStock.TraceEmployee();
+            var fcd = FieldCollectionDirector.GetInstance();
+            _account = fcd.LoadPipe<Account>().Where(x => x.Field.UUID == ioStock.EnterpriseUUID).SingleOrDefault();
+            _employee = fcd.LoadPipe<Employee>().Where(x => x.Field.UUID == ioStock.EmployeeUUID).SingleOrDefault();
         }
     }
 }

@@ -54,9 +54,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DummyDbData.cs" />
+    <Compile Include="GenericCastTest.cs" />
     <Compile Include="InventoryFinderViewModelTest.cs" />
     <Compile Include="LexDBTest.cs" />
     <Compile Include="InOutStockTest.cs" />
+    <Compile Include="NewFieldTypeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InventoryDataGridViewModelTest.cs" />
     <Compile Include="ItemFieldEditorViewModelTest.cs" />

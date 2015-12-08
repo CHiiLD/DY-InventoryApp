@@ -8,23 +8,17 @@ using System.Windows.Input;
 
 namespace R54IN0
 {
-    public class AccountFieldEditorViewModel : IFieldEditorViewModel
+    public class FieldEditorViewModel<T> : IFieldEditorViewModel where T : class, IField, new()
     {
-        public AccountPipe SelectedItem { get; set; }
-        public ObservableCollection<AccountPipe> Items { get; set; }
+        public IFieldPipe SelectedItem { get; set; }
+        public ObservableCollection<IFieldPipe> Items { get; set; }
 
         public CommandHandler AddNewItemCommand { get; set; }
         public CommandHandler RemoveItemCommand { get; set; }
 
-        public AccountFieldEditorViewModel()
+        public FieldEditorViewModel()
         {
-            Account[] items = null;
-            using (var db = DatabaseDirector.GetDbInstance())
-            {
-                items = db.LoadAll<Account>();
-            }
-            IEnumerable<AccountPipe> fieldPipes = items.Where(x => !x.IsDeleted).Select(x => new AccountPipe(x));
-            Items = new ObservableCollection<AccountPipe>(fieldPipes);
+            Items = FieldCollectionDirector.GetInstance().LoadEnablePipe<T>();
             SelectedItem = Items.FirstOrDefault();
 
             AddNewItemCommand = new CommandHandler(AddNewItem, CanAddNewItem);
@@ -43,7 +37,7 @@ namespace R54IN0
 
         public void AddNewItem(object parameter)
         {
-            Items.Add(new AccountPipe(new Account() { Name = "new account" }.Save<Account>()));
+            Items.Add(new FieldPipe<T>(new T() { Name = "new" }.Save<T>()));
             SelectedItem = Items.LastOrDefault();
             RemoveItemCommand.UpdateCanExecute();
         }

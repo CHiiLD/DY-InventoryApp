@@ -8,17 +8,17 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class InvenPipe<T> : INotifyPropertyChanged where T : class, IInventory, IUUID, new()
+    public class RecordPipe<T> : INotifyPropertyChanged where T : class, IInventory, IUUID, new()
     {
         T _inven;
-        Specification _specification;
-        Warehouse _warehouse;
-        Item _item;
-        Measure _measure;
-        Currency _currency;
-        Maker _maker;
+        IFieldPipe _specification;
+        IFieldPipe _warehouse;
+        IFieldPipe _item;
+        IFieldPipe _measure;
+        IFieldPipe _currency;
+        IFieldPipe _maker;
 
-        public Measure Measure
+        public IFieldPipe Measure
         {
             get
             {
@@ -26,7 +26,7 @@ namespace R54IN0
             }
         }
 
-        public Maker Maker
+        public IFieldPipe Maker
         {
             get
             {
@@ -34,7 +34,7 @@ namespace R54IN0
             }
         }
 
-        public Currency Currency
+        public IFieldPipe Currency
         {
             get
             {
@@ -46,7 +46,7 @@ namespace R54IN0
         {
             get
             {
-                return _specification.SalesUnitPrice;
+                return ((SpecificationPipe)_specification).SalesUnitPrice;
             }
         }
 
@@ -54,7 +54,7 @@ namespace R54IN0
         {
             get
             {
-                return _specification.SalesUnitPrice * ItemCount;
+                return ((SpecificationPipe)_specification).SalesUnitPrice * ItemCount;
             }
         }
 
@@ -62,7 +62,7 @@ namespace R54IN0
         {
             get
             {
-                return _specification.PurchaseUnitPrice;
+                return ((SpecificationPipe)_specification).PurchaseUnitPrice;
             }
         }
 
@@ -70,7 +70,7 @@ namespace R54IN0
         {
             get
             {
-                return _specification.PurchaseUnitPrice * ItemCount;
+                return ((SpecificationPipe)_specification).PurchaseUnitPrice * ItemCount;
             }
         }
 
@@ -84,7 +84,7 @@ namespace R54IN0
             }
         }
 
-        public Item Item
+        public IFieldPipe Item
         {
             get
             {
@@ -93,21 +93,12 @@ namespace R54IN0
             set
             {
                 _item = value;
-                IEnumerable<Specification> result = null;
-                using (var db = DatabaseDirector.GetDbInstance())
-                {
-                    result = db.Table<Specification>().IndexQueryByKey("ItemUUID", _item.UUID).ToList().Where(x => !x.IsDeleted);
-                    _measure = db.LoadByKey<Measure>(_item.MeasureUUID);
-                    _currency = db.LoadByKey<Currency>(_item.CurrencyUUID);
-                    _maker = db.LoadByKey<Maker>(_item.MakerUUID);
-                }
-                Specification = result.FirstOrDefault();
                 _inven.Save<T>();
                 OnPropertyChanged("Item");
             }
         }
 
-        public Specification Specification
+        public IFieldPipe Specification
         {
             get
             {
@@ -116,13 +107,12 @@ namespace R54IN0
             set
             {
                 _specification = value;
-                _inven.SpecificationUUID = _specification.UUID;
                 _inven.Save<T>();
                 OnPropertyChanged("Specification");
             }
         }
 
-        public Warehouse Warehouse
+        public IFieldPipe Warehouse
         {
             get
             {
@@ -131,7 +121,6 @@ namespace R54IN0
             set
             {
                 _warehouse = value;
-                _inven.WarehouseUUID = _warehouse.UUID;
                 _inven.Save<T>();
                 OnPropertyChanged("Warehouse");
             }
@@ -165,27 +154,19 @@ namespace R54IN0
             }
         }
 
-        public InvenPipe(T iinven)
+        public RecordPipe(T iinven)
         {
             _inven = iinven;
-            _item = _inven.TraceItem();
-            _specification = _inven.TraceSpecification();
-            _warehouse = _inven.TraceWarehouse();
-            _measure = _inven.TraceMeasure();
-            _currency = _inven.TraceCurrency();
-            _maker = _inven.TraceMaker();
-        }
+            var fcd = FieldCollectionDirector.GetInstance();
+            _item = fcd.LoadPipe<Item>().Where(x => x.Field.UUID == _inven.ItemUUID).SingleOrDefault();
+            _specification = fcd.LoadPipe<Specification>().Where(x => x.Field.UUID == _inven.SpecificationUUID).SingleOrDefault();
+            _warehouse = fcd.LoadPipe<Warehouse>().Where(x => x.Field.UUID == _inven.WarehouseUUID).SingleOrDefault();
 
-        //public InvenPipe(InvenPipe<T> thiz)
-        //{
-        //    _inven = thiz._inven.Clone() as T;
-        //    _specification = new Specification(thiz._specification);
-        //    _warehouse = new Warehouse(thiz._warehouse);
-        //    _item = new Item(thiz._item);
-        //    _measure = new Measure(thiz._measure);
-        //    _currency = new Currency(thiz._currency);
-        //    _maker = new Maker(thiz._maker);
-        //}
+            ItemPipe itemPipe = _item as ItemPipe;
+            _measure = fcd.LoadPipe<Measure>().Where(x => x.Field.UUID == itemPipe.Field.MeasureUUID).SingleOrDefault();
+            _currency = fcd.LoadPipe<Currency>().Where(x => x.Field.UUID == itemPipe.Field.CurrencyUUID).SingleOrDefault();
+            _maker = fcd.LoadPipe<Maker>().Where(x => x.Field.UUID == itemPipe.Field.MakerUUID).SingleOrDefault();
+        }
 
         protected void OnPropertyChanged(string name)
         {

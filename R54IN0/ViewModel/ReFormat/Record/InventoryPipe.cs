@@ -11,21 +11,11 @@ namespace R54IN0
     /// <summary>
     /// 재고 현황 CurrentStockWrapping
     /// </summary>
-    public class InventoryPipe : InvenPipe<Inventory>
+    public class InventoryPipe : RecordPipe<Inventory>
     {
         public InventoryPipe(Inventory inventory)
             : base(inventory)
         {
-        }
-
-        //public InventoryPipe(InventoryPipe thiz)
-        //    : base(thiz)
-        //{
-        //}
-
-        public InventoryPipe() : base(new Inventory())
-        {
-
         }
 
         public string Code
@@ -48,11 +38,13 @@ namespace R54IN0
         {
             get
             {
-                return Specification.Remark;
+                SpecificationPipe specPipe = Specification as SpecificationPipe;
+                return specPipe.Remark;
             }
             set
             {
-                Specification.Remark = value;
+                SpecificationPipe specPipe = Specification as SpecificationPipe;
+                specPipe.Remark = value;
                 Inven.Save<Inventory>();
                 OnPropertyChanged("Remark");
             }
