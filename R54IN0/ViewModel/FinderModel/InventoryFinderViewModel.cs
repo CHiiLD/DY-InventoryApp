@@ -12,7 +12,7 @@ using Lex.Db;
 
 namespace R54IN0
 {
-    public class InventoryFinderViewModel : AViewModelMediatorColleague
+    public class InventoryFinderViewModel : AFinderViewModelMediatorColleague
     {
         DragCommand _dragCommand;
         DropCommand _dropCommand;
@@ -42,7 +42,7 @@ namespace R54IN0
 
         public CommandHandler SelectedItemEventCommand { get; set; }
 
-        public InventoryFinderViewModel() : base(ViewModelMediator.GetInstance())
+        public InventoryFinderViewModel() : base(FinderViewModelMediator.GetInstance())
         {
             Nodes = new ObservableCollection<FinderNode>();
             SelectedNodes = new ObservableCollection<FinderNode>();
@@ -97,7 +97,7 @@ namespace R54IN0
                 if (!SelectedNodes.Contains(itemToSelect as FinderNode))
                     SelectedNodes.Add(itemToSelect as FinderNode);
             }
-            Changed();
+            UpdateInventoryDataGridItems(this);
             ((CommandHandler)RemoveDirectoryCommand).UpdateCanExecute();
         }
 

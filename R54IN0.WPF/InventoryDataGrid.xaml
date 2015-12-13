@@ -13,7 +13,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <DataGrid ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" Grid.RowSpan="1" IsReadOnly="True">
+        <DataGrid ItemsSource="{Binding Items}" 
+                  SelectedItem="{Binding SelectedItem}" 
+                  AutoGenerateColumns="False" Grid.RowSpan="1" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="코드" Binding="{Binding Code}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="품명" Binding="{Binding Item.Name}" IsReadOnly="True"/>

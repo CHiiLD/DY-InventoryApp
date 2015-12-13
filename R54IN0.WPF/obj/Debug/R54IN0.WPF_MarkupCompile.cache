@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\
+Z:\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\
 R54IN0.WPF
 none
 false
 DEBUG;TRACE
-Y:\Github\R54IN0\R54IN0.WPF\App.xaml
+Z:\Child\Github\R54IN0\R54IN0.WPF\App.xaml
 14754693779
 
 181532422621
-221458993537
+221527517475
 FieldEditorControl\AccountFieldEditor.xaml;FieldEditorControl\MakerFieldEditor.xaml;FieldEditorControl\WarehouseFieldEditor.xaml;FieldEditorControl\EmployeeFieldEditor.xaml;FieldEditorControl\CurrencyFieldEditor.xaml;FieldEditorControl\MeasureFieldEditor.xaml;FieldEditorControl\ItemFieldEditor.xaml;InOutStockDataGrid.xaml;InventoryControl.xaml;InventoryDataGrid.xaml;InventoryFinder.xaml;InOutStockItemEditorWindow.xaml;InventoryItemEditorWindow.xaml;MainWindow.xaml;
 
 False

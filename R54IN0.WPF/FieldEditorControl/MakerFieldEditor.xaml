@@ -13,7 +13,7 @@
 
         <DataGrid ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="화폐" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="제조사" Binding="{Binding Name}"/>
             </DataGrid.Columns>
         </DataGrid>
         <UniformGrid Grid.Row="1" Grid.Column="0" Columns="2" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center">

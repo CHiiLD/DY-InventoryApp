@@ -70,7 +70,7 @@ namespace R54IN0
         {
             get
             {
-                return FieldCollectionDirector.GetInstance().LoadEnablePipe<Account>();
+                return FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<Account>();
             }
         }
 
@@ -78,7 +78,7 @@ namespace R54IN0
         {
             get
             {
-                return FieldCollectionDirector.GetInstance().LoadEnablePipe<Employee>();
+                return FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<Employee>();
             }
         }
 
@@ -106,7 +106,7 @@ namespace R54IN0
         public InOutStockEditorViewModel(InOutStock ioStock)
             : base(ioStock)
         {
-            var fcd = FieldCollectionDirector.GetInstance();
+            var fcd = FieldPipeCollectionDirector.GetInstance();
             _account = fcd.LoadPipe<Account>().Where(x => x.Field.UUID == ioStock.EnterpriseUUID).SingleOrDefault();
             _employee = fcd.LoadPipe<Employee>().Where(x => x.Field.UUID == ioStock.EmployeeUUID).SingleOrDefault();
         }

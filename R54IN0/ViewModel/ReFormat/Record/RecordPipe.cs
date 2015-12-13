@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class RecordPipe<T> : INotifyPropertyChanged where T : class, IInventory, IUUID, new()
+    public class RecordPipe<T> : INotifyPropertyChanged where T : class, IInventory, IUUID //, new()
     {
         T _inven;
         IFieldPipe _specification;
@@ -157,15 +157,18 @@ namespace R54IN0
         public RecordPipe(T iinven)
         {
             _inven = iinven;
-            var fcd = FieldCollectionDirector.GetInstance();
+            var fcd = FieldPipeCollectionDirector.GetInstance();
             _item = fcd.LoadPipe<Item>().Where(x => x.Field.UUID == _inven.ItemUUID).SingleOrDefault();
             _specification = fcd.LoadPipe<Specification>().Where(x => x.Field.UUID == _inven.SpecificationUUID).SingleOrDefault();
             _warehouse = fcd.LoadPipe<Warehouse>().Where(x => x.Field.UUID == _inven.WarehouseUUID).SingleOrDefault();
 
-            ItemPipe itemPipe = _item as ItemPipe;
-            _measure = fcd.LoadPipe<Measure>().Where(x => x.Field.UUID == itemPipe.Field.MeasureUUID).SingleOrDefault();
-            _currency = fcd.LoadPipe<Currency>().Where(x => x.Field.UUID == itemPipe.Field.CurrencyUUID).SingleOrDefault();
-            _maker = fcd.LoadPipe<Maker>().Where(x => x.Field.UUID == itemPipe.Field.MakerUUID).SingleOrDefault();
+            if (_item != null)
+            {
+                ItemPipe itemPipe = _item as ItemPipe;
+                _measure = fcd.LoadPipe<Measure>().Where(x => x.Field.UUID == itemPipe.Field.MeasureUUID).SingleOrDefault();
+                _currency = fcd.LoadPipe<Currency>().Where(x => x.Field.UUID == itemPipe.Field.CurrencyUUID).SingleOrDefault();
+                _maker = fcd.LoadPipe<Maker>().Where(x => x.Field.UUID == itemPipe.Field.MakerUUID).SingleOrDefault();
+            }
         }
 
         protected void OnPropertyChanged(string name)

@@ -82,15 +82,9 @@ namespace R54IN0
         public InOutStockPipe(InOutStock ioStock)
             : base(ioStock)
         {
-            //using (var db = DatabaseDirector.GetDbInstance())
-            //{
-            //    _account = db.LoadByKey<Account>(ioStock.EnterpriseUUID);
-            //    _eeployee = db.LoadByKey<Employee>(ioStock.EmployeeUUID);
-            //}
-
-            _account = FieldCollectionDirector.GetInstance().LoadPipe<Account>().
+            _account = FieldPipeCollectionDirector.GetInstance().LoadPipe<Account>().
                 Where(x => x.Field.UUID == ioStock.EnterpriseUUID).SingleOrDefault();
-            _eeployee = FieldCollectionDirector.GetInstance().LoadPipe<Employee>().
+            _eeployee = FieldPipeCollectionDirector.GetInstance().LoadPipe<Employee>().
                 Where(x => x.Field.UUID == ioStock.EmployeeUUID).SingleOrDefault();
         }
     }

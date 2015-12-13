@@ -9,22 +9,22 @@ using System.Collections;
 
 namespace R54IN0
 {
-    public class FieldCollectionDirector
+    public class FieldPipeCollectionDirector
     {
-        static FieldCollectionDirector _thiz;
+        static FieldPipeCollectionDirector _thiz;
         List<ObservableCollection<IFieldPipe>> _fieldList;
         List<ObservableCollection<IFieldPipe>> _enableFieldList;
 
-        FieldCollectionDirector()
+        FieldPipeCollectionDirector()
         {
             _fieldList = new List<ObservableCollection<IFieldPipe>>();
             _enableFieldList = new List<ObservableCollection<IFieldPipe>>();
         }
 
-        public static FieldCollectionDirector GetInstance()
+        public static FieldPipeCollectionDirector GetInstance()
         {
             if (_thiz == null)
-                _thiz = new FieldCollectionDirector();
+                _thiz = new FieldPipeCollectionDirector();
             return _thiz;
         }
 

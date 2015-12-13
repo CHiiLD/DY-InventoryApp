@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
+#if false
     public static class InOutStockExtension
     {
         public static Account TraceAccount(this InOutStock iios)
@@ -26,4 +27,5 @@ namespace R54IN0
             }
         }
     }
+#endif
 }

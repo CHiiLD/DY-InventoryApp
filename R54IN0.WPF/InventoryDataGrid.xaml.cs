@@ -69,9 +69,9 @@ namespace R54IN0.WPF
             if (editWin.IsApply)
             {
                 if (!_editorViewModel.IsEdit)
-                    _viewModel.Add(_editorViewModel.Inventory);
+                    _viewModel.AddNewItem(_editorViewModel.Inventory);
                 else
-                    _viewModel.Replace(_editorViewModel.Inventory);
+                    _viewModel.ReplaceItem(_editorViewModel.Inventory);
             }
         }
     }

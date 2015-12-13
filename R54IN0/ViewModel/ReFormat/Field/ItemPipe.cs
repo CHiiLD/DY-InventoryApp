@@ -59,7 +59,7 @@ namespace R54IN0
         {
             get
             {
-                return FieldCollectionDirector.GetInstance().LoadEnablePipe<Maker>();
+                return FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<Maker>();
             }
         }
 
@@ -67,7 +67,7 @@ namespace R54IN0
         {
             get
             {
-                return FieldCollectionDirector.GetInstance().LoadEnablePipe<Measure>();
+                return FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<Measure>();
             }
         }
 
@@ -75,14 +75,14 @@ namespace R54IN0
         {
             get
             {
-                return FieldCollectionDirector.GetInstance().LoadEnablePipe<Currency>();
+                return FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<Currency>();
             }
         }
 
         public ItemPipe(Item item)
             : base(item)
         {
-            FieldCollectionDirector fcd = FieldCollectionDirector.GetInstance();
+            FieldPipeCollectionDirector fcd = FieldPipeCollectionDirector.GetInstance();
             _measure = fcd.LoadEnablePipe<Measure>().Where(x => x.Field.UUID == Field.MeasureUUID).SingleOrDefault();
             _currency = fcd.LoadEnablePipe<Currency>().Where(x => x.Field.UUID == Field.CurrencyUUID).SingleOrDefault();
             _maker = fcd.LoadEnablePipe<Maker>().Where(x => x.Field.UUID == Field.MakerUUID).SingleOrDefault();

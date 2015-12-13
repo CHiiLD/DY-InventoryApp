@@ -46,15 +46,16 @@
   <ItemGroup>
     <Compile Include="SortedObservableCollection.cs" />
     <Compile Include="ViewModel\ReFormat\Field\AccountPipe.cs" />
-    <Compile Include="ViewModel\ReFormat\FieldCollectionDirector.cs" />
+    <Compile Include="ViewModel\ReFormat\FieldPipeCollectionDirector.cs" />
     <Compile Include="ViewModel\ReFormat\Field\FieldPipe.cs" />
     <Compile Include="ViewModel\ReFormat\Field\IFieldPipe.cs" />
     <Compile Include="ViewModel\ReFormat\Field\ItemPipe.cs" />
     <Compile Include="ViewModel\ReFormat\Field\SpecificationPipe.cs" />
-    <Compile Include="ViewModel\ReFormat\InOutStockCollectionDirector.cs" />
+    <Compile Include="ViewModel\ReFormat\InOutStockPipeCollectionDirector.cs" />
+    <Compile Include="ViewModel\ReFormat\InventoryPipeCollectionDirector.cs" />
     <Compile Include="ViewModel\ReFormat\Record\RecordPipe.cs" />
     <Compile Include="Format\Field\Maker.cs" />
-    <Compile Include="ViewModel\Mediator\AViewModelMediatorColleague.cs" />
+    <Compile Include="ViewModel\Mediator\AFinderViewModelMediatorColleague.cs" />
     <Compile Include="ViewModel\CommandHandler.cs" />
     <Compile Include="ViewModel\FieldDataGridModel\IFieldEditorViewModel.cs" />
     <Compile Include="ViewModel\FieldDataGridModel\ItemFieldEditorViewModel.cs" />
@@ -65,10 +66,10 @@
     <Compile Include="ViewModel\FinderModel\Node\FinderNodeExtension.cs" />
     <Compile Include="ViewModel\FinderModel\Node\NodeType.cs" />
     <Compile Include="ViewModel\FinderModel\SimpleStringFormat.cs" />
-    <Compile Include="ViewModel\InvenModel\4Window\EditorViewModel.cs" />
-    <Compile Include="ViewModel\InvenModel\InOutStockDataGridViewModel.cs" />
-    <Compile Include="ViewModel\InvenModel\4Window\InOutStockEditorViewModel.cs" />
-    <Compile Include="ViewModel\InvenModel\InventoryDataGridViewModel.cs" />
+    <Compile Include="ViewModel\RecordDataGridModel\4Window\EditorViewModel.cs" />
+    <Compile Include="ViewModel\RecordDataGridModel\InOutStockDataGridViewModel.cs" />
+    <Compile Include="ViewModel\RecordDataGridModel\4Window\InOutStockEditorViewModel.cs" />
+    <Compile Include="ViewModel\RecordDataGridModel\InventoryDataGridViewModel.cs" />
     <Compile Include="ViewModel\FinderModel\InventoryFinderViewModel.cs" />
     <Compile Include="Format\Field\Currency.cs" />
     <Compile Include="Format\Field\Employee.cs" />
@@ -89,9 +90,8 @@
     <Compile Include="Format\Field\Specification.cs" />
     <Compile Include="Format\Field\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\InvenModel\4Window\InventoryEditorViewModel.cs" />
-    <Compile Include="ViewModel\Mediator\IViewModelMediatorColleague.cs" />
-    <Compile Include="ViewModel\Mediator\ViewModelMediator.cs" />
+    <Compile Include="ViewModel\RecordDataGridModel\4Window\InventoryEditorViewModel.cs" />
+    <Compile Include="ViewModel\Mediator\FinderViewModelMediator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">

@@ -63,6 +63,17 @@ namespace R54IN0
             }
         }
 
+        public string UUID
+        {
+            get
+            {
+                return _field.UUID;
+            }
+            set
+            {
+            }
+        }
+
         public bool IsDeleted
         {
             get

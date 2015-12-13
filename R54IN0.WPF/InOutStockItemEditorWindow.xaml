@@ -62,7 +62,7 @@
             <ComboBox ItemsSource="{Binding AllEmployee}" 
                       SelectedItem="{Binding SelectedEmployee}" 
                       DisplayMemberPath="Name"
-                      SelectedValuePath="UUID"  
+                      SelectedValuePath="UUID"
                       SelectedValue="{Binding SelectedEmployee.UUID}"/>
         </StackPanel>
 

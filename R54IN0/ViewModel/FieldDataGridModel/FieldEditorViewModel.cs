@@ -18,7 +18,7 @@ namespace R54IN0
 
         public FieldEditorViewModel()
         {
-            Items = FieldCollectionDirector.GetInstance().LoadEnablePipe<T>();
+            Items = FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<T>();
             SelectedItem = Items.FirstOrDefault();
 
             AddNewItemCommand = new CommandHandler(AddNewItem, CanAddNewItem);

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace R54IN0.Test
 {
+    [Ignore]
     [TestClass]
     public class SortedObservableCollectionTest
     {

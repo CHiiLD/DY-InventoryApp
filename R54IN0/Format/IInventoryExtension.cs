@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
+#if false
     public static class IInventoryExtension
     {
         public static Specification TraceSpecification(this IInventory iiven)
@@ -64,4 +65,5 @@ namespace R54IN0
             }
         }
     }
+#endif
 }
