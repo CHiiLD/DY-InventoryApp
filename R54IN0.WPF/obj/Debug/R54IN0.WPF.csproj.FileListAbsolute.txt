@@ -140,77 +140,6 @@ Z:\Github\R54IN0\R54IN0.WPF\obj\Debug\MainWindow.baml
 Z:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.g.resources
 Z:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.Properties.Resources.resources
 Z:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.csproj.GenerateResource.Cache
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.WPF.exe.config
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.exe
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.pdb
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.WPF.exe
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.WPF.pdb
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Custom.Controls.EditableTextBlock.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Lex.Db.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.Test.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\System.Windows.Interactivity.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\TreeViewEx.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Lex.Db.pdb
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.pdb
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.xml
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.Test.pdb
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.pdb
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\TreeViewEx.pdb
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Custom.Controls.EditableTextBlock.pdb
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.pdb
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.xml
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\de\System.Windows.Interactivity.resources.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\en\System.Windows.Interactivity.resources.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\es\System.Windows.Interactivity.resources.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\fr\System.Windows.Interactivity.resources.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\it\System.Windows.Interactivity.resources.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\ja\System.Windows.Interactivity.resources.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\ko\System.Windows.Interactivity.resources.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\ru\System.Windows.Interactivity.resources.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
-Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\ko\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.csprojResolveAssemblyReference.cache
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\AccountFieldEditor.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\MakerFieldEditor.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\WarehouseFieldEditor.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\EmployeeFieldEditor.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\CurrencyFieldEditor.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\MeasureFieldEditor.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InOutStockItemEditorWindow.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryItemEditorWindow.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\AccountFieldEditor.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\MakerFieldEditor.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\WarehouseFieldEditor.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\EmployeeFieldEditor.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\CurrencyFieldEditor.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\MeasureFieldEditor.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\ItemFieldEditor.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InOutStockDataGrid.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryControl.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryDataGrid.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryFinder.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InOutStockItemEditorWindow.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryItemEditorWindow.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\MainWindow.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\App.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF_MarkupCompile.cache
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF_MarkupCompile.lref
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\App.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\ItemFieldEditor.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InOutStockDataGrid.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryControl.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryDataGrid.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryFinder.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\MainWindow.baml
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.g.resources
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.Properties.Resources.resources
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.csproj.GenerateResource.Cache
 Z:\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.WPF.exe.config
 Z:\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.exe
 Z:\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.pdb
@@ -249,3 +178,143 @@ Z:\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryDataGrid.baml
 Z:\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryFinder.baml
 Z:\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\MainWindow.baml
 Z:\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.g.resources
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.WPF.exe.config
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.pdb
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.WPF.exe
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.WPF.pdb
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Custom.Controls.EditableTextBlock.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Lex.Db.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.Test.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\System.Windows.Interactivity.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\TreeViewEx.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Lex.Db.pdb
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.pdb
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.xml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.Test.pdb
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.pdb
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\TreeViewEx.pdb
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Custom.Controls.EditableTextBlock.pdb
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.pdb
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.xml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\de\System.Windows.Interactivity.resources.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\en\System.Windows.Interactivity.resources.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\es\System.Windows.Interactivity.resources.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\it\System.Windows.Interactivity.resources.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ko\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\AccountFieldEditor.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\MakerFieldEditor.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\WarehouseFieldEditor.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\EmployeeFieldEditor.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\CurrencyFieldEditor.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\MeasureFieldEditor.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InOutStockItemEditorWindow.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryItemEditorWindow.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\AccountFieldEditor.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\MakerFieldEditor.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\WarehouseFieldEditor.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\EmployeeFieldEditor.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\CurrencyFieldEditor.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\MeasureFieldEditor.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\ItemFieldEditor.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InOutStockDataGrid.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryControl.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryDataGrid.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryFinder.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InOutStockItemEditorWindow.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryItemEditorWindow.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\MainWindow.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\App.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF_MarkupCompile.cache
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF_MarkupCompile.lref
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\App.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldEditorControl\ItemFieldEditor.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InOutStockDataGrid.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryControl.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryDataGrid.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\InventoryFinder.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\MainWindow.baml
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.g.resources
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.Properties.Resources.resources
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.csproj.GenerateResource.Cache
+\\vmware-host\Shared Folders\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.exe
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.csprojResolveAssemblyReference.cache
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\AccountFieldEditor.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\MakerFieldEditor.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\WarehouseFieldEditor.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\EmployeeFieldEditor.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\CurrencyFieldEditor.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\MeasureFieldEditor.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\Editor\InOutStockItemEditorWindow.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\Editor\InventoryItemEditorWindow.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\AccountFieldEditor.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\MakerFieldEditor.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\WarehouseFieldEditor.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\EmployeeFieldEditor.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\CurrencyFieldEditor.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\MeasureFieldEditor.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\ItemFieldEditor.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\InOutStockDataGrid.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\InventoryControl.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\InventoryDataGrid.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\InventoryFinder.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\Editor\InOutStockItemEditorWindow.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\Editor\InventoryItemEditorWindow.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\MainWindow.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\App.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF_MarkupCompile.cache
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF_MarkupCompile.lref
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.WPF.exe.config
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.WPF.exe
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.WPF.pdb
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Custom.Controls.EditableTextBlock.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Lex.Db.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\System.Windows.Interactivity.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\TreeViewEx.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Lex.Db.pdb
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.pdb
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.xml
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.pdb
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\TreeViewEx.pdb
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Custom.Controls.EditableTextBlock.pdb
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.pdb
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.xml
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\de\System.Windows.Interactivity.resources.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\en\System.Windows.Interactivity.resources.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\es\System.Windows.Interactivity.resources.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\it\System.Windows.Interactivity.resources.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+Y:\Github\R54IN0\R54IN0.WPF\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\App.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\FieldControl\ItemFieldEditor.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\InOutStockDataGrid.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\InventoryControl.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\InventoryDataGrid.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\InventoryFinder.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\MainWindow.baml
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.g.resources
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.Properties.Resources.resources
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.csproj.GenerateResource.Cache
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.exe
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.pdb
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\InOutStockControl.g.cs
+Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\RecordControl\InOutStockControl.baml

@@ -88,7 +88,7 @@ namespace R54IN0
     {
         private static CustomLexDb _customLexDb;
 
-        public static void DistroyDbInstance()
+        public static void Distroy()
         {
             if (_customLexDb != null)
             {

@@ -12,14 +12,13 @@ using Lex.Db;
 
 namespace R54IN0
 {
-    public class InventoryFinderViewModel : AFinderViewModelMediatorColleague
+    public class InventoryFinderViewModel : FinderViewModelMediatorColleague
     {
         DragCommand _dragCommand;
         DropCommand _dropCommand;
 
         public ObservableCollection<FinderNode> Nodes { get; set; }
         public ObservableCollection<FinderNode> SelectedNodes { get; set; }
-        private const string JSON_TREE_KEY = "1233kfasd-flkdks-232a";
 
         public ICommand DragCommand
         {
@@ -53,6 +52,12 @@ namespace R54IN0
             AddNewDirectoryCommand = new CommandHandler(AddNewDirectories, CanAddNewDirectory);
         }
 
+        public InventoryFinderViewModel(TreeViewEx treeView) : this()
+        {
+            Nodes = FinderNodeCollectionDirector.GetInstance().Collection;
+            treeView.OnSelecting += OnSelectNodes;
+        }
+
         public bool CanAddNewDirectory(object pamateter)
         {
             return true;
@@ -65,7 +70,7 @@ namespace R54IN0
 
         public bool CanRemoveSelectedDirectoies(object parameter)
         {
-            if(SelectedNodes.Count == 0)
+            if (SelectedNodes.Count == 0)
                 return false;
             if (SelectedNodes.Any(x => x.Type == NodeType.ITEM))
                 return false;
@@ -97,7 +102,7 @@ namespace R54IN0
                 if (!SelectedNodes.Contains(itemToSelect as FinderNode))
                     SelectedNodes.Add(itemToSelect as FinderNode);
             }
-            UpdateInventoryDataGridItems(this);
+            base.ShowSelectedFinderNodes(this);
             ((CommandHandler)RemoveDirectoryCommand).UpdateCanExecute();
         }
 
@@ -153,62 +158,11 @@ namespace R54IN0
 
         public void RemoveItemInNodes(string itemUUID)
         {
-#if !DEBUG
-            try
-            {
-#endif
             IEnumerable<FinderNode> itemNodes = Nodes.SelectMany(n => n.Descendants().Where(x => x.Type == NodeType.ITEM));
             itemNodes = itemNodes.Where(t => t.ItemUUID == itemUUID);
             var node = itemNodes.SingleOrDefault();
             if (node != null)
                 RemoveNodeInRoot(node);
-#if !DEBUG
-        }
-            catch(Exception e)
-            {
-
-            }
-#endif
-        }
-
-        public void SaveTree()
-        {
-            string json = JsonConvert.SerializeObject(Nodes);
-            using (var db = DatabaseDirector.GetDbInstance())
-            {
-                db.Save(new SimpleStringFormat(JSON_TREE_KEY, json));
-            }
-        }
-
-        public void Refresh()
-        {
-            IEnumerable<Item> items = null;
-            using (var db = DatabaseDirector.GetDbInstance())
-            {
-                items = db.LoadAll<Item>().ToList().Where(x => !x.IsDeleted);
-            }
-            //추가 ..
-            foreach (var item in items)
-            {
-                bool result = Nodes.Any(n => n.Descendants().Where(x => x.Type == NodeType.ITEM).Any(x => x.ItemUUID == item.UUID));
-                if (!result)
-                    AddNewItemInNodes(item.UUID);
-            }
-            ((CommandHandler)RemoveDirectoryCommand).UpdateCanExecute();
-        }
-
-        public static InventoryFinderViewModel CreateInventoryFinderViewModel()
-        {
-            SimpleStringFormat ssf = null;
-            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
-            using (var db = DatabaseDirector.GetDbInstance())
-            {
-                ssf = db.LoadByKey<SimpleStringFormat>(JSON_TREE_KEY);
-            }
-            if (ssf != null)
-                viewModel.Nodes = JsonConvert.DeserializeObject<ObservableCollection<FinderNode>>(ssf.Data);
-            viewModel.Refresh();
-            return viewModel;
         }
     }
 }

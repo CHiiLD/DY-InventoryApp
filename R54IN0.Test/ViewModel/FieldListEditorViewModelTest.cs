@@ -7,7 +7,7 @@ namespace R54IN0.Test
     public class FieldEditorViewModelTest
     {
         [TestMethod]
-        public void CanCreateFieldEditorViewModelTest()
+        public void CanCreateFieldEditorViewModel()
         {
             new FieldEditorViewModel<Currency>();
             new FieldEditorViewModel<Measure>();
@@ -16,21 +16,12 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void ItemsLoadTest()
+        public void DummyLoadTest()
         {
             new DummyDbData().Create();
             var viewModel = new FieldEditorViewModel<Measure>();
 
             Assert.IsTrue(viewModel.Items.Count != 0);
-        }
-
-        [TestMethod]
-        public void ItemSelectedWhenItemsLoad()
-        {
-            new DummyDbData().Create();
-            var viewModel = new FieldEditorViewModel<Measure>();
-
-            Assert.IsTrue(viewModel.SelectedItem != null);
         }
 
         [TestMethod]
@@ -94,18 +85,6 @@ namespace R54IN0.Test
             Assert.AreNotEqual(count, viewModel.Items.Count);
             Assert.AreEqual(count + 1, viewModel.Items.Count);
             Assert.AreNotEqual(selectedItem.Field.UUID, viewModel.SelectedItem.Field.UUID);
-        }
-    }
-
-    internal class TddHelperTest
-    {
-        public TddHelperTest()
-        {
-        }
-
-        internal void NewMethod(int v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

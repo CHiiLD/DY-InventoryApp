@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DummyDbData.cs" />
+    <Compile Include="NewTest\StockManagement\StockViewModelUnitTest.cs" />
     <Compile Include="ViewModel\InventoryFinderViewModelTest.cs" />
     <Compile Include="LexDBTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,9 +75,17 @@
       <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
       <Name>Newtonsoft.Json.Net40</Name>
     </ProjectReference>
+    <ProjectReference Include="..\R54IN0.WPF\R54IN0.WPF.csproj">
+      <Project>{5a0c4ca1-b587-42a9-8df0-3151b1b33784}</Project>
+      <Name>R54IN0.WPF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\R54IN0\R54IN0.csproj">
       <Project>{b69caaa1-3fd1-4c1a-90cc-2e63504b6ccb}</Project>
       <Name>R54IN0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TreeViewEx\TreeViewEx\TreeViewEx.csproj">
+      <Project>{2854814f-ea3c-41d4-aa94-460c4694f430}</Project>
+      <Name>TreeViewEx</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

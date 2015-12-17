@@ -16,7 +16,8 @@ namespace R54IN0.WPF
     {
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            DatabaseDirector.DistroyDbInstance();
+            FinderNodeCollectionDirector.Distroy();
+            DatabaseDirector.Distroy();
         }
 
         private void Application_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)

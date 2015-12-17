@@ -8,14 +8,23 @@ using System.Collections.ObjectModel;
 
 namespace R54IN0
 {
+    public enum CollectionAction
+    {
+        NONE,
+        ADD,
+        REMOVE,
+    }
+
     public class FinderViewModelMediator
     {
         static FinderViewModelMediator _mediator;
-        List<AFinderViewModelMediatorColleague> _colleagues;
+        List<FinderViewModelMediatorColleague> _colleagues;
+        Dictionary<InventoryFinderViewModel, IUpdateNewItems> _finderDataGridPair;
 
         FinderViewModelMediator()
         {
-            _colleagues = new List<AFinderViewModelMediatorColleague>();
+            _colleagues = new List<FinderViewModelMediatorColleague>();
+            _finderDataGridPair = new Dictionary<InventoryFinderViewModel, IUpdateNewItems>();
         }
 
         public static FinderViewModelMediator GetInstance()
@@ -25,24 +34,43 @@ namespace R54IN0
             return _mediator;
         }
 
-        public void register(AFinderViewModelMediatorColleague colleague)
+        public void Register(FinderViewModelMediatorColleague colleague)
         {
-            if (!_colleagues.Any(x => x == colleague))
-                _colleagues.Add(colleague);
+            if (!this._colleagues.Contains(colleague))
+                this._colleagues.Add(colleague);
+        }
+
+        public void RegisterControlPair(InventoryFinderViewModel viewModel, IUpdateNewItems iUpdate)
+        {
+            if(!_finderDataGridPair.ContainsKey(viewModel))
+                _finderDataGridPair.Add(viewModel, iUpdate);
+        }
+
+        public void Cancellation(FinderViewModelMediatorColleague colleague)
+        {
+            if (this._colleagues.Contains(colleague))
+                this._colleagues.Remove(colleague);
+
+            if (colleague is InventoryFinderViewModel)
+            {
+                InventoryFinderViewModel fvm = colleague as InventoryFinderViewModel;
+                if (this._finderDataGridPair.ContainsKey(fvm))
+                    this._finderDataGridPair.Remove(fvm);
+            }
         }
 
         /// <summary>
         /// 아이템 필드의 삭제 및 추가를 할 시 변경점을 파인더의 리스트에 업
         /// </summary>
         /// <param name="itemFieldViewModel"></param>
-        public void OnItemPipeCollectionChanged(ItemPipe item, bool isAddAction)
+        public void OnItemPipeCollectionChanged(ItemPipe item, CollectionAction action)
         {
             var finders = _colleagues.OfType<InventoryFinderViewModel>();
             foreach (var finder in finders)
             {
-                if (isAddAction)
+                if (action == CollectionAction.ADD)
                     finder.AddNewItemInNodes(item.Field.UUID);
-                else
+                else if (action == CollectionAction.REMOVE)
                     finder.RemoveItemInNodes(item.Field.UUID);
             }
         }
@@ -53,19 +81,19 @@ namespace R54IN0
         /// <param name="finderViewModel"></param>
         public void OnFinderNodesSelected(InventoryFinderViewModel finderViewModel)
         {
+            if (!_finderDataGridPair.ContainsKey(finderViewModel))
+                return;
             IEnumerable<FinderNode> itemNodes = finderViewModel.SelectedNodes.
                 SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
             itemNodes = itemNodes.Distinct();
-            List<InventoryPipe> newList = new List<InventoryPipe>();
-            ObservableCollection<InventoryPipe> pipes = InventoryPipeCollectionDirector.GetInstance().LoadPipe();
+            List<object> newList = new List<object>();
+            IEnumerable<object> pipes = _finderDataGridPair[finderViewModel].LoadPipe(); // InventoryPipeCollectionDirector.GetInstance().LoadPipe();
             foreach (var itemNode in itemNodes)
             {
-                var inventoryPipes = pipes.Where(x => x.Inven.ItemUUID == itemNode.ItemUUID);
+                var inventoryPipes = pipes.Where(x => ((IRecordPipe)x).Inven.ItemUUID == itemNode.ItemUUID);
                 newList.AddRange(inventoryPipes);
             }
-            var inventoryDataGridViewModels = _colleagues.OfType<InventoryDataGridViewModel>();
-            foreach (var vm in inventoryDataGridViewModels)
-                vm.ChangeInventoryItems(newList);
+            _finderDataGridPair[finderViewModel].UpdateNewItems(newList);
         }
     }
 }

@@ -82,6 +82,7 @@ namespace R54IN0.Test
             Assert.AreEqual(inven.SpecificationUUID, pipe.Specification.Field.UUID);
         }
 
+        [Ignore]
         [TestMethod]
         public void AllSpecificationTest()
         {
@@ -178,6 +179,7 @@ namespace R54IN0.Test
             //Assert.AreEqual(cnt - 1, datagridViewModel.Items.Count);
         }
 
+        [Ignore]
         [TestMethod]
         public void NonessentialTest()
         {

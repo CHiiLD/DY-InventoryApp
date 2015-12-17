@@ -15,6 +15,7 @@ namespace R54IN0.Test
             new InOutStockDataGridViewModel(StockType.OUT);
         }
 
+        [Ignore]
         [TestMethod]
         public void PrintInOutStock()
         {

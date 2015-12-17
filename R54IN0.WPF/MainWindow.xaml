@@ -36,7 +36,7 @@
             <Menu>
                 <MenuItem Header="데일리 인벤토리!">
                     <MenuItem Header="데일리 인벤토리!에 대하여"/>
-                    <MenuItem Header="환경설정"/>
+                    <MenuItem Header="환경설정" IsEnabled="False"/>
                     <MenuItem Header="종료"/>
                 </MenuItem>
                 <Separator />
@@ -72,9 +72,9 @@
                 <mah:Tile x:Name="InOutStockTile" Title="자재 입출고 현황" Background="#e74c3c" Style="{StaticResource LargeTileStyle}" Margin="3" Click="InOutStockTile_Click" />
                 <mah:Tile x:Name="ItemTile" Title="품목 관리" Background="#5e84aa" Style="{StaticResource SmallTileStyle}" Margin="3" Click="ItemTile_Click" />
                 <mah:Tile x:Name="AccountTile" Title="거래처 관리" Style="{StaticResource SmallTileStyle}" Margin="3" Click="AccountTile_Click" />
-                <mah:Tile Title="통계 보기" Background="#1ba5a0" Style="{StaticResource SmallTileStyle}" Margin="3" />
-                <mah:Tile Title="인쇄" Style="{StaticResource SmallTileStyle}" Margin="3" />
-                <mah:Tile Title="환경설정"  Background="#aeb1b1" Style="{StaticResource SmallTileStyle}" Margin="3" />
+                <mah:Tile IsEnabled="False" Title="통계 보기" Background="#1ba5a0" Style="{StaticResource SmallTileStyle}" Margin="3" />
+                <mah:Tile IsEnabled="False" Title="인쇄" Style="{StaticResource SmallTileStyle}" Margin="3" />
+                <mah:Tile IsEnabled="False" Title="환경설정"  Background="#aeb1b1" Style="{StaticResource SmallTileStyle}" Margin="3" />
                 <mah:Tile x:Name="ExitTile" Title="종료" Style="{StaticResource SmallTileStyle}" Margin="3" Click="ExitTile_Click" />
             </WrapPanel>
         </Grid>
@@ -85,13 +85,13 @@
                     <local:InventoryControl/>
                 </TabItem>
                 <TabItem Header="입고" x:Name="InStockTab">
-                    <local:InOutStockDataGrid StockType="IN"/>
+                    <local:InOutStockControl StockType="IN"/>
                 </TabItem>
                 <TabItem Header="출고" x:Name="OutStockTab">
-                    <local:InOutStockDataGrid StockType="OUT"/>
+                    <local:InOutStockControl StockType="OUT"/>
                 </TabItem>
                 <TabItem Header="입출고" x:Name="InOutStockTab">
-                    <local:InOutStockDataGrid StockType="ALL"/>
+                    <local:InOutStockControl StockType="ALL"/>
                 </TabItem>
                 <TabItem Header="품목" x:Name="ItemTab">
                     <local:ItemFieldEditor />
@@ -125,40 +125,5 @@
             <StatusBarItem>copyright ⓒ 2012 DongYang FA All Rights Reserved</StatusBarItem>
             <!--<StatusBarItem Content="{Binding ElementName=MainTabControl, Path=SelectedItem.Header, Mode=OneWay}" />-->
         </StatusBar>
-
-
-        <!--<local:InOutStockDataGrid />-->
-        <!--<local:InventoryControl />-->
-
-        <!--<local:InventoryDataGrid x:Name="InvenDataGrid"/>-->
-        <!--<local:InventoryFinder x:Name="Finder"/>-->
-        <!--<DataGrid ItemsSource="{Binding Iitems}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="코드" Binding="{Binding Name}" IsReadOnly="False"/>
-                <DataGridTextColumn Header="비고" Binding="{Binding Remark}" IsReadOnly="True"/>
-            </DataGrid.Columns>
-        </DataGrid>-->
-
-        <!--<local:ItemFieldEditor/>-->
-
-        <!--<local:MeasureFieldEditor/>-->
-
-        <!--<DataGrid ItemsSource="{Binding PaList}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                -->
-        <!--<DataGridComboBoxColumn Header="Test" ItemsSource="{Binding list}" >
-                </DataGridComboBoxColumn>-->
-        <!--
-                <DataGridTemplateColumn Header="Street Address">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ComboBox ItemsSource="{Binding list}" DisplayMemberPath="Name" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>-->
-
-        <!--<ComboBox ItemsSource="{Binding Itemsadsfsdf}" DisplayMemberPath="Name" Width="200" Height="30" SelectionChanged="ComboBox_SelectionChanged" DataContextChanged="ComboBox_DataContextChanged" LostFocus="ComboBox_LostFocus" GotFocus="ComboBox_GotFocus"/>-->
     </Grid>
 </mah:MetroWindow>
