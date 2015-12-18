@@ -12,6 +12,7 @@ namespace R54IN0
         T _field;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public FieldPipe(T field)
         {
             _field = field;
