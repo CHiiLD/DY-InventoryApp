@@ -76,7 +76,7 @@ namespace R54IN0.Test
 
             Assert.AreEqual(inven.UUID, cpy.UUID);
 
-            var pipe = new InventoryPipe(inven);
+            var pipe = new InventoryWrapper(inven);
             Assert.AreEqual(inven.UUID, pipe.Inven.UUID);
             Assert.AreEqual(inven.SpecificationUUID, pipe.Inven.SpecificationUUID);
             Assert.AreEqual(inven.SpecificationUUID, pipe.Specification.Field.UUID);
@@ -187,7 +187,7 @@ namespace R54IN0.Test
             var dgViewModel = new InventoryDataGridViewModel();
             
 
-            var copyItems = new ObservableCollection<InventoryPipe>(dgViewModel.Items);
+            var copyItems = new ObservableCollection<InventoryWrapper>(dgViewModel.Items);
 
             foreach (var i in copyItems)
             {

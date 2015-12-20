@@ -10,19 +10,19 @@ namespace R54IN0
 {
     public class FieldEditorViewModel<T> : IFieldEditorViewModel where T : class, IField, new()
     {
-        public IFieldPipe SelectedItem { get; set; }
-        public ObservableCollection<IFieldPipe> Items { get; set; }
+        public IFieldWrapper SelectedItem { get; set; }
+        public ObservableCollection<IFieldWrapper> Items { get; set; }
 
         public CommandHandler AddNewItemCommand { get; set; }
-        public CommandHandler RemoveItemCommand { get; set; }
+        public CommandHandler DeleteItemCommand { get; set; }
 
         public FieldEditorViewModel()
         {
             Items = FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<T>();
             SelectedItem = Items.FirstOrDefault();
 
-            AddNewItemCommand = new CommandHandler(AddNewItem, CanAddNewItem);
-            RemoveItemCommand = new CommandHandler(RemoveSelectedItem, CanRemoveSelectedItem);
+            AddNewItemCommand = new CommandHandler(ExecuteNewItemAddition, CanAddNewItem);
+            DeleteItemCommand = new CommandHandler(ExecuteSelectedItemDeletion, CanDeleteSelectedItem);
         }
 
         public bool CanAddNewItem(object parameter)
@@ -30,24 +30,24 @@ namespace R54IN0
             return true;
         }
 
-        public bool CanRemoveSelectedItem(object parameter)
+        public bool CanDeleteSelectedItem(object parameter)
         {
             return SelectedItem != null ? true : false;
         }
 
-        public void AddNewItem(object parameter)
+        public void ExecuteNewItemAddition(object parameter)
         {
-            Items.Add(new FieldPipe<T>(new T() { Name = "new" }.Save<T>()));
+            Items.Add(new FieldWrapper<T>(new T() { Name = "new" }.Save<T>()));
             SelectedItem = Items.LastOrDefault();
-            RemoveItemCommand.UpdateCanExecute();
+            DeleteItemCommand.UpdateCanExecute();
         }
 
-        public void RemoveSelectedItem(object parameter)
+        public void ExecuteSelectedItemDeletion(object parameter)
         {
             SelectedItem.IsDeleted = true;
             Items.Remove(SelectedItem);
             SelectedItem = Items.FirstOrDefault();
-            RemoveItemCommand.UpdateCanExecute();
+            DeleteItemCommand.UpdateCanExecute();
         }
     }
 }

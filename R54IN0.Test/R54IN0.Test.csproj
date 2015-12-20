@@ -53,10 +53,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DummyDbData.cs" />
-    <Compile Include="NewTest\StockManagement\StockViewModelUnitTest.cs" />
+    <Compile Include="FieldWrapperViewModelTest.cs" />
+    <Compile Include="IFinderViewModelEvent.cs" />
+    <Compile Include="InventoryWrapperDirectorTest.cs" />
+    <Compile Include="ItemWrapperViewModelTest.cs" />
+    <Compile Include="Tool\DummyDbData.cs" />
+    <Compile Include="FieldWrapperDirectorTest.cs" />
+    <Compile Include="InventoryWrapperViewModelTest.cs" />
     <Compile Include="ViewModel\InventoryFinderViewModelTest.cs" />
-    <Compile Include="LexDBTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\InventoryDataGridViewModelTest.cs" />
     <Compile Include="ViewModel\ItemFieldEditorViewModelTest.cs" />
@@ -64,7 +68,6 @@
     <Compile Include="ViewModel\InventoryEditorViewModelTest.cs" />
     <Compile Include="ViewModel\InOutStockDataGridViewModelTest.cs" />
     <Compile Include="ViewModel\InOutStockEditorViewModelTest.cs" />
-    <Compile Include="SortedObservableCollectionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">

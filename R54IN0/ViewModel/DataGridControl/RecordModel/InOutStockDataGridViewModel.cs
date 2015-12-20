@@ -11,8 +11,8 @@ namespace R54IN0
     {
         StockType _stockType;
 
-        public ObservableCollection<InOutStockPipe> Items { get; set; }
-        public InOutStockPipe SelectedItem { get; set; }
+        public ObservableCollection<InOutStockWrapper> Items { get; set; }
+        public InOutStockWrapper SelectedItem { get; set; }
 
         public InOutStockDataGridViewModel(StockType type) : base(FinderViewModelMediator.GetInstance())
         {
@@ -20,7 +20,7 @@ namespace R54IN0
                 throw new ArgumentException();
             _stockType = type;
             var items = InOutStockPipeCollectionDirector.GetInstance().NewPipe(_stockType);
-            Items = new ObservableCollection<InOutStockPipe>(items);
+            Items = new ObservableCollection<InOutStockWrapper>(items);
             SelectedItem = Items.FirstOrDefault();
         }
 
@@ -33,7 +33,7 @@ namespace R54IN0
         {
             Items.Clear();
             foreach (var i in items)
-                Items.Add(i as InOutStockPipe);
+                Items.Add(i as InOutStockWrapper);
             SelectedItem = Items.FirstOrDefault();
         }
 
@@ -53,7 +53,7 @@ namespace R54IN0
             Check(newStock);
 
             newStock.Save<InOutStock>();
-            InOutStockPipe ioStockPipe = new InOutStockPipe(newStock);
+            InOutStockWrapper ioStockPipe = new InOutStockWrapper(newStock);
             InOutStockPipeCollectionDirector.GetInstance().Add(ioStockPipe);
             Items.Add(ioStockPipe);
             SelectedItem = ioStockPipe;
@@ -76,11 +76,11 @@ namespace R54IN0
             Check(ioStock);
 
             ioStock.Save<InOutStock>();
-            InOutStockPipe oldPipe = Items.Where(x => x.Inven.UUID == ioStock.UUID).Single();
+            InOutStockWrapper oldPipe = Items.Where(x => x.Inven.UUID == ioStock.UUID).Single();
             int count = oldPipe.ItemCount;
             int idx = Items.IndexOf(oldPipe);
             Items.RemoveAt(idx);
-            InOutStockPipe newPipe = new InOutStockPipe(ioStock);
+            InOutStockWrapper newPipe = new InOutStockWrapper(ioStock);
             Items.Insert(idx, newPipe);
             SelectedItem = newPipe;
 
@@ -107,7 +107,7 @@ namespace R54IN0
 
         void AddInventoryItemCount(InOutStock ioStock, int count)
         {
-            InventoryPipe invenPipe = InventoryPipeCollectionDirector.GetInstance().LoadPipe()
+            InventoryWrapper invenPipe = InventoryPipeCollectionDirector.GetInstance().LoadPipe()
                 .Where(x => x.Specification.Field.UUID == ioStock.SpecificationUUID).SingleOrDefault();
 
             if (invenPipe != null)

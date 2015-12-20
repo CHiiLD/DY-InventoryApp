@@ -19,12 +19,12 @@ namespace R54IN0
     {
         static FinderViewModelMediator _mediator;
         List<FinderViewModelMediatorColleague> _colleagues;
-        Dictionary<InventoryFinderViewModel, IUpdateNewItems> _finderDataGridPair;
+        Dictionary<FinderViewModel, IUpdateNewItems> _finderDataGridPair;
 
         FinderViewModelMediator()
         {
             _colleagues = new List<FinderViewModelMediatorColleague>();
-            _finderDataGridPair = new Dictionary<InventoryFinderViewModel, IUpdateNewItems>();
+            _finderDataGridPair = new Dictionary<FinderViewModel, IUpdateNewItems>();
         }
 
         public static FinderViewModelMediator GetInstance()
@@ -40,7 +40,7 @@ namespace R54IN0
                 this._colleagues.Add(colleague);
         }
 
-        public void RegisterControlPair(InventoryFinderViewModel viewModel, IUpdateNewItems iUpdate)
+        public void RegisterControlPair(FinderViewModel viewModel, IUpdateNewItems iUpdate)
         {
             if(!_finderDataGridPair.ContainsKey(viewModel))
                 _finderDataGridPair.Add(viewModel, iUpdate);
@@ -51,9 +51,9 @@ namespace R54IN0
             if (this._colleagues.Contains(colleague))
                 this._colleagues.Remove(colleague);
 
-            if (colleague is InventoryFinderViewModel)
+            if (colleague is FinderViewModel)
             {
-                InventoryFinderViewModel fvm = colleague as InventoryFinderViewModel;
+                FinderViewModel fvm = colleague as FinderViewModel;
                 if (this._finderDataGridPair.ContainsKey(fvm))
                     this._finderDataGridPair.Remove(fvm);
             }
@@ -63,9 +63,9 @@ namespace R54IN0
         /// 아이템 필드의 삭제 및 추가를 할 시 변경점을 파인더의 리스트에 업
         /// </summary>
         /// <param name="itemFieldViewModel"></param>
-        public void OnItemPipeCollectionChanged(ItemPipe item, CollectionAction action)
+        public void OnItemPipeCollectionChanged(ItemWrapper item, CollectionAction action)
         {
-            var finders = _colleagues.OfType<InventoryFinderViewModel>();
+            var finders = _colleagues.OfType<FinderViewModel>();
             foreach (var finder in finders)
             {
                 if (action == CollectionAction.ADD)
@@ -79,7 +79,7 @@ namespace R54IN0
         /// 파인더에서 디렉토리 선택시 데이터그리드에 해당 아이템의 재고 목록 표시
         /// </summary>
         /// <param name="finderViewModel"></param>
-        public void OnFinderNodesSelected(InventoryFinderViewModel finderViewModel)
+        public void OnFinderNodesSelected(FinderViewModel finderViewModel)
         {
             if (!_finderDataGridPair.ContainsKey(finderViewModel))
                 return;
@@ -90,7 +90,7 @@ namespace R54IN0
             IEnumerable<object> pipes = _finderDataGridPair[finderViewModel].LoadPipe(); // InventoryPipeCollectionDirector.GetInstance().LoadPipe();
             foreach (var itemNode in itemNodes)
             {
-                var inventoryPipes = pipes.Where(x => ((IRecordPipe)x).Inven.ItemUUID == itemNode.ItemUUID);
+                var inventoryPipes = pipes.Where(x => ((IRecordWrapper)x).Inven.ItemUUID == itemNode.ItemUUID);
                 newList.AddRange(inventoryPipes);
             }
             _finderDataGridPair[finderViewModel].UpdateNewItems(newList);

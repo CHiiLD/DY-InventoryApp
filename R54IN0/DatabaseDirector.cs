@@ -7,6 +7,40 @@ using Lex.Db;
 
 namespace R54IN0
 {
+    public static class DatabaseDirector
+    {
+        private static CustomLexDb _customLexDb;
+
+        public static void Distroy()
+        {
+            if (_customLexDb != null)
+            {
+                _customLexDb.RealDispose();
+                _customLexDb = null;
+            }
+        }
+
+        public static DbInstance GetDbInstance()
+        {
+            if (_customLexDb == null)
+            {
+#if DEBUG
+                _customLexDb = new CustomLexDb("test.db");
+#else
+               _customLexDb = new CustomLexDb("daily inventory", "./");
+#endif
+                _customLexDb.LoadData();
+            }
+            return _customLexDb;
+        }
+    }
+
+
+
+
+
+
+
     public class CustomLexDb : DbInstance, IDisposable
     {
         public CustomLexDb(string root, string path = null)
@@ -68,7 +102,7 @@ namespace R54IN0
                 WithIndex("WarehouseUUID", i => i.WarehouseUUID).
                 WithIndex("ItemUUID", i => i.ItemUUID).
                 WithIndex("Remark", i => i.Remark);
-            me.Map<SimpleStringFormat>().Automap(i => i.UUID).
+            me.Map<FinderTreeNodeJsonRecord>().Automap(i => i.UUID).
                 WithIndex("Data", i => i.Data);
             me.Initialize();
         }
@@ -84,31 +118,4 @@ namespace R54IN0
         }
     }
 
-    public static class DatabaseDirector
-    {
-        private static CustomLexDb _customLexDb;
-
-        public static void Distroy()
-        {
-            if (_customLexDb != null)
-            {
-                _customLexDb.RealDispose();
-                _customLexDb = null;
-            }
-        }
-
-        public static DbInstance GetDbInstance()
-        {
-            if (_customLexDb == null)
-            {
-#if DEBUG
-                _customLexDb = new CustomLexDb("test.db");
-#else
-               _customLexDb = new CustomLexDb("daily inventory", "./");
-#endif
-                _customLexDb.LoadData();
-            }
-            return _customLexDb;
-        }
-    }
 }

@@ -6,13 +6,13 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class EditorViewModel<T> : INotifyPropertyChanged where T : class, IInventory, new()
+    public class EditorViewModel<T> : INotifyPropertyChanged where T : class, IRecord, new()
     {
         T _inventory;
-        IEnumerable<IFieldPipe> _allSpecification;
-        IFieldPipe _item;
-        IFieldPipe _warehouse;
-        IFieldPipe _specification;
+        IEnumerable<IFieldWrapper> _allSpecification;
+        IFieldWrapper _item;
+        IFieldWrapper _warehouse;
+        IFieldWrapper _specification;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public EditorModelViewAction Action { get; set; }
@@ -25,7 +25,7 @@ namespace R54IN0
             }
         }
 
-        public IEnumerable<IFieldPipe> AllItem
+        public IEnumerable<IFieldWrapper> AllItem
         {
             get
             {
@@ -33,7 +33,7 @@ namespace R54IN0
             }
         }
 
-        public IEnumerable<IFieldPipe> AllSpecification
+        public IEnumerable<IFieldWrapper> AllSpecification
         {
             get
             {
@@ -46,7 +46,7 @@ namespace R54IN0
             }
         }
 
-        public IEnumerable<IFieldPipe> AllWarehouse
+        public IEnumerable<IFieldWrapper> AllWarehouse
         {
             get
             {
@@ -54,7 +54,7 @@ namespace R54IN0
             }
         }
 
-        public IFieldPipe SelectedItem
+        public IFieldWrapper SelectedItem
         {
             get
             {
@@ -65,8 +65,8 @@ namespace R54IN0
                 _item = value;
                 if (_item != null)
                 {
-                    ObservableCollection<IFieldPipe> specColl = FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<Specification>();
-                    IEnumerable<IFieldPipe> itemSpecColl = specColl.Where(x => ((Specification)x.Field).ItemUUID == _item.Field.UUID);
+                    ObservableCollection<IFieldWrapper> specColl = FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<Specification>();
+                    IEnumerable<IFieldWrapper> itemSpecColl = specColl.Where(x => ((Specification)x.Field).ItemUUID == _item.Field.UUID);
                     AllSpecification = itemSpecColl;
                     SelectedSpecification = AllSpecification.FirstOrDefault();
                     _inventory.ItemUUID = _item.Field.UUID;
@@ -75,7 +75,7 @@ namespace R54IN0
             }
         }
 
-        public IFieldPipe SelectedSpecification
+        public IFieldWrapper SelectedSpecification
         {
             get
             {
@@ -89,7 +89,7 @@ namespace R54IN0
             }
         }
 
-        public IFieldPipe SelectedWarehouse
+        public IFieldWrapper SelectedWarehouse
         {
             get
             {

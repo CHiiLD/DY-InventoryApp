@@ -9,13 +9,13 @@ namespace R54IN0
 {
     public class InventoryDataGridViewModel : FinderViewModelMediatorColleague, IUpdateNewItems
     {
-        public ObservableCollection<InventoryPipe> Items { get; set; }
-        public InventoryPipe SelectedItem { get; set; }
+        public ObservableCollection<InventoryWrapper> Items { get; set; }
+        public InventoryWrapper SelectedItem { get; set; }
 
         public InventoryDataGridViewModel() : base(FinderViewModelMediator.GetInstance())
         {
             var pipes = InventoryPipeCollectionDirector.GetInstance().LoadPipe();
-            Items = new ObservableCollection<InventoryPipe>(pipes);
+            Items = new ObservableCollection<InventoryWrapper>(pipes);
             SelectedItem = Items.FirstOrDefault();
         }
 
@@ -28,7 +28,7 @@ namespace R54IN0
         {
             Items.Clear();
             foreach (var i in items)
-                Items.Add(i as InventoryPipe);
+                Items.Add(i as InventoryWrapper);
             SelectedItem = Items.FirstOrDefault();
         }
 
@@ -48,7 +48,7 @@ namespace R54IN0
 
             RemoveOverlap(inventory.SpecificationUUID);
 
-            InventoryPipe inventoryPipe = new InventoryPipe(inventory);
+            InventoryWrapper inventoryPipe = new InventoryWrapper(inventory);
             InventoryPipeCollectionDirector.GetInstance().Add(inventoryPipe);
             Items.Add(inventoryPipe);
             SelectedItem = inventoryPipe;
@@ -61,10 +61,10 @@ namespace R54IN0
 
             RemoveOverlap(inventory.SpecificationUUID);
 
-            InventoryPipe oldPipe = Items.Where(x => x.Inven.UUID == inventory.UUID).Single();
+            InventoryWrapper oldPipe = Items.Where(x => x.Inven.UUID == inventory.UUID).Single();
             int idx = Items.IndexOf(oldPipe);
             Items.RemoveAt(idx);
-            InventoryPipe newPipe = new InventoryPipe(inventory);
+            InventoryWrapper newPipe = new InventoryWrapper(inventory);
             Items.Insert(idx, newPipe);
             SelectedItem = newPipe;
 
@@ -81,9 +81,9 @@ namespace R54IN0
 
         void RemoveOverlap(string specificationUUID)
         {
-            IEnumerable<InventoryPipe> overlaps = Items.
+            IEnumerable<InventoryWrapper> overlaps = Items.
                 Where(x => x.Inven.SpecificationUUID.CompareTo(specificationUUID) == 0);
-            InventoryPipe overlap = overlaps.SingleOrDefault();
+            InventoryWrapper overlap = overlaps.SingleOrDefault();
             if (overlap != null)
                 Items.Remove(overlap);
         }

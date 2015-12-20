@@ -66,7 +66,7 @@ namespace R54IN0.Test
             
             Assert.IsNotNull(selectedItem);
 
-            viewModel.RemoveSelectedItem(null);
+            viewModel.ExecuteSelectedItemDeletion(null);
 
             if (viewModel.SelectedItem != null)
                 Assert.AreNotEqual(selectedItem.Field.UUID, viewModel.SelectedItem.Field.UUID);
@@ -80,7 +80,7 @@ namespace R54IN0.Test
             var count = viewModel.Items.Count;
             var selectedItem = viewModel.SelectedItem;
 
-            viewModel.AddNewItem(null);
+            viewModel.ExecuteNewItemAddition(null);
 
             Assert.AreNotEqual(count, viewModel.Items.Count);
             Assert.AreEqual(count + 1, viewModel.Items.Count);

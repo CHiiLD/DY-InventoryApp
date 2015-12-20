@@ -11,15 +11,15 @@ namespace R54IN0
 {
     public interface IFieldEditorViewModel
     {
-        IFieldPipe SelectedItem { get; set; }
-        ObservableCollection<IFieldPipe> Items { get; set; }
+        IFieldWrapper SelectedItem { get; set; }
+        ObservableCollection<IFieldWrapper> Items { get; set; }
 
         CommandHandler AddNewItemCommand { get; set; }
-        CommandHandler RemoveItemCommand { get; set; }
+        CommandHandler DeleteItemCommand { get; set; }
 
         bool CanAddNewItem(object parameter);
-        bool CanRemoveSelectedItem(object parameter);
-        void AddNewItem(object parameter);
-        void RemoveSelectedItem(object parameter);
+        bool CanDeleteSelectedItem(object parameter);
+        void ExecuteNewItemAddition(object parameter);
+        void ExecuteSelectedItemDeletion(object parameter);
     }
 }

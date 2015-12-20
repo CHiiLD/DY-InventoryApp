@@ -30,13 +30,13 @@ namespace R54IN0
             GC.SuppressFinalize(this);
         }
 
-        public void UpdateItemPipeCollection(ItemPipe item, CollectionAction action)
+        public void UpdateItemPipeCollection(ItemWrapper item, CollectionAction action)
         {
             if (_mediator != null)
                 _mediator.OnItemPipeCollectionChanged(item, action);
         }
 
-        public void ShowSelectedFinderNodes(InventoryFinderViewModel finderViewModel)
+        public void ShowSelectedFinderNodes(FinderViewModel finderViewModel)
         {
             if (_mediator != null)
                 _mediator.OnFinderNodesSelected(finderViewModel);

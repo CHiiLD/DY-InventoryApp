@@ -9,8 +9,8 @@ namespace R54IN0
 {
     public class InOutStockEditorViewModel : EditorViewModel<InOutStock>
     {
-        IFieldPipe _account;
-        IFieldPipe _employee;
+        IFieldWrapper _account;
+        IFieldWrapper _employee;
 
         public DateTime Date
         {
@@ -38,7 +38,7 @@ namespace R54IN0
             }
         }
 
-        public IFieldPipe SelectedAccount
+        public IFieldWrapper SelectedAccount
         {
             get
             {
@@ -52,7 +52,7 @@ namespace R54IN0
             }
         }
 
-        public IFieldPipe SelectedEmployee
+        public IFieldWrapper SelectedEmployee
         {
             get
             {
@@ -66,7 +66,7 @@ namespace R54IN0
             }
         }
 
-        public IEnumerable<IFieldPipe> AllAccount
+        public IEnumerable<IFieldWrapper> AllAccount
         {
             get
             {
@@ -74,7 +74,7 @@ namespace R54IN0
             }
         }
 
-        public IEnumerable<IFieldPipe> AllEmployee
+        public IEnumerable<IFieldWrapper> AllEmployee
         {
             get
             {

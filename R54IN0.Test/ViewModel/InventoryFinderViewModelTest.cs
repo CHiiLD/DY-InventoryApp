@@ -13,7 +13,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreateInventoryFinder()
         {
-            InventoryFinderViewModel finder = new InventoryFinderViewModel();
+            FinderViewModel finder = new FinderViewModel();
         }
 
         [TestMethod]
@@ -22,9 +22,9 @@ namespace R54IN0.Test
             FinderNode node = new FinderNode(NodeType.DIRECTORY);
         }
 
-        public InventoryFinderViewModel GetInventoryFinderViewModel()
+        public FinderViewModel GetInventoryFinderViewModel()
         {
-            InventoryFinderViewModel finder = new InventoryFinderViewModel();
+            FinderViewModel finder = new FinderViewModel();
             FinderNode root = new FinderNode(NodeType.DIRECTORY);
             FinderNode node1 = new FinderNode(NodeType.DIRECTORY);
             FinderNode node2 = new FinderNode(NodeType.DIRECTORY);
@@ -32,7 +32,7 @@ namespace R54IN0.Test
             node1.Nodes.Add(FinderNode);
             root.Nodes.Add(node1);
             root.Nodes.Add(node2);
-            finder.Nodes.Add(root);
+            finder.Root.Add(root);
             return finder;
         }
 
@@ -40,7 +40,7 @@ namespace R54IN0.Test
         public void NodesTest()
         {
             var viewModel = GetInventoryFinderViewModel();
-            Assert.AreEqual(1, viewModel.Nodes.Count);
+            Assert.AreEqual(1, viewModel.Root.Count);
         }
 
         private IEnumerable<FinderNode> FindParentNodes(IEnumerable<FinderNode> root, FinderNode node)
@@ -86,7 +86,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void FinderViewModelDirectoryAddDeleteTest()
         {
-            InventoryFinderViewModel view = new InventoryFinderViewModel();
+            FinderViewModel view = new FinderViewModel();
             FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT"};
             FinderNode node1 = new FinderNode(NodeType.DIRECTORY) { Name = "node1"};
             FinderNode node2 = new FinderNode(NodeType.DIRECTORY) { Name = "node2"};
@@ -104,7 +104,7 @@ namespace R54IN0.Test
             node2.Nodes.Add(node21);
             node2.Nodes.Add(node22);
 
-            view.Nodes.Add(root);
+            view.Root.Add(root);
             view.SelectedNodes.Add(node121);
             view.AddNewDirectoryInSelectedDirectory();
             view.AddNewDirectoryInSelectedDirectory();
@@ -117,7 +117,7 @@ namespace R54IN0.Test
         public void WhenDeleteDirectoryThatHasFinderNodeChildrenThenFinderNodeIsSurvive()
         {
             DummyDbData db = new DummyDbData();
-            InventoryFinderViewModel view = new InventoryFinderViewModel();
+            FinderViewModel view = new FinderViewModel();
             FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT" };
             FinderNode node1 = new FinderNode(NodeType.DIRECTORY) { Name = "node1" };
             FinderNode node2 = new FinderNode(NodeType.DIRECTORY) { Name = "node2" };
@@ -137,18 +137,18 @@ namespace R54IN0.Test
             node2.Nodes.Add(node21);
             node2.Nodes.Add(node22);
 
-            view.Nodes.Add(root);
+            view.Root.Add(root);
             view.SelectedNodes.Add(node12);
             view.DeleteSelectedDirectories();
 
-            Assert.IsTrue(view.Nodes.Any(node => node.UUID == itemNode.UUID));
+            Assert.IsTrue(view.Root.Any(node => node.UUID == itemNode.UUID));
         }
 
         [Ignore]
         [TestMethod]
         public void SaveByjsonFormatTest()
         {
-            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
+            FinderViewModel viewModel = new FinderViewModel();
             FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT"};
             FinderNode node1 = new FinderNode(NodeType.DIRECTORY) { Name = "node1"};
             FinderNode node2 = new FinderNode(NodeType.DIRECTORY) { Name = "node2"};
@@ -164,12 +164,12 @@ namespace R54IN0.Test
             node12.Nodes.Add(node121);
             node2.Nodes.Add(node21);
             node2.Nodes.Add(node22);
-            viewModel.Nodes.Add(root);
+            viewModel.Root.Add(root);
 
             string json = JsonConvert.SerializeObject(viewModel);
-            InventoryFinderViewModel newViewModel = JsonConvert.DeserializeObject<InventoryFinderViewModel>(json);
+            FinderViewModel newViewModel = JsonConvert.DeserializeObject<FinderViewModel>(json);
 
-            Assert.AreEqual(viewModel.Nodes.First().Descendants().Count(), newViewModel.Nodes.First().Descendants().Count());
+            Assert.AreEqual(viewModel.Root.First().Descendants().Count(), newViewModel.Root.First().Descendants().Count());
         }
 
         [TestMethod]
@@ -177,16 +177,16 @@ namespace R54IN0.Test
         {
             DummyDbData dummy = new DummyDbData();
             dummy.Create();
-            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
+            FinderViewModel viewModel = new FinderViewModel();
             Item item = DatabaseDirector.GetDbInstance().LoadAll<Item>()[0];
 
             viewModel.AddNewItemInNodes(item.UUID);
             viewModel.AddNewItemInNodes(DatabaseDirector.GetDbInstance().LoadAll<Item>()[1].UUID);
             viewModel.AddNewItemInNodes(DatabaseDirector.GetDbInstance().LoadAll<Item>()[2].UUID);
 
-            Assert.AreEqual(item.Name, viewModel.Nodes.First().Name);
+            Assert.AreEqual(item.Name, viewModel.Root.First().Name);
             viewModel.RemoveItemInNodes(item.UUID);
-            Assert.AreEqual(2, viewModel.Nodes.Count());
+            Assert.AreEqual(2, viewModel.Root.Count());
         }
 
         [Ignore]
@@ -244,11 +244,11 @@ namespace R54IN0.Test
             DummyDbData dummy = new DummyDbData();
             dummy.Create();
 
-            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
+            FinderViewModel viewModel = new FinderViewModel();
             //viewModel.Refresh();
 
-            Assert.AreNotEqual(0, viewModel.Nodes.Count());
-            Assert.AreEqual(DatabaseDirector.GetDbInstance().LoadAll<Item>().Count(), viewModel.Nodes.Count());
+            Assert.AreNotEqual(0, viewModel.Root.Count());
+            Assert.AreEqual(DatabaseDirector.GetDbInstance().LoadAll<Item>().Count(), viewModel.Root.Count());
         }
 
         [Ignore]
@@ -284,7 +284,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void DescendantsTest()
         {
-            InventoryFinderViewModel viewModel = new InventoryFinderViewModel();
+            FinderViewModel viewModel = new FinderViewModel();
             FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "ROOT"};
             FinderNode node1 = new FinderNode(NodeType.DIRECTORY) { Name = "node1"};
             FinderNode node2 = new FinderNode(NodeType.DIRECTORY) { Name = "node2"};
@@ -300,9 +300,9 @@ namespace R54IN0.Test
             node12.Nodes.Add(node121);
             node2.Nodes.Add(node21);
             node2.Nodes.Add(node22);
-            viewModel.Nodes.Add(root);
+            viewModel.Root.Add(root);
 
-            var result = viewModel.Nodes.SelectMany(x => x.Descendants());
+            var result = viewModel.Root.SelectMany(x => x.Descendants());
             Assert.AreEqual(8, result.Count());
         }
 

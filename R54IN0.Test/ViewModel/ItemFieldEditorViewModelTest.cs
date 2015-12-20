@@ -43,7 +43,7 @@ namespace R54IN0.Test
             var viewModel = new ItemFieldEditorViewModel();
             var items = DatabaseDirector.GetDbInstance().LoadAll<Item>();
 
-            var measure = ((ItemPipe)(viewModel.Items.First())).SelectedMeasure;
+            var measure = ((ItemWrapper)(viewModel.Items.First())).SelectedMeasure;
             Assert.AreEqual(items.First().MeasureUUID, measure.Field.UUID);
         }
 
@@ -53,7 +53,7 @@ namespace R54IN0.Test
             new DummyDbData().Create();
             var viewModel = new ItemFieldEditorViewModel();
 
-            viewModel.AddNewItem(null);
+            viewModel.ExecuteNewItemAddition(null);
 
             viewModel.AddNewSpecification(null);
             viewModel.AddNewSpecification(null);
@@ -72,9 +72,9 @@ namespace R54IN0.Test
             new DummyDbData().Create();
             var viewModel = new ItemFieldEditorViewModel();
             var count = viewModel.Items.Count;
-            viewModel.AddNewItem(null);
+            viewModel.ExecuteNewItemAddition(null);
             Assert.AreEqual(count + 1, viewModel.Items.Count);
-            viewModel.RemoveSelectedItem(null);
+            viewModel.ExecuteSelectedItemDeletion(null);
             Assert.AreEqual(count, viewModel.Items.Count);
         }
 
@@ -85,18 +85,18 @@ namespace R54IN0.Test
             var viewModel = new ItemFieldEditorViewModel();
             var count = viewModel.Items.Count;
 
-            viewModel.AddNewItem(null);
-            viewModel.AddNewItem(null);
-            viewModel.AddNewItem(null);
-            viewModel.AddNewItem(null);
+            viewModel.ExecuteNewItemAddition(null);
+            viewModel.ExecuteNewItemAddition(null);
+            viewModel.ExecuteNewItemAddition(null);
+            viewModel.ExecuteNewItemAddition(null);
             viewModel = new ItemFieldEditorViewModel();
 
             //Assert.AreEqual(count, viewModel.Items.Count);
 
-            viewModel.AddNewItem(null);
-            viewModel.AddNewItem(null);
-            viewModel.AddNewItem(null);
-            viewModel.AddNewItem(null);
+            viewModel.ExecuteNewItemAddition(null);
+            viewModel.ExecuteNewItemAddition(null);
+            viewModel.ExecuteNewItemAddition(null);
+            viewModel.ExecuteNewItemAddition(null);
 
             Assert.AreEqual(count + 8, viewModel.Items.Count);
         }
