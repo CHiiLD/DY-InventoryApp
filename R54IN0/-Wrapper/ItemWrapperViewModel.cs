@@ -13,7 +13,7 @@ namespace R54IN0
         public ItemWrapperViewModel(ViewModelObserverSubject sub) : base(sub)
         {
             _specViewModel = new FieldWrapperViewModel<Specification, SpecificationWrapper>(sub);
-            Specifications = new ObservableCollection<SpecificationWrapper>();
+            //Specifications = new ObservableCollection<SpecificationWrapper>();
         }
 
         public CommandHandler AddNewSpecCommand
@@ -58,8 +58,8 @@ namespace R54IN0
                 if (_selectedItem != null)
                 {
                     FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
-                    var collection = fwd.CreateFieldWrapperCollection<Specification, SpecificationWrapper>();
-                    _specViewModel.Items = collection;
+                    var collection = fwd.CreateFieldWrapperCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
+                    _specViewModel.Items = new ObservableCollection<SpecificationWrapper>(collection);
                 }
                 SelectedSpecification = Specifications.FirstOrDefault();
             }
@@ -106,7 +106,7 @@ namespace R54IN0
                 var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
                 var itemws = fieldWrapperDirector.CreateFieldWrapperCollection<Item, ItemWrapper>();
                 foreach (var itemNode in itemNodes)
-                    temp.AddRange(itemws.Where(x => x.UUID == itemNode.ItemUUID));
+                    temp.AddRange(itemws.Where(x => x.UUID == itemNode.ItemUUID && !x.IsDeleted));
                 Items = new ObservableCollection<ItemWrapper>(temp);
                 SelectedItem = Items.FirstOrDefault();
             }

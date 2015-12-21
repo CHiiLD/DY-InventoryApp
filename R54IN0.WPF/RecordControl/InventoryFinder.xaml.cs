@@ -20,9 +20,9 @@ namespace R54IN0.WPF
     /// </summary>
     public partial class InventoryFinder : UserControl
     {
-        InventoryFinderViewModel _viewModel;
+        FinderViewModel _viewModel;
 
-        public InventoryFinderViewModel ViewModel
+        public FinderViewModel ViewModel
         {
             get
             {
@@ -33,7 +33,7 @@ namespace R54IN0.WPF
         public InventoryFinder()
         {
             InitializeComponent();
-            DataContext = _viewModel = new InventoryFinderViewModel(FinderTreeView);
+            DataContext = _viewModel = new FinderViewModel(FinderTreeView);
         }
     }
 }

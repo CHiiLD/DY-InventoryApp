@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
-namespace R54IN0.Test
+namespace R54IN0
 {
     public class InventoryWrapperDirector
     {
@@ -70,6 +70,16 @@ namespace R54IN0.Test
         public int Count()
         {
             return _items.Count;
+        }
+
+        public int IndexOf(InventoryWrapper item)
+        {
+            return _items.IndexOf(item);
+        }
+
+        public void Insert(int index, InventoryWrapper item)
+        {
+            _items.Insert(index, item);
         }
     }
 }

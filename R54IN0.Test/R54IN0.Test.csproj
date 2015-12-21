@@ -54,8 +54,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="FieldWrapperViewModelTest.cs" />
-    <Compile Include="IFinderViewModelEvent.cs" />
     <Compile Include="InventoryWrapperDirectorTest.cs" />
+    <Compile Include="InventoryWrapperViewModelHelperTest.cs" />
     <Compile Include="ItemWrapperViewModelTest.cs" />
     <Compile Include="Tool\DummyDbData.cs" />
     <Compile Include="FieldWrapperDirectorTest.cs" />
@@ -77,10 +77,6 @@
     <ProjectReference Include="..\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
       <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
       <Name>Newtonsoft.Json.Net40</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\R54IN0.WPF\R54IN0.WPF.csproj">
-      <Project>{5a0c4ca1-b587-42a9-8df0-3151b1b33784}</Project>
-      <Name>R54IN0.WPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\R54IN0\R54IN0.csproj">
       <Project>{b69caaa1-3fd1-4c1a-90cc-2e63504b6ccb}</Project>

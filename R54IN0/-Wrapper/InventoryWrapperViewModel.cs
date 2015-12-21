@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace R54IN0.Test
+namespace R54IN0
 {
     public class InventoryWrapperViewModel : ViewModelObserver<InventoryWrapper>, INotifyPropertyChanged, IFinderViewModelEvent
     {
@@ -38,7 +38,11 @@ namespace R54IN0.Test
 
         public override void Add(InventoryWrapper item)
         {
-            base.Add(item);
+            var coll = _inventoryWrapperDirector.CreateInventoryWrapperCollection();
+            var origin = coll.Where(x => x.UUID == item.UUID && x != item).FirstOrDefault();
+            if (origin != null) //EIDT인 경우
+                Remove(origin); //원본을 삭제하고 
+            base.Add(item); //새로운 아이템으로 대체
             _inventoryWrapperDirector.Add(item);
         }
 

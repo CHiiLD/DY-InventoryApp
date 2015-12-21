@@ -11,11 +11,15 @@ namespace R54IN0
     public interface IRecordWrapper
     {
         IRecord Inven { get; set; }
+        ItemWrapper Item { get; set; }
+        SpecificationWrapper Specification { get; set; }
+        FieldWrapper<Warehouse> Warehouse { get; set; }
+        int ItemCount { get; set; }
     }
 
-    public class RecordWrapper<T> : IRecordWrapper, INotifyPropertyChanged where T : class, IRecord, IUUID
+    public class RecordWrapper<RecordT> : IRecordWrapper, INotifyPropertyChanged where RecordT : class, IRecord, IUUID
     {
-        T _inven;
+        RecordT _record;
         SpecificationWrapper _specification;
         FieldWrapper<Warehouse> _warehouse;
         ItemWrapper _item;
@@ -23,10 +27,14 @@ namespace R54IN0
         FieldWrapper<Currency> _currency;
         FieldWrapper<Maker> _maker;
 
-        public RecordWrapper(T iinven)
+        public RecordWrapper()
         {
-            _inven = iinven;
-            LoadProperies();
+        }
+
+        public RecordWrapper(RecordT record)
+        {
+            LoadProperies(record);
+            _record = record;
         }
 
         public FieldWrapper<Measure> Measure
@@ -87,11 +95,11 @@ namespace R54IN0
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public T Inven
+        public RecordT Inven
         {
             get
             {
-                return _inven;
+                return _record;
             }
         }
 
@@ -99,11 +107,12 @@ namespace R54IN0
         {
             get
             {
-                return _inven;
+                return _record;
             }
             set
             {
-                _inven = value as T;
+                _record = value as RecordT;
+                LoadProperies(_record);
             }
         }
 
@@ -116,8 +125,8 @@ namespace R54IN0
             set
             {
                 _item = value;
-                _inven.ItemUUID = value.Field.UUID;
-                _inven.Save<T>();
+                _record.ItemUUID = value.Field.UUID;
+                _record.Save<RecordT>();
                 OnPropertyChanged("Item");
             }
         }
@@ -131,8 +140,8 @@ namespace R54IN0
             set
             {
                 _specification = value;
-                _inven.SpecificationUUID = value.Field.UUID;
-                _inven.Save<T>();
+                _record.SpecificationUUID = value.Field.UUID;
+                _record.Save<RecordT>();
                 OnPropertyChanged("Specification");
             }
         }
@@ -146,8 +155,8 @@ namespace R54IN0
             set
             {
                 _warehouse = value;
-                _inven.WarehouseUUID = value.Field.UUID;
-                _inven.Save<T>();
+                _record.WarehouseUUID = value.Field.UUID;
+                _record.Save<RecordT>();
                 OnPropertyChanged("Warehouse");
             }
         }
@@ -156,12 +165,12 @@ namespace R54IN0
         {
             get
             {
-                return _inven.ItemCount;
+                return _record.ItemCount;
             }
             set
             {
-                _inven.ItemCount = value;
-                _inven.Save<T>();
+                _record.ItemCount = value;
+                _record.Save<RecordT>();
                 OnPropertyChanged("ItemCount");
             }
         }
@@ -170,25 +179,33 @@ namespace R54IN0
         {
             get
             {
-                return _inven.Remark;
+                return _record.Remark;
             }
             set
             {
-                _inven.Remark = value;
-                _inven.Save<T>();
+                _record.Remark = value;
+                _record.Save<RecordT>();
                 OnPropertyChanged("Remark");
             }
         }
 
-        void LoadProperies()
+        public string UUID
+        {
+            get
+            {
+                return Inven.UUID;
+            }
+        }
+
+        void LoadProperies(RecordT record)
         {
             var fwd = FieldWrapperDirector.GetInstance();
             _specification = fwd.CreateFieldWrapperCollection<Specification, SpecificationWrapper>().
-                Where(x => x.UUID == _inven.SpecificationUUID).SingleOrDefault();
+                Where(x => x.UUID == record.SpecificationUUID).SingleOrDefault();
             _item = fwd.CreateFieldWrapperCollection<Item, ItemWrapper>().
-                Where(x => x.UUID == _inven.ItemUUID).SingleOrDefault();
+                Where(x => x.UUID == record.ItemUUID).SingleOrDefault();
             _warehouse = fwd.CreateFieldWrapperCollection<Warehouse, FieldWrapper<Warehouse>>().
-                Where(x => x.UUID == _inven.WarehouseUUID).SingleOrDefault();
+                Where(x => x.UUID == record.WarehouseUUID).SingleOrDefault();
 
             if (_item != null)
             {

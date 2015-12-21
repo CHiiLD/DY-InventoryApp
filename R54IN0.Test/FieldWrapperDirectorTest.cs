@@ -39,7 +39,6 @@ namespace R54IN0.Test
             ObservableCollection<IFieldWrapper> accoCollectoin = fwd.CreateFieldWrapperCollection<Account>();
             ObservableCollection<IFieldWrapper> makeCollectoin = fwd.CreateFieldWrapperCollection<Maker>();
             ObservableCollection<IFieldWrapper> wareCollectoin = fwd.CreateFieldWrapperCollection<Warehouse>();
-            FieldWrapperDirector.Distroy();
         }
 
         [TestMethod]
@@ -55,7 +54,6 @@ namespace R54IN0.Test
             ObservableCollection<AccountWrapper> accoCollectoin = fwd.CreateFieldWrapperCollection<Account, AccountWrapper>();
             ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateFieldWrapperCollection<Maker, FieldWrapper<Maker>>();
             ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateFieldWrapperCollection<Warehouse, FieldWrapper<Warehouse>>();
-            FieldWrapperDirector.Distroy();
         }
 
         /// <summary>

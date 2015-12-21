@@ -37,7 +37,6 @@ namespace R54IN0.Test
         public void ChangeProperties()
         {
             new DummyDbData();
-            InventoryWrapperDirector.Distory();
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
             ObservableCollection<InventoryWrapper> wrappers = iwd.CreateInventoryWrapperCollection();
 

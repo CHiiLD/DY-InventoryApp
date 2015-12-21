@@ -146,9 +146,9 @@ namespace R54IN0
         void LoadProperties(Item item)
         {
             var fwd = FieldWrapperDirector.GetInstance();
-            _measure = fwd.CreateFieldWrapperCollection<Measure, FieldWrapper<Measure>>().Where(x => x.UUID == Field.MeasureUUID).SingleOrDefault();
-            _currency = fwd.CreateFieldWrapperCollection<Currency, FieldWrapper<Currency>>().Where(x => x.UUID == Field.CurrencyUUID).SingleOrDefault();
-            _maker = fwd.CreateFieldWrapperCollection<Maker, FieldWrapper<Maker>>().Where(x => x.UUID == Field.MakerUUID).SingleOrDefault();
+            _measure = _measures.Where(x => x.UUID == Field.MeasureUUID).SingleOrDefault();
+            _currency = _currencies.Where(x => x.UUID == Field.CurrencyUUID).SingleOrDefault();
+            _maker = _makers.Where(x => x.UUID == Field.MakerUUID).SingleOrDefault();
         }
 
         public void UpdateNewItem(object item)

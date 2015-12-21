@@ -16,7 +16,7 @@ namespace R54IN0.WPF
     {
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            FinderNodeCollectionDirector.Distroy();
+            FinderDirector.Distroy();
             DatabaseDirector.Distroy();
         }
 

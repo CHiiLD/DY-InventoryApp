@@ -80,16 +80,14 @@ namespace R54IN0.Test
         [TestMethod]
         public void SyncFinderNodeTree()
         {
-            new DummyDbData().Create();
-            ViewModelObserverSubject.Distory();
-            FieldWrapperDirector.Distroy();
-            InventoryWrapperDirector.Distory();
-            FinderDirector.Distroy();
-            var finder = FinderDirector.GetInstance();
-
             var dummy = new DummyDbData().Create();
+            var debug = FinderDirector.GetInstance();
+            dummy = new DummyDbData().Create();
+
             ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
+
+            debug = FinderDirector.GetInstance();
 
             //새로운 item 추가
             vm.AddNewItemCommand.Execute(null);
@@ -116,10 +114,6 @@ namespace R54IN0.Test
         public void SyncFinderNodeNameProperty()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject.Distory();
-            FieldWrapperDirector.Distroy();
-            InventoryWrapperDirector.Distory();
-            FinderDirector.Distroy();
             var finder = FinderDirector.GetInstance();
 
             var dummy = new DummyDbData().Create();

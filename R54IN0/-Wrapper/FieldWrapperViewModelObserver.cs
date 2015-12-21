@@ -1,4 +1,7 @@
-﻿namespace R54IN0
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+
+namespace R54IN0
 {
     public class FieldWrapperViewModelObserver<FieldT, WrapperT> : ViewModelObserver<WrapperT>
         where FieldT : class, IField
@@ -9,7 +12,8 @@
         public FieldWrapperViewModelObserver(ViewModelObserverSubject sub) : base(sub)
         {
             fieldWrapperDirector = FieldWrapperDirector.GetInstance();
-            Items = fieldWrapperDirector.CreateFieldWrapperCollection<FieldT, WrapperT>();
+            var items = fieldWrapperDirector.CreateFieldWrapperCollection<FieldT, WrapperT>().Where(x => !x.IsDeleted);
+            Items = new ObservableCollection<WrapperT>(items);
         }
 
         public override void Add(WrapperT item)

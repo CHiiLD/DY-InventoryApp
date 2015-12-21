@@ -17,6 +17,15 @@ namespace R54IN0.Test
 
         public DummyDbData Create()
         {
+            ////////////INIT
+
+            FieldWrapperDirector.Distroy();
+            InventoryWrapperDirector.Distory();
+            ViewModelObserverSubject.Distory();
+            FinderDirector.Distroy();
+
+            ////////////INIT
+
             using (var db = DatabaseDirector.GetDbInstance())
             {
                 db.Purge();
@@ -93,6 +102,8 @@ namespace R54IN0.Test
                 StockType = StockType.IN,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
+
+            spec = new Specification() { Remark = "청색", Name = "CR254-24V 청색", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
 
             spec = new Specification() { Remark = "황색", Name = "CR254-24V 황색", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
             new Inventory()

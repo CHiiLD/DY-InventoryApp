@@ -21,12 +21,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void SyncCollections()
         {
-            FieldWrapperDirector.Distroy();
-            InventoryWrapperDirector.Distory();
-            ViewModelObserverSubject.Distory();
-
             var dummy = new DummyDbData().Create();
-
             ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
             InventoryWrapperViewModel vm1 = new InventoryWrapperViewModel(sub);
             InventoryWrapperViewModel vm2 = new InventoryWrapperViewModel(sub);
@@ -60,10 +55,6 @@ namespace R54IN0.Test
         public void FinderSelectItemsEvent()
         {
             new DummyDbData().Create();
-            FieldWrapperDirector.Distroy();
-            InventoryWrapperDirector.Distory();
-            ViewModelObserverSubject.Distory();
-
             ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
             FinderViewModel fvm = new FinderViewModel(null);
             InventoryWrapperViewModel iwvm = new InventoryWrapperViewModel(sub);
@@ -89,4 +80,4 @@ namespace R54IN0.Test
             Assert.IsTrue(iwvm.Items.All(x => x.Item.UUID == node.ItemUUID || x.Item.UUID == node2.ItemUUID));
         }
     }
-}
+} 

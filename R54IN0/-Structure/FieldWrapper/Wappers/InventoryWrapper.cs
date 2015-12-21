@@ -13,6 +13,10 @@ namespace R54IN0
     /// </summary>
     public class InventoryWrapper : RecordWrapper<Inventory>
     {
+        public InventoryWrapper() : base()
+        {
+        }
+
         public InventoryWrapper(Inventory inventory)
             : base(inventory)
         {
