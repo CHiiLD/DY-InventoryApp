@@ -29,7 +29,7 @@ namespace R54IN0
             }
         }
 
-        public ObservableCollection<InventoryWrapper> CreateInventoryWrapperCollection()
+        public ObservableCollection<InventoryWrapper> CreateCollection()
         {
             if (_items == null)
             {

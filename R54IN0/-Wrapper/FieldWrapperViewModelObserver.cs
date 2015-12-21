@@ -12,7 +12,7 @@ namespace R54IN0
         public FieldWrapperViewModelObserver(ViewModelObserverSubject sub) : base(sub)
         {
             fieldWrapperDirector = FieldWrapperDirector.GetInstance();
-            var items = fieldWrapperDirector.CreateFieldWrapperCollection<FieldT, WrapperT>().Where(x => !x.IsDeleted);
+            var items = fieldWrapperDirector.CreateCollection<FieldT, WrapperT>().Where(x => !x.IsDeleted);
             Items = new ObservableCollection<WrapperT>(items);
         }
 

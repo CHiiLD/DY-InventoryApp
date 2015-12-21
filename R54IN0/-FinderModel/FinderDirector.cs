@@ -108,7 +108,7 @@ namespace R54IN0
 
         public void Refresh()
         {
-            var itemws = FieldWrapperDirector.GetInstance().CreateFieldWrapperCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted); //FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<Item>();
+            var itemws = FieldWrapperDirector.GetInstance().CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted); //FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<Item>();
             foreach (ItemWrapper itemw in itemws)
             {
                 bool result = _nodes.Any(n => n.Descendants().Where(x => x.Type == NodeType.ITEM).Any(x => x.ItemUUID == itemw.Field.UUID));

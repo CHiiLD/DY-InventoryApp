@@ -16,9 +16,9 @@ namespace R54IN0
             var fwd = FieldWrapperDirector.GetInstance();
             var iwd = InventoryWrapperDirector.GetInstance();
 
-            var itemws = fwd.CreateFieldWrapperCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted);
-            var specws = fwd.CreateFieldWrapperCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
-            var invenws = iwd.CreateInventoryWrapperCollection();
+            var itemws = fwd.CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted);
+            var specws = fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
+            var invenws = iwd.CreateCollection();
 
             List<ItemWrapper> list = new List<ItemWrapper>();
             //아직 등록하지 아니한 Itemw - Specw 넣기 
@@ -55,9 +55,9 @@ namespace R54IN0
                     record.ItemUUID = value.UUID;
                     var fwd = FieldWrapperDirector.GetInstance();
                     var iwd = InventoryWrapperDirector.GetInstance();
-                    var specws = fwd.CreateFieldWrapperCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
+                    var specws = fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
                     specws = specws.Where(x => x.Field.ItemUUID == _selectedItem.UUID);
-                    var invenws = iwd.CreateInventoryWrapperCollection();
+                    var invenws = iwd.CreateCollection();
                     List<SpecificationWrapper> list = new List<SpecificationWrapper>();
                     foreach (SpecificationWrapper specw in specws)
                     {

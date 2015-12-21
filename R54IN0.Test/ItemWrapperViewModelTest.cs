@@ -105,7 +105,6 @@ namespace R54IN0.Test
             result = coll.Where(x => x.ItemUUID == newItemw.UUID).SingleOrDefault();
             Assert.IsNull(result);
         }
-        //TODO: Finder 에서 아이템W의 이름일 변경하였을 때, 똑같이 연동되어야 한다.
 
         /// <summary>
         /// 기존 아이템의 이름을 변경한 경우 Finder에도 똑같이 동기화되어 이름이 변경된다.

@@ -38,7 +38,7 @@ namespace R54IN0.Test
             Assert.IsNotNull(helper.SelectedSpecification);
 
             var fwd = FieldWrapperDirector.GetInstance();
-            var warews = fwd.CreateFieldWrapperCollection<Warehouse, FieldWrapper<Warehouse>>();
+            var warews = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
 
             var itemCnt = helper.ItemCount = 201;
             var warew = helper.SelectedWarehouse = warews.ElementAt(new Random().Next(warews.Count - 1));
@@ -81,7 +81,7 @@ namespace R54IN0.Test
             var selectedItem = hel.SelectedItem = allItemws.ElementAt(new Random().Next(allItemws.Count() - 1));
             var allSpecws = hel.AllSpecification;
 
-            var coll = InventoryWrapperDirector.GetInstance().CreateInventoryWrapperCollection();
+            var coll = InventoryWrapperDirector.GetInstance().CreateCollection();
             foreach(var spec in allSpecws)
                 Assert.IsFalse(coll.Any(x => x.Specification.UUID == spec.UUID));
 

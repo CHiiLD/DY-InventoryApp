@@ -56,6 +56,8 @@
     <Compile Include="FieldWrapperViewModelTest.cs" />
     <Compile Include="InventoryWrapperDirectorTest.cs" />
     <Compile Include="InventoryWrapperViewModelHelperTest.cs" />
+    <Compile Include="IOStockWrapperDirectorTest.cs" />
+    <Compile Include="IOStockWrapperViewModelTest.cs" />
     <Compile Include="ItemWrapperViewModelTest.cs" />
     <Compile Include="Tool\DummyDbData.cs" />
     <Compile Include="FieldWrapperDirectorTest.cs" />

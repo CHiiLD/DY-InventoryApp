@@ -11,8 +11,8 @@ namespace R54IN0
     {
         StockType _stockType;
 
-        public ObservableCollection<InOutStockWrapper> Items { get; set; }
-        public InOutStockWrapper SelectedItem { get; set; }
+        public ObservableCollection<IOStockWrapper> Items { get; set; }
+        public IOStockWrapper SelectedItem { get; set; }
 
         public InOutStockDataGridViewModel(StockType type) : base(FinderViewModelMediator.GetInstance())
         {
@@ -20,7 +20,7 @@ namespace R54IN0
                 throw new ArgumentException();
             _stockType = type;
             var items = InOutStockPipeCollectionDirector.GetInstance().NewPipe(_stockType);
-            Items = new ObservableCollection<InOutStockWrapper>(items);
+            Items = new ObservableCollection<IOStockWrapper>(items);
             SelectedItem = Items.FirstOrDefault();
         }
 
@@ -33,7 +33,7 @@ namespace R54IN0
         {
             Items.Clear();
             foreach (var i in items)
-                Items.Add(i as InOutStockWrapper);
+                Items.Add(i as IOStockWrapper);
             SelectedItem = Items.FirstOrDefault();
         }
 
@@ -53,7 +53,7 @@ namespace R54IN0
             Check(newStock);
 
             newStock.Save<InOutStock>();
-            InOutStockWrapper ioStockPipe = new InOutStockWrapper(newStock);
+            IOStockWrapper ioStockPipe = new IOStockWrapper(newStock);
             InOutStockPipeCollectionDirector.GetInstance().Add(ioStockPipe);
             Items.Add(ioStockPipe);
             SelectedItem = ioStockPipe;
@@ -76,11 +76,11 @@ namespace R54IN0
             Check(ioStock);
 
             ioStock.Save<InOutStock>();
-            InOutStockWrapper oldPipe = Items.Where(x => x.Inven.UUID == ioStock.UUID).Single();
+            IOStockWrapper oldPipe = Items.Where(x => x.Inven.UUID == ioStock.UUID).Single();
             int count = oldPipe.ItemCount;
             int idx = Items.IndexOf(oldPipe);
             Items.RemoveAt(idx);
-            InOutStockWrapper newPipe = new InOutStockWrapper(ioStock);
+            IOStockWrapper newPipe = new IOStockWrapper(ioStock);
             Items.Insert(idx, newPipe);
             SelectedItem = newPipe;
 

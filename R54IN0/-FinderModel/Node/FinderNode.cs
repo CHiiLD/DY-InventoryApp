@@ -45,7 +45,7 @@ namespace R54IN0
                 _itemUuid = value;
                 if (!string.IsNullOrEmpty(_itemUuid) && Type == NodeType.ITEM)
                 {
-                    var itemws = FieldWrapperDirector.GetInstance().CreateFieldWrapperCollection<Item, ItemWrapper>();
+                    var itemws = FieldWrapperDirector.GetInstance().CreateCollection<Item, ItemWrapper>();
                     var itemw = itemws.Where(x => x.UUID == _itemUuid).SingleOrDefault();
                     if (itemw != null)
                     {

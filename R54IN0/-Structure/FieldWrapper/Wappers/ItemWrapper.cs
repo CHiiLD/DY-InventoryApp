@@ -136,11 +136,11 @@ namespace R54IN0
         {
             var fwd = FieldWrapperDirector.GetInstance();
             _makers = new ObservableCollection<FieldWrapper<Maker>>(
-                fwd.CreateFieldWrapperCollection<Maker, FieldWrapper<Maker>>().Where(x => !x.IsDeleted));
+                fwd.CreateCollection<Maker, FieldWrapper<Maker>>().Where(x => !x.IsDeleted));
             _measures = new ObservableCollection<FieldWrapper<Measure>>(
-                fwd.CreateFieldWrapperCollection<Measure, FieldWrapper<Measure>>().Where(x => !x.IsDeleted));
+                fwd.CreateCollection<Measure, FieldWrapper<Measure>>().Where(x => !x.IsDeleted));
             _currencies = new ObservableCollection<FieldWrapper<Currency>>(
-                fwd.CreateFieldWrapperCollection<Currency, FieldWrapper<Currency>>().Where(x => !x.IsDeleted));
+                fwd.CreateCollection<Currency, FieldWrapper<Currency>>().Where(x => !x.IsDeleted));
         }
 
         void LoadProperties(Item item)

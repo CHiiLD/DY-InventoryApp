@@ -13,7 +13,6 @@ namespace R54IN0
         where IRecordT : class, IRecord, new()
     {
         ViewModelObserver<IRecordWrapperT> _viewModelObserver;
-        //IRecordWrapperT _recordWrapper;
         ItemWrapper _item;
         IEnumerable<SpecificationWrapper> _allSpecification;
         SpecificationWrapper _selectedSpecification;
@@ -27,7 +26,7 @@ namespace R54IN0
                 throw new ArgumentOutOfRangeException();
             _viewModelObserver = viewModelObserver;
             var fwd = FieldWrapperDirector.GetInstance();
-            AllWarehouse = fwd.CreateFieldWrapperCollection<Warehouse, FieldWrapper<Warehouse>>().Where(x => !x.IsDeleted);
+            AllWarehouse = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().Where(x => !x.IsDeleted);
 
             if (target != null)
             {
@@ -152,7 +151,7 @@ namespace R54IN0
         protected void UpdateAllSpecificationProperty(ItemWrapper itemw)
         {
             var fwd = FieldWrapperDirector.GetInstance();
-            var specws = fwd.CreateFieldWrapperCollection<Specification, SpecificationWrapper>();
+            var specws = fwd.CreateCollection<Specification, SpecificationWrapper>();
             AllSpecification = specws.Where(x => !x.IsDeleted && x.Field.ItemUUID == _item.UUID);
         }
     }

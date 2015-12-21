@@ -11,21 +11,21 @@ namespace R54IN0
     public class InOutStockPipeCollectionDirector : IDirectorAction
     {
         static InOutStockPipeCollectionDirector _thiz;
-        Dictionary<StockType, ObservableCollection<InOutStockWrapper>> _ioDic;
+        Dictionary<StockType, ObservableCollection<IOStockWrapper>> _ioDic;
 
         InOutStockPipeCollectionDirector()
         {
-            _ioDic = new Dictionary<StockType, ObservableCollection<InOutStockWrapper>>();
-            _ioDic[StockType.ALL] = new ObservableCollection<InOutStockWrapper>();
-            _ioDic[StockType.IN] = new ObservableCollection<InOutStockWrapper>();
-            _ioDic[StockType.OUT] = new ObservableCollection<InOutStockWrapper>();
+            _ioDic = new Dictionary<StockType, ObservableCollection<IOStockWrapper>>();
+            _ioDic[StockType.ALL] = new ObservableCollection<IOStockWrapper>();
+            _ioDic[StockType.IN] = new ObservableCollection<IOStockWrapper>();
+            _ioDic[StockType.OUT] = new ObservableCollection<IOStockWrapper>();
 
             using (var db = DatabaseDirector.GetDbInstance())
             {
                 IEnumerable<InOutStock> stocks = db.LoadAll<InOutStock>();
                 foreach (InOutStock item in stocks)
-                    _ioDic[StockType.ALL].Add(new InOutStockWrapper(item));
-                foreach (InOutStockWrapper item in _ioDic[StockType.ALL])
+                    _ioDic[StockType.ALL].Add(new IOStockWrapper(item));
+                foreach (IOStockWrapper item in _ioDic[StockType.ALL])
                 {
                     if (item.StockType == StockType.IN)
                         _ioDic[StockType.IN].Add(item);
@@ -39,10 +39,10 @@ namespace R54IN0
 
         public void Add(object pipe)
         {
-            if (!(pipe is InOutStockWrapper))
+            if (!(pipe is IOStockWrapper))
                 return;
 
-            InOutStockWrapper newPipe = pipe as InOutStockWrapper;
+            IOStockWrapper newPipe = pipe as IOStockWrapper;
 
             if (!_ioDic[StockType.ALL].Contains(newPipe))
                 _ioDic[StockType.ALL].Add(newPipe);
@@ -53,10 +53,10 @@ namespace R54IN0
 
         public void Remove(object pipe)
         {
-            if (!(pipe is InOutStockWrapper))
+            if (!(pipe is IOStockWrapper))
                 return;
 
-            InOutStockWrapper oldPipe = pipe as InOutStockWrapper;
+            IOStockWrapper oldPipe = pipe as IOStockWrapper;
 
             if (_ioDic[StockType.ALL].Contains(oldPipe))
                 _ioDic[StockType.ALL].Remove(oldPipe);
@@ -72,9 +72,9 @@ namespace R54IN0
             return _thiz;
         }
 
-        public ObservableCollection<InOutStockWrapper> NewPipe(StockType type)
+        public ObservableCollection<IOStockWrapper> NewPipe(StockType type)
         {
-            return new ObservableCollection<InOutStockWrapper>(_ioDic[type]);
+            return new ObservableCollection<IOStockWrapper>(_ioDic[type]);
         }
     }
 }

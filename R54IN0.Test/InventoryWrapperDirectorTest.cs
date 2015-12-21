@@ -18,7 +18,7 @@ namespace R54IN0.Test
         public void LoadData()
         {
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
-            ObservableCollection<InventoryWrapper> wrappers = iwd.CreateInventoryWrapperCollection();
+            ObservableCollection<InventoryWrapper> wrappers = iwd.CreateCollection();
         }
 
         [TestMethod]
@@ -38,17 +38,17 @@ namespace R54IN0.Test
         {
             new DummyDbData();
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
-            ObservableCollection<InventoryWrapper> wrappers = iwd.CreateInventoryWrapperCollection();
+            ObservableCollection<InventoryWrapper> wrappers = iwd.CreateCollection();
 
             var fwd = FieldWrapperDirector.GetInstance();
-            ObservableCollection<ItemWrapper> itemCollectoin = fwd.CreateFieldWrapperCollection<Item, ItemWrapper>();
-            ObservableCollection<SpecificationWrapper> specCollectoin = fwd.CreateFieldWrapperCollection<Specification, SpecificationWrapper>();
-            ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateFieldWrapperCollection<Measure, FieldWrapper<Measure>>();
-            ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateFieldWrapperCollection<Currency, FieldWrapper<Currency>>();
-            ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateFieldWrapperCollection<Employee, FieldWrapper<Employee>>();
-            ObservableCollection<AccountWrapper> accoCollectoin = fwd.CreateFieldWrapperCollection<Account, AccountWrapper>();
-            ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateFieldWrapperCollection<Maker, FieldWrapper<Maker>>();
-            ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateFieldWrapperCollection<Warehouse, FieldWrapper<Warehouse>>();
+            ObservableCollection<ItemWrapper> itemCollectoin = fwd.CreateCollection<Item, ItemWrapper>();
+            ObservableCollection<SpecificationWrapper> specCollectoin = fwd.CreateCollection<Specification, SpecificationWrapper>();
+            ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
+            ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
+            ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
+            ObservableCollection<AccountWrapper> accoCollectoin = fwd.CreateCollection<Account, AccountWrapper>();
+            ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
+            ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
             var rand = new Random();
             SpecificationWrapper sepcWrapper = specCollectoin.ElementAt(rand.Next(specCollectoin.Count - 1));
             //변경하기 
@@ -60,7 +60,7 @@ namespace R54IN0.Test
             InventoryWrapperDirector.Distory();
             FieldWrapperDirector.Distroy();
             //찾기
-            wrappers = iwd.CreateInventoryWrapperCollection();
+            wrappers = iwd.CreateCollection();
             var newWrapper = wrappers.Where(x => x.Inven.UUID == wrapper.Inven.UUID).Single();
             //검사
             Assert.AreEqual(itemCnt, newWrapper.ItemCount);

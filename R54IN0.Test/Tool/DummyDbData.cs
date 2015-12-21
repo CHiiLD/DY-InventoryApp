@@ -23,6 +23,7 @@ namespace R54IN0.Test
             InventoryWrapperDirector.Distory();
             ViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
+            IOStockWrapperDirector.Distory();
 
             ////////////INIT
 

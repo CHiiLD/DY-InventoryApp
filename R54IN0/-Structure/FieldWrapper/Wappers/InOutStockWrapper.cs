@@ -8,10 +8,10 @@ using System.Diagnostics;
 
 namespace R54IN0
 {
-    public class InOutStockWrapper : RecordWrapper<InOutStock>
+    public class IOStockWrapper : RecordWrapper<InOutStock>
     {
-        IFieldWrapper _account;
-        IFieldWrapper _eeployee;
+        AccountWrapper _account;
+        FieldWrapper<Employee> _eeployee;
 
         public string Code
         {
@@ -35,7 +35,7 @@ namespace R54IN0
             }
         }
 
-        public IFieldWrapper Account
+        public AccountWrapper Account
         {
             get
             {
@@ -44,13 +44,13 @@ namespace R54IN0
             set
             {
                 _account = value;
-                Inven.EnterpriseUUID = _account.Field.UUID;
+                Inven.EnterpriseUUID = value.UUID;
                 Inven.Save<InOutStock>();
                 OnPropertyChanged("Account");
             }
         }
 
-        public IFieldWrapper Employee
+        public FieldWrapper<Employee> Employee
         {
             get
             {
@@ -59,7 +59,7 @@ namespace R54IN0
             set
             {
                 _eeployee = value;
-                Inven.EmployeeUUID = _eeployee.Field.UUID;
+                Inven.EmployeeUUID = value.UUID;
                 Inven.Save<InOutStock>();
                 OnPropertyChanged("Employee");
             }
@@ -79,13 +79,17 @@ namespace R54IN0
             }
         }
 
-        public InOutStockWrapper(InOutStock ioStock)
+        public IOStockWrapper(InOutStock ioStock)
             : base(ioStock)
         {
-            _account = FieldPipeCollectionDirector.GetInstance().LoadPipe<Account>().
-                Where(x => x.Field.UUID == ioStock.EnterpriseUUID).SingleOrDefault();
-            _eeployee = FieldPipeCollectionDirector.GetInstance().LoadPipe<Employee>().
-                Where(x => x.Field.UUID == ioStock.EmployeeUUID).SingleOrDefault();
+        }
+
+        protected override void LoadProperies(InOutStock ioStock)
+        {
+            var fwd = FieldWrapperDirector.GetInstance();
+            _account = fwd.CreateCollection<Account, AccountWrapper>().Where(x => x.UUID == ioStock.EnterpriseUUID).SingleOrDefault();
+            _eeployee = fwd.CreateCollection<Employee, FieldWrapper<Employee>>().Where(x => x.UUID == ioStock.EmployeeUUID).SingleOrDefault();
+            base.LoadProperies(ioStock);
         }
     }
 }

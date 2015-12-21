@@ -125,7 +125,7 @@ namespace R54IN0
             set
             {
                 _item = value;
-                _record.ItemUUID = value.Field.UUID;
+                _record.ItemUUID = value.UUID;
                 _record.Save<RecordT>();
                 OnPropertyChanged("Item");
             }
@@ -140,7 +140,7 @@ namespace R54IN0
             set
             {
                 _specification = value;
-                _record.SpecificationUUID = value.Field.UUID;
+                _record.SpecificationUUID = value.UUID;
                 _record.Save<RecordT>();
                 OnPropertyChanged("Specification");
             }
@@ -155,7 +155,7 @@ namespace R54IN0
             set
             {
                 _warehouse = value;
-                _record.WarehouseUUID = value.Field.UUID;
+                _record.WarehouseUUID = value.UUID;
                 _record.Save<RecordT>();
                 OnPropertyChanged("Warehouse");
             }
@@ -197,14 +197,14 @@ namespace R54IN0
             }
         }
 
-        void LoadProperies(RecordT record)
+        protected virtual void LoadProperies(RecordT record)
         {
             var fwd = FieldWrapperDirector.GetInstance();
-            _specification = fwd.CreateFieldWrapperCollection<Specification, SpecificationWrapper>().
+            _specification = fwd.CreateCollection<Specification, SpecificationWrapper>().
                 Where(x => x.UUID == record.SpecificationUUID).SingleOrDefault();
-            _item = fwd.CreateFieldWrapperCollection<Item, ItemWrapper>().
+            _item = fwd.CreateCollection<Item, ItemWrapper>().
                 Where(x => x.UUID == record.ItemUUID).SingleOrDefault();
-            _warehouse = fwd.CreateFieldWrapperCollection<Warehouse, FieldWrapper<Warehouse>>().
+            _warehouse = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().
                 Where(x => x.UUID == record.WarehouseUUID).SingleOrDefault();
 
             if (_item != null)

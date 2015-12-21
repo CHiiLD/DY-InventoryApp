@@ -16,7 +16,7 @@ namespace R54IN0
         public InventoryWrapperViewModel(ViewModelObserverSubject subject) : base(subject)
         {
             _inventoryWrapperDirector = InventoryWrapperDirector.GetInstance();
-            Items = _inventoryWrapperDirector.CreateInventoryWrapperCollection();
+            Items = _inventoryWrapperDirector.CreateCollection();
             SelectedItem = Items.FirstOrDefault();
         }
 
@@ -38,7 +38,7 @@ namespace R54IN0
 
         public override void Add(InventoryWrapper item)
         {
-            var coll = _inventoryWrapperDirector.CreateInventoryWrapperCollection();
+            var coll = _inventoryWrapperDirector.CreateCollection();
             var origin = coll.Where(x => x.UUID == item.UUID && x != item).FirstOrDefault();
             if (origin != null) //EIDT인 경우
                 Remove(origin); //원본을 삭제하고 
@@ -58,11 +58,8 @@ namespace R54IN0
             if (item is InventoryWrapper)
             {
                 InventoryWrapper inventoryWrapper = item as InventoryWrapper;
-                if (_inventoryWrapperDirector.Count() == Items.Count ||  //모든 인벤토리 데이터를 나타날 때 
-                    Items.Any(x => x.Item.UUID == inventoryWrapper.Item.UUID)) //특정 인벤토리 데이터를 나타날 때 
-                {
+                if (_inventoryWrapperDirector.Count() == Items.Count || Items.Any(x => x.Item.UUID == inventoryWrapper.Item.UUID))
                     base.UpdateNewItem(item);
-                }
             }
         }
 
@@ -73,7 +70,7 @@ namespace R54IN0
             {
                 List<InventoryWrapper> temp = new List<InventoryWrapper>();
                 var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
-                var invens = _inventoryWrapperDirector.CreateInventoryWrapperCollection();
+                var invens = _inventoryWrapperDirector.CreateCollection();
                 foreach (var itemNode in itemNodes)
                     temp.AddRange(invens.Where(x => x.Item.UUID == itemNode.ItemUUID));
                 Items = new ObservableCollection<InventoryWrapper>(temp);

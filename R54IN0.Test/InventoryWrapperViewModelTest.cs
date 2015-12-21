@@ -26,9 +26,9 @@ namespace R54IN0.Test
             InventoryWrapperViewModel vm1 = new InventoryWrapperViewModel(sub);
             InventoryWrapperViewModel vm2 = new InventoryWrapperViewModel(sub);
 
-            var itemws = FieldWrapperDirector.GetInstance().CreateFieldWrapperCollection<Item, ItemWrapper>();
+            var itemws = FieldWrapperDirector.GetInstance().CreateCollection<Item, ItemWrapper>();
             var itemw = itemws.Where(x => x.UUID == dummy.TestItemUUID).Single();
-            var specws = FieldWrapperDirector.GetInstance().CreateFieldWrapperCollection<Specification, SpecificationWrapper>();
+            var specws = FieldWrapperDirector.GetInstance().CreateCollection<Specification, SpecificationWrapper>();
 
             Inventory inven = new Inventory();
             InventoryWrapper invenw = new InventoryWrapper(inven);

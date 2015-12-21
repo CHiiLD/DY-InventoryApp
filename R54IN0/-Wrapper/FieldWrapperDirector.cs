@@ -60,13 +60,13 @@ namespace R54IN0
             }
         }
 
-        public ObservableCollection<IFieldWrapper> CreateFieldWrapperCollection<FieldT>() where FieldT : class, IField
+        public ObservableCollection<IFieldWrapper> CreateCollection<FieldT>() where FieldT : class, IField
         {
             Type type = typeof(FieldT);
-            return CreateFieldWrapperCollection<FieldT, IFieldWrapper>();
+            return CreateCollection<FieldT, IFieldWrapper>();
         }
 
-        public ObservableCollection<WrapperT> CreateFieldWrapperCollection<FieldT, WrapperT>()
+        public ObservableCollection<WrapperT> CreateCollection<FieldT, WrapperT>()
             where FieldT : class, IField
             where WrapperT : class, IFieldWrapper
         {
