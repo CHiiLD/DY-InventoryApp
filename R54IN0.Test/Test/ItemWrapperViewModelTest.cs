@@ -28,7 +28,7 @@ namespace R54IN0.Test
             {
                 var item = vm.Items.First();
                 vm.SelectedItem = item;
-                Assert.IsNotNull(vm.SelectedSpecification);
+                Assert.IsNotNull(vm.Specifications);
             }
         }
 

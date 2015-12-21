@@ -16,5 +16,5 @@ Y:\Github\R54IN0\R54IN0.WPF\App.xaml
 21-1746167996
 Controls\AccountFieldEditor.xaml;Controls\MakerFieldEditor.xaml;Controls\WarehouseFieldEditor.xaml;Controls\EmployeeFieldEditor.xaml;Controls\CurrencyFieldEditor.xaml;Controls\MeasureFieldEditor.xaml;Controls\ItemFieldEditor.xaml;Controls\InOutStockControl.xaml;Controls\InOutStockDataGrid.xaml;Controls\InventoryControl.xaml;Controls\InventoryDataGrid.xaml;Controls\Finder.xaml;MainWindow.xaml;
 
-True
+False
 

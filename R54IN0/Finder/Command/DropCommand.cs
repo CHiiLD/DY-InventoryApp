@@ -96,7 +96,7 @@ namespace R54IN0
                     {
                         FinderNode oldNode = (FinderNode)selectedNode;
                         FinderNode newNode = new FinderNode(oldNode);
-                        _viewModel.RemoveNodeInRoot(oldNode);
+                        _viewModel.Director.Remove(oldNode);
                         AddNode(destNode, index, newNode);
                     }
                 }

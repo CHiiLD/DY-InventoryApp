@@ -10,6 +10,7 @@ namespace R54IN0
     {
         ObservableCollection<InventoryWrapper> _items;
         InventoryWrapperDirector _director;
+        InventoryWrapper _selectedItem;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,12 +29,22 @@ namespace R54IN0
             set
             {
                 _items = value;
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("Items"));
+                OnPropertyChanged("Items");
             }
         }
 
-        public InventoryWrapper SelectedItem { get; set; }
+        public InventoryWrapper SelectedItem
+        {
+            get
+            {
+                return _selectedItem;
+            }
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged("SelectedItem");
+            }
+        }
 
         public override void Add(InventoryWrapper item)
         {
@@ -74,6 +85,12 @@ namespace R54IN0
                     temp.AddRange(invens.Where(x => x.Item.UUID == itemNode.ItemUUID));
                 Items = new ObservableCollection<InventoryWrapper>(temp);
             }
+        }
+
+        protected void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
     }
 }

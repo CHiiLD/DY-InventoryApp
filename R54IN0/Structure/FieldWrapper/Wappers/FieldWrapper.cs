@@ -83,7 +83,7 @@ namespace R54IN0
             }
         }
 
-        public void OnPropertyChanged(string name)
+        protected void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(name));

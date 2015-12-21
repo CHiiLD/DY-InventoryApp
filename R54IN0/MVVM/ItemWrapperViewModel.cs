@@ -8,7 +8,6 @@ namespace R54IN0
 {
     public class ItemWrapperViewModel : FieldWrapperViewModel<Item, ItemWrapper>, IFinderViewModelEvent
     {
-        ItemWrapper _selectedItem;
         FieldWrapperViewModel<Specification, SpecificationWrapper> _specViewModel;
 
         public ItemWrapperViewModel(ViewModelObserverSubject sub) : base(sub)
@@ -49,19 +48,18 @@ namespace R54IN0
         {
             get
             {
-                return _selectedItem;
+                return base.SelectedItem;
             }
             set
             {
-                _selectedItem = value;
+                base.SelectedItem = value;
                 //선택된 아이템에 대한 규격 데이터를 불러와 Specifications컬렉션에 저장합니다.
-                if (_selectedItem != null && _specViewModel != null)
+                if (base.SelectedItem != null && _specViewModel != null)
                 {
                     FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
                     var collection = fwd.CreateCollection<Specification, SpecificationWrapper>().
-                        Where(x => !x.IsDeleted && x.Field.ItemUUID == _selectedItem.UUID);
+                        Where(x => !x.IsDeleted && x.Field.ItemUUID == base.SelectedItem.UUID);
                     Specifications = new ObservableCollection<SpecificationWrapper>(collection);
-                    SelectedSpecification = Specifications.FirstOrDefault();
                 }
             }
         }
@@ -75,6 +73,7 @@ namespace R54IN0
             set
             {
                 _specViewModel.SelectedItem = value;
+                OnPropertyChanged("SelectedSpecification");
                 RemoveSpecCommand.UpdateCanExecute();
             }
         }
@@ -109,7 +108,6 @@ namespace R54IN0
                 foreach (var itemNode in itemNodes)
                     temp.AddRange(itemws.Where(x => x.UUID == itemNode.ItemUUID && !x.IsDeleted));
                 Items = new ObservableCollection<ItemWrapper>(temp);
-                SelectedItem = Items.FirstOrDefault();
             }
         }
     }

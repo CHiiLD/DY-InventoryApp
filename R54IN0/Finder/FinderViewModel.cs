@@ -12,13 +12,13 @@ using Lex.Db;
 
 namespace R54IN0
 {
-    public class FinderViewModel// : FinderViewModelMediatorColleague
+    public class FinderViewModel
     {
         FinderDirector _finderDirector;
         DragCommand _dragCommand;
         DropCommand _dropCommand;
 
-        public FinderViewModel() //: base(FinderViewModelMediator.GetInstance())
+        public FinderViewModel()
         {
             if (Nodes == null)
                 Nodes = new ObservableCollection<FinderNode>();
@@ -36,6 +36,14 @@ namespace R54IN0
             Nodes = _finderDirector.Collection;
             if (treeView != null)
                 treeView.OnSelecting += OnSelectNodes;
+        }
+
+        internal FinderDirector Director
+        {
+            get
+            {
+                return _finderDirector;
+            }
         }
 
         public ObservableCollection<FinderNode> Nodes { get; set; }
@@ -138,32 +146,6 @@ namespace R54IN0
         public void AddNewItemInNodes(string itemUUID)
         {
             Nodes.Add(new FinderNode(NodeType.ITEM) { ItemUUID = itemUUID });
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-        //호흡기들
-        public void RemoveItemInNodes(string itemUUID)
-        {
-            IEnumerable<FinderNode> itemNodes = Nodes.SelectMany(n => n.Descendants().Where(x => x.Type == NodeType.ITEM));
-            itemNodes = itemNodes.Where(t => t.ItemUUID == itemUUID);
-            var node = itemNodes.SingleOrDefault();
-            if (node != null)
-                RemoveNodeInRoot(node);
-        }
-
-        internal void RemoveNodeInRoot(FinderNode node)
-        {
-            _finderDirector.Remove(node);
         }
     }
 }

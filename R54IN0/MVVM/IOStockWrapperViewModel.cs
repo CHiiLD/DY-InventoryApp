@@ -11,6 +11,7 @@ namespace R54IN0
         StockType _stockType;
         ObservableCollection<IOStockWrapper> _items;
         IOStockWrapperDirector _director;
+        IOStockWrapper _selectedItem;
 
         public IOStockWrapperViewModel(StockType type, ViewModelObserverSubject subject) : base(subject)
         {
@@ -30,12 +31,22 @@ namespace R54IN0
             set
             {
                 _items = value;
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("Items"));
+                OnPropertyChanged("Items");
             }
         }
 
-        public IOStockWrapper SelectedItem { get; set; }
+        public IOStockWrapper SelectedItem
+        {
+            get
+            {
+                return _selectedItem;
+            }
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged("SelectedItem");
+            }
+        }
 
         public override void Add(IOStockWrapper item)
         {
@@ -74,6 +85,12 @@ namespace R54IN0
                     temp.AddRange(ioStockws.Where(x => x.Item.UUID == itemNode.ItemUUID));
                 Items = new ObservableCollection<IOStockWrapper>(temp);
             }
+        }
+
+        protected void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
     }
 }

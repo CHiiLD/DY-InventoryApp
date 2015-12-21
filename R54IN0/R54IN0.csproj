@@ -44,7 +44,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MVVM\IFieldEditorViewModel.cs" />
     <Compile Include="MVVM\IFinderViewModelEvent.cs" />
     <Compile Include="MVVM\InventoryWrapperDirector.cs" />
     <Compile Include="MVVM\FieldWrapperViewModel.cs" />

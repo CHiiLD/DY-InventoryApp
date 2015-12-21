@@ -9,11 +9,11 @@ namespace R54IN0
     public class FieldWrapperDirector 
     {
         static FieldWrapperDirector _thiz;
-        Dictionary<Type, ObservableCollection<IFieldWrapper>> _map;
+        Dictionary<Type, List<IFieldWrapper>> _map;
 
         FieldWrapperDirector()
         {
-            _map = new Dictionary<Type, ObservableCollection<IFieldWrapper>>();
+            _map = new Dictionary<Type, List<IFieldWrapper>>();
         }
 
         public static void Distroy()
@@ -73,7 +73,7 @@ namespace R54IN0
             Type type = typeof(FieldT);
             if (!_map.ContainsKey(type))
             {
-                _map[type] = new ObservableCollection<IFieldWrapper>();
+                _map[type] = new List<IFieldWrapper>();
                 FieldT[] fields = null;
                 using (var db = DatabaseDirector.GetDbInstance())
                 {
