@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using MahApps.Metro.Controls;
 using MahApps.Metro;
-using Lex.Db;
 
 namespace R54IN0.WPF
 {

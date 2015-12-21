@@ -20,16 +20,15 @@ namespace R54IN0.WPF
             DatabaseDirector.Distroy();
         }
 
-        private void Application_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        {
-            
-        }
-
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             Accent accent = ThemeManager.GetAccent("Cobalt");
             Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
             ThemeManager.ChangeAppStyle(Application.Current, accent, appStyle.Item1);
+
+#if DEBUG
+            new R54IN0.Test.DummyDbData().Create();
+#endif
         }
     }
 }

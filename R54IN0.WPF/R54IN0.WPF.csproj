@@ -58,61 +58,53 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="FieldControl\AccountFieldEditor.xaml">
+    <Page Include="Controls\AccountFieldEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FieldControl\MakerFieldEditor.xaml">
+    <Page Include="Controls\MakerFieldEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FieldControl\WarehouseFieldEditor.xaml">
+    <Page Include="Controls\WarehouseFieldEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FieldControl\EmployeeFieldEditor.xaml">
+    <Page Include="Controls\EmployeeFieldEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FieldControl\CurrencyFieldEditor.xaml">
+    <Page Include="Controls\CurrencyFieldEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FieldControl\MeasureFieldEditor.xaml">
+    <Page Include="Controls\MeasureFieldEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FieldControl\ItemFieldEditor.xaml">
+    <Page Include="Controls\ItemFieldEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RecordControl\InOutStockControl.xaml">
+    <Page Include="Controls\InOutStockControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RecordControl\InOutStockDataGrid.xaml">
+    <Page Include="Controls\InOutStockDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="RecordControl\InventoryControl.xaml">
+    <Page Include="Controls\InventoryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RecordControl\InventoryDataGrid.xaml">
+    <Page Include="Controls\InventoryDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RecordControl\InventoryFinder.xaml">
+    <Page Include="Controls\Finder.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="RecordControl\Editor\InOutStockItemEditorWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="RecordControl\Editor\InventoryItemEditorWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -122,47 +114,41 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FieldControl\AccountFieldEditor.xaml.cs">
+    <Compile Include="Controls\AccountFieldEditor.xaml.cs">
       <DependentUpon>AccountFieldEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FieldControl\MakerFieldEditor.xaml.cs">
+    <Compile Include="Controls\MakerFieldEditor.xaml.cs">
       <DependentUpon>MakerFieldEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FieldControl\WarehouseFieldEditor.xaml.cs">
+    <Compile Include="Controls\WarehouseFieldEditor.xaml.cs">
       <DependentUpon>WarehouseFieldEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FieldControl\EmployeeFieldEditor.xaml.cs">
+    <Compile Include="Controls\EmployeeFieldEditor.xaml.cs">
       <DependentUpon>EmployeeFieldEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FieldControl\CurrencyFieldEditor.xaml.cs">
+    <Compile Include="Controls\CurrencyFieldEditor.xaml.cs">
       <DependentUpon>CurrencyFieldEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FieldControl\MeasureFieldEditor.xaml.cs">
+    <Compile Include="Controls\MeasureFieldEditor.xaml.cs">
       <DependentUpon>MeasureFieldEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FieldControl\ItemFieldEditor.xaml.cs">
+    <Compile Include="Controls\ItemFieldEditor.xaml.cs">
       <DependentUpon>ItemFieldEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RecordControl\InOutStockControl.xaml.cs">
+    <Compile Include="Controls\InOutStockControl.xaml.cs">
       <DependentUpon>InOutStockControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RecordControl\InOutStockDataGrid.xaml.cs">
+    <Compile Include="Controls\InOutStockDataGrid.xaml.cs">
       <DependentUpon>InOutStockDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RecordControl\InventoryControl.xaml.cs">
+    <Compile Include="Controls\InventoryControl.xaml.cs">
       <DependentUpon>InventoryControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RecordControl\InventoryDataGrid.xaml.cs">
+    <Compile Include="Controls\InventoryDataGrid.xaml.cs">
       <DependentUpon>InventoryDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RecordControl\InventoryFinder.xaml.cs">
-      <DependentUpon>InventoryFinder.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RecordControl\Editor\InOutStockItemEditorWindow.xaml.cs">
-      <DependentUpon>InOutStockItemEditorWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RecordControl\Editor\InventoryItemEditorWindow.xaml.cs">
-      <DependentUpon>InventoryItemEditorWindow.xaml</DependentUpon>
+    <Compile Include="Controls\Finder.xaml.cs">
+      <DependentUpon>Finder.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -197,13 +183,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
-      <Project>{04608184-27b9-42a2-9e5e-69a6cb21ecfe}</Project>
-      <Name>Lex.Db.Net45</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MahApps.Metro\MahApps.Metro\MahApps.Metro.NET45.csproj">
       <Project>{942d11c4-29f5-46c4-8c14-4b976d56c637}</Project>
       <Name>MahApps.Metro.NET45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\R54IN0.Test\R54IN0.Test.csproj">
+      <Project>{ec787dff-e080-4a02-958e-111ad0534de8}</Project>
+      <Name>R54IN0.Test</Name>
     </ProjectReference>
     <ProjectReference Include="..\R54IN0\R54IN0.csproj">
       <Project>{b69caaa1-3fd1-4c1a-90cc-2e63504b6ccb}</Project>

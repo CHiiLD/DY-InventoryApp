@@ -53,23 +53,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="FieldWrapperViewModelTest.cs" />
-    <Compile Include="InventoryWrapperDirectorTest.cs" />
-    <Compile Include="InventoryWrapperViewModelHelperTest.cs" />
-    <Compile Include="IOStockWrapperDirectorTest.cs" />
-    <Compile Include="IOStockWrapperViewModelTest.cs" />
-    <Compile Include="ItemWrapperViewModelTest.cs" />
+    <Compile Include="Test\FieldWrapperViewModelTest.cs" />
+    <Compile Include="Test\InventoryWrapperDirectorTest.cs" />
+    <Compile Include="Test\InventoryWrapperViewModelHelperTest.cs" />
+    <Compile Include="Test\IOStockWrapperDirectorTest.cs" />
+    <Compile Include="Test\IOStockWrapperViewModelTest.cs" />
+    <Compile Include="Test\ItemWrapperViewModelTest.cs" />
     <Compile Include="Tool\DummyDbData.cs" />
-    <Compile Include="FieldWrapperDirectorTest.cs" />
-    <Compile Include="InventoryWrapperViewModelTest.cs" />
-    <Compile Include="ViewModel\InventoryFinderViewModelTest.cs" />
+    <Compile Include="Test\FieldWrapperDirectorTest.cs" />
+    <Compile Include="Test\InventoryWrapperViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\InventoryDataGridViewModelTest.cs" />
-    <Compile Include="ViewModel\ItemFieldEditorViewModelTest.cs" />
-    <Compile Include="ViewModel\FieldListEditorViewModelTest.cs" />
-    <Compile Include="ViewModel\InventoryEditorViewModelTest.cs" />
-    <Compile Include="ViewModel\InOutStockDataGridViewModelTest.cs" />
-    <Compile Include="ViewModel\InOutStockEditorViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
