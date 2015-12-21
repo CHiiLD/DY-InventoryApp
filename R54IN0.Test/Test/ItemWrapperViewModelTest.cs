@@ -71,7 +71,7 @@ namespace R54IN0.Test
             }
             Assert.IsTrue(itemMeasure.IsDeleted);
             Assert.AreEqual(0, itemMeasureColl.Count);
-            Assert.AreEqual(itemMeasure, itemWrapper.SelectedMeasure);
+            Assert.IsNull(itemWrapper.SelectedMeasure);
         }
 
         /// <summary>
@@ -127,6 +127,51 @@ namespace R54IN0.Test
             Assert.AreEqual(item.Name, finderNode.Name);
             item.Name = "Rd12dac#$dkd";
             Assert.AreEqual(item.Name, finderNode.Name);
+        }
+
+        /// <summary>
+        /// Sepected Property 들이 전부 Null이 들어간 경우를 상정할 떄 예외가 없어야 한다.
+        /// </summary>
+        [TestMethod]
+        public void SyncWrapperProperty()
+        {
+            new DummyDbData().Create();
+            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+
+            ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
+
+            FieldWrapperViewModel<Maker, FieldWrapper<Maker>> mvm = new FieldWrapperViewModel<Maker, FieldWrapper<Maker>>(sub);
+            FieldWrapperViewModel<Currency, FieldWrapper<Currency>> cvm = new FieldWrapperViewModel<Currency, FieldWrapper<Currency>>(sub);
+            FieldWrapperViewModel<Measure, FieldWrapper<Measure>> msvm = new FieldWrapperViewModel<Measure, FieldWrapper<Measure>>(sub);
+
+            foreach(var item in new List<FieldWrapper<Maker>>(mvm.Items))
+            {
+                mvm.SelectedItem = item;
+                mvm.DeleteItemCommand.Execute(null);
+            }
+
+            foreach (var item in new List<FieldWrapper<Currency>>(cvm.Items))
+            {
+                cvm.SelectedItem = item;
+                cvm.DeleteItemCommand.Execute(null);
+            }
+
+            foreach (var item in new List<FieldWrapper<Measure>>(msvm.Items))
+            {
+                msvm.SelectedItem = item;
+                msvm.DeleteItemCommand.Execute(null);
+            }
+
+            foreach(var item in vm.Items)
+            {
+                Assert.IsNull(item.SelectedCurrency);
+                Assert.IsNull(item.SelectedMaker);
+                Assert.IsNull(item.SelectedMeasure);
+
+                Assert.AreEqual(0, item.AllCurrency.Count);
+                Assert.AreEqual(0, item.AllMaker.Count);
+                Assert.AreEqual(0, item.AllMeasure.Count);
+            }
         }
     }
 }

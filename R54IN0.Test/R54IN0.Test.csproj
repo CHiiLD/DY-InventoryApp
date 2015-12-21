@@ -63,6 +63,7 @@
     <Compile Include="Test\FieldWrapperDirectorTest.cs" />
     <Compile Include="Test\InventoryWrapperViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tool\RandomLinq.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">

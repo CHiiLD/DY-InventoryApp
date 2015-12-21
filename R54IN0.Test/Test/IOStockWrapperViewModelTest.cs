@@ -52,7 +52,7 @@ namespace R54IN0.Test
             StockType stockTypeAll = StockType.ALL;
             StockType stockTypeIn = StockType.IN;
             StockType stockTypeOut = StockType.OUT;
-            new DummyDbData().Create();
+            var dummy = new DummyDbData().Create();
             ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
             IOStockWrapperViewModel vm1 = new IOStockWrapperViewModel(stockTypeAll, sub);
             IOStockWrapperViewModel vm2 = new IOStockWrapperViewModel(stockTypeAll, sub);
@@ -64,6 +64,13 @@ namespace R54IN0.Test
 
             var ioStockw = CreateIOStockWrapper();
             ioStockw.StockType = stockTypeIn;
+            //var fwd = FieldWrapperDirector.GetInstance();
+            //ObservableCollection<SpecificationWrapper> specCollectoin = fwd.CreateCollection<Specification, SpecificationWrapper>();
+            //var ioStockw = new IOStockWrapper(new InOutStock());
+            //ioStockw.StockType = stockTypeIn;
+            //ObservableCollection<ItemWrapper> itemCollectoin = fwd.CreateCollection<Item, ItemWrapper>();
+            //ioStockw.Item = itemCollectoin.Where(x => x.UUID == dummy.TestItemUUID).Single();
+            //ioStockw.Specification = specCollectoin.Where(x => x.Field.ItemUUID == dummy.TestItemUUID).First();
 
             //추가 이전
             Assert.IsFalse(vm1.Items.Contains(ioStockw));

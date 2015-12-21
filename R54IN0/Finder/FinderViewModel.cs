@@ -18,20 +18,15 @@ namespace R54IN0
         DragCommand _dragCommand;
         DropCommand _dropCommand;
 
-        public FinderViewModel()
+        public FinderViewModel(TreeViewEx treeView)
         {
-            if (Nodes == null)
-                Nodes = new ObservableCollection<FinderNode>();
             SelectedNodes = new ObservableCollection<FinderNode>();
             _dragCommand = new DragCommand();
             _dropCommand = new DropCommand(this);
 
             RemoveDirectoryCommand = new CommandHandler(RemoveSelectedDirectories, CanRemoveSelectedDirectoies);
             AddNewDirectoryCommand = new CommandHandler(AddNewDirectories, CanAddNewDirectory);
-        }
 
-        public FinderViewModel(TreeViewEx treeView) : this()
-        {
             _finderDirector = FinderDirector.GetInstance();
             Nodes = _finderDirector.Collection;
             if (treeView != null)

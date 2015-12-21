@@ -68,9 +68,14 @@ namespace R54IN0
             }
         }
 
-        public int Count()
+        public int Count(StockType type = StockType.ALL)
         {
-            return _list.Count;
+            if (type == StockType.NONE)
+                throw new ArgumentException();
+            if (StockType.ALL == type)
+                return _list.Count;
+            else
+                return _list.Where(x => x.StockType == type).Count();
         }
     }
 }

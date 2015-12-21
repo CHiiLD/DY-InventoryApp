@@ -82,14 +82,14 @@
     <Compile Include="Finder\Node\FinderNodeExtension.cs" />
     <Compile Include="Finder\Node\NodeType.cs" />
     <Compile Include="Finder\FinderDirector.cs" />
-    <Compile Include="Structure\FieldWrapper\Wappers\AccountWrapper.cs" />
-    <Compile Include="Structure\FieldWrapper\Wappers\FieldWrapper.cs" />
-    <Compile Include="Structure\FieldWrapper\Wappers\IFieldWrapper.cs" />
-    <Compile Include="Structure\FieldWrapper\Wappers\ItemWrapper.cs" />
-    <Compile Include="Structure\FieldWrapper\Wappers\SpecificationWrapper.cs" />
-    <Compile Include="Structure\FieldWrapper\Wappers\InOutStockWrapper.cs" />
-    <Compile Include="Structure\FieldWrapper\Wappers\InventoryWrapper.cs" />
-    <Compile Include="Structure\FieldWrapper\Wappers\RecordWrapper.cs" />
+    <Compile Include="Structure\FieldWrapper\AccountWrapper.cs" />
+    <Compile Include="Structure\FieldWrapper\FieldWrapper.cs" />
+    <Compile Include="Structure\FieldWrapper\IFieldWrapper.cs" />
+    <Compile Include="Structure\FieldWrapper\ItemWrapper.cs" />
+    <Compile Include="Structure\FieldWrapper\SpecificationWrapper.cs" />
+    <Compile Include="Structure\FieldWrapper\InOutStockWrapper.cs" />
+    <Compile Include="Structure\FieldWrapper\InventoryWrapper.cs" />
+    <Compile Include="Structure\FieldWrapper\RecordWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">

@@ -67,7 +67,7 @@ namespace R54IN0
                 var ioStockw = item as IOStockWrapper;
                 if (_stockType.HasFlag(ioStockw.StockType))
                 {
-                    if (_director.Count() == Items.Count || Items.Any(x => x.Item.UUID == ioStockw.Item.UUID))
+                    if (_director.Count(_stockType) == Items.Count || Items.Any(x => x.Item.UUID == ioStockw.Item.UUID))
                         base.UpdateNewItem(item);
                 }
             }
