@@ -98,18 +98,23 @@ namespace R54IN0
             {
                 return _record;
             }
+            set
+            {
+                _record = value;
+                LoadProperies(_record);
+                OnPropertyChanged("");
+            }
         }
 
         IRecord IRecordWrapper.Record
         {
             get
             {
-                return _record;
+                return Record;
             }
             set
             {
-                _record = value as RecordT;
-                LoadProperies(_record);
+                Record = value as RecordT;
             }
         }
 

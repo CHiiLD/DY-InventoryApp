@@ -58,7 +58,7 @@ namespace R54IN0.Test
         {
             new DummyDbData().Create();
             ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            FinderViewModel fvm = new FinderViewModel(null);
+            MultiSelectFinderViewModel fvm = new MultiSelectFinderViewModel(null);
             InventoryWrapperViewModel iwvm = new InventoryWrapperViewModel(sub);
             fvm.SelectItemsChanged += iwvm.OnFinderViewSelectItemChanged;
 
@@ -67,7 +67,7 @@ namespace R54IN0.Test
             FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).FirstOrDefault();
             Assert.IsNotNull(node);
             var list = new List<FinderNode>() { node };
-            fvm.OnSelectNodes(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
+            fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
             Assert.AreEqual(1, fvm.SelectedNodes.Count);
 
             Assert.IsTrue(iwvm.Items.All(x=>x.Item.UUID == node.ItemUUID));
@@ -76,7 +76,7 @@ namespace R54IN0.Test
             FinderNode node2 = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).LastOrDefault();
             Assert.AreNotEqual(node, node2);
             var list2 = new List<FinderNode>() { node, node2 };
-            fvm.OnSelectNodes(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list2, list));
+            fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list2, list));
             Assert.AreEqual(2, fvm.SelectedNodes.Count);
 
             Assert.IsTrue(iwvm.Items.All(x => x.Item.UUID == node.ItemUUID || x.Item.UUID == node2.ItemUUID));

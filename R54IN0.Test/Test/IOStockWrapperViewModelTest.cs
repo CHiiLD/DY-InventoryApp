@@ -109,7 +109,7 @@ namespace R54IN0.Test
             StockType stockTypeAll = StockType.ALL;
 
             ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            FinderViewModel fvm = new FinderViewModel(null);
+            MultiSelectFinderViewModel fvm = new MultiSelectFinderViewModel(null);
             IOStockWrapperViewModel vm1 = new IOStockWrapperViewModel(stockTypeAll, sub);
             var items = vm1.Items;
 
@@ -120,7 +120,7 @@ namespace R54IN0.Test
             Assert.AreEqual(0, fvm.SelectedNodes.Count);
             FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemUUID == itemw.UUID)).Single();
             var list = new List<FinderNode>() { node };
-            fvm.OnSelectNodes(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
+            fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
 
             Assert.AreEqual(1, fvm.SelectedNodes.Count);
             Assert.IsTrue(vm1.Items.All(x => x.Item.UUID == node.ItemUUID));
@@ -129,7 +129,7 @@ namespace R54IN0.Test
 
             FinderNode node2 = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemUUID == itemw.UUID)).Single();
             var list2 = new List<FinderNode>() { node, node2 };
-            fvm.OnSelectNodes(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list2, list));
+            fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list2, list));
 
             Assert.AreEqual(2, fvm.SelectedNodes.Count);
             Assert.IsTrue(vm1.Items.All(x => x.Item.UUID == node.ItemUUID || x.Item.UUID == node2.ItemUUID));

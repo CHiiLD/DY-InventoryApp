@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,51 +59,63 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\AccountFieldEditor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\MakerFieldEditor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\WarehouseFieldEditor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\EmployeeFieldEditor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\CurrencyFieldEditor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\MeasureFieldEditor.xaml">
+    <Page Include="InventoryEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\ItemFieldEditor.xaml">
+    <Page Include="IOStockEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\InOutStockControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\InOutStockDataGrid.xaml">
+    <Page Include="TabControls\AccountDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\InventoryControl.xaml">
+    <Page Include="TabControls\ItemManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\InventoryDataGrid.xaml">
+    <Page Include="TabControls\MakerDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TabControls\WarehouseDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TabControls\EmployeeDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TabControls\CurrencyDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TabControls\MeasureDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Finder.xaml">
+    <Page Include="TabControls\ItemDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabControls\InOutStockManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabControls\InOutStockDataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TabControls\InventoryManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabControls\InventoryDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabControls\FinderControl\Finder.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -114,40 +127,49 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\AccountFieldEditor.xaml.cs">
-      <DependentUpon>AccountFieldEditor.xaml</DependentUpon>
+    <Compile Include="InventoryEditorWindow.xaml.cs">
+      <DependentUpon>InventoryEditorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MakerFieldEditor.xaml.cs">
-      <DependentUpon>MakerFieldEditor.xaml</DependentUpon>
+    <Compile Include="IOStockEditorWindow.xaml.cs">
+      <DependentUpon>IOStockEditorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\WarehouseFieldEditor.xaml.cs">
-      <DependentUpon>WarehouseFieldEditor.xaml</DependentUpon>
+    <Compile Include="TabControls\AccountDataGrid.xaml.cs">
+      <DependentUpon>AccountDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\EmployeeFieldEditor.xaml.cs">
-      <DependentUpon>EmployeeFieldEditor.xaml</DependentUpon>
+    <Compile Include="TabControls\ItemManager.xaml.cs">
+      <DependentUpon>ItemManager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CurrencyFieldEditor.xaml.cs">
-      <DependentUpon>CurrencyFieldEditor.xaml</DependentUpon>
+    <Compile Include="TabControls\MakerDataGrid.xaml.cs">
+      <DependentUpon>MakerDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MeasureFieldEditor.xaml.cs">
-      <DependentUpon>MeasureFieldEditor.xaml</DependentUpon>
+    <Compile Include="TabControls\WarehouseDataGrid.xaml.cs">
+      <DependentUpon>WarehouseDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ItemFieldEditor.xaml.cs">
-      <DependentUpon>ItemFieldEditor.xaml</DependentUpon>
+    <Compile Include="TabControls\EmployeeDataGrid.xaml.cs">
+      <DependentUpon>EmployeeDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InOutStockControl.xaml.cs">
-      <DependentUpon>InOutStockControl.xaml</DependentUpon>
+    <Compile Include="TabControls\CurrencyDataGrid.xaml.cs">
+      <DependentUpon>CurrencyDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InOutStockDataGrid.xaml.cs">
+    <Compile Include="TabControls\MeasureDataGrid.xaml.cs">
+      <DependentUpon>MeasureDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\ItemDataGrid.xaml.cs">
+      <DependentUpon>ItemDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\InOutStockManager.xaml.cs">
+      <DependentUpon>InOutStockManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabControls\InOutStockDataGrid.xaml.cs">
       <DependentUpon>InOutStockDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InventoryControl.xaml.cs">
-      <DependentUpon>InventoryControl.xaml</DependentUpon>
+    <Compile Include="TabControls\InventoryManager.xaml.cs">
+      <DependentUpon>InventoryManager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InventoryDataGrid.xaml.cs">
+    <Compile Include="TabControls\InventoryDataGrid.xaml.cs">
       <DependentUpon>InventoryDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Finder.xaml.cs">
+    <Compile Include="TabControls\FinderControl\Finder.xaml.cs">
       <DependentUpon>Finder.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">

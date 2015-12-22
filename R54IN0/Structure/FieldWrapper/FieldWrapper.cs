@@ -27,11 +27,11 @@ namespace R54IN0
         {
             get
             {
-                return _field;
+                return Field;
             }
             set
             {
-                _field = (T)value;
+                Field = (T)value;
             }
         }
 
@@ -44,6 +44,7 @@ namespace R54IN0
             set
             {
                 _field = value;
+                OnPropertyChanged("");
             }
         }
 

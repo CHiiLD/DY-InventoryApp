@@ -33,7 +33,7 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void WhenSelectitemLoadNewSpecCollection()
+        public void WhenSelectitemThenLoadNewSpecCollection()
         {
             new DummyDbData().Create();
             ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
@@ -144,7 +144,7 @@ namespace R54IN0.Test
             FieldWrapperViewModel<Currency, FieldWrapper<Currency>> cvm = new FieldWrapperViewModel<Currency, FieldWrapper<Currency>>(sub);
             FieldWrapperViewModel<Measure, FieldWrapper<Measure>> msvm = new FieldWrapperViewModel<Measure, FieldWrapper<Measure>>(sub);
 
-            foreach(var item in new List<FieldWrapper<Maker>>(mvm.Items))
+            foreach (var item in new List<FieldWrapper<Maker>>(mvm.Items))
             {
                 mvm.SelectedItem = item;
                 mvm.DeleteItemCommand.Execute(null);
@@ -162,7 +162,7 @@ namespace R54IN0.Test
                 msvm.DeleteItemCommand.Execute(null);
             }
 
-            foreach(var item in vm.Items)
+            foreach (var item in vm.Items)
             {
                 Assert.IsNull(item.SelectedCurrency);
                 Assert.IsNull(item.SelectedMaker);
@@ -172,6 +172,53 @@ namespace R54IN0.Test
                 Assert.AreEqual(0, item.AllMaker.Count);
                 Assert.AreEqual(0, item.AllMeasure.Count);
             }
+        }
+
+        /// <summary>
+        /// Finder에서 아이템노드를 하나 선택하였을 경우 
+        /// 품목과 규격 컬렉션이 업데이트 되어야 한다.
+        /// </summary>
+        [TestMethod]
+        public void WhenClickFinderItemThenUpdateSpecifications()
+        {
+            new DummyDbData().Create();
+            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            MultiSelectFinderViewModel fvm = new MultiSelectFinderViewModel(null);
+            ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
+            fvm.SelectItemsChanged += vm.OnFinderViewSelectItemChanged;
+            //finder 에서 아이템 선택
+            fvm.SelectedNodes.Clear();
+            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).First();
+            fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(
+                new List<FinderNode>() { node }, new List<FinderNode>()));
+
+            //아이템과 규격 컬렉션의 동기화 확인
+            Assert.IsTrue(vm.Items.All(x => x.UUID == node.ItemUUID));
+            Assert.IsTrue(vm.Specifications.All(x => x.Field.ItemUUID == node.ItemUUID));
+        }
+
+        /// <summary>
+        /// 아이템을 새로 추가한 경우 해당 아이템에 finder포커스가 가고 
+        /// 새로운 품목 아이템이 추가되며 새로운 규격이 추가되어야 한다.
+        /// </summary>
+        [TestMethod]
+        public void ClickNewAddItemButtonThenWork()
+        {
+            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            MultiSelectFinderViewModel fvm = new MultiSelectFinderViewModel(null);
+            ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
+            fvm.SelectItemsChanged += vm.OnFinderViewSelectItemChanged;
+
+            fvm.OnNodeSelected(null, 
+                new System.Windows.Controls.SelectionChangedCancelEventArgs(new List<FinderNode>() { fvm.Nodes.First() }, new List<FinderNode>()));
+
+            vm.SelectedItem = null;
+            vm.SelectedSpecification = null;
+
+            vm.AddNewItemCommand.Execute(null);
+
+            var node = fvm.SelectedNodes.Single();
+            Assert.AreEqual(node.ItemUUID, vm.SelectedItem.UUID);
         }
     }
 }

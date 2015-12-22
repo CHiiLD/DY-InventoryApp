@@ -54,8 +54,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Test\FieldWrapperViewModelTest.cs" />
+    <Compile Include="Test\FinderDirectorTest.cs" />
     <Compile Include="Test\InventoryWrapperDirectorTest.cs" />
-    <Compile Include="Test\InventoryWrapperViewModelHelperTest.cs" />
+    <Compile Include="Test\InventoryWrapperEditorViewModelTest.cs" />
     <Compile Include="Test\IOStockWrapperDirectorTest.cs" />
     <Compile Include="Test\IOStockWrapperViewModelTest.cs" />
     <Compile Include="Test\ItemWrapperViewModelTest.cs" />

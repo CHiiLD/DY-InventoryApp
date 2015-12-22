@@ -44,19 +44,23 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MVVM\IFinderViewModelEvent.cs" />
-    <Compile Include="MVVM\InventoryWrapperDirector.cs" />
-    <Compile Include="MVVM\FieldWrapperViewModel.cs" />
-    <Compile Include="MVVM\InventoryWrapperViewModel.cs" />
-    <Compile Include="MVVM\InventoryWrapperViewModelHelper.cs" />
-    <Compile Include="MVVM\IOStockWrapperDirector.cs" />
-    <Compile Include="MVVM\IOStockWrapperViewModel.cs" />
-    <Compile Include="MVVM\ItemWrapperViewModel.cs" />
+    <Compile Include="Finder\FinderViewModel.cs" />
+    <Compile Include="ViewModel\StockEditor\IInventoryInfoProperties.cs" />
+    <Compile Include="ViewModel\StockEditor\IIOStockInfoProperties.cs" />
+    <Compile Include="ViewModel\StockEditor\InventoryWrapperProperties.cs" />
+    <Compile Include="ViewModel\StockEditor\IOStockWrapperProperties.cs" />
+    <Compile Include="ViewModel\IFinderViewModelEvent.cs" />
+    <Compile Include="ViewModel\InventoryWrapperDirector.cs" />
+    <Compile Include="ViewModel\FieldWrapperViewModel.cs" />
+    <Compile Include="ViewModel\InventoryWrapperViewModel.cs" />
+    <Compile Include="ViewModel\StockEditor\InventoryWrapperEditorViewModel.cs" />
+    <Compile Include="ViewModel\IOStockWrapperDirector.cs" />
+    <Compile Include="ViewModel\IOStockWrapperViewModel.cs" />
+    <Compile Include="ViewModel\ItemWrapperViewModel.cs" />
     <Compile Include="Structure\Fields\Maker.cs" />
     <Compile Include="Structure\Fields\Currency.cs" />
     <Compile Include="Structure\Fields\Employee.cs" />
     <Compile Include="Structure\Fields\IField.cs" />
-    <Compile Include="MVVM\RecordWrapperViewModelHelper.cs" />
     <Compile Include="DatabaseDirector.cs" />
     <Compile Include="Structure\Fields\IRecord.cs" />
     <Compile Include="Structure\Fields\IUUID.cs" />
@@ -70,14 +74,15 @@
     <Compile Include="Structure\Fields\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommandHandler.cs" />
-    <Compile Include="MVVM\FieldWrapperDirector.cs" />
-    <Compile Include="MVVM\FieldWrapperViewModelObserver.cs" />
-    <Compile Include="MVVM\IViewModelObserver.cs" />
-    <Compile Include="MVVM\VIewModelObserver.cs" />
-    <Compile Include="MVVM\ViewModelObserverSubject.cs" />
+    <Compile Include="ViewModel\FieldWrapperDirector.cs" />
+    <Compile Include="ViewModel\FieldWrapperViewModelObserver.cs" />
+    <Compile Include="ViewModel\IViewModelObserver.cs" />
+    <Compile Include="ViewModel\SpecificationWrapperViewModel.cs" />
+    <Compile Include="ViewModel\VIewModelObserver.cs" />
+    <Compile Include="ViewModel\ViewModelObserverSubject.cs" />
     <Compile Include="Finder\Command\DragCommand.cs" />
     <Compile Include="Finder\Command\DropCommand.cs" />
-    <Compile Include="Finder\FinderViewModel.cs" />
+    <Compile Include="Finder\MultiSelectFinderViewModel.cs" />
     <Compile Include="Finder\Node\FinderNode.cs" />
     <Compile Include="Finder\Node\FinderNodeExtension.cs" />
     <Compile Include="Finder\Node\NodeType.cs" />
@@ -87,7 +92,7 @@
     <Compile Include="Structure\FieldWrapper\IFieldWrapper.cs" />
     <Compile Include="Structure\FieldWrapper\ItemWrapper.cs" />
     <Compile Include="Structure\FieldWrapper\SpecificationWrapper.cs" />
-    <Compile Include="Structure\FieldWrapper\InOutStockWrapper.cs" />
+    <Compile Include="Structure\FieldWrapper\IOStockWrapper.cs" />
     <Compile Include="Structure\FieldWrapper\InventoryWrapper.cs" />
     <Compile Include="Structure\FieldWrapper\RecordWrapper.cs" />
   </ItemGroup>

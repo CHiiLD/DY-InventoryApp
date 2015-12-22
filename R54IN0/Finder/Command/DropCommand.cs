@@ -14,29 +14,13 @@ namespace R54IN0
 {
     public class DropCommand : ICommand
     {
-        private FinderViewModel _viewModel;
+        private MultiSelectFinderViewModel _viewModel;
 
         public event EventHandler CanExecuteChanged;
 
-        public DropCommand(FinderViewModel viewModel)
+        public DropCommand(MultiSelectFinderViewModel viewModel)
         {
             _viewModel = viewModel;
-        }
-
-        private void AddNode(FinderNode node, int index, FinderNode newNode)
-        {
-            ObservableCollection<FinderNode> children = (node == null) ? _viewModel.Nodes : node.Nodes;
-            if (index == -1)
-            {
-                children.Add(newNode); //drop
-            }
-            else
-            {
-                if (0 <= index && index < children.Count())
-                    children.Insert(index, newNode);
-                else
-                    children.Add(newNode); //drop
-            }
         }
 
         public bool CanExecute(object args)
@@ -94,12 +78,27 @@ namespace R54IN0
                 {
                     foreach (var selectedNode in dragContent.Items.Reverse())
                     {
-                        FinderNode oldNode = (FinderNode)selectedNode;
-                        FinderNode newNode = new FinderNode(oldNode);
-                        _viewModel.Director.Remove(oldNode);
-                        AddNode(destNode, index, newNode);
+                        FinderNode node = (FinderNode)selectedNode;
+                        _viewModel.Director.Remove(node);
+                        AddNode(destNode, index, node);
                     }
                 }
+            }
+        }
+
+        private void AddNode(FinderNode node, int index, FinderNode newNode)
+        {
+            ObservableCollection<FinderNode> children = (node == null) ? _viewModel.Nodes : node.Nodes;
+            if (index == -1)
+            {
+                children.Add(newNode);
+            }
+            else
+            {
+                if (0 <= index && index < children.Count())
+                    children.Insert(index, newNode);
+                else
+                    children.Add(newNode);
             }
         }
     }

@@ -11,7 +11,6 @@
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1">
 
-
     <Window.Resources>
         <Style x:Key="LargeTileStyle" TargetType="mah:Tile">
             <Setter Property="Width" Value="300" />
@@ -82,37 +81,37 @@
         <Grid Grid.Row="2">
             <TabControl x:Name="TabCenter">
                 <TabItem Header="재고" x:Name="InventoryTab">
-                    <local:InventoryControl/>
+                    <local:InventoryManager/>
                 </TabItem>
                 <TabItem Header="입고" x:Name="InStockTab">
-                    <local:InOutStockControl StockType="IN"/>
+                    <local:InOutStockManager StockType="IN"/>
                 </TabItem>
                 <TabItem Header="출고" x:Name="OutStockTab">
-                    <local:InOutStockControl StockType="OUT"/>
+                    <local:InOutStockManager StockType="OUT"/>
                 </TabItem>
                 <TabItem Header="입출고" x:Name="InOutStockTab">
-                    <local:InOutStockControl StockType="ALL"/>
+                    <local:InOutStockManager StockType="ALL"/>
                 </TabItem>
                 <TabItem Header="품목" x:Name="ItemTab">
-                    <local:ItemFieldEditor />
+                    <local:ItemManager />
                 </TabItem>
                 <TabItem Header="거래처" x:Name="AccountTab">
-                    <local:AccountFieldEditor />
+                    <local:AccountDataGrid />
                 </TabItem>
                 <TabItem Header="제조사" x:Name="MakerTab">
-                    <local:MakerFieldEditor />
+                    <local:MakerDataGrid />
                 </TabItem>
                 <TabItem Header="단위" x:Name="MeasureTab">
-                    <local:MeasureFieldEditor />
+                    <local:MeasureDataGrid />
                 </TabItem>
                 <TabItem Header="화폐" x:Name="Currency">
-                    <local:CurrencyFieldEditor />
+                    <local:CurrencyDataGrid />
                 </TabItem>
                 <TabItem Header="직원" x:Name="EmployeeTab">
-                    <local:EmployeeFieldEditor />
+                    <local:EmployeeDataGrid />
                 </TabItem>
                 <TabItem Header="창고" x:Name="WarehouseTab">
-                    <local:WarehouseFieldEditor />
+                    <local:WarehouseDataGrid />
                 </TabItem>
             </TabControl>
         </Grid>

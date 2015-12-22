@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-Y:\Github\R54IN0\R54IN0.WPF\obj\Debug\
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\
 R54IN0.WPF
 none
 false
 DEBUG;TRACE
-Y:\Github\R54IN0\R54IN0.WPF\App.xaml
-13-1202956473
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\App.xaml
+16-491216931
 
-21-922128256
-21-1746167996
-Controls\AccountFieldEditor.xaml;Controls\MakerFieldEditor.xaml;Controls\WarehouseFieldEditor.xaml;Controls\EmployeeFieldEditor.xaml;Controls\CurrencyFieldEditor.xaml;Controls\MeasureFieldEditor.xaml;Controls\ItemFieldEditor.xaml;Controls\InOutStockControl.xaml;Controls\InOutStockDataGrid.xaml;Controls\InventoryControl.xaml;Controls\InventoryDataGrid.xaml;Controls\Finder.xaml;MainWindow.xaml;
+24-916324603
+21-1935803166
+InventoryEditorWindow.xaml;IOStockEditorWindow.xaml;TabControls\AccountDataGrid.xaml;TabControls\ItemManager.xaml;TabControls\MakerDataGrid.xaml;TabControls\WarehouseDataGrid.xaml;TabControls\EmployeeDataGrid.xaml;TabControls\CurrencyDataGrid.xaml;TabControls\MeasureDataGrid.xaml;TabControls\ItemDataGrid.xaml;TabControls\InOutStockManager.xaml;TabControls\InOutStockDataGrid.xaml;TabControls\InventoryManager.xaml;TabControls\InventoryDataGrid.xaml;TabControls\FinderControl\Finder.xaml;MainWindow.xaml;
 
 True
 

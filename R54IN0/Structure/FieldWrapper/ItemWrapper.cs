@@ -14,10 +14,6 @@ namespace R54IN0
         FieldWrapper<Currency> _currency;
         FieldWrapper<Maker> _maker;
 
-        ObservableCollection<FieldWrapper<Measure>> _measures;
-        ObservableCollection<FieldWrapper<Currency>> _currencies;
-        ObservableCollection<FieldWrapper<Maker>> _makers;
-
         ViewModelObserverSubject _subject;
 
         public ItemWrapper() : base()
@@ -110,45 +106,39 @@ namespace R54IN0
 
         public ObservableCollection<FieldWrapper<Maker>> AllMaker
         {
-            get
-            {
-                return _makers;
-            }
+            get;
+            private set;
         }
 
         public ObservableCollection<FieldWrapper<Measure>> AllMeasure
         {
-            get
-            {
-                return _measures;
-            }
+            get;
+            private set;
         }
 
         public ObservableCollection<FieldWrapper<Currency>> AllCurrency
         {
-            get
-            {
-                return _currencies;
-            }
+            get;
+            private set;
         }
 
         void LoadEnumerableProperies()
         {
             var fwd = FieldWrapperDirector.GetInstance();
-            _makers = new ObservableCollection<FieldWrapper<Maker>>(
+            AllMaker = new ObservableCollection<FieldWrapper<Maker>>(
                 fwd.CreateCollection<Maker, FieldWrapper<Maker>>().Where(x => !x.IsDeleted));
-            _measures = new ObservableCollection<FieldWrapper<Measure>>(
+            AllMeasure = new ObservableCollection<FieldWrapper<Measure>>(
                 fwd.CreateCollection<Measure, FieldWrapper<Measure>>().Where(x => !x.IsDeleted));
-            _currencies = new ObservableCollection<FieldWrapper<Currency>>(
+            AllCurrency = new ObservableCollection<FieldWrapper<Currency>>(
                 fwd.CreateCollection<Currency, FieldWrapper<Currency>>().Where(x => !x.IsDeleted));
         }
 
         void LoadProperties(Item item)
         {
             var fwd = FieldWrapperDirector.GetInstance();
-            _measure = _measures.Where(x => x.UUID == Field.MeasureUUID).SingleOrDefault();
-            _currency = _currencies.Where(x => x.UUID == Field.CurrencyUUID).SingleOrDefault();
-            _maker = _makers.Where(x => x.UUID == Field.MakerUUID).SingleOrDefault();
+            _measure = AllMeasure.Where(x => x.UUID == item.MeasureUUID).SingleOrDefault();
+            _currency = AllCurrency.Where(x => x.UUID == item.CurrencyUUID).SingleOrDefault();
+            _maker = AllMaker.Where(x => x.UUID == item.MakerUUID).SingleOrDefault();
         }
 
         public void UpdateNewItem(object item)
@@ -156,11 +146,11 @@ namespace R54IN0
             Type type = item.GetType();
 
             if (type == typeof(FieldWrapper<Measure>))
-                _measures.Add(item as FieldWrapper<Measure>);
+                AllMeasure.Add(item as FieldWrapper<Measure>);
             else if (type == typeof(FieldWrapper<Currency>))
-                _currencies.Add(item as FieldWrapper<Currency>);
+                AllCurrency.Add(item as FieldWrapper<Currency>);
             else if (type == typeof(FieldWrapper<Maker>))
-                _makers.Add(item as FieldWrapper<Maker>);
+                AllMaker.Add(item as FieldWrapper<Maker>);
         }
 
         public void UpdateDelItem(object item)
@@ -169,19 +159,19 @@ namespace R54IN0
 
             if (type == typeof(FieldWrapper<Measure>))
             {
-                _measures.Remove(item as FieldWrapper<Measure>);
+                AllMeasure.Remove(item as FieldWrapper<Measure>);
                 if (SelectedMeasure == item)
                     SelectedMeasure = null;
             }
             else if (type == typeof(FieldWrapper<Currency>))
             {
-                _currencies.Remove(item as FieldWrapper<Currency>);
+                AllCurrency.Remove(item as FieldWrapper<Currency>);
                 if (SelectedCurrency == item)
                     SelectedCurrency = null;
             }
             else if (type == typeof(FieldWrapper<Maker>))
             {
-                _makers.Remove(item as FieldWrapper<Maker>);
+                AllMaker.Remove(item as FieldWrapper<Maker>);
                 if (SelectedMaker == item)
                     SelectedMaker = null;
             }
