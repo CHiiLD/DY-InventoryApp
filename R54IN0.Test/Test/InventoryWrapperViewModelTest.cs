@@ -29,7 +29,7 @@ namespace R54IN0.Test
             InventoryWrapperViewModel vm2 = new InventoryWrapperViewModel(sub);
 
             var itemws = FieldWrapperDirector.GetInstance().CreateCollection<Item, ItemWrapper>();
-            var itemw = itemws.Where(x => x.UUID == dummy.TestItemUUID).Single();
+            var itemw = itemws.Where(x => x.UUID == dummy.UnregisterdTestItemUUID).Single();
             var specws = FieldWrapperDirector.GetInstance().CreateCollection<Specification, SpecificationWrapper>();
 
             Inventory inven = new Inventory();

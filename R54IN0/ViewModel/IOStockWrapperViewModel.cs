@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace R54IN0
 {
@@ -21,6 +22,14 @@ namespace R54IN0
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public StockType StockType
+        {
+            get
+            {
+                return _stockType;
+            }
+        }
 
         public override ObservableCollection<IOStockWrapper> Items
         {
@@ -92,5 +101,7 @@ namespace R54IN0
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
+
+      
     }
 }

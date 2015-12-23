@@ -115,7 +115,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TabControls\FinderControl\Finder.xaml">
+    <Page Include="FinderControl\Finder.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -169,7 +169,7 @@
     <Compile Include="TabControls\InventoryDataGrid.xaml.cs">
       <DependentUpon>InventoryDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TabControls\FinderControl\Finder.xaml.cs">
+    <Compile Include="FinderControl\Finder.xaml.cs">
       <DependentUpon>Finder.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">

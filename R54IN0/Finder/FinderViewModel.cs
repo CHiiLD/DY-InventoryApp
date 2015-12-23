@@ -19,13 +19,29 @@ namespace R54IN0
             Nodes = root;
         }
 
-        public virtual ObservableCollection<FinderNode> Nodes { get; private set; }
-        public virtual ObservableCollection<FinderNode> SelectedNodes { get; set; }
+        public virtual ObservableCollection<FinderNode> Nodes
+        {
+            get;
+        }
+
+        ObservableCollection<FinderNode> _selectedNodes;
+
+        public virtual ObservableCollection<FinderNode> SelectedNodes
+        {
+            get
+            {
+                return _selectedNodes;
+            }
+            set
+            {
+                _selectedNodes = value;
+                OnPropertyChanged("SelectedNodes");
+            }
+        }
 
         public EventHandler SelectItemsChanged { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         /// <summary>
         /// TreeViewEx의 OnSelecting 이벤트와 연결
         /// </summary>
@@ -52,6 +68,12 @@ namespace R54IN0
 
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs("SelectedNodes"));
+        }
+
+        protected void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
     }
 }

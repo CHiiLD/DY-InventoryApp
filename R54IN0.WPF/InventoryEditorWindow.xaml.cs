@@ -23,7 +23,7 @@ namespace R54IN0.WPF
     {
         InventoryWrapperEditorViewModel _viewModel;
 
-        public InventoryWrapperEditorViewModel Helper
+        public InventoryWrapperEditorViewModel Editor
         {
             get
             {

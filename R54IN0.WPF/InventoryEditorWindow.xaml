@@ -99,8 +99,8 @@
                         <ColumnDefinition Width="13*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="출고단가"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="{Binding SalesUnitPrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}" />
+                    <TextBlock Text="입고총단가"  Style="{StaticResource TitleTextBlockStyle}" />
+                    <TextBlock Text="{Binding TotalPurchasePrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
                     <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
@@ -119,8 +119,8 @@
                         <ColumnDefinition Width="13*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="입고총단가"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="{Binding TotalPurchasePrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
+                    <TextBlock Text="출고단가"  Style="{StaticResource TitleTextBlockStyle}" />
+                    <TextBlock Text="{Binding SalesUnitPrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}" />
                     <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 

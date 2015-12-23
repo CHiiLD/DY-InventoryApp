@@ -30,7 +30,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="단위" Binding="{Binding Measure.Name}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="입고단가" Binding="{Binding SalesUnitPrice, StringFormat='{}{0:#,#.}'}" 
+                <DataGridTextColumn Header="입고단가" Binding="{Binding PurchaseUnitPrice, StringFormat='{}{0:#,#.}'}" 
                   IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
@@ -38,21 +38,21 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="입고총금액" Binding="{Binding SelesPriceAmount, StringFormat='{}{0:#,#.}'}" IsReadOnly="True">
+                <DataGridTextColumn Header="입고총금액" Binding="{Binding PurchasePriceAmount, StringFormat='{}{0:#,#.}'}" IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Right"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="출고단가" Binding="{Binding PurchaseUnitPrice, StringFormat='{}{0:#,#.}'}" IsReadOnly="True">
+                <DataGridTextColumn Header="출고단가" Binding="{Binding SalesUnitPrice, StringFormat='{}{0:#,#.}'}" IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Right"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="출고총금액" Binding="{Binding PurchasePriceAmount, StringFormat='{}{0:#,#.}'}" IsReadOnly="True">
+                <DataGridTextColumn Header="출고총금액" Binding="{Binding SelesPriceAmount, StringFormat='{}{0:#,#.}'}" IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Right"/>

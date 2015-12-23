@@ -48,6 +48,7 @@
     <Compile Include="ViewModel\StockEditor\IInventoryInfoProperties.cs" />
     <Compile Include="ViewModel\StockEditor\IIOStockInfoProperties.cs" />
     <Compile Include="ViewModel\StockEditor\InventoryWrapperProperties.cs" />
+    <Compile Include="ViewModel\StockEditor\IOStockWrapperEditorViewModel.cs" />
     <Compile Include="ViewModel\StockEditor\IOStockWrapperProperties.cs" />
     <Compile Include="ViewModel\IFinderViewModelEvent.cs" />
     <Compile Include="ViewModel\InventoryWrapperDirector.cs" />

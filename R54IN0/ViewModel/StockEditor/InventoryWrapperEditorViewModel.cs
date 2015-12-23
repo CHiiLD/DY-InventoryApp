@@ -34,17 +34,20 @@ namespace R54IN0
             WarehouseList = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().Where(x => !x.IsDeleted);
         }
 
-        public InventoryWrapperEditorViewModel(InventoryWrapperViewModel viewModel, InventoryWrapper target) : base(target)
+        public InventoryWrapperEditorViewModel(InventoryWrapperViewModel viewModel, InventoryWrapper inventoryWrapper) : base(inventoryWrapper)
         {
+            if (inventoryWrapper == null)
+                throw new ArgumentNullException();
+
             _viewModel = viewModel;
-            _target = target;
+            _target = inventoryWrapper;
 
-            ItemList = new ItemWrapper[] { target.Item };
-            SpecificationList = new SpecificationWrapper[] { target.Specification };
+            ItemList = new ItemWrapper[] { inventoryWrapper.Item };
+            SpecificationList = new SpecificationWrapper[] { inventoryWrapper.Specification };
 
-            Item = target.Item;
-            Specification = target.Specification;
-            Warehouse = target.Warehouse;
+            Item = inventoryWrapper.Item;
+            Specification = inventoryWrapper.Specification;
+            Warehouse = inventoryWrapper.Warehouse;
             var fwd = FieldWrapperDirector.GetInstance();
             WarehouseList = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().Where(x => !x.IsDeleted);
         }
@@ -95,7 +98,7 @@ namespace R54IN0
             }
         }
 
-        public void Update()
+        public InventoryWrapper Update()
         {
             if (Item == null || Specification == null)
                 throw new Exception();
@@ -107,11 +110,14 @@ namespace R54IN0
                 inventory.Save<Inventory>(); //새로 저장
 
                 _target.Record = inventory; //inventory를 변경해버림
+                return _target;
             }
             else
             {
                 //ADD 인 경우 그냥 추가 
-                _viewModel.Add(recordWrapper as InventoryWrapper);
+                var target = recordWrapper as InventoryWrapper;
+                _viewModel.Add(target);
+                return target;
             }
         }
     }

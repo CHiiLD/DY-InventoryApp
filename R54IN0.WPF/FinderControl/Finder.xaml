@@ -20,6 +20,27 @@
                     IsInEditMode="{Binding IsInEditMode, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </HierarchicalDataTemplate>
+
+        <Style TargetType="tree:TreeViewExItem">
+            <Setter Property="BorderBrushFocusedSelected" Value="{StaticResource AccentColorBrush}"/>
+            <Setter Property="BackgroundFocusedSelected" Value="{StaticResource AccentColorBrush}"/>
+
+            <Setter Property="BorderBrushSelected" Value="{StaticResource AccentColorBrush}"/>
+            <Setter Property="BackgroundSelected" Value="{StaticResource AccentColorBrush}"/>
+
+            <Setter Property="BorderBrushSelectedHovered" Value="{StaticResource AccentColorBrush3}"/>
+            <Setter Property="BackgroundSelectedHovered" Value="{StaticResource AccentColorBrush3}"/>
+
+            <Setter Property="BorderBrushHovered" Value="{StaticResource AccentColorBrush3}"/>
+            <Setter Property="BackgroundHovered" Value="{StaticResource AccentColorBrush3}"/>
+
+            <Setter Property="BorderBrushFocused" Value="{StaticResource AccentColorBrush3}"/>
+            <Setter Property="BackgroundFocused" Value="{StaticResource AccentColorBrush3}"/>
+
+            <Setter Property="BorderBrushInactive" Value="{StaticResource AccentColorBrush3}"/>
+            <Setter Property="BackgroundInactive" Value="{StaticResource AccentColorBrush3}"/>
+        </Style>
+
     </UserControl.Resources>
 
     <Grid>
@@ -37,6 +58,7 @@
             DragCommand="{Binding DragCommand}"
             DropCommand="{Binding DropCommand}"
             SelectedItems="{Binding SelectedNodes}"
-            Grid.Row="1" BorderBrush="{x:Null}"/>
+            Grid.Row="1" BorderBrush="{x:Null}">
+        </tree:TreeViewEx>
     </Grid>
 </UserControl>

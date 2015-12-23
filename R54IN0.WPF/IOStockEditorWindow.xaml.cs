@@ -21,9 +21,43 @@ namespace R54IN0.WPF
     /// </summary>
     public partial class IOStockEditorWindow : MetroWindow
     {
+        IOStockWrapperEditorViewModel _viewModel;
+
+        public FinderViewModel Finder
+        {
+            get; set;
+        }
+
+        public IOStockWrapperEditorViewModel Editor
+        {
+            get
+            {
+                return _viewModel;
+            }
+            set
+            {
+                _viewModel = value;
+                Finder = _viewModel.CreateFinderViewModel(FinderTreeView);
+                FinderTreeView.GetBindingExpression(TreeViewEx.ItemsSourceProperty).UpdateTarget();
+                FinderTreeView.GetBindingExpression(TreeViewEx.SelectedItemsProperty).UpdateTarget();
+                DataContext = _viewModel;
+            }
+        }
+
         public IOStockEditorWindow()
         {
             InitializeComponent();
+        }
+
+        void ItemAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Update();
+            Close();
+        }
+
+        void ItemRemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

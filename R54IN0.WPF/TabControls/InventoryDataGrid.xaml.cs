@@ -38,7 +38,7 @@ namespace R54IN0.WPF
         void OpenEditor(InventoryWrapperEditorViewModel helper)
         {
             InventoryEditorWindow irw = new InventoryEditorWindow();
-            irw.Helper = helper;
+            irw.Editor = helper;
             irw.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
             irw.ShowDialog();
         }

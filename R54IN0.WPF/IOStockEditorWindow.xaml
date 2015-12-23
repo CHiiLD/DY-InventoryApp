@@ -7,8 +7,9 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:r54in0="clr-namespace:R54IN0;assembly=R54IN0"
         xmlns:tree="clr-namespace:System.Windows.Controls;assembly=TreeViewEx"
+        x:Name="this"
         mc:Ignorable="d"
-        Title="재고 관리" Height="520" Width="760"
+        Title="재고 관리" Height="620" Width="860"
         WindowStartupLocation="CenterOwner"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1">
@@ -20,6 +21,23 @@
                 <TextBlock Text="{Binding Name}"/>
             </StackPanel>
         </HierarchicalDataTemplate>
+
+        <Style TargetType="tree:TreeViewExItem">
+            <Setter Property="BorderBrushFocusedSelected" Value="{StaticResource AccentColorBrush}"/>
+            <Setter Property="BackgroundFocusedSelected" Value="{StaticResource AccentColorBrush}"/>
+
+            <Setter Property="BorderBrushSelected" Value="{StaticResource AccentColorBrush}"/>
+            <Setter Property="BackgroundSelected" Value="{StaticResource AccentColorBrush}"/>
+
+            <Setter Property="BorderBrushHovered" Value="{StaticResource AccentColorBrush3}"/>
+            <Setter Property="BackgroundHovered" Value="{StaticResource AccentColorBrush3}"/>
+
+            <Setter Property="BorderBrushFocused" Value="{StaticResource AccentColorBrush3}"/>
+            <Setter Property="BackgroundFocused" Value="{StaticResource AccentColorBrush3}"/>
+
+            <Setter Property="BorderBrushInactive" Value="{StaticResource AccentColorBrush3}"/>
+            <Setter Property="BackgroundInactive" Value="{StaticResource AccentColorBrush3}"/>
+        </Style>
 
         <Style x:Key="TitleTextBlockStyle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -57,9 +75,10 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="300*"/>
@@ -67,24 +86,38 @@
             <RowDefinition Height="34"/>
         </Grid.RowDefinitions>
 
-        <GroupBox Header="품목">
+        <GroupBox Header="품목 탐색기">
             <tree:TreeViewEx 
             x:Name="FinderTreeView"
-            ItemsSource="{Binding Nodes}"
-            SelectedItems="{Binding SelectedNodes}" BorderBrush="{x:Null}" Grid.RowSpan="2" />
+            ItemsSource="{Binding Finder.Nodes, ElementName=this}"
+            SelectedItems="{Binding Finder.SelectedNodes, ElementName=this}" BorderBrush="{x:Null}" Grid.RowSpan="2" />
         </GroupBox>
 
-        <GroupBox Header="규격" Grid.Row="0" Grid.Column="1">
-            <ListBox />
+        <GroupBox Header="품목" Grid.Column="1">
+            <ListBox ItemsSource="{Binding ItemList}" SelectedItem="{Binding Item}" DisplayMemberPath="Name" />
         </GroupBox>
+        
+            <Grid  Grid.Row="0" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+            <GroupBox Header="규격" >
+                <ListBox ItemsSource="{Binding SpecificationList}" SelectedItem="{Binding Specification}" DisplayMemberPath="Name" />
+            </GroupBox>
 
-        <UniformGrid Rows="2" Columns="1" Grid.Row="0" Grid.Column="2" >
-            <GroupBox Header="거래처">
-                <ListBox />
+            <GroupBox Header="거래처" Grid.Row="1" Grid.Column="0">
+                <ListBox ItemsSource="{Binding AccountList}" SelectedItem="{Binding Account}" DisplayMemberPath="Name" />
+            </GroupBox>
+        </Grid>
+        
+        <UniformGrid Rows="2" Columns="1" Grid.Row="0" Grid.Column="3" >
+            <GroupBox Header="보관장소">
+                <ListBox ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding Warehouse}" DisplayMemberPath="Name" />
             </GroupBox>
 
             <GroupBox Header="담당자">
-                <ListBox />
+                <ListBox ItemsSource="{Binding EmployeeList}" SelectedItem="{Binding Employee}" DisplayMemberPath="Name" />
             </GroupBox>
         </UniformGrid>
 
@@ -110,7 +143,7 @@
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="품목" Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="스위치 박스(고급)" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
+                    <TextBlock Text="{Binding Item.Name}" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
                 </Grid>
 
                 <Grid Height="26"  Grid.Row="0" Grid.Column="1">
@@ -120,8 +153,8 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="입고단가"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="3,023" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
-                    <TextBlock Text="원" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}"/>
+                    <TextBlock Text="{Binding PurchaseUnitPrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
+                    <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}"/>
                 </Grid>
 
                 <Grid Height="26"  Grid.Row="0" Grid.Column="2">
@@ -131,8 +164,8 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="입고총단가"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="3,023,000" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
-                    <TextBlock Text="원" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
+                    <TextBlock Text="{Binding TotalPurchasePrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
+                    <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
                 <Grid Height="26"  Grid.Row="2" Grid.Column="3">
@@ -141,12 +174,7 @@
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="종류"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <ComboBox  Grid.Column="1" Margin="0,0,18,0">
-                        <ComboBox.Items>
-                            <ComboBoxItem Content="입고"/>
-                            <ComboBoxItem Content="출고"/>
-                        </ComboBox.Items>
-                    </ComboBox>
+                    <ComboBox ItemsSource="{Binding StockTypeList}" SelectedItem="{Binding StockType}" Grid.Column="1" Margin="0,0,0,0" />
                 </Grid>
 
                 <Grid Height="26"  Grid.Row="1" Grid.Column="0">
@@ -155,7 +183,7 @@
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="규격"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="FKDS-1" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
+                    <TextBlock Text="{Binding Specification.Name}" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
                 </Grid>
 
 
@@ -165,7 +193,7 @@
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="제조사"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="한영일렉트로닉스" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
+                    <TextBlock Text="{Binding Maker.Name}" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
                 </Grid>
 
                 <Grid Height="26"  Grid.Row="3" Grid.Column="0">
@@ -174,7 +202,7 @@
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="거래처"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="여명FA" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
+                    <TextBlock Text="{Binding Account.Name}" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
                 </Grid>
 
                 <Grid Height="26" Grid.Row="1" Grid.Column="1">
@@ -184,8 +212,8 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="출고단가"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="43,303" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}" />
-                    <TextBlock Text="원" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
+                    <TextBlock Text="{Binding SalesUnitPrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}" />
+                    <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
                 <Grid Height="26"  Grid.Row="1" Grid.Column="2">
@@ -195,8 +223,8 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="출고총단가"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="43,303,300" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
-                    <TextBlock Text="원" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
+                    <TextBlock Text="{Binding TotalSalesPrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
+                    <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
                 <Grid Height="26"  Grid.Row="3" Grid.Column="3">
@@ -205,7 +233,7 @@
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="날짜"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <DatePicker Grid.Column="1"  Margin="0,0,18,0"/>
+                    <DatePicker SelectedDate="{Binding Date}" Grid.Column="1"  Margin="0,0,0,0"/>
                 </Grid>
 
                 <Grid  Grid.Row="2" Grid.Column="1">
@@ -215,8 +243,8 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="수량"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBox Grid.Column="1" Text="1,000" TextAlignment="Right" VerticalContentAlignment="Center" />
-                    <TextBlock Grid.Column="2" Text="EA" Style="{StaticResource MeasureTextBlockStyle}" />
+                    <mah:NumericUpDown Grid.Column="1" Value="{Binding ItemCount}" StringFormat='{}{0:#,#.}' TextAlignment="Right" VerticalContentAlignment="Center" />
+                    <TextBlock Grid.Column="2" Text="{Binding Measure.Name}" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
                 <Grid Height="26" Grid.Row="0" Grid.Column="3">
@@ -225,7 +253,7 @@
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="담당자"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="홍길동" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
+                    <TextBlock Text="{Binding Employee.Name}" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
                 </Grid>
 
                 <Grid Height="26" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,2,0,0">
@@ -234,7 +262,7 @@
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="비고"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBox Text="가나다라마바사아차" Grid.Column="1" Margin="0,0,18,0" />
+                    <TextBox Text="{Binding Remark}" Grid.Column="1" Margin="0,0,18,0" />
                 </Grid>
 
                 <Grid Height="26" Grid.Row="1" Grid.Column="3" Margin="0,1,0,0">
@@ -243,7 +271,7 @@
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="보관장소"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="연구실" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
+                    <TextBlock Text="{Binding Warehouse.Name}" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
                 </Grid>
 
                 <Grid  Grid.Row="2" Grid.Column="2">
@@ -253,15 +281,15 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="재고수량"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Grid.Column="1" Text="1,000" Style="{StaticResource MoenyTextBlockStyle}" />
-                    <TextBlock Grid.Column="2" Text="EA" Style="{StaticResource MeasureTextBlockStyle}" />
+                    <TextBlock Grid.Column="1" Text="{Binding InventoryItemCount, StringFormat='{}{0:#,#.}'}" Style="{StaticResource MoenyTextBlockStyle}" />
+                    <TextBlock Grid.Column="2" Text="{Binding Measure.Name}" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
             </Grid>
         </GroupBox>
 
-        <UniformGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Width="60" Margin="1" Content="추가" x:Name="ItemAddButton" Command="{Binding AddNewItemCommand}" />
-            <Button Width="60" Margin="1" Content="삭제" x:Name="ItemRemoveButton" Command="{Binding DeleteItemCommand}"/>
+        <UniformGrid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="110.837,3,98,3">
+            <Button Width="60" Margin="1" Content="추가" x:Name="ItemAddButton" Click="ItemAddButton_Click" />
+            <Button Width="60" Margin="1" Content="닫기" x:Name="ItemRemoveButton" Click="ItemRemoveButton_Click" />
         </UniformGrid>
     </Grid>
 </mah:MetroWindow>

@@ -18,7 +18,6 @@ namespace R54IN0.WPF
     public partial class InOutStockDataGrid : UserControl
     {
         IOStockWrapperViewModel _viewModel;
-        //InOutStockEditorViewModel _editorViewModel;
         StockType _stockType;
 
         public IOStockWrapperViewModel ViewModel
@@ -49,42 +48,29 @@ namespace R54IN0.WPF
             }
         }
 
+        void OpenEditor(IOStockWrapperEditorViewModel evm)
+        {
+            var editor = new IOStockEditorWindow();
+            editor.Editor = evm;
+            editor.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            editor.ShowDialog();
+        }
+
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            // _viewModel.RemoveSelectedItem();
+            
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            //_editorViewModel = new InOutStockEditorViewModel();
-            //InOutStockItemEditorWindow ioStockItemEditorWindow = new InOutStockItemEditorWindow(_editorViewModel);
-            //ioStockItemEditorWindow.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-            //ioStockItemEditorWindow.Closed += OnEditorWindowClosed;
-            //ioStockItemEditorWindow.ShowDialog();
+            IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(_viewModel);
+            OpenEditor(evm);
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            //if (_viewModel.SelectedItem != null)
-            //{
-            //    _editorViewModel = new InOutStockEditorViewModel(_viewModel.SelectedItem.Inven);
-            //    InOutStockItemEditorWindow ioStockItemEditorWindow = new InOutStockItemEditorWindow(_editorViewModel);
-            //    ioStockItemEditorWindow.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-            //    ioStockItemEditorWindow.Closed += OnEditorWindowClosed;
-            //    ioStockItemEditorWindow.ShowDialog();
-            //}
-        }
-
-        public void OnEditorWindowClosed(object sender, EventArgs e)
-        {
-            //InOutStockItemEditorWindow editWin = sender as InOutStockItemEditorWindow;
-            //if (editWin.IsApply)
-            //{
-            //    if (_editorViewModel.Action == EditorModelViewAction.ADD)
-            //        _viewModel.AddNewItem(_editorViewModel.Inventory);
-            //    else if (_editorViewModel.Action == EditorModelViewAction.EDIT)
-            //        _viewModel.ReplaceItem(_editorViewModel.Inventory);
-            //}
+            IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(_viewModel, _viewModel.SelectedItem);
+            OpenEditor(evm);
         }
     }
 }

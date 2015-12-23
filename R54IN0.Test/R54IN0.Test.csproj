@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Test\IOStockWrapperEditorViewModelTest.cs" />
     <Compile Include="Test\FieldWrapperViewModelTest.cs" />
     <Compile Include="Test\FinderDirectorTest.cs" />
     <Compile Include="Test\InventoryWrapperDirectorTest.cs" />

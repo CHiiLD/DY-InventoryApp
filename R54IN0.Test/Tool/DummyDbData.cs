@@ -5,7 +5,7 @@ namespace R54IN0.Test
     public class DummyDbData
     {
         string _testItemUUID;
-        public string TestItemUUID
+        public string UnregisterdTestItemUUID
         {
             get
             {
@@ -63,7 +63,7 @@ namespace R54IN0.Test
             int sPrice = 1400;
 
             var item = new Item() {
-                UUID = TestItemUUID,
+                UUID = UnregisterdTestItemUUID,
                 Name = "테스트용 아이템정보", MakerUUID = hanyung.UUID, CurrencyUUID = c.UUID, MeasureUUID = m.UUID }.Save<Item>();
             var spec = new Specification() { Remark = "테스트용 규격정보_1", Name = "테스트용 규격정보_1", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
             spec = new Specification() { Remark = "테스트용 규격정보_2", Name = "테스트용 규격정보_2", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();

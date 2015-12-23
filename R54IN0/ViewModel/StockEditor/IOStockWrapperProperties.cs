@@ -9,17 +9,21 @@ namespace R54IN0
     public class IOStockWrapperProperties : InventoryWrapperProperties, IIOStockInfoProperties
     {
         IOStockWrapper _ioStockWrapper;
+        IOStockWrapper _target;
 
         public IOStockWrapperProperties() : base(null)
         {
             InOutStock stock = new InOutStock();
-            _ioStockWrapper = new IOStockWrapper(stock);
+            recordWrapper = _ioStockWrapper = new IOStockWrapper(stock);
+            Date = DateTime.Now;
         }
 
         public IOStockWrapperProperties(IOStockWrapper ioStockWrapper) : base(null)
         {
             var clone = ioStockWrapper.Record.Clone() as InOutStock;
-            recordWrapper = new IOStockWrapper(clone);
+            recordWrapper = _ioStockWrapper = new IOStockWrapper(clone);
+            Date = DateTime.Now;
+            _target = ioStockWrapper;
         }
 
         public AccountWrapper Account
@@ -86,7 +90,10 @@ namespace R54IN0
                 var invenw = iwd.CreateCollection().Where(x => x.Specification.UUID == Specification.UUID).SingleOrDefault();
                 if (invenw == null)
                     return ItemCount;
-                return StockType == StockType.IN ? ItemCount + invenw.ItemCount : ItemCount - invenw.ItemCount;
+                if (_target == null)
+                    return StockType == StockType.IN ? invenw.ItemCount + ItemCount : invenw.ItemCount - ItemCount;
+                else
+                    return StockType == StockType.IN ? invenw.ItemCount - _target.ItemCount + ItemCount : invenw.ItemCount + _target.ItemCount - ItemCount;
             }
         }
 
