@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Finder\FinderViewModel.cs" />
+    <Compile Include="ViewModel\ItemSourceViewModel.cs" />
     <Compile Include="ViewModel\StockEditor\IInventoryInfoProperties.cs" />
     <Compile Include="ViewModel\StockEditor\IIOStockInfoProperties.cs" />
     <Compile Include="ViewModel\StockEditor\InventoryWrapperProperties.cs" />

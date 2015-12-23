@@ -66,9 +66,9 @@
             
         </DataGrid>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" >
-            <Button Content="추가" Margin="2" Width="60" x:Name="AddButton" Click="AddButton_Click"/>
-            <Button Content="삭제" Margin="2" Width="60" x:Name="RemoveButton" Click="RemoveButton_Click"/>
-            <Button Content="변경" Margin="2" Width="60" x:Name="EditButton" Click="EditButton_Click"/>
+            <Button Content="추가" Margin="2" Width="60" x:Name="AddButton" Command="{Binding AddCommand}"/>
+            <Button Content="삭제" Margin="2" Width="60" x:Name="RemoveButton" Command="{Binding RemoveCommand}"/>
+            <Button Content="변경" Margin="2" Width="60" x:Name="EditButton" Command="{Binding ModifyCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

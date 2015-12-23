@@ -32,7 +32,21 @@ namespace R54IN0.WPF
             InitializeComponent();
             ViewModelObserverSubject subject = ViewModelObserverSubject.GetInstance();
             _viewModel = new InventoryWrapperViewModel(subject);
+            _viewModel.NewItemAddHandler += OnNewItemAdditionHandlerCallback;
+            _viewModel.SelectedItemModifyHandler += OnSelectedItemModifyHandlerCallback;
             DataContext = _viewModel;
+        }
+
+        void OnSelectedItemModifyHandlerCallback(object sender, EventArgs e)
+        {
+            InventoryWrapperEditorViewModel helper = new InventoryWrapperEditorViewModel(_viewModel, _viewModel.SelectedItem);
+            OpenEditor(helper);
+        }
+
+        void OnNewItemAdditionHandlerCallback(object sender, EventArgs e)
+        {
+            InventoryWrapperEditorViewModel helper = new InventoryWrapperEditorViewModel(_viewModel);
+            OpenEditor(helper);
         }
 
         void OpenEditor(InventoryWrapperEditorViewModel helper)
@@ -41,23 +55,6 @@ namespace R54IN0.WPF
             irw.Editor = helper;
             irw.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
             irw.ShowDialog();
-        }
-
-        void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            InventoryWrapperEditorViewModel helper = new InventoryWrapperEditorViewModel(_viewModel);
-            OpenEditor(helper);
-        }
-
-        void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            InventoryWrapperEditorViewModel helper = new InventoryWrapperEditorViewModel(_viewModel, _viewModel.SelectedItem);
-            OpenEditor(helper);
-        }
-
-        void RemoveButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

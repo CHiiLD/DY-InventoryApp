@@ -40,6 +40,8 @@ namespace R54IN0.WPF
                 _stockType = value;
                 ViewModelObserverSubject subject = ViewModelObserverSubject.GetInstance();
                 _viewModel = new IOStockWrapperViewModel(_stockType, subject);
+                _viewModel.NewItemAddHandler += OnNewItemAdditionHandlerCallback;
+                _viewModel.SelectedItemModifyHandler += OnSelectedItemModifyHandlerCallback;
                 DataContext = _viewModel;
             }
             get
@@ -48,29 +50,24 @@ namespace R54IN0.WPF
             }
         }
 
+        void OnSelectedItemModifyHandlerCallback(object sender, EventArgs e)
+        {
+            IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(_viewModel, _viewModel.SelectedItem);
+            OpenEditor(evm);
+        }
+
+        void OnNewItemAdditionHandlerCallback(object sender, EventArgs e)
+        {
+            IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(_viewModel);
+            OpenEditor(evm);
+        }
+
         void OpenEditor(IOStockWrapperEditorViewModel evm)
         {
             var editor = new IOStockEditorWindow();
             editor.Editor = evm;
             editor.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
             editor.ShowDialog();
-        }
-
-        private void RemoveButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(_viewModel);
-            OpenEditor(evm);
-        }
-
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(_viewModel, _viewModel.SelectedItem);
-            OpenEditor(evm);
         }
     }
 }

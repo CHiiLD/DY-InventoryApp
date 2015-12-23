@@ -40,7 +40,7 @@ namespace R54IN0.Test
             invenw.Remark = "hehehehe";
 
             //새로 추가 테스트
-            Assert.IsFalse(vm2.Items.Contains(invenw)); 
+            Assert.IsFalse(vm2.Items.Contains(invenw));
             vm1.Add(invenw);
             Assert.IsTrue(vm2.Items.Contains(invenw));
 
@@ -70,7 +70,7 @@ namespace R54IN0.Test
             fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
             Assert.AreEqual(1, fvm.SelectedNodes.Count);
 
-            Assert.IsTrue(iwvm.Items.All(x=>x.Item.UUID == node.ItemUUID));
+            Assert.IsTrue(iwvm.Items.All(x => x.Item.UUID == node.ItemUUID));
 
             //FinderViewModel에 여러개의 아이템을 선택
             FinderNode node2 = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).LastOrDefault();
@@ -127,5 +127,28 @@ namespace R54IN0.Test
             Assert.AreEqual(specw.SalesUnitPrice, invenw.SalesUnitPrice);
             Assert.AreEqual(specw.Remark, invenw.Remark);
         }
+
+        [TestMethod]
+        public void CanDelete()
+        {
+            new DummyDbData().Create();
+
+            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            InventoryWrapperViewModel ivm = new InventoryWrapperViewModel(sub);
+            InventoryWrapperViewModel ivm2 = new InventoryWrapperViewModel(sub);
+
+            var selectedItem = ivm.SelectedItem = ivm.Items.Random();
+
+            Assert.IsTrue(ivm.Items.Any(x => x == selectedItem));
+            Assert.IsTrue(ivm.Items.Any(x => x == selectedItem));
+
+            ivm.RemoveCommand.Execute(null);
+
+            Assert.IsNull(ivm.SelectedItem);
+            Assert.IsTrue(ivm.Items.All(x => x != selectedItem));
+            Assert.IsTrue(ivm.Items.All(x => x != selectedItem));
+            InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
+            Assert.IsFalse(iwd.Contains(selectedItem));
+        }
     }
-} 
+}

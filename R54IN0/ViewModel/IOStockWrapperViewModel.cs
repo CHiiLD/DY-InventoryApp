@@ -7,12 +7,15 @@ using System.Windows.Controls;
 
 namespace R54IN0
 {
-    public class IOStockWrapperViewModel : ViewModelObserver<IOStockWrapper>, INotifyPropertyChanged, IFinderViewModelEvent
+    public class IOStockWrapperViewModel : ItemSourceViewModel<IOStockWrapper>, INotifyPropertyChanged, IFinderViewModelEvent
     {
         StockType _stockType;
         ObservableCollection<IOStockWrapper> _items;
         IOStockWrapperDirector _director;
         IOStockWrapper _selectedItem;
+
+        public EventHandler<EventArgs> SelectedItemModifyHandler;
+        public EventHandler<EventArgs> NewItemAddHandler;
 
         public IOStockWrapperViewModel(StockType type, ViewModelObserverSubject subject) : base(subject)
         {
@@ -44,15 +47,15 @@ namespace R54IN0
             }
         }
 
-        public IOStockWrapper SelectedItem
+        public override IOStockWrapper SelectedItem
         {
             get
             {
-                return _selectedItem;
+                return base.SelectedItem;
             }
             set
             {
-                _selectedItem = value;
+                base.SelectedItem = value;
                 OnPropertyChanged("SelectedItem");
             }
         }
@@ -102,6 +105,22 @@ namespace R54IN0
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
-      
+        public override void ExecuteAddCommand(object parameter)
+        {
+            if (NewItemAddHandler != null)
+                NewItemAddHandler(this, EventArgs.Empty);
+        }
+
+        public override void ExecuteModifyCommand(object parameter)
+        {
+            if (SelectedItemModifyHandler != null)
+                SelectedItemModifyHandler(this, EventArgs.Empty);
+        }
+
+        public override void ExecuteRemoveCommand(object parameter)
+        {
+            Remove(SelectedItem);
+            SelectedItem = null;
+        }
     }
 }

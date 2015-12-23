@@ -6,13 +6,15 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class InventoryWrapperViewModel : ViewModelObserver<InventoryWrapper>, INotifyPropertyChanged, IFinderViewModelEvent
+    public class InventoryWrapperViewModel : ItemSourceViewModel<InventoryWrapper>, INotifyPropertyChanged, IFinderViewModelEvent
     {
         ObservableCollection<InventoryWrapper> _items;
         InventoryWrapperDirector _director;
-        InventoryWrapper _selectedItem;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public EventHandler<EventArgs> SelectedItemModifyHandler;
+        public EventHandler<EventArgs> NewItemAddHandler;
 
         public InventoryWrapperViewModel(ViewModelObserverSubject subject) : base(subject)
         {
@@ -33,15 +35,15 @@ namespace R54IN0
             }
         }
 
-        public InventoryWrapper SelectedItem
+        public override InventoryWrapper SelectedItem
         {
             get
             {
-                return _selectedItem;
+                return base.SelectedItem;
             }
             set
             {
-                _selectedItem = value;
+                base.SelectedItem = value;
                 OnPropertyChanged("SelectedItem");
             }
         }
@@ -87,6 +89,24 @@ namespace R54IN0
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
+        public override void ExecuteAddCommand(object parameter)
+        {
+            if (NewItemAddHandler != null)
+                NewItemAddHandler(this, EventArgs.Empty);
+        }
+
+        public override void ExecuteModifyCommand(object parameter)
+        {
+            if (SelectedItemModifyHandler != null)
+                SelectedItemModifyHandler(this, EventArgs.Empty);
+        }
+
+        public override void ExecuteRemoveCommand(object parameter)
+        {
+            Remove(SelectedItem);
+            SelectedItem = null;
         }
     }
 }
