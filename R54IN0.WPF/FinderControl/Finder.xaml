@@ -14,7 +14,7 @@
     <UserControl.Resources>
         <HierarchicalDataTemplate DataType="{x:Type r54in0:FinderNode}" ItemsSource="{Binding Nodes}">
             <StackPanel Orientation="Horizontal">
-                <Border CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0"/>
+                <Border CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0" VerticalAlignment="Center"/>
                 <edttxt:EditableTextBlock 
                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                     IsInEditMode="{Binding IsInEditMode, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>

@@ -20,9 +20,9 @@
                 <DataGridTextColumn Header="휴대전화" Binding="{Binding MobileNumber}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <UniformGrid Grid.Row="1" Grid.Column="0" Columns="2" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Width="60" Margin="1" Content="추가" x:Name="ItemAddButton" Command="{Binding AddNewItemCommand}" />
-            <Button Width="60" Margin="1" Content="삭제" x:Name="ItemRemoveButton" Command="{Binding DeleteItemCommand}"/>
+        <UniformGrid Grid.Row="1" Grid.Column="0" Columns="2" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,4,0,0">
+            <Button Width="60" Content="추가" x:Name="ItemAddButton" Command="{Binding AddNewItemCommand}" Margin="0,0,5,0" />
+            <Button Width="60" Content="삭제" x:Name="ItemRemoveButton" Command="{Binding DeleteItemCommand}" Margin="5,0,0,0"/>
         </UniformGrid>
     </Grid>
 </UserControl>

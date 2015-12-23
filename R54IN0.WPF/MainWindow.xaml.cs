@@ -62,5 +62,65 @@ namespace R54IN0.WPF
         {
             Application.Current.Shutdown(110);
         }
+
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown(110);
+        }
+
+        private void ItemMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TabCenter.SelectedItem = ItemTab;
+        }
+
+        private void AccountMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TabCenter.SelectedItem = AccountTab;
+        }
+
+        private void MakerMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TabCenter.SelectedItem = MakerTab;
+        }
+
+        private void EmployeeMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TabCenter.SelectedItem = EmployeeTab;
+        }
+
+        private void WarehouseMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TabCenter.SelectedItem = WarehouseTab;
+        }
+
+        private void CurrencyMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TabCenter.SelectedItem = CurrencyTab;
+        }
+
+        private void MeasureMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TabCenter.SelectedItem = MeasureTab;
+        }
+
+        private void InvenMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TabCenter.SelectedItem = InventoryTab;
+        }
+
+        private void InStockMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TabCenter.SelectedItem = InStockTab;
+        }
+
+        private void OutStockMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TabCenter.SelectedItem = OutStockTab;
+        }
+
+        private void InOutStockMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TabCenter.SelectedItem = InOutStockTab;
+        }
     }
 }

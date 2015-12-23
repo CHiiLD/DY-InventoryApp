@@ -140,8 +140,10 @@ namespace R54IN0
 
         public IOStockWrapper Update()
         {
-            if (Item == null || Specification == null)
-                throw new Exception();
+            if (Item == null)
+                throw new Exception("리스트박스에서 품목을 선택하세요.");
+            if (Specification == null)
+                throw new Exception("리스트박스에서 규격을 선택하세요.");
 
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
             InventoryWrapper invenw = iwd.CreateCollection().Where(x => x.Specification.UUID == Specification.UUID).SingleOrDefault();
@@ -191,10 +193,10 @@ namespace R54IN0
                 var itemws = fwd.CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted);
                 foreach (var itemNode in itemNodes)
                     items.Add(itemws.Where(x => x.UUID == itemNode.ItemUUID).Single());
-                ItemList = items;
                 Item = null;
                 Specification = null;
                 SpecificationList = null;
+                ItemList = items; //이 코드를 Item = null; 아래에 두어야 함
             }
         }
 

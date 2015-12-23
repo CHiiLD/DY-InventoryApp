@@ -371,5 +371,26 @@ namespace R54IN0.Test
             Assert.IsTrue(ivm.Items.Any(x => x.Specification.UUID == result.Specification.UUID));
             Assert.IsTrue(iwd.CreateCollection().Any(x => x.Specification.UUID == result.Specification.UUID));
         }
+
+        /// <summary>
+        /// Node 선택 후 품목 선택 후 다시 다른 Node를 선택할 경우 나타나는 에러를 구현 -> 구현 실패
+        /// </summary>
+        [TestMethod]
+        public void ClickNodeThenClickItemThenClickNode()
+        {
+            var dummy = new DummyDbData().Create();
+            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
+            IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(vm);
+            FinderViewModel fvm = evm.CreateFinderViewModel(null);
+            var itemNdoes = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
+            var node = itemNdoes.ElementAt(0);
+            //노드 클릭
+            fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(new List<FinderNode>() { node }, new List<FinderNode>()));
+            //품목 선택
+            evm.Item = evm.ItemList.First();
+            //다른 노드 클릭
+            fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(new List<FinderNode>() { itemNdoes.ElementAt(1) }, new List<FinderNode>() { node }));
+        }
     }
 }

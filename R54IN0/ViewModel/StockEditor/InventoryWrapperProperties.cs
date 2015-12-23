@@ -15,6 +15,7 @@ namespace R54IN0
         {
             Inventory inventory = new Inventory();
             recordWrapper = new InventoryWrapper(inventory);
+            ItemCount = 1;
         }
 
         public InventoryWrapperProperties(IRecordWrapper recordWrapper)

@@ -53,18 +53,18 @@ namespace R54IN0.WPF
         void OnSelectedItemModifyHandlerCallback(object sender, EventArgs e)
         {
             IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(_viewModel, _viewModel.SelectedItem);
-            OpenEditor(evm);
+            var editor = new IOStockEditorWindow();
+            editor.ItemAddButton.Content = "수정";
+            editor.Editor = evm;
+            editor.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            editor.ShowDialog();
         }
 
         void OnNewItemAdditionHandlerCallback(object sender, EventArgs e)
         {
             IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(_viewModel);
-            OpenEditor(evm);
-        }
-
-        void OpenEditor(IOStockWrapperEditorViewModel evm)
-        {
             var editor = new IOStockEditorWindow();
+            editor.ItemAddButton.Content = "추가";
             editor.Editor = evm;
             editor.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
             editor.ShowDialog();

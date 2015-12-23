@@ -34,26 +34,26 @@
         <Grid>
             <Menu>
                 <MenuItem Header="데일리 인벤토리!">
-                    <MenuItem Header="데일리 인벤토리!에 대하여"/>
+                    <MenuItem Header="데일리 인벤토리!에 대하여" IsEnabled="False"/>
                     <MenuItem Header="환경설정" IsEnabled="False"/>
-                    <MenuItem Header="종료"/>
+                    <MenuItem Header="종료" x:Name="ExitMenuItem" Click="ExitMenuItem_Click" />
                 </MenuItem>
-                <Separator />
-                <MenuItem Header="기본정보관리">
-                    <MenuItem Header="품목"/>
-                    <MenuItem Header="거래처"/>
-                    <MenuItem Header="제조사"/>
-                    <MenuItem Header="직원"/>
-                    <MenuItem Header="창고"/>
-                    <MenuItem Header="화폐"/>
-                    <MenuItem Header="창고"/>
-                </MenuItem>
-                <Separator />
+                <Separator Width="5"/>
                 <MenuItem Header="데이터관리">
-                    <MenuItem Header="재고관리"/>
-                    <MenuItem Header="입고관리"/>
-                    <MenuItem Header="출고관리"/>
-                    <MenuItem Header="입출고관리"/>
+                    <MenuItem Header="재고관리" x:Name="InvenMenuItem" Click="InvenMenuItem_Click"/>
+                    <MenuItem Header="입고관리" x:Name="InStockMenuItem" Click="InStockMenuItem_Click"/>
+                    <MenuItem Header="출고관리" x:Name="OutStockMenuItem" Click="OutStockMenuItem_Click"/>
+                    <MenuItem Header="입출고관리" x:Name="InOutStockMenuItem" Click="InOutStockMenuItem_Click"/>
+                </MenuItem>
+                <Separator Width="5"/>
+                <MenuItem Header="기본정보관리">
+                    <MenuItem Header="품목" x:Name="ItemMenuItem" Click="ItemMenuItem_Click"/>
+                    <MenuItem Header="거래처" x:Name="AccountMenuItem" Click="AccountMenuItem_Click"/>
+                    <MenuItem Header="제조사" x:Name="MakerMenuItem" Click="MakerMenuItem_Click"/>
+                    <MenuItem Header="단위" x:Name="MeasureMenuItem" Click="MeasureMenuItem_Click"/>
+                    <MenuItem Header="화폐" x:Name="CurrencyMenuItem" Click="CurrencyMenuItem_Click"/>
+                    <MenuItem Header="직원" x:Name="EmployeeMenuItem" Click="EmployeeMenuItem_Click"/>
+                    <MenuItem Header="창고" x:Name="WarehouseMenuItem" Click="WarehouseMenuItem_Click"/>
                 </MenuItem>
             </Menu>
         </Grid>
@@ -104,7 +104,7 @@
                 <TabItem Header="단위" x:Name="MeasureTab">
                     <local:MeasureDataGrid />
                 </TabItem>
-                <TabItem Header="화폐" x:Name="Currency">
+                <TabItem Header="화폐" x:Name="CurrencyTab">
                     <local:CurrencyDataGrid />
                 </TabItem>
                 <TabItem Header="직원" x:Name="EmployeeTab">

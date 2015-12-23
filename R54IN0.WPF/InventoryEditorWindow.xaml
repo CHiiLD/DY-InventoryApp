@@ -100,7 +100,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="입고총단가"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="{Binding TotalPurchasePrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
+                    <TextBlock x:Name="TotalPurchasePriceText" Text="{Binding TotalPurchasePrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
                     <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
@@ -130,8 +130,8 @@
                         <ColumnDefinition Width="13*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="출고총단가"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="{Binding TotalSalesPrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
+                    <TextBlock Text="출고총단가" Style="{StaticResource TitleTextBlockStyle}" />
+                    <TextBlock x:Name="TotalSalesPriceText" Text="{Binding TotalSalesPrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
                     <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
@@ -151,7 +151,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="재고수량"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <mah:NumericUpDown Grid.Column="1" Value="{Binding ItemCount}" StringFormat='{}{0:#,#.}' TextAlignment="Right" VerticalContentAlignment="Center" />
+                    <mah:NumericUpDown Grid.Column="1" Value="{Binding ItemCount}" StringFormat='{}{0:#,#.}' TextAlignment="Right" VerticalContentAlignment="Center" Minimum="1"/>
                     <TextBlock Grid.Column="2" Text="{Binding Measure.Name}" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
@@ -166,9 +166,9 @@
             </UniformGrid>
         </GroupBox>
 
-        <UniformGrid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Width="60" Margin="1" Content="추가" x:Name="OkButton" Click="OkButton_Click" />
-            <Button Width="60" Margin="1" Content="닫기" x:Name="CancelButton" Click="CancelButton_Click" />
+        <UniformGrid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center" Columns="2">
+            <Button Width="60" Content="추가" x:Name="OkButton" Click="OkButton_Click" Margin="0,0,5,0" />
+            <Button Width="60" Content="닫기" x:Name="CancelButton" Click="CancelButton_Click" Margin="5,0,0,0" />
         </UniformGrid>
     </Grid>
 </mah:MetroWindow>

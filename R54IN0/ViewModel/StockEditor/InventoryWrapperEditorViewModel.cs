@@ -100,8 +100,11 @@ namespace R54IN0
 
         public InventoryWrapper Update()
         {
-            if (Item == null || Specification == null)
-                throw new Exception();
+            if (Item == null)
+                throw new Exception("리스트박스에서 품목을 선택하세요.");
+            if (Specification == null)
+                throw new Exception("리스트박스에서 규격을 선택하세요.");
+
             if (_target != null) //EIDT인 경우 Inventory만 변경
             {
                 var inventory = recordWrapper.Record as Inventory;

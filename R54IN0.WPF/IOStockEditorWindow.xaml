@@ -9,7 +9,7 @@
         xmlns:tree="clr-namespace:System.Windows.Controls;assembly=TreeViewEx"
         x:Name="this"
         mc:Ignorable="d"
-        Title="재고 관리" Height="620" Width="860"
+        Title="입출고 관리" Height="620" Width="860"
         WindowStartupLocation="CenterOwner"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1">
@@ -17,7 +17,7 @@
     <Window.Resources>
         <HierarchicalDataTemplate DataType="{x:Type r54in0:FinderNode}" ItemsSource="{Binding Nodes}">
             <StackPanel Orientation="Horizontal">
-                <Border CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0"/>
+                <Border CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0" VerticalAlignment="Center"/>
                 <TextBlock Text="{Binding Name}"/>
             </StackPanel>
         </HierarchicalDataTemplate>
@@ -28,6 +28,9 @@
 
             <Setter Property="BorderBrushSelected" Value="{StaticResource AccentColorBrush}"/>
             <Setter Property="BackgroundSelected" Value="{StaticResource AccentColorBrush}"/>
+
+            <Setter Property="BorderBrushSelectedHovered" Value="{StaticResource AccentColorBrush3}"/>
+            <Setter Property="BackgroundSelectedHovered" Value="{StaticResource AccentColorBrush3}"/>
 
             <Setter Property="BorderBrushHovered" Value="{StaticResource AccentColorBrush3}"/>
             <Setter Property="BackgroundHovered" Value="{StaticResource AccentColorBrush3}"/>
@@ -243,7 +246,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="수량"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <mah:NumericUpDown Grid.Column="1" Value="{Binding ItemCount}" StringFormat='{}{0:#,#.}' TextAlignment="Right" VerticalContentAlignment="Center" />
+                    <mah:NumericUpDown Grid.Column="1" Value="{Binding ItemCount}" StringFormat='{}{0:#,#.}' TextAlignment="Right" VerticalContentAlignment="Center" Minimum="1"/>
                     <TextBlock Grid.Column="2" Text="{Binding Measure.Name}" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
@@ -287,9 +290,9 @@
             </Grid>
         </GroupBox>
 
-        <UniformGrid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="110.837,3,98,3">
-            <Button Width="60" Margin="1" Content="추가" x:Name="ItemAddButton" Click="ItemAddButton_Click" />
-            <Button Width="60" Margin="1" Content="닫기" x:Name="ItemRemoveButton" Click="ItemRemoveButton_Click" />
+        <UniformGrid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Button Width="60" Content="추가" x:Name="ItemAddButton" Click="ItemAddButton_Click" Margin="0,0,5,0" />
+            <Button Width="60" Content="닫기" x:Name="ItemRemoveButton" Click="ItemRemoveButton_Click" Margin="5,0,0,0" />
         </UniformGrid>
     </Grid>
 </mah:MetroWindow>

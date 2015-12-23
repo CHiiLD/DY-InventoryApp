@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using MahApps.Metro;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace R54IN0.WPF
 {
@@ -36,27 +37,27 @@ namespace R54IN0.WPF
             }
         }
 
-        public double? Count
-        {
-            get
-            {
-                return _viewModel != null ? _viewModel.ItemCount : 0; 
-            }
-            set
-            {
-                _viewModel.ItemCount = (int)(value ?? 0);
-            }
-        }
-
         public InventoryEditorWindow()
         {
             InitializeComponent();
         }
 
-        private void OkButton_Click(object sender, RoutedEventArgs e)
+        async void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.Update();
-            Close();
+            bool hasException = false;
+            string message = null;
+            try
+            {
+                _viewModel.Update();
+                Close();
+            }
+            catch (Exception exception)
+            {
+                hasException = true;
+                message = exception.Message;
+            }
+            if (hasException)
+                await this.ShowMessageAsync("새로운 재고 데이터를 추가할 수 없습니다", message);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

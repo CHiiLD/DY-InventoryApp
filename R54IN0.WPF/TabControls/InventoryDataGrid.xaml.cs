@@ -40,18 +40,18 @@ namespace R54IN0.WPF
         void OnSelectedItemModifyHandlerCallback(object sender, EventArgs e)
         {
             InventoryWrapperEditorViewModel helper = new InventoryWrapperEditorViewModel(_viewModel, _viewModel.SelectedItem);
-            OpenEditor(helper);
+            InventoryEditorWindow irw = new InventoryEditorWindow();
+            irw.OkButton.Content = "수정";
+            irw.Editor = helper;
+            irw.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            irw.ShowDialog();
         }
 
         void OnNewItemAdditionHandlerCallback(object sender, EventArgs e)
         {
             InventoryWrapperEditorViewModel helper = new InventoryWrapperEditorViewModel(_viewModel);
-            OpenEditor(helper);
-        }
-
-        void OpenEditor(InventoryWrapperEditorViewModel helper)
-        {
             InventoryEditorWindow irw = new InventoryEditorWindow();
+            irw.OkButton.Content = "추가";
             irw.Editor = helper;
             irw.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
             irw.ShowDialog();

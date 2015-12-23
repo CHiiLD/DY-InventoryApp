@@ -16,6 +16,7 @@ namespace R54IN0
             InOutStock stock = new InOutStock();
             recordWrapper = _ioStockWrapper = new IOStockWrapper(stock);
             Date = DateTime.Now;
+            ItemCount = 1;
         }
 
         public IOStockWrapperProperties(IOStockWrapper ioStockWrapper) : base(null)
