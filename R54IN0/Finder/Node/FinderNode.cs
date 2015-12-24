@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class FinderNode
+    public class FinderNode : INotifyPropertyChanged
     {
         NodeType _type;
         string _name;
@@ -55,16 +55,6 @@ namespace R54IN0
                 }
             }
         }
-
-        void OnItemWrapperPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if(e.PropertyName == "Name" && Type == NodeType.ITEM)
-            {
-                var itemw = sender as ItemWrapper;
-                Name = itemw.Name;
-            }
-        }
-
         public string Name
         {
             get
@@ -74,6 +64,7 @@ namespace R54IN0
             set
             {
                 _name = value;
+                OnPropertyChanged("Name");
             }
         }
 
@@ -186,6 +177,21 @@ namespace R54IN0
             _name = thiz._name;
             UUID = thiz.UUID;
             ItemUUID = thiz.ItemUUID;
+        }
+
+        void OnItemWrapperPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "Name" && Type == NodeType.ITEM)
+            {
+                var itemw = sender as ItemWrapper;
+                Name = itemw.Name;
+            }
+        }
+
+        protected void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
     }
 }

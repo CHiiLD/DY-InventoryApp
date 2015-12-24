@@ -205,6 +205,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
+      <Project>{04608184-27B9-42A2-9E5E-69A6CB21ECFE}</Project>
+      <Name>Lex.Db.Net45</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MahApps.Metro\MahApps.Metro\MahApps.Metro.NET45.csproj">
       <Project>{942d11c4-29f5-46c4-8c14-4b976d56c637}</Project>
       <Name>MahApps.Metro.NET45</Name>

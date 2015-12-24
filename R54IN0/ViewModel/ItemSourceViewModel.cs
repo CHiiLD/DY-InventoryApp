@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public abstract class ItemSourceViewModel<T> : ViewModelObserver<T> where T : class
+    public abstract class ItemSourceViewModel<T> : ViewModelObserver<T>, IItemSourceViewModel<T> where T : class
     {
         T _selectedItem;
 

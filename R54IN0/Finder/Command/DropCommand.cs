@@ -14,11 +14,11 @@ namespace R54IN0
 {
     public class DropCommand : ICommand
     {
-        private MultiSelectFinderViewModel _viewModel;
+        private ItemFinderViewModel _viewModel;
 
         public event EventHandler CanExecuteChanged;
 
-        public DropCommand(MultiSelectFinderViewModel viewModel)
+        public DropCommand(ItemFinderViewModel viewModel)
         {
             _viewModel = viewModel;
         }

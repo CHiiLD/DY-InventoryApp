@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections;
+using System.Windows.Controls;
 
 namespace R54IN0.Test
 {
@@ -58,7 +59,7 @@ namespace R54IN0.Test
         {
             new DummyDbData().Create();
             ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            MultiSelectFinderViewModel fvm = new MultiSelectFinderViewModel(null);
+            ItemFinderViewModel fvm = new ItemFinderViewModel(null);
             InventoryWrapperViewModel iwvm = new InventoryWrapperViewModel(sub);
             fvm.SelectItemsChanged += iwvm.OnFinderViewSelectItemChanged;
 
@@ -149,6 +150,65 @@ namespace R54IN0.Test
             Assert.IsTrue(ivm.Items.All(x => x != selectedItem));
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
             Assert.IsFalse(iwd.Contains(selectedItem));
+        }
+
+        /// <summary>
+        /// 에러8번 
+        /// </summary>
+        [TestMethod]
+        public void CreateItemButNotSetMakerThenCreateIOStockThenAgainLoad()
+        {
+            //모든 디비 데이터 삭제
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                db.Purge();
+            }
+            FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
+            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            ItemWrapperViewModel ivm = new ItemWrapperViewModel(sub);
+            IOStockWrapperViewModel svm = new IOStockWrapperViewModel(StockType.IN, sub);
+            InventoryWrapperViewModel invm = new InventoryWrapperViewModel(sub);
+            //아이템 새로 생성 하지만 Maker 프로퍼티는 설정 하지 아니함
+            ivm.AddNewItemCommand.Execute(null);
+            Assert.IsFalse(fwd.CreateCollection<Specification, SpecificationWrapper>().Any(x => x.Field.ItemUUID == null));
+            //입고 데이터 생성 .. 재고에 데이터가 없을테니 재고도 같이 생성됨
+            IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(svm);
+            //FINDER 생성
+            FinderViewModel fvm = evm.CreateFinderViewModel(null);
+            //생성한 아이템을 선택하도록함
+            fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(
+                new List<FinderNode>() { fvm.Nodes.Last() }, new List<FinderNode>()));
+            var itemw = evm.Item = evm.ItemList.First();
+            var specw = evm.Specification = evm.SpecificationList.First();
+            //설정한 Stock 데이터 저장
+            IOStockWrapper savedData = evm.Update();
+            //디렉터 파괴
+            FieldWrapperDirector.Distroy();
+            InventoryWrapperDirector.Distory();
+            ViewModelObserverSubject.Distory();
+            FinderDirector.Distroy();
+            IOStockWrapperDirector.Distory();
+
+            //다시 로드
+            fwd = FieldWrapperDirector.GetInstance();
+            sub = ViewModelObserverSubject.GetInstance();
+            ivm = new ItemWrapperViewModel(sub);
+            svm = new IOStockWrapperViewModel(StockType.IN, sub);
+            invm = new InventoryWrapperViewModel(sub);
+
+            //품목의 여러 프로퍼티 호출 
+            itemw = ivm.Items.Where(x => x.UUID == itemw.UUID).Single();
+            var ac = itemw.AllCurrency;
+            var ac1 = itemw.AllMaker;
+            var ac2 = itemw.AllMeasure;
+            Assert.IsNull(itemw.SelectedCurrency);
+            Assert.IsNull(itemw.SelectedMaker);
+            Assert.IsNull(itemw.SelectedMeasure);
+
+            var invenw = invm.Items.Where(x => x.Specification.UUID == specw.UUID).Single();
+            Assert.IsNull(invenw.Maker);
+            Assert.IsNull(invenw.Measure);
+            Assert.IsNull(invenw.Currency);
         }
     }
 }

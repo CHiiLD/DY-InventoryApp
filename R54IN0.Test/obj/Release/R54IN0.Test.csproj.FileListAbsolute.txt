@@ -12,3 +12,17 @@ C:\Users\Child\Github\R54IN0\R54IN0.Test\obj\Release\R54IN0.Test.pdb
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.Test\bin\Release\Newtonsoft.Json.dll
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.Test\bin\Release\Newtonsoft.Json.pdb
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.Test\bin\Release\Newtonsoft.Json.xml
+Y:\Github\R54IN0\R54IN0.Test\bin\Release\R54IN0.Test.dll
+Y:\Github\R54IN0\R54IN0.Test\bin\Release\R54IN0.Test.pdb
+Y:\Github\R54IN0\R54IN0.Test\bin\Release\Lex.Db.dll
+Y:\Github\R54IN0\R54IN0.Test\bin\Release\Newtonsoft.Json.dll
+Y:\Github\R54IN0\R54IN0.Test\bin\Release\R54IN0.dll
+Y:\Github\R54IN0\R54IN0.Test\bin\Release\TreeViewEx.dll
+Y:\Github\R54IN0\R54IN0.Test\bin\Release\Lex.Db.pdb
+Y:\Github\R54IN0\R54IN0.Test\bin\Release\Newtonsoft.Json.pdb
+Y:\Github\R54IN0\R54IN0.Test\bin\Release\Newtonsoft.Json.xml
+Y:\Github\R54IN0\R54IN0.Test\bin\Release\R54IN0.pdb
+Y:\Github\R54IN0\R54IN0.Test\bin\Release\TreeViewEx.pdb
+Y:\Github\R54IN0\R54IN0.Test\obj\Release\R54IN0.Test.csprojResolveAssemblyReference.cache
+Y:\Github\R54IN0\R54IN0.Test\obj\Release\R54IN0.Test.dll
+Y:\Github\R54IN0\R54IN0.Test\obj\Release\R54IN0.Test.pdb

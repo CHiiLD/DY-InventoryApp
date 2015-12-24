@@ -304,17 +304,23 @@ namespace R54IN0.Test
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
-            new InOutStock()
+            //스트레스 테스트
+#if false
+            for (int i = 0; i < 1000; i++)
             {
-                Date = DateTime.Now,
-                EmployeeUUID = e.UUID,
-                EnterpriseUUID = a.UUID,
-                ItemCount = 30,
-                ItemUUID = item.UUID,
-                SpecificationUUID = spec.UUID,
-                StockType = StockType.OUT,
-                WarehouseUUID = w.UUID
-            }.Save<InOutStock>();
+                new InOutStock()
+                {
+                    Date = DateTime.Now,
+                    EmployeeUUID = e.UUID,
+                    EnterpriseUUID = a.UUID,
+                    ItemCount = 30,
+                    ItemUUID = item.UUID,
+                    SpecificationUUID = spec.UUID,
+                    StockType = StockType.OUT,
+                    WarehouseUUID = w.UUID
+                }.Save<InOutStock>();
+            }
+#endif
 
             return this;
         }

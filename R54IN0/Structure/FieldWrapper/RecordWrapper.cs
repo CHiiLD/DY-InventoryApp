@@ -178,6 +178,8 @@ namespace R54IN0
                 _record.ItemCount = value;
                 _record.Save<RecordT>();
                 OnPropertyChanged("ItemCount");
+                OnPropertyChanged("SelesPriceAmount");
+                OnPropertyChanged("PurchasePriceAmount");
             }
         }
 

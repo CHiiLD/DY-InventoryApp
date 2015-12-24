@@ -31,6 +31,37 @@ namespace R54IN0.Test
             Assert.AreEqual(recCnt + 1, vm.Items.Count);
         }
 
+        [TestMethod]
+        public void CanSave()
+        {
+            FieldWrapperDirector.Distroy();
+            InventoryWrapperDirector.Distory();
+            ViewModelObserverSubject.Distory();
+            FinderDirector.Distroy();
+            IOStockWrapperDirector.Distory();
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                db.Purge();
+            }
+
+            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            FieldWrapperViewModel<Maker, FieldWrapper<Maker>> vm = new FieldWrapperViewModel<Maker, FieldWrapper<Maker>>(sub);
+            Assert.AreEqual(0, vm.Items.Count());
+
+            vm.AddNewItemCommand.Execute(null);
+
+            Assert.IsNotNull(vm.Items.First().UUID);
+
+            FieldWrapperDirector.Distroy();
+            InventoryWrapperDirector.Distory();
+            ViewModelObserverSubject.Distory();
+            FinderDirector.Distroy();
+            IOStockWrapperDirector.Distory();
+
+            vm = new FieldWrapperViewModel<Maker, FieldWrapper<Maker>>(sub);
+            Assert.AreEqual(1, vm.Items.Count());
+        }
+
         /// <summary>
         /// 선택된 아이템을 삭제 명령을 실행하는 테스트
         /// </summary>

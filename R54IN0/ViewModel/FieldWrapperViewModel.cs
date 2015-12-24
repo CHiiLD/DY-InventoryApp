@@ -6,7 +6,7 @@ using System.Linq;
 namespace R54IN0
 {
     public class FieldWrapperViewModel<FieldT, WrapperT> : FieldWrapperViewModelObserver<FieldT, WrapperT>,
-        INotifyPropertyChanged
+        INotifyPropertyChanged, IItemSourceViewModel<WrapperT>
         where FieldT : class, IField, new()
         where WrapperT : class, IFieldWrapper, new()
     {

@@ -12,11 +12,11 @@ using Lex.Db;
 
 namespace R54IN0
 {
-    public class MultiSelectFinderViewModel : FinderViewModel
+    public class ItemFinderViewModel : FinderViewModel
     {
         FinderDirector _finderDirector;
 
-        public MultiSelectFinderViewModel(TreeViewEx treeView) : base(treeView)
+        public ItemFinderViewModel(TreeViewEx treeView) : base(treeView)
         {
             DragCommand = new DragCommand();
             DropCommand = new DropCommand(this);
@@ -77,10 +77,10 @@ namespace R54IN0
         {
             var itemNodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).
                 Select(x => new FinderNode(x));
-            foreach (var itemNode in itemNodes)
-                _finderDirector.Add(itemNode);
             foreach (var node in new List<FinderNode>(SelectedNodes))
                 _finderDirector.Remove(node);
+            foreach (var itemNode in itemNodes)
+                _finderDirector.Add(itemNode);
             SelectedNodes.Clear();
         }
 

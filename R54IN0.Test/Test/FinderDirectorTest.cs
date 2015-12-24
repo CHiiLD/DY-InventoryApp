@@ -27,15 +27,15 @@ namespace R54IN0.Test
             var collection = df.Collection;
             collection.Clear();
             FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "D" };
-            FinderNode item1 = new FinderNode(NodeType.ITEM) { Name = "I1" };
-            FinderNode item2 = new FinderNode(NodeType.ITEM) { Name = "I2" };
-            FinderNode item11 = new FinderNode(NodeType.ITEM) { Name = "I11" };
+            FinderNode item1 = new FinderNode(NodeType.ITEM) { Name = "I1", ItemUUID = "1" };
+            FinderNode item2 = new FinderNode(NodeType.ITEM) { Name = "I2", ItemUUID = "2" };
+            FinderNode item11 = new FinderNode(NodeType.ITEM) { Name = "I11", ItemUUID = "3" };
             root.Nodes.Add(item1);
             root.Nodes.Add(item2);
             item1.Nodes.Add(item11);
             collection.Add(root);
 
-            MultiSelectFinderViewModel fvm = new MultiSelectFinderViewModel(null);
+            ItemFinderViewModel fvm = new ItemFinderViewModel(null);
             fvm.SelectedNodes.Clear();
             fvm.SelectedNodes.Add(root);
             fvm.RemoveDirectoryCommand.Execute(null);

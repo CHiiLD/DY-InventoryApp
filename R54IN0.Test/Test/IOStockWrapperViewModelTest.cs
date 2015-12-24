@@ -109,7 +109,7 @@ namespace R54IN0.Test
             StockType stockTypeAll = StockType.ALL;
 
             ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            MultiSelectFinderViewModel fvm = new MultiSelectFinderViewModel(null);
+            ItemFinderViewModel fvm = new ItemFinderViewModel(null);
             IOStockWrapperViewModel vm1 = new IOStockWrapperViewModel(stockTypeAll, sub);
             var items = vm1.Items;
 

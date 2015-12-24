@@ -27,7 +27,7 @@ namespace R54IN0.WPF
             //ThemeManager.ChangeAppStyle(Application.Current, accent, appStyle.Item1);
             //ThemeManager.ChangeAppTheme(Application.Current, "BaseDark");
 #if DEBUG
-            new R54IN0.Test.DummyDbData().Create();
+            //new R54IN0.Test.DummyDbData().Create();
 #endif
         }
     }

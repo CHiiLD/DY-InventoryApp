@@ -26,99 +26,115 @@ namespace R54IN0.WPF
         public MainWindow()
         {
             InitializeComponent();
+#if DEBUG
+            MenuItem DebugMenu = new MenuItem() { Header = "debug" };
+            MenuItem AllDbDataPurgeMenu = new MenuItem() { Header = "purge db data" };
+            AllDbDataPurgeMenu.Click += AllDbDataPurgeMenu_Click;
+
+            DebugMenu.Items.Add(AllDbDataPurgeMenu);
+            Menu.Items.Add(DebugMenu);
+#endif
         }
 
-        private void InventoryTile_Click(object sender, RoutedEventArgs e)
+        void AllDbDataPurgeMenu_Click(object sender, RoutedEventArgs e)
+        {
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                db.Purge();
+            }
+        }
+
+        void InventoryTile_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = InventoryTab;
         }
 
-        private void InStockTile_Click(object sender, RoutedEventArgs e)
+        void InStockTile_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = InStockTab;
         }
 
-        private void OutStockTile_Click(object sender, RoutedEventArgs e)
+        void OutStockTile_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = OutStockTab;
         }
 
-        private void InOutStockTile_Click(object sender, RoutedEventArgs e)
+        void InOutStockTile_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = InOutStockTab;
         }
 
-        private void ItemTile_Click(object sender, RoutedEventArgs e)
+        void ItemTile_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = ItemTab;
         }
 
-        private void AccountTile_Click(object sender, RoutedEventArgs e)
+        void AccountTile_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = AccountTab;
         }
 
-        private void ExitTile_Click(object sender, RoutedEventArgs e)
+        void ExitTile_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown(110);
         }
 
-        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        void ExitMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown(110);
         }
 
-        private void ItemMenuItem_Click(object sender, RoutedEventArgs e)
+        void ItemMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = ItemTab;
         }
 
-        private void AccountMenuItem_Click(object sender, RoutedEventArgs e)
+        void AccountMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = AccountTab;
         }
 
-        private void MakerMenuItem_Click(object sender, RoutedEventArgs e)
+        void MakerMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = MakerTab;
         }
 
-        private void EmployeeMenuItem_Click(object sender, RoutedEventArgs e)
+        void EmployeeMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = EmployeeTab;
         }
 
-        private void WarehouseMenuItem_Click(object sender, RoutedEventArgs e)
+        void WarehouseMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = WarehouseTab;
         }
 
-        private void CurrencyMenuItem_Click(object sender, RoutedEventArgs e)
+        void CurrencyMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = CurrencyTab;
         }
 
-        private void MeasureMenuItem_Click(object sender, RoutedEventArgs e)
+        void MeasureMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = MeasureTab;
         }
 
-        private void InvenMenuItem_Click(object sender, RoutedEventArgs e)
+        void InvenMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = InventoryTab;
         }
 
-        private void InStockMenuItem_Click(object sender, RoutedEventArgs e)
+        void InStockMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = InStockTab;
         }
 
-        private void OutStockMenuItem_Click(object sender, RoutedEventArgs e)
+        void OutStockMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = OutStockTab;
         }
 
-        private void InOutStockMenuItem_Click(object sender, RoutedEventArgs e)
+        void InOutStockMenuItem_Click(object sender, RoutedEventArgs e)
         {
             TabCenter.SelectedItem = InOutStockTab;
         }

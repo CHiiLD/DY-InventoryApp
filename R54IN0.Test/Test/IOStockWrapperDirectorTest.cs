@@ -25,7 +25,7 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void Distory()
+        public void CanDistory()
         {
             IOStockWrapperDirector.Distory();
         }

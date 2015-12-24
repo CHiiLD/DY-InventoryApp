@@ -1,9 +1,13 @@
-﻿C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Release\GeneratedInternalTypeHelper.g.cs
-FC:\Users\Child\Github\R54IN0\R54IN0.WPF\App.xaml;;
-FC:\Users\Child\Github\R54IN0\R54IN0.WPF\FieldEditorControl\ItemFieldEditor.xaml;;
-FC:\Users\Child\Github\R54IN0\R54IN0.WPF\InOutStockDataGrid.xaml;;
-FC:\Users\Child\Github\R54IN0\R54IN0.WPF\InventoryControl.xaml;;
-FC:\Users\Child\Github\R54IN0\R54IN0.WPF\InventoryDataGrid.xaml;;
-FC:\Users\Child\Github\R54IN0\R54IN0.WPF\InventoryFinder.xaml;;
-FC:\Users\Child\Github\R54IN0\R54IN0.WPF\MainWindow.xaml;;
+﻿Y:\Github\R54IN0\R54IN0.WPF\obj\Release\GeneratedInternalTypeHelper.g.cs
+FY:\Github\R54IN0\R54IN0.WPF\App.xaml;;
+FY:\Github\R54IN0\R54IN0.WPF\InventoryEditorWindow.xaml;;
+FY:\Github\R54IN0\R54IN0.WPF\IOStockEditorWindow.xaml;;
+FY:\Github\R54IN0\R54IN0.WPF\TabControls\ItemManager.xaml;;
+FY:\Github\R54IN0\R54IN0.WPF\TabControls\ItemDataGrid.xaml;;
+FY:\Github\R54IN0\R54IN0.WPF\TabControls\InOutStockManager.xaml;;
+FY:\Github\R54IN0\R54IN0.WPF\TabControls\InOutStockDataGrid.xaml;;
+FY:\Github\R54IN0\R54IN0.WPF\TabControls\InventoryManager.xaml;;
+FY:\Github\R54IN0\R54IN0.WPF\TabControls\InventoryDataGrid.xaml;;
+FY:\Github\R54IN0\R54IN0.WPF\FinderControl\Finder.xaml;;
+FY:\Github\R54IN0\R54IN0.WPF\MainWindow.xaml;;
 

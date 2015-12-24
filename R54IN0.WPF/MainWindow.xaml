@@ -32,7 +32,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid>
-            <Menu>
+            <Menu x:Name="Menu">
                 <MenuItem Header="데일리 인벤토리!">
                     <MenuItem Header="데일리 인벤토리!에 대하여" IsEnabled="False"/>
                     <MenuItem Header="환경설정" IsEnabled="False"/>

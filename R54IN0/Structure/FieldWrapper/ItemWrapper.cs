@@ -146,11 +146,17 @@ namespace R54IN0
             Type type = item.GetType();
 
             if (type == typeof(FieldWrapper<Measure>))
+            {
                 AllMeasure.Add(item as FieldWrapper<Measure>);
+            }
             else if (type == typeof(FieldWrapper<Currency>))
+            {
                 AllCurrency.Add(item as FieldWrapper<Currency>);
+            }
             else if (type == typeof(FieldWrapper<Maker>))
+            {
                 AllMaker.Add(item as FieldWrapper<Maker>);
+            }
         }
 
         public void UpdateDelItem(object item)

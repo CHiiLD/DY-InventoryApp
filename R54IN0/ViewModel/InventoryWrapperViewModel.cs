@@ -73,7 +73,7 @@ namespace R54IN0
 
         public void OnFinderViewSelectItemChanged(object sender, EventArgs e)
         {
-            MultiSelectFinderViewModel fvm = sender as MultiSelectFinderViewModel;
+            ItemFinderViewModel fvm = sender as ItemFinderViewModel;
             if (fvm != null)
             {
                 List<InventoryWrapper> temp = new List<InventoryWrapper>();

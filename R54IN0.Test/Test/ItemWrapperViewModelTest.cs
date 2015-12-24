@@ -183,7 +183,7 @@ namespace R54IN0.Test
         {
             new DummyDbData().Create();
             ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            MultiSelectFinderViewModel fvm = new MultiSelectFinderViewModel(null);
+            ItemFinderViewModel fvm = new ItemFinderViewModel(null);
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
             fvm.SelectItemsChanged += vm.OnFinderViewSelectItemChanged;
             //finder 에서 아이템 선택
@@ -205,7 +205,7 @@ namespace R54IN0.Test
         public void ClickNewAddItemButtonThenWork()
         {
             ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            MultiSelectFinderViewModel fvm = new MultiSelectFinderViewModel(null);
+            ItemFinderViewModel fvm = new ItemFinderViewModel(null);
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
             fvm.SelectItemsChanged += vm.OnFinderViewSelectItemChanged;
 

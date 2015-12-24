@@ -17,16 +17,16 @@ namespace R54IN0.WPF
 {
     public partial class Finder : UserControl
     {
-        MultiSelectFinderViewModel _viewModel;
+        ItemFinderViewModel _viewModel;
 
         public Finder()
         {
             InitializeComponent();
-            _viewModel = new MultiSelectFinderViewModel(FinderTreeView);
+            _viewModel = new ItemFinderViewModel(FinderTreeView);
             DataContext = _viewModel;
         }
 
-        public MultiSelectFinderViewModel ViewModel
+        public ItemFinderViewModel ViewModel
         {
             get
             {

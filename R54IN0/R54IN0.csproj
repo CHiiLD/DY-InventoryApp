@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Finder\FinderViewModel.cs" />
+    <Compile Include="ViewModel\IItemSourceViewModel.cs" />
     <Compile Include="ViewModel\ItemSourceViewModel.cs" />
     <Compile Include="ViewModel\StockEditor\IInventoryInfoProperties.cs" />
     <Compile Include="ViewModel\StockEditor\IIOStockInfoProperties.cs" />
@@ -84,7 +85,7 @@
     <Compile Include="ViewModel\ViewModelObserverSubject.cs" />
     <Compile Include="Finder\Command\DragCommand.cs" />
     <Compile Include="Finder\Command\DropCommand.cs" />
-    <Compile Include="Finder\MultiSelectFinderViewModel.cs" />
+    <Compile Include="Finder\ItemFinderViewModel.cs" />
     <Compile Include="Finder\Node\FinderNode.cs" />
     <Compile Include="Finder\Node\FinderNodeExtension.cs" />
     <Compile Include="Finder\Node\NodeType.cs" />

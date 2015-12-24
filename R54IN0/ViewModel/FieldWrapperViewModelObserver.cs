@@ -19,8 +19,8 @@ namespace R54IN0
 
         public override void Add(WrapperT item)
         {
+            director.Add<FieldT>(item); //순서 중요함
             base.Add(item);
-            director.Add<FieldT>(item);
         }
 
         public override void Remove(WrapperT item)

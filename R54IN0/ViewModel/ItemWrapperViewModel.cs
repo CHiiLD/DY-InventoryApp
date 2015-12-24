@@ -10,7 +10,7 @@ namespace R54IN0
     public class ItemWrapperViewModel : FieldWrapperViewModel<Item, ItemWrapper>, IFinderViewModelEvent
     {
         SpecificationWrapperViewModel _specViewModel;
-        MultiSelectFinderViewModel _finderViewModel;
+        ItemFinderViewModel _finderViewModel;
 
         public ItemWrapperViewModel(ViewModelObserverSubject sub) : base(sub)
         {
@@ -110,7 +110,7 @@ namespace R54IN0
 
         public void OnFinderViewSelectItemChanged(object sender, EventArgs e)
         {
-            _finderViewModel = sender as MultiSelectFinderViewModel;
+            _finderViewModel = sender as ItemFinderViewModel;
             if (_finderViewModel != null)
             {
                 List<ItemWrapper> itemwTemp = new List<ItemWrapper>();

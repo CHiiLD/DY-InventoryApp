@@ -74,7 +74,13 @@ namespace R54IN0
 
         public bool Contains(FinderNode node)
         {
-            return _nodes.Any(x => x.Descendants().Contains(node)) || _nodes.Contains(node);
+            if (node.Type == NodeType.ITEM && string.IsNullOrEmpty(node.ItemUUID))
+                throw new ArgumentException();
+
+            return
+                _nodes.Any(x => x.Descendants().Contains(node)) || //이미 자식루트에서 가지고 있는 경우
+                _nodes.Contains(node) || //ROOT에서 가지고 있을 경우 
+               _nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Any(x => x.ItemUUID == node.ItemUUID); //동일한 item 유니크키를 가지고 있는 경우
         }
 
         public bool Remove(FinderNode node)
@@ -108,12 +114,21 @@ namespace R54IN0
 
         public void Refresh()
         {
-            var itemws = FieldWrapperDirector.GetInstance().CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted); //FieldPipeCollectionDirector.GetInstance().LoadEnablePipe<Item>();
-            foreach (ItemWrapper itemw in itemws)
+            var fwd = FieldWrapperDirector.GetInstance();
+            var itemws = fwd.CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted);
+
+            var itemNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.ITEM);
+            foreach (FinderNode node in new List<FinderNode>(itemNodes)) //없는 Item은 삭제
             {
-                bool result = _nodes.Any(n => n.Descendants().Where(x => x.Type == NodeType.ITEM).Any(x => x.ItemUUID == itemw.Field.UUID));
-                if (!result)
-                    _nodes.Add(new FinderNode(NodeType.ITEM) { ItemUUID = itemw.Field.UUID });
+                if (!itemws.Any(x => x.UUID == node.ItemUUID))
+                    Remove(node);
+            }
+
+            itemNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.ITEM);
+            foreach (ItemWrapper itemw in itemws)//Item 목록에는 존재하지만 Finder에는 없는 경우
+            {
+                if (!itemNodes.Any(x => x.ItemUUID == itemw.Field.UUID))
+                    Add(new FinderNode(NodeType.ITEM) { ItemUUID = itemw.Field.UUID });
             }
         }
 

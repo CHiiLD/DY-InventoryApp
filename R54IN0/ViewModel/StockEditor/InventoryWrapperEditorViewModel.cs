@@ -107,12 +107,21 @@ namespace R54IN0
 
             if (_target != null) //EIDT인 경우 Inventory만 변경
             {
+                if(_target.Warehouse != Warehouse)
+                {
+                    //Warehouse 동기화
+                    var swd = IOStockWrapperDirector.GetInstance();
+                    var ioStockws = swd.CreateCollection(StockType.ALL).Where(x => x.Specification.UUID == Specification.UUID);
+                    foreach (var ioStockw in ioStockws)
+                        ioStockw.Warehouse = Warehouse;
+                }
+
                 var inventory = recordWrapper.Record as Inventory;
                 inventory.Delete<Inventory>(); //Clone UUID의 기록을 제거 
                 inventory.UUID = _target.Record.UUID; //기존의 UUID를 덮씌운 다음에
                 inventory.Save<Inventory>(); //새로 저장
-
                 _target.Record = inventory; //inventory를 변경해버림
+
                 return _target;
             }
             else
