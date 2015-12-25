@@ -14,11 +14,11 @@ namespace R54IN0.Test
         public void CanCreate()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel iowvm = new IOStockWrapperViewModel(StockType.ALL, sub);
-            new IOStockWrapperEditorViewModel(iowvm);
-            var iostockw = IOStockWrapperDirector.GetInstance().CreateCollection(StockType.ALL).First();
-            new IOStockWrapperEditorViewModel(iowvm, iostockw);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel iowvm = new StockWrapperViewModel(StockType.ALL, sub);
+            new StockWrapperEditorViewModel(iowvm);
+            var iostockw = StockWrapperDirector.GetInstance().CreateCollection(StockType.ALL).First();
+            new StockWrapperEditorViewModel(iowvm, iostockw);
         }
 
         /// <summary>
@@ -28,22 +28,22 @@ namespace R54IN0.Test
         public void WhenCreatedInstanceThenStockTypeDefiend()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
-            var evm = new IOStockWrapperEditorViewModel(vm);
-            Assert.AreEqual(StockType.IN, evm.StockType);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            var evm = new StockWrapperEditorViewModel(vm);
+            Assert.AreEqual(StockType.INCOMING, evm.StockType);
             Assert.AreEqual(1, evm.StockTypeList.Count());
-            Assert.AreEqual(StockType.IN, evm.StockTypeList.First());
+            Assert.AreEqual(StockType.INCOMING, evm.StockTypeList.First());
 
-            vm = new IOStockWrapperViewModel(StockType.OUT, sub);
-            evm = new IOStockWrapperEditorViewModel(vm);
-            Assert.AreEqual(StockType.OUT, evm.StockType);
+            vm = new StockWrapperViewModel(StockType.OUTGOING, sub);
+            evm = new StockWrapperEditorViewModel(vm);
+            Assert.AreEqual(StockType.OUTGOING, evm.StockType);
             Assert.AreEqual(1, evm.StockTypeList.Count());
-            Assert.AreEqual(StockType.OUT, evm.StockTypeList.First());
+            Assert.AreEqual(StockType.OUTGOING, evm.StockTypeList.First());
 
-            vm = new IOStockWrapperViewModel(StockType.ALL, sub);
-            evm = new IOStockWrapperEditorViewModel(vm);
-            Assert.AreEqual(StockType.IN, evm.StockType);
+            vm = new StockWrapperViewModel(StockType.ALL, sub);
+            evm = new StockWrapperEditorViewModel(vm);
+            Assert.AreEqual(StockType.INCOMING, evm.StockType);
             Assert.AreEqual(2, evm.StockTypeList.Count());
         }
 
@@ -54,11 +54,11 @@ namespace R54IN0.Test
         public void WhenCreatedInstanceThenInitCollectionProperties()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
-            var evm = new IOStockWrapperEditorViewModel(vm);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            var evm = new StockWrapperEditorViewModel(vm);
 
-            Assert.IsNotNull(evm.AccountList);
+            Assert.IsNotNull(evm.ClientList);
             Assert.IsNotNull(evm.EmployeeList);
         }
 
@@ -69,13 +69,13 @@ namespace R54IN0.Test
         public void WhenClickFinderNodeThenUpdateProperties()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
-            var evm = new IOStockWrapperEditorViewModel(vm);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            var evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
             var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Random();
 
-            evm.ItemCount = 120;
+            evm.Quantity = 120;
 
             Assert.IsNull(evm.ItemList);
             Assert.IsNull(evm.Item);
@@ -97,16 +97,16 @@ namespace R54IN0.Test
 
             Assert.IsNull(evm.Specification);
             Assert.AreEqual(0, evm.PurchaseUnitPrice);
-            Assert.AreEqual(0, evm.TotalPurchasePrice);
-            Assert.AreEqual(0, evm.TotalSalesPrice);
+            Assert.AreEqual(0, evm.PurchasePriceAmount);
+            Assert.AreEqual(0, evm.SalesPriceAmount);
             Assert.AreEqual(0, evm.SalesUnitPrice);
 
             evm.Specification = evm.SpecificationList.Random();
 
             Assert.IsNotNull(evm.Specification);
             Assert.AreNotEqual(0, evm.PurchaseUnitPrice);
-            Assert.AreNotEqual(0, evm.TotalPurchasePrice);
-            Assert.AreNotEqual(0, evm.TotalSalesPrice);
+            Assert.AreNotEqual(0, evm.PurchasePriceAmount);
+            Assert.AreNotEqual(0, evm.SalesPriceAmount);
             Assert.AreNotEqual(0, evm.SalesUnitPrice);
         }
 
@@ -117,10 +117,10 @@ namespace R54IN0.Test
         public void WhenEditStockWrapperThenInitProperties()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            var vm = new IOStockWrapperViewModel(StockType.IN, sub);
-            var ioStockw = IOStockWrapperDirector.GetInstance().CreateCollection(StockType.IN).Random();
-            var evm = new IOStockWrapperEditorViewModel(vm, ioStockw);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            var vm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            var ioStockw = StockWrapperDirector.GetInstance().CreateCollection(StockType.INCOMING).Random();
+            var evm = new StockWrapperEditorViewModel(vm, ioStockw);
 
             Assert.AreEqual(1, evm.SpecificationList.Count());
             Assert.AreEqual(ioStockw.Specification, evm.Specification);
@@ -134,13 +134,13 @@ namespace R54IN0.Test
             Assert.IsNotNull(evm.ItemList);
             Assert.IsNotNull(evm.WarehouseList);
             Assert.IsNotNull(evm.SpecificationList);
-            Assert.IsNotNull(evm.AccountList);
+            Assert.IsNotNull(evm.ClientList);
             Assert.IsNotNull(evm.EmployeeList);
             Assert.IsNotNull(evm.SpecificationList);
 
             Assert.AreNotEqual(0, evm.PurchaseUnitPrice);
-            Assert.AreNotEqual(0, evm.TotalPurchasePrice);
-            Assert.AreNotEqual(0, evm.TotalSalesPrice);
+            Assert.AreNotEqual(0, evm.PurchasePriceAmount);
+            Assert.AreNotEqual(0, evm.SalesPriceAmount);
             Assert.AreNotEqual(0, evm.SalesUnitPrice);
         }
 
@@ -148,25 +148,25 @@ namespace R54IN0.Test
         /// 입출고 시 재고수량을 계산한다.
         /// </summary>
         [TestMethod]
-        public void WhenInputItemCountThenSyncInventoryItemCount()
+        public void WhenInputQuantityThenSyncInventoryQuantity()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
-            var evm = new IOStockWrapperEditorViewModel(vm);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            var evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
             var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Random();
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(new List<FinderNode>() { node }, new List<FinderNode>()));
             evm.Item = evm.ItemList.Random();
             evm.Specification = evm.SpecificationList.Random();
-            var stockCnt = evm.ItemCount = 5;
+            var stockCnt = evm.Quantity = 5;
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
             var invenw = iwd.CreateCollection().Where(x => x.Specification == evm.Specification).SingleOrDefault();
             if (invenw != null)
             {
-                Assert.AreEqual(evm.InventoryItemCount, invenw.ItemCount + stockCnt);
-                evm.StockType = StockType.OUT;
-                Assert.AreEqual(evm.InventoryItemCount, invenw.ItemCount - stockCnt);
+                Assert.AreEqual(evm.InventoryQuantity, invenw.Quantity + stockCnt);
+                evm.StockType = StockType.OUTGOING;
+                Assert.AreEqual(evm.InventoryQuantity, invenw.Quantity - stockCnt);
             }
         }
 
@@ -174,24 +174,24 @@ namespace R54IN0.Test
         /// 입출고 시 재고수량을 계산한다.
         /// </summary>
         [TestMethod]
-        public void WhenInputItemCountThenSyncInventoryItemCount2()
+        public void WhenInputQuantityThenSyncInventoryQuantity2()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
-            var iostockw = IOStockWrapperDirector.GetInstance().CreateCollection(StockType.IN).Random();
-            var evm = new IOStockWrapperEditorViewModel(vm, iostockw);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            var iostockw = StockWrapperDirector.GetInstance().CreateCollection(StockType.INCOMING).Random();
+            var evm = new StockWrapperEditorViewModel(vm, iostockw);
 
-            var beforCnt = evm.ItemCount;
-            var afterCnt = evm.ItemCount = 2;
+            var beforCnt = evm.Quantity;
+            var afterCnt = evm.Quantity = 2;
 
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
             var invenw = iwd.CreateCollection().Where(x => x.Specification == evm.Specification).SingleOrDefault();
             if (invenw != null)
             {
-                Assert.AreEqual(evm.InventoryItemCount, invenw.ItemCount - beforCnt + afterCnt);
-                evm.StockType = StockType.OUT;
-                Assert.AreEqual(evm.InventoryItemCount, invenw.ItemCount + beforCnt - afterCnt);
+                Assert.AreEqual(evm.InventoryQuantity, invenw.Quantity - beforCnt + afterCnt);
+                evm.StockType = StockType.OUTGOING;
+                Assert.AreEqual(evm.InventoryQuantity, invenw.Quantity + beforCnt - afterCnt);
             }
         }
 
@@ -202,29 +202,29 @@ namespace R54IN0.Test
         public void Update()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
-            var evm = new IOStockWrapperEditorViewModel(vm);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            var evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = new FinderViewModel(null, new ObservableCollection<FinderNode>(FinderDirector.GetInstance().Collection));
             fvm.SelectItemsChanged += evm.OnFinderViewSelectItemChanged;
             var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Random();
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(new List<FinderNode>() { node }, new List<FinderNode>()));
             var item = evm.Item = evm.ItemList.Random();
             var spec = evm.Specification = evm.SpecificationList.Random();
-            var account = evm.Account = evm.AccountList.Random();
+            var account = evm.Client = evm.ClientList.Random();
             var employee = evm.Employee = evm.EmployeeList.Random();
             var remark = evm.Remark = "rkfkskekfkakqkt!!!3089432";
-            var stockCnt = evm.ItemCount = 5;
+            var stockCnt = evm.Quantity = 5;
 
             var result = evm.Update();
 
             Assert.IsTrue(vm.Items.Any(x => x == result));
             Assert.AreEqual(remark, result.Remark);
-            Assert.AreEqual(stockCnt, result.ItemCount);
+            Assert.AreEqual(stockCnt, result.Quantity);
             Assert.AreEqual(item, result.Item);
             Assert.AreEqual(spec, result.Specification);
             Assert.AreEqual(employee, result.Employee);
-            Assert.AreEqual(account, result.Account);
+            Assert.AreEqual(account, result.Client);
         }
 
         /// <summary>
@@ -234,30 +234,30 @@ namespace R54IN0.Test
         public void Update2()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
-            var iostockw = IOStockWrapperDirector.GetInstance().CreateCollection(StockType.IN).Random();
-            var evm = new IOStockWrapperEditorViewModel(vm, iostockw);
-            var account = evm.Account = evm.AccountList.Random();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            var iostockw = StockWrapperDirector.GetInstance().CreateCollection(StockType.INCOMING).Random();
+            var evm = new StockWrapperEditorViewModel(vm, iostockw);
+            var account = evm.Client = evm.ClientList.Random();
             var employee = evm.Employee = evm.EmployeeList.Random();
             var remark = evm.Remark = "rkfkskekfkakqkt!!!308922432";
-            var stockCnt = evm.ItemCount = 20;
+            var stockCnt = evm.Quantity = 20;
 
             var result = evm.Update();
 
             Assert.IsTrue(vm.Items.Any(x => x == result));
             Assert.AreEqual(remark, result.Remark);
             Assert.AreEqual(employee, result.Employee);
-            Assert.AreEqual(account, result.Account);
+            Assert.AreEqual(account, result.Client);
         }
 
         [TestMethod]
         public void CanCreateFinder()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel iowvm = new IOStockWrapperViewModel(StockType.ALL, sub);
-            var evm = new IOStockWrapperEditorViewModel(iowvm);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel iowvm = new StockWrapperViewModel(StockType.ALL, sub);
+            var evm = new StockWrapperEditorViewModel(iowvm);
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
         }
 
@@ -265,9 +265,9 @@ namespace R54IN0.Test
         public void WarehouseProperty()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
-            var evm = new IOStockWrapperEditorViewModel(vm);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            var evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
 
             Assert.IsNull(evm.Warehouse);
@@ -308,40 +308,40 @@ namespace R54IN0.Test
         {
             //IN
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
 
-            var iostockw = IOStockWrapperDirector.GetInstance().CreateCollection(StockType.IN).Random();
-            iostockw.ItemCount = 10;
+            var iostockw = StockWrapperDirector.GetInstance().CreateCollection(StockType.INCOMING).Random();
+            iostockw.Quantity = 10;
 
             var invenw = InventoryWrapperDirector.GetInstance().CreateCollection().Where(x => x.Specification.UUID == iostockw.Specification.UUID).Single();
-            invenw.ItemCount = 20;
+            invenw.Quantity = 20;
 
-            var evm = new IOStockWrapperEditorViewModel(vm, iostockw);
-            evm.Account = evm.AccountList.Random();
+            var evm = new StockWrapperEditorViewModel(vm, iostockw);
+            evm.Client = evm.ClientList.Random();
             evm.Employee = evm.EmployeeList.Random();
-            evm.ItemCount = 3;
-            var invenCnt = evm.InventoryItemCount;
+            evm.Quantity = 3;
+            var invenCnt = evm.InventoryQuantity;
             evm.Update();
 
             //OUT
-            Assert.AreEqual(13, invenw.ItemCount);
-            vm = new IOStockWrapperViewModel(StockType.OUT, sub);
+            Assert.AreEqual(13, invenw.Quantity);
+            vm = new StockWrapperViewModel(StockType.OUTGOING, sub);
 
-            iostockw = IOStockWrapperDirector.GetInstance().CreateCollection(StockType.OUT).Random();
-            iostockw.ItemCount = 10;
+            iostockw = StockWrapperDirector.GetInstance().CreateCollection(StockType.OUTGOING).Random();
+            iostockw.Quantity = 10;
 
             invenw = InventoryWrapperDirector.GetInstance().CreateCollection().Where(x => x.Specification.UUID == iostockw.Specification.UUID).Single();
-            invenw.ItemCount = 20;
+            invenw.Quantity = 20;
 
-            evm = new IOStockWrapperEditorViewModel(vm, iostockw);
-            evm.Account = evm.AccountList.Random();
+            evm = new StockWrapperEditorViewModel(vm, iostockw);
+            evm.Client = evm.ClientList.Random();
             evm.Employee = evm.EmployeeList.Random();
-            evm.ItemCount = 3;
-            invenCnt = evm.InventoryItemCount;
+            evm.Quantity = 3;
+            invenCnt = evm.InventoryQuantity;
             evm.Update();
 
-            Assert.AreEqual(27, invenw.ItemCount);
+            Assert.AreEqual(27, invenw.Quantity);
         }
 
         /// <summary>
@@ -352,18 +352,18 @@ namespace R54IN0.Test
         public void WhenUpdate_IfNotExistInvenData_CreateInvenWrapper()
         {
             var dummy = new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             InventoryWrapperViewModel ivm = new InventoryWrapperViewModel(sub);
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
-            var evm = new IOStockWrapperEditorViewModel(vm);
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            var evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
             var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Where(x => x.ItemUUID == dummy.UnregisterdTestItemUUID).Single();
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(new List<FinderNode>() { node }, new List<FinderNode>()));
             var item = evm.Item = evm.ItemList.Random();
             var spec = evm.Specification = evm.SpecificationList.Random();
-            var account = evm.Account = evm.AccountList.Random();
+            var account = evm.Client = evm.ClientList.Random();
             var employee = evm.Employee = evm.EmployeeList.Random();
-            var stockCnt = evm.ItemCount = 5;
+            var stockCnt = evm.Quantity = 5;
             var result = evm.Update();
 
             var iwd = InventoryWrapperDirector.GetInstance();
@@ -379,9 +379,9 @@ namespace R54IN0.Test
         public void ClickNodeThenClickItemThenClickNode()
         {
             var dummy = new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.IN, sub);
-            IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(vm);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            StockWrapperEditorViewModel evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
             var itemNdoes = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
             var node = itemNdoes.ElementAt(0);

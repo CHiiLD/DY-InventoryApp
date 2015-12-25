@@ -48,7 +48,7 @@
                 <Separator Width="5"/>
                 <MenuItem Header="기본정보관리">
                     <MenuItem Header="품목" x:Name="ItemMenuItem" Click="ItemMenuItem_Click"/>
-                    <MenuItem Header="거래처" x:Name="AccountMenuItem" Click="AccountMenuItem_Click"/>
+                    <MenuItem Header="거래처" x:Name="ClientMenuItem" Click="ClientMenuItem_Click"/>
                     <MenuItem Header="제조사" x:Name="MakerMenuItem" Click="MakerMenuItem_Click"/>
                     <MenuItem Header="단위" x:Name="MeasureMenuItem" Click="MeasureMenuItem_Click"/>
                     <MenuItem Header="화폐" x:Name="CurrencyMenuItem" Click="CurrencyMenuItem_Click"/>
@@ -70,7 +70,7 @@
                 <mah:Tile x:Name="OutStockTile" Title="자재 출고 현황" Style="{StaticResource SmallTileStyle}" Margin="3" Click="OutStockTile_Click" />
                 <mah:Tile x:Name="InOutStockTile" Title="자재 입출고 현황" Background="#e74c3c" Style="{StaticResource LargeTileStyle}" Margin="3" Click="InOutStockTile_Click" />
                 <mah:Tile x:Name="ItemTile" Title="품목 관리" Background="#5e84aa" Style="{StaticResource SmallTileStyle}" Margin="3" Click="ItemTile_Click" />
-                <mah:Tile x:Name="AccountTile" Title="거래처 관리" Style="{StaticResource SmallTileStyle}" Margin="3" Click="AccountTile_Click" />
+                <mah:Tile x:Name="ClientTile" Title="거래처 관리" Style="{StaticResource SmallTileStyle}" Margin="3" Click="ClientTile_Click" />
                 <mah:Tile IsEnabled="False" Title="통계 보기" Background="#1ba5a0" Style="{StaticResource SmallTileStyle}" Margin="3" />
                 <mah:Tile IsEnabled="False" Title="인쇄" Style="{StaticResource SmallTileStyle}" Margin="3" />
                 <mah:Tile IsEnabled="False" Title="환경설정"  Background="#aeb1b1" Style="{StaticResource SmallTileStyle}" Margin="3" />
@@ -95,8 +95,8 @@
                 <TabItem Header="품목" x:Name="ItemTab">
                     <local:ItemManager />
                 </TabItem>
-                <TabItem Header="거래처" x:Name="AccountTab">
-                    <local:AccountDataGrid />
+                <TabItem Header="거래처" x:Name="ClientTab">
+                    <local:ClientDataGrid />
                 </TabItem>
                 <TabItem Header="제조사" x:Name="MakerTab">
                     <local:MakerDataGrid />

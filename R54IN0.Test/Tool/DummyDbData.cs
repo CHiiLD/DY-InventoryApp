@@ -21,9 +21,9 @@ namespace R54IN0.Test
 
             FieldWrapperDirector.Distroy();
             InventoryWrapperDirector.Distory();
-            ViewModelObserverSubject.Distory();
+            CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
-            IOStockWrapperDirector.Distory();
+            StockWrapperDirector.Distory();
 
             ////////////INIT
 
@@ -39,12 +39,12 @@ namespace R54IN0.Test
             new Employee() { Name = "천두관" }.Save<Employee>();
             new Employee() { Name = "이도희" }.Save<Employee>();
 
-            var a = new Account() { Name = "야명FA", Delegator = "이양원", PhoneNumber = "053) 604-5656" }.Save<Account>();
-            new Account() { Name = "예시스템", Delegator = "지창훈", PhoneNumber = "053) 587-3013" }.Save<Account>();
-            new Account() { Name = "이오텍", Delegator = "김택윤", PhoneNumber = "053) 600-8220" }.Save<Account>();
-            new Account() { Name = "네오테크", Delegator = "김연청", PhoneNumber = "054) 275-8403" }.Save<Account>();
-            new Account() { Name = "덕성전기", Delegator = "천두관", PhoneNumber = "053) 604-4242" }.Save<Account>();
-            new Account() { Name = "풍림", Delegator = "이도희", PhoneNumber = "053) 604-4321" }.Save<Account>();
+            var a = new Client() { Name = "야명FA", Delegator = "이양원", PhoneNumber = "053) 604-5656" }.Save<Client>();
+            new Client() { Name = "예시스템", Delegator = "지창훈", PhoneNumber = "053) 587-3013" }.Save<Client>();
+            new Client() { Name = "이오텍", Delegator = "김택윤", PhoneNumber = "053) 600-8220" }.Save<Client>();
+            new Client() { Name = "네오테크", Delegator = "김연청", PhoneNumber = "054) 275-8403" }.Save<Client>();
+            new Client() { Name = "덕성전기", Delegator = "천두관", PhoneNumber = "053) 604-4242" }.Save<Client>();
+            new Client() { Name = "풍림", Delegator = "이도희", PhoneNumber = "053) 604-4321" }.Save<Client>();
 
             var m = new Measure() { Name = "EA" }.Save<Measure>();
             new Measure() { Name = "SET" }.Save<Measure>();
@@ -73,7 +73,7 @@ namespace R54IN0.Test
 
             new Inventory()
             {
-                ItemCount = 10,
+                Quantity = 10,
                 Remark = "",
                 SpecificationUUID = spec.UUID,
                 WarehouseUUID = w.UUID,
@@ -85,10 +85,10 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.IN,
+                StockType = StockType.INCOMING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
@@ -97,10 +97,10 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.IN,
+                StockType = StockType.INCOMING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
@@ -109,7 +109,7 @@ namespace R54IN0.Test
             spec = new Specification() { Remark = "황색", Name = "CR254-24V 황색", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
             new Inventory()
             {
-                ItemCount = 10,
+                Quantity = 10,
                 Remark = "",
                 SpecificationUUID = spec.UUID,
                 WarehouseUUID = w.UUID,
@@ -123,10 +123,10 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.OUT,
+                StockType = StockType.OUTGOING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
@@ -135,10 +135,10 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.IN,
+                StockType = StockType.INCOMING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
@@ -147,10 +147,10 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.IN,
+                StockType = StockType.INCOMING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
@@ -159,16 +159,16 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.IN,
+                StockType = StockType.INCOMING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
             new Inventory()
             {
-                ItemCount = 10,
+                Quantity = 10,
                 Remark = "",
                 SpecificationUUID = spec.UUID,
                 WarehouseUUID = w.UUID,
@@ -177,7 +177,7 @@ namespace R54IN0.Test
             spec = new Specification() { Remark = "2", Name = "KCB-303D", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
             new Inventory()
             {
-                ItemCount = 10,
+                Quantity = 10,
                 Remark = "",
                 SpecificationUUID = spec.UUID,
                 WarehouseUUID = w.UUID,
@@ -186,7 +186,7 @@ namespace R54IN0.Test
             spec = new Specification() { Remark = "3", Name = "KCB-302D", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
             new Inventory()
             {
-                ItemCount = 10,
+                Quantity = 10,
                 Remark = "",
                 SpecificationUUID = spec.UUID,
                 WarehouseUUID = w.UUID,
@@ -195,7 +195,7 @@ namespace R54IN0.Test
             spec = new Specification() { Remark = "4", Name = "KCB-301D", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
             new Inventory()
             {
-                ItemCount = 10,
+                Quantity = 10,
                 Remark = "",
                 SpecificationUUID = spec.UUID,
                 WarehouseUUID = w.UUID,
@@ -207,10 +207,10 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.OUT,
+                StockType = StockType.OUTGOING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
@@ -219,17 +219,17 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.IN,
+                StockType = StockType.INCOMING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
             spec = new Specification() { Remark = "5", Name = "KCB-254D", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
             new Inventory()
             {
-                ItemCount = 10,
+                Quantity = 10,
                 Remark = "",
                 SpecificationUUID = spec.UUID,
                 WarehouseUUID = w.UUID,
@@ -238,7 +238,7 @@ namespace R54IN0.Test
             spec = new Specification() { Remark = "6", Name = "KCB-253D", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
             new Inventory()
             {
-                ItemCount = 10,
+                Quantity = 10,
                 Remark = "",
                 SpecificationUUID = spec.UUID,
                 WarehouseUUID = w.UUID,
@@ -250,10 +250,10 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.IN,
+                StockType = StockType.INCOMING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
@@ -262,10 +262,10 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.OUT,
+                StockType = StockType.OUTGOING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
@@ -273,7 +273,7 @@ namespace R54IN0.Test
             spec = new Specification() { Remark = "7", Name = "2B 접점", ItemUUID = item.UUID, PurchaseUnitPrice = pPrice, SalesUnitPrice = sPrice }.Save<Specification>();
             new Inventory()
             {
-                ItemCount = 10,
+                Quantity = 10,
                 Remark = "",
                 SpecificationUUID = spec.UUID,
                 WarehouseUUID = w.UUID,
@@ -285,10 +285,10 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.IN,
+                StockType = StockType.INCOMING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
@@ -297,10 +297,10 @@ namespace R54IN0.Test
                 Date = DateTime.Now,
                 EmployeeUUID = e.UUID,
                 EnterpriseUUID = a.UUID,
-                ItemCount = 30,
+                Quantity = 30,
                 ItemUUID = item.UUID,
                 SpecificationUUID = spec.UUID,
-                StockType = StockType.OUT,
+                StockType = StockType.OUTGOING,
                 WarehouseUUID = w.UUID
             }.Save<InOutStock>();
 
@@ -313,7 +313,7 @@ namespace R54IN0.Test
                     Date = DateTime.Now,
                     EmployeeUUID = e.UUID,
                     EnterpriseUUID = a.UUID,
-                    ItemCount = 30,
+                    Quantity = 30,
                     ItemUUID = item.UUID,
                     SpecificationUUID = spec.UUID,
                     StockType = StockType.OUT,

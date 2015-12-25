@@ -12,11 +12,11 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreate()
         {
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm = new IOStockWrapperViewModel(StockType.ALL, sub);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.ALL, sub);
         }
 
-        IOStockWrapper CreateIOStockWrapper()
+        StockWrapper CreateIOStockWrapper()
         {
             //새로운 아이템 생성
             var fwd = FieldWrapperDirector.GetInstance();
@@ -25,18 +25,18 @@ namespace R54IN0.Test
             ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
             ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
             ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
-            ObservableCollection<AccountWrapper> accoCollectoin = fwd.CreateCollection<Account, AccountWrapper>();
+            ObservableCollection<ClientWrapper> accoCollectoin = fwd.CreateCollection<Client, ClientWrapper>();
             ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
             ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
 
             Random rand = new Random();
-            var instance = new IOStockWrapper(new InOutStock());
-            var type = instance.StockType == StockType.IN ? StockType.OUT : StockType.IN;
+            var instance = new StockWrapper(new InOutStock());
+            var type = instance.StockType == StockType.INCOMING ? StockType.OUTGOING : StockType.INCOMING;
             var specw = instance.Specification = specCollectoin.ElementAt(rand.Next(specCollectoin.Count - 1));
             var itemw = instance.Item = itemCollectoin.Where(x => x.UUID == specw.Field.ItemUUID).Single();
-            var itemCnt = instance.ItemCount = 20332;
+            var itemCnt = instance.Quantity = 20332;
             var date = instance.Date = DateTime.Now.AddTicks(2000000221);
-            var accountw = instance.Account = accoCollectoin.ElementAt(rand.Next(accoCollectoin.Count - 1));
+            var accountw = instance.Client = accoCollectoin.ElementAt(rand.Next(accoCollectoin.Count - 1));
             var eemployeew = instance.Employee = eeplCollectoin.ElementAt(rand.Next(eeplCollectoin.Count - 1));
             var warehousew = instance.Warehouse = wareCollectoin.ElementAt(rand.Next(wareCollectoin.Count - 1));
             var remark = instance.Remark = "3^^a";
@@ -50,14 +50,14 @@ namespace R54IN0.Test
         public void SyncViewModel()
         {
             StockType stockTypeAll = StockType.ALL;
-            StockType stockTypeIn = StockType.IN;
-            StockType stockTypeOut = StockType.OUT;
+            StockType stockTypeIn = StockType.INCOMING;
+            StockType stockTypeOut = StockType.OUTGOING;
             var dummy = new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            IOStockWrapperViewModel vm1 = new IOStockWrapperViewModel(stockTypeAll, sub);
-            IOStockWrapperViewModel vm2 = new IOStockWrapperViewModel(stockTypeAll, sub);
-            IOStockWrapperViewModel vm3 = new IOStockWrapperViewModel(stockTypeIn, sub);
-            IOStockWrapperViewModel vm4 = new IOStockWrapperViewModel(stockTypeOut, sub);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            StockWrapperViewModel vm1 = new StockWrapperViewModel(stockTypeAll, sub);
+            StockWrapperViewModel vm2 = new StockWrapperViewModel(stockTypeAll, sub);
+            StockWrapperViewModel vm3 = new StockWrapperViewModel(stockTypeIn, sub);
+            StockWrapperViewModel vm4 = new StockWrapperViewModel(stockTypeOut, sub);
 
             Assert.AreNotEqual(0, vm1.Items.Count);
             int cnt = vm1.Items.Count();
@@ -85,7 +85,7 @@ namespace R54IN0.Test
             Assert.IsTrue(vm3.Items.Contains(ioStockw));
             Assert.IsFalse(vm4.Items.Contains(ioStockw));
 
-            var iowd = IOStockWrapperDirector.GetInstance();
+            var iowd = StockWrapperDirector.GetInstance();
             Assert.IsTrue(iowd.CreateCollection(stockTypeAll).Contains(ioStockw));
             //삭제
             vm1.Remove(ioStockw);
@@ -108,9 +108,9 @@ namespace R54IN0.Test
             new DummyDbData().Create();
             StockType stockTypeAll = StockType.ALL;
 
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemFinderViewModel fvm = new ItemFinderViewModel(null);
-            IOStockWrapperViewModel vm1 = new IOStockWrapperViewModel(stockTypeAll, sub);
+            StockWrapperViewModel vm1 = new StockWrapperViewModel(stockTypeAll, sub);
             var items = vm1.Items;
 
             fvm.SelectItemsChanged += vm1.OnFinderViewSelectItemChanged;
@@ -142,7 +142,7 @@ namespace R54IN0.Test
 
             vm1.Add(newStock);
             Assert.IsFalse(vm1.Items.Contains(newStock));
-            var iowd = IOStockWrapperDirector.GetInstance();
+            var iowd = StockWrapperDirector.GetInstance();
             Assert.IsTrue(iowd.CreateCollection(stockTypeAll).Contains(newStock));
             
             //위 상황과 반대인 경우

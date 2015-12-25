@@ -6,30 +6,22 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    [Flags]
-    public enum StockType
-    {
-        NONE = 0,
-        IN = 1 << 0,
-        OUT = 1 << 1,
-        ALL = IN | OUT
-    }
-
     /// <summary>
     /// DB 입고 기록 클래스
     /// </summary>
-    public class InOutStock : IUUID, IRecord
+    public class InOutStock : IUUID, IStock
     {
         public StockType StockType { get; set; }
         public string ItemUUID { get; set; }
         public string UUID { get; set; }
         public DateTime Date { get; set; }
         public string SpecificationUUID { get; set; }
-        public int ItemCount { get; set; }
+        public int Quantity { get; set; }
         public string EnterpriseUUID { get; set; }
         public string EmployeeUUID { get; set; }
         public string WarehouseUUID { get; set; }
         public string Remark { get; set; }
+        public string InventoryUUID { get; set; }
 
         public InOutStock()
         {
@@ -42,12 +34,13 @@ namespace R54IN0
             UUID = thiz.UUID;
             Date = thiz.Date;
             SpecificationUUID = thiz.SpecificationUUID;
-            ItemCount = thiz.ItemCount;
+            Quantity = thiz.Quantity;
             EnterpriseUUID = thiz.EnterpriseUUID;
             EmployeeUUID = thiz.EmployeeUUID;
             WarehouseUUID = thiz.WarehouseUUID;
             Remark = thiz.Remark;
             ItemUUID = thiz.ItemUUID;
+            InventoryUUID = thiz.InventoryUUID;
         }
 
         public object Clone()

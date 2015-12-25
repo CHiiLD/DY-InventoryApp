@@ -1,23 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
+﻿using System.Linq;
 using System.ComponentModel;
 
 namespace R54IN0
 {
-    public interface IRecordWrapper
-    {
-        IRecord Record { get; set; }
-        ItemWrapper Item { get; set; }
-        SpecificationWrapper Specification { get; set; }
-        FieldWrapper<Warehouse> Warehouse { get; set; }
-        int ItemCount { get; set; }
-    }
-
-    public class RecordWrapper<RecordT> : IRecordWrapper, INotifyPropertyChanged where RecordT : class, IRecord, IUUID
+    public class RecordWrapper<RecordT> : IStockWrapper, INotifyPropertyChanged where RecordT : class, IStock, IUUID
     {
         RecordT _record;
         SpecificationWrapper _specification;
@@ -70,7 +56,7 @@ namespace R54IN0
         {
             get
             {
-                return Specification.SalesUnitPrice * ItemCount;
+                return Specification.SalesUnitPrice * Quantity;
             }
         }
 
@@ -86,7 +72,7 @@ namespace R54IN0
         {
             get
             {
-                return Specification.PurchaseUnitPrice * ItemCount;
+                return Specification.PurchaseUnitPrice * Quantity;
             }
         }
 
@@ -106,7 +92,7 @@ namespace R54IN0
             }
         }
 
-        IRecord IRecordWrapper.Record
+        IStock IStockWrapper.Record
         {
             get
             {
@@ -167,17 +153,17 @@ namespace R54IN0
             }
         }
 
-        public int ItemCount
+        public int Quantity
         {
             get
             {
-                return _record.ItemCount;
+                return _record.Quantity;
             }
             set
             {
-                _record.ItemCount = value;
+                _record.Quantity = value;
                 _record.Save<RecordT>();
-                OnPropertyChanged("ItemCount");
+                OnPropertyChanged("Quantity");
                 OnPropertyChanged("SelesPriceAmount");
                 OnPropertyChanged("PurchasePriceAmount");
             }

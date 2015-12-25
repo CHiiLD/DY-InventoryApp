@@ -12,7 +12,7 @@ namespace R54IN0.Test
         public void CanCreate()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
         }
 
@@ -20,7 +20,7 @@ namespace R54IN0.Test
         public void LoadItem()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
             Assert.IsNotNull(vm.Items);
 
@@ -36,7 +36,7 @@ namespace R54IN0.Test
         public void WhenSelectitemThenLoadNewSpecCollection()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
 
             var beforeSpec = vm.Specifications;
@@ -54,7 +54,7 @@ namespace R54IN0.Test
         public void PropertySync()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel itemViewModel = new ItemWrapperViewModel(sub);
             ItemWrapper itemWrapper = itemViewModel.SelectedItem = itemViewModel.Items.FirstOrDefault();
             FieldWrapper<Measure> itemMeasure = itemViewModel.SelectedItem.SelectedMeasure;
@@ -84,7 +84,7 @@ namespace R54IN0.Test
             var debug = FinderDirector.GetInstance();
             dummy = new DummyDbData().Create();
 
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
 
             debug = FinderDirector.GetInstance();
@@ -116,7 +116,7 @@ namespace R54IN0.Test
             var finder = FinderDirector.GetInstance();
 
             var dummy = new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
 
             var finderColl = FinderDirector.GetInstance().Collection;
@@ -136,7 +136,7 @@ namespace R54IN0.Test
         public void SyncWrapperProperty()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
 
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
 
@@ -182,7 +182,7 @@ namespace R54IN0.Test
         public void WhenClickFinderItemThenUpdateSpecifications()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemFinderViewModel fvm = new ItemFinderViewModel(null);
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
             fvm.SelectItemsChanged += vm.OnFinderViewSelectItemChanged;
@@ -204,7 +204,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void ClickNewAddItemButtonThenWork()
         {
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemFinderViewModel fvm = new ItemFinderViewModel(null);
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
             fvm.SelectItemsChanged += vm.OnFinderViewSelectItemChanged;

@@ -8,18 +8,18 @@ using System.Collections.ObjectModel;
 
 namespace R54IN0
 {
-    public class ItemWrapper : FieldWrapper<Item>, IViewModelObserver
+    public class ItemWrapper : FieldWrapper<Item>, ICollectionViewModelObserver
     {
         FieldWrapper<Measure> _measure;
         FieldWrapper<Currency> _currency;
         FieldWrapper<Maker> _maker;
 
-        ViewModelObserverSubject _subject;
+        CollectionViewModelObserverSubject _subject;
 
         public ItemWrapper() : base()
         {
             LoadEnumerableProperies();
-            _subject = ViewModelObserverSubject.GetInstance();
+            _subject = CollectionViewModelObserverSubject.GetInstance();
             _subject.Attach(this);
         }
 
@@ -28,11 +28,11 @@ namespace R54IN0
         {
             LoadEnumerableProperies();
             LoadProperties(item);
-            _subject = ViewModelObserverSubject.GetInstance();
+            _subject = CollectionViewModelObserverSubject.GetInstance();
             _subject.Attach(this);
         }
 
-        public ItemWrapper(Item item, ViewModelObserverSubject subject)
+        public ItemWrapper(Item item, CollectionViewModelObserverSubject subject)
                     : base(item)
         {
             LoadEnumerableProperies();

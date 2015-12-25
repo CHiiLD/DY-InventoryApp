@@ -36,7 +36,7 @@ namespace R54IN0.Test
             ObservableCollection<IFieldWrapper> measCollectoin = fwd.CreateCollection<Measure>();
             ObservableCollection<IFieldWrapper> currCollectoin = fwd.CreateCollection<Currency>();
             ObservableCollection<IFieldWrapper> eeplCollectoin = fwd.CreateCollection<Employee>();
-            ObservableCollection<IFieldWrapper> accoCollectoin = fwd.CreateCollection<Account>();
+            ObservableCollection<IFieldWrapper> accoCollectoin = fwd.CreateCollection<Client>();
             ObservableCollection<IFieldWrapper> makeCollectoin = fwd.CreateCollection<Maker>();
             ObservableCollection<IFieldWrapper> wareCollectoin = fwd.CreateCollection<Warehouse>();
         }
@@ -51,7 +51,7 @@ namespace R54IN0.Test
             ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
             ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
             ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
-            ObservableCollection<AccountWrapper> accoCollectoin = fwd.CreateCollection<Account, AccountWrapper>();
+            ObservableCollection<ClientWrapper> accoCollectoin = fwd.CreateCollection<Client, ClientWrapper>();
             ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
             ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
         }
@@ -69,7 +69,7 @@ namespace R54IN0.Test
             ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
             ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
             ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
-            ObservableCollection<AccountWrapper> accoCollectoin = fwd.CreateCollection<Account, AccountWrapper>();
+            ObservableCollection<ClientWrapper> accoCollectoin = fwd.CreateCollection<Client, ClientWrapper>();
             ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
             ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
 
@@ -77,7 +77,7 @@ namespace R54IN0.Test
             // FieldWrapper<T> 변경테스트
             string eepName = eeplCollectoin.ElementAtOrDefault(rand.Next(eeplCollectoin.Count - 1)).Name = "홍길동.";
             // AccountWrapper 프로퍼티 변경
-            AccountWrapper accountw = accoCollectoin.ElementAt(rand.Next(accoCollectoin.Count - 1));
+            ClientWrapper accountw = accoCollectoin.ElementAt(rand.Next(accoCollectoin.Count - 1));
             string mobile = accountw.MobileNumber = "mobile";
             string accountName = accountw.Name = "newName";
             string phone = accountw.PhoneNumber = "phone";
@@ -103,7 +103,7 @@ namespace R54IN0.Test
             measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
             currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
             eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
-            accoCollectoin = fwd.CreateCollection<Account, AccountWrapper>();
+            accoCollectoin = fwd.CreateCollection<Client, ClientWrapper>();
             makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
             wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
             // FieldWrapper<T> 검사
@@ -137,9 +137,9 @@ namespace R54IN0.Test
         public void AsyncCollection()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            FieldWrapperViewModelObserver<Employee, FieldWrapper<Employee>> vm1 = new FieldWrapperViewModelObserver<Employee, FieldWrapper<Employee>>(sub);
-            FieldWrapperViewModelObserver<Employee, FieldWrapper<Employee>> vm2 = new FieldWrapperViewModelObserver<Employee, FieldWrapper<Employee>>(sub);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            FieldWrapperViewModel<Employee, FieldWrapper<Employee>> vm1 = new FieldWrapperViewModel<Employee, FieldWrapper<Employee>>(sub);
+            FieldWrapperViewModel<Employee, FieldWrapper<Employee>> vm2 = new FieldWrapperViewModel<Employee, FieldWrapper<Employee>>(sub);
 
             //새로운 아이템을 컬렉션에 추가 후 동기화(Update) 확인
             Employee newEmp = new Employee();

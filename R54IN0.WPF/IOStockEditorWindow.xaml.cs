@@ -22,14 +22,14 @@ namespace R54IN0.WPF
     /// </summary>
     public partial class IOStockEditorWindow : MetroWindow
     {
-        IOStockWrapperEditorViewModel _viewModel;
+        StockWrapperEditorViewModel _viewModel;
 
         public FinderViewModel Finder
         {
             get; set;
         }
 
-        public IOStockWrapperEditorViewModel Editor
+        public StockWrapperEditorViewModel Editor
         {
             get
             {

@@ -100,7 +100,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="입고총단가"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock x:Name="TotalPurchasePriceText" Text="{Binding TotalPurchasePrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
+                    <TextBlock x:Name="PurchasePriceAmountText" Text="{Binding PurchasePriceAmount, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
                     <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
@@ -131,7 +131,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="출고총단가" Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock x:Name="TotalSalesPriceText" Text="{Binding TotalSalesPrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
+                    <TextBlock x:Name="SalesPriceAmountText" Text="{Binding SalesPriceAmount, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
                     <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
@@ -151,7 +151,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="재고수량"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <mah:NumericUpDown Grid.Column="1" Value="{Binding ItemCount}" StringFormat='{}{0:#,#.}' TextAlignment="Right" VerticalContentAlignment="Center" Minimum="1"/>
+                    <mah:NumericUpDown Grid.Column="1" Value="{Binding Quantity}" StringFormat='{}{0:#,#.}' TextAlignment="Right" VerticalContentAlignment="Center" Minimum="1"/>
                     <TextBlock Grid.Column="2" Text="{Binding Measure.Name}" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 

@@ -69,9 +69,9 @@ namespace R54IN0.WPF
             TabCenter.SelectedItem = ItemTab;
         }
 
-        void AccountTile_Click(object sender, RoutedEventArgs e)
+        void ClientTile_Click(object sender, RoutedEventArgs e)
         {
-            TabCenter.SelectedItem = AccountTab;
+            TabCenter.SelectedItem = ClientTab;
         }
 
         void ExitTile_Click(object sender, RoutedEventArgs e)
@@ -89,9 +89,9 @@ namespace R54IN0.WPF
             TabCenter.SelectedItem = ItemTab;
         }
 
-        void AccountMenuItem_Click(object sender, RoutedEventArgs e)
+        void ClientMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            TabCenter.SelectedItem = AccountTab;
+            TabCenter.SelectedItem = ClientTab;
         }
 
         void MakerMenuItem_Click(object sender, RoutedEventArgs e)

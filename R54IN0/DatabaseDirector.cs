@@ -25,7 +25,7 @@ namespace R54IN0
             if (_customLexDb == null)
             {
 #if DEBUG
-                _customLexDb = new CustomLexDb("test.db");
+                _customLexDb = new CustomLexDb("test.db", "./");
 #else
                _customLexDb = new CustomLexDb("daily inventory", "./");
 #endif
@@ -77,7 +77,7 @@ namespace R54IN0
             me.Map<Measure>().Automap(i => i.UUID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsEnable", i => i.IsDeleted);
-            me.Map<Account>().Automap(i => i.UUID).
+            me.Map<Client>().Automap(i => i.UUID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsEnable", i => i.IsDeleted).
             WithIndex("Delegator", i => i.Delegator).
@@ -91,17 +91,18 @@ namespace R54IN0
                 WithIndex("WarehouseUUID", i => i.WarehouseUUID).
                 WithIndex("Remark", i => i.Remark).
                 WithIndex("ItemUUID", i => i.ItemUUID).
-                WithIndex("ItemCount", i => i.ItemCount);
+                WithIndex("Quantity", i => i.Quantity);
             me.Map<InOutStock>().Automap(i => i.UUID).
                 WithIndex("StockType", i => i.StockType).
                 WithIndex("Date", i => i.Date).
                 WithIndex("SpecificationUUID", i => i.SpecificationUUID).
-                WithIndex("ItemCount", i => i.ItemCount).
+                WithIndex("Quantity", i => i.Quantity).
                 WithIndex("EnterpriseUUID", i => i.EnterpriseUUID).
                 WithIndex("EmployeeUUID", i => i.EmployeeUUID).
                 WithIndex("WarehouseUUID", i => i.WarehouseUUID).
                 WithIndex("ItemUUID", i => i.ItemUUID).
-                WithIndex("Remark", i => i.Remark);
+                WithIndex("Remark", i => i.Remark).
+                WithIndex("InventoryUUID", i => i.InventoryUUID);
             me.Map<FinderTreeNodeJsonRecord>().Automap(i => i.UUID).
                 WithIndex("Data", i => i.Data);
             me.Initialize();

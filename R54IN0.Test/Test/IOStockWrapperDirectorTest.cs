@@ -11,23 +11,23 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreate()
         {
-            IOStockWrapperDirector iowd = IOStockWrapperDirector.GetInstance();
+            StockWrapperDirector iowd = StockWrapperDirector.GetInstance();
         }
 
         [TestMethod]
         public void Load()
         {
             new DummyDbData().Create();
-            IOStockWrapperDirector iowd = IOStockWrapperDirector.GetInstance();
-            ObservableCollection<IOStockWrapper> collection = iowd.CreateCollection(StockType.ALL);
-            ObservableCollection<IOStockWrapper> collection2 = iowd.CreateCollection(StockType.IN);
-            ObservableCollection<IOStockWrapper> collection3 = iowd.CreateCollection(StockType.OUT);
+            StockWrapperDirector iowd = StockWrapperDirector.GetInstance();
+            ObservableCollection<StockWrapper> collection = iowd.CreateCollection(StockType.ALL);
+            ObservableCollection<StockWrapper> collection2 = iowd.CreateCollection(StockType.INCOMING);
+            ObservableCollection<StockWrapper> collection3 = iowd.CreateCollection(StockType.OUTGOING);
         }
 
         [TestMethod]
         public void CanDistory()
         {
-            IOStockWrapperDirector.Distory();
+            StockWrapperDirector.Distory();
         }
 
         [TestMethod]
@@ -35,8 +35,8 @@ namespace R54IN0.Test
         {
             new DummyDbData().Create();
             Random rand = new Random();
-            IOStockWrapperDirector iowd = IOStockWrapperDirector.GetInstance();
-            ObservableCollection<IOStockWrapper> collection = iowd.CreateCollection(StockType.ALL);
+            StockWrapperDirector iowd = StockWrapperDirector.GetInstance();
+            ObservableCollection<StockWrapper> collection = iowd.CreateCollection(StockType.ALL);
             var ioStockws = collection.ElementAt(rand.Next(collection.Count - 1));
 
             var fwd = FieldWrapperDirector.GetInstance();
@@ -45,28 +45,28 @@ namespace R54IN0.Test
             ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
             ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
             ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
-            ObservableCollection<AccountWrapper> accoCollectoin = fwd.CreateCollection<Account, AccountWrapper>();
+            ObservableCollection<ClientWrapper> accoCollectoin = fwd.CreateCollection<Client, ClientWrapper>();
             ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
             ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
 
-            var type = ioStockws.StockType == StockType.IN ? StockType.OUT : StockType.IN;
+            var type = ioStockws.StockType == StockType.INCOMING ? StockType.OUTGOING : StockType.INCOMING;
             var specw = ioStockws.Specification = specCollectoin.ElementAt(rand.Next(specCollectoin.Count - 1));
             var itemw = ioStockws.Item = itemCollectoin.Where(x => x.UUID == specw.Field.ItemUUID).Single();
-            var itemCnt = ioStockws.ItemCount = 20332;
+            var itemCnt = ioStockws.Quantity = 20332;
             var date = ioStockws.Date = DateTime.Now.AddTicks(2000000221);
-            var accountw = ioStockws.Account = accoCollectoin.ElementAt(rand.Next(accoCollectoin.Count - 1));
+            var accountw = ioStockws.Client = accoCollectoin.ElementAt(rand.Next(accoCollectoin.Count - 1));
             var eemployeew = ioStockws.Employee = eeplCollectoin.ElementAt(rand.Next(eeplCollectoin.Count - 1));
             var warehousew = ioStockws.Warehouse = wareCollectoin.ElementAt(rand.Next(wareCollectoin.Count - 1));
             var remark = ioStockws.Remark = "23_1jdjfa";
 
             FieldWrapperDirector.Distroy();
             InventoryWrapperDirector.Distory();
-            ViewModelObserverSubject.Distory();
+            CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
-            IOStockWrapperDirector.Distory();
+            StockWrapperDirector.Distory();
             DatabaseDirector.Distroy();
 
-            iowd = IOStockWrapperDirector.GetInstance();
+            iowd = StockWrapperDirector.GetInstance();
             collection = iowd.CreateCollection(StockType.ALL);
             var target = collection.Where(x => x.UUID == ioStockws.UUID).Single();
 
@@ -74,7 +74,7 @@ namespace R54IN0.Test
             Assert.AreEqual(specw.UUID, target.Specification.UUID);
             Assert.AreEqual(itemw.UUID, target.Item.UUID);
             Assert.AreEqual(0, date.CompareTo(target.Date));
-            Assert.AreEqual(accountw.UUID, target.Account.UUID);
+            Assert.AreEqual(accountw.UUID, target.Client.UUID);
             Assert.AreEqual(eemployeew.UUID, target.Employee.UUID);
             Assert.AreEqual(warehousew.UUID, target.Warehouse.UUID);
             Assert.AreEqual(remark, target.Remark);

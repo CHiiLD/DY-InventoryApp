@@ -15,6 +15,9 @@
         BorderThickness="1">
 
     <Window.Resources>
+
+        <local:StockTypeToStringConverter x:Key="StockTypeConverter" />
+
         <HierarchicalDataTemplate DataType="{x:Type r54in0:FinderNode}" ItemsSource="{Binding Nodes}">
             <StackPanel Orientation="Horizontal">
                 <Border CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0" VerticalAlignment="Center"/>
@@ -110,7 +113,7 @@
             </GroupBox>
 
             <GroupBox Header="거래처" Grid.Row="1" Grid.Column="0">
-                <ListBox ItemsSource="{Binding AccountList}" SelectedItem="{Binding Account}" DisplayMemberPath="Name" />
+                <ListBox ItemsSource="{Binding ClientList}" SelectedItem="{Binding Client}" DisplayMemberPath="Name" />
             </GroupBox>
         </Grid>
         
@@ -167,7 +170,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="입고총단가"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="{Binding TotalPurchasePrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
+                    <TextBlock Text="{Binding PurchasePriceAmount, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
                     <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
@@ -177,7 +180,14 @@
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="종류"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <ComboBox ItemsSource="{Binding StockTypeList}" SelectedItem="{Binding StockType}" Grid.Column="1" Margin="0,0,0,0" />
+                    <ComboBox ItemsSource="{Binding StockTypeList}" SelectedItem="{Binding StockType}"  Grid.Column="1" Margin="0,0,0,0" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <ContentPresenter
+                                    Content="{Binding Converter={StaticResource StockTypeConverter}}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </Grid>
 
                 <Grid Height="26"  Grid.Row="1" Grid.Column="0">
@@ -205,7 +215,7 @@
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="거래처"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="{Binding Account.Name}" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
+                    <TextBlock Text="{Binding Client.Name}" Grid.Column="1" Style="{StaticResource StoryTextBlockStyle}" />
                 </Grid>
 
                 <Grid Height="26" Grid.Row="1" Grid.Column="1">
@@ -226,7 +236,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="출고총단가"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="{Binding TotalSalesPrice, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
+                    <TextBlock Text="{Binding SalesPriceAmount, StringFormat='{}{0:#,#.}'}" Grid.Column="1" Style="{StaticResource MoenyTextBlockStyle}"/>
                     <TextBlock Text="{Binding Currency.Name}" Grid.Column="2" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
@@ -246,7 +256,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="수량"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <mah:NumericUpDown Grid.Column="1" Value="{Binding ItemCount}" StringFormat='{}{0:#,#.}' TextAlignment="Right" VerticalContentAlignment="Center" Minimum="1"/>
+                    <mah:NumericUpDown Grid.Column="1" Value="{Binding Quantity}" StringFormat='{}{0:#,#.}' TextAlignment="Right" VerticalContentAlignment="Center" Minimum="1"/>
                     <TextBlock Grid.Column="2" Text="{Binding Measure.Name}" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
 
@@ -284,7 +294,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="재고수량"  Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Grid.Column="1" Text="{Binding InventoryItemCount, StringFormat='{}{0:#,#.}'}" Style="{StaticResource MoenyTextBlockStyle}" />
+                    <TextBlock Grid.Column="1" Text="{Binding InventoryQuantity, StringFormat='{}{0:#,#.}'}" Style="{StaticResource MoenyTextBlockStyle}" />
                     <TextBlock Grid.Column="2" Text="{Binding Measure.Name}" Style="{StaticResource MeasureTextBlockStyle}" />
                 </Grid>
             </Grid>

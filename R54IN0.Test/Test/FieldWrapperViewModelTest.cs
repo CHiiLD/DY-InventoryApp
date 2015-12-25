@@ -10,8 +10,8 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreate()
         {
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            FieldWrapperViewModel<Account, AccountWrapper> vm = new FieldWrapperViewModel<Account, AccountWrapper>(sub);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            FieldWrapperViewModel<Client, ClientWrapper> vm = new FieldWrapperViewModel<Client, ClientWrapper>(sub);
         }
 
         /// <summary>
@@ -21,8 +21,8 @@ namespace R54IN0.Test
         public void PushNewItemAddButton()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            FieldWrapperViewModel<Account, AccountWrapper> vm = new FieldWrapperViewModel<Account, AccountWrapper>(sub);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            FieldWrapperViewModel<Client, ClientWrapper> vm = new FieldWrapperViewModel<Client, ClientWrapper>(sub);
 
             Assert.IsTrue(vm.CanAddNewItem(null));
             Assert.IsTrue(vm.AddNewItemCommand.CanExecute(null));
@@ -36,15 +36,15 @@ namespace R54IN0.Test
         {
             FieldWrapperDirector.Distroy();
             InventoryWrapperDirector.Distory();
-            ViewModelObserverSubject.Distory();
+            CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
-            IOStockWrapperDirector.Distory();
+            StockWrapperDirector.Distory();
             using (var db = DatabaseDirector.GetDbInstance())
             {
                 db.Purge();
             }
 
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             FieldWrapperViewModel<Maker, FieldWrapper<Maker>> vm = new FieldWrapperViewModel<Maker, FieldWrapper<Maker>>(sub);
             Assert.AreEqual(0, vm.Items.Count());
 
@@ -54,9 +54,9 @@ namespace R54IN0.Test
 
             FieldWrapperDirector.Distroy();
             InventoryWrapperDirector.Distory();
-            ViewModelObserverSubject.Distory();
+            CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
-            IOStockWrapperDirector.Distory();
+            StockWrapperDirector.Distory();
 
             vm = new FieldWrapperViewModel<Maker, FieldWrapper<Maker>>(sub);
             Assert.AreEqual(1, vm.Items.Count());
@@ -69,8 +69,8 @@ namespace R54IN0.Test
         public void PushDeleteItemButton()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
-            FieldWrapperViewModel<Account, AccountWrapper> vm = new FieldWrapperViewModel<Account, AccountWrapper>(sub);
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            FieldWrapperViewModel<Client, ClientWrapper> vm = new FieldWrapperViewModel<Client, ClientWrapper>(sub);
 
             if (vm.Items.Count == 0)
                 return;

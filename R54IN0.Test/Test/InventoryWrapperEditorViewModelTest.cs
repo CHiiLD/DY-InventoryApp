@@ -12,7 +12,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreate()
         {
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             InventoryWrapperViewModel iwvm = new InventoryWrapperViewModel(sub);
             InventoryWrapperEditorViewModel helper = new InventoryWrapperEditorViewModel(iwvm);
         }
@@ -25,7 +25,7 @@ namespace R54IN0.Test
         {
             new DummyDbData().Create();
 
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             InventoryWrapperViewModel iwvm = new InventoryWrapperViewModel(sub);
             InventoryWrapperViewModel iwvm2 = new InventoryWrapperViewModel(sub);
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
@@ -42,7 +42,7 @@ namespace R54IN0.Test
             var fwd = FieldWrapperDirector.GetInstance();
             var warews = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
 
-            var itemCnt = helper.ItemCount = 201;
+            var itemCnt = helper.Quantity = 201;
             var warew = helper.Warehouse = warews.First() == helper.Warehouse ? warews.Last() : warews.First();
 
             helper.Update();
@@ -61,7 +61,7 @@ namespace R54IN0.Test
 
             var replaceItem = iwvm.Items.Where(x => x.UUID == item.UUID).Single();
 
-            Assert.AreEqual(itemCnt, replaceItem.ItemCount);
+            Assert.AreEqual(itemCnt, replaceItem.Quantity);
             Assert.AreEqual(warew, replaceItem.Warehouse);
             Assert.AreEqual(item.Item, replaceItem.Item);
             Assert.AreEqual(item.Specification, replaceItem.Specification);
@@ -75,7 +75,7 @@ namespace R54IN0.Test
         {
             new DummyDbData().Create();
 
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             InventoryWrapperViewModel iwvm = new InventoryWrapperViewModel(sub);
             InventoryWrapperViewModel iwvm2 = new InventoryWrapperViewModel(sub);
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
@@ -99,7 +99,7 @@ namespace R54IN0.Test
             if (hel.Item != null)
             {
                 hel.Warehouse = hel.WarehouseList.FirstOrDefault();
-                hel.ItemCount = 203;
+                hel.Quantity = 203;
 
                 hel.Update();
                 var addItem = iwvm.Items.Last();
@@ -121,11 +121,11 @@ namespace R54IN0.Test
         {
             new DummyDbData().Create();
             FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel ivm = new ItemWrapperViewModel(sub);
             InventoryWrapperViewModel invm = new InventoryWrapperViewModel(sub);
             InventoryWrapperEditorViewModel evm = new InventoryWrapperEditorViewModel(invm, invm.Items.Random());
-            IOStockWrapperViewModel svm = new IOStockWrapperViewModel(StockType.ALL, sub);
+            StockWrapperViewModel svm = new StockWrapperViewModel(StockType.ALL, sub);
 
             //var itemw = evm.Item = evm.ItemList.Random();
             var specw = evm.Specification;
@@ -149,12 +149,12 @@ namespace R54IN0.Test
             }
             FieldWrapperDirector.Distroy();
             InventoryWrapperDirector.Distory();
-            ViewModelObserverSubject.Distory();
+            CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
-            IOStockWrapperDirector.Distory();
+            StockWrapperDirector.Distory();
 
             FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel ivm = new ItemWrapperViewModel(sub);
             InventoryWrapperViewModel invm = new InventoryWrapperViewModel(sub);
             //ItemFinderViewModel fvm = new ItemFinderViewModel(null);
@@ -173,11 +173,11 @@ namespace R54IN0.Test
             //디렉터 파괴
             FieldWrapperDirector.Distroy();
             InventoryWrapperDirector.Distory();
-            ViewModelObserverSubject.Distory();
+            CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
-            IOStockWrapperDirector.Distory();
+            StockWrapperDirector.Distory();
             //다시 로드
-            sub = ViewModelObserverSubject.GetInstance();
+            sub = CollectionViewModelObserverSubject.GetInstance();
             ivm = new ItemWrapperViewModel(sub);
             invm = new InventoryWrapperViewModel(sub);
             var fvm = new ItemFinderViewModel(null);

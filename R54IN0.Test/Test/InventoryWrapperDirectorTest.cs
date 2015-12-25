@@ -46,14 +46,14 @@ namespace R54IN0.Test
             ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
             ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
             ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
-            ObservableCollection<AccountWrapper> accoCollectoin = fwd.CreateCollection<Account, AccountWrapper>();
+            ObservableCollection<ClientWrapper> accoCollectoin = fwd.CreateCollection<Client, ClientWrapper>();
             ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
             ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
             var rand = new Random();
             SpecificationWrapper sepcWrapper = specCollectoin.ElementAt(rand.Next(specCollectoin.Count - 1));
             //변경하기 
             InventoryWrapper wrapper = wrappers.ElementAt(rand.Next(wrappers.Count - 1));
-            var itemCnt = wrapper.ItemCount = 323;
+            var itemCnt = wrapper.Quantity = 323;
             var ware = wrapper.Warehouse = wareCollectoin.ElementAt(rand.Next(wareCollectoin.Count - 1));
             var spec = wrapper.Specification = sepcWrapper;
             //파괴
@@ -63,7 +63,7 @@ namespace R54IN0.Test
             wrappers = iwd.CreateCollection();
             var newWrapper = wrappers.Where(x => x.Record.UUID == wrapper.Record.UUID).Single();
             //검사
-            Assert.AreEqual(itemCnt, newWrapper.ItemCount);
+            Assert.AreEqual(itemCnt, newWrapper.Quantity);
             Assert.AreEqual(ware.UUID, newWrapper.Warehouse.UUID);
             Assert.AreEqual(spec.UUID, newWrapper.Specification.UUID);
         }

@@ -14,7 +14,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreate()
         {
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             InventoryWrapperViewModel vm = new InventoryWrapperViewModel(sub);
         }
 
@@ -25,7 +25,7 @@ namespace R54IN0.Test
         public void SyncCollections()
         {
             var dummy = new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             InventoryWrapperViewModel vm1 = new InventoryWrapperViewModel(sub);
             InventoryWrapperViewModel vm2 = new InventoryWrapperViewModel(sub);
 
@@ -37,7 +37,7 @@ namespace R54IN0.Test
             InventoryWrapper invenw = new InventoryWrapper(inven);
             invenw.Item = itemw;
             invenw.Specification = specws.Where(x => x.Field.ItemUUID == itemw.UUID).First();
-            invenw.ItemCount = 1010;
+            invenw.Quantity = 1010;
             invenw.Remark = "hehehehe";
 
             //새로 추가 테스트
@@ -58,7 +58,7 @@ namespace R54IN0.Test
         public void FinderSelectItemsEvent()
         {
             new DummyDbData().Create();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemFinderViewModel fvm = new ItemFinderViewModel(null);
             InventoryWrapperViewModel iwvm = new InventoryWrapperViewModel(sub);
             fvm.SelectItemsChanged += iwvm.OnFinderViewSelectItemChanged;
@@ -91,7 +91,7 @@ namespace R54IN0.Test
         {
             new DummyDbData().Create();
 
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             InventoryWrapperViewModel iwvm = new InventoryWrapperViewModel(sub);
             ItemWrapperViewModel ivm = new ItemWrapperViewModel(sub);
 
@@ -104,7 +104,7 @@ namespace R54IN0.Test
             ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
             ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
             ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
-            ObservableCollection<AccountWrapper> accoCollectoin = fwd.CreateCollection<Account, AccountWrapper>();
+            ObservableCollection<ClientWrapper> accoCollectoin = fwd.CreateCollection<Client, ClientWrapper>();
             ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
             ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
 
@@ -134,7 +134,7 @@ namespace R54IN0.Test
         {
             new DummyDbData().Create();
 
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             InventoryWrapperViewModel ivm = new InventoryWrapperViewModel(sub);
             InventoryWrapperViewModel ivm2 = new InventoryWrapperViewModel(sub);
 
@@ -164,15 +164,15 @@ namespace R54IN0.Test
                 db.Purge();
             }
             FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
-            ViewModelObserverSubject sub = ViewModelObserverSubject.GetInstance();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel ivm = new ItemWrapperViewModel(sub);
-            IOStockWrapperViewModel svm = new IOStockWrapperViewModel(StockType.IN, sub);
+            StockWrapperViewModel svm = new StockWrapperViewModel(StockType.INCOMING, sub);
             InventoryWrapperViewModel invm = new InventoryWrapperViewModel(sub);
             //아이템 새로 생성 하지만 Maker 프로퍼티는 설정 하지 아니함
             ivm.AddNewItemCommand.Execute(null);
             Assert.IsFalse(fwd.CreateCollection<Specification, SpecificationWrapper>().Any(x => x.Field.ItemUUID == null));
             //입고 데이터 생성 .. 재고에 데이터가 없을테니 재고도 같이 생성됨
-            IOStockWrapperEditorViewModel evm = new IOStockWrapperEditorViewModel(svm);
+            StockWrapperEditorViewModel evm = new StockWrapperEditorViewModel(svm);
             //FINDER 생성
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
             //생성한 아이템을 선택하도록함
@@ -181,19 +181,19 @@ namespace R54IN0.Test
             var itemw = evm.Item = evm.ItemList.First();
             var specw = evm.Specification = evm.SpecificationList.First();
             //설정한 Stock 데이터 저장
-            IOStockWrapper savedData = evm.Update();
+            StockWrapper savedData = evm.Update();
             //디렉터 파괴
             FieldWrapperDirector.Distroy();
             InventoryWrapperDirector.Distory();
-            ViewModelObserverSubject.Distory();
+            CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
-            IOStockWrapperDirector.Distory();
+            StockWrapperDirector.Distory();
 
             //다시 로드
             fwd = FieldWrapperDirector.GetInstance();
-            sub = ViewModelObserverSubject.GetInstance();
+            sub = CollectionViewModelObserverSubject.GetInstance();
             ivm = new ItemWrapperViewModel(sub);
-            svm = new IOStockWrapperViewModel(StockType.IN, sub);
+            svm = new StockWrapperViewModel(StockType.INCOMING, sub);
             invm = new InventoryWrapperViewModel(sub);
 
             //품목의 여러 프로퍼티 호출 
