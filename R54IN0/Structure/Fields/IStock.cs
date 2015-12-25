@@ -10,7 +10,6 @@ namespace R54IN0
     {
         string ItemUUID { get; set; }
         string SpecificationUUID { get; set; }
-        string WarehouseUUID { get; set; }
         int Quantity { get; set; }
         string Remark { get; set; }
     }

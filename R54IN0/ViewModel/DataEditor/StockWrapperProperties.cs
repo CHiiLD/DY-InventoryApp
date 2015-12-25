@@ -6,36 +6,70 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public class StockWrapperProperties : InventoryWrapperProperties, IStockEditorViewModelProperties
+    public class StockWrapperProperties : InventoryWrapperProperties, IStockViewModelProperties
     {
-        StockWrapper _ioStockWrapper;
         StockWrapper _target;
+        FieldWrapper<Employee> _employee;
+        ClientWrapper _client;
 
-        public StockWrapperProperties() : base(null)
+        public InOutStock IOStock
         {
-            InOutStock stock = new InOutStock();
-            recordWrapper = _ioStockWrapper = new StockWrapper(stock);
-            Date = DateTime.Now;
-            Quantity = 1;
+            get; set;
         }
 
-        public StockWrapperProperties(StockWrapper ioStockWrapper) : base(null)
+        public override IStock Stock
         {
-            var clone = ioStockWrapper.Record.Clone() as InOutStock;
-            recordWrapper = _ioStockWrapper = new StockWrapper(clone);
-            Date = DateTime.Now;
-            _target = ioStockWrapper;
+            get
+            {
+                return IOStock;
+            }
+            set
+            {
+                IOStock = value as InOutStock;
+            }
+        }
+
+        public StockWrapperProperties() : base()
+        {
+        }
+
+        public StockWrapperProperties(StockWrapper stockWrapper) : base(stockWrapper)
+        {
+            _target = stockWrapper;
+        }
+
+        protected override void Initialize(IProductWrapper product = null)
+        {
+            if (product == null)
+            {
+                IOStock = new InOutStock();
+                Quantity = 1;
+                Date = DateTime.Now;
+            }
+            else
+            {
+                IOStock = product.Product.Clone() as InOutStock;
+
+                var stock = product as StockWrapper;
+                Item = stock.Item;
+                Specification = stock.Specification;
+                Warehouse = stock.Warehouse;
+                Quantity = stock.Quantity;
+                Client = stock.Client;
+                Employee = stock.Employee;
+            }
         }
 
         public ClientWrapper Client
         {
             get
             {
-                return _ioStockWrapper.Client;
+                return _client;
             }
             set
             {
-                _ioStockWrapper.Client = value;
+                _client = value;
+                IOStock.EnterpriseUUID = _client.UUID;
                 OnPropertyChanged("Client");
             }
         }
@@ -44,25 +78,37 @@ namespace R54IN0
         {
             get
             {
-                return _ioStockWrapper.Date;
+                return IOStock.Date;
             }
             set
             {
-                _ioStockWrapper.Date = value;
+                IOStock.Date = value;
                 OnPropertyChanged("Date");
             }
         }
-
         public FieldWrapper<Employee> Employee
         {
             get
             {
-                return _ioStockWrapper.Employee;
+                return _employee;
             }
             set
             {
-                _ioStockWrapper.Employee = value;
+                _employee = value;
+                IOStock.EmployeeUUID = _employee != null ? _employee.UUID : null;
                 OnPropertyChanged("Employee");
+            }
+        }
+
+        public override FieldWrapper<Warehouse> Warehouse
+        {
+            get
+            {
+                return base.Warehouse;
+            }
+            set
+            {
+                base.Warehouse = value;
             }
         }
 
@@ -88,7 +134,7 @@ namespace R54IN0
                 if (Specification == null)
                     return Quantity;
                 var iwd = InventoryWrapperDirector.GetInstance();
-                var invenw = iwd.CreateCollection().Where(x => x.Specification.UUID == Specification.UUID).SingleOrDefault();
+                InventoryWrapper invenw = iwd.CreateCollection().Where(x => x.Specification.UUID == Specification.UUID).SingleOrDefault();
                 if (invenw == null)
                     return Quantity;
                 if (_target == null)
@@ -102,11 +148,11 @@ namespace R54IN0
         {
             get
             {
-                return _ioStockWrapper.Remark;
+                return IOStock.Remark;
             }
             set
             {
-                _ioStockWrapper.Remark = value;
+                IOStock.Remark = value;
                 OnPropertyChanged("Remark");
             }
         }
@@ -115,11 +161,11 @@ namespace R54IN0
         {
             get
             {
-                return _ioStockWrapper.StockType;
+                return IOStock.StockType;
             }
             set
             {
-                _ioStockWrapper.StockType = value;
+                IOStock.StockType = value;
                 OnPropertyChanged("StockType");
             }
         }

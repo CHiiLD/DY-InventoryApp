@@ -163,6 +163,12 @@ namespace R54IN0.Test
             {
                 db.Purge();
             }
+            FieldWrapperDirector.Distroy();
+            InventoryWrapperDirector.Distory();
+            CollectionViewModelObserverSubject.Distory();
+            FinderDirector.Distroy();
+            StockWrapperDirector.Distory();
+
             FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel ivm = new ItemWrapperViewModel(sub);

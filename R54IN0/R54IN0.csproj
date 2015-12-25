@@ -46,11 +46,12 @@
   <ItemGroup>
     <Compile Include="Finder\FinderViewModel.cs" />
     <Compile Include="Structure\Fields\StockType.cs" />
+    <Compile Include="Structure\FieldWrapper\IProductWrapper.cs" />
     <Compile Include="ViewModel\Director\MultiSortedDictionary.cs" />
     <Compile Include="ViewModel\SuperClass\ICollectionViewModel.cs" />
     <Compile Include="ViewModel\SuperClass\ItemSourceViewModel.cs" />
-    <Compile Include="ViewModel\DataEditor\IInventoryEditorViewModelProperties.cs" />
-    <Compile Include="ViewModel\DataEditor\IStockEditorViewModelProperties.cs" />
+    <Compile Include="ViewModel\DataEditor\IInventoryViewModelProperties.cs" />
+    <Compile Include="ViewModel\DataEditor\IStockViewModelProperties.cs" />
     <Compile Include="ViewModel\DataEditor\InventoryWrapperProperties.cs" />
     <Compile Include="ViewModel\DataEditor\StockWrapperEditorViewModel.cs" />
     <Compile Include="ViewModel\DataEditor\StockWrapperProperties.cs" />
@@ -99,7 +100,7 @@
     <Compile Include="Structure\FieldWrapper\SpecificationWrapper.cs" />
     <Compile Include="Structure\FieldWrapper\StockWrapper.cs" />
     <Compile Include="Structure\FieldWrapper\InventoryWrapper.cs" />
-    <Compile Include="Structure\FieldWrapper\RecordWrapper.cs" />
+    <Compile Include="Structure\FieldWrapper\ProductWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">

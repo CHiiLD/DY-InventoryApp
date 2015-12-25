@@ -105,32 +105,19 @@ namespace R54IN0
             if (Specification == null)
                 throw new Exception("리스트박스에서 규격을 선택하세요.");
 
-            if (_target != null) //EIDT인 경우 Inventory만 변경
+            InventoryWrapper result;
+
+            if (_target != null) //EIDT
             {
-                if(_target.Warehouse != Warehouse)
-                {
-                    //Warehouse 동기화
-                    var swd = StockWrapperDirector.GetInstance();
-                    var ioStockws = swd.CreateCollection(StockType.ALL).Where(x => x.Specification.UUID == Specification.UUID);
-                    foreach (var ioStockw in ioStockws)
-                        ioStockw.Warehouse = Warehouse;
-                }
-
-                var inventory = recordWrapper.Record as Inventory;
-                inventory.Delete<Inventory>(); //Clone UUID의 기록을 제거 
-                inventory.UUID = _target.Record.UUID; //기존의 UUID를 덮씌운 다음에
-                inventory.Save<Inventory>(); //새로 저장
-                _target.Record = inventory; //inventory를 변경해버림
-
-                return _target;
+                _target.Record = Stock as Inventory;
+                result = _target;
             }
             else
             {
-                //ADD 인 경우 그냥 추가 
-                var target = recordWrapper as InventoryWrapper;
-                _viewModel.Add(target);
-                return target;
+                result = new InventoryWrapper(Stock as Inventory);
+                _viewModel.Add(result);
             }
+            return result;
         }
     }
 }

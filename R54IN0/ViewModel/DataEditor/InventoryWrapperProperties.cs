@@ -7,24 +7,43 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class InventoryWrapperProperties : IInventoryEditorViewModelProperties, INotifyPropertyChanged
+    public class InventoryWrapperProperties : IInventoryViewModelProperties, INotifyPropertyChanged
     {
-        protected IStockWrapper recordWrapper;
+        ItemWrapper _item;
+        SpecificationWrapper _specification;
+        FieldWrapper<Warehouse> _warehouse;
 
         public InventoryWrapperProperties()
         {
-            Inventory inventory = new Inventory();
-            recordWrapper = new InventoryWrapper(inventory);
-            Quantity = 1;
+            Initialize();
         }
 
-        public InventoryWrapperProperties(IStockWrapper recordWrapper)
+        public InventoryWrapperProperties(IProductWrapper inventoryWrapper)
         {
-            if (recordWrapper != null)
+            Initialize(inventoryWrapper);
+        }
+
+        protected virtual void Initialize(IProductWrapper product = null)
+        {
+            if (product == null)
             {
-                var clone = recordWrapper.Record.Clone() as Inventory;
-                this.recordWrapper = new InventoryWrapper(clone);
+                Stock = new Inventory();
+                Quantity = 1;
             }
+            else
+            {
+                Stock = product.Product.Clone() as Inventory;
+
+                var inventory = product as InventoryWrapper;
+                Item = inventory.Item;
+                Specification = inventory.Specification;
+                Warehouse = inventory.Warehouse;
+            }
+        }
+
+        public virtual IStock Stock
+        {
+            get; set;
         }
 
         public FieldWrapper<Currency> Currency
@@ -39,11 +58,12 @@ namespace R54IN0
         {
             get
             {
-                return recordWrapper.Item;
+                return _item;
             }
             set
             {
-                recordWrapper.Item = value;
+                _item = value;
+                Stock.ItemUUID = _item != null ? _item.UUID : null;
                 OnPropertyChanged("Item");
                 OnPropertyChanged("Maker");
                 OnPropertyChanged("Measure");
@@ -55,11 +75,11 @@ namespace R54IN0
         {
             get
             {
-                return recordWrapper.Quantity;
+                return Stock.Quantity;
             }
             set
             {
-                recordWrapper.Quantity = value;
+                Stock.Quantity = value;
                 OnPropertyChanged("Quantity");
                 OnPropertyChanged("PurchaseUnitPrice");
                 OnPropertyChanged("SalesUnitPrice");
@@ -88,11 +108,12 @@ namespace R54IN0
         {
             get
             {
-                return recordWrapper.Specification;
+                return _specification;
             }
             set
             {
-                recordWrapper.Specification = value;
+                _specification = value;
+                Stock.SpecificationUUID = _specification != null ? _specification.UUID : null; 
                 OnPropertyChanged("Specification");
                 OnPropertyChanged("PurchaseUnitPrice");
                 OnPropertyChanged("SalesUnitPrice");
@@ -133,15 +154,20 @@ namespace R54IN0
             }
         }
 
-        public FieldWrapper<Warehouse> Warehouse
+        public virtual FieldWrapper<Warehouse> Warehouse
         {
             get
             {
-                return recordWrapper.Warehouse;
+                return _warehouse;
             }
             set
             {
-                recordWrapper.Warehouse = value;
+                _warehouse = value;
+                if(Stock is Inventory)
+                {
+                    var inven = Stock as Inventory;
+                    inven.WarehouseUUID = _warehouse != null ? _warehouse.UUID : null;
+                }
                 OnPropertyChanged("Warehouse");
             }
         }

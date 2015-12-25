@@ -8,10 +8,20 @@ using System.Diagnostics;
 
 namespace R54IN0
 {
-    public class StockWrapper : RecordWrapper<InOutStock>
+    public class StockWrapper : ProductWrapper<InOutStock>
     {
-        ClientWrapper _Client;
+        ClientWrapper _client;
         FieldWrapper<Employee> _eeployee;
+
+        public StockWrapper()
+           : base()
+        {
+        }
+
+        public StockWrapper(InOutStock ioStock)
+            : base(ioStock)
+        {
+        }
 
         public string Code
         {
@@ -39,12 +49,12 @@ namespace R54IN0
         {
             get
             {
-                return _Client;
+                return _client;
             }
             set
             {
-                _Client = value;
-                Record.EnterpriseUUID = (_Client != null ? _Client.UUID : null);
+                _client = value;
+                Record.EnterpriseUUID = (_client != null ? _client.UUID : null);
                 Record.Save<InOutStock>();
                 OnPropertyChanged("Client");
             }
@@ -79,9 +89,21 @@ namespace R54IN0
             }
         }
 
-        public StockWrapper(InOutStock ioStock)
-            : base(ioStock)
+        public override FieldWrapper<Warehouse> Warehouse
         {
+            get
+            {
+                var iwd = InventoryWrapperDirector.GetInstance();
+                var inven = iwd.CreateCollection().Where(x => x.UUID == Record.InventoryUUID).SingleOrDefault();
+                return inven != null ? inven.Warehouse : null;
+            }
+            set
+            {
+                throw new NotSupportedException();
+                var iwd = InventoryWrapperDirector.GetInstance();
+                var inven = iwd.CreateCollection().Where(x => x.UUID == Record.InventoryUUID).SingleOrDefault();
+                inven.Warehouse  = inven != null ? value : null;
+            }
         }
 
         protected override void LoadProperies(InOutStock ioStock)

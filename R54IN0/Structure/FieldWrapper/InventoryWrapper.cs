@@ -11,8 +11,10 @@ namespace R54IN0
     /// <summary>
     /// 재고 현황 CurrentStockWrapping
     /// </summary>
-    public class InventoryWrapper : RecordWrapper<Inventory>
+    public class InventoryWrapper : ProductWrapper<Inventory>
     {
+        FieldWrapper<Warehouse> _warehouse;
+
         public InventoryWrapper() : base()
         {
         }
@@ -22,6 +24,20 @@ namespace R54IN0
         {
         }
 
+        public override FieldWrapper<Warehouse> Warehouse
+        {
+            get
+            {
+                return _warehouse;
+            }
+            set
+            {
+                _warehouse = value;
+                Record.WarehouseUUID = (_warehouse != null ? _warehouse.UUID : null);
+                Record.Save<Inventory>();
+                OnPropertyChanged("Warehouse");
+            }
+        }
         public string Code
         {
             get
@@ -44,6 +60,14 @@ namespace R54IN0
             {
                 return Specification.Remark;
             }
+        }
+
+        protected override void LoadProperies(Inventory record)
+        {
+            base.LoadProperies(record);
+            var fwd = FieldWrapperDirector.GetInstance();
+            Warehouse = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().
+                Where(x => x.UUID == record.WarehouseUUID).SingleOrDefault();
         }
     }
 }

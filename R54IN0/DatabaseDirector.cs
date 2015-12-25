@@ -99,7 +99,7 @@ namespace R54IN0
                 WithIndex("Quantity", i => i.Quantity).
                 WithIndex("EnterpriseUUID", i => i.EnterpriseUUID).
                 WithIndex("EmployeeUUID", i => i.EmployeeUUID).
-                WithIndex("WarehouseUUID", i => i.WarehouseUUID).
+                //WithIndex("WarehouseUUID", i => i.WarehouseUUID).
                 WithIndex("ItemUUID", i => i.ItemUUID).
                 WithIndex("Remark", i => i.Remark).
                 WithIndex("InventoryUUID", i => i.InventoryUUID);

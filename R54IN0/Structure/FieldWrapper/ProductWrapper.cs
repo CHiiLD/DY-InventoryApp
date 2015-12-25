@@ -3,20 +3,19 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class RecordWrapper<RecordT> : IStockWrapper, INotifyPropertyChanged where RecordT : class, IStock, IUUID
+    public abstract class ProductWrapper<ProductT> : IProductWrapper, INotifyPropertyChanged where ProductT : class, IStock, IUUID
     {
-        RecordT _record;
+        ProductT _product;
         SpecificationWrapper _specification;
-        FieldWrapper<Warehouse> _warehouse;
         ItemWrapper _item;
 
-        public RecordWrapper()
+        public ProductWrapper()
         {
         }
 
-        public RecordWrapper(RecordT record)
+        public ProductWrapper(ProductT record)
         {
-            _record = record;
+            _product = record;
             LoadProperies(record);
         }
 
@@ -78,21 +77,21 @@ namespace R54IN0
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public RecordT Record
+        public ProductT Record
         {
             get
             {
-                return _record;
+                return _product;
             }
             set
             {
-                _record = value;
-                LoadProperies(_record);
+                _product = value;
+                LoadProperies(_product);
                 OnPropertyChanged("");
             }
         }
 
-        IStock IStockWrapper.Record
+        IStock IProductWrapper.Product
         {
             get
             {
@@ -100,7 +99,7 @@ namespace R54IN0
             }
             set
             {
-                Record = value as RecordT;
+                Record = value as ProductT;
             }
         }
 
@@ -115,8 +114,8 @@ namespace R54IN0
                 _item = value;
                 if (_item != null)
                     _item.PropertyChanged += OnItemWrapperPropertyChanged;
-                _record.ItemUUID = (_item != null ? _item.UUID : null);
-                _record.Save<RecordT>();
+                _product.ItemUUID = (_item != null ? _item.UUID : null);
+                _product.Save<ProductT>();
                 OnPropertyChanged("Item");
             }
         }
@@ -132,37 +131,24 @@ namespace R54IN0
                 _specification = value;
                 if (_specification != null)
                     _specification.PropertyChanged += OnSpecificationWrapperPropertyChanged;
-                _record.SpecificationUUID = (_specification != null ? _specification.UUID : null);
-                _record.Save<RecordT>();
+                _product.SpecificationUUID = (_specification != null ? _specification.UUID : null);
+                _product.Save<ProductT>();
                 OnPropertyChanged("Specification");
             }
         }
 
-        public FieldWrapper<Warehouse> Warehouse
-        {
-            get
-            {
-                return _warehouse;
-            }
-            set
-            {
-                _warehouse = value;
-                _record.WarehouseUUID = (_warehouse != null ? _warehouse.UUID : null);
-                _record.Save<RecordT>();
-                OnPropertyChanged("Warehouse");
-            }
-        }
+        public abstract FieldWrapper<Warehouse> Warehouse { get; set; }
 
         public int Quantity
         {
             get
             {
-                return _record.Quantity;
+                return _product.Quantity;
             }
             set
             {
-                _record.Quantity = value;
-                _record.Save<RecordT>();
+                _product.Quantity = value;
+                _product.Save<ProductT>();
                 OnPropertyChanged("Quantity");
                 OnPropertyChanged("SelesPriceAmount");
                 OnPropertyChanged("PurchasePriceAmount");
@@ -173,12 +159,12 @@ namespace R54IN0
         {
             get
             {
-                return _record.Remark;
+                return _product.Remark;
             }
             set
             {
-                _record.Remark = value;
-                _record.Save<RecordT>();
+                _product.Remark = value;
+                _product.Save<ProductT>();
                 OnPropertyChanged("Remark");
             }
         }
@@ -191,15 +177,13 @@ namespace R54IN0
             }
         }
 
-        protected virtual void LoadProperies(RecordT record)
+        protected virtual void LoadProperies(ProductT record)
         {
             var fwd = FieldWrapperDirector.GetInstance();
             Item = fwd.CreateCollection<Item, ItemWrapper>().
                 Where(x => x.UUID == record.ItemUUID).SingleOrDefault();
             Specification = fwd.CreateCollection<Specification, SpecificationWrapper>().
                 Where(x => x.UUID == record.SpecificationUUID).SingleOrDefault();
-            Warehouse = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().
-                Where(x => x.UUID == record.WarehouseUUID).SingleOrDefault();
         }
 
         protected void OnPropertyChanged(string name)

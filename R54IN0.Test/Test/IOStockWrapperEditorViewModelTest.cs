@@ -119,11 +119,11 @@ namespace R54IN0.Test
             new DummyDbData().Create();
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             var vm = new StockWrapperViewModel(StockType.INCOMING, sub);
-            var ioStockw = StockWrapperDirector.GetInstance().CreateCollection(StockType.INCOMING).Random();
-            var evm = new StockWrapperEditorViewModel(vm, ioStockw);
+            var stockw = StockWrapperDirector.GetInstance().CreateCollection(StockType.INCOMING).Random();
+            var evm = new StockWrapperEditorViewModel(vm, stockw);
 
             Assert.AreEqual(1, evm.SpecificationList.Count());
-            Assert.AreEqual(ioStockw.Specification, evm.Specification);
+            Assert.AreEqual(stockw.Specification, evm.Specification);
 
             Assert.IsNotNull(evm.Item);
             Assert.IsNotNull(evm.Maker);

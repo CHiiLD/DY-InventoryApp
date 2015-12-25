@@ -38,7 +38,7 @@ namespace R54IN0.Test
             var date = instance.Date = DateTime.Now.AddTicks(2000000221);
             var accountw = instance.Client = accoCollectoin.ElementAt(rand.Next(accoCollectoin.Count - 1));
             var eemployeew = instance.Employee = eeplCollectoin.ElementAt(rand.Next(eeplCollectoin.Count - 1));
-            var warehousew = instance.Warehouse = wareCollectoin.ElementAt(rand.Next(wareCollectoin.Count - 1));
+            var warehousew = instance.Warehouse;
             var remark = instance.Remark = "3^^a";
             return instance;
         }

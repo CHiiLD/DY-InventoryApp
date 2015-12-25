@@ -41,6 +41,13 @@ namespace R54IN0
             return _dic.ContainsKey(key);
         }
 
+        public bool Remove(Key key, Value value)
+        {
+            if (!ContainsKey(key))
+                return false;
+            return this[key].Remove(value);
+        }
+
         public List<Value> this[Key key]
         {
             get
@@ -51,7 +58,6 @@ namespace R54IN0
                     list = new List<Value>();
                     _dic.Add(key, list);
                 }
-
                 return list;
             }
         }

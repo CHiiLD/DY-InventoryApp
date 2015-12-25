@@ -19,7 +19,7 @@ namespace R54IN0
         public int Quantity { get; set; }
         public string EnterpriseUUID { get; set; }
         public string EmployeeUUID { get; set; }
-        public string WarehouseUUID { get; set; }
+        //public string WarehouseUUID { get; set; }
         public string Remark { get; set; }
         public string InventoryUUID { get; set; }
 
@@ -37,7 +37,7 @@ namespace R54IN0
             Quantity = thiz.Quantity;
             EnterpriseUUID = thiz.EnterpriseUUID;
             EmployeeUUID = thiz.EmployeeUUID;
-            WarehouseUUID = thiz.WarehouseUUID;
+            //WarehouseUUID = thiz.WarehouseUUID;
             Remark = thiz.Remark;
             ItemUUID = thiz.ItemUUID;
             InventoryUUID = thiz.InventoryUUID;

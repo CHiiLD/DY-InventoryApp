@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public interface IStockEditorViewModelProperties : IInventoryEditorViewModelProperties
+    public interface IStockViewModelProperties : IInventoryViewModelProperties
     {
         string Remark { get; set; }
         FieldWrapper<Employee> Employee { get; set; }

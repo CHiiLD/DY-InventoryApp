@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public interface IInventoryEditorViewModelProperties
+    public interface IInventoryViewModelProperties
     {
+        IStock Stock { get; set; }
         ItemWrapper Item { get; set; }
         SpecificationWrapper Specification { get; set; }
         FieldWrapper<Warehouse> Warehouse { get; set; }

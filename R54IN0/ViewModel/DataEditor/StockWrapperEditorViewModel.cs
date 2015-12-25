@@ -23,27 +23,27 @@ namespace R54IN0
         {
             if (ioStockWrapper == null)
                 throw new ArgumentNullException();
-
-            Initialize(viewModel);
             _target = ioStockWrapper;
-
+            Initialize(viewModel);
+            
             ItemList = new ItemWrapper[] { _target.Item };
-            Item = ItemList.First();
             SpecificationList = new SpecificationWrapper[] { _target.Specification };
-            Specification = SpecificationList.First();
             WarehouseList = new FieldWrapper<Warehouse>[] { _target.Warehouse };
+
+            Item = ItemList.First();
+            Specification = SpecificationList.First();
+            Warehouse = WarehouseList.First();
         }
 
         public void Initialize(StockWrapperViewModel viewModel)
         {
             _viewModel = viewModel;
-            StockType = viewModel.StockType == StockType.ALL ? StockType.INCOMING : viewModel.StockType;
+            var fwd = FieldWrapperDirector.GetInstance();
             StockTypeList = viewModel.StockType == StockType.ALL ?
                 new StockType[] { StockType.INCOMING, StockType.OUTGOING } : new StockType[] { viewModel.StockType };
-
-            var fwd = FieldWrapperDirector.GetInstance();
             ClientList = fwd.CreateCollection<Client, ClientWrapper>().Where(x => !x.IsDeleted);
             EmployeeList = fwd.CreateCollection<Employee, FieldWrapper<Employee>>().Where(x => !x.IsDeleted);
+            StockType = viewModel.StockType == StockType.ALL ? StockType.INCOMING : viewModel.StockType;
         }
 
         public override ItemWrapper Item
@@ -165,21 +165,18 @@ namespace R54IN0
                 iwd.Add(newInvenw); //순서의 주의 
             }
 
+            StockWrapper result;
             if (_target != null) //변경
             {
-                InOutStock ioStock = recordWrapper.Record as InOutStock;
-                ioStock.Delete<InOutStock>();
-                ioStock.UUID = _target.Record.UUID;
-                ioStock.Save<InOutStock>();
-                _target.Record = ioStock;
-                return _target;
+                _target.Record = IOStock;
+                result = _target;
             }
             else //추가
             {
-                var target = recordWrapper as StockWrapper;
-                _viewModel.Add(target);
-                return target;
+                result = new StockWrapper(IOStock);
+                _viewModel.Add(result);
             }
+            return result;
         }
 
         public void OnFinderViewSelectItemChanged(object sender, EventArgs e)
@@ -190,9 +187,9 @@ namespace R54IN0
                 List<ItemWrapper> items = new List<ItemWrapper>();
                 var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
                 var fwd = FieldWrapperDirector.GetInstance();
-                var itemws = fwd.CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted);
+                //var itemws = fwd.CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted);
                 foreach (var itemNode in itemNodes)
-                    items.Add(itemws.Where(x => x.UUID == itemNode.ItemUUID).Single());
+                    items.Add(fwd.BinSearch<Item, ItemWrapper>(itemNode.ItemUUID));//(itemws.Where(x => x.UUID == itemNode.ItemUUID).Single());
                 Item = null;
                 Specification = null;
                 SpecificationList = null;
