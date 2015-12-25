@@ -14,7 +14,30 @@ namespace R54IN0
 
         InventoryWrapperDirector()
         {
+            InitCollection();
+        }
 
+        void InitCollection()
+        {
+            _list = new List<InventoryWrapper>();
+            _sortDic = new SortedDictionary<string, InventoryWrapper>();
+
+            Inventory[] invens = null;
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                invens = db.LoadAll<Inventory>();
+            }
+#if DEBUG
+            foreach (var inven in invens)
+            {
+                Debug.Assert(inven.UUID != null);
+                Debug.Assert(inven.ItemUUID != null);
+                Debug.Assert(inven.SpecificationUUID != null);
+            }
+#endif
+            _list.AddRange(invens.Select(x => new InventoryWrapper(x)));
+            foreach (var item in _list)
+                _sortDic.Add(item.UUID, item);
         }
 
         public static InventoryWrapperDirector GetInstance()
@@ -36,28 +59,6 @@ namespace R54IN0
 
         public ObservableCollection<InventoryWrapper> CreateCollection()
         {
-            if (_list == null)
-            {
-                _list = new List<InventoryWrapper>();
-                _sortDic = new SortedDictionary<string, InventoryWrapper>();
-
-                Inventory[] invens = null;
-                using (var db = DatabaseDirector.GetDbInstance())
-                {
-                    invens = db.LoadAll<Inventory>();
-                }
-#if DEBUG
-                foreach (var inven in invens)
-                {
-                    Debug.Assert(inven.UUID != null);
-                    Debug.Assert(inven.ItemUUID != null);
-                    Debug.Assert(inven.SpecificationUUID != null);
-                }
-#endif
-                _list.AddRange(invens.Select(x => new InventoryWrapper(x)));
-                foreach (var item in _list)
-                    _sortDic.Add(item.UUID, item);
-            }
             return new ObservableCollection<InventoryWrapper>(_list);
         }
 
@@ -93,6 +94,9 @@ namespace R54IN0
 
         public InventoryWrapper BinSearch(string uuid)
         {
+            if (uuid == null)
+                return null;
+
             if (!_sortDic.ContainsKey(uuid))
             {
 #if DEBUG
@@ -102,15 +106,5 @@ namespace R54IN0
             }
             return _sortDic[uuid];
         }
-
-        //public int IndexOf(InventoryWrapper item)
-        //{
-        //    return _list.IndexOf(item);
-        //}
-
-        //public void Insert(int index, InventoryWrapper item)
-        //{
-        //    _list.Insert(index, item);
-        //}
     }
 }

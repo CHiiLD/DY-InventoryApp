@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using MahApps.Metro.Controls;
 using MahApps.Metro;
+using R54IN0.Test;
 
 namespace R54IN0.WPF
 {
@@ -27,13 +28,27 @@ namespace R54IN0.WPF
         {
             InitializeComponent();
 #if DEBUG
-            MenuItem DebugMenu = new MenuItem() { Header = "debug" };
-            MenuItem AllDbDataPurgeMenu = new MenuItem() { Header = "purge db data" };
-            AllDbDataPurgeMenu.Click += AllDbDataPurgeMenu_Click;
+            Menu.Items.Add(new Separator() { Width = 5} );
 
-            DebugMenu.Items.Add(AllDbDataPurgeMenu);
-            Menu.Items.Add(DebugMenu);
+            MenuItem debugMenu = new MenuItem() { Header = "DEBUG" };
+            MenuItem allDbDataPurgeMenu = new MenuItem() { Header = "PURGE DB DATA" };
+            allDbDataPurgeMenu.Click += AllDbDataPurgeMenu_Click;
+
+            debugMenu.Items.Add(allDbDataPurgeMenu);
+            Menu.Items.Add(debugMenu);
+
+            MenuItem createSampleMenu = new MenuItem() { Header = "CREATE DY SAMPLE" };
+            createSampleMenu.Click += CreateSampleMenu_Click;
+            debugMenu.Items.Add(createSampleMenu);
+
+            MenuItem createStressSampleMenu = new MenuItem() { Header = "CREATE STRESS SAMPLE" };
+            debugMenu.Items.Add(createStressSampleMenu);
 #endif
+        }
+
+        private void CreateSampleMenu_Click(object sender, RoutedEventArgs e)
+        {
+            new DYDummyDbData().Create();
         }
 
         void AllDbDataPurgeMenu_Click(object sender, RoutedEventArgs e)
@@ -42,6 +57,7 @@ namespace R54IN0.WPF
             {
                 db.Purge();
             }
+            FinderDirector.GetInstance().Collection.Clear();
         }
 
         void InventoryTile_Click(object sender, RoutedEventArgs e)

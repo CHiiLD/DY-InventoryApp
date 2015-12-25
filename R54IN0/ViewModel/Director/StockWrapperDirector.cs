@@ -14,6 +14,7 @@ namespace R54IN0
 
         public StockWrapperDirector()
         {
+            InitCollection();
         }
 
         public static StockWrapperDirector GetInstance()
@@ -40,10 +41,6 @@ namespace R54IN0
         {
             if (type == StockType.NONE)
                 throw new ArgumentOutOfRangeException();
-
-            if (_list == null)
-                InitCollection();
-
             if (type == StockType.ALL)
                 return new ObservableCollection<StockWrapper>(_list);
             else
@@ -53,6 +50,8 @@ namespace R54IN0
         private void InitCollection()
         {
             _list = new List<StockWrapper>();
+            _itemKeyDic = new MultiSortedDictionary<string, StockWrapper>();
+
             InOutStock[] stocks = null;
             using (var db = DatabaseDirector.GetDbInstance())
             {
@@ -68,7 +67,6 @@ namespace R54IN0
             }
 #endif
             _list.AddRange(stocks.Select(x => new StockWrapper(x)));
-
             _itemKeyDic = new MultiSortedDictionary<string, StockWrapper>();
             foreach (var item in _list)
                 _itemKeyDic.Add(item.Item.UUID, item);

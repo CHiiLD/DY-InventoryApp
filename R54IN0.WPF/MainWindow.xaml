@@ -84,10 +84,10 @@
                     <local:InventoryManager/>
                 </TabItem>
                 <TabItem Header="입고" x:Name="InStockTab">
-                    <local:InOutStockManager StockType="IN"/>
+                    <local:InOutStockManager StockType="INCOMING"/>
                 </TabItem>
                 <TabItem Header="출고" x:Name="OutStockTab">
-                    <local:InOutStockManager StockType="OUT"/>
+                    <local:InOutStockManager StockType="OUTGOING"/>
                 </TabItem>
                 <TabItem Header="입출고" x:Name="InOutStockTab">
                     <local:InOutStockManager StockType="ALL"/>

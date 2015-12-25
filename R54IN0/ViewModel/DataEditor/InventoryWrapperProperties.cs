@@ -83,8 +83,8 @@ namespace R54IN0
                 OnPropertyChanged("Quantity");
                 OnPropertyChanged("PurchaseUnitPrice");
                 OnPropertyChanged("SalesUnitPrice");
-                OnPropertyChanged("TotalPurchasePrice");
-                OnPropertyChanged("TotalSalesPrice");
+                OnPropertyChanged("PurchasePriceAmount");
+                OnPropertyChanged("SalesPriceAmount");
             }
         }
 
@@ -117,8 +117,8 @@ namespace R54IN0
                 OnPropertyChanged("Specification");
                 OnPropertyChanged("PurchaseUnitPrice");
                 OnPropertyChanged("SalesUnitPrice");
-                OnPropertyChanged("TotalPurchasePrice");
-                OnPropertyChanged("TotalSalesPrice");
+                OnPropertyChanged("PurchasePriceAmount");
+                OnPropertyChanged("SalesPriceAmount");
             }
         }
 

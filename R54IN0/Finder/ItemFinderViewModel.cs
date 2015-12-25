@@ -75,8 +75,7 @@ namespace R54IN0
 
         public void RemoveSelectedDirectories(object parameter)
         {
-            var itemNodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).
-                Select(x => new FinderNode(x));
+            var itemNodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Select(x => new FinderNode(x));
             foreach (var node in new List<FinderNode>(SelectedNodes))
                 _finderDirector.Remove(node);
             foreach (var itemNode in itemNodes)

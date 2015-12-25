@@ -94,15 +94,15 @@ namespace R54IN0
             get
             {
                 var iwd = InventoryWrapperDirector.GetInstance();
-                var inven = iwd.CreateCollection().Where(x => x.UUID == Record.InventoryUUID).SingleOrDefault();
+                var inven = InventoryWrapperDirector.GetInstance().BinSearch(Record.InventoryUUID); //iwd.CreateCollection().Where(x => x.UUID == Record.InventoryUUID).SingleOrDefault();
                 return inven != null ? inven.Warehouse : null;
             }
             set
             {
                 throw new NotSupportedException();
-                var iwd = InventoryWrapperDirector.GetInstance();
-                var inven = iwd.CreateCollection().Where(x => x.UUID == Record.InventoryUUID).SingleOrDefault();
-                inven.Warehouse  = inven != null ? value : null;
+                //var iwd = InventoryWrapperDirector.GetInstance();
+                //var inven = iwd.CreateCollection().Where(x => x.UUID == Record.InventoryUUID).SingleOrDefault();
+                //inven.Warehouse  = inven != null ? value : null;
             }
         }
 

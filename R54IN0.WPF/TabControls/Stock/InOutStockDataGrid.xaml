@@ -8,6 +8,10 @@
              d:DesignHeight="300" d:DesignWidth="600">
     <!--- 날짜, 코드, 품명, 규격, 메이커, 수량, 단위, 거래처, 담당자, 보관장소, 비고-->
 
+    <UserControl.Resources>
+        <local:StockTypeToStringConverter x:Key="StockTypeConverter"/>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="68*"/>
@@ -16,7 +20,7 @@
 
         <DataGrid ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" Grid.RowSpan="1" IsReadOnly="True" GridLinesVisibility="All">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="T" Binding="{Binding StockType}" IsReadOnly="True">
+                <DataGridTextColumn Header="종류" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center"/>

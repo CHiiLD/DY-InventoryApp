@@ -59,6 +59,8 @@ namespace R54IN0.Test
             //파괴
             InventoryWrapperDirector.Distory();
             FieldWrapperDirector.Distroy();
+
+            iwd = InventoryWrapperDirector.GetInstance();
             //찾기
             wrappers = iwd.CreateCollection();
             var newWrapper = wrappers.Where(x => x.Record.UUID == wrapper.Record.UUID).Single();
