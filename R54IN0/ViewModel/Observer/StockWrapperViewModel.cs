@@ -11,7 +11,7 @@ namespace R54IN0
     {
         StockType _stockType;
         ObservableCollection<StockWrapper> _items;
-        StockWrapperDirector _director;
+        StockWrapperDirector _stockDirector;
         //StockWrapper _selectedItem;
 
         public EventHandler<EventArgs> SelectedItemModifyHandler;
@@ -20,8 +20,8 @@ namespace R54IN0
         public StockWrapperViewModel(StockType type, CollectionViewModelObserverSubject subject) : base(subject)
         {
             _stockType = type;
-            _director = StockWrapperDirector.GetInstance();
-            _items = _director.CreateCollection(type);
+            _stockDirector = StockWrapperDirector.GetInstance();
+            _items = _stockDirector.CreateCollection(type);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -63,13 +63,13 @@ namespace R54IN0
         public override void Add(StockWrapper item)
         {
             base.Add(item);
-            _director.Add(item);
+            _stockDirector.Add(item);
         }
 
         public override void Remove(StockWrapper item)
         {
             base.Remove(item);
-            _director.Remove(item);
+            _stockDirector.Remove(item);
         }
 
         public override void UpdateNewItem(object item)
@@ -79,7 +79,7 @@ namespace R54IN0
                 var ioStockw = item as StockWrapper;
                 if (_stockType.HasFlag(ioStockw.StockType))
                 {
-                    if (_director.Count(_stockType) == Items.Count || Items.Any(x => x.Item.UUID == ioStockw.Item.UUID))
+                    if (_stockDirector.Count(_stockType) == Items.Count || Items.Any(x => x.Item.UUID == ioStockw.Item.UUID))
                         base.UpdateNewItem(item);
                 }
             }
@@ -92,9 +92,17 @@ namespace R54IN0
             {
                 List<StockWrapper> temp = new List<StockWrapper>();
                 var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
-                var ioStockws = _director.CreateCollection(_stockType);
                 foreach (var itemNode in itemNodes)
-                    temp.AddRange(ioStockws.Where(x => x.Item.UUID == itemNode.ItemUUID));
+                {
+                    var stockList = _stockDirector.SearchAsItemkey(itemNode.ItemUUID);
+                    if (stockList != null)
+                    {
+                        if(StockType == StockType.ALL)
+                            temp.AddRange(stockList);
+                        else if (StockType == StockType.INCOMING || StockType == StockType.OUTGOING)
+                            temp.AddRange(stockList.Where(x => x.StockType == StockType));
+                    }
+                }
                 Items = new ObservableCollection<StockWrapper>(temp);
             }
         }

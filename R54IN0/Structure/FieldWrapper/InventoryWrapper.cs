@@ -33,8 +33,8 @@ namespace R54IN0
             set
             {
                 _warehouse = value;
-                Record.WarehouseUUID = (_warehouse != null ? _warehouse.UUID : null);
-                Record.Save<Inventory>();
+                Product.WarehouseUUID = (_warehouse != null ? _warehouse.UUID : null);
+                Product.Save<Inventory>();
                 OnPropertyChanged("Warehouse");
             }
         }
@@ -42,7 +42,7 @@ namespace R54IN0
         {
             get
             {
-                return Record.ItemUUID != null ? Record.ItemUUID.Substring(0, 6).ToUpper() : "";
+                return Product.ItemUUID != null ? Product.ItemUUID.Substring(0, 6).ToUpper() : "";
             }
         }
 
@@ -50,7 +50,7 @@ namespace R54IN0
         {
             get
             {
-                return Record.SpecificationUUID != null ? Record.SpecificationUUID.Substring(0, 6).ToUpper() : "";
+                return Product.SpecificationUUID != null ? Product.SpecificationUUID.Substring(0, 6).ToUpper() : "";
             }
         }
 
@@ -62,9 +62,9 @@ namespace R54IN0
             }
         }
 
-        protected override void LoadProperies(Inventory record)
+        protected override void SetProperies(Inventory record)
         {
-            base.LoadProperies(record);
+            base.SetProperies(record);
             var fwd = FieldWrapperDirector.GetInstance();
             Warehouse = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().
                 Where(x => x.UUID == record.WarehouseUUID).SingleOrDefault();

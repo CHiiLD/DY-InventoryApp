@@ -100,6 +100,28 @@ namespace R54IN0.Test
         }
 
         /// <summary>
+        /// Finder에서 품목을 선택하였을 때 해당 품목에 해당되는 리스트 아이템들의 StockType이 
+        /// 올바르게 업데이트되는지를 확인한다.
+        /// </summary>
+        [TestMethod]
+        public void WhenClickFinderNodeThenUpdateItemsWidthStockTypeMatched()
+        {
+            new DummyDbData().Create();
+            StockType stockType = new Random().Next(2) == 1 ? StockType.INCOMING : StockType.OUTGOING;
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            ItemFinderViewModel fvm = new ItemFinderViewModel(null);
+            StockWrapperViewModel vm = new StockWrapperViewModel(stockType, sub);
+            fvm.SelectItemsChanged += vm.OnFinderViewSelectItemChanged;
+            ItemWrapper itemw = vm.Items.Random().Item;
+            FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemUUID == itemw.UUID)).Single();
+            var list = new List<FinderNode>() { node };
+            //클릭
+            fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
+
+            Assert.IsTrue(vm.Items.All(x => x.StockType == stockType));
+        }
+
+        /// <summary>
         /// Finder에 의한 동기화
         /// </summary>
         [TestMethod]
@@ -144,7 +166,7 @@ namespace R54IN0.Test
             Assert.IsFalse(vm1.Items.Contains(newStock));
             var iowd = StockWrapperDirector.GetInstance();
             Assert.IsTrue(iowd.CreateCollection(stockTypeAll).Contains(newStock));
-            
+
             //위 상황과 반대인 경우
             var selectedItem = items.Where(x => x.Item.UUID == itemw.UUID).First();
             newStock = CreateIOStockWrapper();

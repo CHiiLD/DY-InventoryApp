@@ -61,6 +61,7 @@
     <Compile Include="Test\IOStockWrapperDirectorTest.cs" />
     <Compile Include="Test\IOStockWrapperViewModelTest.cs" />
     <Compile Include="Test\ItemWrapperViewModelTest.cs" />
+    <Compile Include="Time\TimeMeasuration.cs" />
     <Compile Include="Tool\DummyDbData.cs" />
     <Compile Include="Test\FieldWrapperDirectorTest.cs" />
     <Compile Include="Test\InventoryWrapperViewModelTest.cs" />

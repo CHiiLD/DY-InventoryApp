@@ -10,8 +10,20 @@ namespace R54IN0
     public class FieldWrapper<T> : IFieldWrapper, INotifyPropertyChanged where T : class, IField
     {
         T _field;
+        event PropertyChangedEventHandler _propertyChanged;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add
+            {
+                _propertyChanged -= value;
+                _propertyChanged += value;
+            }
+            remove
+            {
+                _propertyChanged -= value;
+            }
+        }
 
         public FieldWrapper()
         {
@@ -86,8 +98,8 @@ namespace R54IN0
 
         protected void OnPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            if (_propertyChanged != null)
+                _propertyChanged(this, new PropertyChangedEventArgs(name));
         }
     }
 }

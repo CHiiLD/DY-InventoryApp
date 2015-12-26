@@ -8,6 +8,7 @@ namespace R54IN0
         ProductT _product;
         SpecificationWrapper _specification;
         ItemWrapper _item;
+        PropertyChangedEventHandler _propertyChanged;
 
         public ProductWrapper()
         {
@@ -16,7 +17,7 @@ namespace R54IN0
         public ProductWrapper(ProductT record)
         {
             _product = record;
-            LoadProperies(record);
+            SetProperies(record);
         }
 
         public FieldWrapper<Measure> Measure
@@ -75,9 +76,20 @@ namespace R54IN0
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add
+            {
+                _propertyChanged -= value;
+                _propertyChanged += value;
+            }
+            remove
+            {
+                _propertyChanged -= value;
+            }
+        }
 
-        public ProductT Record
+        public ProductT Product
         {
             get
             {
@@ -86,7 +98,7 @@ namespace R54IN0
             set
             {
                 _product = value;
-                LoadProperies(_product);
+                SetProperies(_product);
                 OnPropertyChanged("");
             }
         }
@@ -95,11 +107,11 @@ namespace R54IN0
         {
             get
             {
-                return Record;
+                return Product;
             }
             set
             {
-                Record = value as ProductT;
+                Product = value as ProductT;
             }
         }
 
@@ -173,23 +185,25 @@ namespace R54IN0
         {
             get
             {
-                return Record.UUID;
+                return Product.UUID;
             }
         }
 
-        protected virtual void LoadProperies(ProductT record)
+        protected virtual void SetProperies(ProductT product)
         {
             var fwd = FieldWrapperDirector.GetInstance();
-            Item = fwd.CreateCollection<Item, ItemWrapper>().
-                Where(x => x.UUID == record.ItemUUID).SingleOrDefault();
-            Specification = fwd.CreateCollection<Specification, SpecificationWrapper>().
-                Where(x => x.UUID == record.SpecificationUUID).SingleOrDefault();
+            _item = fwd.BinSearch<Item, ItemWrapper>(product.ItemUUID); //fwd.CreateCollection<Item, ItemWrapper>().Where(x => x.UUID == record.ItemUUID).SingleOrDefault();
+            if (_item != null)
+                _item.PropertyChanged += OnItemWrapperPropertyChanged;
+            _specification = fwd.BinSearch<Specification, SpecificationWrapper>(product.SpecificationUUID); //fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => x.UUID == product.SpecificationUUID).SingleOrDefault();
+            if (_specification != null)
+                _specification.PropertyChanged += OnSpecificationWrapperPropertyChanged;
         }
 
         protected void OnPropertyChanged(string name)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            if (_propertyChanged != null)
+                _propertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
         protected void OnItemWrapperPropertyChanged(object sender, PropertyChangedEventArgs e)

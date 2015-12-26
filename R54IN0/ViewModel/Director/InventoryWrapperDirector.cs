@@ -10,7 +10,9 @@ namespace R54IN0
     {
         static InventoryWrapperDirector _thiz;
         List<InventoryWrapper> _list;
-        SortedDictionary<string, InventoryWrapper> _sortDic;
+        SortedDictionary<string, InventoryWrapper> _uuidDic;
+        SortedDictionary<string, InventoryWrapper> _specificationKeyDic;
+        MultiSortedDictionary<string, InventoryWrapper> _itemKeyDic;
 
         InventoryWrapperDirector()
         {
@@ -20,7 +22,9 @@ namespace R54IN0
         void InitCollection()
         {
             _list = new List<InventoryWrapper>();
-            _sortDic = new SortedDictionary<string, InventoryWrapper>();
+            _uuidDic = new SortedDictionary<string, InventoryWrapper>();
+            _specificationKeyDic = new SortedDictionary<string, InventoryWrapper>();
+            _itemKeyDic = new MultiSortedDictionary<string, InventoryWrapper>();
 
             Inventory[] invens = null;
             using (var db = DatabaseDirector.GetDbInstance())
@@ -36,8 +40,12 @@ namespace R54IN0
             }
 #endif
             _list.AddRange(invens.Select(x => new InventoryWrapper(x)));
-            foreach (var item in _list)
-                _sortDic.Add(item.UUID, item);
+            foreach (var inventoryWrapper in _list)
+            {
+                _uuidDic.Add(inventoryWrapper.UUID, inventoryWrapper);
+                _specificationKeyDic.Add(inventoryWrapper.Specification.UUID, inventoryWrapper);
+                _itemKeyDic.Add(inventoryWrapper.Item.UUID, inventoryWrapper);
+            }
         }
 
         public static InventoryWrapperDirector GetInstance()
@@ -52,7 +60,9 @@ namespace R54IN0
             if (_thiz != null)
             {
                 _thiz._list = null;
-                _thiz._sortDic = null;
+                _thiz._uuidDic = null;
+                _thiz._itemKeyDic = null;
+                _thiz._specificationKeyDic = null;
                 _thiz = null;
             }
         }
@@ -66,24 +76,28 @@ namespace R54IN0
         {
             if (!_list.Contains(item))
             {
-                item.Record.Save<Inventory>();
-                _sortDic.Add(item.UUID, item);
+                item.Product.Save<Inventory>();
                 _list.Add(item);
+                _uuidDic.Add(item.UUID, item);
+                _specificationKeyDic.Add(item.Specification.UUID, item);
+                _itemKeyDic.Add(item.Item.UUID, item);
             }
         }
 
         public bool Contains(InventoryWrapper item)
         {
 #if DEBUG
-            Debug.Assert(_list.Contains(item) == _sortDic.ContainsKey(item.UUID));
+            Debug.Assert(_list.Contains(item) == _uuidDic.ContainsKey(item.UUID));
 #endif
             return _list.Contains(item);
         }
 
         public bool Remove(InventoryWrapper item)
         {
-            item.Record.Delete<Inventory>();
-            _sortDic.Remove(item.UUID);
+            item.Product.Delete<Inventory>();
+            _uuidDic.Remove(item.UUID);
+            _specificationKeyDic.Remove(item.Specification.UUID);
+            _itemKeyDic.Remove(item.Item.UUID, item);
             return _list.Remove(item);
         }
 
@@ -92,19 +106,37 @@ namespace R54IN0
             return _list.Count;
         }
 
+        public InventoryWrapper SearchAsSpecificationKey(string uuid)
+        {
+            if (uuid == null)
+                return null;
+            if (!_specificationKeyDic.ContainsKey(uuid))
+                return null;
+            return _specificationKeyDic[uuid];
+        }
+
+        public List<InventoryWrapper> SearchAsItemKey(string uuid)
+        {
+            if (uuid == null)
+                return null;
+            if (!_itemKeyDic.ContainsKey(uuid))
+                return null;
+            return _itemKeyDic[uuid];
+        }
+
         public InventoryWrapper BinSearch(string uuid)
         {
             if (uuid == null)
                 return null;
 
-            if (!_sortDic.ContainsKey(uuid))
+            if (!_uuidDic.ContainsKey(uuid))
             {
 #if DEBUG
                 Debug.Assert(false);
                 return null;
 #endif
             }
-            return _sortDic[uuid];
+            return _uuidDic[uuid];
         }
     }
 }

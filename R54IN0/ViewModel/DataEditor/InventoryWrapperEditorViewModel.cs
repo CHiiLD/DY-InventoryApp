@@ -15,19 +15,16 @@ namespace R54IN0
             var fwd = FieldWrapperDirector.GetInstance();
             var iwd = InventoryWrapperDirector.GetInstance();
 
-            IEnumerable<ItemWrapper> itemws = fwd.CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted);
-            IEnumerable<SpecificationWrapper> specws = fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
-            IEnumerable<InventoryWrapper> invenws = iwd.CreateCollection();
-
+            IEnumerable<SpecificationWrapper> specifications = fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
             List<ItemWrapper> list = new List<ItemWrapper>();
-            //아직 등록하지 아니한 Itemw - Specw 넣기 
-            foreach (var specw in specws)
+            //아직 Inventory 데이터가 없는 Item(With Specification) 데이터의 리스트를 구한다.
+            foreach (var specw in specifications)
             {
-                if (!invenws.Any(x => x.Specification.UUID == specw.UUID))
+                if(iwd.SearchAsSpecificationKey(specw.UUID) == null)
                 {
-                    var itemUuid = specw.Field.ItemUUID;
-                    var itemw = itemws.Where(x => x.UUID == itemUuid).Single();
-                    list.Add(itemw);
+                    var itemw = fwd.BinSearch<Item, ItemWrapper>(specw.Field.ItemUUID);
+                    if (itemw != null && !itemw.IsDeleted)
+                        list.Add(itemw);
                 }
             }
             ItemList = list.Distinct();
@@ -42,14 +39,13 @@ namespace R54IN0
             _viewModel = viewModel;
             _target = inventoryWrapper;
 
-            ItemList = new ItemWrapper[] { inventoryWrapper.Item };
-            SpecificationList = new SpecificationWrapper[] { inventoryWrapper.Specification };
-
-            Item = inventoryWrapper.Item;
             Specification = inventoryWrapper.Specification;
+            Item = inventoryWrapper.Item;
             Warehouse = inventoryWrapper.Warehouse;
-            var fwd = FieldWrapperDirector.GetInstance();
-            WarehouseList = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().Where(x => !x.IsDeleted);
+
+            ItemList = new ItemWrapper[] { Item };
+            SpecificationList = new SpecificationWrapper[] { Specification };
+            WarehouseList = FieldWrapperDirector.GetInstance().CreateCollection<Warehouse, FieldWrapper<Warehouse>>().Where(x => !x.IsDeleted);
         }
 
         public IEnumerable<ItemWrapper> ItemList
@@ -85,11 +81,11 @@ namespace R54IN0
                     var iwd = InventoryWrapperDirector.GetInstance();
                     var specws = fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
                     specws = specws.Where(x => x.Field.ItemUUID == base.Item.UUID); //품목에 해당하는 규격 데이터를 추출
-                    var invenws = iwd.CreateCollection();
                     List<SpecificationWrapper> list = new List<SpecificationWrapper>();
+                    List<InventoryWrapper> invenws = iwd.SearchAsItemKey(base.Item.UUID);
                     foreach (SpecificationWrapper specw in specws)
                     {
-                        if (!invenws.Any(x => x.Specification == specw)) //아직 재고현황으로 등록하지 않은 규격 데이터만 추출
+                        if (invenws == null || invenws.All(x => x.Specification != specw)) //아직 재고현황으로 등록하지 않은 규격 데이터만 추출
                             list.Add(specw);
                     }
                     SpecificationList = list;
@@ -109,7 +105,7 @@ namespace R54IN0
 
             if (_target != null) //EIDT
             {
-                _target.Record = Stock as Inventory;
+                _target.Product = Stock as Inventory;
                 result = _target;
             }
             else

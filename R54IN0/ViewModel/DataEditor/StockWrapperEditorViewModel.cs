@@ -77,7 +77,7 @@ namespace R54IN0
                 if (_target == null && base.Specification != null)
                 {
                     InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
-                    var inven = iwd.CreateCollection().Where(x => x.Specification.UUID == base.Specification.UUID).SingleOrDefault();
+                    var inven = iwd.SearchAsSpecificationKey(base.Specification.UUID);
                     if (inven != null)
                     {
                         WarehouseList = new FieldWrapper<Warehouse>[] { inven.Warehouse };
@@ -146,7 +146,7 @@ namespace R54IN0
                 throw new Exception("리스트박스에서 규격을 선택하세요.");
 
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
-            InventoryWrapper invenw = iwd.CreateCollection().Where(x => x.Specification.UUID == Specification.UUID).SingleOrDefault();
+            InventoryWrapper invenw = iwd.SearchAsSpecificationKey(Specification.UUID);
             if (invenw != null) //재고의 개수를 수정
             {
                 invenw.Quantity = InventoryQuantity;
@@ -168,7 +168,7 @@ namespace R54IN0
             StockWrapper result;
             if (_target != null) //변경
             {
-                _target.Record = IOStock;
+                _target.Product = IOStock;
                 result = _target;
             }
             else //추가
@@ -187,9 +187,8 @@ namespace R54IN0
                 List<ItemWrapper> items = new List<ItemWrapper>();
                 var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
                 var fwd = FieldWrapperDirector.GetInstance();
-                //var itemws = fwd.CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted);
                 foreach (var itemNode in itemNodes)
-                    items.Add(fwd.BinSearch<Item, ItemWrapper>(itemNode.ItemUUID));//(itemws.Where(x => x.UUID == itemNode.ItemUUID).Single());
+                    items.Add(fwd.BinSearch<Item, ItemWrapper>(itemNode.ItemUUID));
                 Item = null;
                 Specification = null;
                 SpecificationList = null;

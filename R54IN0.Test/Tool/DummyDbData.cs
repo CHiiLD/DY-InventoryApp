@@ -18,12 +18,12 @@ namespace R54IN0.Test
         public DummyDbData Create()
         {
             ////////////INIT
-
             FieldWrapperDirector.Distroy();
             InventoryWrapperDirector.Distory();
             CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
             StockWrapperDirector.Distory();
+            DatabaseDirector.Distroy();
 
             ////////////INIT
 

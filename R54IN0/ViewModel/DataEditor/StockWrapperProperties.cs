@@ -134,7 +134,7 @@ namespace R54IN0
                 if (Specification == null)
                     return Quantity;
                 var iwd = InventoryWrapperDirector.GetInstance();
-                InventoryWrapper invenw = iwd.CreateCollection().Where(x => x.Specification.UUID == Specification.UUID).SingleOrDefault();
+                InventoryWrapper invenw = iwd.SearchAsSpecificationKey(Specification.UUID);
                 if (invenw == null)
                     return Quantity;
                 if (_target == null)

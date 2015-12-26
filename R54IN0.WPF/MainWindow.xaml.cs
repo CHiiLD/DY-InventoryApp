@@ -42,8 +42,14 @@ namespace R54IN0.WPF
             debugMenu.Items.Add(createSampleMenu);
 
             MenuItem createStressSampleMenu = new MenuItem() { Header = "CREATE STRESS SAMPLE" };
+            createStressSampleMenu.Click += CreateStressSampleMenu_Click;
             debugMenu.Items.Add(createStressSampleMenu);
 #endif
+        }
+
+        private void CreateStressSampleMenu_Click(object sender, RoutedEventArgs e)
+        {
+            new DYDummyDbData().Create(50, 60);
         }
 
         private void CreateSampleMenu_Click(object sender, RoutedEventArgs e)

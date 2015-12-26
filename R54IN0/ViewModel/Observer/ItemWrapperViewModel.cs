@@ -114,7 +114,7 @@ namespace R54IN0
             if (_finderViewModel != null)
             {
                 List<ItemWrapper> itemwTemp = new List<ItemWrapper>();
-                var itemNodes = _finderViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
+                IEnumerable<FinderNode> itemNodes = _finderViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
                 var itemws = fieldWrapperDirector.CreateCollection<Item, ItemWrapper>();
                 foreach (var itemNode in itemNodes)
                     itemwTemp.AddRange(itemws.Where(x => x.UUID == itemNode.ItemUUID && !x.IsDeleted));

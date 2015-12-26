@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using Lex.Db;
+using System.Diagnostics;
 
 namespace R54IN0
 {
@@ -76,8 +77,16 @@ namespace R54IN0
         public void RemoveSelectedDirectories(object parameter)
         {
             var itemNodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Select(x => new FinderNode(x));
+            itemNodes = new List<FinderNode>(itemNodes); //논리적 이유는 추측하기 어려우나(WPF버그?), 이 코드가 없으면 논리에러가 발생!
+#if DEBUG
+            Debug.Assert(!itemNodes.Any(x => Nodes.SelectMany(n => n.Descendants()).Any(n2 => n2 == x)));
+            int cnt = itemNodes.Count();
+#endif
             foreach (var node in new List<FinderNode>(SelectedNodes))
                 _finderDirector.Remove(node);
+#if DEBUG
+            Debug.Assert(cnt == itemNodes.Count());
+#endif
             foreach (var itemNode in itemNodes)
                 _finderDirector.Add(itemNode);
             SelectedNodes.Clear();

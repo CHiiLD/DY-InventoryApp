@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lex.Db;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace R54IN0
 {
@@ -12,6 +13,7 @@ namespace R54IN0
     {
         ClientWrapper _client;
         FieldWrapper<Employee> _eeployee;
+        InventoryWrapper _inventory;
 
         public StockWrapper()
            : base()
@@ -27,7 +29,7 @@ namespace R54IN0
         {
             get
             {
-                return Record.ItemUUID.Substring(0, 6).ToUpper();
+                return Product.ItemUUID.Substring(0, 6).ToUpper();
             }
         }
 
@@ -35,12 +37,12 @@ namespace R54IN0
         {
             get
             {
-                return Record.Date;
+                return Product.Date;
             }
             set
             {
-                Record.Date = value;
-                Record.Save<InOutStock>();
+                Product.Date = value;
+                Product.Save<InOutStock>();
                 OnPropertyChanged("Date");
             }
         }
@@ -54,8 +56,8 @@ namespace R54IN0
             set
             {
                 _client = value;
-                Record.EnterpriseUUID = (_client != null ? _client.UUID : null);
-                Record.Save<InOutStock>();
+                Product.EnterpriseUUID = (_client != null ? _client.UUID : null);
+                Product.Save<InOutStock>();
                 OnPropertyChanged("Client");
             }
         }
@@ -69,8 +71,8 @@ namespace R54IN0
             set
             {
                 _eeployee = value;
-                Record.EmployeeUUID = (_eeployee != null ? _eeployee.UUID : null);
-                Record.Save<InOutStock>();
+                Product.EmployeeUUID = (_eeployee != null ? _eeployee.UUID : null);
+                Product.Save<InOutStock>();
                 OnPropertyChanged("Employee");
             }
         }
@@ -79,12 +81,12 @@ namespace R54IN0
         {
             get
             {
-                return Record.StockType;
+                return Product.StockType;
             }
             set
             {
-                Record.StockType = value;
-                Record.Save<InOutStock>();
+                Product.StockType = value;
+                Product.Save<InOutStock>();
                 OnPropertyChanged("StockType");
             }
         }
@@ -93,25 +95,48 @@ namespace R54IN0
         {
             get
             {
-                var iwd = InventoryWrapperDirector.GetInstance();
-                var inven = InventoryWrapperDirector.GetInstance().BinSearch(Record.InventoryUUID); //iwd.CreateCollection().Where(x => x.UUID == Record.InventoryUUID).SingleOrDefault();
-                return inven != null ? inven.Warehouse : null;
+                return Inventory != null ? Inventory.Warehouse : null;
             }
             set
             {
                 throw new NotSupportedException();
-                //var iwd = InventoryWrapperDirector.GetInstance();
-                //var inven = iwd.CreateCollection().Where(x => x.UUID == Record.InventoryUUID).SingleOrDefault();
-                //inven.Warehouse  = inven != null ? value : null;
             }
         }
 
-        protected override void LoadProperies(InOutStock ioStock)
+        public InventoryWrapper Inventory
         {
-            var fwd = FieldWrapperDirector.GetInstance();
-            Client = fwd.CreateCollection<Client, ClientWrapper>().Where(x => x.UUID == ioStock.EnterpriseUUID).SingleOrDefault();
-            Employee = fwd.CreateCollection<Employee, FieldWrapper<Employee>>().Where(x => x.UUID == ioStock.EmployeeUUID).SingleOrDefault();
-            base.LoadProperies(ioStock);
+            get
+            {
+                return _inventory;
+            }
+            set
+            {
+                _inventory = value;
+                Product.InventoryUUID = (_inventory != null ? _inventory.UUID : null);
+                Product.Save<InOutStock>();
+                if (_inventory != null)
+                    _inventory.PropertyChanged += OnInventoryPropertyChanged;
+                OnPropertyChanged("Inventory");
+                OnPropertyChanged("Warehouse");
+            }
+        }
+
+        void OnInventoryPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (sender == Inventory && e.PropertyName == "Warehouse")
+                OnPropertyChanged("Warehouse");
+        }
+
+        protected override void SetProperies(InOutStock stock)
+        {
+            base.SetProperies(stock);
+            FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
+            _client = fwd.BinSearch<Client, ClientWrapper>(stock.EnterpriseUUID);
+            _eeployee = fwd.BinSearch<Employee, FieldWrapper<Employee>>(stock.EmployeeUUID);
+            InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
+            _inventory = iwd.BinSearch(Product.InventoryUUID);
+            if (_inventory != null)
+                _inventory.PropertyChanged += OnInventoryPropertyChanged;
         }
     }
 }

@@ -107,5 +107,14 @@ namespace R54IN0
             else
                 return _list.Where(x => x.StockType == type).Count();
         }
+
+        public List<StockWrapper> SearchAsItemkey(string uuid)
+        {
+            if (uuid == null)
+                return null;
+            if (!_itemKeyDic.ContainsKey(uuid))
+                return null;
+            return _itemKeyDic[uuid];
+        }
     }
 }

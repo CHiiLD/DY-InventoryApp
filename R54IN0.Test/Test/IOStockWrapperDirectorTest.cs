@@ -30,6 +30,8 @@ namespace R54IN0.Test
             StockWrapperDirector.Distory();
         }
 
+      
+
         [TestMethod]
         public void ChangeProperty()
         {

@@ -11,12 +11,12 @@ namespace R54IN0
     {
         static FieldWrapperDirector _thiz;
         Dictionary<Type, List<IFieldWrapper>> _map;
-        SortedDictionary<string, IFieldWrapper> _sortDic;
+        SortedDictionary<string, IFieldWrapper> _uuidDic;
 
         FieldWrapperDirector()
         {
             _map = new Dictionary<Type, List<IFieldWrapper>>();
-            _sortDic = new SortedDictionary<string, IFieldWrapper>();
+            _uuidDic = new SortedDictionary<string, IFieldWrapper>();
         }
 
         public static void Distroy()
@@ -24,7 +24,7 @@ namespace R54IN0
             if (_thiz != null)
             {
                 _thiz._map = null;
-                _thiz._sortDic = null;
+                _thiz._uuidDic = null;
             }
             _thiz = null;
         }
@@ -42,14 +42,14 @@ namespace R54IN0
             {
                 item.Field.Save<FieldT>();
                 _map[typeof(FieldT)].Add(item);
-                _sortDic.Add(item.Field.UUID, item);
+                _uuidDic.Add(item.Field.UUID, item);
             }
         }
 
         public bool Contains<FieldT>(IFieldWrapper item) where FieldT : class, IField
         {
 #if DEBUG
-            Debug.Assert(_map[typeof(FieldT)].Contains(item) == _sortDic.ContainsKey(item.Field.UUID));
+            Debug.Assert(_map[typeof(FieldT)].Contains(item) == _uuidDic.ContainsKey(item.Field.UUID));
 #endif
             if (_map.ContainsKey(typeof(FieldT)))
                 return _map[typeof(FieldT)].Contains(item);
@@ -62,7 +62,7 @@ namespace R54IN0
             if (_map.ContainsKey(typeof(FieldT)))
             {
                 item.Field.Delete<FieldT>();
-                _sortDic.Remove(item.Field.UUID);
+                _uuidDic.Remove(item.Field.UUID);
                 return _map[typeof(FieldT)].Remove(item);
             }
             else
@@ -89,17 +89,18 @@ namespace R54IN0
 
         public WrapperT BinSearch<FieldT, WrapperT>(string uuid) where FieldT : class, IField where WrapperT : class, IFieldWrapper
         {
+            if (uuid == null)
+                return null;
             if (!_map.ContainsKey(typeof(FieldT)))
                 Load<FieldT, WrapperT>();
-
-            if (!_sortDic.ContainsKey(uuid))
+            if (!_uuidDic.ContainsKey(uuid))
             {
 #if DEBUG
                 Debug.Assert(false);
 #endif
                 return null;
             }
-            return _sortDic[uuid] as WrapperT;
+            return _uuidDic[uuid] as WrapperT;
         }
 
         void Load<FieldT, WrapperT>() where FieldT : class, IField where WrapperT : class, IFieldWrapper
@@ -123,7 +124,7 @@ namespace R54IN0
                 else
                     wrapper = new FieldWrapper<FieldT>(field);
                 _map[type].Add(wrapper);
-                _sortDic.Add(field.UUID, wrapper);
+                _uuidDic.Add(field.UUID, wrapper);
             }
         }
     }

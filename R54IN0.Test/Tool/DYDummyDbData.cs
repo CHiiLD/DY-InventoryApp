@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,12 +58,6 @@ namespace R54IN0.Test
         string[] _currencyNames = new string[]
         {
             "원",
-            "Japanese yen",
-            "United States dollar",
-            "Jordanian dinar",
-            "Paraguayan guaraní",
-            "Rwandan franc",
-            "Ghana cedi",
         };
 
         string[] _makerNames = new string[]
@@ -227,8 +222,9 @@ namespace R54IN0.Test
             }
         }
 
-        void CreateInventory()
+        int CreateInventory(int min = 4, int max = 50)
         {
+            int cnt = 0;
             using (var db = DatabaseDirector.GetDbInstance())
             {
                 Client[] clients = db.LoadAll<Client>();
@@ -247,11 +243,13 @@ namespace R54IN0.Test
                         WarehouseUUID = warehouses.Random().UUID
                     }.Save<Inventory>();
 
-                    for (int i = 0; i < _random.Next(4, 50); i++)
+                    DateTime date = DateTime.Now;
+                    for (int i = 0; i < _random.Next(min, max); i++)
                     {
+                        cnt++;
                         new InOutStock()
                         {
-                            Date = DateTime.Now,
+                            Date = date.AddDays(_random.NextDouble() * 1000.0),
                             EmployeeUUID = employees.Random().UUID,
                             InventoryUUID = inventory.UUID,
                             EnterpriseUUID = clients.Random().UUID,
@@ -264,9 +262,10 @@ namespace R54IN0.Test
                     }
                 }
             }
+            return cnt;
         }
 
-        public DYDummyDbData Create()
+        public DYDummyDbData Create(int min = 4, int max = 50)
         {
             CreateClient();
             CreateEmployee();
@@ -275,7 +274,8 @@ namespace R54IN0.Test
             CreateMeasure();
             CreateWarehouse();
             CreatItem();
-            CreateInventory();
+            int cnt = CreateInventory(min, max);
+            Debug.WriteLine("생성된 입출고 데이터: " + cnt);
             return this;
         }
     }

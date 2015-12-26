@@ -12,6 +12,17 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreate()
         {
+            FieldWrapperDirector.Distroy();
+            InventoryWrapperDirector.Distory();
+            CollectionViewModelObserverSubject.Distory();
+            FinderDirector.Distroy();
+            StockWrapperDirector.Distory();
+            using (var db = DatabaseDirector.GetDbInstance())
+            {
+                db.Purge();
+            }
+            DatabaseDirector.Distroy();
+
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             InventoryWrapperViewModel iwvm = new InventoryWrapperViewModel(sub);
             InventoryWrapperEditorViewModel helper = new InventoryWrapperEditorViewModel(iwvm);
@@ -124,13 +135,17 @@ namespace R54IN0.Test
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel ivm = new ItemWrapperViewModel(sub);
             InventoryWrapperViewModel invm = new InventoryWrapperViewModel(sub);
-            InventoryWrapperEditorViewModel evm = new InventoryWrapperEditorViewModel(invm, invm.Items.Random());
+            var invenw = invm.Items.Random();
+            InventoryWrapperEditorViewModel inventoryEditorViewModel = new InventoryWrapperEditorViewModel(invm, invenw);
             StockWrapperViewModel svm = new StockWrapperViewModel(StockType.ALL, sub);
 
-            //var itemw = evm.Item = evm.ItemList.Random();
-            var specw = evm.Specification;
-            var warew = evm.Warehouse = evm.WarehouseList.Where(x => x != evm.Warehouse).First();
-            evm.Update();
+            Assert.IsTrue(svm.Items.All(x => x.Inventory != null));
+
+            var specw = inventoryEditorViewModel.Specification;
+            var warew = inventoryEditorViewModel.Warehouse = inventoryEditorViewModel.WarehouseList.Where(x => x != inventoryEditorViewModel.Warehouse).First();
+            inventoryEditorViewModel.Update();
+
+            Assert.AreEqual(invenw.Warehouse, warew);
 
             var result = svm.Items.Where(x => x.Specification.UUID == specw.UUID);
             Assert.IsTrue(result.All(x => x.Warehouse == warew));
