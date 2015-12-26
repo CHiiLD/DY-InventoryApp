@@ -23,7 +23,7 @@ namespace R54IN0.WPF
         public ItemManager()
         {
             InitializeComponent();
-            Finder.ViewModel.SelectItemsChanged += ItemDataGrid.ViewModel.OnFinderViewSelectItemChanged;
+            Finder.ViewModel = ItemDataGrid.ViewModel.CreateFinderViewModel(Finder.FinderTreeView) as ItemFinderViewModel;
         }
     }
 }

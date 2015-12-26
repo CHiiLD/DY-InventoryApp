@@ -101,19 +101,20 @@ namespace R54IN0
             if (Specification == null)
                 throw new Exception("리스트박스에서 규격을 선택하세요.");
 
-            InventoryWrapper result;
-
-            if (_target != null) //EIDT
+            Inventory inven = Stock as Inventory;
+            InventoryWrapper invenw = null;
+            if (_target != null) //수정
             {
-                _target.Product = Stock as Inventory;
-                result = _target;
+                _target.Product = inven;
+                invenw = _target;
             }
-            else
+            else //추가
             {
-                result = new InventoryWrapper(Stock as Inventory);
-                _viewModel.Add(result);
+                invenw = new InventoryWrapper(inven);
+                _viewModel.Add(invenw);
             }
-            return result;
+            invenw.Product.Save<Inventory>();
+            return invenw;
         }
     }
 }

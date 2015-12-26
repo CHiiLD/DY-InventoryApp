@@ -6,7 +6,7 @@ using System.Windows.Controls;
 
 namespace R54IN0
 {
-    public class StockWrapperEditorViewModel : StockWrapperProperties, IFinderViewModelCallback
+    public class StockWrapperEditorViewModel : StockWrapperProperties, IFinderViewModelCreatation
     {
         StockWrapperViewModel _viewModel;
         StockWrapper _target;
@@ -25,7 +25,7 @@ namespace R54IN0
                 throw new ArgumentNullException();
             _target = ioStockWrapper;
             Initialize(viewModel);
-            
+
             ItemList = new ItemWrapper[] { _target.Item };
             SpecificationList = new SpecificationWrapper[] { _target.Specification };
             WarehouseList = new FieldWrapper<Warehouse>[] { _target.Warehouse };
@@ -138,15 +138,21 @@ namespace R54IN0
             }
         }
 
+        public FinderViewModel FinderViewModel
+        {
+            get;
+            set;
+        }
+
         public StockWrapper Update()
         {
             if (Item == null)
                 throw new Exception("리스트박스에서 품목을 선택하세요.");
             if (Specification == null)
                 throw new Exception("리스트박스에서 규격을 선택하세요.");
-
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
             InventoryWrapper invenw = iwd.SearchAsSpecificationKey(Specification.UUID);
+            StockWrapper stockw = null;
             if (invenw != null) //재고의 개수를 수정
             {
                 invenw.Quantity = InventoryQuantity;
@@ -154,29 +160,27 @@ namespace R54IN0
             else //새로운 재고를 등록
             {
                 Inventory inven = new Inventory();
-                InventoryWrapper newInvenw = new InventoryWrapper(inven)
-                {
-                    Item = this.Item,
-                    Specification = this.Specification,
-                    Quantity = this.InventoryQuantity,
-                    Warehouse = this.Warehouse,
-                };
-                CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(newInvenw); //순서의 주의 
-                iwd.Add(newInvenw); //순서의 주의 
+                inven.ItemUUID = this.Item.UUID;
+                inven.SpecificationUUID = this.Specification.UUID;
+                inven.Quantity = this.InventoryQuantity;
+                inven.WarehouseUUID = this.Warehouse != null ? this.Warehouse.UUID : null;
+                invenw = new InventoryWrapper(inven);
+                CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(invenw); //순서의 주의 
+                iwd.Add(invenw); //순서의 주의 
             }
-
-            StockWrapper result;
             if (_target != null) //변경
             {
-                _target.Product = IOStock;
-                result = _target;
+                _target.Product = InOutStock;
+                stockw = _target;
             }
             else //추가
             {
-                result = new StockWrapper(IOStock);
-                _viewModel.Add(result);
+                InOutStock.InventoryUUID = invenw.UUID;
+                stockw = new StockWrapper(InOutStock);
+                _viewModel.Add(stockw);
             }
-            return result;
+            stockw.Product.Save<InOutStock>(); //DB저장, 없으면 저장 안됨 
+            return stockw;
         }
 
         public void OnFinderViewSelectItemChanged(object sender, EventArgs e)
@@ -194,15 +198,16 @@ namespace R54IN0
                 SpecificationList = null;
                 ItemList = items; //이 코드를 Item = null; 아래에 두어야 함
             }
+            OnPropertyChanged("InventoryQuantity");
         }
 
         public FinderViewModel CreateFinderViewModel(TreeViewEx treeView)
         {
             var fd = FinderDirector.GetInstance();
             var collection = _target == null ? fd.Collection : new ObservableCollection<FinderNode>();
-            FinderViewModel fvm = new FinderViewModel(treeView, new ObservableCollection<FinderNode>(collection));
-            fvm.SelectItemsChanged += OnFinderViewSelectItemChanged;
-            return fvm;
+            FinderViewModel = new FinderViewModel(treeView, new ObservableCollection<FinderNode>(collection));
+            FinderViewModel.SelectItemsChanged += OnFinderViewSelectItemChanged;
+            return FinderViewModel;
         }
     }
 }

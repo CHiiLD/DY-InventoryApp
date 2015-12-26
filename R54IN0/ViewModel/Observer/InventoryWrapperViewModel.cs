@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class InventoryWrapperViewModel : ItemSourceViewModel<InventoryWrapper>, INotifyPropertyChanged, IFinderViewModelCallback
+    public class InventoryWrapperViewModel : ItemSourceViewModel<InventoryWrapper>, INotifyPropertyChanged, IFinderViewModelOnSelectingCallback
     {
         ObservableCollection<InventoryWrapper> _items;
         InventoryWrapperDirector _inventoryDirector;

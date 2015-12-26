@@ -208,6 +208,7 @@ namespace R54IN0.Test
             ItemFinderViewModel fvm = new ItemFinderViewModel(null);
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
             fvm.SelectItemsChanged += vm.OnFinderViewSelectItemChanged;
+            vm.FinderViewModel = fvm;
 
             fvm.OnNodeSelected(null, 
                 new System.Windows.Controls.SelectionChangedCancelEventArgs(new List<FinderNode>() { fvm.Nodes.First() }, new List<FinderNode>()));

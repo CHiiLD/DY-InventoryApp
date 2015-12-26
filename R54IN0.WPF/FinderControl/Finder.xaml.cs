@@ -22,8 +22,6 @@ namespace R54IN0.WPF
         public Finder()
         {
             InitializeComponent();
-            _viewModel = new ItemFinderViewModel(FinderTreeView);
-            DataContext = _viewModel;
         }
 
         public ItemFinderViewModel ViewModel
@@ -31,6 +29,11 @@ namespace R54IN0.WPF
             get
             {
                 return _viewModel;
+            }
+            set
+            {
+                _viewModel = value;
+                DataContext = _viewModel;
             }
         }
     }

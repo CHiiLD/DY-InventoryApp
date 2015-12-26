@@ -66,7 +66,7 @@ namespace R54IN0
         {
             base.SetProperies(record);
             var fwd = FieldWrapperDirector.GetInstance();
-            Warehouse = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().
+            _warehouse = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().
                 Where(x => x.UUID == record.WarehouseUUID).SingleOrDefault();
         }
     }

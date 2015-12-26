@@ -7,7 +7,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:name="thiz"
         mc:Ignorable="d"
-        Title="데일리 인벤토리!" Height="760" Width="960" WindowStartupLocation="CenterScreen" 
+        Title="데일리 인벤토리!" Height="864" Width="1152" WindowStartupLocation="CenterScreen" 
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1">
 

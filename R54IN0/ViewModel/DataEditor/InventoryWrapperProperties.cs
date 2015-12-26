@@ -119,6 +119,7 @@ namespace R54IN0
                 OnPropertyChanged("SalesUnitPrice");
                 OnPropertyChanged("PurchasePriceAmount");
                 OnPropertyChanged("SalesPriceAmount");
+                OnPropertyChanged("InventoryQuantity");
             }
         }
 

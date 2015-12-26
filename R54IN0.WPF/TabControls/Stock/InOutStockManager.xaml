@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
 
         <local:Finder x:Name="Finder" />
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
-        <local:InOutStockDataGrid x:Name="IOStockDataGrid" Grid.Column="2"/>
+        <GridSplitter HorizontalAlignment="Stretch" Grid.Column="1" />
+        <local:InOutStockDataGrid x:Name="IOStockDataGrid" Grid.Column="2" />
     </Grid>
 </UserControl>

@@ -11,6 +11,7 @@ namespace R54IN0
         static StockWrapperDirector _thiz;
         List<StockWrapper> _list;
         MultiSortedDictionary<string, StockWrapper> _itemKeyDic;
+        MultiSortedDictionary<string, StockWrapper> _invenKeyDic;
 
         public StockWrapperDirector()
         {
@@ -32,6 +33,7 @@ namespace R54IN0
                 {
                     _thiz._list = null;
                     _thiz._itemKeyDic = null;
+                    _thiz._invenKeyDic = null;
                 }
                 _thiz = null;
             }
@@ -51,6 +53,7 @@ namespace R54IN0
         {
             _list = new List<StockWrapper>();
             _itemKeyDic = new MultiSortedDictionary<string, StockWrapper>();
+            _invenKeyDic = new MultiSortedDictionary<string, StockWrapper>();
 
             InOutStock[] stocks = null;
             using (var db = DatabaseDirector.GetDbInstance())
@@ -69,7 +72,10 @@ namespace R54IN0
             _list.AddRange(stocks.Select(x => new StockWrapper(x)));
             _itemKeyDic = new MultiSortedDictionary<string, StockWrapper>();
             foreach (var item in _list)
+            {
                 _itemKeyDic.Add(item.Item.UUID, item);
+                _invenKeyDic.Add(item.Inventory.UUID, item);
+            }
         }
 
         public bool Contains(StockWrapper item)
@@ -86,6 +92,7 @@ namespace R54IN0
             {
                 _list.Add(item);
                 _itemKeyDic.Add(item.Item.UUID, item);
+                _invenKeyDic.Add(item.Inventory.UUID, item);
             }
         }
 
@@ -95,6 +102,7 @@ namespace R54IN0
             {
                 _list.Remove(item);
                 _itemKeyDic.Remove(item.Item.UUID, item);
+                _invenKeyDic.Remove(item.Inventory.UUID, item);
             }
         }
 
@@ -115,6 +123,15 @@ namespace R54IN0
             if (!_itemKeyDic.ContainsKey(uuid))
                 return null;
             return _itemKeyDic[uuid];
+        }
+
+        public List<StockWrapper> SearchAsInventoryKey(string uuid)
+        {
+            if (uuid == null)
+                return null;
+            if (!_invenKeyDic.ContainsKey(uuid))
+                return null;
+            return _invenKeyDic[uuid];
         }
     }
 }

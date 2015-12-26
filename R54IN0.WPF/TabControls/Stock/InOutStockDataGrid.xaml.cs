@@ -17,10 +17,10 @@ namespace R54IN0.WPF
 {
     public partial class InOutStockDataGrid : UserControl
     {
-        StockWrapperViewModel _viewModel;
+        SearchStockWrapperViewModel _viewModel;
         StockType _stockType;
 
-        public StockWrapperViewModel ViewModel
+        public SearchStockWrapperViewModel ViewModel
         {
             get
             {
@@ -39,7 +39,7 @@ namespace R54IN0.WPF
             {
                 _stockType = value;
                 CollectionViewModelObserverSubject subject = CollectionViewModelObserverSubject.GetInstance();
-                _viewModel = new StockWrapperViewModel(_stockType, subject);
+                _viewModel = new SearchStockWrapperViewModel(_stockType, subject);
                 _viewModel.NewItemAddHandler += OnNewItemAdditionHandlerCallback;
                 _viewModel.SelectedItemModifyHandler += OnSelectedItemModifyHandlerCallback;
                 DataContext = _viewModel;
@@ -68,6 +68,11 @@ namespace R54IN0.WPF
             editor.Editor = evm;
             editor.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
             editor.ShowDialog();
+        }
+
+        void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
     }
 }

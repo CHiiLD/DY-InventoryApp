@@ -191,7 +191,7 @@ namespace R54IN0.Test
             {
                 Assert.AreEqual(evm.InventoryQuantity, invenw.Quantity - beforCnt + afterCnt);
                 evm.StockType = StockType.OUTGOING;
-                Assert.AreEqual(evm.InventoryQuantity, invenw.Quantity + beforCnt - afterCnt);
+                Assert.AreEqual(evm.InventoryQuantity, invenw.Quantity - beforCnt - afterCnt);
             }
         }
 
@@ -218,6 +218,7 @@ namespace R54IN0.Test
 
             var result = evm.Update();
 
+            Assert.IsNotNull(result.UUID);
             Assert.IsTrue(vm.Items.Any(x => x == result));
             Assert.AreEqual(remark, result.Remark);
             Assert.AreEqual(stockCnt, result.Quantity);
@@ -341,7 +342,7 @@ namespace R54IN0.Test
             invenCnt = evm.InventoryQuantity;
             evm.Update();
 
-            Assert.AreEqual(27, invenw.Quantity);
+            Assert.AreEqual(7, invenw.Quantity);
         }
 
         /// <summary>

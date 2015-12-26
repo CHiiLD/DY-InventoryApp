@@ -7,12 +7,12 @@ using System.Windows.Controls;
 
 namespace R54IN0
 {
-    public class StockWrapperViewModel : ItemSourceViewModel<StockWrapper>, INotifyPropertyChanged, IFinderViewModelCallback
+    public class StockWrapperViewModel : ItemSourceViewModel<StockWrapper>, INotifyPropertyChanged, IFinderViewModelOnSelectingCallback
     {
-        StockType _stockType;
         ObservableCollection<StockWrapper> _items;
-        StockWrapperDirector _stockDirector;
-        //StockWrapper _selectedItem;
+        StockType _stockType;
+
+        protected StockWrapperDirector stockDirector;
 
         public EventHandler<EventArgs> SelectedItemModifyHandler;
         public EventHandler<EventArgs> NewItemAddHandler;
@@ -20,8 +20,8 @@ namespace R54IN0
         public StockWrapperViewModel(StockType type, CollectionViewModelObserverSubject subject) : base(subject)
         {
             _stockType = type;
-            _stockDirector = StockWrapperDirector.GetInstance();
-            _items = _stockDirector.CreateCollection(type);
+            stockDirector = StockWrapperDirector.GetInstance();
+            _items = stockDirector.CreateCollection(type);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -60,16 +60,17 @@ namespace R54IN0
             }
         }
 
+     
         public override void Add(StockWrapper item)
         {
             base.Add(item);
-            _stockDirector.Add(item);
+            stockDirector.Add(item);
         }
 
         public override void Remove(StockWrapper item)
         {
             base.Remove(item);
-            _stockDirector.Remove(item);
+            stockDirector.Remove(item);
         }
 
         public override void UpdateNewItem(object item)
@@ -79,7 +80,9 @@ namespace R54IN0
                 var ioStockw = item as StockWrapper;
                 if (_stockType.HasFlag(ioStockw.StockType))
                 {
-                    if (_stockDirector.Count(_stockType) == Items.Count || Items.Any(x => x.Item.UUID == ioStockw.Item.UUID))
+                    //특정 목록이 파인더에 체크되어 있으면서 그 파인더 목록의 데이터가 아무것도 없으면 추가가 되지 아니하는 에러가 있다.
+                    if (stockDirector.Count(_stockType) == Items.Count || //모든 목록 모드 이거나
+                        Items.Any(x => x.Item.UUID == ioStockw.Item.UUID))  //특정 모록 모드 이거나
                         base.UpdateNewItem(item);
                 }
             }
@@ -94,10 +97,10 @@ namespace R54IN0
                 var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
                 foreach (var itemNode in itemNodes)
                 {
-                    var stockList = _stockDirector.SearchAsItemkey(itemNode.ItemUUID);
+                    var stockList = stockDirector.SearchAsItemkey(itemNode.ItemUUID);
                     if (stockList != null)
                     {
-                        if(StockType == StockType.ALL)
+                        if (StockType == StockType.ALL)
                             temp.AddRange(stockList);
                         else if (StockType == StockType.INCOMING || StockType == StockType.OUTGOING)
                             temp.AddRange(stockList.Where(x => x.StockType == StockType));

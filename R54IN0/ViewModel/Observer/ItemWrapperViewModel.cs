@@ -7,10 +7,9 @@ using System.Windows.Controls;
 
 namespace R54IN0
 {
-    public class ItemWrapperViewModel : FieldWrapperViewModel<Item, ItemWrapper>, IFinderViewModelCallback
+    public class ItemWrapperViewModel : FieldWrapperViewModel<Item, ItemWrapper>, IFinderViewModelCreatation
     {
         SpecificationWrapperViewModel _specViewModel;
-        ItemFinderViewModel _finderViewModel;
 
         public ItemWrapperViewModel(CollectionViewModelObserverSubject sub) : base(sub)
         {
@@ -63,7 +62,7 @@ namespace R54IN0
                         Where(x => !x.IsDeleted && x.Field.ItemUUID == base.SelectedItem.UUID);
                     Specifications = new ObservableCollection<SpecificationWrapper>(collection);
                 }
-                if(_specViewModel != null)
+                if (_specViewModel != null)
                     _specViewModel.AddNewItemCommand.UpdateCanExecute();
             }
         }
@@ -80,6 +79,12 @@ namespace R54IN0
                 OnPropertyChanged("SelectedSpecification");
                 RemoveSpecCommand.UpdateCanExecute();
             }
+        }
+
+        public FinderViewModel FinderViewModel
+        {
+            get;
+            set;
         }
 
         public override void Add(ItemWrapper item)
@@ -100,17 +105,17 @@ namespace R54IN0
             // 새로 아이템을 등록할 시 베이스 규격을 등록, 규격 리스트는 최소 하나 이상을 가져야 한다.
             _specViewModel.AddNewItemCommand.Execute(null);
 
-            if (_finderViewModel != null) //꼼수 .. 정통은 아니다
+            if (FinderViewModel != null) //꼼수 .. 정통은 아니다
             {
-                _finderViewModel.SelectedNodes.Clear();
-                var newNode = _finderViewModel.Nodes.Last();
-                _finderViewModel.OnNodeSelected(null, new SelectionChangedCancelEventArgs(new List<FinderNode>() { newNode }, new List<FinderNode>()));
+                FinderViewModel.SelectedNodes.Clear();
+                var newNode = FinderViewModel.Nodes.Last();
+                FinderViewModel.OnNodeSelected(null, new SelectionChangedCancelEventArgs(new List<FinderNode>() { newNode }, new List<FinderNode>()));
             }
         }
 
         public void OnFinderViewSelectItemChanged(object sender, EventArgs e)
         {
-            _finderViewModel = sender as ItemFinderViewModel;
+            var _finderViewModel = sender as ItemFinderViewModel;
             if (_finderViewModel != null)
             {
                 List<ItemWrapper> itemwTemp = new List<ItemWrapper>();
@@ -129,6 +134,13 @@ namespace R54IN0
                 }
                 Specifications = new ObservableCollection<SpecificationWrapper>(specwTemp);
             }
+        }
+
+        public FinderViewModel CreateFinderViewModel(TreeViewEx treeView)
+        {
+            FinderViewModel = new ItemFinderViewModel(treeView);
+            FinderViewModel.SelectItemsChanged += OnFinderViewSelectItemChanged;
+            return FinderViewModel;
         }
     }
 }

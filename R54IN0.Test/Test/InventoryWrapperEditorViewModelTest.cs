@@ -112,7 +112,10 @@ namespace R54IN0.Test
                 hel.Warehouse = hel.WarehouseList.FirstOrDefault();
                 hel.Quantity = 203;
 
-                hel.Update();
+                var invenw = hel.Update();
+
+                Assert.IsNotNull(invenw.UUID);
+
                 var addItem = iwvm.Items.Last();
 
                 Assert.AreEqual(cnt + 1, iwvm.Items.Count);

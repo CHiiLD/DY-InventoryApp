@@ -8,6 +8,7 @@ namespace R54IN0.Test
     [TestClass]
     public class TimeMeasuration
     {
+        [Ignore]
         [TestMethod]
         public void DbSaveLoadDuration()
         {
@@ -19,7 +20,7 @@ namespace R54IN0.Test
             Stopwatch sw = new Stopwatch();
             Console.WriteLine("데이터베이스 저장 테스트 시작 : ");
             sw.Start();
-            new DYDummyDbData().Create(100, 101);
+            new DYDummyDbData().Create(300, 301);
             sw.Stop();
             Console.WriteLine("데이터베이스 저장 소요 시간: " + (new TimeSpan(sw.ElapsedTicks)).ToString());
 

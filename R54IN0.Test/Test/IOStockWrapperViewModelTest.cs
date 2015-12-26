@@ -31,6 +31,7 @@ namespace R54IN0.Test
 
             Random rand = new Random();
             var instance = new StockWrapper(new InOutStock());
+            instance.Inventory = InventoryWrapperDirector.GetInstance().CreateCollection().Random();
             var type = instance.StockType == StockType.INCOMING ? StockType.OUTGOING : StockType.INCOMING;
             var specw = instance.Specification = specCollectoin.ElementAt(rand.Next(specCollectoin.Count - 1));
             var itemw = instance.Item = itemCollectoin.Where(x => x.UUID == specw.Field.ItemUUID).Single();
@@ -64,13 +65,6 @@ namespace R54IN0.Test
 
             var ioStockw = CreateIOStockWrapper();
             ioStockw.StockType = stockTypeIn;
-            //var fwd = FieldWrapperDirector.GetInstance();
-            //ObservableCollection<SpecificationWrapper> specCollectoin = fwd.CreateCollection<Specification, SpecificationWrapper>();
-            //var ioStockw = new IOStockWrapper(new InOutStock());
-            //ioStockw.StockType = stockTypeIn;
-            //ObservableCollection<ItemWrapper> itemCollectoin = fwd.CreateCollection<Item, ItemWrapper>();
-            //ioStockw.Item = itemCollectoin.Where(x => x.UUID == dummy.TestItemUUID).Single();
-            //ioStockw.Specification = specCollectoin.Where(x => x.Field.ItemUUID == dummy.TestItemUUID).First();
 
             //추가 이전
             Assert.IsFalse(vm1.Items.Contains(ioStockw));
@@ -175,6 +169,145 @@ namespace R54IN0.Test
             vm1.Add(newStock);
             Assert.IsTrue(vm1.Items.Contains(newStock));
             Assert.IsTrue(iowd.CreateCollection(stockTypeAll).Contains(newStock));
+        }
+
+        /// <summary>
+        /// 날짜와 키워드를 사용하여 특정 데이터를 검색가능케한다.
+        /// 검색 가능 키워드는? 
+        /// Item, Specification Property만 가능하다. (Binary Search 기준)
+        /// item - Currency(필요없), Measure(필요없), Maker
+        /// Item - Specification->ItemUUID
+        /// Item - InventoryItemUUID - Warehouse
+        /// </summary>
+        [TestMethod]
+        public void SearchAsDateAndKeyword()
+        {
+            FieldWrapperDirector.Distroy();
+            InventoryWrapperDirector.Distory();
+            CollectionViewModelObserverSubject.Distory();
+            FinderDirector.Distroy();
+            StockWrapperDirector.Distory();
+            DatabaseDirector.Distroy();
+            new DYDummyDbData().Create();
+
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            ItemFinderViewModel fvm = new ItemFinderViewModel(null);
+            SearchStockWrapperViewModel vm = new SearchStockWrapperViewModel(StockType.ALL, sub);
+
+            string itemName = "     스위치 ";
+            string dummyName = "23094832098432";
+            string makerName = "\tLG\t";
+            string specificationName = "삼파";
+            string warehouseName = "연구";
+            string sumName = "버튼\t 단자부\n버섯\r 213o4u12oi\t";
+
+            DateTime date1 = DateTime.Now.AddYears(-1);
+            DateTime date2 = DateTime.Now;
+
+            //item
+            vm.SearchKeyword<Item>(itemName);
+            Assert.IsTrue(vm.Items.All(x => x.Item.Name.Contains("스위치")));
+
+            vm.SearchKeyword<Item>(dummyName);
+            Assert.IsTrue(vm.Items.Count == 0);
+
+            vm.SearchKeyword<Item>(itemName, date1, date2);
+            Assert.IsTrue(vm.Items.All(x => x.Item.Name.Contains("스위치")));
+
+            foreach (var item in vm.Items)
+            {
+                var date = item.Date;
+                Assert.IsTrue(date1 <= date && date <= date2);
+            }
+
+            vm.SearchKeyword<Item>(sumName);
+            foreach (var name in sumName.Split(new char[] { ' ', '\t', '\r', '\n', }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                Assert.IsTrue
+                    (
+                        vm.Items.Any(x => x.Item.Name.Contains("버튼")) ||
+                        vm.Items.Any(x => x.Item.Name.Contains("단자부")) ||
+                        vm.Items.Any(x => x.Item.Name.Contains("버섯"))
+                    );
+            }
+
+            //maker
+            vm.SearchKeyword<Maker>(makerName, date1, date2);
+            Assert.IsTrue(vm.Items.All(x => x.Item.SelectedMaker.Name.Contains("LG")));
+
+            foreach (var item in vm.Items)
+            {
+                var date = item.Date;
+                Assert.IsTrue(date1 <= date && date <= date2);
+            }
+            //spec
+            vm.SearchKeyword<Specification>(specificationName);
+            Assert.AreNotEqual(0, vm.Items.Count);
+            Assert.IsTrue(vm.Items.All(x => x.Specification.Name.Contains(specificationName)));
+            //warehouse
+            vm.SearchKeyword<Warehouse>(warehouseName);
+            Assert.IsTrue(vm.Items.All(x => x.Warehouse.Name.Contains(warehouseName)));
+        }
+
+        /// <summary>
+        /// ISearchEngine 인터페이스의 프로퍼티와 커맨드가 제대로 작동하는지 확인한다.
+        /// </summary>
+        [TestMethod]
+        public void SearchEngineProperty()
+        {
+            FieldWrapperDirector.Distroy();
+            InventoryWrapperDirector.Distory();
+            CollectionViewModelObserverSubject.Distory();
+            FinderDirector.Distroy();
+            StockWrapperDirector.Distory();
+            DatabaseDirector.Distroy();
+            new DYDummyDbData().Create();
+
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            ItemFinderViewModel fvm = new ItemFinderViewModel(null);
+            SearchStockWrapperViewModel vm = new SearchStockWrapperViewModel(StockType.ALL, sub);
+            //메모리 할당 확인
+            Assert.IsNotNull(vm.SearchTypes);
+            Assert.IsNotNull(vm.SelectedSearchType);
+            //오늘자 확인
+            vm.TodayCommand.Execute(null);
+            var now = DateTime.Now;
+            DateTime formD = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0, 0, DateTimeKind.Local);
+            DateTime toD = new DateTime(now.Year, now.Month, now.Day, 23, 59, 59, 999, DateTimeKind.Local);
+            Assert.AreEqual(vm.FromDateTime, formD);
+            Assert.AreEqual(vm.ToDateTime, toD);
+            //이번달 1일부터 오늘까지
+            vm.ThisMonthCommand.Execute(null);
+            formD = new DateTime(now.Year, now.Month, 1, 0, 0, 0, 0, DateTimeKind.Local);
+            toD = new DateTime(now.Year, now.Month, now.Day, 23, 59, 59, 999, DateTimeKind.Local);
+            Assert.AreEqual(vm.FromDateTime, formD);
+            Assert.AreEqual(vm.ToDateTime, toD);
+            //어제 확인 
+            vm.YesterdayCommand.Execute(null);
+            var yes = now.AddDays(-1);
+            formD = new DateTime(yes.Year, yes.Month, yes.Day, 0, 0, 0, 0, DateTimeKind.Local);
+            toD = new DateTime(yes.Year, yes.Month, yes.Day, 23, 59, 59, 999, DateTimeKind.Local);
+            Assert.AreEqual(vm.FromDateTime, formD);
+            Assert.AreEqual(vm.ToDateTime, toD);
+            //이번주부터 오늘까지
+            vm.ThisWorkCommand.Execute(null);
+            var work = now.AddDays(-(int)now.DayOfWeek);
+            formD = new DateTime(work.Year, work.Month, work.Day, 0, 0, 0, 0, DateTimeKind.Local);
+            toD = new DateTime(now.Year, now.Month, now.Day, 23, 59, 59, 999, DateTimeKind.Local);
+            Assert.AreEqual(vm.FromDateTime, formD);
+            Assert.AreEqual(vm.ToDateTime, toD);
+            //검색
+            vm.FromDateTime = DateTime.Now.AddDays(-300);
+            vm.ToDateTime = DateTime.Now;
+            vm.SelectedSearchType = vm.SearchTypes.First(); //품목으로
+
+            Assert.IsTrue("텍스트".Contains(""));
+
+            vm.Keyword = "";
+            vm.SearchCommand.Execute(null); //전체검사
+
+            Assert.IsNotNull(vm.Items);
+            Assert.AreNotEqual(0, vm.Items.Count);
         }
     }
 }

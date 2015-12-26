@@ -7,6 +7,8 @@ namespace R54IN0
 {
     public class FinderViewModel : INotifyPropertyChanged
     {
+        ObservableCollection<FinderNode> _selectedNodes;
+
         public FinderViewModel(TreeViewEx treeView)
         {
             SelectedNodes = new ObservableCollection<FinderNode>();
@@ -23,8 +25,6 @@ namespace R54IN0
         {
             get;
         }
-
-        ObservableCollection<FinderNode> _selectedNodes;
 
         public virtual ObservableCollection<FinderNode> SelectedNodes
         {
@@ -70,7 +70,7 @@ namespace R54IN0
                 PropertyChanged(this, new PropertyChangedEventArgs("SelectedNodes"));
         }
 
-        protected void OnPropertyChanged(string name)
+        public void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(name));

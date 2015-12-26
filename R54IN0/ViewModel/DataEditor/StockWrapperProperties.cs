@@ -12,7 +12,7 @@ namespace R54IN0
         FieldWrapper<Employee> _employee;
         ClientWrapper _client;
 
-        public InOutStock IOStock
+        public InOutStock InOutStock
         {
             get; set;
         }
@@ -21,11 +21,11 @@ namespace R54IN0
         {
             get
             {
-                return IOStock;
+                return InOutStock;
             }
             set
             {
-                IOStock = value as InOutStock;
+                InOutStock = value as InOutStock;
             }
         }
 
@@ -42,13 +42,13 @@ namespace R54IN0
         {
             if (product == null)
             {
-                IOStock = new InOutStock();
+                InOutStock = new InOutStock();
                 Quantity = 1;
                 Date = DateTime.Now;
             }
             else
             {
-                IOStock = product.Product.Clone() as InOutStock;
+                InOutStock = product.Product.Clone() as InOutStock;
 
                 var stock = product as StockWrapper;
                 Item = stock.Item;
@@ -69,7 +69,7 @@ namespace R54IN0
             set
             {
                 _client = value;
-                IOStock.EnterpriseUUID = _client.UUID;
+                InOutStock.EnterpriseUUID = _client.UUID;
                 OnPropertyChanged("Client");
             }
         }
@@ -78,11 +78,11 @@ namespace R54IN0
         {
             get
             {
-                return IOStock.Date;
+                return InOutStock.Date;
             }
             set
             {
-                IOStock.Date = value;
+                InOutStock.Date = value;
                 OnPropertyChanged("Date");
             }
         }
@@ -95,7 +95,7 @@ namespace R54IN0
             set
             {
                 _employee = value;
-                IOStock.EmployeeUUID = _employee != null ? _employee.UUID : null;
+                InOutStock.EmployeeUUID = _employee != null ? _employee.UUID : null;
                 OnPropertyChanged("Employee");
             }
         }
@@ -140,7 +140,7 @@ namespace R54IN0
                 if (_target == null)
                     return StockType == StockType.INCOMING ? invenw.Quantity + Quantity : invenw.Quantity - Quantity;
                 else
-                    return StockType == StockType.INCOMING ? invenw.Quantity - _target.Quantity + Quantity : invenw.Quantity + _target.Quantity - Quantity;
+                    return StockType == StockType.INCOMING ? invenw.Quantity - _target.Quantity + Quantity : invenw.Quantity - _target.Quantity - Quantity;
             }
         }
 
@@ -148,11 +148,11 @@ namespace R54IN0
         {
             get
             {
-                return IOStock.Remark;
+                return InOutStock.Remark;
             }
             set
             {
-                IOStock.Remark = value;
+                InOutStock.Remark = value;
                 OnPropertyChanged("Remark");
             }
         }
@@ -161,12 +161,13 @@ namespace R54IN0
         {
             get
             {
-                return IOStock.StockType;
+                return InOutStock.StockType;
             }
             set
             {
-                IOStock.StockType = value;
+                InOutStock.StockType = value;
                 OnPropertyChanged("StockType");
+                OnPropertyChanged("InventoryQuantity");
             }
         }
     }

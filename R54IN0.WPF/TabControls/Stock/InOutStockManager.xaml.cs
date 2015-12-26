@@ -21,7 +21,7 @@ namespace R54IN0.WPF
             set
             {
                 IOStockDataGrid.StockType = value;
-                Finder.ViewModel.SelectItemsChanged += IOStockDataGrid.ViewModel.OnFinderViewSelectItemChanged;
+                Finder.ViewModel = IOStockDataGrid.ViewModel.CreateFinderViewModel(Finder.FinderTreeView) as ItemFinderViewModel;
             }
             get
             {

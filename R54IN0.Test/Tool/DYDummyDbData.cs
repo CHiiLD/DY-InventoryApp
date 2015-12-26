@@ -126,8 +126,8 @@ namespace R54IN0.Test
                 new Client()
                 {
                     Name = name,
-                    MobileNumber = "010" + _random.Next(1000, 9990).ToString() + _random.Next(1000, 9990).ToString(),
-                    PhoneNumber = _random.Next(100, 999).ToString() + _random.Next(1000, 9990).ToString(),
+                    MobileNumber = "010-" + _random.Next(1000, 9990).ToString() + "-" + _random.Next(1000, 9990).ToString(),
+                    PhoneNumber = _random.Next(100, 999).ToString() + "-" + _random.Next(1000, 9990).ToString(),
                     Delegator = _humanNames.Random(),
                 }.Save<Client>();
             }
@@ -233,7 +233,7 @@ namespace R54IN0.Test
                 Item[] items = db.LoadAll<Item>();
                 Specification[] specs = db.LoadAll<Specification>();
 
-                foreach(var spec in specs)
+                foreach (var spec in specs)
                 {
                     var inventory = new Inventory()
                     {
@@ -249,7 +249,7 @@ namespace R54IN0.Test
                         cnt++;
                         new InOutStock()
                         {
-                            Date = date.AddDays(_random.NextDouble() * 1000.0),
+                            Date = date.AddDays(_random.NextDouble() * -300.0),
                             EmployeeUUID = employees.Random().UUID,
                             InventoryUUID = inventory.UUID,
                             EnterpriseUUID = clients.Random().UUID,
@@ -257,7 +257,6 @@ namespace R54IN0.Test
                             SpecificationUUID = spec.UUID,
                             Quantity = _random.Next(1, 1000),
                             StockType = _random.Next(0, 2) == 0 ? StockType.INCOMING : StockType.OUTGOING,
-                            Remark = Guid.NewGuid().ToString()
                         }.Save<InOutStock>();
                     }
                 }
@@ -267,6 +266,8 @@ namespace R54IN0.Test
 
         public DYDummyDbData Create(int min = 4, int max = 50)
         {
+            using (var db = DatabaseDirector.GetDbInstance())
+                db.Purge();
             CreateClient();
             CreateEmployee();
             CreateCurrency();
