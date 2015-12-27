@@ -22,10 +22,10 @@ namespace R54IN0.WPF
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            //Accent accent = ThemeManager.GetAccent("Lime");
-            //Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
-            //ThemeManager.ChangeAppStyle(Application.Current, accent, appStyle.Item1);
-            //ThemeManager.ChangeAppTheme(Application.Current, "BaseDark");
+            Accent accent = ThemeManager.GetAccent("Magenta");
+            Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
+            ThemeManager.ChangeAppStyle(Application.Current, accent, appStyle.Item1);
+            ThemeManager.ChangeAppTheme(Application.Current, "BaseDark");
 #if DEBUG
             //new R54IN0.Test.DummyDbData().Create();
 #endif

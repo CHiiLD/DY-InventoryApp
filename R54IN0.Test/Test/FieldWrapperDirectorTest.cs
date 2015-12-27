@@ -146,6 +146,7 @@ namespace R54IN0.Test
             FieldWrapper<Employee> newEmpW = new FieldWrapper<Employee>(newEmp);
             newEmpW.Name = "홍길동.3";
             vm1.Add(newEmpW);
+
             Assert.IsTrue(vm2.Items.Contains(newEmpW));
             Assert.IsFalse(newEmpW.IsDeleted);
             Assert.IsTrue(FieldWrapperDirector.GetInstance().Contains<Employee>(newEmpW));

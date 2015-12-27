@@ -119,9 +119,9 @@
         <StatusBar Grid.Row="3">
             <StatusBarItem>Daily Inventory!</StatusBarItem>
             <Separator Style="{StaticResource MetroStatusBarSeparator}" />
-            <StatusBarItem>alpha version 0.001</StatusBarItem>
+            <StatusBarItem>beta version 0.100</StatusBarItem>
             <Separator Style="{StaticResource MetroStatusBarSeparator}" />
-            <StatusBarItem>copyright ⓒ 2012 DongYang FA All Rights Reserved</StatusBarItem>
+            <StatusBarItem>copyright ⓒ 2015 DongYang FA All Rights Reserved</StatusBarItem>
             <!--<StatusBarItem Content="{Binding ElementName=MainTabControl, Path=SelectedItem.Header, Mode=OneWay}" />-->
         </StatusBar>
     </Grid>
