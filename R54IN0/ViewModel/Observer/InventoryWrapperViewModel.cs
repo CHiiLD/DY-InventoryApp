@@ -115,6 +115,10 @@ namespace R54IN0
         }
 
 #if DEBUG
+        /// <summary>
+        /// 이전에 작성한 UnitTest 코드들의 호환성을 위해 사용한다. release에서는 사용하지 아니한다.
+        /// </summary>
+        /// <param name="item"></param>
         public void UpdateNewItemStub(object item)
         {
             //만약에 Finder가 일정한 포맷에 묶인 상태에서 새로운 아이템을 추가한다면 그 포맷이 같아야 추가한다.
@@ -132,20 +136,20 @@ namespace R54IN0
             if (!(item is InventoryWrapper))
                 return;
 #if DEBUG
-            if(FinderViewModel == null)
+            if (FinderViewModel == null)
             {
                 UpdateNewItemStub(item);
                 return;
             }
 #endif
             InventoryWrapper invenw = item as InventoryWrapper;
-            //모든 목록인 경우 
+            //Items에 모든 데이터가 들어있으며 데이터를 추가한다.
             if (FinderViewModel.SelectedNodes.Count() == 0 && _inventoryDirector.Count() == Items.Count())
             {
                 base.UpdateNewItem(item);
                 return;
             }
-            //Finder에 목록이 클릭되어 있는 경우
+            //Finder의 노드와 관계가 있는 경우 데이터를 추가한다.
             var itemNodes = FinderViewModel.SelectedNodes.SelectMany(rn => rn.Descendants().Where(x => x.Type == NodeType.ITEM));
             if (itemNodes.Any(n => n.ItemUUID == invenw.Item.UUID))
                 base.UpdateNewItem(item);

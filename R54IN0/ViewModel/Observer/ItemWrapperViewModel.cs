@@ -16,6 +16,9 @@ namespace R54IN0
             _specViewModel = new SpecificationWrapperViewModel(sub, this);
         }
 
+        /// <summary>
+        /// 새로운 규격 데이터 추가
+        /// </summary>
         public CommandHandler AddNewSpecCommand
         {
             get
@@ -24,6 +27,9 @@ namespace R54IN0
             }
         }
 
+        /// <summary>
+        /// 선택된 규격 데이터 삭제
+        /// </summary>
         public CommandHandler RemoveSpecCommand
         {
             get
@@ -102,10 +108,10 @@ namespace R54IN0
         public override void ExecuteNewItemAddition(object parameter)
         {
             base.ExecuteNewItemAddition(parameter);
-            // 새로 아이템을 등록할 시 베이스 규격을 등록, 규격 리스트는 최소 하나 이상을 가져야 한다.
+            // 새로 아이템을 등록할 시, 새로운 규격을 등록한다. 규격 리스트는 최소 하나 이상을 가져야 한며, 그 이하로는 삭제를 할 수 없다.
             _specViewModel.AddNewItemCommand.Execute(null);
 
-            if (FinderViewModel != null) //꼼수 .. 정통은 아니다
+            if (FinderViewModel != null) //새롭게 생성한 품목 데이터에 포커스와 Select 상황을 준다.
             {
                 FinderViewModel.SelectedNodes.Clear();
                 var newNode = FinderViewModel.Nodes.Last();
@@ -118,6 +124,7 @@ namespace R54IN0
             var _finderViewModel = sender as ItemFinderViewModel;
             if (_finderViewModel != null)
             {
+                //Finder에서 품목들을 선택하였을 때 그 품목들의 리스트와 품목에 속한 규격 리스트를 업데이트한다.
                 List<ItemWrapper> itemwTemp = new List<ItemWrapper>();
                 IEnumerable<FinderNode> itemNodes = _finderViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
                 var itemws = fieldWrapperDirector.CreateCollection<Item, ItemWrapper>();
@@ -145,6 +152,7 @@ namespace R54IN0
 
         public override void ExecuteSelectedItemDeletion(object parameter)
         {
+            //품목을 삭제할 땐, 품목의 규격들도 같이 삭제한다.
             foreach(var specw in new List<SpecificationWrapper>(Specifications))
             {
                 SelectedSpecification = specw;

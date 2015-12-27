@@ -23,14 +23,18 @@ namespace R54IN0
             Initialize(inventoryWrapper);
         }
 
+        /// <summary>
+        /// 객체를 생성할 때 생성자에서 호출됩니다.
+        /// </summary>
+        /// <param name="product"></param>
         protected virtual void Initialize(IProductWrapper product = null)
         {
-            if (product == null)
+            if (product == null) //새로운 데이터를 추가할 경우
             {
                 Stock = new Inventory();
                 Quantity = 1;
             }
-            else
+            else                //기존의 데이터를 수정할 경우
             {
                 Stock = product.Product.Clone() as Inventory;
 
@@ -64,6 +68,7 @@ namespace R54IN0
             {
                 _item = value;
                 Stock.ItemUUID = _item != null ? _item.UUID : null;
+                //ItemList에서 새로운 아이템을 선택할 경우 아래 프로퍼티를 새로고침한다.
                 OnPropertyChanged("Item");
                 OnPropertyChanged("Maker");
                 OnPropertyChanged("Measure");

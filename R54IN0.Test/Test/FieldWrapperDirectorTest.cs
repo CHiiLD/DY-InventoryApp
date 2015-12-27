@@ -75,14 +75,14 @@ namespace R54IN0.Test
 
             Random rand = new Random();
             // FieldWrapper<T> 변경테스트
-            string eepName = eeplCollectoin.ElementAtOrDefault(rand.Next(eeplCollectoin.Count - 1)).Name = "홍길동.";
+            string eepName = eeplCollectoin.Random().Name = "홍길동.";
             // AccountWrapper 프로퍼티 변경
-            ClientWrapper accountw = accoCollectoin.ElementAt(rand.Next(accoCollectoin.Count - 1));
+            ClientWrapper accountw = accoCollectoin.Random();
             string mobile = accountw.MobileNumber = "mobile";
             string accountName = accountw.Name = "newName";
             string phone = accountw.PhoneNumber = "phone";
             // SpecificationWrapper 프로퍼티 변경
-            SpecificationWrapper specw = specCollectoin.ElementAt(rand.Next(specCollectoin.Count - 1));
+            SpecificationWrapper specw = specCollectoin.Random();
             decimal pp = specw.PurchaseUnitPrice = 1000100;
             decimal sp = specw.SalesUnitPrice = 32333;
             string specName = specw.Name = "스펙";
@@ -90,9 +90,9 @@ namespace R54IN0.Test
             // ItemWrapper 프로퍼티 변경
             ItemWrapper itemw = itemCollectoin.Where(x => x.Field.UUID == specw.Field.ItemUUID).Single();
             string itemName = itemw.Name = "Item.a";
-            var newCurr = itemw.SelectedCurrency = currCollectoin.ElementAt(rand.Next(currCollectoin.Count - 1));
-            var newMaker = itemw.SelectedMaker = makeCollectoin.ElementAt(rand.Next(makeCollectoin.Count - 1));
-            var newMeasure = itemw.SelectedMeasure = measCollectoin.ElementAt(rand.Next(measCollectoin.Count - 1));
+            var newCurr = itemw.SelectedCurrency = currCollectoin.Random();
+            var newMaker = itemw.SelectedMaker = makeCollectoin.Random();
+            var newMeasure = itemw.SelectedMeasure = measCollectoin.Random();
             // Director 데이터 소멸
             FieldWrapperDirector.Distroy();
             DatabaseDirector.Distroy();

@@ -13,11 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeViewEx", "TreeViewEx\Tr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodule", "submodule", "{B3627858-8280-4E36-99B3-66543AD8BB9C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "memo", "memo", "{74C2AF70-B3DA-4589-B10A-D776E6986A6A}"
-	ProjectSection(SolutionItems) = preProject
-		memo.txt = memo.txt
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.Test", "R54IN0.Test\R54IN0.Test.csproj", "{EC787DFF-E080-4A02-958E-111AD0534DE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.WPF", "R54IN0.WPF\R54IN0.WPF.csproj", "{5A0C4CA1-B587-42A9-8DF0-3151B1B33784}"

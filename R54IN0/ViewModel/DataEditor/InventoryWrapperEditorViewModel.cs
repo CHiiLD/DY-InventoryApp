@@ -9,28 +9,38 @@ namespace R54IN0
         InventoryWrapper _target;
         InventoryWrapperViewModel _viewModel;
 
+        /// <summary>
+        /// 새로운 Inventory 데이터를 추가하고자 할 생성자
+        /// </summary>
+        /// <param name="viewModel"></param>
         public InventoryWrapperEditorViewModel(InventoryWrapperViewModel viewModel) : base()
         {
             _viewModel = viewModel;
-            var fwd = FieldWrapperDirector.GetInstance();
-            var iwd = InventoryWrapperDirector.GetInstance();
+            FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
+            InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
 
-            IEnumerable<SpecificationWrapper> specifications = fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
-            List<ItemWrapper> list = new List<ItemWrapper>();
             //아직 Inventory 데이터가 없는 Item(With Specification) 데이터의 리스트를 구한다.
-            foreach (var specw in specifications)
+            IEnumerable<SpecificationWrapper> specifications = fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
+            List<ItemWrapper> itemWrapperList = new List<ItemWrapper>();
+            foreach (SpecificationWrapper specification in specifications)
             {
-                if(iwd.SearchAsSpecificationKey(specw.UUID) == null)
+                if (iwd.SearchAsSpecificationKey(specification.UUID) == null)
                 {
-                    var itemw = fwd.BinSearch<Item, ItemWrapper>(specw.Field.ItemUUID);
+                    ItemWrapper itemw = fwd.BinSearch<Item, ItemWrapper>(specification.Field.ItemUUID);
                     if (itemw != null && !itemw.IsDeleted)
-                        list.Add(itemw);
+                        itemWrapperList.Add(itemw);
                 }
             }
-            ItemList = list.Distinct();
+            ItemList = itemWrapperList.Distinct(); //겹치는 데이터를 제거하여 ItemList에 대입
+
             WarehouseList = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().Where(x => !x.IsDeleted);
         }
 
+        /// <summary>
+        /// 기존의 Inventory 데이터를 수정하고자 할 생성자
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <param name="inventoryWrapper">수정하고자할 inventory 래핑 클래스</param>
         public InventoryWrapperEditorViewModel(InventoryWrapperViewModel viewModel, InventoryWrapper inventoryWrapper) : base(inventoryWrapper)
         {
             if (inventoryWrapper == null)
@@ -77,15 +87,16 @@ namespace R54IN0
                 base.Item = value;
                 if (_target == null)
                 {
+                    //Inventory 데이터가 없거나, 아직 Inventory에 등록되지 않은 Specification을 모아 SpecificationList에 할당한다.
                     var fwd = FieldWrapperDirector.GetInstance();
                     var iwd = InventoryWrapperDirector.GetInstance();
-                    var specws = fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
-                    specws = specws.Where(x => x.Field.ItemUUID == base.Item.UUID); //품목에 해당하는 규격 데이터를 추출
+                    IEnumerable<SpecificationWrapper> specws = fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
+                    specws = specws.Where(x => x.Field.ItemUUID == base.Item.UUID);
                     List<SpecificationWrapper> list = new List<SpecificationWrapper>();
                     List<InventoryWrapper> invenws = iwd.SearchAsItemKey(base.Item.UUID);
                     foreach (SpecificationWrapper specw in specws)
                     {
-                        if (invenws == null || invenws.All(x => x.Specification != specw)) //아직 재고현황으로 등록하지 않은 규격 데이터만 추출
+                        if (invenws == null || invenws.All(x => x.Specification != specw))
                             list.Add(specw);
                     }
                     SpecificationList = list;
@@ -103,12 +114,12 @@ namespace R54IN0
 
             Inventory inven = Stock as Inventory;
             InventoryWrapper invenw = null;
-            if (_target != null) //수정
+            if (_target != null) //기존 데이터를 수정하고자 할 경우 
             {
                 _target.Product = inven;
                 invenw = _target;
             }
-            else //추가
+            else //새로운 데이터를 추가하고자 할 경우
             {
                 invenw = new InventoryWrapper(inven);
                 _viewModel.Add(invenw);

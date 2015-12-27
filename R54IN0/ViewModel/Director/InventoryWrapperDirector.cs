@@ -32,6 +32,7 @@ namespace R54IN0
                 invens = db.LoadAll<Inventory>();
             }
 #if DEBUG
+            //아래 3조건은 올바른 입력 아래에서 절대 일어날 수 없는 케이스이다.
             foreach (var inven in invens)
             {
                 Debug.Assert(inven.UUID != null);
@@ -133,8 +134,8 @@ namespace R54IN0
             {
 #if DEBUG
                 Debug.Assert(false);
-                return null;
 #endif
+                return null;
             }
             return _uuidDic[uuid];
         }

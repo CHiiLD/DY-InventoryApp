@@ -17,6 +17,7 @@ namespace R54IN0
 
         public override bool CanDeleteSelectedItem(object parameter)
         {
+            //최소 하나 이하를 삭제할 수 없다.
             return base.CanDeleteSelectedItem(parameter) && Items.Count > 1;
         }
 

@@ -14,11 +14,20 @@ namespace R54IN0
         IEnumerable<SpecificationWrapper> _specificationList;
         IEnumerable<FieldWrapper<Warehouse>> _warehouseList;
 
+        /// <summary>
+        /// 새로운 InOutStock 데이터를 추가하고자 할 때 쓰이는 생성자입니다.
+        /// </summary>
+        /// <param name="viewModel"></param>
         public StockWrapperEditorViewModel(StockWrapperViewModel viewModel) : base()
         {
             Initialize(viewModel);
         }
 
+        /// <summary>
+        /// 기존의 InOutStock 데이터를 수정할 때 쓰이는 생성자입니다.
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <param name="ioStockWrapper"></param>
         public StockWrapperEditorViewModel(StockWrapperViewModel viewModel, StockWrapper ioStockWrapper) : base(ioStockWrapper)
         {
             if (ioStockWrapper == null)
@@ -26,6 +35,7 @@ namespace R54IN0
             _target = ioStockWrapper;
             Initialize(viewModel);
 
+            //수정할 데이터를 변경할 수 없도록 고정
             ItemList = new ItemWrapper[] { _target.Item };
             SpecificationList = new SpecificationWrapper[] { _target.Specification };
             WarehouseList = new FieldWrapper<Warehouse>[] { _target.Warehouse };
@@ -74,16 +84,19 @@ namespace R54IN0
             set
             {
                 base.Specification = value;
+                //새로운 InOutStock 데이터를 추가하고자할 때 규격데이터를 선택하였다면 
                 if (_target == null && base.Specification != null)
                 {
+                    //기존의 Inventory 데이터가 존재할 경우 Inventory의 Warehouse 데이터를 고정하고 
+                    //없으면 Warehouse 리스트에서 선택하게 한다.
                     InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
                     var inven = iwd.SearchAsSpecificationKey(base.Specification.UUID);
-                    if (inven != null)
+                    if (inven != null) //리스트 고정
                     {
                         WarehouseList = new FieldWrapper<Warehouse>[] { inven.Warehouse };
                         Warehouse = inven.Warehouse;
                     }
-                    else
+                    else //리스트 업데이트
                     {
                         var fwd = FieldWrapperDirector.GetInstance();
                         WarehouseList = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
@@ -144,21 +157,30 @@ namespace R54IN0
             set;
         }
 
+        /// <summary>
+        /// 수정 또는 새로 추가할 데이터를 데이터베이스와 ViewModel의 Items 속성에 각각 추가 및 적용한다.
+        /// </summary>
+        /// <returns></returns>
         public StockWrapper Update()
         {
+            //추가 및 적용의 최소 조건들
             if (Item == null)
                 throw new Exception("리스트박스에서 품목을 선택하세요.");
             if (Specification == null)
                 throw new Exception("리스트박스에서 규격을 선택하세요.");
+
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
             InventoryWrapper invenw = iwd.SearchAsSpecificationKey(Specification.UUID);
             StockWrapper stockw = null;
-            if (invenw != null) //재고의 개수를 수정
+            
+            if (invenw != null) 
             {
+                //재고의 개수를 수정
                 invenw.Quantity = InventoryQuantity;
             }
-            else //새로운 재고를 등록
+            else 
             {
+                //새로운 재고를 등록
                 Inventory inven = new Inventory();
                 inven.ItemUUID = this.Item.UUID;
                 inven.SpecificationUUID = this.Specification.UUID;
@@ -168,23 +190,30 @@ namespace R54IN0
                 CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(invenw); //순서의 주의 
                 iwd.Add(invenw); //순서의 주의 
             }
-            if (_target != null) //변경
+
+            if (_target != null) //InOutStock 데이터의 수정 코드
             {
                 _target.Product = InOutStock;
                 stockw = _target;
             }
-            else //추가
+            else //새로운 InOutStock 데이터의 추가 코드
             {
                 InOutStock.InventoryUUID = invenw.UUID;
                 stockw = new StockWrapper(InOutStock);
                 _viewModel.Add(stockw);
             }
-            stockw.Product.Save<InOutStock>(); //DB저장, 없으면 저장 안됨 
+            stockw.Product.Save<InOutStock>();
             return stockw;
         }
 
+        /// <summary>
+        /// FinderViewModel에서 OnSelecting이벤트의 콜백 메서드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void OnFinderViewSelectItemChanged(object sender, EventArgs e)
         {
+            //기존 Property를 Null로 초기화 하고 해당 품목 데이터의 고유식별자를 사용하여 ItemList를 초기화한다.
             FinderViewModel fvm = sender as FinderViewModel;
             if (fvm != null && _target == null)
             {

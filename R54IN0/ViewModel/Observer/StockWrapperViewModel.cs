@@ -74,6 +74,11 @@ namespace R54IN0
         }
 
 #if true
+        /// <summary>
+        /// 기존의 TDD 코드들과 연동을 위한 메서드
+        /// 실제로는 사용하지 아니한다.
+        /// </summary>
+        /// <param name="item"></param>
         public override void UpdateNewItem(object item)
         {
             if (item is StockWrapper)
@@ -95,6 +100,7 @@ namespace R54IN0
             ItemFinderViewModel fvm = sender as ItemFinderViewModel;
             if (fvm != null)
             {
+                //Finder에서 품목 클릭 시, 해당하는 품목들과 관련된 InOutStock 데이터들을 Items에 업데이트한다.
                 List<StockWrapper> temp = new List<StockWrapper>();
                 var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
                 foreach (var itemNode in itemNodes)

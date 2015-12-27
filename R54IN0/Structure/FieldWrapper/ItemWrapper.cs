@@ -141,22 +141,20 @@ namespace R54IN0
             _maker = AllMaker.Where(x => x.UUID == item.MakerUUID).SingleOrDefault();
         }
 
+        /// <summary>
+        /// 새로운 Measure, Currency, Maker 랩핑 클래스가 추가될 경우, 
+        /// 각각의 리스트에 추가합니다.
+        /// </summary>
+        /// <param name="item"></param>
         public void UpdateNewItem(object item)
         {
             Type type = item.GetType();
-
             if (type == typeof(FieldWrapper<Measure>))
-            {
                 AllMeasure.Add(item as FieldWrapper<Measure>);
-            }
             else if (type == typeof(FieldWrapper<Currency>))
-            {
                 AllCurrency.Add(item as FieldWrapper<Currency>);
-            }
             else if (type == typeof(FieldWrapper<Maker>))
-            {
                 AllMaker.Add(item as FieldWrapper<Maker>);
-            }
         }
 
         public void UpdateDelItem(object item)

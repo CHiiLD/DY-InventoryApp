@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
+    /// <summary>
+    /// 추가, 수정, 삭제 버튼 객체의 커맨드
+    /// </summary>
     public interface IButtonCommands
     {
         CommandHandler AddCommand { get; set; }

@@ -104,9 +104,9 @@ namespace R54IN0
         {
             string[] keywords = null;
             if (!string.IsNullOrEmpty(keyword))
-                keywords = keyword.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+                keywords = keyword.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries); //공백 제거 옵션
             else
-                keywords = new string[] { "" };
+                keywords = new string[] { "" }; //이렇게 하면 모든 요소가 검색된다.
             var fwd = FieldWrapperDirector.GetInstance();
             var swd = StockWrapperDirector.GetInstance();
             var iwd = InventoryWrapperDirector.GetInstance();
@@ -176,6 +176,7 @@ namespace R54IN0
         {
             if (Keyword == null)
                 Keyword = "";
+            //유저가 직접 선택할 경우의 수를 생각하여 000 ~ 999 식의 설정을 해준다.
             var from = new DateTime(FromDateTime.Year, FromDateTime.Month, FromDateTime.Day, 0, 0, 0, 0, DateTimeKind.Local);
             var to = new DateTime(ToDateTime.Year, ToDateTime.Month, ToDateTime.Day, 23, 59, 59, 999, DateTimeKind.Local);
             SearchKeyword<T>(Keyword, from, to);

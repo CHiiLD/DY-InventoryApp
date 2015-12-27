@@ -30,8 +30,6 @@ namespace R54IN0.Test
             StockWrapperDirector.Distory();
         }
 
-      
-
         [TestMethod]
         public void ChangeProperty()
         {
@@ -39,7 +37,7 @@ namespace R54IN0.Test
             Random rand = new Random();
             StockWrapperDirector iowd = StockWrapperDirector.GetInstance();
             ObservableCollection<StockWrapper> collection = iowd.CreateCollection(StockType.ALL);
-            var ioStockws = collection.ElementAt(rand.Next(collection.Count - 1));
+            var ioStockws = collection.Random();
 
             var fwd = FieldWrapperDirector.GetInstance();
             ObservableCollection<ItemWrapper> itemCollectoin = fwd.CreateCollection<Item, ItemWrapper>();
@@ -52,13 +50,12 @@ namespace R54IN0.Test
             ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
 
             var type = ioStockws.StockType == StockType.INCOMING ? StockType.OUTGOING : StockType.INCOMING;
-            var specw = ioStockws.Specification = specCollectoin.ElementAt(rand.Next(specCollectoin.Count - 1));
+            var specw = ioStockws.Specification = specCollectoin.Random();
             var itemw = ioStockws.Item = itemCollectoin.Where(x => x.UUID == specw.Field.ItemUUID).Single();
             var itemCnt = ioStockws.Quantity = 20332;
             var date = ioStockws.Date = DateTime.Now.AddTicks(2000000221);
-            var accountw = ioStockws.Client = accoCollectoin.ElementAt(rand.Next(accoCollectoin.Count - 1));
-            var eemployeew = ioStockws.Employee = eeplCollectoin.ElementAt(rand.Next(eeplCollectoin.Count - 1));
-            //var warehousew = ioStockws.Warehouse = wareCollectoin.ElementAt(rand.Next(wareCollectoin.Count - 1));
+            var accountw = ioStockws.Client = accoCollectoin.Random();
+            var eemployeew = ioStockws.Employee = eeplCollectoin.Random();
             var remark = ioStockws.Remark = "23_1jdjfa";
 
             FieldWrapperDirector.Distroy();

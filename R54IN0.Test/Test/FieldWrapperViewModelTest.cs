@@ -31,6 +31,9 @@ namespace R54IN0.Test
             Assert.AreEqual(recCnt + 1, vm.Items.Count);
         }
 
+        /// <summary>
+        /// AddNewItemCommand 객체가 실행되고 난 뒤에, 데이터베이스에 저장되었는지 테스트한다.
+        /// </summary>
         [TestMethod]
         public void CanSave()
         {

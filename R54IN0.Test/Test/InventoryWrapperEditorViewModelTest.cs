@@ -29,7 +29,7 @@ namespace R54IN0.Test
         }
 
         /// <summary>
-        /// 아이템즈 프로퍼티를 변경하기 위해 Helper 클래스를 사용하고 적용되었는지 확인한다.
+        /// 아이템즈 프로퍼티를 변경하기 위해 Editor 클래스를 사용하고 적용되었는지 확인한다.
         /// </summary>
         [TestMethod]
         public void EditItem()
@@ -79,7 +79,7 @@ namespace R54IN0.Test
         }
 
         /// <summary>
-        /// 새로운 InventoryWrapper를 추가하기 위해 InventoryWrapperViewModelHelper를 사용한다.
+        /// 새로운 InventoryWrapper를 추가하기 위해 InventoryWrapperEditorViewModel를 사용한다.
         /// </summary>
         [TestMethod]
         public void AddNewItem()
