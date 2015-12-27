@@ -142,5 +142,15 @@ namespace R54IN0
             FinderViewModel.SelectItemsChanged += OnFinderViewSelectItemChanged;
             return FinderViewModel;
         }
+
+        public override void ExecuteSelectedItemDeletion(object parameter)
+        {
+            foreach(var specw in new List<SpecificationWrapper>(Specifications))
+            {
+                SelectedSpecification = specw;
+                _specViewModel.DeleteItemCommand.Execute(null);
+            }
+            base.ExecuteSelectedItemDeletion(parameter);
+        }
     }
 }

@@ -68,7 +68,7 @@ namespace R54IN0.Test
             FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).FirstOrDefault();
             Assert.IsNotNull(node);
             var list = new List<FinderNode>() { node };
-            fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
+            fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
             Assert.AreEqual(1, fvm.SelectedNodes.Count);
 
             Assert.IsTrue(iwvm.Items.All(x => x.Item.UUID == node.ItemUUID));
@@ -215,6 +215,38 @@ namespace R54IN0.Test
             Assert.IsNull(invenw.Maker);
             Assert.IsNull(invenw.Measure);
             Assert.IsNull(invenw.Currency);
+        }
+
+        /// <summary>
+        /// 새로운 아이템을 만듬
+        /// 새로운 아이템으로 새로운 재고 데이터를 등록한다
+        /// 재고 리스트에 제대로 업데이트 되어 있는지 확인한다.
+        /// </summary>
+        [TestMethod]
+        public void UpdateNewItem()
+        {
+            new DummyDbData().Create();
+            CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
+            //아이템 생성 
+            ItemWrapperViewModel itemvm = new ItemWrapperViewModel(sub);
+            itemvm.AddNewItemCommand.Execute(null);
+            var newItem = itemvm.Items.Last();
+            var newSpec = itemvm.Specifications.Last();
+            //Finder에서 선택
+            InventoryWrapperViewModel ivm = new InventoryWrapperViewModel(sub);
+            FinderViewModel fvm = ivm.CreateFinderViewModel(null);
+
+            var list = new List<FinderNode>() { fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.ItemUUID == newItem.UUID)).Single() };
+            fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
+
+            InventoryWrapperEditorViewModel ievm = new InventoryWrapperEditorViewModel(ivm);
+            ievm.Item = newItem;
+            ievm.Specification = newSpec;
+            ievm.Quantity = 100;
+            ievm.Update();
+
+            Assert.AreEqual(1, ivm.Items.Count);
+            Assert.IsTrue(ivm.Items.First().Item.UUID == newItem.UUID);
         }
     }
 }

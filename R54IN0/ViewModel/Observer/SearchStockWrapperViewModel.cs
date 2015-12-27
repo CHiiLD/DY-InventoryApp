@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace R54IN0
 {
-    public class SearchStockWrapperViewModel : StockWrapperViewModel, ISearchEngine, IFinderViewModelCreatation
+    public class SearchStockWrapperViewModel : StockWrapperViewModel, IFieldSearchingWithDateTime, IFinderViewModelCreatation
     {
         DateTime _fromDateTime;
         DateTime _toDateTime;
@@ -77,7 +77,6 @@ namespace R54IN0
             get; set;
         }
 
-#if false
         public override void UpdateNewItem(object item)
         {
             if (!(item is StockWrapper))
@@ -86,21 +85,20 @@ namespace R54IN0
             if (!StockType.HasFlag(ioStockw.StockType))
                 return;
             //모든 목록인 경우 
-            if (FinderViewModel.SelectedNodes.Count() == 0)
+            if (FinderViewModel.SelectedNodes.Count() == 0 && stockDirector.Count(StockType) == Items.Count())
             {
-                base.UpdateNewItem(item);
-                OnPropertyChanged("Items");
+                if (!Items.Contains(ioStockw)) //base.UpdateNewItem를 사용할 수 없어서 더 상위의 base.UpdateNewItem메서드 내용을 씀
+                    Items.Add(ioStockw);
                 return;
             }
             //Finder에 목록이 클릭되어 있는 경우
             var itemNodes = FinderViewModel.SelectedNodes.SelectMany(rn => rn.Descendants().Where(x => x.Type == NodeType.ITEM));
             if (itemNodes.Any(n => n.ItemUUID == ioStockw.Item.UUID))
             {
-                base.UpdateNewItem(item);
-                OnPropertyChanged("Items");
+                if (!Items.Contains(ioStockw))
+                    Items.Add(ioStockw);
             }
         }
-#endif
 
         List<StockWrapper> Search<T>(string keyword)
         {
@@ -178,7 +176,9 @@ namespace R54IN0
         {
             if (Keyword == null)
                 Keyword = "";
-            SearchKeyword<T>(Keyword, FromDateTime, ToDateTime);
+            var from = new DateTime(FromDateTime.Year, FromDateTime.Month, FromDateTime.Day, 0, 0, 0, 0, DateTimeKind.Local);
+            var to = new DateTime(ToDateTime.Year, ToDateTime.Month, ToDateTime.Day, 23, 59, 59, 999, DateTimeKind.Local);
+            SearchKeyword<T>(Keyword, from, to);
             if (FinderViewModel != null) //Finder에선 선택되는 아이템이 없다.
             {
                 FinderViewModel.SelectedNodes.Clear(); // = null 을 하게 되면 에러 발생

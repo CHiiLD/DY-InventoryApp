@@ -14,8 +14,8 @@ namespace R54IN0
 
         protected StockWrapperDirector stockDirector;
 
-        public EventHandler<EventArgs> SelectedItemModifyHandler;
-        public EventHandler<EventArgs> NewItemAddHandler;
+        public EventHandler<EventArgs> SelectedItemModifyHandler { get; set; }
+        public EventHandler<EventArgs> NewItemAddHandler { get; set; }
 
         public StockWrapperViewModel(StockType type, CollectionViewModelObserverSubject subject) : base(subject)
         {
@@ -73,6 +73,7 @@ namespace R54IN0
             stockDirector.Remove(item);
         }
 
+#if true
         public override void UpdateNewItem(object item)
         {
             if (item is StockWrapper)
@@ -87,6 +88,7 @@ namespace R54IN0
                 }
             }
         }
+#endif
 
         public void OnFinderViewSelectItemChanged(object sender, EventArgs e)
         {

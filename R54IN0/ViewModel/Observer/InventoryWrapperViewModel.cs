@@ -3,18 +3,19 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace R54IN0
 {
-    public class InventoryWrapperViewModel : ItemSourceViewModel<InventoryWrapper>, INotifyPropertyChanged, IFinderViewModelOnSelectingCallback
+    public class InventoryWrapperViewModel : ItemSourceViewModel<InventoryWrapper>, INotifyPropertyChanged, IFinderViewModelCreatation
     {
         ObservableCollection<InventoryWrapper> _items;
         InventoryWrapperDirector _inventoryDirector;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public EventHandler<EventArgs> SelectedItemModifyHandler;
-        public EventHandler<EventArgs> NewItemAddHandler;
+        public EventHandler<EventArgs> SelectedItemModifyHandler { get; set; }
+        public EventHandler<EventArgs> NewItemAddHandler { get; set; }
 
         public InventoryWrapperViewModel(CollectionViewModelObserverSubject subject) : base(subject)
         {
@@ -48,6 +49,11 @@ namespace R54IN0
             }
         }
 
+        public FinderViewModel FinderViewModel
+        {
+            get; set;
+        }
+
         public override void Add(InventoryWrapper item)
         {
             base.Add(item);
@@ -58,17 +64,6 @@ namespace R54IN0
         {
             base.Remove(item);
             _inventoryDirector.Remove(item);
-        }
-
-        public override void UpdateNewItem(object item)
-        {
-            //만약에 Finder가 일정한 포맷에 묶인 상태에서 새로운 아이템을 추가한다면 그 포맷이 같아야 추가한다.
-            if (item is InventoryWrapper)
-            {
-                InventoryWrapper inventoryWrapper = item as InventoryWrapper;
-                if (_inventoryDirector.Count() == Items.Count || Items.Any(x => x.Item.UUID == inventoryWrapper.Item.UUID))
-                    base.UpdateNewItem(item);
-            }
         }
 
         public void OnFinderViewSelectItemChanged(object sender, EventArgs e)
@@ -110,6 +105,50 @@ namespace R54IN0
         {
             Remove(SelectedItem);
             SelectedItem = null;
+        }
+
+        public FinderViewModel CreateFinderViewModel(TreeViewEx treeView)
+        {
+            FinderViewModel = new ItemFinderViewModel(treeView);
+            FinderViewModel.SelectItemsChanged += OnFinderViewSelectItemChanged;
+            return FinderViewModel;
+        }
+
+#if DEBUG
+        public void UpdateNewItemStub(object item)
+        {
+            //만약에 Finder가 일정한 포맷에 묶인 상태에서 새로운 아이템을 추가한다면 그 포맷이 같아야 추가한다.
+            if (item is InventoryWrapper)
+            {
+                InventoryWrapper inventoryWrapper = item as InventoryWrapper;
+                if (_inventoryDirector.Count() == Items.Count || Items.Any(x => x.Item.UUID == inventoryWrapper.Item.UUID))
+                    base.UpdateNewItem(item);
+            }
+        }
+#endif
+
+        public override void UpdateNewItem(object item)
+        {
+            if (!(item is InventoryWrapper))
+                return;
+#if DEBUG
+            if(FinderViewModel == null)
+            {
+                UpdateNewItemStub(item);
+                return;
+            }
+#endif
+            InventoryWrapper invenw = item as InventoryWrapper;
+            //모든 목록인 경우 
+            if (FinderViewModel.SelectedNodes.Count() == 0 && _inventoryDirector.Count() == Items.Count())
+            {
+                base.UpdateNewItem(item);
+                return;
+            }
+            //Finder에 목록이 클릭되어 있는 경우
+            var itemNodes = FinderViewModel.SelectedNodes.SelectMany(rn => rn.Descendants().Where(x => x.Type == NodeType.ITEM));
+            if (itemNodes.Any(n => n.ItemUUID == invenw.Item.UUID))
+                base.UpdateNewItem(item);
         }
     }
 }

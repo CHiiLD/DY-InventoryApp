@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public interface ISearchEngine
+    public interface IFieldSearchingWithDateTime
     {
         string Keyword { get; set; }
 

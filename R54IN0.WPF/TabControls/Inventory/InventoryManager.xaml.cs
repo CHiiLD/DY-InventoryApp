@@ -20,8 +20,7 @@ namespace R54IN0.WPF
         public InventoryManager()
         {
             InitializeComponent();
-            Finder.ViewModel = new ItemFinderViewModel(Finder.FinderTreeView);
-            Finder.ViewModel.SelectItemsChanged += InvenDataGrid.ViewModel.OnFinderViewSelectItemChanged;
+            Finder.ViewModel = InvenDataGrid.ViewModel.CreateFinderViewModel(Finder.FinderTreeView) as ItemFinderViewModel;
         }
     }
 }
