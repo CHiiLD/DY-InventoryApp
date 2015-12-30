@@ -29,7 +29,7 @@ namespace R54IN0
         public override void ExecuteNewItemAddition(object parameter)
         {
             base.ExecuteNewItemAddition(parameter);
-            SelectedItem.Field.ItemUUID = _itemViewModel.SelectedItem.UUID;
+            SelectedItem.Field.ItemID = _itemViewModel.SelectedItem.ID;
             SelectedItem.Field.Save<Specification>();
             _itemViewModel.SelectedSpecification = SelectedItem;
         }

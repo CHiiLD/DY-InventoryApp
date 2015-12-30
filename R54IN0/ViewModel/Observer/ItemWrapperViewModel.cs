@@ -65,7 +65,7 @@ namespace R54IN0
                 {
                     FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
                     var collection = fwd.CreateCollection<Specification, SpecificationWrapper>().
-                        Where(x => !x.IsDeleted && x.Field.ItemUUID == base.SelectedItem.UUID);
+                        Where(x => !x.IsDeleted && x.Field.ItemID == base.SelectedItem.ID);
                     Specifications = new ObservableCollection<SpecificationWrapper>(collection);
                 }
                 if (_specViewModel != null)
@@ -96,13 +96,13 @@ namespace R54IN0
         public override void Add(ItemWrapper item)
         {
             base.Add(item);
-            FinderDirector.GetInstance().Add(new FinderNode(NodeType.ITEM) { ItemUUID = item.UUID });
+            FinderDirector.GetInstance().Add(new FinderNode(NodeType.ITEM) { ItemID = item.ID });
         }
 
         public override void Remove(ItemWrapper item)
         {
             base.Remove(item);
-            FinderDirector.GetInstance().Remove(item.UUID);
+            FinderDirector.GetInstance().Remove(item.ID);
         }
 
         public override void ExecuteNewItemAddition(object parameter)
@@ -129,14 +129,14 @@ namespace R54IN0
                 IEnumerable<FinderNode> itemNodes = _finderViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
                 var itemws = fieldWrapperDirector.CreateCollection<Item, ItemWrapper>();
                 foreach (var itemNode in itemNodes)
-                    itemwTemp.AddRange(itemws.Where(x => x.UUID == itemNode.ItemUUID && !x.IsDeleted));
+                    itemwTemp.AddRange(itemws.Where(x => x.ID == itemNode.ItemID && !x.IsDeleted));
                 Items = new ObservableCollection<ItemWrapper>(itemwTemp);
 
                 List<SpecificationWrapper> specwTemp = new List<SpecificationWrapper>();
                 foreach (var item in Items)
                 {
                     var collection = fieldWrapperDirector.CreateCollection<Specification, SpecificationWrapper>().
-                    Where(x => !x.IsDeleted && x.Field.ItemUUID == item.UUID);
+                    Where(x => !x.IsDeleted && x.Field.ItemID == item.ID);
                     specwTemp.AddRange(collection);
                 }
                 Specifications = new ObservableCollection<SpecificationWrapper>(specwTemp);

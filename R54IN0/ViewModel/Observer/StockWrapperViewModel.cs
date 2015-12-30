@@ -88,7 +88,7 @@ namespace R54IN0
                 {
                     //특정 목록이 파인더에 체크되어 있으면서 그 파인더 목록의 데이터가 아무것도 없으면 추가가 되지 아니하는 에러가 있다.
                     if (stockDirector.Count(_stockType) == Items.Count || //모든 목록 모드 이거나
-                        Items.Any(x => x.Item.UUID == ioStockw.Item.UUID))  //특정 모록 모드 이거나
+                        Items.Any(x => x.Item.ID == ioStockw.Item.ID))  //특정 모록 모드 이거나
                         base.UpdateNewItem(item);
                 }
             }
@@ -105,7 +105,7 @@ namespace R54IN0
                 var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
                 foreach (var itemNode in itemNodes)
                 {
-                    var stockList = stockDirector.SearchAsItemkey(itemNode.ItemUUID);
+                    var stockList = stockDirector.SearchAsItemkey(itemNode.ItemID);
                     if (stockList != null)
                     {
                         if (StockType == StockType.ALL)

@@ -42,12 +42,12 @@ namespace R54IN0.Test
             var fwd = FieldWrapperDirector.GetInstance();
             ObservableCollection<ItemWrapper> itemCollectoin = fwd.CreateCollection<Item, ItemWrapper>();
             ObservableCollection<SpecificationWrapper> specCollectoin = fwd.CreateCollection<Specification, SpecificationWrapper>();
-            ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
-            ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
-            ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
+            ObservableCollection<Observable<Measure>> measCollectoin = fwd.CreateCollection<Measure, Observable<Measure>>();
+            ObservableCollection<Observable<Currency>> currCollectoin = fwd.CreateCollection<Currency, Observable<Currency>>();
+            ObservableCollection<Observable<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, Observable<Employee>>();
             ObservableCollection<ClientWrapper> accoCollectoin = fwd.CreateCollection<Client, ClientWrapper>();
-            ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
-            ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
+            ObservableCollection<Observable<Maker>> makeCollectoin = fwd.CreateCollection<Maker, Observable<Maker>>();
+            ObservableCollection<Observable<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, Observable<Warehouse>>();
             var rand = new Random();
             SpecificationWrapper sepcWrapper = specCollectoin.ElementAt(rand.Next(specCollectoin.Count - 1));
 
@@ -66,11 +66,11 @@ namespace R54IN0.Test
             iwd = InventoryWrapperDirector.GetInstance();
             //찾기
             wrappers = iwd.CreateCollection();
-            var newWrapper = wrappers.Where(x => x.Product.UUID == wrapper.Product.UUID).Single();
+            var newWrapper = wrappers.Where(x => x.Product.ID == wrapper.Product.ID).Single();
             //검사
             Assert.AreEqual(itemCnt, newWrapper.Quantity);
-            Assert.AreEqual(ware.UUID, newWrapper.Warehouse.UUID);
-            Assert.AreEqual(spec.UUID, newWrapper.Specification.UUID);
+            Assert.AreEqual(ware.ID, newWrapper.Warehouse.ID);
+            Assert.AreEqual(spec.ID, newWrapper.Specification.ID);
         }
     }
 }

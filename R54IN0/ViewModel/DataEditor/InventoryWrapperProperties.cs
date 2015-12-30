@@ -11,7 +11,7 @@ namespace R54IN0
     {
         ItemWrapper _item;
         SpecificationWrapper _specification;
-        FieldWrapper<Warehouse> _warehouse;
+        Observable<Warehouse> _warehouse;
 
         public InventoryWrapperProperties()
         {
@@ -50,7 +50,7 @@ namespace R54IN0
             get; set;
         }
 
-        public FieldWrapper<Currency> Currency
+        public Observable<Currency> Currency
         {
             get
             {
@@ -67,7 +67,7 @@ namespace R54IN0
             set
             {
                 _item = value;
-                Stock.ItemUUID = _item != null ? _item.UUID : null;
+                Stock.ItemID = _item != null ? _item.ID : null;
                 //ItemList에서 새로운 아이템을 선택할 경우 아래 프로퍼티를 새로고침한다.
                 OnPropertyChanged("Item");
                 OnPropertyChanged("Maker");
@@ -93,7 +93,7 @@ namespace R54IN0
             }
         }
 
-        public FieldWrapper<Maker> Maker
+        public Observable<Maker> Maker
         {
             get
             {
@@ -101,7 +101,7 @@ namespace R54IN0
             }
         }
 
-        public FieldWrapper<Measure> Measure
+        public Observable<Measure> Measure
         {
             get
             {
@@ -118,7 +118,7 @@ namespace R54IN0
             set
             {
                 _specification = value;
-                Stock.SpecificationUUID = _specification != null ? _specification.UUID : null; 
+                Stock.SpecificationID = _specification != null ? _specification.ID : null; 
                 OnPropertyChanged("Specification");
                 OnPropertyChanged("PurchaseUnitPrice");
                 OnPropertyChanged("SalesUnitPrice");
@@ -160,7 +160,7 @@ namespace R54IN0
             }
         }
 
-        public virtual FieldWrapper<Warehouse> Warehouse
+        public virtual Observable<Warehouse> Warehouse
         {
             get
             {
@@ -172,7 +172,7 @@ namespace R54IN0
                 if(Stock is Inventory)
                 {
                     var inven = Stock as Inventory;
-                    inven.WarehouseUUID = _warehouse != null ? _warehouse.UUID : null;
+                    inven.WarehouseID = _warehouse != null ? _warehouse.ID : null;
                 }
                 OnPropertyChanged("Warehouse");
             }

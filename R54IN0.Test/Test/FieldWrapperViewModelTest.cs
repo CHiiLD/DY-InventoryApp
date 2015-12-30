@@ -42,18 +42,18 @@ namespace R54IN0.Test
             CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
             StockWrapperDirector.Distory();
-            using (var db = DatabaseDirector.GetDbInstance())
+            using (var db = LexDb.GetDbInstance())
             {
                 db.Purge();
             }
 
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
-            FieldWrapperViewModel<Maker, FieldWrapper<Maker>> vm = new FieldWrapperViewModel<Maker, FieldWrapper<Maker>>(sub);
+            FieldWrapperViewModel<Maker, Observable<Maker>> vm = new FieldWrapperViewModel<Maker, Observable<Maker>>(sub);
             Assert.AreEqual(0, vm.Items.Count());
 
             vm.AddNewItemCommand.Execute(null);
 
-            Assert.IsNotNull(vm.Items.First().UUID);
+            Assert.IsNotNull(vm.Items.First().ID);
 
             FieldWrapperDirector.Distroy();
             InventoryWrapperDirector.Distory();
@@ -61,7 +61,7 @@ namespace R54IN0.Test
             FinderDirector.Distroy();
             StockWrapperDirector.Distory();
 
-            vm = new FieldWrapperViewModel<Maker, FieldWrapper<Maker>>(sub);
+            vm = new FieldWrapperViewModel<Maker, Observable<Maker>>(sub);
             Assert.AreEqual(1, vm.Items.Count());
         }
 

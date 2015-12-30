@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public abstract class ProductWrapper<ProductT> : IProductWrapper, INotifyPropertyChanged where ProductT : class, IStock, IUUID
+    public abstract class ProductWrapper<ProductT> : IProductWrapper, INotifyPropertyChanged where ProductT : class, IStock, IID
     {
         ProductT _product;
         SpecificationWrapper _specification;
@@ -20,7 +20,7 @@ namespace R54IN0
             SetProperies(record);
         }
 
-        public FieldWrapper<Measure> Measure
+        public Observable<Measure> Measure
         {
             get
             {
@@ -28,7 +28,7 @@ namespace R54IN0
             }
         }
 
-        public FieldWrapper<Maker> Maker
+        public Observable<Maker> Maker
         {
             get
             {
@@ -36,7 +36,7 @@ namespace R54IN0
             }
         }
 
-        public FieldWrapper<Currency> Currency
+        public Observable<Currency> Currency
         {
             get
             {
@@ -126,7 +126,7 @@ namespace R54IN0
                 _item = value;
                 if (_item != null)
                     _item.PropertyChanged += OnItemWrapperPropertyChanged;
-                _product.ItemUUID = (_item != null ? _item.UUID : null);
+                _product.ItemID = (_item != null ? _item.ID : null);
                 _product.Save<ProductT>();
                 OnPropertyChanged("Item");
             }
@@ -143,13 +143,13 @@ namespace R54IN0
                 _specification = value;
                 if (_specification != null)
                     _specification.PropertyChanged += OnSpecificationWrapperPropertyChanged;
-                _product.SpecificationUUID = (_specification != null ? _specification.UUID : null);
+                _product.SpecificationID = (_specification != null ? _specification.ID : null);
                 _product.Save<ProductT>();
                 OnPropertyChanged("Specification");
             }
         }
 
-        public abstract FieldWrapper<Warehouse> Warehouse { get; set; }
+        public abstract Observable<Warehouse> Warehouse { get; set; }
 
         public int Quantity
         {
@@ -181,21 +181,21 @@ namespace R54IN0
             }
         }
 
-        public string UUID
+        public string ID
         {
             get
             {
-                return Product.UUID;
+                return Product.ID;
             }
         }
 
         protected virtual void SetProperies(ProductT product)
         {
             var fwd = FieldWrapperDirector.GetInstance();
-            _item = fwd.BinSearch<Item, ItemWrapper>(product.ItemUUID); //fwd.CreateCollection<Item, ItemWrapper>().Where(x => x.UUID == record.ItemUUID).SingleOrDefault();
+            _item = fwd.BinSearch<Item, ItemWrapper>(product.ItemID); //fwd.CreateCollection<Item, ItemWrapper>().Where(x => x.ID == record.ItemID).SingleOrDefault();
             if (_item != null)
                 _item.PropertyChanged += OnItemWrapperPropertyChanged;
-            _specification = fwd.BinSearch<Specification, SpecificationWrapper>(product.SpecificationUUID); //fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => x.UUID == product.SpecificationUUID).SingleOrDefault();
+            _specification = fwd.BinSearch<Specification, SpecificationWrapper>(product.SpecificationID); //fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => x.ID == product.SpecificationID).SingleOrDefault();
             if (_specification != null)
                 _specification.PropertyChanged += OnSpecificationWrapperPropertyChanged;
         }

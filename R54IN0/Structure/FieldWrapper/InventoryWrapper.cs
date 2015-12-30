@@ -13,7 +13,7 @@ namespace R54IN0
     /// </summary>
     public class InventoryWrapper : ProductWrapper<Inventory>
     {
-        FieldWrapper<Warehouse> _warehouse;
+        Observable<Warehouse> _warehouse;
 
         public InventoryWrapper() : base()
         {
@@ -24,7 +24,7 @@ namespace R54IN0
         {
         }
 
-        public override FieldWrapper<Warehouse> Warehouse
+        public override Observable<Warehouse> Warehouse
         {
             get
             {
@@ -33,7 +33,7 @@ namespace R54IN0
             set
             {
                 _warehouse = value;
-                Product.WarehouseUUID = (_warehouse != null ? _warehouse.UUID : null);
+                Product.WarehouseID = (_warehouse != null ? _warehouse.ID : null);
                 Product.Save<Inventory>();
                 OnPropertyChanged("Warehouse");
             }
@@ -42,7 +42,7 @@ namespace R54IN0
         {
             get
             {
-                return Product.ItemUUID != null ? Product.ItemUUID.Substring(0, 6).ToUpper() : "";
+                return Product.ItemID != null ? Product.ItemID.Substring(0, 6).ToUpper() : "";
             }
         }
 
@@ -50,7 +50,7 @@ namespace R54IN0
         {
             get
             {
-                return Product.SpecificationUUID != null ? Product.SpecificationUUID.Substring(0, 6).ToUpper() : "";
+                return Product.SpecificationID != null ? Product.SpecificationID.Substring(0, 6).ToUpper() : "";
             }
         }
 
@@ -66,8 +66,8 @@ namespace R54IN0
         {
             base.SetProperies(record);
             var fwd = FieldWrapperDirector.GetInstance();
-            _warehouse = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().
-                Where(x => x.UUID == record.WarehouseUUID).SingleOrDefault();
+            _warehouse = fwd.CreateCollection<Warehouse, Observable<Warehouse>>().
+                Where(x => x.ID == record.WarehouseID).SingleOrDefault();
         }
     }
 }

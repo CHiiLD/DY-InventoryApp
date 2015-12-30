@@ -75,7 +75,7 @@ namespace R54IN0
                 var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
                 foreach (var itemNode in itemNodes)
                 {
-                    var inventories = _inventoryDirector.SearchAsItemKey(itemNode.ItemUUID);
+                    var inventories = _inventoryDirector.SearchAsItemKey(itemNode.ItemID);
                     if (inventories != null)
                         temp.AddRange(inventories);
                 }
@@ -125,7 +125,7 @@ namespace R54IN0
             if (item is InventoryWrapper)
             {
                 InventoryWrapper inventoryWrapper = item as InventoryWrapper;
-                if (_inventoryDirector.Count() == Items.Count || Items.Any(x => x.Item.UUID == inventoryWrapper.Item.UUID))
+                if (_inventoryDirector.Count() == Items.Count || Items.Any(x => x.Item.ID == inventoryWrapper.Item.ID))
                     base.UpdateNewItem(item);
             }
         }
@@ -151,7 +151,7 @@ namespace R54IN0
             }
             //Finder의 노드와 관계가 있는 경우 데이터를 추가한다.
             var itemNodes = FinderViewModel.SelectedNodes.SelectMany(rn => rn.Descendants().Where(x => x.Type == NodeType.ITEM));
-            if (itemNodes.Any(n => n.ItemUUID == invenw.Item.UUID))
+            if (itemNodes.Any(n => n.ItemID == invenw.Item.ID))
                 base.UpdateNewItem(item);
         }
     }

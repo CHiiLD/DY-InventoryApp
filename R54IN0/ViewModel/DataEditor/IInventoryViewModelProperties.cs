@@ -11,7 +11,7 @@ namespace R54IN0
         IStock Stock { get; set; }
         ItemWrapper Item { get; set; }
         SpecificationWrapper Specification { get; set; }
-        FieldWrapper<Warehouse> Warehouse { get; set; }
+        Observable<Warehouse> Warehouse { get; set; }
         int Quantity { get; set; }
     }
 }

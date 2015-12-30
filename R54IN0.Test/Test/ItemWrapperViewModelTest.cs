@@ -57,13 +57,13 @@ namespace R54IN0.Test
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel itemViewModel = new ItemWrapperViewModel(sub);
             ItemWrapper itemWrapper = itemViewModel.SelectedItem = itemViewModel.Items.FirstOrDefault();
-            FieldWrapper<Measure> itemMeasure = itemViewModel.SelectedItem.SelectedMeasure;
+            Observable<Measure> itemMeasure = itemViewModel.SelectedItem.SelectedMeasure;
 
             var itemMeasureColl = itemWrapper.AllMeasure;
             Assert.AreNotEqual(0, itemMeasureColl.Count());
 
-            FieldWrapperViewModel<Measure, FieldWrapper<Measure>> measureViewModel = new FieldWrapperViewModel<Measure, FieldWrapper<Measure>>(sub);
-            var itemsCopy = new List<FieldWrapper<Measure>>(measureViewModel.Items);
+            FieldWrapperViewModel<Measure, Observable<Measure>> measureViewModel = new FieldWrapperViewModel<Measure, Observable<Measure>>(sub);
+            var itemsCopy = new List<Observable<Measure>>(measureViewModel.Items);
             foreach (var measureW in itemsCopy)
             {
                 measureViewModel.SelectedItem = measureW;
@@ -95,14 +95,14 @@ namespace R54IN0.Test
 
             //파인더 디렉터에서 Finder가 새로이 추가가 되었는지 확인한다.
             var coll = FinderDirector.GetInstance().Collection.SelectMany(x => x.Descendants());
-            var result = coll.Where(x => x.ItemUUID == newItemw.UUID).SingleOrDefault();
+            var result = coll.Where(x => x.ItemID == newItemw.ID).SingleOrDefault();
             Assert.IsNotNull(result);
 
             //아이템을 삭제하고 파인더 디렉터에서도 동기화가 되었는지 확인한다.
             vm.Remove(newItemw);
             Assert.IsFalse(vm.Items.Contains(newItemw));
             coll = FinderDirector.GetInstance().Collection.SelectMany(x => x.Descendants());
-            result = coll.Where(x => x.ItemUUID == newItemw.UUID).SingleOrDefault();
+            result = coll.Where(x => x.ItemID == newItemw.ID).SingleOrDefault();
             Assert.IsNull(result);
         }
 
@@ -122,7 +122,7 @@ namespace R54IN0.Test
             var finderColl = FinderDirector.GetInstance().Collection;
 
             var item = vm.Items.Last();
-            var finderNode = finderColl.SelectMany(x => x.Descendants().Where(y => y.ItemUUID == item.UUID)).Single();
+            var finderNode = finderColl.SelectMany(x => x.Descendants().Where(y => y.ItemID == item.ID)).Single();
 
             Assert.AreEqual(item.Name, finderNode.Name);
             item.Name = "Rd12dac#$dkd";
@@ -140,23 +140,23 @@ namespace R54IN0.Test
 
             ItemWrapperViewModel vm = new ItemWrapperViewModel(sub);
 
-            FieldWrapperViewModel<Maker, FieldWrapper<Maker>> mvm = new FieldWrapperViewModel<Maker, FieldWrapper<Maker>>(sub);
-            FieldWrapperViewModel<Currency, FieldWrapper<Currency>> cvm = new FieldWrapperViewModel<Currency, FieldWrapper<Currency>>(sub);
-            FieldWrapperViewModel<Measure, FieldWrapper<Measure>> msvm = new FieldWrapperViewModel<Measure, FieldWrapper<Measure>>(sub);
+            FieldWrapperViewModel<Maker, Observable<Maker>> mvm = new FieldWrapperViewModel<Maker, Observable<Maker>>(sub);
+            FieldWrapperViewModel<Currency, Observable<Currency>> cvm = new FieldWrapperViewModel<Currency, Observable<Currency>>(sub);
+            FieldWrapperViewModel<Measure, Observable<Measure>> msvm = new FieldWrapperViewModel<Measure, Observable<Measure>>(sub);
 
-            foreach (var item in new List<FieldWrapper<Maker>>(mvm.Items))
+            foreach (var item in new List<Observable<Maker>>(mvm.Items))
             {
                 mvm.SelectedItem = item;
                 mvm.DeleteItemCommand.Execute(null);
             }
 
-            foreach (var item in new List<FieldWrapper<Currency>>(cvm.Items))
+            foreach (var item in new List<Observable<Currency>>(cvm.Items))
             {
                 cvm.SelectedItem = item;
                 cvm.DeleteItemCommand.Execute(null);
             }
 
-            foreach (var item in new List<FieldWrapper<Measure>>(msvm.Items))
+            foreach (var item in new List<Observable<Measure>>(msvm.Items))
             {
                 msvm.SelectedItem = item;
                 msvm.DeleteItemCommand.Execute(null);
@@ -193,8 +193,8 @@ namespace R54IN0.Test
                 new List<FinderNode>() { node }, new List<FinderNode>()));
 
             //아이템과 규격 컬렉션의 동기화 확인
-            Assert.IsTrue(vm.Items.All(x => x.UUID == node.ItemUUID));
-            Assert.IsTrue(vm.Specifications.All(x => x.Field.ItemUUID == node.ItemUUID));
+            Assert.IsTrue(vm.Items.All(x => x.ID == node.ItemID));
+            Assert.IsTrue(vm.Specifications.All(x => x.Field.ItemID == node.ItemID));
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace R54IN0.Test
             vm.AddNewItemCommand.Execute(null);
 
             var node = fvm.SelectedNodes.Single();
-            Assert.AreEqual(node.ItemUUID, vm.SelectedItem.UUID);
+            Assert.AreEqual(node.ItemID, vm.SelectedItem.ID);
         }
     }
 }

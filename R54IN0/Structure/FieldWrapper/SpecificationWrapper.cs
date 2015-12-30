@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class SpecificationWrapper : FieldWrapper<Specification>
+    public class SpecificationWrapper : Observable<Specification>
     {
         public SpecificationWrapper() : base()
         {

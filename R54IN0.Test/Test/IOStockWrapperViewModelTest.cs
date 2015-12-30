@@ -22,19 +22,19 @@ namespace R54IN0.Test
             var fwd = FieldWrapperDirector.GetInstance();
             ObservableCollection<ItemWrapper> itemCollectoin = fwd.CreateCollection<Item, ItemWrapper>();
             ObservableCollection<SpecificationWrapper> specCollectoin = fwd.CreateCollection<Specification, SpecificationWrapper>();
-            ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
-            ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
-            ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
+            ObservableCollection<Observable<Measure>> measCollectoin = fwd.CreateCollection<Measure, Observable<Measure>>();
+            ObservableCollection<Observable<Currency>> currCollectoin = fwd.CreateCollection<Currency, Observable<Currency>>();
+            ObservableCollection<Observable<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, Observable<Employee>>();
             ObservableCollection<ClientWrapper> accoCollectoin = fwd.CreateCollection<Client, ClientWrapper>();
-            ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
-            ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
+            ObservableCollection<Observable<Maker>> makeCollectoin = fwd.CreateCollection<Maker, Observable<Maker>>();
+            ObservableCollection<Observable<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, Observable<Warehouse>>();
 
             Random rand = new Random();
             var instance = new StockWrapper(new InOutStock());
             instance.Inventory = InventoryWrapperDirector.GetInstance().CreateCollection().Random();
             var type = instance.StockType == StockType.INCOMING ? StockType.OUTGOING : StockType.INCOMING;
             var specw = instance.Specification = specCollectoin.ElementAt(rand.Next(specCollectoin.Count - 1));
-            var itemw = instance.Item = itemCollectoin.Where(x => x.UUID == specw.Field.ItemUUID).Single();
+            var itemw = instance.Item = itemCollectoin.Where(x => x.ID == specw.Field.ItemID).Single();
             var itemCnt = instance.Quantity = 20332;
             var date = instance.Date = DateTime.Now.AddTicks(2000000221);
             var accountw = instance.Client = accoCollectoin.ElementAt(rand.Next(accoCollectoin.Count - 1));
@@ -107,7 +107,7 @@ namespace R54IN0.Test
             StockWrapperViewModel vm = new StockWrapperViewModel(stockType, sub);
             fvm.SelectItemsChanged += vm.OnFinderViewSelectItemChanged;
             ItemWrapper itemw = vm.Items.Random().Item;
-            FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemUUID == itemw.UUID)).Single();
+            FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemID == itemw.ID)).Single();
             var list = new List<FinderNode>() { node };
             //클릭
             fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
@@ -134,24 +134,24 @@ namespace R54IN0.Test
             //랜덤으로 하나의 아이템을 파인터에서 선택
             ItemWrapper itemw = items.ElementAt(0).Item;
             Assert.AreEqual(0, fvm.SelectedNodes.Count);
-            FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemUUID == itemw.UUID)).Single();
+            FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemID == itemw.ID)).Single();
             var list = new List<FinderNode>() { node };
             fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
 
             Assert.AreEqual(1, fvm.SelectedNodes.Count);
-            Assert.IsTrue(vm1.Items.All(x => x.Item.UUID == node.ItemUUID));
+            Assert.IsTrue(vm1.Items.All(x => x.Item.ID == node.ItemID));
 
-            itemw = items.Where(x => x.Item.UUID != itemw.UUID).First().Item;
+            itemw = items.Where(x => x.Item.ID != itemw.ID).First().Item;
 
-            FinderNode node2 = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemUUID == itemw.UUID)).Single();
+            FinderNode node2 = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemID == itemw.ID)).Single();
             var list2 = new List<FinderNode>() { node, node2 };
             fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list2, list));
 
             Assert.AreEqual(2, fvm.SelectedNodes.Count);
-            Assert.IsTrue(vm1.Items.All(x => x.Item.UUID == node.ItemUUID || x.Item.UUID == node2.ItemUUID));
+            Assert.IsTrue(vm1.Items.All(x => x.Item.ID == node.ItemID || x.Item.ID == node2.ItemID));
 
             //선택된 아이템들이 아닌 아이템을 추가할 경우 Finder에 제외되었기에 뺀다.
-            var unSelectedItem = items.Where(x => x.Item.UUID != node.ItemUUID && x.Item.UUID != node2.ItemUUID).First();
+            var unSelectedItem = items.Where(x => x.Item.ID != node.ItemID && x.Item.ID != node2.ItemID).First();
             var newStock = CreateIOStockWrapper();
             newStock.Item = unSelectedItem.Item;
             newStock.Specification = unSelectedItem.Specification;
@@ -162,7 +162,7 @@ namespace R54IN0.Test
             Assert.IsTrue(iowd.CreateCollection(stockTypeAll).Contains(newStock));
 
             //위 상황과 반대인 경우
-            var selectedItem = items.Where(x => x.Item.UUID == itemw.UUID).First();
+            var selectedItem = items.Where(x => x.Item.ID == itemw.ID).First();
             newStock = CreateIOStockWrapper();
             newStock.Item = selectedItem.Item;
             newStock.Specification = selectedItem.Specification;
@@ -176,8 +176,8 @@ namespace R54IN0.Test
         /// 검색 가능 키워드는? 
         /// Item, Specification Property만 가능하다. (Binary Search 기준)
         /// item - Currency(필요없), Measure(필요없), Maker
-        /// Item - Specification->ItemUUID
-        /// Item - InventoryItemUUID - Warehouse
+        /// Item - Specification->ItemID
+        /// Item - InventoryItemID - Warehouse
         /// </summary>
         [TestMethod]
         public void SearchAsDateAndKeyword()
@@ -187,7 +187,7 @@ namespace R54IN0.Test
             CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
             StockWrapperDirector.Distory();
-            DatabaseDirector.Distroy();
+            LexDb.Distroy();
             new DYDummyDbData().Create();
 
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
@@ -260,7 +260,7 @@ namespace R54IN0.Test
             CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
             StockWrapperDirector.Distory();
-            DatabaseDirector.Distroy();
+            LexDb.Distroy();
             new DYDummyDbData().Create();
 
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();

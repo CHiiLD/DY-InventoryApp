@@ -89,7 +89,7 @@ namespace R54IN0.Test
             Assert.IsNotNull(evm.ItemList);
             evm.Item = evm.ItemList.Random();
 
-            Assert.IsTrue(evm.SpecificationList.All(x => x.Field.ItemUUID == node.ItemUUID));
+            Assert.IsTrue(evm.SpecificationList.All(x => x.Field.ItemID == node.ItemID));
             Assert.IsNotNull(evm.Item);
             Assert.IsNotNull(evm.Maker);
             Assert.IsNotNull(evm.Measure);
@@ -218,7 +218,7 @@ namespace R54IN0.Test
 
             var result = evm.Update();
 
-            Assert.IsNotNull(result.UUID);
+            Assert.IsNotNull(result.ID);
             Assert.IsTrue(vm.Items.Any(x => x == result));
             Assert.AreEqual(remark, result.Remark);
             Assert.AreEqual(stockCnt, result.Quantity);
@@ -283,7 +283,7 @@ namespace R54IN0.Test
             {
                 evm.Item = item;
                 evm.Specification = evm.SpecificationList.Random();
-                var inven = iwd.CreateCollection().Where(x => x.Specification.UUID == evm.Specification.UUID).SingleOrDefault();
+                var inven = iwd.CreateCollection().Where(x => x.Specification.ID == evm.Specification.ID).SingleOrDefault();
                 if (inven != null)
                 {
                     Assert.IsNotNull(evm.Warehouse);
@@ -315,7 +315,7 @@ namespace R54IN0.Test
             var iostockw = StockWrapperDirector.GetInstance().CreateCollection(StockType.INCOMING).Random();
             iostockw.Quantity = 10;
 
-            var invenw = InventoryWrapperDirector.GetInstance().CreateCollection().Where(x => x.Specification.UUID == iostockw.Specification.UUID).Single();
+            var invenw = InventoryWrapperDirector.GetInstance().CreateCollection().Where(x => x.Specification.ID == iostockw.Specification.ID).Single();
             invenw.Quantity = 20;
 
             var evm = new StockWrapperEditorViewModel(vm, iostockw);
@@ -332,7 +332,7 @@ namespace R54IN0.Test
             iostockw = StockWrapperDirector.GetInstance().CreateCollection(StockType.OUTGOING).Random();
             iostockw.Quantity = 10;
 
-            invenw = InventoryWrapperDirector.GetInstance().CreateCollection().Where(x => x.Specification.UUID == iostockw.Specification.UUID).Single();
+            invenw = InventoryWrapperDirector.GetInstance().CreateCollection().Where(x => x.Specification.ID == iostockw.Specification.ID).Single();
             invenw.Quantity = 20;
 
             evm = new StockWrapperEditorViewModel(vm, iostockw);
@@ -358,7 +358,7 @@ namespace R54IN0.Test
             StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
             var evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
-            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Where(x => x.ItemUUID == dummy.UnregisterdTestItemUUID).Single();
+            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Where(x => x.ItemID == dummy.UnregisterdTestItemID).Single();
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(new List<FinderNode>() { node }, new List<FinderNode>()));
             var item = evm.Item = evm.ItemList.Random();
             var spec = evm.Specification = evm.SpecificationList.Random();
@@ -369,8 +369,8 @@ namespace R54IN0.Test
 
             var iwd = InventoryWrapperDirector.GetInstance();
             //새로이 등록된 재고 데이터를 확인
-            Assert.IsTrue(ivm.Items.Any(x => x.Specification.UUID == result.Specification.UUID));
-            Assert.IsTrue(iwd.CreateCollection().Any(x => x.Specification.UUID == result.Specification.UUID));
+            Assert.IsTrue(ivm.Items.Any(x => x.Specification.ID == result.Specification.ID));
+            Assert.IsTrue(iwd.CreateCollection().Any(x => x.Specification.ID == result.Specification.ID));
         }
 
         /// <summary>

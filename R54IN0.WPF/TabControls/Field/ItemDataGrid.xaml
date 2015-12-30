@@ -37,8 +37,8 @@
                                 <ComboBox ItemsSource="{Binding AllMaker}" 
                                           DisplayMemberPath="Name"
                                           SelectedItem="{Binding SelectedMaker, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                          SelectedValuePath="UUID"  
-                                          SelectedValue="{Binding SelectedMaker.UUID, Mode=OneWay}"/>
+                                          SelectedValuePath="ID"  
+                                          SelectedValue="{Binding SelectedMaker.ID, Mode=OneWay}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -49,8 +49,8 @@
                                 <ComboBox ItemsSource="{Binding AllMeasure}" 
                                           DisplayMemberPath="Name"
                                           SelectedItem="{Binding SelectedMeasure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                          SelectedValuePath="UUID"  
-                                          SelectedValue="{Binding SelectedMeasure.UUID, Mode=OneWay}"/>
+                                          SelectedValuePath="ID"  
+                                          SelectedValue="{Binding SelectedMeasure.ID, Mode=OneWay}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -61,8 +61,8 @@
                                 <ComboBox ItemsSource="{Binding AllCurrency}" 
                                           DisplayMemberPath="Name"
                                           SelectedItem="{Binding SelectedCurrency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                          SelectedValuePath="UUID"  
-                                          SelectedValue="{Binding SelectedCurrency.UUID, Mode=OneWay}"/>
+                                          SelectedValuePath="ID"  
+                                          SelectedValue="{Binding SelectedCurrency.ID, Mode=OneWay}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

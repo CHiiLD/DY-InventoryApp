@@ -24,16 +24,16 @@ namespace R54IN0
             List<ItemWrapper> itemWrapperList = new List<ItemWrapper>();
             foreach (SpecificationWrapper specification in specifications)
             {
-                if (iwd.SearchAsSpecificationKey(specification.UUID) == null)
+                if (iwd.SearchAsSpecificationKey(specification.ID) == null)
                 {
-                    ItemWrapper itemw = fwd.BinSearch<Item, ItemWrapper>(specification.Field.ItemUUID);
+                    ItemWrapper itemw = fwd.BinSearch<Item, ItemWrapper>(specification.Field.ItemID);
                     if (itemw != null && !itemw.IsDeleted)
                         itemWrapperList.Add(itemw);
                 }
             }
             ItemList = itemWrapperList.Distinct(); //겹치는 데이터를 제거하여 ItemList에 대입
 
-            WarehouseList = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>().Where(x => !x.IsDeleted);
+            WarehouseList = fwd.CreateCollection<Warehouse, Observable<Warehouse>>().Where(x => !x.IsDeleted);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace R54IN0
 
             ItemList = new ItemWrapper[] { Item };
             SpecificationList = new SpecificationWrapper[] { Specification };
-            WarehouseList = FieldWrapperDirector.GetInstance().CreateCollection<Warehouse, FieldWrapper<Warehouse>>().Where(x => !x.IsDeleted);
+            WarehouseList = FieldWrapperDirector.GetInstance().CreateCollection<Warehouse, Observable<Warehouse>>().Where(x => !x.IsDeleted);
         }
 
         public IEnumerable<ItemWrapper> ItemList
@@ -64,7 +64,7 @@ namespace R54IN0
             set;
         }
 
-        public IEnumerable<FieldWrapper<Warehouse>> WarehouseList
+        public IEnumerable<Observable<Warehouse>> WarehouseList
         {
             get;
             set;
@@ -91,9 +91,9 @@ namespace R54IN0
                     var fwd = FieldWrapperDirector.GetInstance();
                     var iwd = InventoryWrapperDirector.GetInstance();
                     IEnumerable<SpecificationWrapper> specws = fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
-                    specws = specws.Where(x => x.Field.ItemUUID == base.Item.UUID);
+                    specws = specws.Where(x => x.Field.ItemID == base.Item.ID);
                     List<SpecificationWrapper> list = new List<SpecificationWrapper>();
-                    List<InventoryWrapper> invenws = iwd.SearchAsItemKey(base.Item.UUID);
+                    List<InventoryWrapper> invenws = iwd.SearchAsItemKey(base.Item.ID);
                     foreach (SpecificationWrapper specw in specws)
                     {
                         if (invenws == null || invenws.All(x => x.Specification != specw))

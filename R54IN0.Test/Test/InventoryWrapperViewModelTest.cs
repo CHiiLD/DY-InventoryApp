@@ -30,13 +30,13 @@ namespace R54IN0.Test
             InventoryWrapperViewModel vm2 = new InventoryWrapperViewModel(sub);
 
             var itemws = FieldWrapperDirector.GetInstance().CreateCollection<Item, ItemWrapper>();
-            var itemw = itemws.Where(x => x.UUID == dummy.UnregisterdTestItemUUID).Single();
+            var itemw = itemws.Where(x => x.ID == dummy.UnregisterdTestItemID).Single();
             var specws = FieldWrapperDirector.GetInstance().CreateCollection<Specification, SpecificationWrapper>();
 
             Inventory inven = new Inventory();
             InventoryWrapper invenw = new InventoryWrapper(inven);
             invenw.Item = itemw;
-            invenw.Specification = specws.Where(x => x.Field.ItemUUID == itemw.UUID).First();
+            invenw.Specification = specws.Where(x => x.Field.ItemID == itemw.ID).First();
             invenw.Quantity = 1010;
             invenw.Remark = "hehehehe";
 
@@ -71,7 +71,7 @@ namespace R54IN0.Test
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
             Assert.AreEqual(1, fvm.SelectedNodes.Count);
 
-            Assert.IsTrue(iwvm.Items.All(x => x.Item.UUID == node.ItemUUID));
+            Assert.IsTrue(iwvm.Items.All(x => x.Item.ID == node.ItemID));
 
             //FinderViewModel에 여러개의 아이템을 선택
             FinderNode node2 = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).LastOrDefault();
@@ -80,7 +80,7 @@ namespace R54IN0.Test
             fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list2, list));
             Assert.AreEqual(2, fvm.SelectedNodes.Count);
 
-            Assert.IsTrue(iwvm.Items.All(x => x.Item.UUID == node.ItemUUID || x.Item.UUID == node2.ItemUUID));
+            Assert.IsTrue(iwvm.Items.All(x => x.Item.ID == node.ItemID || x.Item.ID == node2.ItemID));
         }
 
         /// <summary>
@@ -96,17 +96,17 @@ namespace R54IN0.Test
             ItemWrapperViewModel ivm = new ItemWrapperViewModel(sub);
 
             var invenw = iwvm.Items.ElementAt(new Random().Next(iwvm.Items.Count - 1));
-            var itemw = ivm.SelectedItem = ivm.Items.Where(x => x.UUID == invenw.Item.UUID).Single();
-            var specw = ivm.SelectedSpecification = ivm.Specifications.Where(x => x.UUID == invenw.Specification.UUID).Single();
+            var itemw = ivm.SelectedItem = ivm.Items.Where(x => x.ID == invenw.Item.ID).Single();
+            var specw = ivm.SelectedSpecification = ivm.Specifications.Where(x => x.ID == invenw.Specification.ID).Single();
 
             Random r = new Random();
             var fwd = FieldWrapperDirector.GetInstance();
-            ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
-            ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
-            ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
+            ObservableCollection<Observable<Measure>> measCollectoin = fwd.CreateCollection<Measure, Observable<Measure>>();
+            ObservableCollection<Observable<Currency>> currCollectoin = fwd.CreateCollection<Currency, Observable<Currency>>();
+            ObservableCollection<Observable<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, Observable<Employee>>();
             ObservableCollection<ClientWrapper> accoCollectoin = fwd.CreateCollection<Client, ClientWrapper>();
-            ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
-            ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
+            ObservableCollection<Observable<Maker>> makeCollectoin = fwd.CreateCollection<Maker, Observable<Maker>>();
+            ObservableCollection<Observable<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, Observable<Warehouse>>();
 
             itemw.Name = "멘도롱또똣";
             itemw.SelectedCurrency = currCollectoin.Random();
@@ -159,7 +159,7 @@ namespace R54IN0.Test
         public void CreateItemButNotSetMakerThenCreateIOStockThenAgainLoad()
         {
             //모든 디비 데이터 삭제
-            using (var db = DatabaseDirector.GetDbInstance())
+            using (var db = LexDb.GetDbInstance())
             {
                 db.Purge();
             }
@@ -176,7 +176,7 @@ namespace R54IN0.Test
             InventoryWrapperViewModel invm = new InventoryWrapperViewModel(sub);
             //아이템 새로 생성 하지만 Maker 프로퍼티는 설정 하지 아니함
             ivm.AddNewItemCommand.Execute(null);
-            Assert.IsFalse(fwd.CreateCollection<Specification, SpecificationWrapper>().Any(x => x.Field.ItemUUID == null));
+            Assert.IsFalse(fwd.CreateCollection<Specification, SpecificationWrapper>().Any(x => x.Field.ItemID == null));
             //입고 데이터 생성 .. 재고에 데이터가 없을테니 재고도 같이 생성됨
             StockWrapperEditorViewModel evm = new StockWrapperEditorViewModel(svm);
             //FINDER 생성
@@ -203,7 +203,7 @@ namespace R54IN0.Test
             invm = new InventoryWrapperViewModel(sub);
 
             //품목의 여러 프로퍼티 호출 
-            itemw = ivm.Items.Where(x => x.UUID == itemw.UUID).Single();
+            itemw = ivm.Items.Where(x => x.ID == itemw.ID).Single();
             var ac = itemw.AllCurrency;
             var ac1 = itemw.AllMaker;
             var ac2 = itemw.AllMeasure;
@@ -211,7 +211,7 @@ namespace R54IN0.Test
             Assert.IsNull(itemw.SelectedMaker);
             Assert.IsNull(itemw.SelectedMeasure);
 
-            var invenw = invm.Items.Where(x => x.Specification.UUID == specw.UUID).Single();
+            var invenw = invm.Items.Where(x => x.Specification.ID == specw.ID).Single();
             Assert.IsNull(invenw.Maker);
             Assert.IsNull(invenw.Measure);
             Assert.IsNull(invenw.Currency);
@@ -236,7 +236,7 @@ namespace R54IN0.Test
             InventoryWrapperViewModel ivm = new InventoryWrapperViewModel(sub);
             FinderViewModel fvm = ivm.CreateFinderViewModel(null);
 
-            var list = new List<FinderNode>() { fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.ItemUUID == newItem.UUID)).Single() };
+            var list = new List<FinderNode>() { fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.ItemID == newItem.ID)).Single() };
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
 
             InventoryWrapperEditorViewModel ievm = new InventoryWrapperEditorViewModel(ivm);
@@ -246,7 +246,7 @@ namespace R54IN0.Test
             ievm.Update();
 
             Assert.AreEqual(1, ivm.Items.Count);
-            Assert.IsTrue(ivm.Items.First().Item.UUID == newItem.UUID);
+            Assert.IsTrue(ivm.Items.First().Item.ID == newItem.ID);
         }
     }
 }

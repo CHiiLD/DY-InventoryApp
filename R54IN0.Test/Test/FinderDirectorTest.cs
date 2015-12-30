@@ -27,9 +27,9 @@ namespace R54IN0.Test
             var collection = df.Collection;
             collection.Clear();
             FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "D" };
-            FinderNode item1 = new FinderNode(NodeType.ITEM) { Name = "I1", ItemUUID = "1" };
-            FinderNode item2 = new FinderNode(NodeType.ITEM) { Name = "I2", ItemUUID = "2" };
-            FinderNode item11 = new FinderNode(NodeType.ITEM) { Name = "I11", ItemUUID = "3" };
+            FinderNode item1 = new FinderNode(NodeType.ITEM) { Name = "I1", ItemID = "1" };
+            FinderNode item2 = new FinderNode(NodeType.ITEM) { Name = "I2", ItemID = "2" };
+            FinderNode item11 = new FinderNode(NodeType.ITEM) { Name = "I11", ItemID = "3" };
             root.Nodes.Add(item1);
             root.Nodes.Add(item2);
             item1.Nodes.Add(item11);

@@ -42,16 +42,16 @@ namespace R54IN0.Test
             var fwd = FieldWrapperDirector.GetInstance();
             ObservableCollection<ItemWrapper> itemCollectoin = fwd.CreateCollection<Item, ItemWrapper>();
             ObservableCollection<SpecificationWrapper> specCollectoin = fwd.CreateCollection<Specification, SpecificationWrapper>();
-            ObservableCollection<FieldWrapper<Measure>> measCollectoin = fwd.CreateCollection<Measure, FieldWrapper<Measure>>();
-            ObservableCollection<FieldWrapper<Currency>> currCollectoin = fwd.CreateCollection<Currency, FieldWrapper<Currency>>();
-            ObservableCollection<FieldWrapper<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, FieldWrapper<Employee>>();
+            ObservableCollection<Observable<Measure>> measCollectoin = fwd.CreateCollection<Measure, Observable<Measure>>();
+            ObservableCollection<Observable<Currency>> currCollectoin = fwd.CreateCollection<Currency, Observable<Currency>>();
+            ObservableCollection<Observable<Employee>> eeplCollectoin = fwd.CreateCollection<Employee, Observable<Employee>>();
             ObservableCollection<ClientWrapper> accoCollectoin = fwd.CreateCollection<Client, ClientWrapper>();
-            ObservableCollection<FieldWrapper<Maker>> makeCollectoin = fwd.CreateCollection<Maker, FieldWrapper<Maker>>();
-            ObservableCollection<FieldWrapper<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
+            ObservableCollection<Observable<Maker>> makeCollectoin = fwd.CreateCollection<Maker, Observable<Maker>>();
+            ObservableCollection<Observable<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, Observable<Warehouse>>();
 
             var type = ioStockws.StockType == StockType.INCOMING ? StockType.OUTGOING : StockType.INCOMING;
             var specw = ioStockws.Specification = specCollectoin.Random();
-            var itemw = ioStockws.Item = itemCollectoin.Where(x => x.UUID == specw.Field.ItemUUID).Single();
+            var itemw = ioStockws.Item = itemCollectoin.Where(x => x.ID == specw.Field.ItemID).Single();
             var itemCnt = ioStockws.Quantity = 20332;
             var date = ioStockws.Date = DateTime.Now.AddTicks(2000000221);
             var accountw = ioStockws.Client = accoCollectoin.Random();
@@ -63,19 +63,19 @@ namespace R54IN0.Test
             CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
             StockWrapperDirector.Distory();
-            DatabaseDirector.Distroy();
+            LexDb.Distroy();
 
             iowd = StockWrapperDirector.GetInstance();
             collection = iowd.CreateCollection(StockType.ALL);
-            var target = collection.Where(x => x.UUID == ioStockws.UUID).Single();
+            var target = collection.Where(x => x.ID == ioStockws.ID).Single();
 
             Assert.AreNotEqual(ioStockws, target);
-            Assert.AreEqual(specw.UUID, target.Specification.UUID);
-            Assert.AreEqual(itemw.UUID, target.Item.UUID);
+            Assert.AreEqual(specw.ID, target.Specification.ID);
+            Assert.AreEqual(itemw.ID, target.Item.ID);
             Assert.AreEqual(0, date.CompareTo(target.Date));
-            Assert.AreEqual(accountw.UUID, target.Client.UUID);
-            Assert.AreEqual(eemployeew.UUID, target.Employee.UUID);
-            //Assert.AreEqual(warehousew.UUID, target.Warehouse.UUID);
+            Assert.AreEqual(accountw.ID, target.Client.ID);
+            Assert.AreEqual(eemployeew.ID, target.Employee.ID);
+            //Assert.AreEqual(warehousew.ID, target.Warehouse.ID);
             Assert.AreEqual(remark, target.Remark);
         }
     }

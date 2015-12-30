@@ -17,11 +17,11 @@ namespace R54IN0.Test
             CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
             StockWrapperDirector.Distory();
-            using (var db = DatabaseDirector.GetDbInstance())
+            using (var db = LexDb.GetDbInstance())
             {
                 db.Purge();
             }
-            DatabaseDirector.Distroy();
+            LexDb.Distroy();
 
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             InventoryWrapperViewModel iwvm = new InventoryWrapperViewModel(sub);
@@ -51,7 +51,7 @@ namespace R54IN0.Test
             Assert.IsNotNull(helper.Specification);
 
             var fwd = FieldWrapperDirector.GetInstance();
-            var warews = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
+            var warews = fwd.CreateCollection<Warehouse, Observable<Warehouse>>();
 
             var itemCnt = helper.Quantity = 201;
             var warew = helper.Warehouse = warews.First() == helper.Warehouse ? warews.Last() : warews.First();
@@ -64,13 +64,13 @@ namespace R54IN0.Test
             Assert.IsTrue(iwd.Contains(item));
 
             // Clone 했을 때의 db데이터들이 삭제됨을 예상
-            using (var db = DatabaseDirector.GetDbInstance())
+            using (var db = LexDb.GetDbInstance())
             {
                 int invenCnt = db.LoadAll<Inventory>().Count();
                 Assert.AreEqual(invenCnt, iwvm.Items.Count);
             }
 
-            var replaceItem = iwvm.Items.Where(x => x.UUID == item.UUID).Single();
+            var replaceItem = iwvm.Items.Where(x => x.ID == item.ID).Single();
 
             Assert.AreEqual(itemCnt, replaceItem.Quantity);
             Assert.AreEqual(warew, replaceItem.Warehouse);
@@ -105,7 +105,7 @@ namespace R54IN0.Test
 
             var coll = InventoryWrapperDirector.GetInstance().CreateCollection();
             foreach (var spec in allSpecws)
-                Assert.IsFalse(coll.Any(x => x.Specification.UUID == spec.UUID));
+                Assert.IsFalse(coll.Any(x => x.Specification.ID == spec.ID));
 
             var selectedSpec = hel.Specification = allSpecws.FirstOrDefault();
 
@@ -116,7 +116,7 @@ namespace R54IN0.Test
 
                 var invenw = hel.Update();
 
-                Assert.IsNotNull(invenw.UUID);
+                Assert.IsNotNull(invenw.ID);
 
                 var addItem = iwvm.Items.Last();
 
@@ -153,7 +153,7 @@ namespace R54IN0.Test
 
             Assert.AreEqual(invenw.Warehouse, warew);
 
-            var result = svm.Items.Where(x => x.Specification.UUID == specw.UUID);
+            var result = svm.Items.Where(x => x.Specification.ID == specw.ID);
             Assert.IsTrue(result.All(x => x.Warehouse == warew));
         }
 
@@ -164,7 +164,7 @@ namespace R54IN0.Test
         public void CreateItemButNotSetMakerThenCreateInvenThenAgainLoad()
         {
             //모든 디비 데이터 삭제
-            using (var db = DatabaseDirector.GetDbInstance())
+            using (var db = LexDb.GetDbInstance())
             {
                 db.Purge();
             }
@@ -181,7 +181,7 @@ namespace R54IN0.Test
             //ItemFinderViewModel fvm = new ItemFinderViewModel(null);
             //아이템 새로 생성 하지만 Maker 프로퍼티는 설정 하지 아니함
             ivm.AddNewItemCommand.Execute(null);
-            Assert.IsFalse(fwd.CreateCollection<Specification, SpecificationWrapper>().Any(x => x.Field.ItemUUID == null));
+            Assert.IsFalse(fwd.CreateCollection<Specification, SpecificationWrapper>().Any(x => x.Field.ItemID == null));
             //입고 데이터 생성 .. 재고에 데이터가 없을테니 재고도 같이 생성됨
             InventoryWrapperEditorViewModel evm = new InventoryWrapperEditorViewModel(invm);
             var itemw = evm.Item = evm.ItemList.First();
@@ -206,7 +206,7 @@ namespace R54IN0.Test
             Assert.AreEqual(1, fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Count());
 
             //품목의 여러 프로퍼티 호출 
-            itemw = ivm.Items.Where(x => x.UUID == itemw.UUID).Single();
+            itemw = ivm.Items.Where(x => x.ID == itemw.ID).Single();
             var ac = itemw.AllCurrency;
             var ac1 = itemw.AllMaker;
             var ac2 = itemw.AllMeasure;
@@ -214,7 +214,7 @@ namespace R54IN0.Test
             Assert.IsNull(itemw.SelectedMaker);
             Assert.IsNull(itemw.SelectedMeasure);
 
-            var invenw = invm.Items.Where(x => x.Specification.UUID == specw.UUID).Single();
+            var invenw = invm.Items.Where(x => x.Specification.ID == specw.ID).Single();
             Assert.IsNull(invenw.Maker);
             Assert.IsNull(invenw.Measure);
             Assert.IsNull(invenw.Currency);

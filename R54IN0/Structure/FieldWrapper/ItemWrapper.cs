@@ -8,11 +8,11 @@ using System.Collections.ObjectModel;
 
 namespace R54IN0
 {
-    public class ItemWrapper : FieldWrapper<Item>, ICollectionViewModelObserver
+    public class ItemWrapper : Observable<Item>, ICollectionViewModelObserver
     {
-        FieldWrapper<Measure> _measure;
-        FieldWrapper<Currency> _currency;
-        FieldWrapper<Maker> _maker;
+        Observable<Measure> _measure;
+        Observable<Currency> _currency;
+        Observable<Maker> _maker;
 
         CollectionViewModelObserverSubject _subject;
 
@@ -59,7 +59,7 @@ namespace R54IN0
             }
         }
 
-        public FieldWrapper<Measure> SelectedMeasure
+        public Observable<Measure> SelectedMeasure
         {
             get
             {
@@ -68,13 +68,13 @@ namespace R54IN0
             set
             {
                 _measure = value;
-                Field.MeasureUUID = (_measure != null ? _measure.UUID : null);
+                Field.MeasureID = (_measure != null ? _measure.ID : null);
                 Field.Save<Item>();
                 OnPropertyChanged("SelectedMeasure");
             }
         }
 
-        public FieldWrapper<Maker> SelectedMaker
+        public Observable<Maker> SelectedMaker
         {
             get
             {
@@ -83,13 +83,13 @@ namespace R54IN0
             set
             {
                 _maker = value;
-                Field.MakerUUID = (_maker != null ? _maker.UUID : null);
+                Field.MakerID = (_maker != null ? _maker.ID : null);
                 Field.Save<Item>();
                 OnPropertyChanged("SelectedMaker");
             }
         }
 
-        public FieldWrapper<Currency> SelectedCurrency
+        public Observable<Currency> SelectedCurrency
         {
             get
             {
@@ -98,25 +98,25 @@ namespace R54IN0
             set
             {
                 _currency = value;
-                Field.CurrencyUUID = (_currency != null ? _currency.UUID : null);
+                Field.CurrencyID = (_currency != null ? _currency.ID : null);
                 Field.Save<Item>();
                 OnPropertyChanged("SelectedCurrency");
             }
         }
 
-        public ObservableCollection<FieldWrapper<Maker>> AllMaker
+        public ObservableCollection<Observable<Maker>> AllMaker
         {
             get;
             private set;
         }
 
-        public ObservableCollection<FieldWrapper<Measure>> AllMeasure
+        public ObservableCollection<Observable<Measure>> AllMeasure
         {
             get;
             private set;
         }
 
-        public ObservableCollection<FieldWrapper<Currency>> AllCurrency
+        public ObservableCollection<Observable<Currency>> AllCurrency
         {
             get;
             private set;
@@ -125,20 +125,20 @@ namespace R54IN0
         void LoadEnumerableProperies()
         {
             var fwd = FieldWrapperDirector.GetInstance();
-            AllMaker = new ObservableCollection<FieldWrapper<Maker>>(
-                fwd.CreateCollection<Maker, FieldWrapper<Maker>>().Where(x => !x.IsDeleted));
-            AllMeasure = new ObservableCollection<FieldWrapper<Measure>>(
-                fwd.CreateCollection<Measure, FieldWrapper<Measure>>().Where(x => !x.IsDeleted));
-            AllCurrency = new ObservableCollection<FieldWrapper<Currency>>(
-                fwd.CreateCollection<Currency, FieldWrapper<Currency>>().Where(x => !x.IsDeleted));
+            AllMaker = new ObservableCollection<Observable<Maker>>(
+                fwd.CreateCollection<Maker, Observable<Maker>>().Where(x => !x.IsDeleted));
+            AllMeasure = new ObservableCollection<Observable<Measure>>(
+                fwd.CreateCollection<Measure, Observable<Measure>>().Where(x => !x.IsDeleted));
+            AllCurrency = new ObservableCollection<Observable<Currency>>(
+                fwd.CreateCollection<Currency, Observable<Currency>>().Where(x => !x.IsDeleted));
         }
 
         void LoadProperties(Item item)
         {
             var fwd = FieldWrapperDirector.GetInstance();
-            _measure = AllMeasure.Where(x => x.UUID == item.MeasureUUID).SingleOrDefault();
-            _currency = AllCurrency.Where(x => x.UUID == item.CurrencyUUID).SingleOrDefault();
-            _maker = AllMaker.Where(x => x.UUID == item.MakerUUID).SingleOrDefault();
+            _measure = AllMeasure.Where(x => x.ID == item.MeasureID).SingleOrDefault();
+            _currency = AllCurrency.Where(x => x.ID == item.CurrencyID).SingleOrDefault();
+            _maker = AllMaker.Where(x => x.ID == item.MakerID).SingleOrDefault();
         }
 
         /// <summary>
@@ -149,33 +149,33 @@ namespace R54IN0
         public void UpdateNewItem(object item)
         {
             Type type = item.GetType();
-            if (type == typeof(FieldWrapper<Measure>))
-                AllMeasure.Add(item as FieldWrapper<Measure>);
-            else if (type == typeof(FieldWrapper<Currency>))
-                AllCurrency.Add(item as FieldWrapper<Currency>);
-            else if (type == typeof(FieldWrapper<Maker>))
-                AllMaker.Add(item as FieldWrapper<Maker>);
+            if (type == typeof(Observable<Measure>))
+                AllMeasure.Add(item as Observable<Measure>);
+            else if (type == typeof(Observable<Currency>))
+                AllCurrency.Add(item as Observable<Currency>);
+            else if (type == typeof(Observable<Maker>))
+                AllMaker.Add(item as Observable<Maker>);
         }
 
         public void UpdateDelItem(object item)
         {
             Type type = item.GetType();
 
-            if (type == typeof(FieldWrapper<Measure>))
+            if (type == typeof(Observable<Measure>))
             {
-                AllMeasure.Remove(item as FieldWrapper<Measure>);
+                AllMeasure.Remove(item as Observable<Measure>);
                 if (SelectedMeasure == item)
                     SelectedMeasure = null;
             }
-            else if (type == typeof(FieldWrapper<Currency>))
+            else if (type == typeof(Observable<Currency>))
             {
-                AllCurrency.Remove(item as FieldWrapper<Currency>);
+                AllCurrency.Remove(item as Observable<Currency>);
                 if (SelectedCurrency == item)
                     SelectedCurrency = null;
             }
-            else if (type == typeof(FieldWrapper<Maker>))
+            else if (type == typeof(Observable<Maker>))
             {
-                AllMaker.Remove(item as FieldWrapper<Maker>);
+                AllMaker.Remove(item as Observable<Maker>);
                 if (SelectedMaker == item)
                     SelectedMaker = null;
             }

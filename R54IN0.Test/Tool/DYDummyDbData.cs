@@ -190,7 +190,7 @@ namespace R54IN0.Test
 
         void CreatItem()
         {
-            using (var db = DatabaseDirector.GetDbInstance())
+            using (var db = LexDb.GetDbInstance())
             {
                 Currency[] currencies = db.LoadAll<Currency>();
                 Measure[] measures = db.LoadAll<Measure>();
@@ -202,9 +202,9 @@ namespace R54IN0.Test
 
                     var item = new Item()
                     {
-                        CurrencyUUID = currencies.Random().UUID,
-                        MeasureUUID = measures.Random().UUID,
-                        MakerUUID = makers.Random().UUID,
+                        CurrencyID = currencies.Random().ID,
+                        MeasureID = measures.Random().ID,
+                        MakerID = makers.Random().ID,
                         Name = itemname
                     }.Save<Item>();
 
@@ -212,7 +212,7 @@ namespace R54IN0.Test
                     {
                         new Specification()
                         {
-                            ItemUUID = item.UUID,
+                            ItemID = item.ID,
                             PurchaseUnitPrice = _random.Next(1000, 1000000),
                             SalesUnitPrice = _random.Next(1000, 1000000),
                             Name = specName,
@@ -225,7 +225,7 @@ namespace R54IN0.Test
         int CreateInventory(int min = 4, int max = 50)
         {
             int cnt = 0;
-            using (var db = DatabaseDirector.GetDbInstance())
+            using (var db = LexDb.GetDbInstance())
             {
                 Client[] clients = db.LoadAll<Client>();
                 Employee[] employees = db.LoadAll<Employee>();
@@ -237,10 +237,10 @@ namespace R54IN0.Test
                 {
                     var inventory = new Inventory()
                     {
-                        ItemUUID = spec.ItemUUID,
+                        ItemID = spec.ItemID,
                         Quantity = _random.Next(200, 500),
-                        SpecificationUUID = spec.UUID,
-                        WarehouseUUID = warehouses.Random().UUID
+                        SpecificationID = spec.ID,
+                        WarehouseID = warehouses.Random().ID
                     }.Save<Inventory>();
 
                     DateTime date = DateTime.Now;
@@ -250,11 +250,11 @@ namespace R54IN0.Test
                         new InOutStock()
                         {
                             Date = date.AddDays(_random.NextDouble() * -300.0),
-                            EmployeeUUID = employees.Random().UUID,
-                            InventoryUUID = inventory.UUID,
-                            EnterpriseUUID = clients.Random().UUID,
-                            ItemUUID = spec.ItemUUID,
-                            SpecificationUUID = spec.UUID,
+                            EmployeeID = employees.Random().ID,
+                            InventoryID = inventory.ID,
+                            EnterpriseID = clients.Random().ID,
+                            ItemID = spec.ItemID,
+                            SpecificationID = spec.ID,
                             Quantity = _random.Next(1, 1000),
                             StockType = _random.Next(0, 2) == 0 ? StockType.INCOMING : StockType.OUTGOING,
                         }.Save<InOutStock>();
@@ -266,7 +266,7 @@ namespace R54IN0.Test
 
         public DYDummyDbData Create(int min = 4, int max = 50)
         {
-            using (var db = DatabaseDirector.GetDbInstance())
+            using (var db = LexDb.GetDbInstance())
                 db.Purge();
             CreateClient();
             CreateEmployee();

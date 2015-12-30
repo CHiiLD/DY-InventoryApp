@@ -12,7 +12,7 @@ namespace R54IN0
         StockWrapper _target;
         IEnumerable<ItemWrapper> _itemList;
         IEnumerable<SpecificationWrapper> _specificationList;
-        IEnumerable<FieldWrapper<Warehouse>> _warehouseList;
+        IEnumerable<Observable<Warehouse>> _warehouseList;
 
         /// <summary>
         /// 새로운 InOutStock 데이터를 추가하고자 할 때 쓰이는 생성자입니다.
@@ -38,7 +38,7 @@ namespace R54IN0
             //수정할 데이터를 변경할 수 없도록 고정
             ItemList = new ItemWrapper[] { _target.Item };
             SpecificationList = new SpecificationWrapper[] { _target.Specification };
-            WarehouseList = new FieldWrapper<Warehouse>[] { _target.Warehouse };
+            WarehouseList = new Observable<Warehouse>[] { _target.Warehouse };
 
             Item = ItemList.First();
             Specification = SpecificationList.First();
@@ -52,7 +52,7 @@ namespace R54IN0
             StockTypeList = viewModel.StockType == StockType.ALL ?
                 new StockType[] { StockType.INCOMING, StockType.OUTGOING } : new StockType[] { viewModel.StockType };
             ClientList = fwd.CreateCollection<Client, ClientWrapper>().Where(x => !x.IsDeleted);
-            EmployeeList = fwd.CreateCollection<Employee, FieldWrapper<Employee>>().Where(x => !x.IsDeleted);
+            EmployeeList = fwd.CreateCollection<Employee, Observable<Employee>>().Where(x => !x.IsDeleted);
             StockType = viewModel.StockType == StockType.ALL ? StockType.INCOMING : viewModel.StockType;
         }
 
@@ -70,7 +70,7 @@ namespace R54IN0
                     Specification = null;
                     var fwd = FieldWrapperDirector.GetInstance();
                     var specws = fwd.CreateCollection<Specification, SpecificationWrapper>().Where(x => !x.IsDeleted);
-                    SpecificationList = specws.Where(x => x.Field.ItemUUID == base.Item.UUID);
+                    SpecificationList = specws.Where(x => x.Field.ItemID == base.Item.ID);
                 }
             }
         }
@@ -90,16 +90,16 @@ namespace R54IN0
                     //기존의 Inventory 데이터가 존재할 경우 Inventory의 Warehouse 데이터를 고정하고 
                     //없으면 Warehouse 리스트에서 선택하게 한다.
                     InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
-                    var inven = iwd.SearchAsSpecificationKey(base.Specification.UUID);
+                    var inven = iwd.SearchAsSpecificationKey(base.Specification.ID);
                     if (inven != null) //리스트 고정
                     {
-                        WarehouseList = new FieldWrapper<Warehouse>[] { inven.Warehouse };
+                        WarehouseList = new Observable<Warehouse>[] { inven.Warehouse };
                         Warehouse = inven.Warehouse;
                     }
                     else //리스트 업데이트
                     {
                         var fwd = FieldWrapperDirector.GetInstance();
-                        WarehouseList = fwd.CreateCollection<Warehouse, FieldWrapper<Warehouse>>();
+                        WarehouseList = fwd.CreateCollection<Warehouse, Observable<Warehouse>>();
                         Warehouse = null;
                     }
                 }
@@ -134,11 +134,11 @@ namespace R54IN0
 
         public IEnumerable<ClientWrapper> ClientList { get; private set; }
 
-        public IEnumerable<FieldWrapper<Employee>> EmployeeList { get; private set; }
+        public IEnumerable<Observable<Employee>> EmployeeList { get; private set; }
 
         public IEnumerable<StockType> StockTypeList { get; private set; }
 
-        public IEnumerable<FieldWrapper<Warehouse>> WarehouseList
+        public IEnumerable<Observable<Warehouse>> WarehouseList
         {
             get
             {
@@ -170,7 +170,7 @@ namespace R54IN0
                 throw new Exception("리스트박스에서 규격을 선택하세요.");
 
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
-            InventoryWrapper invenw = iwd.SearchAsSpecificationKey(Specification.UUID);
+            InventoryWrapper invenw = iwd.SearchAsSpecificationKey(Specification.ID);
             StockWrapper stockw = null;
             
             if (invenw != null) 
@@ -182,10 +182,10 @@ namespace R54IN0
             {
                 //새로운 재고를 등록
                 Inventory inven = new Inventory();
-                inven.ItemUUID = this.Item.UUID;
-                inven.SpecificationUUID = this.Specification.UUID;
+                inven.ItemID = this.Item.ID;
+                inven.SpecificationID = this.Specification.ID;
                 inven.Quantity = this.InventoryQuantity;
-                inven.WarehouseUUID = this.Warehouse != null ? this.Warehouse.UUID : null;
+                inven.WarehouseID = this.Warehouse != null ? this.Warehouse.ID : null;
                 invenw = new InventoryWrapper(inven);
                 CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(invenw); //순서의 주의 
                 iwd.Add(invenw); //순서의 주의 
@@ -198,7 +198,7 @@ namespace R54IN0
             }
             else //새로운 InOutStock 데이터의 추가 코드
             {
-                InOutStock.InventoryUUID = invenw.UUID;
+                InOutStock.InventoryID = invenw.ID;
                 stockw = new StockWrapper(InOutStock);
                 _viewModel.Add(stockw);
             }
@@ -221,7 +221,7 @@ namespace R54IN0
                 var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
                 var fwd = FieldWrapperDirector.GetInstance();
                 foreach (var itemNode in itemNodes)
-                    items.Add(fwd.BinSearch<Item, ItemWrapper>(itemNode.ItemUUID));
+                    items.Add(fwd.BinSearch<Item, ItemWrapper>(itemNode.ItemID));
                 Item = null;
                 Specification = null;
                 SpecificationList = null;

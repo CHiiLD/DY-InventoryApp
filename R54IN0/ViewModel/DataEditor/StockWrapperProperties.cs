@@ -9,7 +9,7 @@ namespace R54IN0
     public class StockWrapperProperties : InventoryWrapperProperties, IStockViewModelProperties
     {
         StockWrapper _target;
-        FieldWrapper<Employee> _employee;
+        Observable<Employee> _employee;
         ClientWrapper _client;
 
         public InOutStock InOutStock
@@ -69,7 +69,7 @@ namespace R54IN0
             set
             {
                 _client = value;
-                InOutStock.EnterpriseUUID = _client.UUID;
+                InOutStock.EnterpriseID = _client.ID;
                 OnPropertyChanged("Client");
             }
         }
@@ -86,7 +86,7 @@ namespace R54IN0
                 OnPropertyChanged("Date");
             }
         }
-        public FieldWrapper<Employee> Employee
+        public Observable<Employee> Employee
         {
             get
             {
@@ -95,12 +95,12 @@ namespace R54IN0
             set
             {
                 _employee = value;
-                InOutStock.EmployeeUUID = _employee != null ? _employee.UUID : null;
+                InOutStock.EmployeeID = _employee != null ? _employee.ID : null;
                 OnPropertyChanged("Employee");
             }
         }
 
-        public override FieldWrapper<Warehouse> Warehouse
+        public override Observable<Warehouse> Warehouse
         {
             get
             {
@@ -134,7 +134,7 @@ namespace R54IN0
                 if (Specification == null)
                     return Quantity;
                 var iwd = InventoryWrapperDirector.GetInstance();
-                InventoryWrapper invenw = iwd.SearchAsSpecificationKey(Specification.UUID);
+                InventoryWrapper invenw = iwd.SearchAsSpecificationKey(Specification.ID);
                 if (invenw == null)
                     return StockType == StockType.INCOMING ? Quantity : -Quantity; //Inventory 데이터가 없는 경우 입출고 수량으로 표현(출고는 물건이 나가는 것임으로 마이너스 연산으로 반환)
                 

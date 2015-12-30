@@ -93,7 +93,7 @@ namespace R54IN0
             }
             //Finder에 목록이 클릭되어 있는 경우
             var itemNodes = FinderViewModel.SelectedNodes.SelectMany(rn => rn.Descendants().Where(x => x.Type == NodeType.ITEM));
-            if (itemNodes.Any(n => n.ItemUUID == ioStockw.Item.UUID))
+            if (itemNodes.Any(n => n.ItemID == ioStockw.Item.ID))
             {
                 if (!Items.Contains(ioStockw))
                     Items.Add(ioStockw);
@@ -128,9 +128,9 @@ namespace R54IN0
 
             IEnumerable<StockWrapper> stockws = null;
             if (itemws != null)
-                stockws = itemws.SelectMany(itemw => swd.SearchAsItemkey(itemw.UUID));
+                stockws = itemws.SelectMany(itemw => swd.SearchAsItemkey(itemw.ID));
             else if (invenws != null)
-                stockws = invenws.SelectMany(invenw => swd.SearchAsInventoryKey(invenw.UUID));
+                stockws = invenws.SelectMany(invenw => swd.SearchAsInventoryKey(invenw.ID));
             else
                 return null;
             foreach (var stockw in stockws)

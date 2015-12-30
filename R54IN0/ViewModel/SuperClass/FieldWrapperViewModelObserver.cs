@@ -5,8 +5,8 @@ using System.Linq;
 namespace R54IN0
 {
     public abstract class FieldWrapperViewModelObserver<FieldT, WrapperT> : CollectionViewModelObserver<WrapperT>
-        where FieldT : class, IField
-        where WrapperT : class, IFieldWrapper
+        where FieldT : class, IField, new()
+        where WrapperT : class, IObservableField
     {
         protected FieldWrapperDirector fieldWrapperDirector;
 

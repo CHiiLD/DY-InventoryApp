@@ -12,7 +12,7 @@ namespace R54IN0
     public class StockWrapper : ProductWrapper<InOutStock>
     {
         ClientWrapper _client;
-        FieldWrapper<Employee> _eeployee;
+        Observable<Employee> _eeployee;
         InventoryWrapper _inventory;
 
         public StockWrapper()
@@ -29,7 +29,7 @@ namespace R54IN0
         {
             get
             {
-                return Product.ItemUUID.Substring(0, 6).ToUpper();
+                return Product.ItemID.Substring(0, 6).ToUpper();
             }
         }
 
@@ -56,13 +56,13 @@ namespace R54IN0
             set
             {
                 _client = value;
-                Product.EnterpriseUUID = (_client != null ? _client.UUID : null);
+                Product.EnterpriseID = (_client != null ? _client.ID : null);
                 Product.Save<InOutStock>();
                 OnPropertyChanged("Client");
             }
         }
 
-        public FieldWrapper<Employee> Employee
+        public Observable<Employee> Employee
         {
             get
             {
@@ -71,7 +71,7 @@ namespace R54IN0
             set
             {
                 _eeployee = value;
-                Product.EmployeeUUID = (_eeployee != null ? _eeployee.UUID : null);
+                Product.EmployeeID = (_eeployee != null ? _eeployee.ID : null);
                 Product.Save<InOutStock>();
                 OnPropertyChanged("Employee");
             }
@@ -91,7 +91,7 @@ namespace R54IN0
             }
         }
 
-        public override FieldWrapper<Warehouse> Warehouse
+        public override Observable<Warehouse> Warehouse
         {
             get
             {
@@ -112,7 +112,7 @@ namespace R54IN0
             set
             {
                 _inventory = value;
-                Product.InventoryUUID = (_inventory != null ? _inventory.UUID : null);
+                Product.InventoryID = (_inventory != null ? _inventory.ID : null);
                 Product.Save<InOutStock>();
                 if (_inventory != null)
                     _inventory.PropertyChanged += OnInventoryPropertyChanged;
@@ -131,10 +131,10 @@ namespace R54IN0
         {
             base.SetProperies(stock);
             FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
-            _client = fwd.BinSearch<Client, ClientWrapper>(stock.EnterpriseUUID);
-            _eeployee = fwd.BinSearch<Employee, FieldWrapper<Employee>>(stock.EmployeeUUID);
+            _client = fwd.BinSearch<Client, ClientWrapper>(stock.EnterpriseID);
+            _eeployee = fwd.BinSearch<Employee, Observable<Employee>>(stock.EmployeeID);
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
-            _inventory = iwd.BinSearch(Product.InventoryUUID);
+            _inventory = iwd.BinSearch(Product.InventoryID);
             if (_inventory != null)
                 _inventory.PropertyChanged += OnInventoryPropertyChanged;
         }

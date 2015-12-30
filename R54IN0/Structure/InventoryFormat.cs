@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace R54IN0
+{
+    public class InventoryFormat : IID
+    {
+        /// <summary>
+        /// 범용식별자
+        /// </summary>
+        public string ID { get; set; }
+
+        /// <summary>
+        /// 제품의 규격 이름
+        /// </summary>
+        public virtual string Specification { get; set; }
+
+        /// <summary>
+        /// 적재 수량
+        /// </summary>
+        public virtual int Quantity { get; set; }
+
+        /// <summary>
+        /// 비고
+        /// </summary>
+        public virtual string Memo { get; set; }
+
+        /// <summary>
+        /// 제품 범용식별자
+        /// </summary>
+        public string ProductID { get; set; }
+
+        /// <summary>
+        /// 제조사 범용식별자
+        /// </summary>
+        public string MakerID { get; set; }
+
+        /// <summary>
+        /// 화폐 범위식별자
+        /// </summary>
+        public string CurrencyID { get; set; }
+
+        /// <summary>
+        /// 단위 범위식별자
+        /// </summary>
+        public string MeasureID { get; set; }
+
+        public InventoryFormat()
+        {
+        }
+
+        /// <summary>
+        /// 복사생성자
+        /// </summary>
+        /// <param name="thiz"></param>
+        public InventoryFormat(InventoryFormat thiz)
+        {
+            ID = thiz.ID;
+            Specification = thiz.Specification;
+            Quantity = thiz.Quantity;
+            Memo = thiz.Memo;
+            ProductID = thiz.ProductID;
+            MakerID = thiz.MakerID;
+            CurrencyID = thiz.CurrencyID;
+            MeasureID = thiz.MeasureID;
+        }
+    }
+}

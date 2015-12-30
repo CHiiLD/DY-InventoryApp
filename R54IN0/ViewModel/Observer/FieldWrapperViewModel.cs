@@ -8,7 +8,7 @@ namespace R54IN0
     public class FieldWrapperViewModel<FieldT, WrapperT> : FieldWrapperViewModelObserver<FieldT, WrapperT>,
         INotifyPropertyChanged, ICollectionViewModel<WrapperT>
         where FieldT : class, IField, new()
-        where WrapperT : class, IFieldWrapper, new()
+        where WrapperT : class, IObservableField, new()
     {
         ObservableCollection<WrapperT> _items;
         WrapperT _selectedItem;

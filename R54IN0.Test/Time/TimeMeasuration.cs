@@ -12,7 +12,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void DbSaveLoadDuration()
         {
-            using (var db = DatabaseDirector.GetDbInstance())
+            using (var db = LexDb.GetDbInstance())
             {
                 db.Purge();
             }
@@ -28,7 +28,7 @@ namespace R54IN0.Test
             sw.Start();
             Console.WriteLine("데이터베이스 불러오기 테스트 시작: ");
             InOutStock[] invens = null;
-            using (var db = DatabaseDirector.GetDbInstance())
+            using (var db = LexDb.GetDbInstance())
             {
                 invens = db.LoadAll<InOutStock>();
             }
@@ -44,7 +44,7 @@ namespace R54IN0.Test
             CollectionViewModelObserverSubject.Distory();
             FinderDirector.Distroy();
             StockWrapperDirector.Distory();
-            DatabaseDirector.Distroy();
+            LexDb.Distroy();
         }
 
         [TestMethod]
