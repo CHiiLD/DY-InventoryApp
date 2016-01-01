@@ -59,7 +59,7 @@ namespace R54IN0.WPF
 
         void AllDbDataPurgeMenu_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = DatabaseDirector.GetDbInstance())
+            using (var db = LexDb.GetDbInstance())
             {
                 db.Purge();
             }

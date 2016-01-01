@@ -1,16 +1,15 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Collections.Generic;
-using System.Windows.Controls;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 
 namespace R54IN0
 {
     public class StockWrapperViewModel : ItemSourceViewModel<StockWrapper>, INotifyPropertyChanged, IFinderViewModelOnSelectingCallback
     {
-        ObservableCollection<StockWrapper> _items;
-        StockType _stockType;
+        private ObservableCollection<StockWrapper> _items;
+        private StockType _stockType;
 
         protected StockWrapperDirector stockDirector;
 
@@ -60,7 +59,6 @@ namespace R54IN0
             }
         }
 
-     
         public override void Add(StockWrapper item)
         {
             base.Add(item);
@@ -74,6 +72,7 @@ namespace R54IN0
         }
 
 #if true
+
         /// <summary>
         /// 기존의 TDD 코드들과 연동을 위한 메서드
         /// 실제로는 사용하지 아니한다.
@@ -93,6 +92,7 @@ namespace R54IN0
                 }
             }
         }
+
 #endif
 
         public void OnFinderViewSelectItemChanged(object sender, EventArgs e)

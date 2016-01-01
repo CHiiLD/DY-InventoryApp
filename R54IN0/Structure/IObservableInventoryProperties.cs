@@ -9,8 +9,7 @@ namespace R54IN0
         int Quantity { get; set; }
         string Specification { get; set; }
         Observable<Product> Product { get; set; }
-        Observable<Maker> Maker { get; set; }
-        Observable<Currency> Currency { get; set; }
         Observable<Measure> Measure { get; set; }
+        Observable<Maker> Maker { get; set; }
     }
 }

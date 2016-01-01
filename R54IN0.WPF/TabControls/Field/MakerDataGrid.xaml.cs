@@ -17,13 +17,13 @@ namespace R54IN0.WPF
 {
     public partial class MakerDataGrid : UserControl
     {
-        FieldWrapperViewModel<Maker, FieldWrapper<Maker>> _viewModel;
+        FieldWrapperViewModel<Maker, Observable<Maker>> _viewModel;
 
         public MakerDataGrid()
         {
             InitializeComponent();
             CollectionViewModelObserverSubject subject = CollectionViewModelObserverSubject.GetInstance();
-            _viewModel = new FieldWrapperViewModel<Maker, FieldWrapper<Maker>>(subject);
+            _viewModel = new FieldWrapperViewModel<Maker, Observable<Maker>>(subject);
             DataContext = _viewModel;
         }
     }

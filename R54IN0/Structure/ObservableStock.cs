@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace R54IN0
 {
     public class ObservableStock : IObservableStockProperties
     {
-        StockFormat _fmt;
-        Observable<Customer> _customer;
-        Observable<Supplier> _supplier;
-        Observable<Employee> _employee;
-        Observable<Project> _project;
-        IObservableInventoryProperties _inven;
-        PropertyChangedEventHandler _propertyChanged;
+        private StockFormat _fmt;
+        private Observable<Customer> _customer;
+        private Observable<Supplier> _supplier;
+        private Observable<Employee> _employee;
+        private Observable<Project> _project;
+
+        private IObservableInventoryProperties _inven;
+        private PropertyChangedEventHandler _propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -48,7 +45,6 @@ namespace R54IN0
             _supplier = ofd.Search<Supplier>(stock.SupplierID);
             _employee = ofd.Search<Employee>(stock.EmployeeID);
             _project = ofd.Search<Project>(stock.ProjectID);
-
             var oid = ObservableInvenDirector.GetInstance();
             _inven = oid.Search(stock.InventoryItemID);
         }
@@ -101,7 +97,6 @@ namespace R54IN0
             }
         }
 
-
         /// <summary>
         /// 입고 또는 출고 수량
         /// </summary>
@@ -135,7 +130,7 @@ namespace R54IN0
         }
 
         /// <summary>
-        /// 거래처 
+        /// 거래처
         /// </summary>
         public Observable<Customer> Customer
         {

@@ -8,11 +8,11 @@ namespace R54IN0
 {
     public class StockWrapperEditorViewModel : StockWrapperProperties, IFinderViewModelCreatation
     {
-        StockWrapperViewModel _viewModel;
-        StockWrapper _target;
-        IEnumerable<ItemWrapper> _itemList;
-        IEnumerable<SpecificationWrapper> _specificationList;
-        IEnumerable<Observable<Warehouse>> _warehouseList;
+        private StockWrapperViewModel _viewModel;
+        private StockWrapper _target;
+        private IEnumerable<ItemWrapper> _itemList;
+        private IEnumerable<SpecificationWrapper> _specificationList;
+        private IEnumerable<Observable<Warehouse>> _warehouseList;
 
         /// <summary>
         /// 새로운 InOutStock 데이터를 추가하고자 할 때 쓰이는 생성자입니다.
@@ -84,10 +84,10 @@ namespace R54IN0
             set
             {
                 base.Specification = value;
-                //새로운 InOutStock 데이터를 추가하고자할 때 규격데이터를 선택하였다면 
+                //새로운 InOutStock 데이터를 추가하고자할 때 규격데이터를 선택하였다면
                 if (_target == null && base.Specification != null)
                 {
-                    //기존의 Inventory 데이터가 존재할 경우 Inventory의 Warehouse 데이터를 고정하고 
+                    //기존의 Inventory 데이터가 존재할 경우 Inventory의 Warehouse 데이터를 고정하고
                     //없으면 Warehouse 리스트에서 선택하게 한다.
                     InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
                     var inven = iwd.SearchAsSpecificationKey(base.Specification.ID);
@@ -172,13 +172,13 @@ namespace R54IN0
             InventoryWrapperDirector iwd = InventoryWrapperDirector.GetInstance();
             InventoryWrapper invenw = iwd.SearchAsSpecificationKey(Specification.ID);
             StockWrapper stockw = null;
-            
-            if (invenw != null) 
+
+            if (invenw != null)
             {
                 //재고의 개수를 수정
                 invenw.Quantity = InventoryQuantity;
             }
-            else 
+            else
             {
                 //새로운 재고를 등록
                 Inventory inven = new Inventory();
@@ -187,8 +187,8 @@ namespace R54IN0
                 inven.Quantity = this.InventoryQuantity;
                 inven.WarehouseID = this.Warehouse != null ? this.Warehouse.ID : null;
                 invenw = new InventoryWrapper(inven);
-                CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(invenw); //순서의 주의 
-                iwd.Add(invenw); //순서의 주의 
+                CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(invenw); //순서의 주의
+                iwd.Add(invenw); //순서의 주의
             }
 
             if (_target != null) //InOutStock 데이터의 수정 코드

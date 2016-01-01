@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -8,18 +7,18 @@ namespace R54IN0
 {
     public class InventoryWrapperDirector
     {
-        static InventoryWrapperDirector _thiz;
-        List<InventoryWrapper> _list;
-        SortedDictionary<string, InventoryWrapper> _IDDic;
-        SortedDictionary<string, InventoryWrapper> _specificationKeyDic;
-        MultiSortedDictionary<string, InventoryWrapper> _itemKeyDic;
+        private static InventoryWrapperDirector _thiz;
+        private List<InventoryWrapper> _list;
+        private SortedDictionary<string, InventoryWrapper> _IDDic;
+        private SortedDictionary<string, InventoryWrapper> _specificationKeyDic;
+        private MultiSortedDictionary<string, InventoryWrapper> _itemKeyDic;
 
-        InventoryWrapperDirector()
+        private InventoryWrapperDirector()
         {
             InitCollection();
         }
 
-        void InitCollection()
+        private void InitCollection()
         {
             _list = new List<InventoryWrapper>();
             _IDDic = new SortedDictionary<string, InventoryWrapper>();

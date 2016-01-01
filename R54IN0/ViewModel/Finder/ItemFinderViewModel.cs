@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows.Controls.DragNDrop;
-using System.Windows.Controls;
-using System.Windows.Input;
-using Newtonsoft.Json;
-using Lex.Db;
 using System.Diagnostics;
+using System.Linq;
+using System.Windows.Controls;
 
 namespace R54IN0
 {
     public class ItemFinderViewModel : FinderViewModel
     {
-        FinderDirector _finderDirector;
+        private FinderDirector _finderDirector;
 
         public ItemFinderViewModel(TreeViewEx treeView) : base(treeView)
         {

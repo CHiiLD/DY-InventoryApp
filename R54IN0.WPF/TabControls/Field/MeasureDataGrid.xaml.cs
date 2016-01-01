@@ -17,13 +17,13 @@ namespace R54IN0.WPF
 {
     public partial class MeasureDataGrid : UserControl
     {
-        FieldWrapperViewModel<Measure, FieldWrapper<Measure>> _viewModel;
+        FieldWrapperViewModel<Measure, Observable<Measure>> _viewModel;
 
         public MeasureDataGrid()
         {
             InitializeComponent();
             CollectionViewModelObserverSubject subject = CollectionViewModelObserverSubject.GetInstance();
-            _viewModel = new FieldWrapperViewModel<Measure, FieldWrapper<Measure>>(subject);
+            _viewModel = new FieldWrapperViewModel<Measure, Observable<Measure>>(subject);
             DataContext = _viewModel;
         }
     }

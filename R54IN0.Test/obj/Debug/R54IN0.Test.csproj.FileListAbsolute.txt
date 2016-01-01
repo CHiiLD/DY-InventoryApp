@@ -87,6 +87,11 @@ C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\R54IN0.Test.dll
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\R54IN0.Test.pdb
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Lex.Db.dll
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.core.dll
+C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.core.interfaces.dll
+C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.framework.dll
+C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.util.dll
+C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\NUnit.VisualStudio.TestAdapter.dll
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\R54IN0.dll
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\TreeViewEx.dll
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Lex.Db.pdb
@@ -94,12 +99,7 @@ C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\R54IN0.pdb
 C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\TreeViewEx.pdb
+C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.framework.xml
 C:\Users\Child\Github\R54IN0\R54IN0.Test\obj\Debug\R54IN0.Test.csprojResolveAssemblyReference.cache
 C:\Users\Child\Github\R54IN0\R54IN0.Test\obj\Debug\R54IN0.Test.dll
 C:\Users\Child\Github\R54IN0\R54IN0.Test\obj\Debug\R54IN0.Test.pdb
-C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.core.dll
-C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.core.interfaces.dll
-C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.framework.dll
-C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.util.dll
-C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\NUnit.VisualStudio.TestAdapter.dll
-C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.framework.xml

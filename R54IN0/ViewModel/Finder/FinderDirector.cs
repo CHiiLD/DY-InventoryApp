@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using Newtonsoft.Json;
+using System.Linq;
 
 namespace R54IN0
 {
@@ -25,11 +23,11 @@ namespace R54IN0
 
     public class FinderDirector
     {
-        const string JSON_TREE_KEY = "JSON_TREE_KEY";
-        static FinderDirector _thiz;
-        ObservableCollection<FinderNode> _nodes;
+        private const string JSON_TREE_KEY = "JSON_TREE_KEY";
+        private static FinderDirector _thiz;
+        private ObservableCollection<FinderNode> _nodes;
 
-        FinderDirector()
+        private FinderDirector()
         {
             LoadTree();
             Refresh();
@@ -79,7 +77,7 @@ namespace R54IN0
 
             return
                 _nodes.Any(x => x.Descendants().Contains(node)) || //이미 자식루트에서 가지고 있는 경우
-                _nodes.Contains(node) || //ROOT에서 가지고 있을 경우 
+                _nodes.Contains(node) || //ROOT에서 가지고 있을 경우
                _nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Any(x => x.ItemID == node.ItemID); //동일한 item 유니크키를 가지고 있는 경우
         }
 
@@ -132,7 +130,7 @@ namespace R54IN0
             }
         }
 
-        void LoadTree()
+        private void LoadTree()
         {
             using (var db = LexDb.GetDbInstance())
             {

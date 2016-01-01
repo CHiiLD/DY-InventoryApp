@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\App.xaml
-162024592798
+20-360926770
 
-272137898640
-2245356
-InventoryEditorWindow.xaml;IOStockEditorWindow.xaml;TabControls\Field\AccountDataGrid.xaml;TabControls\Field\ItemManager.xaml;TabControls\Field\MakerDataGrid.xaml;TabControls\Field\WarehouseDataGrid.xaml;TabControls\Field\EmployeeDataGrid.xaml;TabControls\Field\CurrencyDataGrid.xaml;TabControls\Field\MeasureDataGrid.xaml;TabControls\Field\ItemDataGrid.xaml;TabControls\Stock\InOutStockManager.xaml;TabControls\Stock\InOutStockDataGrid.xaml;TabControls\Inventory\InventoryManager.xaml;TabControls\Inventory\InventoryDataGrid.xaml;FinderControl\Finder.xaml;MainWindow.xaml;
+321432818633
+231250655561
+Controls\InoutStock\InoutStockGroupDataGrid.xaml;Controls\Inventory\InventoryManagement.xaml;InventoryEditorWindow.xaml;IOStockEditorWindow.xaml;TabControls\Field\AccountDataGrid.xaml;TabControls\Field\ItemManager.xaml;TabControls\Field\MakerDataGrid.xaml;TabControls\Field\WarehouseDataGrid.xaml;TabControls\Field\EmployeeDataGrid.xaml;TabControls\Field\CurrencyDataGrid.xaml;TabControls\Field\MeasureDataGrid.xaml;TabControls\Field\ItemDataGrid.xaml;TabControls\Stock\InOutStockManager.xaml;TabControls\Stock\InOutStockDataGrid.xaml;TabControls\Inventory\InventoryManager.xaml;TabControls\Inventory\InventoryDataGrid.xaml;FinderControl\Finder.xaml;MainWindow.xaml;Window2.xaml;Window3.xaml;
 
 True
 

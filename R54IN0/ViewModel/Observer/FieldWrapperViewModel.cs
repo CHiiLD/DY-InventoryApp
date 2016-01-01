@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 
@@ -10,8 +9,8 @@ namespace R54IN0
         where FieldT : class, IField, new()
         where WrapperT : class, IObservableField, new()
     {
-        ObservableCollection<WrapperT> _items;
-        WrapperT _selectedItem;
+        private ObservableCollection<WrapperT> _items;
+        private WrapperT _selectedItem;
 
         public FieldWrapperViewModel(CollectionViewModelObserverSubject sub) : base(sub)
         {

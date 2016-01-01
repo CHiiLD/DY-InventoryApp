@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lex.Db;
+﻿using Lex.Db;
+using System;
 
 namespace R54IN0
 {
@@ -35,15 +31,11 @@ namespace R54IN0
         }
     }
 
-
-
-
     public class CustomLexDb : DbInstance, IDisposable
     {
         public CustomLexDb(string root, string path = null)
             : base(root, path)
         {
-
         }
 
         public void InitializeIndex()
@@ -116,12 +108,11 @@ namespace R54IN0
             WithIndex("Name", i => i.Name).
             WithIndex("IsDeleted", i => i.IsDeleted);
             me.Map<InventoryFormat>().Automap(i => i.ID).
-            WithIndex("CurrencyID", i => i.CurrencyID).
-            WithIndex("MakerID", i => i.MakerID).
             WithIndex("MeasureID", i => i.MeasureID).
             WithIndex("ProductID", i => i.ProductID).
             WithIndex("Specification", i => i.Specification).
             WithIndex("Memo", i => i.Memo).
+            WithIndex("MakerID", i => i.MakerID).
             WithIndex("Quantity", i => i.Quantity);
 
             me.Map<StockFormat>().Automap(i => i.ID).
@@ -146,8 +137,6 @@ namespace R54IN0
 
         public new void Dispose()
         {
-
         }
     }
-
 }

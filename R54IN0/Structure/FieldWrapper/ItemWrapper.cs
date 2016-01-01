@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace R54IN0
 {
     public class ItemWrapper : Observable<Item>, ICollectionViewModelObserver
     {
-        Observable<Measure> _measure;
-        Observable<Currency> _currency;
-        Observable<Maker> _maker;
+        private Observable<Measure> _measure;
+        private Observable<Currency> _currency;
+        private Observable<Maker> _maker;
 
-        CollectionViewModelObserverSubject _subject;
+        private CollectionViewModelObserverSubject _subject;
 
         public ItemWrapper() : base()
         {
@@ -122,7 +118,7 @@ namespace R54IN0
             private set;
         }
 
-        void LoadEnumerableProperies()
+        private void LoadEnumerableProperies()
         {
             var fwd = FieldWrapperDirector.GetInstance();
             AllMaker = new ObservableCollection<Observable<Maker>>(
@@ -133,7 +129,7 @@ namespace R54IN0
                 fwd.CreateCollection<Currency, Observable<Currency>>().Where(x => !x.IsDeleted));
         }
 
-        void LoadProperties(Item item)
+        private void LoadProperties(Item item)
         {
             var fwd = FieldWrapperDirector.GetInstance();
             _measure = AllMeasure.Where(x => x.ID == item.MeasureID).SingleOrDefault();
@@ -142,7 +138,7 @@ namespace R54IN0
         }
 
         /// <summary>
-        /// 새로운 Measure, Currency, Maker 랩핑 클래스가 추가될 경우, 
+        /// 새로운 Measure, Currency, Maker 랩핑 클래스가 추가될 경우,
         /// 각각의 리스트에 추가합니다.
         /// </summary>
         /// <param name="item"></param>

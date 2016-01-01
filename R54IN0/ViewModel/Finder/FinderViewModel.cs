@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Windows.Controls;
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace R54IN0
 {
     public class FinderViewModel : INotifyPropertyChanged
     {
-        ObservableCollection<FinderNode> _selectedNodes;
+        private ObservableCollection<FinderNode> _selectedNodes;
 
         public FinderViewModel(TreeViewEx treeView)
         {
@@ -42,6 +42,7 @@ namespace R54IN0
         public EventHandler SelectItemsChanged { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// TreeViewEx의 OnSelecting 이벤트와 연결
         /// </summary>

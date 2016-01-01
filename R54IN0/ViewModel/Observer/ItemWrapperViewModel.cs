@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.ComponentModel;
 using System.Windows.Controls;
 
 namespace R54IN0
 {
     public class ItemWrapperViewModel : FieldWrapperViewModel<Item, ItemWrapper>, IFinderViewModelCreatation
     {
-        SpecificationWrapperViewModel _specViewModel;
+        private SpecificationWrapperViewModel _specViewModel;
 
         public ItemWrapperViewModel(CollectionViewModelObserverSubject sub) : base(sub)
         {
@@ -153,7 +152,7 @@ namespace R54IN0
         public override void ExecuteSelectedItemDeletion(object parameter)
         {
             //품목을 삭제할 땐, 품목의 규격들도 같이 삭제한다.
-            foreach(var specw in new List<SpecificationWrapper>(Specifications))
+            foreach (var specw in new List<SpecificationWrapper>(Specifications))
             {
                 SelectedSpecification = specw;
                 _specViewModel.DeleteItemCommand.Execute(null);

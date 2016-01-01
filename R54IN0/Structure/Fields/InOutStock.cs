@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace R54IN0
 {
@@ -19,13 +15,14 @@ namespace R54IN0
         public int Quantity { get; set; }
         public string EnterpriseID { get; set; }
         public string EmployeeID { get; set; }
+
         //public string WarehouseID { get; set; }
         public string Remark { get; set; }
+
         public string InventoryID { get; set; }
 
         public InOutStock()
         {
-
         }
 
         public InOutStock(InOutStock thiz)

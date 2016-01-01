@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace R54IN0
 {
     public class CollectionViewModelObserverSubject
     {
-        static CollectionViewModelObserverSubject _thiz;
-        List<ICollectionViewModelObserver> _observers;
+        private static CollectionViewModelObserverSubject _thiz;
+        private List<ICollectionViewModelObserver> _observers;
 
-        CollectionViewModelObserverSubject()
+        private CollectionViewModelObserverSubject()
         {
             _observers = new List<ICollectionViewModelObserver>();
         }

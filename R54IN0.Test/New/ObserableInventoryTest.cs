@@ -25,8 +25,6 @@ namespace R54IN0.Test
             using (var db = LexDb.GetDbInstance())
                 db.Purge();
             ObservableInventory oinven = new ObservableInventory();
-            oinven.Currency = new Observable<Currency>() { Name = "doller" };
-            oinven.Maker = new Observable<Maker>() { Name = "maker name" };
             oinven.Measure = new Observable<Measure>() { Name = "EA" };
             oinven.Product = new Observable<Product>() { Name = "product name" };
             oinven.Memo = "memo";
@@ -39,8 +37,6 @@ namespace R54IN0.Test
 
             ObservableInventory newOinven = new ObservableInventory(invenFormat);
             Assert.AreEqual(oinven.ID, newOinven.ID);
-            Assert.AreEqual(oinven.Currency.ID, newOinven.Currency.ID);
-            Assert.AreEqual(oinven.Maker.ID, newOinven.Maker.ID);
             Assert.AreEqual(oinven.Measure.ID, newOinven.Measure.ID);
             Assert.AreEqual(oinven.Product.ID, newOinven.Product.ID);
             Assert.AreEqual(oinven.Memo, newOinven.Memo);

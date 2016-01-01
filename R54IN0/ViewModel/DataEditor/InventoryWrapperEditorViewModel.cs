@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace R54IN0
 {
     public class InventoryWrapperEditorViewModel : InventoryWrapperProperties
     {
-        InventoryWrapper _target;
-        InventoryWrapperViewModel _viewModel;
+        private InventoryWrapper _target;
+        private InventoryWrapperViewModel _viewModel;
 
         /// <summary>
         /// 새로운 Inventory 데이터를 추가하고자 할 생성자
@@ -114,7 +114,7 @@ namespace R54IN0
 
             Inventory inven = Stock as Inventory;
             InventoryWrapper invenw = null;
-            if (_target != null) //기존 데이터를 수정하고자 할 경우 
+            if (_target != null) //기존 데이터를 수정하고자 할 경우
             {
                 _target.Product = inven;
                 invenw = _target;

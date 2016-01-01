@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace R54IN0
+﻿namespace R54IN0
 {
     /// <summary>
     /// 품목
@@ -16,7 +14,6 @@ namespace R54IN0
 
         public Item()
         {
-
         }
 
         public Item(Item thiz)

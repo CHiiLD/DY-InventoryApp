@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.Linq;
 
 namespace R54IN0
 {
@@ -13,7 +7,7 @@ namespace R54IN0
     /// </summary>
     public class InventoryWrapper : ProductWrapper<Inventory>
     {
-        Observable<Warehouse> _warehouse;
+        private Observable<Warehouse> _warehouse;
 
         public InventoryWrapper() : base()
         {
@@ -38,6 +32,7 @@ namespace R54IN0
                 OnPropertyChanged("Warehouse");
             }
         }
+
         public string Code
         {
             get

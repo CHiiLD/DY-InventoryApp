@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace R54IN0
 {
     public class StockWrapperProperties : InventoryWrapperProperties, IStockViewModelProperties
     {
-        StockWrapper _target;
-        Observable<Employee> _employee;
-        ClientWrapper _client;
+        private StockWrapper _target;
+        private Observable<Employee> _employee;
+        private ClientWrapper _client;
 
         public InOutStock InOutStock
         {
@@ -86,6 +82,7 @@ namespace R54IN0
                 OnPropertyChanged("Date");
             }
         }
+
         public Observable<Employee> Employee
         {
             get
@@ -137,7 +134,7 @@ namespace R54IN0
                 InventoryWrapper invenw = iwd.SearchAsSpecificationKey(Specification.ID);
                 if (invenw == null)
                     return StockType == StockType.INCOMING ? Quantity : -Quantity; //Inventory 데이터가 없는 경우 입출고 수량으로 표현(출고는 물건이 나가는 것임으로 마이너스 연산으로 반환)
-                
+
                 if (_target == null) //새로운 데이터를 추가할 경우, Inventory의 수량 데이터와 가감연산을 하여 반환한다. (간단)
                     return StockType == StockType.INCOMING ? invenw.Quantity + Quantity : invenw.Quantity - Quantity;
                 else //기존의 데이터를 수정하고자 할 경우, 이 데이터를 추가하기 전 수량과, 수정 후 변동될 값을 계산하여 반환한다. (복잡)

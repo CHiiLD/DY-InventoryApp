@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace R54IN0
 {
     public class SearchStockWrapperViewModel : StockWrapperViewModel, IFieldSearchingWithDateTime, IFinderViewModelCreatation
     {
-        DateTime _fromDateTime;
-        DateTime _toDateTime;
+        private DateTime _fromDateTime;
+        private DateTime _toDateTime;
 
         public SearchStockWrapperViewModel(StockType type, CollectionViewModelObserverSubject subject) : base(type, subject)
         {
@@ -84,7 +82,7 @@ namespace R54IN0
             var ioStockw = item as StockWrapper;
             if (!StockType.HasFlag(ioStockw.StockType))
                 return;
-            //모든 목록인 경우 
+            //모든 목록인 경우
             if (FinderViewModel.SelectedNodes.Count() == 0 && stockDirector.Count(StockType) == Items.Count())
             {
                 if (!Items.Contains(ioStockw)) //base.UpdateNewItem를 사용할 수 없어서 더 상위의 base.UpdateNewItem메서드 내용을 씀
@@ -100,7 +98,7 @@ namespace R54IN0
             }
         }
 
-        List<StockWrapper> Search<T>(string keyword)
+        private List<StockWrapper> Search<T>(string keyword)
         {
             string[] keywords = null;
             if (!string.IsNullOrEmpty(keyword))
@@ -154,7 +152,7 @@ namespace R54IN0
             if (stockws == null)
                 Items = null;
 
-            //처음부터 끝까지 Date를 비교연산하여 찾기 -> O(N) 
+            //처음부터 끝까지 Date를 비교연산하여 찾기 -> O(N)
             //Date 정렬 + Date 찾기 -> O(logN) + O(N) = O(N)
             MultiSortedDictionary<DateTime, StockWrapper> dic = new MultiSortedDictionary<DateTime, StockWrapper>();
             foreach (var stockw in stockws)
@@ -187,7 +185,7 @@ namespace R54IN0
             }
         }
 
-        void ExecuteSearchCommand(object obj)
+        private void ExecuteSearchCommand(object obj)
         {
             SelectedItem = null;
             Items = null;
@@ -203,14 +201,14 @@ namespace R54IN0
                 throw new Exception();
         }
 
-        void ExecuteThisMonthSetCommand(object obj)
+        private void ExecuteThisMonthSetCommand(object obj)
         {
             var now = DateTime.Now;
             FromDateTime = new DateTime(now.Year, now.Month, 1, 0, 0, 0, 0, DateTimeKind.Local);
             ToDateTime = new DateTime(now.Year, now.Month, now.Day, 23, 59, 59, 999, DateTimeKind.Local);
         }
 
-        void ExecuteThisWorkSetCommand(object obj)
+        private void ExecuteThisWorkSetCommand(object obj)
         {
             var now = DateTime.Now;
             var work = now.AddDays(-(int)now.DayOfWeek);
@@ -218,19 +216,19 @@ namespace R54IN0
             ToDateTime = new DateTime(now.Year, now.Month, now.Day, 23, 59, 59, 999, DateTimeKind.Local);
         }
 
-        void ExecuteYesterdaySetCommand(object obj)
+        private void ExecuteYesterdaySetCommand(object obj)
         {
             var yesterday = DateTime.Now.AddDays(-1);
             FromDateTime = new DateTime(yesterday.Year, yesterday.Month, yesterday.Day, 0, 0, 0, 0, DateTimeKind.Local);
             ToDateTime = new DateTime(yesterday.Year, yesterday.Month, yesterday.Day, 23, 59, 59, 999, DateTimeKind.Local);
         }
 
-        bool ReturnTrue(object arg)
+        private bool ReturnTrue(object arg)
         {
             return true;
         }
 
-        void ExecuteTodaySetCommand(object obj)
+        private void ExecuteTodaySetCommand(object obj)
         {
             var now = DateTime.Now;
             FromDateTime = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0, 0, DateTimeKind.Local);

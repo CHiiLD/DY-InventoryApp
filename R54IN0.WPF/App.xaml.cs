@@ -17,7 +17,7 @@ namespace R54IN0.WPF
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             FinderDirector.Distroy();
-            DatabaseDirector.Distroy();
+            LexDb.Distroy();
         }
 
         private void Application_Startup(object sender, StartupEventArgs e)

@@ -3,7 +3,7 @@
     /// <summary>
     /// 제품명
     /// </summary>
-    public class Product :  IField
+    public class Product : IField
     {
         public string ID { get; set; }
         public string Name { get; set; }

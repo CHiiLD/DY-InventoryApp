@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace R54IN0
 {
     public class ObservableInvenDirector
     {
-        static ObservableInvenDirector _thiz;
-        SortedDictionary<string, ObservableInventory> _dic;
+        private static ObservableInvenDirector _thiz;
+        private SortedDictionary<string, ObservableInventory> _dic;
 
-        ObservableInvenDirector()
+        private ObservableInvenDirector()
         {
             _dic = new SortedDictionary<string, ObservableInventory>();
         }

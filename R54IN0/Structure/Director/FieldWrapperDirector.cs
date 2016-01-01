@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 
 namespace R54IN0
 {
     public class FieldWrapperDirector
     {
-        static FieldWrapperDirector _thiz;
-        Dictionary<Type, List<IObservableField>> _map;
-        SortedDictionary<string, IObservableField> _idDic;
+        private static FieldWrapperDirector _thiz;
+        private Dictionary<Type, List<IObservableField>> _map;
+        private SortedDictionary<string, IObservableField> _idDic;
 
-        FieldWrapperDirector()
+        private FieldWrapperDirector()
         {
             _map = new Dictionary<Type, List<IObservableField>>();
             _idDic = new SortedDictionary<string, IObservableField>();
@@ -103,7 +102,7 @@ namespace R54IN0
             return _idDic[ID] as WrapperT;
         }
 
-        void Load<FieldT, ObserableT>() where FieldT : class, IField, new() where ObserableT : class, IObservableField
+        private void Load<FieldT, ObserableT>() where FieldT : class, IField, new() where ObserableT : class, IObservableField
         {
             Type type = typeof(FieldT);
             _map[type] = new List<IObservableField>();

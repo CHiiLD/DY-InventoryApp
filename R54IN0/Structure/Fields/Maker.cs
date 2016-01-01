@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace R54IN0
+﻿namespace R54IN0
 {
-    public class Maker :  IField
+    public class Maker : IField
     {
         public string ID { get; set; }
         public string Name { get; set; }

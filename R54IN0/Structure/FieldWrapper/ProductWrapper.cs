@@ -1,14 +1,13 @@
-﻿using System.Linq;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace R54IN0
 {
     public abstract class ProductWrapper<ProductT> : IProductWrapper, INotifyPropertyChanged where ProductT : class, IStock, IID
     {
-        ProductT _product;
-        SpecificationWrapper _specification;
-        ItemWrapper _item;
-        PropertyChangedEventHandler _propertyChanged;
+        private ProductT _product;
+        private SpecificationWrapper _specification;
+        private ItemWrapper _item;
+        private PropertyChangedEventHandler _propertyChanged;
 
         public ProductWrapper()
         {

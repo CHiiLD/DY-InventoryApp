@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace R54IN0
+﻿namespace R54IN0
 {
     /// <summary>
     /// 거래처

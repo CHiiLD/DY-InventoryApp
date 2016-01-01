@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Lex.Db;
-using System.Diagnostics;
 using System.ComponentModel;
 
 namespace R54IN0
 {
     public class StockWrapper : ProductWrapper<InOutStock>
     {
-        ClientWrapper _client;
-        Observable<Employee> _eeployee;
-        InventoryWrapper _inventory;
+        private ClientWrapper _client;
+        private Observable<Employee> _eeployee;
+        private InventoryWrapper _inventory;
 
         public StockWrapper()
            : base()
@@ -121,7 +115,7 @@ namespace R54IN0
             }
         }
 
-        void OnInventoryPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void OnInventoryPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (sender == Inventory && e.PropertyName == "Warehouse")
                 OnPropertyChanged("Warehouse");

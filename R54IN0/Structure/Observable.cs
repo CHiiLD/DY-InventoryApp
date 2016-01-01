@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace R54IN0
 {
     public class Observable<T> : IObservableField, INotifyPropertyChanged where T : class, IField, new()
     {
-        T _t;
-        event PropertyChangedEventHandler _propertyChanged;
+        private T _t;
+
+        private event PropertyChangedEventHandler _propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
         {

@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.DragNDrop;
-using System.Windows;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
+using System.Windows.Input;
 
 namespace R54IN0
 {

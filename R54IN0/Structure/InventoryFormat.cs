@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace R54IN0
+﻿namespace R54IN0
 {
     public class InventoryFormat : IID
     {
@@ -41,33 +33,12 @@ namespace R54IN0
         public string MakerID { get; set; }
 
         /// <summary>
-        /// 화폐 범위식별자
-        /// </summary>
-        public string CurrencyID { get; set; }
-
-        /// <summary>
         /// 단위 범위식별자
         /// </summary>
         public string MeasureID { get; set; }
 
         public InventoryFormat()
         {
-        }
-
-        /// <summary>
-        /// 복사생성자
-        /// </summary>
-        /// <param name="thiz"></param>
-        public InventoryFormat(InventoryFormat thiz)
-        {
-            ID = thiz.ID;
-            Specification = thiz.Specification;
-            Quantity = thiz.Quantity;
-            Memo = thiz.Memo;
-            ProductID = thiz.ProductID;
-            MakerID = thiz.MakerID;
-            CurrencyID = thiz.CurrencyID;
-            MeasureID = thiz.MeasureID;
         }
     }
 }

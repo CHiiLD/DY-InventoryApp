@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using System.Windows.Media;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows.Media;
 
 namespace R54IN0
 {
     public class FinderNode : INotifyPropertyChanged
     {
-        NodeType _type;
-        string _name;
-        bool _isInEditMode;
-        string _itemID;
+        private NodeType _type;
+        private string _name;
+        private bool _isInEditMode;
+        private string _itemID;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -55,6 +52,7 @@ namespace R54IN0
                 }
             }
         }
+
         public string Name
         {
             get
@@ -76,8 +74,10 @@ namespace R54IN0
                 {
                     case NodeType.DIRECTORY:
                         return !IsInEditMode;
+
                     case NodeType.ITEM:
                         return true;
+
                     default:
                         throw new NotSupportedException();
                 }
@@ -92,8 +92,10 @@ namespace R54IN0
                 {
                     case NodeType.DIRECTORY:
                         return true;
+
                     case NodeType.ITEM:
                         return false;
+
                     default:
                         throw new NotSupportedException();
                 }
@@ -108,8 +110,10 @@ namespace R54IN0
                 {
                     case NodeType.DIRECTORY:
                         return true;
+
                     case NodeType.ITEM:
                         return false;
+
                     default:
                         throw new NotSupportedException();
                 }
@@ -124,8 +128,10 @@ namespace R54IN0
                 {
                     case NodeType.DIRECTORY:
                         return Brushes.Tan;
+
                     case NodeType.ITEM:
                         return Brushes.DeepPink;
+
                     default:
                         throw new NotSupportedException();
                 }
@@ -140,8 +146,10 @@ namespace R54IN0
                 {
                     case NodeType.DIRECTORY:
                         return _isInEditMode;
+
                     case NodeType.ITEM:
                         return false;
+
                     default:
                         throw new NotSupportedException();
                 }
@@ -166,7 +174,6 @@ namespace R54IN0
 
         public FinderNode(NodeType type) : this()
         {
-            
             if (type == NodeType.NONE)
                 throw new ArgumentException();
             Type = type;
@@ -179,9 +186,9 @@ namespace R54IN0
             ItemID = thiz.ItemID;
         }
 
-        void OnItemWrapperPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void OnItemWrapperPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == "Name" && Type == NodeType.ITEM)
+            if (e.PropertyName == "Name" && Type == NodeType.ITEM)
             {
                 var itemw = sender as ItemWrapper;
                 Name = itemw.Name;

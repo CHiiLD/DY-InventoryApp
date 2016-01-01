@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace R54IN0
+﻿namespace R54IN0
 {
     /// <summary>
     /// DB재고품목 기록 클래스

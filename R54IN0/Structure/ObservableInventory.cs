@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace R54IN0
 {
     public class ObservableInventory : IObservableInventoryProperties
     {
-        InventoryFormat _fmt;
-        Observable<Product> _product;
-        Observable<Maker> _maker;
-        Observable<Currency> _currency;
-        Observable<Measure> _measure;
-        PropertyChangedEventHandler _propertyChanged;
+        private InventoryFormat _fmt;
+        private Observable<Product> _product;
+        private Observable<Maker> _maker;
+        private Observable<Measure> _measure;
+        private PropertyChangedEventHandler _propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -44,9 +38,8 @@ namespace R54IN0
         {
             var ofd = ObservableFieldDirector.GetInstance();
             _product = ofd.Search<Product>(inventory.ProductID);
-            _maker = ofd.Search<Maker>(inventory.MakerID);
-            _currency = ofd.Search<Currency>(inventory.CurrencyID);
             _measure = ofd.Search<Measure>(inventory.MeasureID);
+            _maker = ofd.Search<Maker>(inventory.MakerID);
         }
 
         /// <summary>
@@ -115,40 +108,6 @@ namespace R54IN0
         }
 
         /// <summary>
-        /// 제조사
-        /// </summary>
-        public Observable<Maker> Maker
-        {
-            get
-            {
-                return _maker;
-            }
-            set
-            {
-                _fmt.MakerID = value != null ? value.ID : null;
-                _maker = value;
-                NotifyPropertyChanged("Maker");
-            }
-        }
-
-        /// <summary>
-        /// 화폐
-        /// </summary>
-        public Observable<Currency> Currency
-        {
-            get
-            {
-                return _currency;
-            }
-            set
-            {
-                _fmt.CurrencyID = value != null ? value.ID : null;
-                _currency = value;
-                NotifyPropertyChanged("Currency");
-            }
-        }
-
-        /// <summary>
         /// 단위
         /// </summary>
         public Observable<Measure> Measure
@@ -162,6 +121,23 @@ namespace R54IN0
                 _fmt.MeasureID = value != null ? value.ID : null;
                 _measure = value;
                 NotifyPropertyChanged("Measure");
+            }
+        }
+
+        /// <summary>
+        /// 제조사
+        /// </summary>
+        public Observable<Maker> Maker
+        {
+            get
+            {
+                return _maker;
+            }
+            set
+            {
+                _fmt.MakerID = value != null ? value.ID : null;
+                _maker = value;
+                NotifyPropertyChanged("Maker");
             }
         }
 

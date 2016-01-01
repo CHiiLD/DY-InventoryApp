@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 
 namespace R54IN0
 {
     public class StockWrapperDirector
     {
-        static StockWrapperDirector _thiz;
-        List<StockWrapper> _list;
-        MultiSortedDictionary<string, StockWrapper> _itemKeyDic;
-        MultiSortedDictionary<string, StockWrapper> _invenKeyDic;
+        private static StockWrapperDirector _thiz;
+        private List<StockWrapper> _list;
+        private MultiSortedDictionary<string, StockWrapper> _itemKeyDic;
+        private MultiSortedDictionary<string, StockWrapper> _invenKeyDic;
 
         public StockWrapperDirector()
         {

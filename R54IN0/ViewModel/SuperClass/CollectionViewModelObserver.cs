@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace R54IN0
 {
     public abstract class CollectionViewModelObserver<T> : ICollectionViewModelObserver where T : class
     {
-        CollectionViewModelObserverSubject _subject;
+        private CollectionViewModelObserverSubject _subject;
 
         public CollectionViewModelObserver(CollectionViewModelObserverSubject subject)
         {

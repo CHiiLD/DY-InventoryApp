@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace R54IN0
+﻿namespace R54IN0
 {
     public class SpecificationWrapperViewModel : FieldWrapperViewModel<Specification, SpecificationWrapper>
     {
-        ItemWrapperViewModel _itemViewModel;
+        private ItemWrapperViewModel _itemViewModel;
 
         public SpecificationWrapperViewModel(CollectionViewModelObserverSubject sub, ItemWrapperViewModel itemViewModel) : base(sub)
         {

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace R54IN0
 {
     public class InventoryWrapperProperties : IInventoryViewModelProperties, INotifyPropertyChanged
     {
-        ItemWrapper _item;
-        SpecificationWrapper _specification;
-        Observable<Warehouse> _warehouse;
+        private ItemWrapper _item;
+        private SpecificationWrapper _specification;
+        private Observable<Warehouse> _warehouse;
 
         public InventoryWrapperProperties()
         {
@@ -118,7 +113,7 @@ namespace R54IN0
             set
             {
                 _specification = value;
-                Stock.SpecificationID = _specification != null ? _specification.ID : null; 
+                Stock.SpecificationID = _specification != null ? _specification.ID : null;
                 OnPropertyChanged("Specification");
                 OnPropertyChanged("PurchaseUnitPrice");
                 OnPropertyChanged("SalesUnitPrice");
@@ -169,7 +164,7 @@ namespace R54IN0
             set
             {
                 _warehouse = value;
-                if(Stock is Inventory)
+                if (Stock is Inventory)
                 {
                     var inven = Stock as Inventory;
                     inven.WarehouseID = _warehouse != null ? _warehouse.ID : null;

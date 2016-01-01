@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0", "R54IN0\R54IN0.csproj", "{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}"
 EndProject
@@ -20,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditableTextBlock", "WPFEditableTextBlock\EditableTextBlock.csproj", "{F33E2408-9254-4BAE-9B0A-52ACDEE00BD9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json.Net40", "Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj", "{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyTools.Wpf_NET45", "PropertyTools\Source\PropertyTools.Wpf\PropertyTools.Wpf_NET45.csproj", "{7168F82F-288A-42C4-9EB1-FBBE5112F211}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyTools_PCL", "PropertyTools\Source\PropertyTools\PropertyTools_PCL.csproj", "{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -96,6 +100,22 @@ Global
 		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|x86.ActiveCfg = Release|Any CPU
 		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|x86.Build.0 = Release|Any CPU
+		{7168F82F-288A-42C4-9EB1-FBBE5112F211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7168F82F-288A-42C4-9EB1-FBBE5112F211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7168F82F-288A-42C4-9EB1-FBBE5112F211}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7168F82F-288A-42C4-9EB1-FBBE5112F211}.Debug|x86.Build.0 = Debug|Any CPU
+		{7168F82F-288A-42C4-9EB1-FBBE5112F211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7168F82F-288A-42C4-9EB1-FBBE5112F211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7168F82F-288A-42C4-9EB1-FBBE5112F211}.Release|x86.ActiveCfg = Release|Any CPU
+		{7168F82F-288A-42C4-9EB1-FBBE5112F211}.Release|x86.Build.0 = Release|Any CPU
+		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}.Debug|x86.Build.0 = Debug|Any CPU
+		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}.Release|x86.ActiveCfg = Release|Any CPU
+		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,5 +126,7 @@ Global
 		{2854814F-EA3C-41D4-AA94-460C4694F430} = {B3627858-8280-4E36-99B3-66543AD8BB9C}
 		{F33E2408-9254-4BAE-9B0A-52ACDEE00BD9} = {B3627858-8280-4E36-99B3-66543AD8BB9C}
 		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D} = {B3627858-8280-4E36-99B3-66543AD8BB9C}
+		{7168F82F-288A-42C4-9EB1-FBBE5112F211} = {B3627858-8280-4E36-99B3-66543AD8BB9C}
+		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA} = {B3627858-8280-4E36-99B3-66543AD8BB9C}
 	EndGlobalSection
 EndGlobal

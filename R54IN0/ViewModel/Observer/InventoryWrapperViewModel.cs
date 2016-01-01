@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace R54IN0
 {
     public class InventoryWrapperViewModel : ItemSourceViewModel<InventoryWrapper>, INotifyPropertyChanged, IFinderViewModelCreatation
     {
-        ObservableCollection<InventoryWrapper> _items;
-        InventoryWrapperDirector _inventoryDirector;
+        private ObservableCollection<InventoryWrapper> _items;
+        private InventoryWrapperDirector _inventoryDirector;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -115,6 +115,7 @@ namespace R54IN0
         }
 
 #if DEBUG
+
         /// <summary>
         /// 이전에 작성한 UnitTest 코드들의 호환성을 위해 사용한다. release에서는 사용하지 아니한다.
         /// </summary>
@@ -129,6 +130,7 @@ namespace R54IN0
                     base.UpdateNewItem(item);
             }
         }
+
 #endif
 
         public override void UpdateNewItem(object item)

@@ -16,3 +16,6 @@
 [submodule "EventBindingMarkup"]
 	path = EventBindingMarkup
 	url = https://github.com/CHiiLD/EventBindingMarkup.git
+[submodule "PropertyTools"]
+	path = PropertyTools
+	url = https://github.com/objorke/PropertyTools.git

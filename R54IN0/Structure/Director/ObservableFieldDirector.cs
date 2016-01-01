@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace R54IN0
 {
     public class ObservableFieldDirector
     {
-        static ObservableFieldDirector _thiz;
+        private static ObservableFieldDirector _thiz;
 
-        Dictionary<Type, SortedDictionary<string, object>> _dic;
+        private Dictionary<Type, SortedDictionary<string, object>> _dic;
 
-        ObservableFieldDirector()
+        private ObservableFieldDirector()
         {
             _dic = new Dictionary<Type, SortedDictionary<string, object>>();
         }

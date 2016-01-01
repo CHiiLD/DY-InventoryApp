@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace R54IN0
 {
     public class CommandHandler : ICommand
     {
-        Action<object> _execute;
-        Func<object, bool> _canExecute;
+        private Action<object> _execute;
+        private Func<object, bool> _canExecute;
 
         public event EventHandler CanExecuteChanged;
 

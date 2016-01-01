@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace R54IN0
+﻿namespace R54IN0
 {
     public abstract class ItemSourceViewModel<T> : CollectionViewModelObserver<T>, IButtonCommands, ICollectionViewModel<T> where T : class
     {
-        T _selectedItem;
+        private T _selectedItem;
 
         public ItemSourceViewModel(CollectionViewModelObserverSubject subject) : base(subject)
         {
@@ -51,7 +45,9 @@ namespace R54IN0
         }
 
         public abstract void ExecuteAddCommand(object parameter);
+
         public abstract void ExecuteModifyCommand(object parameter);
+
         public abstract void ExecuteRemoveCommand(object parameter);
     }
 }
