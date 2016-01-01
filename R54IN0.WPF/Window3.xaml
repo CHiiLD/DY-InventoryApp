@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:R54IN0.WPF"
         mc:Ignorable="d"
-        Title="Window3" Height="600" Width="900">
+        Title="Window3" Height="768" Width="1366">
     <Grid>
-        <local:InventoryManagement />
+        <!--<local:InventoryStatus />-->
+        <local:InoutStockStatus></local:InoutStockStatus>
     </Grid>
 </Window>
