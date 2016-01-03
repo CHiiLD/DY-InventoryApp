@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:R54IN0.WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="900">
     <DataGrid>
         <DataGrid.Columns>
+            <DataGridCheckBoxColumn Header="체크" />
             <DataGridTextColumn Header="종류" Width="Auto"/>
             <DataGridTextColumn Header="날짜" Width="Auto"/>
             <DataGridTextColumn Header="제품" Width="Auto"/>
@@ -23,8 +24,8 @@
             <DataGridTextColumn Header="종류" Width="Auto"/>
             <DataGridTextColumn Header="단가"/>
             <DataGridTextColumn Header="합계"/>
-            <DataGridTextColumn Header="입고처"/>
-            <DataGridTextColumn Header="출고처"/>
+            <DataGridTextColumn Header="구입처"/>
+            <DataGridTextColumn Header="판매처"/>
             <DataGridTextColumn Header="프로젝트명"/>
             <DataGridTextColumn Header="비고" Width="2*"/>
         </DataGrid.Columns>

@@ -14,7 +14,6 @@ namespace R54IN0
         DateTime Date { get; set; }
         Observable<Supplier> Supplier { get; set; }
         Observable<Customer> Customer { get; set; }
-        Observable<Employee> Employee { get; set; }
         Observable<Project> Project { get; set; }
     }
 }

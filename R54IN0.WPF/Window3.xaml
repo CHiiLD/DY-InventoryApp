@@ -6,9 +6,19 @@
         xmlns:local="clr-namespace:R54IN0.WPF"
         mc:Ignorable="d"
         Title="Window3" Height="768" Width="1366">
-    <Grid>
+    <StackPanel>
         <!--<local:InventoryStatus />-->
         <!--<local:InoutStockStatus></local:InoutStockStatus>-->
-        <local:InoutStockRegister/>
-    </Grid>
+        <!--<local:InoutStockRegister/>-->
+        <!--<ComboBox Width="200" IsEditable="True" IsReadOnly="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+            
+            
+        </ComboBox>-->
+
+        <!--<CalendarButton>test</CalendarButton>
+        <CalendarDayButton>test</CalendarDayButton>
+
+        <Calendar></Calendar>-->
+        
+    </StackPanel>
 </Window>

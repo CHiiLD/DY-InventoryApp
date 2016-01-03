@@ -4,18 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:R54IN0.WPF"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" >
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <UniformGrid Rows="1" Columns="3" Width="Auto" HorizontalAlignment="Left">
-            <Button Content="new folder" Margin="5,0" />
-            <Button Content="new item"  Margin="5,0" />
-            <Button Content="delete"  Margin="5,0" />
-        </UniformGrid>
+        <WrapPanel Orientation="Horizontal" Width="Auto" HorizontalAlignment="Left">
+            <WrapPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource MetroButton}">
+                    <Setter Property="Margin" Value="3,1"/>
+                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="FontFamily" Value="Segoe UI Light"/>
+                </Style>
+            </WrapPanel.Resources>
+
+            <Button Content="새로운 폴더를 추가하기" />
+            <Button Content="새로운 제품을 추가하기" />
+            <Button Content="삭제하기" />
+        </WrapPanel>
     </Grid>
 </UserControl>

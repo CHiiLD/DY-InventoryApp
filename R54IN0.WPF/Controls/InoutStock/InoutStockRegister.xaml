@@ -137,7 +137,7 @@
                 <ColumnDefinition Width="43*"/>
             </Grid.ColumnDefinitions>
             <Label>수량</Label>
-            <mah:NumericUpDown Grid.Column="1" Width="200" HorizontalAlignment="Left"></mah:NumericUpDown>
+            <mah:NumericUpDown Grid.Column="1" Width="200" HorizontalAlignment="Left" />
         </Grid>
 
         <Grid Grid.Row="5" Grid.Column="1">
@@ -243,7 +243,7 @@
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="43*"/>
             </Grid.ColumnDefinitions>
-            <Label>설명</Label>
+            <Label>비고</Label>
             <TextBox 
                 Grid.Column="1"
                          Text="">
@@ -258,7 +258,7 @@
                                 <Setter Property="mah:TextBoxHelper.ClearTextButton"
                                             Value="False" />
                                 <Setter Property="mah:TextBoxHelper.Watermark"
-                                            Value="입출고 기록에 대한 설명을 적어주세요." />
+                                            Value="입출고 기록에 대한 비고를 적어주세요." />
                             </Trigger>
                             <Trigger Property="mah:TextBoxHelper.HasText"
                                          Value="True">

@@ -29,7 +29,6 @@ namespace R54IN0.Test
 
             ObservableStock ostock = new ObservableStock();
             ostock.Date = DateTime.Now;
-            ostock.Employee = new Observable<Employee>() { Name = "who?" };
             ostock.Project = new Observable<Project>() { Name = "dy1234" };
             ostock.Supplier = new Observable<Supplier>() { Name = "여명" };
             ostock.Customer = new Observable<Customer>() { Name = "어딘가 .." };
@@ -45,7 +44,6 @@ namespace R54IN0.Test
 
             ObservableStock newOStock = new ObservableStock(stockFormat);
             Assert.AreEqual(ostock.ID, newOStock.ID);
-            Assert.AreEqual(ostock.Employee.ID, newOStock.Employee.ID);
             Assert.AreEqual(ostock.Project.ID, newOStock.Project.ID);
             Assert.AreEqual(ostock.Supplier.ID, newOStock.Supplier.ID);
             Assert.AreEqual(ostock.Customer.ID, newOStock.Customer.ID);

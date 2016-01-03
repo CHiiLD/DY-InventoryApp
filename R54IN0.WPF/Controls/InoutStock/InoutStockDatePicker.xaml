@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:R54IN0.WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="300">
         <StackPanel>
             <Grid VerticalAlignment="Top">
                 <Grid.RowDefinitions>
@@ -65,6 +65,25 @@
                     <Button>재작년</Button>
                 </UniformGrid>
             </UniformGrid>
-            <!--<Calendar SelectionMode="MultipleRange" />-->
+
+        <!--<Grid  Margin="0,0,0,0">
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Calendar.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+
+                   
+
+                    <Style TargetType="Calendar" BasedOn="{StaticResource MaterialDesignCalendarPortrait}">
+                        
+                    </Style>
+                </ResourceDictionary>
+            </Grid.Resources>
+            <Calendar SelectionMode="MultipleRange" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="11,-1,11,1">
+
+            </Calendar>
+        </Grid>-->
         </StackPanel>
 </UserControl>

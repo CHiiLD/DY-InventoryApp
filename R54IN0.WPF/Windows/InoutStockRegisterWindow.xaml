@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:R54IN0.WPF"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="입출고 관리 다이얼로그" Height="Auto" Width="760" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1"
+        Title="입출고 관리 다이얼로그" Height="Auto" Width="760" SizeToContent="Height" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

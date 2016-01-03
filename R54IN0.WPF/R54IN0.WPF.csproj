@@ -92,6 +92,9 @@
     <Compile Include="Controls\InoutStock\InoutStockRegister.xaml.cs">
       <DependentUpon>InoutStockRegister.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\InoutStockRegisterWindow.xaml.cs">
       <DependentUpon>InoutStockRegisterWindow.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\InoutStock\InoutStockRegister.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\StartWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

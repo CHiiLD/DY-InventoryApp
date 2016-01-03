@@ -8,7 +8,6 @@ namespace R54IN0
         private StockFormat _fmt;
         private Observable<Customer> _customer;
         private Observable<Supplier> _supplier;
-        private Observable<Employee> _employee;
         private Observable<Project> _project;
 
         private IObservableInventoryProperties _inven;
@@ -43,7 +42,6 @@ namespace R54IN0
             var ofd = ObservableFieldDirector.GetInstance();
             _customer = ofd.Search<Customer>(stock.CustomerID);
             _supplier = ofd.Search<Supplier>(stock.SupplierID);
-            _employee = ofd.Search<Employee>(stock.EmployeeID);
             _project = ofd.Search<Project>(stock.ProjectID);
             var oid = ObservableInvenDirector.GetInstance();
             _inven = oid.Search(stock.InventoryItemID);
@@ -157,23 +155,6 @@ namespace R54IN0
                 _fmt.SupplierID = value != null ? value.ID : null;
                 _supplier = value;
                 NotifyPropertyChanged("Supplier");
-            }
-        }
-
-        /// <summary>
-        /// 직원
-        /// </summary>
-        public Observable<Employee> Employee
-        {
-            get
-            {
-                return _employee;
-            }
-            set
-            {
-                _fmt.EmployeeID = value != null ? value.ID : null;
-                _employee = value;
-                NotifyPropertyChanged("Employee");
             }
         }
 
