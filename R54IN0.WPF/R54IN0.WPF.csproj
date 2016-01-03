@@ -67,6 +67,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\InoutStock\InoutStockDatePicker.xaml.cs">
+      <DependentUpon>InoutStockDatePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InoutStock\InoutStockProjectListBox.xaml.cs">
+      <DependentUpon>InoutStockProjectListBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\InoutStock\InoutStockStatus.xaml.cs">
       <DependentUpon>InoutStockStatus.xaml</DependentUpon>
     </Compile>
@@ -80,12 +86,29 @@
     <Compile Include="Controls\Inventory\StockDataGrid.xaml.cs">
       <DependentUpon>StockDataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TreeView\ProductManager.xaml.cs">
+      <DependentUpon>ProductManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InoutStock\InoutStockRegister.xaml.cs">
+      <DependentUpon>InoutStockRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\InoutStockRegisterWindow.xaml.cs">
+      <DependentUpon>InoutStockRegisterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window3.xaml.cs">
       <DependentUpon>Window3.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\InoutStock\InoutStockDatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\InoutStock\InoutStockProjectListBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\InoutStock\InoutStockStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -99,6 +122,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Inventory\StockDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\InoutStock\InoutStockRegister.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\InoutStockRegisterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,6 +253,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Controls\TreeView\ProductManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

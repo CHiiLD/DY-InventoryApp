@@ -8,30 +8,33 @@
              d:DesignHeight="768" d:DesignWidth="1366">
 
     <UserControl.Resources>
-        <ResourceDictionary>
+        <!--<ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Calendar.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
             </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        </ResourceDictionary>-->
+
+        <!--<Style x:Key="DateButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="3"/>
+        </Style>-->
+
     </UserControl.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="93*"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="22*" MinWidth="200"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
+            
             <GroupBox Header="종류">
                 <UniformGrid Rows="2" Columns="1" Height="50">
                     <CheckBox Content="입고"/>
@@ -46,49 +49,17 @@
                     <ListBoxItem Content="프로젝트별"/>
                 </ListBox>
             </GroupBox>
-
-            <GroupBox Header="날짜 선택" Grid.Row="2">
-                <StackPanel>
-                    <Grid VerticalAlignment="Top">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="5"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30*"/>
-                            <ColumnDefinition Width="90*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">시작일</Label>
-                        <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">종료일</Label>
-                        <DatePicker Grid.Row="0" Grid.Column="1"/>
-                        <DatePicker Grid.Row="2" Grid.Column="1" />
-                    </Grid>
-                    
-                    <Calendar Style="{DynamicResource MaterialDesignCalendarPortrait}" SelectionMode="MultipleRange" />
-
-                    <!--<WrapPanel>
-                        <Button>금일</Button>
-                        <Button>전일</Button>
-                        <Button>금주</Button>
-                        <Button>전주</Button>
-                        <Button>금월</Button>
-                        <Button>전월</Button>
-                        <Button>1분기</Button>
-                        <Button>2분기</Button>
-                        <Button>3분기</Button>
-                        <Button>4분기</Button>
-                        <Button>상반기</Button>
-                        <Button>하반기</Button>
-                        <Button>금년</Button>
-                        <Button>작년</Button>
-                        <Button>재작년</Button>
-                        
-                    </WrapPanel>-->
-                </StackPanel>
+            <!--<local:InoutStockDatePicker Grid.Row="2"/>-->
+            <GroupBox Header="프로젝트 리스트" Grid.Row="2">
+                <ListBox />
             </GroupBox>
-
         </Grid>
-        <local:InoutStockDataGrid x:Name="DataGrid" Grid.Row="1" Grid.Column="1" Margin="10,7,0,3"/>
+
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+
+        <GroupBox Header="입출고 현황 데이터 그리드" Grid.Row="1" Grid.Column="2">
+            <local:InoutStockDataGrid x:Name="DataGrid" />
+        </GroupBox>
+
     </Grid>
 </UserControl>
