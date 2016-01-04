@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace R54IN0.WPF
@@ -15,7 +13,7 @@ namespace R54IN0.WPF
         public ICommand SearchCommand { get; set; }
 
         /// <summary>
-        /// TextBox binding 
+        /// TextBox binding
         /// </summary>
         public string Text { get; set; }
 

@@ -7,7 +7,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:name="thiz"
         mc:Ignorable="d"
-        Title="데일리 인벤토리!" Height="864" Width="1152" WindowStartupLocation="CenterScreen" 
+        Title="데일리 인벤토리!" Height="864" Width="1152" WindowStartupLocation="CenterScreen"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1">
 
@@ -26,34 +26,34 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid>
             <Menu x:Name="Menu">
                 <MenuItem Header="데일리 인벤토리!">
-                    <MenuItem Header="데일리 인벤토리!에 대하여" IsEnabled="False"/>
-                    <MenuItem Header="환경설정" IsEnabled="False"/>
+                    <MenuItem Header="데일리 인벤토리!에 대하여" IsEnabled="False" />
+                    <MenuItem Header="환경설정" IsEnabled="False" />
                     <MenuItem Header="종료" x:Name="ExitMenuItem" Click="ExitMenuItem_Click" />
                 </MenuItem>
-                <Separator Width="5"/>
+                <Separator Width="5" />
                 <MenuItem Header="데이터관리">
-                    <MenuItem Header="재고관리" x:Name="InvenMenuItem" Click="InvenMenuItem_Click"/>
-                    <MenuItem Header="입고관리" x:Name="InStockMenuItem" Click="InStockMenuItem_Click"/>
-                    <MenuItem Header="출고관리" x:Name="OutStockMenuItem" Click="OutStockMenuItem_Click"/>
-                    <MenuItem Header="입출고관리" x:Name="InOutStockMenuItem" Click="InOutStockMenuItem_Click"/>
+                    <MenuItem Header="재고관리" x:Name="InvenMenuItem" Click="InvenMenuItem_Click" />
+                    <MenuItem Header="입고관리" x:Name="InStockMenuItem" Click="InStockMenuItem_Click" />
+                    <MenuItem Header="출고관리" x:Name="OutStockMenuItem" Click="OutStockMenuItem_Click" />
+                    <MenuItem Header="입출고관리" x:Name="InOutStockMenuItem" Click="InOutStockMenuItem_Click" />
                 </MenuItem>
-                <Separator Width="5"/>
+                <Separator Width="5" />
                 <MenuItem Header="기본정보관리">
-                    <MenuItem Header="품목" x:Name="ItemMenuItem" Click="ItemMenuItem_Click"/>
-                    <MenuItem Header="거래처" x:Name="ClientMenuItem" Click="ClientMenuItem_Click"/>
-                    <MenuItem Header="제조사" x:Name="MakerMenuItem" Click="MakerMenuItem_Click"/>
-                    <MenuItem Header="단위" x:Name="MeasureMenuItem" Click="MeasureMenuItem_Click"/>
-                    <MenuItem Header="화폐" x:Name="CurrencyMenuItem" Click="CurrencyMenuItem_Click"/>
-                    <MenuItem Header="직원" x:Name="EmployeeMenuItem" Click="EmployeeMenuItem_Click"/>
-                    <MenuItem Header="창고" x:Name="WarehouseMenuItem" Click="WarehouseMenuItem_Click"/>
+                    <MenuItem Header="품목" x:Name="ItemMenuItem" Click="ItemMenuItem_Click" />
+                    <MenuItem Header="거래처" x:Name="ClientMenuItem" Click="ClientMenuItem_Click" />
+                    <MenuItem Header="제조사" x:Name="MakerMenuItem" Click="MakerMenuItem_Click" />
+                    <MenuItem Header="단위" x:Name="MeasureMenuItem" Click="MeasureMenuItem_Click" />
+                    <MenuItem Header="화폐" x:Name="CurrencyMenuItem" Click="CurrencyMenuItem_Click" />
+                    <MenuItem Header="직원" x:Name="EmployeeMenuItem" Click="EmployeeMenuItem_Click" />
+                    <MenuItem Header="창고" x:Name="WarehouseMenuItem" Click="WarehouseMenuItem_Click" />
                 </MenuItem>
             </Menu>
         </Grid>
@@ -81,16 +81,16 @@
         <Grid Grid.Row="2">
             <TabControl x:Name="TabCenter">
                 <TabItem Header="재고" x:Name="InventoryTab">
-                    <local:InventoryManager/>
+                    <local:InventoryManager />
                 </TabItem>
                 <TabItem Header="입고" x:Name="InStockTab">
-                    <local:InOutStockManager StockType="INCOMING"/>
+                    <local:InOutStockManager StockType="INCOMING" />
                 </TabItem>
                 <TabItem Header="출고" x:Name="OutStockTab">
-                    <local:InOutStockManager StockType="OUTGOING"/>
+                    <local:InOutStockManager StockType="OUTGOING" />
                 </TabItem>
                 <TabItem Header="입출고" x:Name="InOutStockTab">
-                    <local:InOutStockManager StockType="ALL"/>
+                    <local:InOutStockManager StockType="ALL" />
                 </TabItem>
                 <TabItem Header="품목" x:Name="ItemTab">
                     <local:ItemManager />

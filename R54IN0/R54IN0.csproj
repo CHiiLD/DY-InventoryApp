@@ -73,6 +73,7 @@
     <Compile Include="Structure\StockType.cs" />
     <Compile Include="Structure\Fields\Warehouse.cs" />
     <Compile Include="Structure\Fields\Supplier.cs" />
+    <Compile Include="TreeViewNodeJsonFormat.cs" />
     <Compile Include="ViewModel\Finder\FinderViewModel.cs" />
     <Compile Include="Structure\FieldWrapper\IProductWrapper.cs" />
     <Compile Include="Structure\Director\MultiSortedDictionary.cs" />

@@ -88,12 +88,20 @@
     <Compile Include="Controls\Inventory\StockDataGrid.xaml.cs">
       <DependentUpon>StockDataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TreeView\TreeViewNodeDirector.cs" />
+    <Compile Include="Controls\TreeView\TreeViewNodeExtension.cs" />
+    <Compile Include="Controls\TreeView\MultiSelectTreeView.xaml.cs">
+      <DependentUpon>MultiSelectTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TreeView\MultiSelectTreeViewModelView.cs" />
     <Compile Include="Controls\TreeView\ProductManager.xaml.cs">
       <DependentUpon>ProductManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\InoutStock\InoutStockRegister.xaml.cs">
       <DependentUpon>InoutStockRegister.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TreeView\ProductManagerViewModel.cs" />
+    <Compile Include="Controls\TreeView\TreeViewNode.cs" />
     <Compile Include="Windows\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
@@ -131,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\InoutStock\InoutStockRegister.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TreeView\MultiSelectTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -310,6 +322,10 @@
     <ProjectReference Include="..\MahApps.Metro\MahApps.Metro\MahApps.Metro.NET45.csproj">
       <Project>{942d11c4-29f5-46c4-8c14-4b976d56c637}</Project>
       <Name>MahApps.Metro.NET45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
+      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
+      <Name>Newtonsoft.Json.Net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\PropertyTools\Source\PropertyTools.Wpf\PropertyTools.Wpf_NET45.csproj">
       <Project>{7168f82f-288a-42c4-9eb1-fbbe5112f211}</Project>

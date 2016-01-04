@@ -95,7 +95,7 @@ namespace R54IN0
         public override void Add(ItemWrapper item)
         {
             base.Add(item);
-            FinderDirector.GetInstance().Add(new FinderNode(NodeType.ITEM) { ItemID = item.ID });
+            FinderDirector.GetInstance().Add(new FinderNode(NodeType.PRODUCT) { ItemID = item.ID });
         }
 
         public override void Remove(ItemWrapper item)
@@ -125,7 +125,7 @@ namespace R54IN0
             {
                 //Finder에서 품목들을 선택하였을 때 그 품목들의 리스트와 품목에 속한 규격 리스트를 업데이트한다.
                 List<ItemWrapper> itemwTemp = new List<ItemWrapper>();
-                IEnumerable<FinderNode> itemNodes = _finderViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
+                IEnumerable<FinderNode> itemNodes = _finderViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
                 var itemws = fieldWrapperDirector.CreateCollection<Item, ItemWrapper>();
                 foreach (var itemNode in itemNodes)
                     itemwTemp.AddRange(itemws.Where(x => x.ID == itemNode.ItemID && !x.IsDeleted));

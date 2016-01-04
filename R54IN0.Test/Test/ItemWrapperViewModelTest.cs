@@ -188,7 +188,7 @@ namespace R54IN0.Test
             fvm.SelectItemsChanged += vm.OnFinderViewSelectItemChanged;
             //finder 에서 아이템 선택
             fvm.SelectedNodes.Clear();
-            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).First();
+            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).First();
             fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(
                 new List<FinderNode>() { node }, new List<FinderNode>()));
 

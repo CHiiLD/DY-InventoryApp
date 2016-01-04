@@ -55,6 +55,7 @@
       <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
   </ItemGroup>
@@ -73,10 +74,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="New\ObserableInventoryTest.cs" />
     <Compile Include="New\ObservableStockTest.cs" />
     <Compile Include="New\Dummy2Test.cs" />
     <Compile Include="New\InventorySearchTextBoxViewModelTest.cs" />
+    <Compile Include="New\InventoryStatusViewModelTest.cs" />
+    <Compile Include="New\ProductManagerViewModelTest.cs" />
     <Compile Include="Test\IOStockWrapperEditorViewModelTest.cs" />
     <Compile Include="Test\FieldWrapperViewModelTest.cs" />
     <Compile Include="Test\FinderDirectorTest.cs" />

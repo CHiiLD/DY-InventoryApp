@@ -26,10 +26,10 @@ namespace R54IN0.Test
             FinderDirector df = FinderDirector.GetInstance();
             var collection = df.Collection;
             collection.Clear();
-            FinderNode root = new FinderNode(NodeType.DIRECTORY) { Name = "D" };
-            FinderNode item1 = new FinderNode(NodeType.ITEM) { Name = "I1", ItemID = "1" };
-            FinderNode item2 = new FinderNode(NodeType.ITEM) { Name = "I2", ItemID = "2" };
-            FinderNode item11 = new FinderNode(NodeType.ITEM) { Name = "I11", ItemID = "3" };
+            FinderNode root = new FinderNode(NodeType.FORDER) { Name = "D" };
+            FinderNode item1 = new FinderNode(NodeType.PRODUCT) { Name = "I1", ItemID = "1" };
+            FinderNode item2 = new FinderNode(NodeType.PRODUCT) { Name = "I2", ItemID = "2" };
+            FinderNode item11 = new FinderNode(NodeType.PRODUCT) { Name = "I11", ItemID = "3" };
             root.Nodes.Add(item1);
             root.Nodes.Add(item2);
             item1.Nodes.Add(item11);

@@ -203,7 +203,7 @@ namespace R54IN0.Test
             invm = new InventoryWrapperViewModel(sub);
             var fvm = new ItemFinderViewModel(null);
             //FinderViewModel에 이유를 알 수 없는 에러 .. 품목이 2개로 들어감
-            Assert.AreEqual(1, fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Count());
+            Assert.AreEqual(1, fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Count());
 
             //품목의 여러 프로퍼티 호출 
             itemw = ivm.Items.Where(x => x.ID == itemw.ID).Single();

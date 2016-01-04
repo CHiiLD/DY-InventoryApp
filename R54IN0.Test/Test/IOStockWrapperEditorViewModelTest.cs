@@ -73,7 +73,7 @@ namespace R54IN0.Test
             StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
             var evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
-            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Random();
+            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
 
             evm.Quantity = 120;
 
@@ -155,7 +155,7 @@ namespace R54IN0.Test
             StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
             var evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
-            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Random();
+            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(new List<FinderNode>() { node }, new List<FinderNode>()));
             evm.Item = evm.ItemList.Random();
             evm.Specification = evm.SpecificationList.Random();
@@ -207,7 +207,7 @@ namespace R54IN0.Test
             var evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = new FinderViewModel(null, new ObservableCollection<FinderNode>(FinderDirector.GetInstance().Collection));
             fvm.SelectItemsChanged += evm.OnFinderViewSelectItemChanged;
-            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Random();
+            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(new List<FinderNode>() { node }, new List<FinderNode>()));
             var item = evm.Item = evm.ItemList.Random();
             var spec = evm.Specification = evm.SpecificationList.Random();
@@ -274,7 +274,7 @@ namespace R54IN0.Test
             Assert.IsNull(evm.Warehouse);
             Assert.IsNull(evm.WarehouseList);
 
-            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Random();
+            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(new List<FinderNode>() { node }, new List<FinderNode>()));
 
             var iwd = InventoryWrapperDirector.GetInstance();
@@ -358,7 +358,7 @@ namespace R54IN0.Test
             StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
             var evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
-            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Where(x => x.ItemID == dummy.UnregisterdTestItemID).Single();
+            var node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Where(x => x.ItemID == dummy.UnregisterdTestItemID).Single();
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(new List<FinderNode>() { node }, new List<FinderNode>()));
             var item = evm.Item = evm.ItemList.Random();
             var spec = evm.Specification = evm.SpecificationList.Random();
@@ -384,7 +384,7 @@ namespace R54IN0.Test
             StockWrapperViewModel vm = new StockWrapperViewModel(StockType.INCOMING, sub);
             StockWrapperEditorViewModel evm = new StockWrapperEditorViewModel(vm);
             FinderViewModel fvm = evm.CreateFinderViewModel(null);
-            var itemNdoes = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
+            var itemNdoes = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
             var node = itemNdoes.ElementAt(0);
             //노드 클릭
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(new List<FinderNode>() { node }, new List<FinderNode>()));

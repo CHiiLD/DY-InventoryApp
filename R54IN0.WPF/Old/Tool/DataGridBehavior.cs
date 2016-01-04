@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -19,6 +16,7 @@ namespace R54IN0.WPF
                                                 typeof(bool),
                                                 typeof(DataGridBehavior),
                                                 new FrameworkPropertyMetadata(false, OnDisplayRowNumberChanged));
+
         public static bool GetDisplayRowNumber(DependencyObject target)
         {
             return (bool)target.GetValue(DisplayRowNumberProperty);
@@ -61,7 +59,7 @@ namespace R54IN0.WPF
             }
         }
 
-        #endregion // DisplayRowNumber
+        #endregion DisplayRowNumber
 
         #region Get Visuals
 
@@ -89,6 +87,6 @@ namespace R54IN0.WPF
             }
         }
 
-        #endregion // Get Visuals
+        #endregion Get Visuals
     }
 }

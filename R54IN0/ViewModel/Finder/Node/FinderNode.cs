@@ -40,7 +40,7 @@ namespace R54IN0
             set
             {
                 _itemID = value;
-                if (!string.IsNullOrEmpty(_itemID) && Type == NodeType.ITEM)
+                if (!string.IsNullOrEmpty(_itemID) && Type == NodeType.PRODUCT)
                 {
                     var itemws = FieldWrapperDirector.GetInstance().CreateCollection<Item, ItemWrapper>();
                     var itemw = itemws.Where(x => x.ID == _itemID).SingleOrDefault();
@@ -72,10 +72,10 @@ namespace R54IN0
             {
                 switch (Type)
                 {
-                    case NodeType.DIRECTORY:
+                    case NodeType.FORDER:
                         return !IsInEditMode;
 
-                    case NodeType.ITEM:
+                    case NodeType.PRODUCT:
                         return true;
 
                     default:
@@ -90,10 +90,10 @@ namespace R54IN0
             {
                 switch (Type)
                 {
-                    case NodeType.DIRECTORY:
+                    case NodeType.FORDER:
                         return true;
 
-                    case NodeType.ITEM:
+                    case NodeType.PRODUCT:
                         return false;
 
                     default:
@@ -108,10 +108,10 @@ namespace R54IN0
             {
                 switch (Type)
                 {
-                    case NodeType.DIRECTORY:
+                    case NodeType.FORDER:
                         return true;
 
-                    case NodeType.ITEM:
+                    case NodeType.PRODUCT:
                         return false;
 
                     default:
@@ -126,10 +126,10 @@ namespace R54IN0
             {
                 switch (Type)
                 {
-                    case NodeType.DIRECTORY:
+                    case NodeType.FORDER:
                         return Brushes.Tan;
 
-                    case NodeType.ITEM:
+                    case NodeType.PRODUCT:
                         return Brushes.DeepPink;
 
                     default:
@@ -144,10 +144,10 @@ namespace R54IN0
             {
                 switch (Type)
                 {
-                    case NodeType.DIRECTORY:
+                    case NodeType.FORDER:
                         return _isInEditMode;
 
-                    case NodeType.ITEM:
+                    case NodeType.PRODUCT:
                         return false;
 
                     default:
@@ -188,7 +188,7 @@ namespace R54IN0
 
         private void OnItemWrapperPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Name" && Type == NodeType.ITEM)
+            if (e.PropertyName == "Name" && Type == NodeType.PRODUCT)
             {
                 var itemw = sender as ItemWrapper;
                 Name = itemw.Name;

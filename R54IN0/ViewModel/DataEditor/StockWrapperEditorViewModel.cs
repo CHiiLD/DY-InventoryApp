@@ -218,7 +218,7 @@ namespace R54IN0
             if (fvm != null && _target == null)
             {
                 List<ItemWrapper> items = new List<ItemWrapper>();
-                var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM));
+                var itemNodes = fvm.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
                 var fwd = FieldWrapperDirector.GetInstance();
                 foreach (var itemNode in itemNodes)
                     items.Add(fwd.BinSearch<Item, ItemWrapper>(itemNode.ItemID));

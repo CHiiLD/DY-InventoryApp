@@ -9,10 +9,8 @@
     <StackPanel>
         <!--<local:InventoryStatus />-->
         <!--<local:InoutStockStatus></local:InoutStockStatus>-->
-        <!--<local:InoutStockRegister/>-->
+        <!--<local:InoutStockRegister />-->
         <!--<ComboBox Width="200" IsEditable="True" IsReadOnly="False" HorizontalAlignment="Center" VerticalAlignment="Center">
-            
-            
         </ComboBox>-->
 
         <!--<CalendarButton>test</CalendarButton>
@@ -23,10 +21,8 @@
         <DataGrid>
             <DataGrid.Columns>
                 <DataGridComboBoxColumn>
-                    
                 </DataGridComboBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
     </StackPanel>
 </Window>

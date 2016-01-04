@@ -11,8 +11,8 @@
         Title="입출고 관리 다이얼로그" Height="Auto" Width="760" SizeToContent="Height" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <local:InoutStockRegister />
         <Button Width="60" Margin="5,12,5,5" Grid.Row="1" Style="{DynamicResource AccentedSquareButtonStyle}" >확인</Button>

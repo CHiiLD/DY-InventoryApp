@@ -90,7 +90,7 @@ namespace R54IN0
                 return;
             }
             //Finder에 목록이 클릭되어 있는 경우
-            var itemNodes = FinderViewModel.SelectedNodes.SelectMany(rn => rn.Descendants().Where(x => x.Type == NodeType.ITEM));
+            var itemNodes = FinderViewModel.SelectedNodes.SelectMany(rn => rn.Descendants().Where(x => x.Type == NodeType.PRODUCT));
             if (itemNodes.Any(n => n.ItemID == ioStockw.Item.ID))
             {
                 if (!Items.Contains(ioStockw))

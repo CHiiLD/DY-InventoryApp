@@ -1,24 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace R54IN0.WPF
 {
     public partial class InOutStockDataGrid : UserControl
     {
-        SearchStockWrapperViewModel _viewModel;
-        StockType _stockType;
+        private SearchStockWrapperViewModel _viewModel;
+        private StockType _stockType;
 
         public SearchStockWrapperViewModel ViewModel
         {
@@ -50,7 +40,7 @@ namespace R54IN0.WPF
             }
         }
 
-        void OnSelectedItemModifyHandlerCallback(object sender, EventArgs e)
+        private void OnSelectedItemModifyHandlerCallback(object sender, EventArgs e)
         {
             StockWrapperEditorViewModel evm = new StockWrapperEditorViewModel(_viewModel, _viewModel.SelectedItem);
             var editor = new IOStockEditorWindow();
@@ -60,7 +50,7 @@ namespace R54IN0.WPF
             editor.ShowDialog();
         }
 
-        void OnNewItemAdditionHandlerCallback(object sender, EventArgs e)
+        private void OnNewItemAdditionHandlerCallback(object sender, EventArgs e)
         {
             StockWrapperEditorViewModel evm = new StockWrapperEditorViewModel(_viewModel);
             var editor = new IOStockEditorWindow();
@@ -70,7 +60,7 @@ namespace R54IN0.WPF
             editor.ShowDialog();
         }
 
-        void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }

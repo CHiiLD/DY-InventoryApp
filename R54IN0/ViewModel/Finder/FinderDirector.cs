@@ -14,9 +14,9 @@ namespace R54IN0
         public FinderTreeNodeJsonRecord()
         { }
 
-        public FinderTreeNodeJsonRecord(string ID, string data)
+        public FinderTreeNodeJsonRecord(string id, string data)
         {
-            ID = ID;
+            ID = id;
             Data = data;
         }
     }
@@ -72,13 +72,13 @@ namespace R54IN0
 
         public bool Contains(FinderNode node)
         {
-            if (node.Type == NodeType.ITEM && string.IsNullOrEmpty(node.ItemID))
+            if (node.Type == NodeType.PRODUCT && string.IsNullOrEmpty(node.ItemID))
                 throw new ArgumentException();
 
             return
                 _nodes.Any(x => x.Descendants().Contains(node)) || //이미 자식루트에서 가지고 있는 경우
                 _nodes.Contains(node) || //ROOT에서 가지고 있을 경우
-               _nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Any(x => x.ItemID == node.ItemID); //동일한 item 유니크키를 가지고 있는 경우
+               _nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Any(x => x.ItemID == node.ItemID); //동일한 item 유니크키를 가지고 있는 경우
         }
 
         public bool Remove(FinderNode node)
@@ -97,7 +97,7 @@ namespace R54IN0
         public bool Remove(string itemID)
         {
             ObservableCollection<FinderNode> copy = new ObservableCollection<FinderNode>(_nodes);
-            FinderNode node = copy.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.ITEM && x.ItemID == itemID).SingleOrDefault();
+            FinderNode node = copy.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT && x.ItemID == itemID).SingleOrDefault();
             return Remove(node);
         }
 
@@ -115,18 +115,18 @@ namespace R54IN0
             var fwd = FieldWrapperDirector.GetInstance();
             var itemws = fwd.CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted);
 
-            var itemNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.ITEM);
+            var itemNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT);
             foreach (FinderNode node in new List<FinderNode>(itemNodes)) //없는 Item은 삭제
             {
                 if (!itemws.Any(x => x.ID == node.ItemID))
                     Remove(node);
             }
 
-            itemNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.ITEM);
+            itemNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT);
             foreach (ItemWrapper itemw in itemws)//Item 목록에는 존재하지만 Finder에는 없는 경우
             {
                 if (!itemNodes.Any(x => x.ItemID == itemw.Field.ID))
-                    Add(new FinderNode(NodeType.ITEM) { ItemID = itemw.Field.ID });
+                    Add(new FinderNode(NodeType.PRODUCT) { ItemID = itemw.Field.ID });
             }
         }
 

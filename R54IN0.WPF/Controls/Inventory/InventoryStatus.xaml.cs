@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace R54IN0.WPF
 {
@@ -26,45 +13,10 @@ namespace R54IN0.WPF
 
             InventoryStatusViewModel viewmodel = new InventoryStatusViewModel();
             DataContext = viewmodel;
-            //datagrid binding 
-            Binding binding = new Binding("Items") { Source = viewmodel.DataGridViewModel1 };
-            DataGridL.DataGrid.SetBinding(DataGrid.ItemsSourceProperty, binding);
 
-            binding = new Binding("SelectedItem") { Source = viewmodel.DataGridViewModel1 };
-            DataGridL.DataGrid.SetBinding(DataGrid.SelectedItemProperty, binding);
-
-            binding = new Binding("Items") { Source = viewmodel.DataGridViewModel2 };
-            DataGridR.DataGrid.SetBinding(DataGrid.ItemsSourceProperty, binding);
-
-            binding = new Binding("SelectedItem") { Source = viewmodel.DataGridViewModel2 };
-            DataGridR.DataGrid.SetBinding(DataGrid.SelectedItemProperty, binding);
-
-            //check box 
-            MeasureCheckBox.Click += MeasureCheckBox_Click;
-            ProductCheckBox.Click += ProductCheckBox_Click;
-            MakerCheckBox.Click += MakerCheckBox_Click;
-
-            MakerCheckBox.IsChecked = true;
-            ProductCheckBox.IsChecked = true;
-            MeasureCheckBox.IsChecked = true;
-        }
-
-        private void MakerCheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            CheckBox cb = sender as CheckBox;
-            DataGridR.MakerColumn.Visibility = DataGridL.MakerColumn.Visibility = (cb.IsChecked != true ? Visibility.Collapsed : Visibility.Visible);
-        }
-
-        private void ProductCheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            CheckBox cb = sender as CheckBox;
-            DataGridR.ProductColumn.Visibility = DataGridL.ProductColumn.Visibility = (cb.IsChecked != true ? Visibility.Collapsed : Visibility.Visible);
-        }
-
-        private void MeasureCheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            CheckBox cb = sender as CheckBox;
-            DataGridR.MeasureColumn.Visibility = DataGridL.MeasureColumn.Visibility = (cb.IsChecked != true ? Visibility.Collapsed : Visibility.Visible);
+            //datagrid binding
+            DataGridL.DataContext = viewmodel.DataGridViewModel1;
+            DataGridR.DataContext = viewmodel.DataGridViewModel2;
         }
     }
 }

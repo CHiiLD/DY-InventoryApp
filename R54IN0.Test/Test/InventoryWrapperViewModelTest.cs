@@ -65,7 +65,7 @@ namespace R54IN0.Test
 
             //FinderViewModel에 아이템 하나를 선택
             Assert.AreEqual(0, fvm.SelectedNodes.Count);
-            FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).FirstOrDefault();
+            FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).FirstOrDefault();
             Assert.IsNotNull(node);
             var list = new List<FinderNode>() { node };
             fvm.OnNodeSelected(fvm, new SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
@@ -74,7 +74,7 @@ namespace R54IN0.Test
             Assert.IsTrue(iwvm.Items.All(x => x.Item.ID == node.ItemID));
 
             //FinderViewModel에 여러개의 아이템을 선택
-            FinderNode node2 = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).LastOrDefault();
+            FinderNode node2 = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).LastOrDefault();
             Assert.AreNotEqual(node, node2);
             var list2 = new List<FinderNode>() { node, node2 };
             fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list2, list));

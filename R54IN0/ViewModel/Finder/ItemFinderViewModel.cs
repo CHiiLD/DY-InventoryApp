@@ -50,8 +50,8 @@ namespace R54IN0
 
         public void AddNewDirectories(object parameter)
         {
-            IEnumerable<FinderNode> directoryNodeInSelection = SelectedNodes.Where(x => x.Type == NodeType.DIRECTORY);
-            var newNode = new FinderNode(NodeType.DIRECTORY) { Name = "New Directory" };
+            IEnumerable<FinderNode> directoryNodeInSelection = SelectedNodes.Where(x => x.Type == NodeType.FORDER);
+            var newNode = new FinderNode(NodeType.FORDER) { Name = "New Directory" };
             if (directoryNodeInSelection.Count() != 0)
                 _finderDirector.Add(directoryNodeInSelection.First(), newNode);
             else
@@ -62,14 +62,14 @@ namespace R54IN0
         {
             if (SelectedNodes.Count == 0)
                 return false;
-            if (SelectedNodes.Any(x => x.Type == NodeType.ITEM))
+            if (SelectedNodes.Any(x => x.Type == NodeType.PRODUCT))
                 return false;
             return true;
         }
 
         public void RemoveSelectedDirectories(object parameter)
         {
-            var itemNodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM)).Select(x => new FinderNode(x));
+            var itemNodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Select(x => new FinderNode(x));
             itemNodes = new List<FinderNode>(itemNodes); //논리적 이유는 추측하기 어려우나(WPF버그?), 이 코드가 없으면 논리에러가 발생!
 #if DEBUG
             Debug.Assert(!itemNodes.Any(x => Nodes.SelectMany(n => n.Descendants()).Any(n2 => n2 == x)));

@@ -3,7 +3,7 @@
     public enum NodeType
     {
         NONE,
-        DIRECTORY,
-        ITEM,
+        FORDER,
+        PRODUCT,
     }
 }

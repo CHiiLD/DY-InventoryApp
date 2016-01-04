@@ -11,12 +11,12 @@
 
         <DataGrid Name="EmployeesDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding FirstName}" Header="First Name"/>
-                <DataGridTextColumn Binding="{Binding LastName}" Header="Last Name"/>
+                <DataGridTextColumn Binding="{Binding FirstName}" Header="First Name" />
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Last Name" />
                 <DataGridTemplateColumn Header="Image">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding Image}"/>
+                            <Image Source="{Binding Image}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -27,7 +27,7 @@
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding Path=City}" FontWeight="Bold" Padding="3"/>
+                                <TextBlock Text="{Binding Path=City}" FontWeight="Bold" Padding="3" />
                             </StackPanel>
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
@@ -40,8 +40,8 @@
                                             <Expander.Header>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Text="{Binding Path=Name}" />
-                                                    <TextBlock Text="{Binding Path=ItemCount}" Margin="8,0,4,0"/>
-                                                    <TextBlock Text="Element(s)"/>
+                                                    <TextBlock Text="{Binding Path=ItemCount}" Margin="8,0,4,0" />
+                                                    <TextBlock Text="Element(s)" />
                                                 </StackPanel>
                                             </Expander.Header>
                                             <ItemsPresenter />
@@ -54,6 +54,5 @@
                 </GroupStyle>
             </DataGrid.GroupStyle>
         </DataGrid>
-
     </Grid>
 </mah:MetroWindow>

@@ -107,7 +107,7 @@ namespace R54IN0.Test
             StockWrapperViewModel vm = new StockWrapperViewModel(stockType, sub);
             fvm.SelectItemsChanged += vm.OnFinderViewSelectItemChanged;
             ItemWrapper itemw = vm.Items.Random().Item;
-            FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemID == itemw.ID)).Single();
+            FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ItemID == itemw.ID)).Single();
             var list = new List<FinderNode>() { node };
             //클릭
             fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
@@ -134,7 +134,7 @@ namespace R54IN0.Test
             //랜덤으로 하나의 아이템을 파인터에서 선택
             ItemWrapper itemw = items.ElementAt(0).Item;
             Assert.AreEqual(0, fvm.SelectedNodes.Count);
-            FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemID == itemw.ID)).Single();
+            FinderNode node = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ItemID == itemw.ID)).Single();
             var list = new List<FinderNode>() { node };
             fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list, new List<FinderNode>()));
 
@@ -143,7 +143,7 @@ namespace R54IN0.Test
 
             itemw = items.Where(x => x.Item.ID != itemw.ID).First().Item;
 
-            FinderNode node2 = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.ITEM && y.ItemID == itemw.ID)).Single();
+            FinderNode node2 = fvm.Nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ItemID == itemw.ID)).Single();
             var list2 = new List<FinderNode>() { node, node2 };
             fvm.OnNodeSelected(fvm, new System.Windows.Controls.SelectionChangedCancelEventArgs(list2, list));
 

@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace R54IN0.WPF
 {
     public class FieldTypeToStringConverter : IValueConverter
     {
-        const string ITEM = "품목";
-        const string SPECIFICATION = "규격";
-        const string MAKER = "제조사";
-        const string WAREHOUSE = "보관장소";
+        private const string ITEM = "품목";
+        private const string SPECIFICATION = "규격";
+        private const string MAKER = "제조사";
+        private const string WAREHOUSE = "보관장소";
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

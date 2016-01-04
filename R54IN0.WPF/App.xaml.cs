@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using MahApps.Metro;
+﻿using System.Windows;
 
 namespace R54IN0.WPF
 {
@@ -16,7 +9,7 @@ namespace R54IN0.WPF
     {
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            FinderDirector.Distroy();
+            TreeViewNodeDirector.Distroy();
             LexDb.Distroy();
         }
 
