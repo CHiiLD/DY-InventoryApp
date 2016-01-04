@@ -118,7 +118,6 @@ namespace R54IN0
             me.Map<StockFormat>().Automap(i => i.ID).
             WithIndex("CustomerID", i => i.CustomerID).
             WithIndex("Date", i => i.Date).
-            WithIndex("EmployeeID", i => i.EmployeeID).
             WithIndex("InventoryItemID", i => i.InventoryItemID).
             WithIndex("Memo", i => i.Memo).
             WithIndex("ProjectID", i => i.ProjectID).

@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using MahApps.Metro.Controls;
 using MahApps.Metro;
-using R54IN0.Test;
 
 namespace R54IN0.WPF
 {
@@ -27,7 +26,7 @@ namespace R54IN0.WPF
         public MainWindow()
         {
             InitializeComponent();
-#if DEBUG
+#if false
             Menu.Items.Add(new Separator() { Width = 5} );
 
             MenuItem debugMenu = new MenuItem() { Header = "DEBUG" };
@@ -49,12 +48,12 @@ namespace R54IN0.WPF
 
         private void CreateStressSampleMenu_Click(object sender, RoutedEventArgs e)
         {
-            new DYDummyDbData().Create(50, 60);
+            //new DYDummyDbData().Create(50, 60);
         }
 
         private void CreateSampleMenu_Click(object sender, RoutedEventArgs e)
         {
-            new DYDummyDbData().Create();
+            //new DYDummyDbData().Create();
         }
 
         void AllDbDataPurgeMenu_Click(object sender, RoutedEventArgs e)

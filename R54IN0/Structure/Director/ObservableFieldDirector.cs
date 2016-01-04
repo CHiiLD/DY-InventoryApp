@@ -37,5 +37,12 @@ namespace R54IN0
             }
             return _dic[type].ContainsKey(id) ? _dic[type][id] as Observable<T> : null;
         }
+
+        public static void Distory()
+        {
+            if (_thiz != null)
+                _thiz._dic = null;
+            _thiz = null;
+        }
     }
 }

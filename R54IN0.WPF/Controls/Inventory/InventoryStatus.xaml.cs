@@ -24,6 +24,22 @@ namespace R54IN0.WPF
         {
             InitializeComponent();
 
+            InventoryStatusViewModel viewmodel = new InventoryStatusViewModel();
+            DataContext = viewmodel;
+            //datagrid binding 
+            Binding binding = new Binding("Items") { Source = viewmodel.DataGridViewModel1 };
+            DataGridL.DataGrid.SetBinding(DataGrid.ItemsSourceProperty, binding);
+
+            binding = new Binding("SelectedItem") { Source = viewmodel.DataGridViewModel1 };
+            DataGridL.DataGrid.SetBinding(DataGrid.SelectedItemProperty, binding);
+
+            binding = new Binding("Items") { Source = viewmodel.DataGridViewModel2 };
+            DataGridR.DataGrid.SetBinding(DataGrid.ItemsSourceProperty, binding);
+
+            binding = new Binding("SelectedItem") { Source = viewmodel.DataGridViewModel2 };
+            DataGridR.DataGrid.SetBinding(DataGrid.SelectedItemProperty, binding);
+
+            //check box 
             MeasureCheckBox.Click += MeasureCheckBox_Click;
             ProductCheckBox.Click += ProductCheckBox_Click;
             MakerCheckBox.Click += MakerCheckBox_Click;

@@ -19,6 +19,14 @@
         <CalendarDayButton>test</CalendarDayButton>
 
         <Calendar></Calendar>-->
+
+        <DataGrid>
+            <DataGrid.Columns>
+                <DataGridComboBoxColumn>
+                    
+                </DataGridComboBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         
     </StackPanel>
 </Window>

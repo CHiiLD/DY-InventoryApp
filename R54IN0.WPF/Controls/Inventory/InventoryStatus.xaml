@@ -25,10 +25,10 @@
             </GroupBox>
 
             <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Margin="5,0,0,0"/>
-            
+
             <GroupBox Grid.Row="2" Header="오늘 추가된 입출고 기록" Grid.RowSpan="2" >
                 <ListBox>
-                    
+
                 </ListBox>
             </GroupBox>
         </Grid>
@@ -56,20 +56,23 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,5,5" HorizontalAlignment="Right">
-                    <TextBox 
+                    <TextBox x:Name="SearchTextBox"
+                         Text="{Binding SearchViewModel.Text}"
+                         ToolTip="검색어를 기준으로 제품과 규격의 이름이 포함된 재고 정보를 검색합니다. 검색어가 여러개인 경우 OR연산으로 처리됩니다."
+                         mah:TextBoxHelper.ButtonCommand="{Binding SearchViewModel.SearchCommand}"
                          mah:TextBoxHelper.Watermark="검색어를 입력해주세요"
                          mah:TextBoxHelper.UseFloatingWatermark="True"
-                         mah:TextBoxHelper.ClearTextButton="True" Width="200" >
+                         mah:TextBoxHelper.ClearTextButton="False" Width="200" >
                         <TextBox.Style>
                             <Style TargetType="{x:Type TextBox}"
                                BasedOn="{StaticResource SearchMetroTextBox}">
-                                <Style.Triggers>
+                                <!--<Style.Triggers>
                                     <Trigger Property="mah:TextBoxHelper.HasText"
                                          Value="True">
                                         <Setter Property="mah:TextBoxHelper.ButtonTemplate"
                                             Value="{DynamicResource ChromelessButtonTemplate}" />
                                     </Trigger>
-                                </Style.Triggers>
+                                </Style.Triggers>-->
                             </Style>
                         </TextBox.Style>
                     </TextBox>

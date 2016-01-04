@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace R54IN0
 {
@@ -10,6 +11,11 @@ namespace R54IN0
         private ObservableInvenDirector()
         {
             _dic = new SortedDictionary<string, ObservableInventory>();
+            InventoryFormat[] formats = null;
+            using (var db = LexDb.GetDbInstance())
+                formats = db.LoadAll<InventoryFormat>();
+            foreach (var t in formats)
+                _dic.Add(t.ID, new ObservableInventory(t));
         }
 
         public static ObservableInvenDirector GetInstance()
@@ -23,15 +29,19 @@ namespace R54IN0
         {
             if (string.IsNullOrEmpty(id))
                 return null;
-            if (!_dic.ContainsKey(id))
-            {
-                InventoryFormat[] formats = null;
-                using (var db = LexDb.GetDbInstance())
-                    formats = db.LoadAll<InventoryFormat>();
-                foreach (var t in formats)
-                    _dic.Add(t.ID, new ObservableInventory(t));
-            }
             return _dic.ContainsKey(id) ? _dic[id] as ObservableInventory : null;
+        }
+
+        public List<ObservableInventory> CreateList()
+        {
+            return new List<ObservableInventory>(_dic.Values);
+        }
+
+        public static void Distory()
+        {
+            if (_thiz != null)
+                _thiz._dic = null;
+            _thiz = null;
         }
     }
 }

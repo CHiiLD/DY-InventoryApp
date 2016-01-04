@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:R54IN0.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="900">
-    <DataGrid>
+    <DataGrid AutoGenerateColumns="False">
         <DataGrid.Columns>
-            <DataGridCheckBoxColumn Header="체크" />
+            <DataGridCheckBoxColumn Header="체크"/>
             <DataGridTextColumn Header="종류" Width="Auto"/>
             <DataGridTextColumn Header="날짜" Width="Auto"/>
             <DataGridTextColumn Header="제품" Width="Auto"/>

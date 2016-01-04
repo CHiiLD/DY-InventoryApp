@@ -7,19 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace R54IN0
+namespace R54IN0.WPF
 {
     public class InventoryDataGridViewModel : ICollectionViewModel<ObservableInventory>, INotifyPropertyChanged
     {
-        event PropertyChangedEventHandler _propertyChanged;
-        ObservableCollection<ObservableInventory> _items;
-        ObservableInventory _selectedItem;
+        private ObservableCollection<ObservableInventory> _items;
+        private ObservableInventory _selectedItem;
 
-        public bool CanExecute(object parameter)
+        /// <summary>
+        /// 생성자
+        /// </summary>
+        public InventoryDataGridViewModel()
         {
-            return _selectedItem != null ? true : false;
+            _items = new ObservableCollection<ObservableInventory>();
         }
 
+        private event PropertyChangedEventHandler _propertyChanged;
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
@@ -42,6 +45,7 @@ namespace R54IN0
             set
             {
                 _items = value;
+                NotifyPropertyChanged("Items");
             }
         }
 
@@ -54,6 +58,7 @@ namespace R54IN0
             set
             {
                 _selectedItem = value;
+                NotifyPropertyChanged("SelectedItem");
             }
         }
 

@@ -47,11 +47,6 @@ namespace R54IN0
         public string SupplierID { get; set; }
 
         /// <summary>
-        /// 데이터 등록자 범위식별자
-        /// </summary>
-        public string EmployeeID { get; set; }
-
-        /// <summary>
         /// 프로젝트 범위 식별자
         /// </summary>
         public string ProjectID { get; set; }

@@ -77,12 +77,14 @@
       <DependentUpon>InoutStockStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Inventory\InventoryDataGridViewModel.cs" />
+    <Compile Include="Controls\Inventory\InventorySearchTextBoxViewModel.cs" />
     <Compile Include="Controls\Inventory\InventoryStatus.xaml.cs">
       <DependentUpon>InventoryStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\InoutStock\InoutStockDataGrid.xaml.cs">
       <DependentUpon>InoutStockDataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Inventory\InventoryStatusViewModel.cs" />
     <Compile Include="Controls\Inventory\StockDataGrid.xaml.cs">
       <DependentUpon>StockDataGrid.xaml</DependentUpon>
     </Compile>
@@ -312,10 +314,6 @@
     <ProjectReference Include="..\PropertyTools\Source\PropertyTools.Wpf\PropertyTools.Wpf_NET45.csproj">
       <Project>{7168f82f-288a-42c4-9eb1-fbbe5112f211}</Project>
       <Name>PropertyTools.Wpf_NET45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\R54IN0.Test\R54IN0.Test.csproj">
-      <Project>{ec787dff-e080-4a02-958e-111ad0534de8}</Project>
-      <Name>R54IN0.Test</Name>
     </ProjectReference>
     <ProjectReference Include="..\R54IN0\R54IN0.csproj">
       <Project>{b69caaa1-3fd1-4c1a-90cc-2e63504b6ccb}</Project>

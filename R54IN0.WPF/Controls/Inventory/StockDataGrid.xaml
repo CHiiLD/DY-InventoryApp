@@ -6,14 +6,30 @@
              xmlns:local="clr-namespace:R54IN0.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <DataGrid x:Name="DataGrid">
+
+    <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" CanUserAddRows="False" GridLinesVisibility="All"
+              Style="{DynamicResource AzureDataGrid}" >
+
+        <DataGrid.Resources>
+            <ContextMenu  x:Key="RowMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                <MenuItem x:Name="NewInoutStockAdd" Header="새로운 입출고 데이터 추가하기"/>
+                <MenuItem x:Name="DelelteSelectedCell" Header="삭제하기"/>
+            </ContextMenu>
+        </DataGrid.Resources>
+
+        <DataGrid.RowStyle>
+            <Style TargetType="DataGridRow" BasedOn="{StaticResource MetroDataGridRow}">
+                <Setter Property="ContextMenu" Value="{StaticResource RowMenu}" />
+            </Style>
+        </DataGrid.RowStyle>
+
         <DataGrid.Columns>
-            <DataGridTextColumn x:Name="ProductColumn" Header="제품" Width="Auto"/>
-            <DataGridTextColumn Header="규격" Width="Auto"/>
-            <DataGridTextColumn Header="설명" Width="30*"/>
-            <DataGridTextColumn Header="수량" Width="Auto"/>
-            <DataGridTextColumn x:Name="MeasureColumn" Header="단위" Width="Auto"/>
-            <DataGridTextColumn x:Name="MakerColumn" Header="제조사" Width="Auto"/>
+            <DataGridTextColumn x:Name="ProductColumn" Header="제품" Width="Auto" Binding="{Binding Product.Name}" />
+            <DataGridTextColumn Header="규격" Width="Auto" Binding="{Binding Specification}"/>
+            <DataGridTextColumn Header="설명" Width="30*" Binding="{Binding Memo}"/>
+            <DataGridTextColumn Header="수량" Width="Auto" Binding="{Binding Quantity}" IsReadOnly="True"/>
+            <DataGridTextColumn x:Name="MeasureColumn" Header="단위" Width="Auto" Binding="{Binding Measure.Name}"/>
+            <DataGridTextColumn x:Name="MakerColumn" Header="제조사" Width="Auto" Binding="{Binding Maker.Name}"/>
         </DataGrid.Columns>
     </DataGrid>
 </UserControl>
