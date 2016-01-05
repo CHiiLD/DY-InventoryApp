@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace R54IN0.WPF
     public class MultiSelectTreeViewModelView : TreeViewNodeDirector, INotifyPropertyChanged
     {
         private event PropertyChangedEventHandler _propertyChanged;
+        ObservableCollection<TreeViewNode> _selectedNodes;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -28,7 +30,7 @@ namespace R54IN0.WPF
 
         public MultiSelectTreeViewModelView()
         {
-            Root = Collection; //new ObservableCollection<TreeViewNode>();
+            Root = Collection;
             SelectedNodes = new ObservableCollection<TreeViewNode>();
             DragCommand = new CommandHandler(ExecuteDrag, CanDrag);
             DropCommand = new CommandHandler(ExecuteDrop, CanDrop);
@@ -36,9 +38,21 @@ namespace R54IN0.WPF
 
         public ObservableCollection<TreeViewNode> Root { get; set; }
 
-        public ObservableCollection<TreeViewNode> SelectedNodes { get; set; }
+        public ObservableCollection<TreeViewNode> SelectedNodes
+        {
+            get
+            {
+                return _selectedNodes;
+            }
+            set
+            {
+                _selectedNodes = value;
+                NotifyPropertyChanged("SelectedNodes");
+            }
+        }
 
         public ICommand DragCommand { get; set; }
+
         public ICommand DropCommand { get; set; }
 
         /// <summary>
@@ -62,6 +76,11 @@ namespace R54IN0.WPF
             NotifyPropertyChanged("SelectedNodes");
         }
 
+        /// <summary>
+        /// 드래그 허용 여부
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public bool CanDrag(object args)
         {
             DragParameters dragParameters = args as DragParameters;
@@ -72,6 +91,10 @@ namespace R54IN0.WPF
             return false;
         }
 
+        /// <summary>
+        /// 드래그 실행 
+        /// </summary>
+        /// <param name="args"></param>
         public void ExecuteDrag(object args)
         {
             DragParameters dragParameters = args as DragParameters;
@@ -79,36 +102,41 @@ namespace R54IN0.WPF
             dragParameters.DraggedObject = treeviewExItem.DataContext;
         }
 
+
+        /// <summary>
+        /// 드랍 허용 
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public bool CanDrop(object args)
         {
             DropParameters dropParameters = args as DropParameters;
-            TreeViewExItem treeviewExItem = dropParameters.DropToItem;
             IDataObject dataObject = dropParameters.DropData as IDataObject;
-            TreeViewNode des = (treeviewExItem == null) ? null : treeviewExItem.DataContext as TreeViewNode; //넣고자 할 장소(목적지)
-            int index = dropParameters.Index;
-
+            if (dataObject.GetFormats().Any(x => x != "System.Windows.Controls.DragNDrop.DragContent")) //외부의 드래그를 차단
+                return false;
+            var fmt = dataObject.GetFormats().SingleOrDefault(); //fmt 데이터는 항상 하나가 있기를 기대함
+            if (fmt == null)
+                return false;
+            TreeViewExItem treeviewExItem = dropParameters.DropToItem;
             if (treeviewExItem == null)
                 return true; //drop to root
 
-            foreach (string fmt in dataObject.GetFormats())
+            TreeViewNode des = (treeviewExItem == null) ? null : treeviewExItem.DataContext as TreeViewNode; //넣고자 할 장소(목적지)
+            int index = dropParameters.Index;
+            DragContent dragContent = dataObject.GetData(fmt) as DragContent;
+            IEnumerable<TreeViewNode> nodes = dragContent.Items.OfType<TreeViewNode>();
+
+            foreach (TreeViewNode src in nodes)
             {
-                //외부의 드래그를 차단
-                if (!(dataObject.GetData(fmt) is DragContent))
+                //자기노트에 자기자신을 하위로 다시 추가하는 것을 차단
+                if (des == src)
                     return false;
-                DragContent dragContent = dataObject.GetData(fmt) as DragContent;
-                foreach (object item in dragContent.Items)
-                {
-                    TreeViewNode src = item as TreeViewNode;
-                    //자기노트에 자기자신을 하위로 다시 추가하는 것을 차단
-                    if (des == src)
-                        return false;
-                    //자신의 부모에 이미 자식으로 있음에도 다시 그 부모에 자기 자신을 추가하는 경우를 차단
-                    if (des.Root.Any(x => x == src))
-                        return false;
-                    //부모의 하위 자식에게 부모를 추가하는 경우를 차단
-                    if (src.Descendants().Any(x => x == des))
-                        return false;
-                }
+                //자신의 부모에 이미 자식으로 있음에도 다시 그 부모에 자기 자신을 추가하는 경우를 차단
+                if (des.Root.Any(x => x == src))
+                    return false;
+                //부모의 하위 자식에게 부모를 추가하는 경우를 차단
+                if (src.Descendants().Any(x => x == des))
+                    return false;
             }
             if (index == -1)
                 return des.AllowDrop;
@@ -126,19 +154,18 @@ namespace R54IN0.WPF
             TreeViewExItem treeviewExItem = dropParameters.DropToItem;
             IDataObject dataObject = dropParameters.DropData as IDataObject;
             int index = dropParameters.Index;
-            TreeViewNode destNode = (treeviewExItem == null) ? null : treeviewExItem.DataContext as TreeViewNode;
-            foreach (string fmt in dataObject.GetFormats())
+            TreeViewNode des = (treeviewExItem == null) ? null : treeviewExItem.DataContext as TreeViewNode;
+
+            var fmt = dataObject.GetFormats().SingleOrDefault(); //fmt 데이터는 항상 하나가 있기를 기대함
+            if (fmt == null)
+                return;
+            DragContent dragContent = dataObject.GetData(fmt) as DragContent;
+            IEnumerable<TreeViewNode> nodes = dragContent.Items.OfType<TreeViewNode>();
+
+            foreach (TreeViewNode src in nodes.Reverse())
             {
-                DragContent dragContent = dataObject.GetData(fmt) as DragContent;
-                if (dragContent != null)
-                {
-                    foreach (var selectedNode in dragContent.Items.Reverse())
-                    {
-                        TreeViewNode node = (TreeViewNode)selectedNode;
-                        Remove(node);
-                        AddNode(destNode, index, node);
-                    }
-                }
+                Remove(src);
+                AddNode(des, index, src);
             }
         }
 

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace R54IN0.WPF
 {
@@ -14,7 +14,7 @@ namespace R54IN0.WPF
         private NodeType _type;
         private string _name;
         private bool _isNameEditable;
-        private string _itemID;
+        private string _prodcutID;
 
         private event PropertyChangedEventHandler _propertyChanged;
         public event PropertyChangedEventHandler PropertyChanged
@@ -73,20 +73,16 @@ namespace R54IN0.WPF
         {
             get
             {
-                return _itemID;
+                return _prodcutID;
             }
             set
             {
-                _itemID = value;
-                if (!string.IsNullOrEmpty(value) && Type == NodeType.PRODUCT)
+                _prodcutID = value;
+                Observable<Product> product = GetObservableProduct(value);
+                if (product != null)
                 {
-                    var ofd = ObservableFieldDirector.GetInstance();
-                    Observable<Product> product = ofd.Search<Product>(value);
-                    if (product != null)
-                    {
-                        Name = product.Name; //이름 적용
-                        product.PropertyChanged += OnProductPropertyChanged; //이벤트 적용 
-                    }
+                    Name = product.Name; //이름 적용
+                    product.PropertyChanged += OnProductPropertyChanged; //이벤트 적용 
                 }
             }
         }
@@ -99,18 +95,17 @@ namespace R54IN0.WPF
             }
             set
             {
-                //if (Type == NodeType.PRODUCT)
-                //{
-                //    var ofd = ObservableFieldDirector.GetInstance();
-                //    var product = ofd.Search<Product>(ProductID); 
-                //    product.Name = value; //제품 이름 변경
-                //    _name = value;
-                //}
-                //else if (Type == NodeType.FORDER)
-                //{
-                //    _name = value;
-                //}
                 _name = value;
+                if (Type == NodeType.PRODUCT && IsNameEditable) //사용자가 입력을 끝냈을 때
+                {
+                    Observable<Product> product = GetObservableProduct(ProductID);
+                    if (product != null)
+                    {
+                        product.PropertyChanged -= OnProductPropertyChanged;
+                        product.Name = value;
+                        product.PropertyChanged += OnProductPropertyChanged;
+                    }
+                }
                 NotifyPropertyChanged("Name");
             }
         }
@@ -187,33 +182,38 @@ namespace R54IN0.WPF
             }
         }
 
+        /// <summary>
+        /// TextBlock 수정 여부
+        /// </summary>
         public bool IsNameEditable
         {
             get
             {
-                switch (Type)
-                {
-                    case NodeType.FORDER:
-                        return _isNameEditable;
-
-                    case NodeType.PRODUCT:
-                        return false;
-
-                    default:
-                        throw new NotSupportedException();
-                }
+                return _isNameEditable;
             }
             set
             {
                 _isNameEditable = value;
+                NotifyPropertyChanged("IsNameEditable");
             }
+        }
+
+        private Observable<Product> GetObservableProduct(string id)
+        {
+            if (!string.IsNullOrEmpty(id) && Type == NodeType.PRODUCT)
+            {
+                var ofd = ObservableFieldDirector.GetInstance();
+                Observable<Product> product = ofd.Search<Product>(id);
+                return product;
+            }
+            return null;
         }
 
         private void OnProductPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Name" && Type == NodeType.PRODUCT)
             {
-                Observable<Project> project = sender as Observable<Project>;
+                Observable<Product> project = sender as Observable<Product>;
                 Name = project.Name; //반드시 _name에 대입해야한다. Name에 대입할 경우 무한루프에 빠짐
             }
         }

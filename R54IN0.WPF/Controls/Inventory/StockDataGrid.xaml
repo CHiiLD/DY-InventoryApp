@@ -17,6 +17,7 @@
 
             <DataGrid.Resources>
                 <ContextMenu  x:Key="RowMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                    <MenuItem x:Name="ChangeInstockStatus" Header="입출고 현황으로 보기"/>
                     <MenuItem x:Name="NewInoutStockAdd" Header="새로운 입출고 기록 추가하기" />
                     <MenuItem x:Name="ModifyInventory" Header="재고 기록 수정하기" />
                     <MenuItem x:Name="DelelteSelectedCell" Header="재고 기록 삭제하기" />

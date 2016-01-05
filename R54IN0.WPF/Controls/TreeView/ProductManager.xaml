@@ -23,10 +23,9 @@
 
             <Button Content="새로운 폴더를 추가하기" Command="{Binding NewFolderAddCommand}" />
             <Button Content="새로운 제품을 추가하기" Command="{Binding NewProductAddCommand}"/>
-            <Button Content="삭제하기" Command="{Binding NodeDeleteCommand}"/>
+            <Button Content="삭제하기" Command="{Binding NodeDeleteCommand}" Visibility="Collapsed"/>
         </WrapPanel>
 
-        <local:MultiSelectTreeView Grid.Row="1"/>
-
+        <local:MultiSelectTreeView x:Name="MultiSelectTreeView" Grid.Row="1"/>
     </Grid>
 </UserControl>

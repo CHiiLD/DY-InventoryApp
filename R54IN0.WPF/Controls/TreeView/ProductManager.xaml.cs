@@ -10,7 +10,6 @@ namespace R54IN0.WPF
         public ProductManager()
         {
             InitializeComponent();
-            //TODO: DataContext 연결
         }
     }
 }

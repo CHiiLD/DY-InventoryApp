@@ -13,10 +13,12 @@ namespace R54IN0.WPF
 
             InventoryStatusViewModel viewmodel = new InventoryStatusViewModel();
             DataContext = viewmodel;
-
             //datagrid binding
             DataGridL.DataContext = viewmodel.DataGridViewModel1;
             DataGridR.DataContext = viewmodel.DataGridViewModel2;
+
+            ProductManager.DataContext = viewmodel.TreeViewViewModel;
+            ProductManager.MultiSelectTreeView.TreeView.OnSelecting += viewmodel.TreeViewViewModel.OnNodeSelected;
         }
     }
 }

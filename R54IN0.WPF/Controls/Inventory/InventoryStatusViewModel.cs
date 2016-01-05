@@ -38,6 +38,8 @@ namespace R54IN0.WPF
 
         public InventorySearchTextBoxViewModel SearchViewModel { get; set; }
 
+        public ProductManagerViewModel TreeViewViewModel { get; set; }
+
         /// <summary>
         /// ToggleSwitch 데이터그리드의 IsReadOnly프로퍼티와 연결
         /// </summary>
@@ -126,6 +128,34 @@ namespace R54IN0.WPF
 
             CanModify = false;
             ShowProductColumn = ShowMeasureColumn = ShowMakerColumn = true;
+
+            TreeViewViewModel = new ProductManagerViewModel();
+            TreeViewViewModel.PropertyChanged += OnTreeViewPropertyChanged;
+        }
+
+        /// <summary>
+        /// SelectedNodes가 선택될 때 DataGrid를 업데이트
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTreeViewPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "SelectedNodes" && sender == TreeViewViewModel)
+            {
+                var proNodes = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
+                var oid =  ObservableInvenDirector.GetInstance();
+                var invenList = oid.CreateList();
+
+                List<ObservableInventory> temp = new List<ObservableInventory>();
+                foreach (var node in proNodes)
+                {
+                    var invens = invenList.Where(inven => inven.Product.ID == node.ProductID).OrderBy(inven => inven.Specification);
+                    temp.AddRange(invens);
+                }
+                PushDataGridItems(temp, true);
+                DataGridViewModel1.SelectedItem = null;
+                DataGridViewModel2.SelectedItem = null;
+            }
         }
 
         /// <summary>
@@ -201,6 +231,18 @@ namespace R54IN0.WPF
         {
             if (_propertyChanged != null)
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
+        /// <summary>
+        /// LR 데이터 그리드의 아이템들을 합해서 가져온다.
+        /// </summary>
+        /// <returns></returns>
+        public List<ObservableInventory> GetDataGridItems()
+        {
+            var list = new List<ObservableInventory>();
+            list.AddRange(DataGridViewModel1.Items);
+            list.AddRange(DataGridViewModel2.Items);
+            return list;
         }
     }
 }
