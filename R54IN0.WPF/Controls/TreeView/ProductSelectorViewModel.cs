@@ -9,9 +9,9 @@ using System.Windows.Input;
 
 namespace R54IN0.WPF
 {
-    public class ProductManagerViewModel : MultiSelectTreeViewModelView
+    public class ProductSelectorViewModel : MultiSelectTreeViewModelView
     {
-        public ProductManagerViewModel()
+        public ProductSelectorViewModel()
         {
             Func<object, bool> returnTrue = (object obj) => { return true; };
             NewFolderAddCommand = new CommandHandler(ExecuteNewFolderAdd, returnTrue);

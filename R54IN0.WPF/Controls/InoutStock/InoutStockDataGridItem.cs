@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace R54IN0.WPF
+﻿namespace R54IN0.WPF
 {
     public class InoutStockDataGridItem : ObservableInoutStock
     {
+        public InoutStockDataGridItem(InoutStockFormat inoutStockFormat) : base(inoutStockFormat)
+        {
+            IsChecked = false;
+        }
+
         public bool? IsChecked { get; set; }
 
         public int? InComingQuantity

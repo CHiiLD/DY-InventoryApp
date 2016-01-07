@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
     public class InoutStockProjectListBoxViewModel : ICollectionViewModel<Observable<Project>>, INotifyPropertyChanged
     {
-        ObservableCollection<Observable<Project>> _items;
-        Observable<Project> _selectedItem;
+        private ObservableCollection<Observable<Project>> _items;
+        private Observable<Project> _selectedItem;
 
         private event PropertyChangedEventHandler _propertyChanged;
 
@@ -60,6 +55,7 @@ namespace R54IN0.WPF
                 NotifyPropertyChanged("SelectedItem");
             }
         }
+
         public void NotifyPropertyChanged(string name)
         {
             if (_propertyChanged != null)

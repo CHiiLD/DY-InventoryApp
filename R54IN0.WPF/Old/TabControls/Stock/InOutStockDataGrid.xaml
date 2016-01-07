@@ -60,7 +60,7 @@
             </StackPanel>
         </Grid>
 
-        <DataGrid ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="All" Grid.Row="1">
+        <DataGrid ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="All" Margin="10,30,-10,1" Grid.RowSpan="2">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="종류" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" IsReadOnly="True">

@@ -8,18 +8,18 @@ namespace R54IN0
         private Observable<Product> _product;
         private Observable<Maker> _maker;
         private Observable<Measure> _measure;
-        private PropertyChangedEventHandler _propertyChanged;
+        protected PropertyChangedEventHandler propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
             {
-                _propertyChanged -= value;
-                _propertyChanged += value;
+                propertyChanged -= value;
+                propertyChanged += value;
             }
             remove
             {
-                _propertyChanged -= value;
+                propertyChanged -= value;
             }
         }
 
@@ -153,10 +153,10 @@ namespace R54IN0
             }
         }
 
-        public void NotifyPropertyChanged(string propertyName)
+        public virtual void NotifyPropertyChanged(string propertyName)
         {
-            if (_propertyChanged != null)
-                _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (propertyChanged != null)
+                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
             if (!string.IsNullOrEmpty(propertyName))
                 _fmt.Save<InventoryFormat>();
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Windows;
 
 namespace R54IN0.WPF
 {
-    public class InventoryStatusViewModel : INotifyPropertyChanged
+    public class InventoryStatusViewModel : INotifyPropertyChanged, ICollectionViewModelObserver
     {
         private bool _canModify;
         private bool? _showProductColumn;
@@ -30,6 +31,12 @@ namespace R54IN0.WPF
         public InventoryStatusViewModel()
         {
             Initialize();
+            CollectionViewModelObserverSubject.GetInstance().Attach(this);
+        }
+
+        ~InventoryStatusViewModel()
+        {
+            CollectionViewModelObserverSubject.GetInstance().Detach(this);
         }
 
         public InventoryDataGridViewModel DataGridViewModel1 { get; set; }
@@ -38,7 +45,7 @@ namespace R54IN0.WPF
 
         public InventorySearchTextBoxViewModel SearchViewModel { get; set; }
 
-        public ProductManagerViewModel TreeViewViewModel { get; set; }
+        public ProductSelectorViewModel TreeViewViewModel { get; set; }
 
         /// <summary>
         /// ToggleSwitch 데이터그리드의 IsReadOnly프로퍼티와 연결
@@ -129,7 +136,7 @@ namespace R54IN0.WPF
             CanModify = false;
             ShowProductColumn = ShowMeasureColumn = ShowMakerColumn = true;
 
-            TreeViewViewModel = new ProductManagerViewModel();
+            TreeViewViewModel = new ProductSelectorViewModel();
             TreeViewViewModel.PropertyChanged += OnTreeViewPropertyChanged;
         }
 
@@ -140,10 +147,10 @@ namespace R54IN0.WPF
         /// <param name="e"></param>
         private void OnTreeViewPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == "SelectedNodes" && sender == TreeViewViewModel)
+            if (e.PropertyName == "SelectedNodes" && sender == TreeViewViewModel)
             {
                 var proNodes = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
-                var oid =  ObservableInvenDirector.GetInstance();
+                var oid = ObservableInvenDirector.GetInstance();
                 var invenList = oid.CreateList();
 
                 List<ObservableInventory> temp = new List<ObservableInventory>();
@@ -193,7 +200,7 @@ namespace R54IN0.WPF
         /// <param name="doClear">기존의 데이터를 지우고 데이터를 추가할 경우 true, 아니면 false</param>
         protected void PushDataGridItems(IEnumerable<ObservableInventory> items, bool doClear = false)
         {
-            if (items == null || items.Count() == 0)
+            if (items == null)
                 return;
             //프로젝트 이름순으로 정렬하기
             MultiSortedDictionary<string, ObservableInventory> multiSortedDic = new MultiSortedDictionary<string, ObservableInventory>();
@@ -244,6 +251,21 @@ namespace R54IN0.WPF
             list.AddRange(DataGridViewModel1.Items);
             list.AddRange(DataGridViewModel2.Items);
             return list;
+        }
+
+        public void UpdateNewItem(object item)
+        {
+            if (item is ObservableInventory)
+            {
+                var observableInventory = item as ObservableInventory;
+                var nodes = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
+                if (TreeViewViewModel.SelectedNodes.Count == 0 || nodes.Any(x => x.ProductID == observableInventory.Product.ID))
+                    PushDataGridItems(new ObservableInventory[] { observableInventory });
+            }
+        }
+
+        public void UpdateDelItem(object item)
+        {
         }
     }
 }

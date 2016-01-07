@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\
 R54IN0.WPF
 none
 false
 DEBUG;TRACE
-C:\Users\Child\Github\R54IN0\R54IN0.WPF\App.xaml
-291228775212
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\App.xaml
+28-1050797251
 
-541492028130
-251758208058
-Controls\InoutStock\InoutStockDatePicker.xaml;Controls\InoutStock\InoutStockProjectListBox.xaml;Controls\InoutStock\InoutStockStatus.xaml;Controls\Inventory\InventoryStatus.xaml;Controls\InoutStock\InoutStockDataGrid.xaml;Controls\Inventory\StockDataGrid.xaml;Controls\InoutStock\InoutStockRegister.xaml;Controls\TreeView\MultiSelectTreeView.xaml;Windows\StartWindow.xaml;Windows\InoutStockRegisterWindow.xaml;Old\InventoryEditorWindow.xaml;Old\IOStockEditorWindow.xaml;Old\TabControls\Field\AccountDataGrid.xaml;Old\TabControls\Field\ItemManager.xaml;Old\TabControls\Field\MakerDataGrid.xaml;Old\TabControls\Field\WarehouseDataGrid.xaml;Old\TabControls\Field\EmployeeDataGrid.xaml;Old\TabControls\Field\CurrencyDataGrid.xaml;Old\TabControls\Field\MeasureDataGrid.xaml;Old\TabControls\Field\ItemDataGrid.xaml;Old\TabControls\Stock\InOutStockManager.xaml;Old\TabControls\Stock\InOutStockDataGrid.xaml;Old\TabControls\Inventory\InventoryManager.xaml;Old\TabControls\Inventory\InventoryDataGrid.xaml;Old\FinderControl\Finder.xaml;Old\MainWindow.xaml;Controls\TreeView\ProductManager.xaml;Window2.xaml;Window3.xaml;
+531702927450
+25359297976
+Controls\InoutStock\InoutStockDatePicker.xaml;Controls\InoutStock\InoutStockProjectListBox.xaml;Controls\InoutStock\InoutStockStatus.xaml;Controls\Inventory\InventoryStatus.xaml;Controls\InoutStock\InoutStockDataGrid.xaml;Controls\Inventory\StockDataGrid.xaml;Controls\TreeView\MultiSelectTreeView.xaml;Windows\StartWindow.xaml;Controls\InoutStock\InoutStockDataAmenderWindow.xaml;Old\InventoryEditorWindow.xaml;Old\IOStockEditorWindow.xaml;Old\TabControls\Field\AccountDataGrid.xaml;Old\TabControls\Field\ItemManager.xaml;Old\TabControls\Field\MakerDataGrid.xaml;Old\TabControls\Field\WarehouseDataGrid.xaml;Old\TabControls\Field\EmployeeDataGrid.xaml;Old\TabControls\Field\CurrencyDataGrid.xaml;Old\TabControls\Field\MeasureDataGrid.xaml;Old\TabControls\Field\ItemDataGrid.xaml;Old\TabControls\Stock\InOutStockManager.xaml;Old\TabControls\Stock\InOutStockDataGrid.xaml;Old\TabControls\Inventory\InventoryManager.xaml;Old\TabControls\Inventory\InventoryDataGrid.xaml;Old\FinderControl\Finder.xaml;Old\MainWindow.xaml;Controls\TreeView\ProductSelector.xaml;Window2.xaml;Window3.xaml;
 
 False
 

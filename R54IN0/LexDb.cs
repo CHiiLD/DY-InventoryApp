@@ -120,7 +120,7 @@ namespace R54IN0
             me.Map<InoutStockFormat>().Automap(i => i.ID).
             WithIndex("CustomerID", i => i.CustomerID).
             WithIndex("Date", i => i.Date).
-            WithIndex("InventoryItemID", i => i.InventoryItemID).
+            WithIndex("InventoryID", i => i.InventoryID).
             WithIndex("Memo", i => i.Memo).
             WithIndex("ProjectID", i => i.ProjectID).
             WithIndex("Quantity", i => i.Quantity).

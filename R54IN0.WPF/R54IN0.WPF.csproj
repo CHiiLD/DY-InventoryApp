@@ -68,7 +68,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\InoutStock\InoutStockDataGridItem.cs" />
-    <Compile Include="Controls\InoutStock\InoutStockDataGridVIewModel.cs" />
+    <Compile Include="Controls\InoutStock\InoutStockDataGridViewModel.cs" />
     <Compile Include="Controls\InoutStock\InoutStockDatePicker.xaml.cs">
       <DependentUpon>InoutStockDatePicker.xaml</DependentUpon>
     </Compile>
@@ -77,7 +77,7 @@
     <Compile Include="Controls\InoutStock\InoutStockProjectListBox.xaml.cs">
       <DependentUpon>InoutStockProjectListBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InoutStock\InoutStockRegisterViewModel.cs" />
+    <Compile Include="Controls\InoutStock\InoutStockDataAmenderWindowViewModel.cs" />
     <Compile Include="Controls\InoutStock\InoutStockStatus.xaml.cs">
       <DependentUpon>InoutStockStatus.xaml</DependentUpon>
     </Compile>
@@ -100,19 +100,16 @@
       <DependentUpon>MultiSelectTreeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TreeView\MultiSelectTreeViewModelView.cs" />
-    <Compile Include="Controls\TreeView\ProductManager.xaml.cs">
-      <DependentUpon>ProductManager.xaml</DependentUpon>
+    <Compile Include="Controls\TreeView\ProductSelector.xaml.cs">
+      <DependentUpon>ProductSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InoutStock\InoutStockRegister.xaml.cs">
-      <DependentUpon>InoutStockRegister.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\TreeView\ProductManagerViewModel.cs" />
+    <Compile Include="Controls\TreeView\ProductSelectorViewModel.cs" />
     <Compile Include="Controls\TreeView\TreeViewNode.cs" />
     <Compile Include="Windows\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\InoutStockRegisterWindow.xaml.cs">
-      <DependentUpon>InoutStockRegisterWindow.xaml</DependentUpon>
+    <Compile Include="Controls\InoutStock\InoutStockDataAmenderWindow.xaml.cs">
+      <DependentUpon>InoutStockDataAmenderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
@@ -144,10 +141,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\InoutStock\InoutStockRegister.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\TreeView\MultiSelectTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,7 +149,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\InoutStockRegisterWindow.xaml">
+    <Page Include="Controls\InoutStock\InoutStockDataAmenderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -280,7 +273,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controls\TreeView\ProductManager.xaml">
+    <Page Include="Controls\TreeView\ProductSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:R54IN0.WPF"
         mc:Ignorable="d"
+        x:Name="this"
         Title="Window3" Height="768" Width="1366">
     <StackPanel>
+        <ComboBox IsEditable="True" Margin="0,0,1126,0" Text="{Binding Text}" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
+        </ComboBox>
+        
         <!--<local:InventoryStatus />-->
         <!--<local:InoutStockStatus></local:InoutStockStatus>-->
         <!--<local:InoutStockRegister />-->
@@ -18,11 +22,11 @@
 
         <Calendar></Calendar>-->
 
-        <DataGrid>
+        <!--<DataGrid>
             <DataGrid.Columns>
                 <DataGridComboBoxColumn>
                 </DataGridComboBoxColumn>
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>-->
     </StackPanel>
 </Window>

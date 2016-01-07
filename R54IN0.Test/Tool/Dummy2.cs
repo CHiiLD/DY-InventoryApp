@@ -116,7 +116,7 @@ namespace R54IN0.Test
             { "판넬 직부등", new string[] { "KCL-100 삼파장" } },
         };
 
-        string[] _projects = new string[] 
+        string[] _projects = new string[]
         {
             "DY1234",
             "DY1235",
@@ -192,6 +192,17 @@ namespace R54IN0.Test
             }
         }
 
+        void CreateEmployee()
+        {
+            foreach (var name in _humanNames)
+            {
+                new Employee()
+                {
+                    Name = name
+                }.Save<Employee>();
+            }
+        }
+
         public void Create()
         {
             ////////////INIT
@@ -212,6 +223,7 @@ namespace R54IN0.Test
             CreateMeasure();
             CreateWarehouse();
             CreateProject();
+            CreateEmployee();
 
             using (var db = LexDb.GetDbInstance())
             {
@@ -220,6 +232,8 @@ namespace R54IN0.Test
                 Customer[] customer = db.LoadAll<Customer>();
                 Supplier[] suppliers = db.LoadAll<Supplier>();
                 Project[] proejcts = db.LoadAll<Project>();
+                Employee[] employees = db.LoadAll<Employee>();
+                Warehouse[] warehouse = db.LoadAll<Warehouse>();
 
                 foreach (var item in _itemNames)
                 {
@@ -239,9 +253,9 @@ namespace R54IN0.Test
                         }.Save<InventoryFormat>();
 
                         int qty = 0;
-                        int cnt = _random.Next(4, 20);
+                        int cnt = _random.Next(2, 10);
 
-                        for(int i = 0; i < cnt; i ++)
+                        for (int i = 0; i < cnt; i++)
                         {
                             var date1 = DateTime.Now.AddDays(-600.0 / (i + 1));
                             var date2 = date1.AddMilliseconds(1);
@@ -250,10 +264,11 @@ namespace R54IN0.Test
                             {
                                 SupplierID = suppliers.Random().ID,
                                 Date = date1,
-                                InventoryItemID = ifmt.ID,
-                                ProjectID = proejcts.Random().ID,
+                                InventoryID = ifmt.ID,
+                                WarehouseID = warehouse.Random().ID,
                                 Quantity = _random.Next(10, 100),
                                 StockType = StockType.INCOMING,
+                                EmployeeID = employees.Random().ID,
                                 UnitPrice = (int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000)),
                             }.Save<InoutStockFormat>();
                             qty += isfmt.Quantity;
@@ -262,10 +277,11 @@ namespace R54IN0.Test
                             {
                                 CustomerID = customer.Random().ID,
                                 Date = date2,
-                                InventoryItemID = ifmt.ID,
+                                InventoryID = ifmt.ID,
                                 ProjectID = proejcts.Random().ID,
                                 Quantity = _random.Next(1, qty),
                                 StockType = StockType.OUTGOING,
+                                EmployeeID = employees.Random().ID,
                                 UnitPrice = (int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000)),
                             }.Save<InoutStockFormat>();
                             qty -= isfmt.Quantity;

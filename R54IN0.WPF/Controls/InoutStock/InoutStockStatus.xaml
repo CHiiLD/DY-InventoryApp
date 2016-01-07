@@ -24,8 +24,8 @@
 
             <GroupBox Header="종류">
                 <UniformGrid Rows="2" Columns="1" Height="50">
-                    <CheckBox Content="입고" IsChecked="{Binding IsCheckedInComing}"/>
-                    <CheckBox Content="출고" IsChecked="{Binding IsCheckedOutGoing}"/>
+                    <CheckBox Content="입고" IsChecked="{Binding IsCheckedInComing}" />
+                    <CheckBox Content="출고" IsChecked="{Binding IsCheckedOutGoing}" />
                 </UniformGrid>
             </GroupBox>
 
@@ -35,15 +35,15 @@
             </GroupBox>
 
             <GroupBox Header="{Binding DataGridHelperHeader}" Grid.Row="2">
-                <Grid x:Name="DataGridHelperGrid" >
+                <Grid x:Name="DataGridHelperGrid">
                     <Grid Visibility="{Binding DatePickerViewModelVisibility}">
-                        <local:InoutStockDatePicker x:Name="DatePicker"  />
+                        <local:InoutStockDatePicker x:Name="DatePicker" />
                     </Grid>
                     <Grid Visibility="{Binding ProjectListBoxViewModelVisibility}">
-                        <local:InoutStockProjectListBox  x:Name="ProjectListBox"/>
-                    </Grid >
+                        <local:InoutStockProjectListBox  x:Name="ProjectListBox" />
+                    </Grid>
                     <Grid Visibility="{Binding TreeViewViewModelVisibility}">
-                        <local:ProductManager x:Name="ProductManager" />
+                        <local:ProductSelector x:Name="ProductSelector" />
                     </Grid>
                 </Grid>
             </GroupBox>
@@ -65,13 +65,12 @@
                             <Setter Property="FontFamily" Value="Segoe UI Light" />
                         </Style>
                     </WrapPanel.Resources>
-                    <Button>새로운 입출고 기록을 추가하기</Button>
+                    <Button Command="{Binding NewInoutStockAddCommand}">새로운 입출고 기록을 추가하기</Button>
                     <Button>체크된 기록들을 삭제하기</Button>
                     <Button>체크된 기록들을 오늘 날짜로 복사하여 추가하기</Button>
-                    <Button>재고현황 데이터로 보기</Button>
+                    <Button>선택된 기록을 재고현황 기록으로 보기</Button>
                 </WrapPanel>
-                <local:InoutStockDataGrid  
-                                          x:Name="DataGrid" Grid.Row="1" />
+                <local:InoutStockDataGrid x:Name="DataGrid" Grid.Row="1" />
             </Grid>
         </GroupBox>
     </Grid>

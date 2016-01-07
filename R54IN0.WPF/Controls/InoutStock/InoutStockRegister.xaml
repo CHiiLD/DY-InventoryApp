@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:R54IN0.WPF"
              xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d">
-    <Grid>
 
+   
+    <Grid>
         <Grid.Resources>
             <Style TargetType="Grid">
                 <Setter Property="Margin" Value="1" />
@@ -18,7 +19,9 @@
             <ColumnDefinition Width="310" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
+        
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -62,18 +65,10 @@
             <StackPanel Grid.Column="1" Orientation="Horizontal">
                 <TextBox
                          mah:TextBoxHelper.Watermark="제품을 선택해주세요"
-                         mah:TextBoxHelper.UseFloatingWatermark="True"
-                         mah:TextBoxHelper.ClearTextButton="True" Width="200">
+                         Width="200">
                     <TextBox.Style>
                         <Style TargetType="{x:Type TextBox}"
                                BasedOn="{StaticResource SearchMetroTextBox}">
-                            <Style.Triggers>
-                                <Trigger Property="mah:TextBoxHelper.HasText"
-                                         Value="True">
-                                    <Setter Property="mah:TextBoxHelper.ButtonTemplate"
-                                            Value="{DynamicResource ChromelessButtonTemplate}" />
-                                </Trigger>
-                            </Style.Triggers>
                         </Style>
                     </TextBox.Style>
                 </TextBox>
@@ -97,7 +92,7 @@
             <Label>규격의 설명</Label>
             <TextBox
                 Grid.Column="1"
-                         Text="">
+                         Text="" Margin="0,0,1,0">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}"
                                BasedOn="{StaticResource MetroTextBox}">
@@ -164,7 +159,8 @@
                 <ColumnDefinition Width="43*" />
             </Grid.ColumnDefinitions>
             <Label>거래처</Label>
-            <TextBox
+            <ComboBox Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
+            <!--<TextBox
                 Width="200"
                 Grid.Column="1"
                          mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
@@ -190,7 +186,7 @@
                         </Style.Triggers>
                     </Style>
                 </TextBox.Style>
-            </TextBox>
+            </TextBox>-->
         </Grid>
 
         <Grid Grid.Row="8" Grid.Column="1">
@@ -199,7 +195,9 @@
                 <ColumnDefinition Width="43*" />
             </Grid.ColumnDefinitions>
             <Label>보관장소</Label>
-            <TextBox
+            <ComboBox Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
+
+            <!--<TextBox
                 Width="200"
                 Grid.Column="1"
                          mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
@@ -225,7 +223,7 @@
                         </Style.Triggers>
                     </Style>
                 </TextBox.Style>
-            </TextBox>
+            </TextBox>-->
         </Grid>
 
         <Grid Grid.Row="9" Grid.Column="1">
@@ -242,10 +240,19 @@
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="43*" />
             </Grid.ColumnDefinitions>
+            <Label>담당자</Label>
+            <ComboBox Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
+        </Grid>
+
+        <Grid Grid.Row="11" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="43*" />
+            </Grid.ColumnDefinitions>
             <Label>비고</Label>
             <TextBox
                 Grid.Column="1"
-                         Text="">
+                         Text="" Margin="0,0,1,0">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}"
                                BasedOn="{StaticResource MetroTextBox}">

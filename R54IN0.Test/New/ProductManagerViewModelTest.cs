@@ -11,7 +11,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void CanCreate()
         {
-            new ProductManagerViewModel();
+            new ProductSelectorViewModel();
         }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace R54IN0.Test.New
         public void CreateNewFolder()
         {
             new Dummy2().Create();
-            var viewmodel = new ProductManagerViewModel();
+            var viewmodel = new ProductSelectorViewModel();
             //새로운 폴더를 생성
             viewmodel.NewFolderAddCommand.Execute(null);
             Assert.IsTrue(viewmodel.Root.Any(node => node.Name == "새로운 폴더"));
@@ -40,7 +40,7 @@ namespace R54IN0.Test.New
         public void CreateNewProduct()
         {
             new Dummy2().Create();
-            var viewmodel = new ProductManagerViewModel();
+            var viewmodel = new ProductSelectorViewModel();
             //새로운 제품을 추가
             viewmodel.NewProductAddCommand.Execute(null);
             Assert.IsTrue(viewmodel.Root.Any(node => node.Name == "새로운 제품"));
@@ -65,7 +65,7 @@ namespace R54IN0.Test.New
         public void DeleteForderNProduct()
         {
             new Dummy2().Create();
-            var viewmodel = new ProductManagerViewModel();
+            var viewmodel = new ProductSelectorViewModel();
             var isvm = new InventoryStatusViewModel();
             //새로운 폴더를 생성
             viewmodel.NewFolderAddCommand.Execute(null);

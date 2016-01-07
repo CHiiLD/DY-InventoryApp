@@ -17,9 +17,8 @@ namespace R54IN0.WPF
             DataGridL.DataContext = viewmodel.DataGridViewModel1;
             DataGridR.DataContext = viewmodel.DataGridViewModel2;
 
-            ProductManager.DataContext = viewmodel.TreeViewViewModel;
-            ProductManager.MultiSelectTreeView.TreeView.OnSelecting += viewmodel.TreeViewViewModel.OnNodeSelected;
-            //ProductManager.MultiSelectTreeView.TreeView.ContextMenuOpening += TreeViewContextMenu_ContextMenuOpening;
+            ProductSelector.DataContext = viewmodel.TreeViewViewModel;
+            ProductSelector.MultiSelectTreeView.TreeView.OnSelecting += viewmodel.TreeViewViewModel.OnNodeSelected;
         }
     }
 }

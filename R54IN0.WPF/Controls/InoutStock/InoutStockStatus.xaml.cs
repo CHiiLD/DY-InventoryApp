@@ -1,7 +1,5 @@
-﻿using System.Windows.Controls;
-using System.Windows;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.Linq;
+using System.Windows.Controls;
 
 namespace R54IN0.WPF
 {
@@ -20,7 +18,8 @@ namespace R54IN0.WPF
 
             DatePicker.DataContext = viewmodel.DatePickerViewModel;
             ProjectListBox.DataContext = viewmodel.ProjectListBoxViewModel;
-            ProductManager.DataContext = viewmodel.TreeViewViewModel;
+            ProductSelector.DataContext = viewmodel.TreeViewViewModel;
+            ProductSelector.MultiSelectTreeView.TreeView.OnSelecting += viewmodel.TreeViewViewModel.OnNodeSelected;
 
             viewmodel.SelectedGroupItem = viewmodel.GroupItems.First();
         }

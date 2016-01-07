@@ -74,6 +74,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="New\InoutStockDataAmenderWindowViewModelTest.cs" />
     <Compile Include="New\InoutStockStatusViewModelTest.cs" />
     <Compile Include="New\ObservableStockTest.cs" />
     <Compile Include="New\Dummy2Test.cs" />

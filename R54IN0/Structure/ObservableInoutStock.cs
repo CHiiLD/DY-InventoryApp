@@ -9,8 +9,10 @@ namespace R54IN0
         private Observable<Customer> _customer;
         private Observable<Supplier> _supplier;
         private Observable<Project> _project;
+        private Observable<Employee> _employee;
+        private Observable<Warehouse> _warehouse;
 
-        private IObservableInventoryProperties _inven;
+        private IObservableInventoryProperties _inventory;
         protected PropertyChangedEventHandler propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
@@ -29,7 +31,6 @@ namespace R54IN0
         public ObservableInoutStock()
         {
             _fmt = new InoutStockFormat();
-            _inven = new ObservableInventory();
         }
 
         public ObservableInoutStock(InoutStockFormat inoutStockFormat)
@@ -38,20 +39,35 @@ namespace R54IN0
             _fmt = inoutStockFormat;
         }
 
+        public ObservableInoutStock(ObservableInoutStock thiz) : this(thiz._fmt)
+        {
+        }
+
         protected void InitializeProperties(InoutStockFormat inoutStockFormat)
         {
             var ofd = ObservableFieldDirector.GetInstance();
             _customer = ofd.Search<Customer>(inoutStockFormat.CustomerID);
             _supplier = ofd.Search<Supplier>(inoutStockFormat.SupplierID);
             _project = ofd.Search<Project>(inoutStockFormat.ProjectID);
+            _employee = ofd.Search<Employee>(inoutStockFormat.EmployeeID);
+            _warehouse = ofd.Search<Warehouse>(inoutStockFormat.WarehouseID);
+
             var oid = ObservableInvenDirector.GetInstance();
-            _inven = oid.Search(inoutStockFormat.InventoryItemID);
+            _inventory = oid.Search(inoutStockFormat.InventoryID);
+        }
+
+        public InoutStockFormat Format
+        {
+            get
+            {
+                return _fmt;
+            }
         }
 
         /// <summary>
         /// 입출고 종류
         /// </summary>
-        public StockType StockType
+        public virtual StockType StockType
         {
             get
             {
@@ -180,12 +196,12 @@ namespace R54IN0
         {
             get
             {
-                return _inven;
+                return _inventory;
             }
             set
             {
-                _fmt.InventoryItemID = value != null ? value.ID : null;
-                _inven = value;
+                _fmt.InventoryID = value != null ? value.ID : null;
+                _inventory = value;
                 NotifyPropertyChanged("Inventory");
             }
         }
@@ -201,7 +217,35 @@ namespace R54IN0
                 _fmt.ID = value;
             }
         }
-        
+
+        public Observable<Employee> Employee
+        {
+            get
+            {
+                return _employee;
+            }
+            set
+            {
+                _fmt.EmployeeID = value != null ? value.ID : null;
+                _employee = value;
+                NotifyPropertyChanged("Employee");
+            }
+        }
+
+        public Observable<Warehouse> Warehouse
+        {
+            get
+            {
+                return _warehouse;
+            }
+            set
+            {
+                _fmt.WarehouseID = value != null ? value.ID : null;
+                _warehouse = value;
+                NotifyPropertyChanged("Warehouse");
+            }
+        }
+
         public virtual void NotifyPropertyChanged(string propertyName)
         {
             if (propertyChanged != null)

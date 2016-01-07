@@ -34,7 +34,7 @@ namespace R54IN0
         /// <summary>
         /// 재고 범위식별자
         /// </summary>
-        public string InventoryItemID { get; set; }
+        public string InventoryID { get; set; }
 
         /// <summary>
         /// 출고처 범위식별자
@@ -51,6 +51,16 @@ namespace R54IN0
         /// </summary>
         public string ProjectID { get; set; }
 
+        /// <summary>
+        /// 보관장소 범위 식별자
+        /// </summary>
+        public string WarehouseID { get; set; }
+
+        /// <summary>
+        /// 직원 범위 식별자
+        /// </summary>
+        public string EmployeeID { get; set; }
+
         public InoutStockFormat()
         {
 
@@ -64,10 +74,12 @@ namespace R54IN0
             UnitPrice = thiz.UnitPrice;
             Quantity = thiz.Quantity;
             Memo = thiz.Memo;
-            InventoryItemID = thiz.InventoryItemID;
+            InventoryID = thiz.InventoryID;
             CustomerID = thiz.CustomerID;
             SupplierID = thiz.SupplierID;
             ProjectID = thiz.ProjectID;
+            WarehouseID = thiz.WarehouseID;
+            EmployeeID = thiz.EmployeeID;
         }
     }
 }

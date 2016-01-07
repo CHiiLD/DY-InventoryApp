@@ -46,6 +46,7 @@ namespace R54IN0
                 AddNewTypeCollection<T>();
             return _dic[type].Values.Cast<Observable<T>>().ToList();
         }
+
         private void AddNewTypeCollection<T>() where T : class, IField, new()
         {
             Type type = typeof(T);

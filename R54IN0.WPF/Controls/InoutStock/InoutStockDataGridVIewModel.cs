@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
-    public class InoutStockDataGridVIewModel : ICollectionViewModel<InoutStockDataGridItem>, INotifyPropertyChanged
+    public class InoutStockDataGridViewModel : ICollectionViewModel<InoutStockDataGridItem>, INotifyPropertyChanged
     {
-        public InoutStockDataGridVIewModel()
+        public InoutStockDataGridViewModel()
         {
             Items = new ObservableCollection<InoutStockDataGridItem>();
         }
 
         private event PropertyChangedEventHandler _propertyChanged;
+
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
