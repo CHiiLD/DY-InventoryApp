@@ -67,15 +67,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\InoutStock\InoutStockDataGridItem.cs" />
+    <Compile Include="Controls\InoutStock\InoutStockDataGridVIewModel.cs" />
     <Compile Include="Controls\InoutStock\InoutStockDatePicker.xaml.cs">
       <DependentUpon>InoutStockDatePicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\InoutStock\InoutStockDatePickerViewModel.cs" />
+    <Compile Include="Controls\InoutStock\InoutStockProjectListBoxViewModel.cs" />
     <Compile Include="Controls\InoutStock\InoutStockProjectListBox.xaml.cs">
       <DependentUpon>InoutStockProjectListBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\InoutStock\InoutStockRegisterViewModel.cs" />
     <Compile Include="Controls\InoutStock\InoutStockStatus.xaml.cs">
       <DependentUpon>InoutStockStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\InoutStock\InoutStockStatusViewModel.cs" />
     <Compile Include="Controls\Inventory\InventoryDataGridViewModel.cs" />
     <Compile Include="Controls\Inventory\InventorySearchTextBoxViewModel.cs" />
     <Compile Include="Controls\Inventory\InventoryStatus.xaml.cs">

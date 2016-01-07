@@ -3,48 +3,49 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public class ObservableStock : IObservableStockProperties
+    public class ObservableInoutStock : IObservableInoutStockProperties
     {
-        private StockFormat _fmt;
+        private InoutStockFormat _fmt;
         private Observable<Customer> _customer;
         private Observable<Supplier> _supplier;
         private Observable<Project> _project;
 
         private IObservableInventoryProperties _inven;
-        private PropertyChangedEventHandler _propertyChanged;
+        protected PropertyChangedEventHandler propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
             {
-                _propertyChanged -= value;
-                _propertyChanged += value;
+                propertyChanged -= value;
+                propertyChanged += value;
             }
             remove
             {
-                _propertyChanged -= value;
+                propertyChanged -= value;
             }
         }
 
-        public ObservableStock()
+        public ObservableInoutStock()
         {
-            _fmt = new StockFormat();
+            _fmt = new InoutStockFormat();
+            _inven = new ObservableInventory();
         }
 
-        public ObservableStock(StockFormat stock)
+        public ObservableInoutStock(InoutStockFormat inoutStockFormat)
         {
-            InitializeProperties(stock);
-            _fmt = stock;
+            InitializeProperties(inoutStockFormat);
+            _fmt = inoutStockFormat;
         }
 
-        protected void InitializeProperties(StockFormat stock)
+        protected void InitializeProperties(InoutStockFormat inoutStockFormat)
         {
             var ofd = ObservableFieldDirector.GetInstance();
-            _customer = ofd.Search<Customer>(stock.CustomerID);
-            _supplier = ofd.Search<Supplier>(stock.SupplierID);
-            _project = ofd.Search<Project>(stock.ProjectID);
+            _customer = ofd.Search<Customer>(inoutStockFormat.CustomerID);
+            _supplier = ofd.Search<Supplier>(inoutStockFormat.SupplierID);
+            _project = ofd.Search<Project>(inoutStockFormat.ProjectID);
             var oid = ObservableInvenDirector.GetInstance();
-            _inven = oid.Search(stock.InventoryItemID);
+            _inven = oid.Search(inoutStockFormat.InventoryItemID);
         }
 
         /// <summary>
@@ -200,13 +201,13 @@ namespace R54IN0
                 _fmt.ID = value;
             }
         }
-
-        public void NotifyPropertyChanged(string propertyName)
+        
+        public virtual void NotifyPropertyChanged(string propertyName)
         {
-            if (_propertyChanged != null)
-                _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            if (propertyChanged != null)
+                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
             if (!string.IsNullOrEmpty(propertyName))
-                _fmt.Save<StockFormat>();
+                _fmt.Save<InoutStockFormat>();
         }
     }
 }

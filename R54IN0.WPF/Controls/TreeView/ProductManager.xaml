@@ -12,7 +12,7 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <WrapPanel Orientation="Horizontal" Width="Auto" HorizontalAlignment="Left">
+        <WrapPanel Visibility="Collapsed" Orientation="Horizontal" Width="Auto" HorizontalAlignment="Left">
             <WrapPanel.Resources>
                 <Style TargetType="Button" BasedOn="{StaticResource MetroButton}">
                     <Setter Property="Margin" Value="3,1" />

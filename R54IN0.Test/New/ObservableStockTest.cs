@@ -9,14 +9,15 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreate()
         {
-            StockFormat fmt = new StockFormat();
-            ObservableStock stock = new ObservableStock();
-            stock = new ObservableStock(fmt);
+            InoutStockFormat fmt = new InoutStockFormat();
+            ObservableInoutStock stock = new ObservableInoutStock();
+            stock = new ObservableInoutStock(fmt);
         }
 
         [TestMethod]
         public void LoadProperties()
         {
+            new Dummy2().Create();
             using (var db = LexDb.GetDbInstance())
                 db.Purge();
             ObservableInventory oinven = new ObservableInventory();
@@ -27,7 +28,7 @@ namespace R54IN0.Test
             oinven.Maker = new Observable<Maker>() { Name = "maker name" };
             oinven.Specification = "product's specification name(standard)";
 
-            ObservableStock ostock = new ObservableStock();
+            ObservableInoutStock ostock = new ObservableInoutStock();
             ostock.Date = DateTime.Now;
             ostock.Project = new Observable<Project>() { Name = "dy1234" };
             ostock.Supplier = new Observable<Supplier>() { Name = "여명" };
@@ -38,12 +39,12 @@ namespace R54IN0.Test
             ostock.StockType = StockType.INCOMING;
             ostock.UnitPrice = 10000;
 
-            StockFormat stockFormat;
+            InoutStockFormat stockFormat;
             using (var db = LexDb.GetDbInstance())
-                stockFormat = db.LoadByKey<StockFormat>(ostock.ID);
+                stockFormat = db.LoadByKey<InoutStockFormat>(ostock.ID);
 
             ObservableInvenDirector.Distory();
-            ObservableStock newOStock = new ObservableStock(stockFormat);
+            ObservableInoutStock newOStock = new ObservableInoutStock(stockFormat);
             Assert.AreEqual(ostock.ID, newOStock.ID);
             Assert.AreEqual(ostock.Project.ID, newOStock.Project.ID);
             Assert.AreEqual(ostock.Supplier.ID, newOStock.Supplier.ID);

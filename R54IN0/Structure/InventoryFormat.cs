@@ -40,5 +40,16 @@
         public InventoryFormat()
         {
         }
+
+        public InventoryFormat(InventoryFormat thiz)
+        {
+            ID = thiz.ID;
+            Specification = thiz.Specification;
+            Quantity = thiz.Quantity;
+            Memo = thiz.Memo;
+            ProductID = thiz.ProductID;
+            MakerID = thiz.MakerID;
+            MeasureID = thiz.MeasureID;
+        }
     }
 }

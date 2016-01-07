@@ -246,7 +246,7 @@ namespace R54IN0.Test
                             var date1 = DateTime.Now.AddDays(-600.0 / (i + 1));
                             var date2 = date1.AddMilliseconds(1);
 
-                            var isfmt = new StockFormat()
+                            var isfmt = new InoutStockFormat()
                             {
                                 SupplierID = suppliers.Random().ID,
                                 Date = date1,
@@ -255,10 +255,10 @@ namespace R54IN0.Test
                                 Quantity = _random.Next(10, 100),
                                 StockType = StockType.INCOMING,
                                 UnitPrice = (int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000)),
-                            }.Save<StockFormat>();
+                            }.Save<InoutStockFormat>();
                             qty += isfmt.Quantity;
 
-                            isfmt = new StockFormat()
+                            isfmt = new InoutStockFormat()
                             {
                                 CustomerID = customer.Random().ID,
                                 Date = date2,
@@ -267,7 +267,7 @@ namespace R54IN0.Test
                                 Quantity = _random.Next(1, qty),
                                 StockType = StockType.OUTGOING,
                                 UnitPrice = (int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000)),
-                            }.Save<StockFormat>();
+                            }.Save<InoutStockFormat>();
                             qty -= isfmt.Quantity;
                         }
                         ifmt.Quantity = qty;

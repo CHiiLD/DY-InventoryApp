@@ -6,5 +6,6 @@
              xmlns:local="clr-namespace:R54IN0.WPF"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <ListBox />
+    <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" 
+             DisplayMemberPath="Name" />
 </UserControl>

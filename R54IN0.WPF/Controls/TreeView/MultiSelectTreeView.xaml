@@ -10,21 +10,22 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
+        <ContextMenu x:Key="CellContextMenu">
+            <MenuItem Header="이름 변경하기"></MenuItem>
+            <MenuItem Header="새로운 폴더 추가하기"></MenuItem>
+            <MenuItem Header="새로운 제품 추가하기"></MenuItem>
+            <Separator />
+            <MenuItem Header="입출고 현황으로 보기"></MenuItem>
+            <MenuItem Header="새로운 입출고 기록 추가하기"></MenuItem>
+        </ContextMenu>
+        
         <HierarchicalDataTemplate DataType="{x:Type local:TreeViewNode}" ItemsSource="{Binding Root}">
-            <Grid>
+            <Grid x:Name="NodeGrid" ContextMenu="{StaticResource CellContextMenu}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-
-                <Grid.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="이름 변경하기"></MenuItem>
-                        <MenuItem Header="입출고 현황으로 보기"></MenuItem>
-                        <MenuItem Header="새로운 입출고 기록 추가하기"></MenuItem>
-                    </ContextMenu>
-                </Grid.ContextMenu>
-
+                
                 <Border Grid.Column="0" CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <!--Mode=TwoWay, UpdateSourceTrigger=PropertyChanged을 선언하지 않으면 연동이 되지 않음-->
                 <edttxt:EditableTextBlock 

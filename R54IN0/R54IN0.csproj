@@ -67,9 +67,9 @@
     <Compile Include="Structure\Fields\Maker.cs" />
     <Compile Include="Structure\Fields\Measure.cs" />
     <Compile Include="Structure\Fields\Specification.cs" />
-    <Compile Include="Structure\IObservableStockProperties.cs" />
-    <Compile Include="Structure\StockFormat.cs" />
-    <Compile Include="Structure\ObservableStock.cs" />
+    <Compile Include="Structure\IObservableInoutStockProperties.cs" />
+    <Compile Include="Structure\InoutStockFormat.cs" />
+    <Compile Include="Structure\ObservableInoutStock.cs" />
     <Compile Include="Structure\StockType.cs" />
     <Compile Include="Structure\Fields\Warehouse.cs" />
     <Compile Include="Structure\Fields\Supplier.cs" />

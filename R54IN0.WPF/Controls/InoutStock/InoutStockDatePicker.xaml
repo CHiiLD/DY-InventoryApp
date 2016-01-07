@@ -19,8 +19,8 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">시작일</Label>
             <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">종료일</Label>
-            <DatePicker Grid.Row="0" Grid.Column="1" />
-            <DatePicker Grid.Row="2" Grid.Column="1" />
+            <DatePicker SelectedDate="{Binding FromDate}" Grid.Row="0" Grid.Column="1" />
+            <DatePicker SelectedDate="{Binding ToDate}" Grid.Row="2" Grid.Column="1" />
         </Grid>
 
         <UniformGrid Height="Auto" Columns="1" Rows="6" Margin="0,10,0,0">
@@ -31,38 +31,37 @@
             </UniformGrid.Resources>
 
             <UniformGrid Columns="3" VerticalAlignment="Center">
-                <Button>오늘</Button>
-                <Button>어제</Button>
-                <Button>그저께</Button>
+                <Button Command="{Binding TodayCommand}" >오늘</Button>
+                <Button Command="{Binding YesterdayCommand}">어제</Button>
+                <Button Command="{Binding TheDayBeforeYesterday}">그저께</Button>
             </UniformGrid>
 
             <UniformGrid Columns="3"  VerticalAlignment="Center">
-                <Button>금주</Button>
-                <Button>전주</Button>
-                <Button>전전주</Button>
+                <Button Command="{Binding ThisWeekCommand}" >금주</Button>
+                <Button Command="{Binding LastWeekCommand}" >전주</Button>
+                <Button Command="{Binding FromLastWeekToTodayCommand}">전주부터 오늘까지</Button>
             </UniformGrid>
-            <UniformGrid Columns="3"  VerticalAlignment="Center">
-                <Button>금월</Button>
-                <Button>전월</Button>
-                <Button>전전월</Button>
+            <UniformGrid Columns="2"  VerticalAlignment="Center">
+                <Button Command="{Binding ThisMonthCommand}">금월</Button>
+                <Button Command="{Binding LastMonthCommand}">전월</Button>
             </UniformGrid>
 
             <UniformGrid Columns="4"  VerticalAlignment="Center">
-                <Button>1분기</Button>
-                <Button>2분기</Button>
-                <Button>3분기</Button>
-                <Button>4분기</Button>
+                <Button Command="{Binding FirstQuarterCommand}">1분기</Button>
+                <Button Command="{Binding SecondQuarterCommand}">2분기</Button>
+                <Button Command="{Binding ThirdQuarterCommand}">3분기</Button>
+                <Button Command="{Binding FourthQuarterCommand}">4분기</Button>
             </UniformGrid>
 
             <UniformGrid Columns="2"  VerticalAlignment="Center">
-                <Button>상반기</Button>
-                <Button>하반기</Button>
+                <Button Command="{Binding FirstHalfYearCommand}">상반기</Button>
+                <Button Command="{Binding SecondHalfYearCommand}">하반기</Button>
             </UniformGrid>
 
             <UniformGrid Columns="3"  VerticalAlignment="Center">
-                <Button>금년</Button>
-                <Button>작년</Button>
-                <Button>재작년</Button>
+                <Button Command="{Binding ThisYearCommand}">금년</Button>
+                <Button Command="{Binding LastYearCommand}">작년</Button>
+                <Button Command="{Binding TheYearBeforeLastCommand}">재작년</Button>
             </UniformGrid>
         </UniformGrid>
 

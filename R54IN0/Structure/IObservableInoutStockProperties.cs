@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace R54IN0
 {
-    public interface IObservableStockProperties : INotifyPropertyChanged
+    public interface IObservableInoutStockProperties : INotifyPropertyChanged
     {
         string ID { get; set; }
         string Memo { get; set; }

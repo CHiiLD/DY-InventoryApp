@@ -181,6 +181,7 @@ namespace R54IN0.WPF
         /// <param name="parameter"></param>
         protected void ExecuteSearchCommand(object parameter)
         {
+            TreeViewViewModel.SelectedNodes.Clear();
             var searchResult = SearchViewModel.Search();
             PushDataGridItems(searchResult, true);
         }

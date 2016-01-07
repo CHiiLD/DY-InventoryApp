@@ -39,8 +39,8 @@
             </Grid.ColumnDefinitions>
             <Label>종류</Label>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <RadioButton>입고</RadioButton>
-                <RadioButton BorderThickness="0,1,1,1" Margin="10,0,0,0">출고</RadioButton>
+                <RadioButton >입고</RadioButton>
+                <RadioButton Margin="10,0,0,0">출고</RadioButton>
             </StackPanel>
         </Grid>
 

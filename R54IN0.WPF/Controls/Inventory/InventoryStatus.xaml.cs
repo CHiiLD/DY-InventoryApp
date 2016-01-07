@@ -19,6 +19,7 @@ namespace R54IN0.WPF
 
             ProductManager.DataContext = viewmodel.TreeViewViewModel;
             ProductManager.MultiSelectTreeView.TreeView.OnSelecting += viewmodel.TreeViewViewModel.OnNodeSelected;
+            //ProductManager.MultiSelectTreeView.TreeView.ContextMenuOpening += TreeViewContextMenu_ContextMenuOpening;
         }
     }
 }

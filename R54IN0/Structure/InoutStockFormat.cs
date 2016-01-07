@@ -2,7 +2,7 @@
 
 namespace R54IN0
 {
-    public class StockFormat : IID
+    public class InoutStockFormat : IID
     {
         public string ID { get; set; }
 
@@ -50,5 +50,24 @@ namespace R54IN0
         /// 프로젝트 범위 식별자
         /// </summary>
         public string ProjectID { get; set; }
+
+        public InoutStockFormat()
+        {
+
+        }
+
+        public InoutStockFormat(InoutStockFormat thiz)
+        {
+            ID = thiz.ID;
+            StockType = thiz.StockType;
+            Date = thiz.Date;
+            UnitPrice = thiz.UnitPrice;
+            Quantity = thiz.Quantity;
+            Memo = thiz.Memo;
+            InventoryItemID = thiz.InventoryItemID;
+            CustomerID = thiz.CustomerID;
+            SupplierID = thiz.SupplierID;
+            ProjectID = thiz.ProjectID;
+        }
     }
 }

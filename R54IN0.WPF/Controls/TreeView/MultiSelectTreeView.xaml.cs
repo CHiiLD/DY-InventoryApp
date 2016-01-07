@@ -20,6 +20,14 @@ namespace R54IN0.WPF
     /// </summary>
     public partial class MultiSelectTreeView : UserControl
     {
+        public ContextMenu CellContextMenu
+        {
+            get
+            {
+                return Resources["CellContextMenu"] as ContextMenu;
+            }
+        }
+
         public MultiSelectTreeView()
         {
             InitializeComponent();
