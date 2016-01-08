@@ -88,7 +88,6 @@ namespace R54IN0
                 WithIndex("Quantity", i => i.Quantity).
                 WithIndex("EnterpriseID", i => i.EnterpriseID).
                 WithIndex("EmployeeID", i => i.EmployeeID).
-                //WithIndex("WarehouseID", i => i.WarehouseID).
                 WithIndex("ItemID", i => i.ItemID).
                 WithIndex("Remark", i => i.Remark).
                 WithIndex("InventoryID", i => i.InventoryID);
@@ -119,15 +118,18 @@ namespace R54IN0
 
             me.Map<InoutStockFormat>().Automap(i => i.ID).
             WithIndex("CustomerID", i => i.CustomerID).
+            WithIndex("SupplierID", i => i.SupplierID).
             WithIndex("Date", i => i.Date).
             WithIndex("InventoryID", i => i.InventoryID).
             WithIndex("Memo", i => i.Memo).
+            WithIndex("WarehouseID", i => i.WarehouseID).
+            WithIndex("EmployeeID", i => i.EmployeeID).
             WithIndex("ProjectID", i => i.ProjectID).
             WithIndex("Quantity", i => i.Quantity).
             WithIndex("StockType", i => i.StockType).
-            WithIndex("SupplierID", i => i.SupplierID).
+            WithIndex("RemainingQuantity", i => i.RemainingQuantity).
             WithIndex("UnitPrice", i => i.UnitPrice);
-
+            
             me.Initialize();
         }
 

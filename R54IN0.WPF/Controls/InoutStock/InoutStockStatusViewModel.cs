@@ -233,6 +233,11 @@ namespace R54IN0.WPF
         /// </summary>
         public ICommand NewInoutStockAddCommand { get; set; }
 
+        /// <summary>
+        /// 선택된 셀을 수정하는 명령어
+        /// </summary>
+        public ICommand SelectedItemModifyCommand { get; set; }
+
         public void NotifyPropertyChanged(string name)
         {
             if (_propertyChanged != null)
@@ -258,6 +263,32 @@ namespace R54IN0.WPF
 
             NewInoutStockAddCommand = new CommandHandler(ExecuteNewInoutStockAddCommand, (object obj) => { return true; });
             DataGridViewModel.PropertyChanged += OnDataGridViewModelPropertyChanged;
+            SelectedItemModifyCommand = new CommandHandler(ExecuteSelectedItemModifyCommand, CanModifySelectedItem);
+        }
+
+        private bool CanModifySelectedItem(object arg)
+        {
+            return DataGridViewModel.SelectedItem != null ? true : false;
+        }
+
+        private void ExecuteSelectedItemModifyCommand(object obj)
+        {
+            OpenAmender(DataGridViewModel.SelectedItem);
+        }
+
+        void OpenAmender(IObservableInoutStockProperties selectedItem = null)
+        {
+            var win = new InoutStockDataAmenderWindow();
+            InoutStockDataAmenderWindowViewModel amenderViewModel = null;
+            if (selectedItem != null)
+                amenderViewModel = new InoutStockDataAmenderWindowViewModel(selectedItem);
+            else
+                amenderViewModel = new InoutStockDataAmenderWindowViewModel();
+            win.DataContext = amenderViewModel;
+            win.ProductSelector.DataContext = amenderViewModel.TreeViewViewModel;
+            win.ProductSelector.MultiSelectTreeView.TreeView.OnSelecting += amenderViewModel.TreeViewViewModel.OnNodeSelected;
+            win.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            win.ShowDialog();
         }
 
         /// <summary>
@@ -269,7 +300,7 @@ namespace R54IN0.WPF
         {
             if (sender == DataGridViewModel && e.PropertyName == "SelectedItem")
             {
-                var cmd = NewInoutStockAddCommand as CommandHandler;
+                var cmd = SelectedItemModifyCommand as CommandHandler;
                 cmd.UpdateCanExecute();
             }
         }
@@ -280,11 +311,7 @@ namespace R54IN0.WPF
         /// <param name="obj"></param>
         private void ExecuteNewInoutStockAddCommand(object obj)
         {
-            var win = new InoutStockDataAmenderWindow();
-            win.DataContext = new InoutStockDataAmenderWindowViewModel();
-            win.ProductSelector.DataContext = new ProductSelectorViewModel();
-            win.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-            win.ShowDialog();
+            OpenAmender();
         }
 
         /// <summary>

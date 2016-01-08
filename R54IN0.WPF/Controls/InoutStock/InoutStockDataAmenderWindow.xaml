@@ -19,7 +19,16 @@
                         Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=mah:MetroWindow}, Path=ActualWidth}"
                         Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=mah:MetroWindow}, Path=ActualHeight}"
                         >
-                <local:ProductSelector x:Name="ProductSelector" Margin="5"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <local:ProductSelector x:Name="ProductSelector" Margin="0,0,0,3"/>
+                    <Grid Grid.Row="1" >
+                        <Button Command="{Binding ProductSelectCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource AccentedSquareButtonStyle}" Width="60">선택</Button>
+                    </Grid>
+                </Grid>
             </mah:Flyout>
         </mah:FlyoutsControl>
     </mah:MetroWindow.Flyouts>
@@ -86,8 +95,9 @@
                 <Label>제품</Label>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBox
+                         IsEnabled="{Binding IsEnabledProductText}"
                          Text="{Binding ProductText}"
-                         IsReadOnly="{Binding IsReadOnlyProductName}"
+                         IsReadOnly="{Binding IsReadOnlyProductText}"
                          mah:TextBoxHelper.Watermark="제품을 선택해주세요"
                          mah:TextBoxHelper.ButtonCommand="{Binding ProductSearchCommand}"
                          Width="200">
@@ -107,10 +117,11 @@
                 </Grid.ColumnDefinitions>
                 <Label>규격</Label>
                 <ComboBox ItemsSource="{Binding InventoryList}" 
-                          SelectedItem="{Binding Inventory}" 
+                          SelectedItem="{Binding Inventory}"
                           DisplayMemberPath="Specification"
+                          IsEnabled="{Binding IsEnabledSpecification}"
                           Text="{Binding SpecificationText}" 
-                          IsEditable="True" 
+                          IsEditable="{Binding IsEditableSpecification}"
                           Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
             </Grid>
 
@@ -121,8 +132,8 @@
                 </Grid.ColumnDefinitions>
                 <Label>규격의 설명</Label>
                 <TextBox
-                Grid.Column="1"
-                         Text="{Binding SpecificationMemo}" Margin="0,0,1,0">
+                    IsEnabled="{Binding IsEnabledSpecificationMemo}"
+                    Grid.Column="1" Text="{Binding SpecificationMemo}" Margin="0,0,1,0" >
                     <TextBox.Style>
                         <Style TargetType="{x:Type TextBox}"
                                BasedOn="{StaticResource MetroTextBox}">
@@ -154,6 +165,7 @@
                 </Grid.ColumnDefinitions>
                 <Label>제조사</Label>
                 <ComboBox IsEditable="True" 
+                          IsEnabled="{Binding IsEnabledMaker}"
                           ItemsSource="{Binding MakerList}" SelectedItem="{Binding Maker}" Text="{Binding MakerText}" 
                           DisplayMemberPath="Name"
                           Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
@@ -178,6 +190,7 @@
                 </Grid.ColumnDefinitions>
                 <Label>단위</Label>
                 <ComboBox IsEditable="True" 
+                          IsEnabled="{Binding IsEnabledMeasure}"
                           ItemsSource="{Binding MeasureList}" SelectedItem="{Binding Measure}" Text="{Binding MeasureText}" 
                           DisplayMemberPath="Name"
                           Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
@@ -219,34 +232,6 @@
                     ItemsSource="{Binding WarehouseList}" SelectedItem="{Binding Warehouse}" Text="{Binding WarehouseText}" 
                     DisplayMemberPath="Name"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
-
-                <!--<TextBox
-                Width="200"
-                Grid.Column="1"
-                         mah:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
-                         Text="" HorizontalAlignment="Left">
-                <TextBox.Style>
-                    <Style TargetType="{x:Type TextBox}"
-                               BasedOn="{StaticResource MetroTextBox}">
-                        <Setter Property="mah:TextBoxHelper.ClearTextButton"
-                                    Value="True"></Setter>
-                        <Style.Triggers>
-                            <Trigger Property="mah:TextBoxHelper.HasText"
-                                         Value="False">
-                                <Setter Property="mah:TextBoxHelper.ClearTextButton"
-                                            Value="False" />
-                                <Setter Property="mah:TextBoxHelper.Watermark"
-                                            Value="제품이 보관될 장소를 적어주세요." />
-                            </Trigger>
-                            <Trigger Property="mah:TextBoxHelper.HasText"
-                                         Value="True">
-                                <Setter Property="mah:TextBoxHelper.ClearTextButton"
-                                            Value="True" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBox.Style>
-            </TextBox>-->
             </Grid>
 
             <Grid Grid.Row="9" Grid.Column="1">
@@ -309,6 +294,40 @@
                     </TextBox.Style>
                 </TextBox>
             </Grid>
+
+            <Grid Grid.Row="9" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="43*" />
+                </Grid.ColumnDefinitions>
+                <Label>잔여수량</Label>
+                <TextBlock 
+                    Text="{Binding RemainingQuantity}"
+                    Grid.Column="1" Width="200" HorizontalAlignment="Left"></TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="10" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="43*" />
+                </Grid.ColumnDefinitions>
+                <Label>재고수량</Label>
+                <TextBlock 
+                    Text="{Binding InventoryQuantity}"
+                    Grid.Column="1" Width="200" HorizontalAlignment="Left"></TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="11" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="43*" />
+                </Grid.ColumnDefinitions>
+                <Label>합계</Label>
+                <TextBlock 
+                    Text="{Binding Amount}"
+                    Grid.Column="1" Width="200" HorizontalAlignment="Left"></TextBlock>
+            </Grid>
+
         </Grid>
 
         <Button Command="{Binding RecordCommand}" Width="60" Margin="5,12,5,5" Grid.Row="1" Style="{DynamicResource AccentedSquareButtonStyle}">확인</Button>

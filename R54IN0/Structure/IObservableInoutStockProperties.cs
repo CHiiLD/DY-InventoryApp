@@ -8,6 +8,7 @@ namespace R54IN0
         string ID { get; set; }
         string Memo { get; set; }
         int Quantity { get; set; }
+        int RemainingQuantity { get; set; }
         decimal UnitPrice { get; set; }
         StockType StockType { get; set; }
         IObservableInventoryProperties Inventory { get; set; }
@@ -17,5 +18,6 @@ namespace R54IN0
         Observable<Project> Project { get; set; }
         Observable<Employee> Employee { get; set; }
         Observable<Warehouse> Warehouse { get; set; }
+        InoutStockFormat Format { get; set; }
     }
 }

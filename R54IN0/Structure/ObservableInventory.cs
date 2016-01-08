@@ -42,6 +42,14 @@ namespace R54IN0
             _maker = ofd.Search<Maker>(inventory.MakerID);
         }
 
+        public InventoryFormat Format
+        {
+            get
+            {
+                return _fmt;
+            }
+        }
+
         /// <summary>
         /// 제품의 규격 이름
         /// </summary>

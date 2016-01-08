@@ -35,25 +35,8 @@ namespace R54IN0
 
         public ObservableInoutStock(InoutStockFormat inoutStockFormat)
         {
-            InitializeProperties(inoutStockFormat);
             _fmt = inoutStockFormat;
-        }
-
-        public ObservableInoutStock(ObservableInoutStock thiz) : this(thiz._fmt)
-        {
-        }
-
-        protected void InitializeProperties(InoutStockFormat inoutStockFormat)
-        {
-            var ofd = ObservableFieldDirector.GetInstance();
-            _customer = ofd.Search<Customer>(inoutStockFormat.CustomerID);
-            _supplier = ofd.Search<Supplier>(inoutStockFormat.SupplierID);
-            _project = ofd.Search<Project>(inoutStockFormat.ProjectID);
-            _employee = ofd.Search<Employee>(inoutStockFormat.EmployeeID);
-            _warehouse = ofd.Search<Warehouse>(inoutStockFormat.WarehouseID);
-
-            var oid = ObservableInvenDirector.GetInstance();
-            _inventory = oid.Search(inoutStockFormat.InventoryID);
+            InitializeProperties(inoutStockFormat);
         }
 
         public InoutStockFormat Format
@@ -61,6 +44,11 @@ namespace R54IN0
             get
             {
                 return _fmt;
+            }
+            set
+            {
+                _fmt = value;
+                InitializeProperties(_fmt);
             }
         }
 
@@ -99,7 +87,7 @@ namespace R54IN0
         /// <summary>
         /// 제품의 개별적 입고가, 출고가
         /// </summary>
-        public decimal UnitPrice
+        public virtual decimal UnitPrice
         {
             get
             {
@@ -115,7 +103,7 @@ namespace R54IN0
         /// <summary>
         /// 입고 또는 출고 수량
         /// </summary>
-        public int Quantity
+        public virtual int Quantity
         {
             get
             {
@@ -192,7 +180,7 @@ namespace R54IN0
             }
         }
 
-        public IObservableInventoryProperties Inventory
+        public virtual IObservableInventoryProperties  Inventory
         {
             get
             {
@@ -244,6 +232,32 @@ namespace R54IN0
                 _warehouse = value;
                 NotifyPropertyChanged("Warehouse");
             }
+        }
+
+        public int RemainingQuantity
+        {
+            get
+            {
+                return _fmt.RemainingQuantity;
+            }
+            set
+            {
+                _fmt.RemainingQuantity = value;
+                NotifyPropertyChanged("RemainingQuantity");
+            }
+        }
+
+        protected virtual void InitializeProperties(InoutStockFormat inoutStockFormat)
+        {
+            var ofd = ObservableFieldDirector.GetInstance();
+            _customer = ofd.Search<Customer>(inoutStockFormat.CustomerID);
+            _supplier = ofd.Search<Supplier>(inoutStockFormat.SupplierID);
+            _project = ofd.Search<Project>(inoutStockFormat.ProjectID);
+            _employee = ofd.Search<Employee>(inoutStockFormat.EmployeeID);
+            _warehouse = ofd.Search<Warehouse>(inoutStockFormat.WarehouseID);
+
+            var oid = ObservableInvenDirector.GetInstance();
+            _inventory = oid.Search(inoutStockFormat.InventoryID);
         }
 
         public virtual void NotifyPropertyChanged(string propertyName)

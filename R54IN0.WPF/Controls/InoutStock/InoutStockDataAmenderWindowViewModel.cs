@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace R54IN0.WPF
@@ -15,6 +17,14 @@ namespace R54IN0.WPF
 
         private class NonSaveObservableInventory : ObservableInventory
         {
+            public NonSaveObservableInventory() : base()
+            {
+            }
+
+            public NonSaveObservableInventory(InventoryFormat inventory) : base(inventory)
+            {
+            }
+
             public override void NotifyPropertyChanged(string propertyName)
             {
                 if (propertyChanged != null)
@@ -22,6 +32,7 @@ namespace R54IN0.WPF
             }
         }
 
+        private IObservableInoutStockProperties _origin;
         private Mode _mode;
         private bool _isOpenFlyout;
         private bool _isReadOnlyProductName;
@@ -43,24 +54,80 @@ namespace R54IN0.WPF
         private string _warehouseText;
         private string _projectText;
         private string _employeeText;
+        private bool _isEditableSpecification;
+        private bool _isEnabledProductText;
+        private bool _isEnabledSpecification;
+        private bool _isEnabledSpecificationMemo;
+        private bool _isEnabledMaker;
+        private bool _isEnabledMeasure;
+        private int _inventoryQuantity;
 
         public InoutStockDataAmenderWindowViewModel() : base()
         {
             _mode = Mode.ADD;
             IsCheckedOutGoing = false;
             IsCheckedInComing = true;
+            Date = DateTime.Now;
             Initialize();
+
+            IsEnabledMaker = true;
+            IsEnabledMeasure = true;
+            IsEnabledSpecificationMemo = true;
+            IsEnabledSpecification = true;
+            IsEnabledProductText = true;
         }
 
-        public InoutStockDataAmenderWindowViewModel(InoutStockFormat stockFormat) : base(stockFormat)
+        public InoutStockDataAmenderWindowViewModel(IObservableInoutStockProperties observableInoutStock) : base(
+            new InoutStockFormat(observableInoutStock.Format))
         {
+            switch(StockType)
+            {
+                case StockType.INCOMING:
+                    IsCheckedInComing = true;
+                    IsCheckedOutGoing = false;
+                    break;
+                case StockType.OUTGOING:
+                    IsCheckedInComing = false;
+                    IsCheckedOutGoing = true;
+                    break;
+            }
+
+            _origin = observableInoutStock;
             _mode = Mode.MODIFY;
             Initialize();
+
+            IsEnabledMaker = true;
+            IsEnabledMeasure = true;
+            IsEnabledSpecificationMemo = true;
+            IsEnabledSpecification = false;
+            IsEnabledProductText = false;
+        }
+        public ProductSelectorViewModel TreeViewViewModel
+        {
+            get; set;
         }
 
         public ICommand ProductSearchCommand { get; set; }
 
         public ICommand RecordCommand { get; set; }
+
+        /// <summary>
+        /// 제품 탐색기에서 제품을 선택한 뒤, 확인 버튼의 Command 객체
+        /// </summary>
+        public ICommand ProductSelectCommand { get; set; }
+
+        public bool IsEditableSpecification
+        {
+            get
+            {
+                return _isEditableSpecification;
+            }
+            set
+            {
+                _isEditableSpecification = value;
+                NotifyPropertyChanged("IsEditableSpecification");
+            }
+        }
 
         public override StockType StockType
         {
@@ -71,25 +138,43 @@ namespace R54IN0.WPF
             set
             {
                 base.StockType = value;
-                bool isInComing = StockType == StockType.INCOMING ? true : false;
-                IsReadOnlyProductName = !isInComing;
-                IsEnabledWarehouseComboBox = isInComing;
-                IsEnabledProjectComboBox = !isInComing;
                 var ofd = ObservableFieldDirector.GetInstance();
-                switch (StockType)
+                switch (base.StockType)
                 {
                     case StockType.INCOMING:
                         Project = null;
                         ProjectText = null;
+
                         ClientList = ofd.CreateList<Supplier>();
+
+                        IsEditableSpecification = true;
+                        IsReadOnlyProductText = false;
+                        IsEnabledWarehouseComboBox = true;
+                        IsEnabledProjectComboBox = false;
                         break;
 
                     case StockType.OUTGOING:
                         Warehouse = null;
                         WarehouseText = null;
-                        if (ProductText != null)
-                            ProductText = null;
+
                         ClientList = ofd.CreateList<Customer>();
+
+                        IsEditableSpecification = false;
+                        IsReadOnlyProductText = true;
+                        IsEnabledWarehouseComboBox = false;
+                        IsEnabledProjectComboBox = true;
+
+                        if (Product == null)
+                            ProductText = null;
+                        if (Inventory == null)
+                        {
+                            SpecificationText = null;
+                            SpecificationMemo = null;
+                            MakerText = null;
+                            MeasureText = null;
+                            Maker = null;
+                            Measure = null;
+                        }
                         break;
                 }
             }
@@ -134,7 +219,7 @@ namespace R54IN0.WPF
         /// <summary>
         /// 제품 텍스트 박스의 텍스트 바인딩 프로퍼티
         /// </summary>
-        public bool IsReadOnlyProductName
+        public bool IsReadOnlyProductText
         {
             get
             {
@@ -162,6 +247,101 @@ namespace R54IN0.WPF
                 NotifyPropertyChanged("IsOpenFlyout");
             }
         }
+
+        /// <summary>
+        /// 제품의 개별적 입고가, 출고가
+        /// </summary>
+        public override decimal UnitPrice
+        {
+            get
+            {
+                return base.UnitPrice;
+            }
+            set
+            {
+                base.UnitPrice = value;
+                NotifyPropertyChanged("Amount");
+            }
+        }
+
+        public decimal Amount
+        {
+            get
+            {
+                return Quantity * UnitPrice;
+            }
+        }
+
+        /// <summary>
+        /// 입고 또는 출고 수량
+        /// </summary>
+        public override int Quantity
+        {
+            get
+            {
+                return base.Quantity;
+            }
+            set
+            {
+                base.Quantity = value;
+                switch (_mode)
+                {
+                    case Mode.ADD:
+                        switch(StockType)
+                        {
+                            case StockType.INCOMING:
+                                if (Product == null || Inventory == null) //새로운 제품의 규격을 등록하는 경우
+                                {
+                                    RemainingQuantity = value;
+                                    InventoryQuantity = value;
+                                }
+                                else //기존 제품의 규격에 입고 하는 경우 
+                                {
+                                    RemainingQuantity = Inventory.Quantity + value;
+                                    InventoryQuantity = Inventory.Quantity + value;
+                                }
+                                break;
+                            case StockType.OUTGOING: //출고할 경우 기존의 데이터만 사용하기에
+                                RemainingQuantity = Inventory.Quantity - value;
+                                InventoryQuantity = Inventory.Quantity - value;
+                                break;
+                        }
+                        break;
+                    case Mode.MODIFY:
+                        switch (StockType)
+                        {
+                            case StockType.INCOMING:
+                                RemainingQuantity = _origin.RemainingQuantity + value - _origin.Quantity;
+                                InventoryQuantity = _origin.Inventory.Quantity + value - _origin.Quantity;
+                                break;
+                            case StockType.OUTGOING: 
+                                RemainingQuantity = _origin.RemainingQuantity + _origin.Quantity - value;
+                                InventoryQuantity = _origin.Inventory.Quantity + _origin.Quantity - value;
+                                break;
+                        }
+                        break;
+                }
+                NotifyPropertyChanged("Amount");
+            }
+        }
+
+        /// <summary>
+        /// 재고 수량
+        /// </summary>
+        public int InventoryQuantity
+        {
+            get
+            {
+                return _inventoryQuantity;
+            }
+            set
+            {
+                _inventoryQuantity = value;
+                NotifyPropertyChanged("InventoryQuantity");
+            }
+        }
+
+        #region ComboBox ItemsSource Property
 
         public IEnumerable<ObservableInventory> InventoryList
         {
@@ -234,6 +414,10 @@ namespace R54IN0.WPF
             }
         }
 
+        #endregion ComboBox ItemsSource Property
+
+        #region ComboBox SelectedItem Property
+
         public Observable<Product> Product
         {
             get
@@ -244,11 +428,39 @@ namespace R54IN0.WPF
             {
                 _product = value;
                 if (_product != null)
-                    InventoryList = ObservableInvenDirector.GetInstance().SearchAsProductID(_product.ID);
+                {
+                    ProductText = _product.Name;
+                    var list = ObservableInvenDirector.GetInstance().SearchAsProductID(_product.ID);
+                    InventoryList = list.Select(x => new NonSaveObservableInventory(x.Format));
+                }
                 NotifyPropertyChanged("Product");
             }
         }
 
+        public override IObservableInventoryProperties Inventory
+        {
+            get
+            {
+                return base.Inventory;
+            }
+            set
+            {
+                base.Inventory = value;
+                if (base.Inventory == null)
+                {
+                    SpecificationText = null;
+                    SpecificationMemo = null;
+                    Maker = null;
+                    Measure = null;
+                    MakerText = null;
+                    MeasureText = null;
+                }
+                NotifyPropertyChanged("Maker");
+                NotifyPropertyChanged("Measure");
+                NotifyPropertyChanged("SpecificationMemo");
+                UpdateRecordCommand();
+            }
+        }
         public IObservableField Client
         {
             get
@@ -297,6 +509,10 @@ namespace R54IN0.WPF
             }
         }
 
+        #endregion ComboBox SelectedItem Property
+
+        #region TextBox Property
+
         public string ProductText
         {
             get
@@ -306,9 +522,18 @@ namespace R54IN0.WPF
             set
             {
                 _productText = value;
-                if (Product == null)
-                    Product = null;
+                if (_productText != null)
+                {
+                    //제품을 선택하였지만, 이후 다른 제품명을 입력한 경우 저장된 제품 객체를 null로 대입
+                    if (Product != null && Product.Name != _productText)
+                        Product = null;
+                    if (Inventory != null && Product == null)
+                        Inventory = null;
+                    if (InventoryList != null)
+                        InventoryList = null;
+                }
                 NotifyPropertyChanged("ProductText");
+                UpdateRecordCommand();
             }
         }
 
@@ -322,6 +547,7 @@ namespace R54IN0.WPF
             {
                 _specificationText = value;
                 NotifyPropertyChanged("SpecificationText");
+                UpdateRecordCommand();
             }
         }
 
@@ -419,6 +645,12 @@ namespace R54IN0.WPF
             }
         }
 
+        #endregion TextBox Property
+
+
+
+        #region IsEnabled Property
+
         public bool IsEnabledWarehouseComboBox
         {
             get
@@ -445,6 +677,103 @@ namespace R54IN0.WPF
             }
         }
 
+        public bool IsEnabledProductText
+        {
+            get
+            {
+                return _isEnabledProductText;
+            }
+            set
+            {
+                _isEnabledProductText = value;
+                NotifyPropertyChanged("IsEnabledProductText");
+            }
+        }
+
+        public bool IsEnabledSpecification
+        {
+            get
+            {
+                return _isEnabledSpecification;
+            }
+            set
+            {
+                _isEnabledSpecification = value;
+                NotifyPropertyChanged("IsEnabledSpecification");
+            }
+        }
+
+        public bool IsEnabledSpecificationMemo
+        {
+            get
+            {
+                return _isEnabledSpecificationMemo;
+            }
+            set
+            {
+                _isEnabledSpecificationMemo = value;
+                NotifyPropertyChanged("IsEnabledSpecificationMemo");
+            }
+        }
+
+        public bool IsEnabledMaker
+        {
+            get
+            {
+                return _isEnabledMaker;
+            }
+            set
+            {
+                _isEnabledMaker = value;
+                NotifyPropertyChanged("IsEnabledMaker");
+            }
+        }
+
+        public bool IsEnabledMeasure
+        {
+            get
+            {
+                return _isEnabledMeasure;
+            }
+            set
+            {
+                _isEnabledMeasure = value;
+                NotifyPropertyChanged("IsEnabledMeasure");
+            }
+        }
+
+        #endregion IsEnabled Property
+
+        private void Initialize()
+        {
+            TreeViewViewModel = new ProductSelectorViewModel();
+            TreeViewViewModel.PropertyChanged += OnTreeViewModelPropertyChanged;
+            ProductSearchCommand = new CommandHandler(ExecuteProductSearchCommand, CanSearch);
+            RecordCommand = new CommandHandler(ExecuteRecordCommand, CanRecord);
+            ProductSelectCommand = new CommandHandler(ExecuteProductSelectCommand, CanSelectProduct);
+        }
+
+        protected override void InitializeProperties(InoutStockFormat inoutStockFormat)
+        {
+            var ofd = ObservableFieldDirector.GetInstance();
+            Customer = ofd.Search<Customer>(inoutStockFormat.CustomerID);
+            Supplier = ofd.Search<Supplier>(inoutStockFormat.SupplierID);
+            Project = ofd.Search<Project>(inoutStockFormat.ProjectID);
+            Employee = ofd.Search<Employee>(inoutStockFormat.EmployeeID);
+            Warehouse = ofd.Search<Warehouse>(inoutStockFormat.WarehouseID);
+
+            var oid = ObservableInvenDirector.GetInstance();
+            Inventory = new NonSaveObservableInventory(oid.Search(inoutStockFormat.InventoryID).Format);
+            Product = Inventory.Product;
+        }
+
+        void UpdateRecordCommand()
+        {
+            var cmd = RecordCommand as CommandHandler;
+            if (cmd != null)
+                cmd.UpdateCanExecute();
+        }
+
         public ObservableInoutStock Record()
         {
             if (Product == null && string.IsNullOrEmpty(ProductText))
@@ -452,6 +781,7 @@ namespace R54IN0.WPF
             if (Inventory == null && string.IsNullOrEmpty(SpecificationText))
                 throw new Exception("규격의 이름을 입력해주세요.");
             var ofd = ObservableFieldDirector.GetInstance();
+            var oid = ObservableInvenDirector.GetInstance();
             if (Client == null && !string.IsNullOrEmpty(ClientText)) //거래처
             {
                 switch (StockType)
@@ -484,33 +814,85 @@ namespace R54IN0.WPF
             }
             if (Inventory == null)
             {
-                Inventory = new ObservableInventory(new InventoryFormat().Save<InventoryFormat>());
-                Inventory.Product = Product != null ? Product : new Observable<Product>() { Name = ProductText };
-                Inventory.Specification = SpecificationText;
-                Inventory.Memo = _specificationMemo;
-                if (!string.IsNullOrEmpty(MakerText))
-                    Inventory.Maker = new Observable<Maker>() { Name = MakerText };
-                if (!string.IsNullOrEmpty(MeasureText))
-                    Inventory.Measure = new Observable<Measure>() { Name = MeasureText };
-                Inventory.Quantity = Quantity;
-                ObservableInvenDirector.GetInstance().Add(Inventory as ObservableInventory);
-                CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(Inventory);
+                ObservableInventory inven = new ObservableInventory(new InventoryFormat().Save<InventoryFormat>());
+                inven.Product = Product != null ? Product : new Observable<Product>() { Name = ProductText };
+                inven.Specification = SpecificationText;
+                inven.Memo = _specificationMemo;
+                if (!string.IsNullOrEmpty(MakerText) && Maker == null)
+                    inven.Maker = new Observable<Maker>() { Name = MakerText };
+                else if (Maker != null)
+                    inven.Maker = Maker;
+                if (!string.IsNullOrEmpty(MeasureText) && Measure == null)
+                    inven.Measure = new Observable<Measure>() { Name = MeasureText };
+                else if (Measure != null)
+                    inven.Measure = Measure;
+                inven.Quantity = InventoryQuantity;
+                ObservableInvenDirector.GetInstance().Add(inven as ObservableInventory);
+                CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(inven);
+                Inventory = inven;
             }
             else
             {
-                Inventory.Product = Product;
+                ObservableInventory origin = oid.Search(Inventory.ID);
+                if (origin != null)
+                {
+                    if (!string.IsNullOrEmpty(MakerText) && Maker == null)
+                        origin.Maker = new Observable<Maker>() { Name = MakerText };
+                    else if (origin.Maker != Maker)
+                        origin.Maker = Maker;
+                    if (!string.IsNullOrEmpty(MeasureText) && Measure == null)
+                        origin.Measure = new Observable<Measure>() { Name = MeasureText };
+                    else if (origin.Measure != Measure)
+                        origin.Measure = Measure;
+                    if (origin.Memo != SpecificationMemo)
+                        origin.Memo = SpecificationMemo;
+                    origin.Quantity = InventoryQuantity;
+                }
             }
-            ObservableInoutStock observableInoutStock = new ObservableInoutStock(this);
-            observableInoutStock.Format.Save<InoutStockFormat>();
-            CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(observableInoutStock);
-            return observableInoutStock;
+
+            ObservableInoutStock result = null;
+            switch (_mode)
+            {
+                case Mode.ADD:
+                    result = new ObservableInoutStock(Format);
+                    CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(result);
+                    break;
+
+                case Mode.MODIFY:
+                    result = _origin as ObservableInoutStock;
+                    result.Format = Format;
+                    break;
+            }
+            result.Format.Save<InoutStockFormat>();
+            return result;
         }
 
-        private void Initialize()
+        private void OnTreeViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            ProductSearchCommand = new CommandHandler(ExecuteProductSearchCommand, CanSearch);
-            RecordCommand = new CommandHandler(ExecuteRecordCommand, CanRecord);
-            Date = DateTime.Now;
+            if (sender == TreeViewViewModel && e.PropertyName == "SelectedNodes")
+            {
+                var cmd = ProductSelectCommand as CommandHandler;
+                cmd.UpdateCanExecute();
+            }
+        }
+
+        private void ExecuteProductSelectCommand(object obj)
+        {
+            var nodes = TreeViewViewModel.SelectedNodes.SelectMany(c => c.Descendants().Where(n => n.Type == NodeType.PRODUCT));
+            var node = nodes.FirstOrDefault();
+            if (node != null)
+            {
+                var ofd = ObservableFieldDirector.GetInstance();
+                var product = ofd.Search<Product>(node.ProductID);
+                if (product != null)
+                    Product = product;
+            }
+            IsOpenFlyout = false;
+        }
+
+        private bool CanSelectProduct(object arg)
+        {
+            return TreeViewViewModel.SelectedNodes.Count == 1 && TreeViewViewModel.SelectedNodes.Single().Type == NodeType.PRODUCT;
         }
 
         private bool CanRecord(object arg)
@@ -525,6 +907,9 @@ namespace R54IN0.WPF
         private void ExecuteRecordCommand(object obj)
         {
             Record();
+            var currentWindow = Application.Current.Windows.OfType<Window>().Where(x => x.IsActive).FirstOrDefault();
+            if (currentWindow != null)
+                currentWindow.Close();
         }
 
         /// <summary>

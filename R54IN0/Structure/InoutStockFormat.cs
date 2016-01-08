@@ -61,6 +61,11 @@ namespace R54IN0
         /// </summary>
         public string EmployeeID { get; set; }
 
+        /// <summary>
+        /// 입출고 후 잔여 재고 수량
+        /// </summary>
+        public int RemainingQuantity { get; set; }
+
         public InoutStockFormat()
         {
 
@@ -80,6 +85,7 @@ namespace R54IN0
             ProjectID = thiz.ProjectID;
             WarehouseID = thiz.WarehouseID;
             EmployeeID = thiz.EmployeeID;
+            RemainingQuantity = thiz.RemainingQuantity;
         }
     }
 }

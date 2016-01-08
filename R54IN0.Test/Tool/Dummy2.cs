@@ -260,18 +260,22 @@ namespace R54IN0.Test
                             var date1 = DateTime.Now.AddDays(-600.0 / (i + 1));
                             var date2 = date1.AddMilliseconds(1);
 
+                            var incoming = _random.Next(10, 100);
                             var isfmt = new InoutStockFormat()
                             {
                                 SupplierID = suppliers.Random().ID,
                                 Date = date1,
                                 InventoryID = ifmt.ID,
                                 WarehouseID = warehouse.Random().ID,
-                                Quantity = _random.Next(10, 100),
+                                Quantity = incoming,
+                                RemainingQuantity = qty + incoming,
                                 StockType = StockType.INCOMING,
                                 EmployeeID = employees.Random().ID,
                                 UnitPrice = (int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000)),
                             }.Save<InoutStockFormat>();
                             qty += isfmt.Quantity;
+
+                            var outgoing = _random.Next(1, qty);
 
                             isfmt = new InoutStockFormat()
                             {
@@ -279,7 +283,8 @@ namespace R54IN0.Test
                                 Date = date2,
                                 InventoryID = ifmt.ID,
                                 ProjectID = proejcts.Random().ID,
-                                Quantity = _random.Next(1, qty),
+                                Quantity = outgoing,
+                                RemainingQuantity = qty - outgoing,
                                 StockType = StockType.OUTGOING,
                                 EmployeeID = employees.Random().ID,
                                 UnitPrice = (int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000)),
