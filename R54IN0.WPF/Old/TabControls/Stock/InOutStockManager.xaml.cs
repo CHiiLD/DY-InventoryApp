@@ -4,7 +4,7 @@ namespace R54IN0.WPF
 {
     public partial class InOutStockManager : UserControl
     {
-        public StockType StockType
+        public IOStockType StockType
         {
             set
             {

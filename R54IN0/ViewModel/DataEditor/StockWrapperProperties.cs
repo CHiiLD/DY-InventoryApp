@@ -126,19 +126,19 @@ namespace R54IN0
         {
             get
             {
-                if (StockType == StockType.NONE || StockType == StockType.ALL)
+                if (StockType == IOStockType.NONE || StockType == IOStockType.ALL)
                     throw new Exception();
                 if (Specification == null)
                     return Quantity;
                 var iwd = InventoryWrapperDirector.GetInstance();
                 InventoryWrapper invenw = iwd.SearchAsSpecificationKey(Specification.ID);
                 if (invenw == null)
-                    return StockType == StockType.INCOMING ? Quantity : -Quantity; //Inventory 데이터가 없는 경우 입출고 수량으로 표현(출고는 물건이 나가는 것임으로 마이너스 연산으로 반환)
+                    return StockType == IOStockType.INCOMING ? Quantity : -Quantity; //Inventory 데이터가 없는 경우 입출고 수량으로 표현(출고는 물건이 나가는 것임으로 마이너스 연산으로 반환)
 
                 if (_target == null) //새로운 데이터를 추가할 경우, Inventory의 수량 데이터와 가감연산을 하여 반환한다. (간단)
-                    return StockType == StockType.INCOMING ? invenw.Quantity + Quantity : invenw.Quantity - Quantity;
+                    return StockType == IOStockType.INCOMING ? invenw.Quantity + Quantity : invenw.Quantity - Quantity;
                 else //기존의 데이터를 수정하고자 할 경우, 이 데이터를 추가하기 전 수량과, 수정 후 변동될 값을 계산하여 반환한다. (복잡)
-                    return StockType == StockType.INCOMING ? invenw.Quantity - _target.Quantity + Quantity : invenw.Quantity - _target.Quantity - Quantity;
+                    return StockType == IOStockType.INCOMING ? invenw.Quantity - _target.Quantity + Quantity : invenw.Quantity - _target.Quantity - Quantity;
             }
         }
 
@@ -155,7 +155,7 @@ namespace R54IN0
             }
         }
 
-        public StockType StockType
+        public IOStockType StockType
         {
             get
             {

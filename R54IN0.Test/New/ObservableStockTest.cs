@@ -9,9 +9,9 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreate()
         {
-            InoutStockFormat fmt = new InoutStockFormat();
-            ObservableInoutStock stock = new ObservableInoutStock();
-            stock = new ObservableInoutStock(fmt);
+            IOStockFormat fmt = new IOStockFormat();
+            ObservableIOStock stock = new ObservableIOStock();
+            stock = new ObservableIOStock(fmt);
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace R54IN0.Test
             oinven.Maker = new Observable<Maker>() { Name = "maker name" };
             oinven.Specification = "product's specification name(standard)";
 
-            ObservableInoutStock ostock = new ObservableInoutStock();
+            ObservableIOStock ostock = new ObservableIOStock();
             ostock.Date = DateTime.Now;
             ostock.Project = new Observable<Project>() { Name = "dy1234" };
             ostock.Supplier = new Observable<Supplier>() { Name = "여명" };
@@ -36,15 +36,15 @@ namespace R54IN0.Test
             ostock.Inventory = oinven;
             ostock.Memo = "abcd";
             ostock.Quantity = 123;
-            ostock.StockType = StockType.INCOMING;
+            ostock.StockType = IOStockType.INCOMING;
             ostock.UnitPrice = 10000;
 
-            InoutStockFormat stockFormat;
+            IOStockFormat stockFormat;
             using (var db = LexDb.GetDbInstance())
-                stockFormat = db.LoadByKey<InoutStockFormat>(ostock.ID);
+                stockFormat = db.LoadByKey<IOStockFormat>(ostock.ID);
 
-            ObservableInvenDirector.Distory();
-            ObservableInoutStock newOStock = new ObservableInoutStock(stockFormat);
+            ObservableInventoryDirector.Distory();
+            ObservableIOStock newOStock = new ObservableIOStock(stockFormat);
             Assert.AreEqual(ostock.ID, newOStock.ID);
             Assert.AreEqual(ostock.Project.ID, newOStock.Project.ID);
             Assert.AreEqual(ostock.Supplier.ID, newOStock.Supplier.ID);

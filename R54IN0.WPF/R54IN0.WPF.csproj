@@ -67,32 +67,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\InoutStock\InoutStockDataGridItem.cs" />
-    <Compile Include="Controls\InoutStock\InoutStockDataGridViewModel.cs" />
-    <Compile Include="Controls\InoutStock\InoutStockDatePicker.xaml.cs">
-      <DependentUpon>InoutStockDatePicker.xaml</DependentUpon>
+    <Compile Include="Controls\IOStock\EnumBooleanConverter.cs" />
+    <Compile Include="Controls\IOStock\IOStockDataAmenderViewModel.cs" />
+    <Compile Include="Controls\IOStock\IOStockDataAmenderViewModel.Properties.cs" />
+    <Compile Include="Controls\IOStock\IOStockDataGridItem.cs" />
+    <Compile Include="Controls\IOStock\IOStockDataGridViewModel.cs" />
+    <Compile Include="Controls\IOStock\IOStockDatePicker.xaml.cs">
+      <DependentUpon>IOStockDatePicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InoutStock\InoutStockDatePickerViewModel.cs" />
-    <Compile Include="Controls\InoutStock\InoutStockProjectListBoxViewModel.cs" />
-    <Compile Include="Controls\InoutStock\InoutStockProjectListBox.xaml.cs">
-      <DependentUpon>InoutStockProjectListBox.xaml</DependentUpon>
+    <Compile Include="Controls\IOStock\IOStockDatePickerViewModel.cs" />
+    <Compile Include="Controls\IOStock\IOStockProjectListBoxViewModel.cs" />
+    <Compile Include="Controls\IOStock\IOStockProjectListBox.xaml.cs">
+      <DependentUpon>IOStockProjectListBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InoutStock\InoutStockDataAmenderWindowViewModel.cs" />
-    <Compile Include="Controls\InoutStock\InoutStockStatus.xaml.cs">
-      <DependentUpon>InoutStockStatus.xaml</DependentUpon>
+    <Compile Include="Controls\IOStock\IOStockStatus.xaml.cs">
+      <DependentUpon>IOStockStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InoutStock\InoutStockStatusViewModel.cs" />
+    <Compile Include="Controls\IOStock\IOStockStatusViewModel.cs" />
     <Compile Include="Controls\Inventory\InventoryDataGridViewModel.cs" />
     <Compile Include="Controls\Inventory\InventorySearchTextBoxViewModel.cs" />
     <Compile Include="Controls\Inventory\InventoryStatus.xaml.cs">
       <DependentUpon>InventoryStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InoutStock\InoutStockDataGrid.xaml.cs">
-      <DependentUpon>InoutStockDataGrid.xaml</DependentUpon>
+    <Compile Include="Controls\IOStock\IOStockDataGrid.xaml.cs">
+      <DependentUpon>IOStockDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Inventory\InventoryStatusViewModel.cs" />
-    <Compile Include="Controls\Inventory\StockDataGrid.xaml.cs">
-      <DependentUpon>StockDataGrid.xaml</DependentUpon>
+    <Compile Include="Controls\Inventory\InventoryDataGrid.xaml.cs">
+      <DependentUpon>InventoryDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TreeView\TreeViewNodeDirector.cs" />
     <Compile Include="Controls\TreeView\TreeViewNodeExtension.cs" />
@@ -108,8 +110,8 @@
     <Compile Include="Windows\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InoutStock\InoutStockDataAmenderWindow.xaml.cs">
-      <DependentUpon>InoutStockDataAmenderWindow.xaml</DependentUpon>
+    <Compile Include="Controls\IOStock\IOStockDataAmenderWindow.xaml.cs">
+      <DependentUpon>IOStockDataAmenderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
@@ -117,15 +119,15 @@
     <Compile Include="Window3.xaml.cs">
       <DependentUpon>Window3.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\InoutStock\InoutStockDatePicker.xaml">
+    <Page Include="Controls\IOStock\IOStockDatePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\InoutStock\InoutStockProjectListBox.xaml">
+    <Page Include="Controls\IOStock\IOStockProjectListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\InoutStock\InoutStockStatus.xaml">
+    <Page Include="Controls\IOStock\IOStockStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,11 +135,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\InoutStock\InoutStockDataGrid.xaml">
+    <Page Include="Controls\IOStock\IOStockDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Inventory\StockDataGrid.xaml">
+    <Page Include="Controls\Inventory\InventoryDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,7 +151,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\InoutStock\InoutStockDataAmenderWindow.xaml">
+    <Page Include="Controls\IOStock\IOStockDataAmenderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

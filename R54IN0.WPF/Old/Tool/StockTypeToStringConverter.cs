@@ -12,15 +12,15 @@ namespace R54IN0.WPF
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string result = null;
-            StockType type = (StockType)value;
+            IOStockType type = (IOStockType)value;
 
             switch (type)
             {
-                case StockType.INCOMING:
+                case IOStockType.INCOMING:
                     result = IN_STOCK;
                     break;
 
-                case StockType.OUTGOING:
+                case IOStockType.OUTGOING:
                     result = OUT_STOCK;
                     break;
             }
@@ -29,12 +29,12 @@ namespace R54IN0.WPF
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            StockType type = StockType.NONE;
+            IOStockType type = IOStockType.NONE;
             string str = value as string;
             if (str.CompareTo(IN_STOCK) == 0)
-                type = StockType.INCOMING;
+                type = IOStockType.INCOMING;
             else if (str.CompareTo(OUT_STOCK) == 0)
-                type = StockType.OUTGOING;
+                type = IOStockType.OUTGOING;
             return type;
         }
     }

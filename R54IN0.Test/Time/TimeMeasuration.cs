@@ -65,7 +65,7 @@ namespace R54IN0.Test
             Stopwatch sw = new Stopwatch();
             sw.Start();
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
-            StockWrapperViewModel svm = new StockWrapperViewModel(StockType.ALL, sub);
+            StockWrapperViewModel svm = new StockWrapperViewModel(IOStockType.ALL, sub);
             StockWrapperEditorViewModel vm = new StockWrapperEditorViewModel(svm);
             sw.Stop();
             Console.WriteLine("StockWrapperEditorViewModel 생성 시간 : " + (new TimeSpan(sw.ElapsedTicks)).ToString());
@@ -102,7 +102,7 @@ namespace R54IN0.Test
             Destroy();
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.ALL, CollectionViewModelObserverSubject.GetInstance());
+            StockWrapperViewModel vm = new StockWrapperViewModel(IOStockType.ALL, CollectionViewModelObserverSubject.GetInstance());
             sw.Stop();
             Console.WriteLine("StockWrapperViewModel 생성 시간 : " + (new TimeSpan(sw.ElapsedTicks)).ToString());
         }

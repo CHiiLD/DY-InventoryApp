@@ -23,7 +23,7 @@ namespace R54IN0.WPF
         /// <returns></returns>
         public IEnumerable<ObservableInventory> Search()
         {
-            var fwd = ObservableInvenDirector.GetInstance();
+            var fwd = ObservableInventoryDirector.GetInstance();
             var list = fwd.CreateList();
             if (string.IsNullOrEmpty(Text))
                 return list;

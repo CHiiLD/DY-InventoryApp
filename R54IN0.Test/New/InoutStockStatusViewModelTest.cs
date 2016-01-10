@@ -13,7 +13,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreate()
         {
-            new InoutStockStatusViewModel();
+            new IOStockStatusViewModel();
         }
 
         /// <summary>
@@ -23,10 +23,10 @@ namespace R54IN0.Test
         public void SelectDatePicker()
         {
             new Dummy2().Create();
-            var viewmodel = new InoutStockStatusViewModel();
+            var viewmodel = new IOStockStatusViewModel();
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count);
             //날짜를 선택
-            viewmodel.SelectedGroupItem = InoutStockStatusViewModel.GROUPITEM_DATE;
+            viewmodel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_DATE;
             viewmodel.DatePickerViewModel.LastYearCommand.Execute(null); //올해 버튼을 클릭
 
             Assert.AreNotEqual(0, viewmodel.DataGridViewModel.Items.Count); //올해에 입력된 입출고 데이터를 데이터그리드에 추가
@@ -43,10 +43,10 @@ namespace R54IN0.Test
         public void SelectProject()
         {
             new Dummy2().Create();
-            var viewmodel = new InoutStockStatusViewModel();
+            var viewmodel = new IOStockStatusViewModel();
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count);
             //프로젝트 선택
-            viewmodel.SelectedGroupItem = InoutStockStatusViewModel.GROUPITEM_PROJECT;
+            viewmodel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PROJECT;
             var project = viewmodel.ProjectListBoxViewModel.SelectedItem = viewmodel.ProjectListBoxViewModel.Items.Random();
 
             Assert.AreNotEqual(0, viewmodel.DataGridViewModel.Items.Count); 
@@ -63,9 +63,9 @@ namespace R54IN0.Test
         public void SelectProduct()
         {
             new Dummy2().Create();
-            var viewmodel = new InoutStockStatusViewModel();
+            var viewmodel = new IOStockStatusViewModel();
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count);
-            viewmodel.SelectedGroupItem = InoutStockStatusViewModel.GROUPITEM_PRODUCT;
+            viewmodel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
             var node = viewmodel.TreeViewViewModel.Root.SelectMany(root => root.Descendants().Where(x => x.Type == NodeType.PRODUCT)).Random();
             viewmodel.TreeViewViewModel.OnNodeSelected(viewmodel.TreeViewViewModel,
                 new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, new List<TreeViewNode>()));
@@ -84,27 +84,27 @@ namespace R54IN0.Test
         public void ControlInoutStockCheckBox()
         {
             new Dummy2().Create();
-            var viewmodel = new InoutStockStatusViewModel();
+            var viewmodel = new IOStockStatusViewModel();
             viewmodel.IsCheckedInComing = true;
             viewmodel.IsCheckedOutGoing = true;
             //제품 하나 선택 
-            viewmodel.SelectedGroupItem = InoutStockStatusViewModel.GROUPITEM_PRODUCT;
+            viewmodel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
             var node = viewmodel.TreeViewViewModel.Root.SelectMany(root => root.Descendants().Where(x => x.Type == NodeType.PRODUCT)).Random();
             viewmodel.TreeViewViewModel.OnNodeSelected(viewmodel.TreeViewViewModel,
                 new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, new List<TreeViewNode>()));
-            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(i => StockType.ALL.HasFlag(i.StockType)));
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(i => IOStockType.ALL.HasFlag(i.StockType)));
 
             viewmodel.IsCheckedInComing = false;
-            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(i => i.StockType == StockType.OUTGOING));
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(i => i.StockType == IOStockType.OUTGOING));
 
             viewmodel.IsCheckedOutGoing = false;
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.Count == 0);
 
             viewmodel.IsCheckedInComing = true;
-            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(i => i.StockType == StockType.INCOMING));
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(i => i.StockType == IOStockType.INCOMING));
 
             viewmodel.IsCheckedOutGoing = true;
-            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(i => StockType.ALL.HasFlag(i.StockType)));
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(i => IOStockType.ALL.HasFlag(i.StockType)));
         }
     }
 }

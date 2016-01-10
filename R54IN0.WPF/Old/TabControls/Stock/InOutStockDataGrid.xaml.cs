@@ -8,7 +8,7 @@ namespace R54IN0.WPF
     public partial class InOutStockDataGrid : UserControl
     {
         private SearchStockWrapperViewModel _viewModel;
-        private StockType _stockType;
+        private IOStockType _stockType;
 
         public SearchStockWrapperViewModel ViewModel
         {
@@ -23,7 +23,7 @@ namespace R54IN0.WPF
             InitializeComponent();
         }
 
-        public StockType StockType
+        public IOStockType StockType
         {
             set
             {

@@ -88,7 +88,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.INCOMING,
+                StockType = IOStockType.INCOMING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 
@@ -100,7 +100,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.INCOMING,
+                StockType = IOStockType.INCOMING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 
@@ -126,7 +126,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.OUTGOING,
+                StockType = IOStockType.OUTGOING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 
@@ -138,7 +138,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.INCOMING,
+                StockType = IOStockType.INCOMING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 
@@ -150,7 +150,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.INCOMING,
+                StockType = IOStockType.INCOMING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 
@@ -162,7 +162,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.INCOMING,
+                StockType = IOStockType.INCOMING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 
@@ -211,7 +211,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.OUTGOING,
+                StockType = IOStockType.OUTGOING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 
@@ -223,7 +223,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.INCOMING,
+                StockType = IOStockType.INCOMING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 
@@ -254,7 +254,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.INCOMING,
+                StockType = IOStockType.INCOMING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 
@@ -266,7 +266,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.OUTGOING,
+                StockType = IOStockType.OUTGOING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 
@@ -289,7 +289,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.INCOMING,
+                StockType = IOStockType.INCOMING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 
@@ -301,7 +301,7 @@ namespace R54IN0.Test
                 Quantity = 30,
                 ItemID = item.ID,
                 SpecificationID = spec.ID,
-                StockType = StockType.OUTGOING,
+                StockType = IOStockType.OUTGOING,
                 InventoryID = inven.ID
             }.Save<InOutStock>();
 

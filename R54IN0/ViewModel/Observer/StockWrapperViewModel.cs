@@ -9,14 +9,14 @@ namespace R54IN0
     public class StockWrapperViewModel : ItemSourceViewModel<StockWrapper>, INotifyPropertyChanged, IFinderViewModelOnSelectingCallback
     {
         private ObservableCollection<StockWrapper> _items;
-        private StockType _stockType;
+        private IOStockType _stockType;
 
         protected StockWrapperDirector stockDirector;
 
         public EventHandler<EventArgs> SelectedItemModifyHandler { get; set; }
         public EventHandler<EventArgs> NewItemAddHandler { get; set; }
 
-        public StockWrapperViewModel(StockType type, CollectionViewModelObserverSubject subject) : base(subject)
+        public StockWrapperViewModel(IOStockType type, CollectionViewModelObserverSubject subject) : base(subject)
         {
             _stockType = type;
             stockDirector = StockWrapperDirector.GetInstance();
@@ -25,7 +25,7 @@ namespace R54IN0
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public StockType StockType
+        public IOStockType StockType
         {
             get
             {
@@ -108,9 +108,9 @@ namespace R54IN0
                     var stockList = stockDirector.SearchAsItemkey(itemNode.ItemID);
                     if (stockList != null)
                     {
-                        if (StockType == StockType.ALL)
+                        if (StockType == IOStockType.ALL)
                             temp.AddRange(stockList);
-                        else if (StockType == StockType.INCOMING || StockType == StockType.OUTGOING)
+                        else if (StockType == IOStockType.INCOMING || StockType == IOStockType.OUTGOING)
                             temp.AddRange(stockList.Where(x => x.StockType == StockType));
                     }
                 }

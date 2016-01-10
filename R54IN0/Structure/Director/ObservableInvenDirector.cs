@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace R54IN0
 {
-    public class ObservableInvenDirector
+    public class ObservableInventoryDirector
     {
-        private static ObservableInvenDirector _thiz;
+        private static ObservableInventoryDirector _thiz;
         private SortedDictionary<string, ObservableInventory> _dic;
         private MultiSortedDictionary<string, ObservableInventory> _productDic; //key -> 제품키
 
-        private ObservableInvenDirector()
+        private ObservableInventoryDirector()
         {
             _dic = new SortedDictionary<string, ObservableInventory>();
             _productDic = new MultiSortedDictionary<string, ObservableInventory>();
@@ -26,10 +26,10 @@ namespace R54IN0
             }
         }
 
-        public static ObservableInvenDirector GetInstance()
+        public static ObservableInventoryDirector GetInstance()
         {
             if (_thiz == null)
-                _thiz = new ObservableInvenDirector();
+                _thiz = new ObservableInventoryDirector();
             return _thiz;
         }
 

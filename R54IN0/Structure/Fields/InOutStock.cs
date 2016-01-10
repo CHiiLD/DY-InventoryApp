@@ -7,7 +7,7 @@ namespace R54IN0
     /// </summary>
     public class InOutStock : IID, IStock
     {
-        public StockType StockType { get; set; }
+        public IOStockType StockType { get; set; }
         public string ItemID { get; set; }
         public string ID { get; set; }
         public DateTime Date { get; set; }

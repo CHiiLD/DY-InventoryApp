@@ -19,9 +19,9 @@ namespace R54IN0.Test
         {
             new DummyDbData().Create();
             StockWrapperDirector iowd = StockWrapperDirector.GetInstance();
-            ObservableCollection<StockWrapper> collection = iowd.CreateCollection(StockType.ALL);
-            ObservableCollection<StockWrapper> collection2 = iowd.CreateCollection(StockType.INCOMING);
-            ObservableCollection<StockWrapper> collection3 = iowd.CreateCollection(StockType.OUTGOING);
+            ObservableCollection<StockWrapper> collection = iowd.CreateCollection(IOStockType.ALL);
+            ObservableCollection<StockWrapper> collection2 = iowd.CreateCollection(IOStockType.INCOMING);
+            ObservableCollection<StockWrapper> collection3 = iowd.CreateCollection(IOStockType.OUTGOING);
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace R54IN0.Test
             new DummyDbData().Create();
             Random rand = new Random();
             StockWrapperDirector iowd = StockWrapperDirector.GetInstance();
-            ObservableCollection<StockWrapper> collection = iowd.CreateCollection(StockType.ALL);
+            ObservableCollection<StockWrapper> collection = iowd.CreateCollection(IOStockType.ALL);
             var ioStockws = collection.Random();
 
             var fwd = FieldWrapperDirector.GetInstance();
@@ -49,7 +49,7 @@ namespace R54IN0.Test
             ObservableCollection<Observable<Maker>> makeCollectoin = fwd.CreateCollection<Maker, Observable<Maker>>();
             ObservableCollection<Observable<Warehouse>> wareCollectoin = fwd.CreateCollection<Warehouse, Observable<Warehouse>>();
 
-            var type = ioStockws.StockType == StockType.INCOMING ? StockType.OUTGOING : StockType.INCOMING;
+            var type = ioStockws.StockType == IOStockType.INCOMING ? IOStockType.OUTGOING : IOStockType.INCOMING;
             var specw = ioStockws.Specification = specCollectoin.Random();
             var itemw = ioStockws.Item = itemCollectoin.Where(x => x.ID == specw.Field.ItemID).Single();
             var itemCnt = ioStockws.Quantity = 20332;
@@ -66,7 +66,7 @@ namespace R54IN0.Test
             LexDb.Distroy();
 
             iowd = StockWrapperDirector.GetInstance();
-            collection = iowd.CreateCollection(StockType.ALL);
+            collection = iowd.CreateCollection(IOStockType.ALL);
             var target = collection.Where(x => x.ID == ioStockws.ID).Single();
 
             Assert.AreNotEqual(ioStockws, target);

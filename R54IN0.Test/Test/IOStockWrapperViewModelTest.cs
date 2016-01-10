@@ -13,7 +13,7 @@ namespace R54IN0.Test
         public void CanCreate()
         {
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
-            StockWrapperViewModel vm = new StockWrapperViewModel(StockType.ALL, sub);
+            StockWrapperViewModel vm = new StockWrapperViewModel(IOStockType.ALL, sub);
         }
 
         StockWrapper CreateIOStockWrapper()
@@ -32,7 +32,7 @@ namespace R54IN0.Test
             Random rand = new Random();
             var instance = new StockWrapper(new InOutStock());
             instance.Inventory = InventoryWrapperDirector.GetInstance().CreateCollection().Random();
-            var type = instance.StockType == StockType.INCOMING ? StockType.OUTGOING : StockType.INCOMING;
+            var type = instance.StockType == IOStockType.INCOMING ? IOStockType.OUTGOING : IOStockType.INCOMING;
             var specw = instance.Specification = specCollectoin.ElementAt(rand.Next(specCollectoin.Count - 1));
             var itemw = instance.Item = itemCollectoin.Where(x => x.ID == specw.Field.ItemID).Single();
             var itemCnt = instance.Quantity = 20332;
@@ -50,9 +50,9 @@ namespace R54IN0.Test
         [TestMethod]
         public void SyncViewModel()
         {
-            StockType stockTypeAll = StockType.ALL;
-            StockType stockTypeIn = StockType.INCOMING;
-            StockType stockTypeOut = StockType.OUTGOING;
+            IOStockType stockTypeAll = IOStockType.ALL;
+            IOStockType stockTypeIn = IOStockType.INCOMING;
+            IOStockType stockTypeOut = IOStockType.OUTGOING;
             var dummy = new DummyDbData().Create();
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             StockWrapperViewModel vm1 = new StockWrapperViewModel(stockTypeAll, sub);
@@ -101,7 +101,7 @@ namespace R54IN0.Test
         public void WhenClickFinderNodeThenUpdateItemsWidthStockTypeMatched()
         {
             new DummyDbData().Create();
-            StockType stockType = new Random().Next(2) == 1 ? StockType.INCOMING : StockType.OUTGOING;
+            IOStockType stockType = new Random().Next(2) == 1 ? IOStockType.INCOMING : IOStockType.OUTGOING;
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemFinderViewModel fvm = new ItemFinderViewModel(null);
             StockWrapperViewModel vm = new StockWrapperViewModel(stockType, sub);
@@ -122,7 +122,7 @@ namespace R54IN0.Test
         public void SyncFinder()
         {
             new DummyDbData().Create();
-            StockType stockTypeAll = StockType.ALL;
+            IOStockType stockTypeAll = IOStockType.ALL;
 
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemFinderViewModel fvm = new ItemFinderViewModel(null);
@@ -192,7 +192,7 @@ namespace R54IN0.Test
 
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemFinderViewModel fvm = new ItemFinderViewModel(null);
-            SearchStockWrapperViewModel vm = new SearchStockWrapperViewModel(StockType.ALL, sub);
+            SearchStockWrapperViewModel vm = new SearchStockWrapperViewModel(IOStockType.ALL, sub);
 
             string itemName = "     스위치 ";
             string dummyName = "23094832098432";
@@ -265,7 +265,7 @@ namespace R54IN0.Test
 
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemFinderViewModel fvm = new ItemFinderViewModel(null);
-            SearchStockWrapperViewModel vm = new SearchStockWrapperViewModel(StockType.ALL, sub);
+            SearchStockWrapperViewModel vm = new SearchStockWrapperViewModel(IOStockType.ALL, sub);
             //메모리 할당 확인
             Assert.IsNotNull(vm.SearchTypes);
             Assert.IsNotNull(vm.SelectedSearchType);

@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="R54IN0.WPF.IOStockDatePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:R54IN0.WPF"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="300">
+    <StackPanel>
+        <Grid VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*" />
+                <ColumnDefinition Width="90*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">시작일</Label>
+            <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">종료일</Label>
+            <DatePicker SelectedDate="{Binding FromDate}" Grid.Row="0" Grid.Column="1" />
+            <DatePicker SelectedDate="{Binding ToDate}" Grid.Row="2" Grid.Column="1" />
+        </Grid>
+
+        <UniformGrid Height="Auto" Columns="1" Rows="6" Margin="0,10,0,0">
+            <UniformGrid.Resources>
+                <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
+                    <Setter Property="Margin" Value="2" />
+                </Style>
+            </UniformGrid.Resources>
+
+            <UniformGrid Columns="3" VerticalAlignment="Center">
+                <Button Command="{Binding TodayCommand}" >오늘</Button>
+                <Button Command="{Binding YesterdayCommand}">어제</Button>
+                <Button Command="{Binding TheDayBeforeYesterday}">그저께</Button>
+            </UniformGrid>
+
+            <UniformGrid Columns="3"  VerticalAlignment="Center">
+                <Button Command="{Binding ThisWeekCommand}" >금주</Button>
+                <Button Command="{Binding LastWeekCommand}" >전주</Button>
+                <Button Command="{Binding FromLastWeekToTodayCommand}">전주부터 오늘까지</Button>
+            </UniformGrid>
+            <UniformGrid Columns="2"  VerticalAlignment="Center">
+                <Button Command="{Binding ThisMonthCommand}">금월</Button>
+                <Button Command="{Binding LastMonthCommand}">전월</Button>
+            </UniformGrid>
+
+            <UniformGrid Columns="4"  VerticalAlignment="Center">
+                <Button Command="{Binding FirstQuarterCommand}">1분기</Button>
+                <Button Command="{Binding SecondQuarterCommand}">2분기</Button>
+                <Button Command="{Binding ThirdQuarterCommand}">3분기</Button>
+                <Button Command="{Binding FourthQuarterCommand}">4분기</Button>
+            </UniformGrid>
+
+            <UniformGrid Columns="2"  VerticalAlignment="Center">
+                <Button Command="{Binding FirstHalfYearCommand}">상반기</Button>
+                <Button Command="{Binding SecondHalfYearCommand}">하반기</Button>
+            </UniformGrid>
+
+            <UniformGrid Columns="3"  VerticalAlignment="Center">
+                <Button Command="{Binding ThisYearCommand}">금년</Button>
+                <Button Command="{Binding LastYearCommand}">작년</Button>
+                <Button Command="{Binding TheYearBeforeLastCommand}">재작년</Button>
+            </UniformGrid>
+        </UniformGrid>
+
+        <!--<Grid  Margin="0,0,0,0">
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Calendar.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+
+                    <Style TargetType="Calendar" BasedOn="{StaticResource MaterialDesignCalendarPortrait}">
+                    </Style>
+                </ResourceDictionary>
+            </Grid.Resources>
+            <Calendar SelectionMode="MultipleRange" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="11,-1,11,1">
+            </Calendar>
+        </Grid>-->
+    </StackPanel>
+</UserControl>

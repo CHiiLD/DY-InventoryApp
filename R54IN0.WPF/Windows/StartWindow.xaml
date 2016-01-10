@@ -49,7 +49,7 @@
                     <local:InventoryStatus />
                 </TabItem>
                 <TabItem Header="입출고 현황">
-                    <local:InoutStockStatus />
+                    <local:IOStockStatus />
                 </TabItem>
             </TabControl>
         </Grid>

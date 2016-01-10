@@ -47,10 +47,10 @@
     <Compile Include="Structure\Director\ObservableInvenDirector.cs" />
     <Compile Include="Structure\Director\ObservableFieldDirector.cs" />
     <Compile Include="Structure\Fields\Customer.cs" />
-    <Compile Include="Structure\IObservableInventoryProperties.cs" />
-    <Compile Include="Structure\Interface\ITableType.cs" />
+    <Compile Include="Structure\InventoryData\IObservableInventoryProperties.cs" />
     <Compile Include="Structure\Interface\IName.cs" />
-    <Compile Include="Structure\ObservableInventory.cs" />
+    <Compile Include="Structure\InventoryData\IOStockFormat.cs" />
+    <Compile Include="Structure\InventoryData\ObservableInventory.cs" />
     <Compile Include="Structure\Fields\Client.cs" />
     <Compile Include="Structure\Fields\Currency.cs" />
     <Compile Include="Structure\Fields\Employee.cs" />
@@ -59,7 +59,7 @@
     <Compile Include="Structure\Interface\IField.cs" />
     <Compile Include="Structure\Fields\InOutStock.cs" />
     <Compile Include="Structure\Fields\Inventory.cs" />
-    <Compile Include="Structure\InventoryFormat.cs" />
+    <Compile Include="Structure\InventoryData\InventoryFormat.cs" />
     <Compile Include="Structure\Fields\IStock.cs" />
     <Compile Include="Structure\Fields\Item.cs" />
     <Compile Include="Structure\Interface\IID.cs" />
@@ -67,10 +67,9 @@
     <Compile Include="Structure\Fields\Maker.cs" />
     <Compile Include="Structure\Fields\Measure.cs" />
     <Compile Include="Structure\Fields\Specification.cs" />
-    <Compile Include="Structure\IObservableInoutStockProperties.cs" />
-    <Compile Include="Structure\InoutStockFormat.cs" />
-    <Compile Include="Structure\ObservableInoutStock.cs" />
-    <Compile Include="Structure\StockType.cs" />
+    <Compile Include="Structure\InventoryData\IObservableInoutStockProperties.cs" />
+    <Compile Include="Structure\InventoryData\ObservableIOStock.cs" />
+    <Compile Include="Structure\InventoryData\IOStockType.cs" />
     <Compile Include="Structure\Fields\Warehouse.cs" />
     <Compile Include="Structure\Fields\Supplier.cs" />
     <Compile Include="TreeViewNodeJsonFormat.cs" />
@@ -112,7 +111,7 @@
     <Compile Include="ViewModel\Finder\Node\NodeType.cs" />
     <Compile Include="ViewModel\Finder\FinderDirector.cs" />
     <Compile Include="Structure\FieldWrapper\ClientWrapper.cs" />
-    <Compile Include="Structure\Observable.cs" />
+    <Compile Include="Structure\InventoryData\Observable.cs" />
     <Compile Include="Structure\FieldWrapper\IFieldWrapper.cs" />
     <Compile Include="Structure\FieldWrapper\ItemWrapper.cs" />
     <Compile Include="Structure\FieldWrapper\SpecificationWrapper.cs" />

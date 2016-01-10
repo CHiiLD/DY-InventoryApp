@@ -130,7 +130,7 @@ namespace R54IN0.WPF
             SearchViewModel = new InventorySearchTextBoxViewModel();
             SearchViewModel.SearchCommand = new CommandHandler(ExecuteSearchCommand, (object obj) => { return true; });
 
-            List<ObservableInventory> list = ObservableInvenDirector.GetInstance().CreateList();
+            List<ObservableInventory> list = ObservableInventoryDirector.GetInstance().CreateList();
             PushDataGridItems(list, true);
 
             CanModify = false;
@@ -150,7 +150,7 @@ namespace R54IN0.WPF
             if (e.PropertyName == "SelectedNodes" && sender == TreeViewViewModel)
             {
                 var proNodes = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
-                var oid = ObservableInvenDirector.GetInstance();
+                var oid = ObservableInventoryDirector.GetInstance();
                 var invenList = oid.CreateList();
 
                 List<ObservableInventory> temp = new List<ObservableInventory>();

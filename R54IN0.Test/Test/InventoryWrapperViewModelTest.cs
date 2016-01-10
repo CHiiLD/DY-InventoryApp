@@ -172,7 +172,7 @@ namespace R54IN0.Test
             FieldWrapperDirector fwd = FieldWrapperDirector.GetInstance();
             CollectionViewModelObserverSubject sub = CollectionViewModelObserverSubject.GetInstance();
             ItemWrapperViewModel ivm = new ItemWrapperViewModel(sub);
-            StockWrapperViewModel svm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            StockWrapperViewModel svm = new StockWrapperViewModel(IOStockType.INCOMING, sub);
             InventoryWrapperViewModel invm = new InventoryWrapperViewModel(sub);
             //아이템 새로 생성 하지만 Maker 프로퍼티는 설정 하지 아니함
             ivm.AddNewItemCommand.Execute(null);
@@ -199,7 +199,7 @@ namespace R54IN0.Test
             fwd = FieldWrapperDirector.GetInstance();
             sub = CollectionViewModelObserverSubject.GetInstance();
             ivm = new ItemWrapperViewModel(sub);
-            svm = new StockWrapperViewModel(StockType.INCOMING, sub);
+            svm = new StockWrapperViewModel(IOStockType.INCOMING, sub);
             invm = new InventoryWrapperViewModel(sub);
 
             //품목의 여러 프로퍼티 호출 

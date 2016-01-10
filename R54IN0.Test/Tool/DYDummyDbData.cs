@@ -256,7 +256,7 @@ namespace R54IN0.Test
                             ItemID = spec.ItemID,
                             SpecificationID = spec.ID,
                             Quantity = _random.Next(1, 1000),
-                            StockType = _random.Next(0, 2) == 0 ? StockType.INCOMING : StockType.OUTGOING,
+                            StockType = _random.Next(0, 2) == 0 ? IOStockType.INCOMING : IOStockType.OUTGOING,
                         }.Save<InOutStock>();
                     }
                 }

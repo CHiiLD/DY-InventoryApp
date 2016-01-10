@@ -49,11 +49,11 @@ namespace R54IN0
         {
             _viewModel = viewModel;
             var fwd = FieldWrapperDirector.GetInstance();
-            StockTypeList = viewModel.StockType == StockType.ALL ?
-                new StockType[] { StockType.INCOMING, StockType.OUTGOING } : new StockType[] { viewModel.StockType };
+            StockTypeList = viewModel.StockType == IOStockType.ALL ?
+                new IOStockType[] { IOStockType.INCOMING, IOStockType.OUTGOING } : new IOStockType[] { viewModel.StockType };
             ClientList = fwd.CreateCollection<Client, ClientWrapper>().Where(x => !x.IsDeleted);
             EmployeeList = fwd.CreateCollection<Employee, Observable<Employee>>().Where(x => !x.IsDeleted);
-            StockType = viewModel.StockType == StockType.ALL ? StockType.INCOMING : viewModel.StockType;
+            StockType = viewModel.StockType == IOStockType.ALL ? IOStockType.INCOMING : viewModel.StockType;
         }
 
         public override ItemWrapper Item
@@ -136,7 +136,7 @@ namespace R54IN0
 
         public IEnumerable<Observable<Employee>> EmployeeList { get; private set; }
 
-        public IEnumerable<StockType> StockTypeList { get; private set; }
+        public IEnumerable<IOStockType> StockTypeList { get; private set; }
 
         public IEnumerable<Observable<Warehouse>> WarehouseList
         {

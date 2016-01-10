@@ -71,7 +71,7 @@ namespace R54IN0
             }
         }
 
-        public StockType StockType
+        public IOStockType StockType
         {
             get
             {

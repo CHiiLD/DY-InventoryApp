@@ -11,7 +11,7 @@ namespace R54IN0
         private DateTime _fromDateTime;
         private DateTime _toDateTime;
 
-        public SearchStockWrapperViewModel(StockType type, CollectionViewModelObserverSubject subject) : base(type, subject)
+        public SearchStockWrapperViewModel(IOStockType type, CollectionViewModelObserverSubject subject) : base(type, subject)
         {
             SearchTypes = new Type[] { typeof(Item), typeof(Specification), typeof(Maker), typeof(Warehouse) };
             SelectedSearchType = SearchTypes.First();

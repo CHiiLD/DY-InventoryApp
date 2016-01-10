@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 
 namespace R54IN0.WPF
@@ -8,53 +9,71 @@ namespace R54IN0.WPF
     /// </summary>
     public partial class Window3 : Window
     {
-        string[] _items = new
-            string[] { "123", "321", "345" };
-        string _selected;
-        string _text;
+        //public class ForTest
+        //{
+        //    public string name
+        //    {
+        //        get;
+        //        set;
+        //    }
 
-        public string[] Items
-        {
-            get
-            {
-                return _items;
-            }
-            set
-            {
-                _items = value;
-            }
-        }
+        //    public ForTest(string name)
+        //    {
+        //        this.name = name;
+        //    }
+        //}
 
-        public string SelectedItem
-        {
-            get
-            {
-                return _selected;
-            }
-            set
-            {
-                _selected = value;
-                Console.WriteLine("selected " + _selected);
-            }
-        }
+        //ForTest[] _items = new
+        //    ForTest[] { new ForTest("123"), new ForTest("321"), new ForTest("345") };
+        //ForTest _selected;
+        //string _text;
 
-        public string Text
-        {
-            get
-            {
-                return _text;
-            }
-            set
-            {
-                _text = value;
-                Console.WriteLine(_text);
-            }
-        }
+        //public ForTest[] Items
+        //{
+        //    get
+        //    {
+        //        return _items;
+        //    }
+        //    set
+        //    {
+        //        _items = value;
+        //    }
+        //}
+
+        //public ForTest SelectedItem
+        //{
+        //    get
+        //    {
+        //        return _selected;
+        //    }
+        //    set
+        //    {
+        //        _selected = value;
+        //        Console.WriteLine("selected " + _selected.name);
+        //    }
+        //}
+
+        //public string Text
+        //{
+        //    get
+        //    {
+        //        return _text;
+        //    }
+        //    set
+        //    {
+        //        _text = value;
+        //        Console.WriteLine(_text);
+        //    }
+        //}
 
         public Window3()
         {
             InitializeComponent();
-            DataContext = this;
+            //SelectedItem = Items.First();
+            //Items = null;
+            //DataContext = this;
+
+            //Items = null;
         }
     }
 }

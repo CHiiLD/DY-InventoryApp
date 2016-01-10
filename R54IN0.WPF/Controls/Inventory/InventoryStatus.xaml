@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:R54IN0.WPF"
+             xmlns:temp="clr-namespace:R54IN0.WPF.TEMP"
              xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d"
              d:DesignHeight="768" d:DesignWidth="1366">
@@ -52,7 +53,7 @@
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
 
-                    <mah:ToggleSwitch OnLabel="편집 허용" OffLabel="편집 불가" IsChecked="{Binding CanModify}" Margin="0,-5,0,0" />
+                    <mah:ToggleSwitch OnLabel="빠른 편집" OffLabel="빠른 편집" IsChecked="{Binding CanModify}" Margin="0,-5,0,0" />
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="20,0,0,5" HorizontalAlignment="Left">
                         <UniformGrid Rows="1" Columns="3" Width="Auto">
@@ -79,8 +80,8 @@
                     </TextBox>
                 </StackPanel>
 
-                <local:StockDataGrid x:Name="DataGridL" Grid.Row="1" Grid.Column="0" />
-                <local:StockDataGrid x:Name="DataGridR" Grid.Row="1" Grid.Column="2" />
+                <temp:InventoryDataGrid x:Name="DataGridL" Grid.Row="1" Grid.Column="0" />
+                <temp:InventoryDataGrid x:Name="DataGridR" Grid.Row="1" Grid.Column="2" />
             </Grid>
         </GroupBox>
     </Grid>

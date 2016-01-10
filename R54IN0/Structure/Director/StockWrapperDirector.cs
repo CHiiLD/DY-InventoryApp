@@ -39,11 +39,11 @@ namespace R54IN0
             }
         }
 
-        public ObservableCollection<StockWrapper> CreateCollection(StockType type)
+        public ObservableCollection<StockWrapper> CreateCollection(IOStockType type)
         {
-            if (type == StockType.NONE)
+            if (type == IOStockType.NONE)
                 throw new ArgumentOutOfRangeException();
-            if (type == StockType.ALL)
+            if (type == IOStockType.ALL)
                 return new ObservableCollection<StockWrapper>(_list);
             else
                 return new ObservableCollection<StockWrapper>(_list.Where(x => x.StockType == type));
@@ -66,7 +66,7 @@ namespace R54IN0
                 Debug.Assert(stock.ID != null);
                 Debug.Assert(stock.ItemID != null);
                 Debug.Assert(stock.SpecificationID != null);
-                Debug.Assert(stock.StockType != StockType.NONE);
+                Debug.Assert(stock.StockType != IOStockType.NONE);
             }
 #endif
             _list.AddRange(stocks.Select(x => new StockWrapper(x)));
@@ -106,11 +106,11 @@ namespace R54IN0
             }
         }
 
-        public int Count(StockType type = StockType.ALL)
+        public int Count(IOStockType type = IOStockType.ALL)
         {
-            if (type == StockType.NONE)
+            if (type == IOStockType.NONE)
                 throw new ArgumentException();
-            if (StockType.ALL == type)
+            if (IOStockType.ALL == type)
                 return _list.Count;
             else
                 return _list.Where(x => x.StockType == type).Count();

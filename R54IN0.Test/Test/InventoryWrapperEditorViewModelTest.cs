@@ -143,7 +143,7 @@ namespace R54IN0.Test
             InventoryWrapperViewModel invm = new InventoryWrapperViewModel(sub);
             var invenw = invm.Items.Random();
             InventoryWrapperEditorViewModel inventoryEditorViewModel = new InventoryWrapperEditorViewModel(invm, invenw);
-            SearchStockWrapperViewModel svm = new SearchStockWrapperViewModel(StockType.ALL, sub);
+            SearchStockWrapperViewModel svm = new SearchStockWrapperViewModel(IOStockType.ALL, sub);
 
             Assert.IsTrue(svm.Items.All(x => x.Inventory != null));
 

@@ -212,7 +212,7 @@ namespace R54IN0.Test
             FinderDirector.Distroy();
             StockWrapperDirector.Distory();
             LexDb.Distroy();
-            ObservableInvenDirector.Distory();
+            ObservableInventoryDirector.Distory();
             ObservableFieldDirector.Distory();
 
             using (var db = LexDb.GetDbInstance())
@@ -261,7 +261,7 @@ namespace R54IN0.Test
                             var date2 = date1.AddMilliseconds(1);
 
                             var incoming = _random.Next(10, 100);
-                            var isfmt = new InoutStockFormat()
+                            var isfmt = new IOStockFormat()
                             {
                                 SupplierID = suppliers.Random().ID,
                                 Date = date1,
@@ -269,15 +269,15 @@ namespace R54IN0.Test
                                 WarehouseID = warehouse.Random().ID,
                                 Quantity = incoming,
                                 RemainingQuantity = qty + incoming,
-                                StockType = StockType.INCOMING,
+                                StockType = IOStockType.INCOMING,
                                 EmployeeID = employees.Random().ID,
                                 UnitPrice = (int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000)),
-                            }.Save<InoutStockFormat>();
+                            }.Save<IOStockFormat>();
                             qty += isfmt.Quantity;
 
                             var outgoing = _random.Next(1, qty);
 
-                            isfmt = new InoutStockFormat()
+                            isfmt = new IOStockFormat()
                             {
                                 CustomerID = customer.Random().ID,
                                 Date = date2,
@@ -285,10 +285,10 @@ namespace R54IN0.Test
                                 ProjectID = proejcts.Random().ID,
                                 Quantity = outgoing,
                                 RemainingQuantity = qty - outgoing,
-                                StockType = StockType.OUTGOING,
+                                StockType = IOStockType.OUTGOING,
                                 EmployeeID = employees.Random().ID,
                                 UnitPrice = (int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000)),
-                            }.Save<InoutStockFormat>();
+                            }.Save<IOStockFormat>();
                             qty -= isfmt.Quantity;
                         }
                         ifmt.Quantity = qty;

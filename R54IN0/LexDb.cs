@@ -116,7 +116,7 @@ namespace R54IN0
             WithIndex("MakerID", i => i.MakerID).
             WithIndex("Quantity", i => i.Quantity);
 
-            me.Map<InoutStockFormat>().Automap(i => i.ID).
+            me.Map<IOStockFormat>().Automap(i => i.ID).
             WithIndex("CustomerID", i => i.CustomerID).
             WithIndex("SupplierID", i => i.SupplierID).
             WithIndex("Date", i => i.Date).
