@@ -113,6 +113,9 @@ namespace R54IN0.WPF
             }
         }
 
+        /// <summary>
+        /// 단가의 합계 (입출된 개수 * 가격)
+        /// </summary>
         public decimal Amount
         {
             get
@@ -162,13 +165,13 @@ namespace R54IN0.WPF
                         switch (StockType)
                         {
                             case IOStockType.INCOMING:
-                                RemainingQuantity = _origin.RemainingQuantity + value - _origin.Quantity;
-                                InventoryQuantity = _origin.Inventory.Quantity + value - _origin.Quantity;
+                                RemainingQuantity = _originObservableIOStock.RemainingQuantity + value - _originObservableIOStock.Quantity;
+                                InventoryQuantity = _originObservableIOStock.Inventory.Quantity + value - _originObservableIOStock.Quantity;
                                 break;
 
                             case IOStockType.OUTGOING:
-                                RemainingQuantity = _origin.RemainingQuantity + _origin.Quantity - value;
-                                InventoryQuantity = _origin.Inventory.Quantity + _origin.Quantity - value;
+                                RemainingQuantity = _originObservableIOStock.RemainingQuantity + _originObservableIOStock.Quantity - value;
+                                InventoryQuantity = _originObservableIOStock.Inventory.Quantity + _originObservableIOStock.Quantity - value;
                                 break;
                         }
                         break;
@@ -286,7 +289,7 @@ namespace R54IN0.WPF
                 {
                     ProductText = _product.Name;
                     var searchList = ObservableInventoryDirector.GetInstance().SearchAsProductID(_product.ID);
-                    InventoryList = searchList.Select(x => new NonSaveObservableInventory(x.Format)).ToList();
+                    InventoryList = searchList.Select(x => new NonSaveObservableInventory(new InventoryFormat(x.Format))).ToList();
                 }
                 NotifyPropertyChanged("Product");
             }

@@ -8,7 +8,7 @@ using System.Windows.Controls;
 namespace R54IN0.Test
 {
     [TestClass]
-    public class InoutStockStatusViewModelTest
+    public class IOStockStatusViewModelTest
     {
         [TestMethod]
         public void CanCreate()

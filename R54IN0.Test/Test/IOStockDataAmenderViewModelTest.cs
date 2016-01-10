@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using R54IN0.WPF;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace R54IN0.Test.New
@@ -79,6 +81,9 @@ namespace R54IN0.Test.New
             Assert.AreEqual(price, iostock.UnitPrice);
             Assert.AreEqual(qty, iostock.RemainingQuantity);
             Assert.AreEqual(qty, iostock.Inventory.Quantity);
+            var ofd = ObservableFieldDirector.GetInstance();
+            Assert.IsNotNull(ofd.Search<Maker>(iostock.Inventory.Maker.ID));
+            Assert.IsNotNull(ofd.Search<Measure>(iostock.Inventory.Measure.ID));
         }
 
         /// <summary>
@@ -132,16 +137,234 @@ namespace R54IN0.Test.New
             var employee = viewmodel.Employee = viewmodel.EmployeeList.Random();
             var memo = viewmodel.Memo = "some memo";
             viewmodel.UnitPrice = 6666;
-            var stock = viewmodel.Record();
+            var obIOStock = viewmodel.Record();
             //검사
-            Assert.AreEqual(product, stock.Inventory.Product);
-            Assert.AreEqual(specificationName, stock.Inventory.Specification);
+            Assert.AreEqual(product, obIOStock.Inventory.Product);
+            Assert.AreEqual(specificationName, obIOStock.Inventory.Specification);
+            Assert.AreEqual(specMemo, obIOStock.Inventory.Memo);
+            Assert.AreEqual(maker, obIOStock.Inventory.Maker);
+            Assert.AreEqual(measure, obIOStock.Inventory.Measure);
+            Assert.AreEqual(warehouse, obIOStock.Warehouse);
+            Assert.AreEqual(employee, obIOStock.Employee);
+            Assert.AreEqual(memo, obIOStock.Memo);
+        }
+
+        /// <summary>
+        /// 추가가 아닌 기존의 IOStockFormat을 수정하고자 할 때
+        /// </summary>
+        [TestMethod]
+        public void Modify()
+        {
+            new Dummy().Create();
+            IOStockFormat fmt = null;
+            using (var db = LexDb.GetDbInstance())
+                fmt = db.LoadAll<IOStockFormat>().Random();
+            IOStockType type = fmt.StockType;
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
+
+            Assert.AreEqual(type, viewmodel.StockType);
+            string id = fmt.ID;
+            var clientText = viewmodel.ClientText = "SOME CLIENT";
+            viewmodel.Client = null;
+            var warehouseText = viewmodel.WarehouseText = "SOME WAREHOUSE";
+            viewmodel.Warehouse = null;
+            var employeeText = viewmodel.EmployeeText = "SOME EMPLOYEE";
+            viewmodel.Employee = null;
+            var proejctText = viewmodel.ProjectText = "SOME PROJECT";
+            viewmodel.Project = null;
+            var memo = viewmodel.Memo = "SOME MEMO";
+            var specificationMemo = viewmodel.SpecificationMemo = "SOME SPEC_MEMO";
+            var makerText = viewmodel.MakerText = "SOME MAKER";
+            viewmodel.Maker = null;
+            var measureText = viewmodel.MeasureText = "SOME MEASURE";
+            viewmodel.Measure = null;
+            var qty = viewmodel.Quantity = 1111;
+            var price = viewmodel.UnitPrice = 30302;
+
+            viewmodel.Record();
+
+            using (var db = LexDb.GetDbInstance())
+                fmt = db.LoadByKey<IOStockFormat>(fmt.ID);
+            ObservableIOStock obIOStock = new ObservableIOStock(fmt);
+
+            Assert.AreEqual(clientText, obIOStock.StockType == IOStockType.INCOMING ? obIOStock.Supplier.Name : obIOStock.Customer.Name);
+            Assert.AreEqual(warehouseText, obIOStock.Warehouse.Name);
+            Assert.AreEqual(employeeText, obIOStock.Employee.Name);
+            Assert.AreEqual(proejctText, obIOStock.Project.Name);
+            Assert.AreEqual(memo, obIOStock.Memo);
+            Assert.AreEqual(makerText, obIOStock.Inventory.Maker.Name);
+            Assert.AreEqual(measureText, obIOStock.Inventory.Measure.Name);
+            Assert.AreEqual(type, obIOStock.StockType);
+
+            var ofd = ObservableFieldDirector.GetInstance();
+            Assert.IsNotNull(ofd.Search<Maker>(obIOStock.Inventory.Maker.ID));
+            Assert.IsNotNull(ofd.Search<Measure>(obIOStock.Inventory.Measure.ID));
+        }
+
+        [TestMethod]
+        public void Modify2()
+        {
+            new Dummy().Create();
+            IOStockFormat fmt = null;
+            using (var db = LexDb.GetDbInstance())
+                fmt = db.LoadAll<IOStockFormat>().Random();
+            var viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
+
+            var specMemo = viewmodel.SpecificationMemo = "SOME SPECIFICATION MEMO";
+            var maker = viewmodel.Maker = viewmodel.MakerList.Random();
+            var measure = viewmodel.Measure = viewmodel.MeasureList.Random();
+            var client = viewmodel.Client = viewmodel.ClientList.Random();
+            var warehouse = viewmodel.Warehouse = viewmodel.WarehouseList.Random();
+            var employee = viewmodel.Employee = viewmodel.EmployeeList.Random();
+            var memo = viewmodel.Memo = "MEMO";
+            var price = viewmodel.UnitPrice = 7777;
+            var stock = viewmodel.Record();
+
             Assert.AreEqual(specMemo, stock.Inventory.Memo);
             Assert.AreEqual(maker, stock.Inventory.Maker);
             Assert.AreEqual(measure, stock.Inventory.Measure);
             Assert.AreEqual(warehouse, stock.Warehouse);
             Assert.AreEqual(employee, stock.Employee);
             Assert.AreEqual(memo, stock.Memo);
+            Assert.AreEqual(price, stock.UnitPrice);
+        }
+
+        /// <summary>
+        /// 출고 시, 출고된 수량만큼 RemainingQuantity, InventoryQuantity 프로퍼티가
+        /// 정상적으로 값을 가감하는지 테스트
+        /// </summary>
+        [TestMethod]
+        public void Quantity()
+        {
+            new Dummy().Create();
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
+
+            viewmodel.StockType = IOStockType.OUTGOING;
+            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CreateList<Product>().Random();
+            var specificationName = viewmodel.Inventory = viewmodel.InventoryList.Random();
+            var inventoryQty = viewmodel.Inventory.Quantity;
+            if (inventoryQty <= 1)
+                return;
+            viewmodel.Quantity = inventoryQty - 1; //현재 재고는 1개
+
+            Assert.AreEqual(1, viewmodel.RemainingQuantity); //따라서 잔여 재고도 1개이고
+            Assert.AreEqual(1, viewmodel.InventoryQuantity); //현재 재고도 1개
+        }
+
+        /// <summary>
+        /// 기존의 입출고 데이터의 입출고 수량을 수정하고 이에 따른 수량 데이터들의 변화가 올바르게 적용됨을 확인한다.
+        /// </summary>
+        [TestMethod]
+        public void Quantity2()
+        {
+            new Dummy().Create();
+            IOStockFormat fmt = null;
+            using (var db = LexDb.GetDbInstance())
+                fmt = db.LoadAll<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).OrderBy(x => x.Date).Last();
+
+            ///////////////////////////////////////////입고
+            fmt.Quantity = 100; //입고 수량
+            fmt.RemainingQuantity = 200; //잔여 재고
+            var obIOStock = new ObservableIOStock(fmt);
+            obIOStock.Inventory.Quantity = 500; //현재 재고
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(obIOStock);
+            viewmodel.StockType = IOStockType.INCOMING;
+            viewmodel.Quantity = 99; //입고수량 하나 줄임
+            Assert.AreEqual(199, viewmodel.RemainingQuantity); //따라서 잔여 재고가 하나 줄어든다.
+            Assert.AreEqual(499, viewmodel.InventoryQuantity); //따라서 현재 재고도 하나 줄어든다.
+            viewmodel.Quantity = 101;
+            Assert.AreEqual(201, viewmodel.RemainingQuantity);
+            Assert.AreEqual(501, viewmodel.InventoryQuantity);
+
+            ///////////////////////////////////////////출고
+            using (var db = LexDb.GetDbInstance())
+                fmt = db.LoadAll<IOStockFormat>().Where(x => x.StockType == IOStockType.OUTGOING).OrderBy(x => x.Date).Last();
+            fmt.Quantity = 100; //들어간 양
+            fmt.RemainingQuantity = 200; //잔여 재고
+            obIOStock = new ObservableIOStock(fmt);
+            obIOStock.Inventory.Quantity = 500; //현재 재고
+            viewmodel = new IOStockDataAmenderViewModel(obIOStock);
+            viewmodel.StockType = IOStockType.OUTGOING;
+            viewmodel.Quantity = 99; //출고수량 하나 줄임
+            Assert.AreEqual(201, viewmodel.RemainingQuantity); //따라서 잔여 재고가 하나 늘어난다.
+            Assert.AreEqual(501, viewmodel.InventoryQuantity); //따라서 현재 재고도 하나 늘어난다.
+            viewmodel.Quantity = 101;
+            Assert.AreEqual(199, viewmodel.RemainingQuantity);
+            Assert.AreEqual(499, viewmodel.InventoryQuantity);
+        }
+
+        /// <summary>
+        /// 과거의 입출고 데이터 중 입고수량 또는 출고 수량을 수정하였다면
+        /// 그에 맞게 과거부터 현재까지의 모든 잔여 수량과 재고수량을 수정한다.
+        /// </summary>
+        [TestMethod]
+        public void Quantity3()
+        {
+            new Dummy().Create();
+            IOStockFormat fmt = null;
+            using (var db = LexDb.GetDbInstance())
+                fmt = db.LoadAll<IOStockFormat>().Random();
+
+            IEnumerable<IOStockFormat> before = null;
+            using (var db = LexDb.GetDbInstance())
+                before = db.LoadAll<IOStockFormat>().Where(x => x.InventoryID == fmt.InventoryID).Where(x => x.Date > fmt.Date).OrderBy(x => x.Date);
+
+            IObservableIOStockProperties obIOStock = new ObservableIOStock(fmt);
+            int addQty = new Random().Next(-10, 10);
+
+            var inventoryQty = obIOStock.Inventory.Quantity;
+            var viewmodel = new IOStockDataAmenderViewModel(obIOStock);
+            viewmodel.Quantity = viewmodel.Quantity + addQty; //개수 하나를 늘린다.
+            obIOStock = viewmodel.Record();
+
+            addQty = obIOStock.StockType == IOStockType.INCOMING ? addQty : -addQty;
+
+            IEnumerable<IOStockFormat> after = null;
+            using (var db = LexDb.GetDbInstance())
+                after = db.LoadAll<IOStockFormat>().Where(x => x.InventoryID == obIOStock.Inventory.ID).Where(x => x.Date > obIOStock.Date).OrderBy(x => x.Date);
+
+            Assert.AreEqual(before.Count(), after.Count());
+            Assert.AreEqual(obIOStock.Inventory.Quantity, inventoryQty + addQty);
+            for (int i = 0; i < after.Count(); i++)
+            {
+                var a = after.ElementAt(i);
+                var b = before.ElementAt(i);
+                Assert.AreEqual(a.ID, b.ID);
+                Assert.AreEqual(a.RemainingQuantity, b.RemainingQuantity + addQty);
+            }
+        }
+
+        /// <summary>
+        /// 수정만 할 뿐 저장을 하지 않을 때 수정된 부분은 원본에 영향을 끼쳐서는 안된다.
+        /// </summary>
+        [TestMethod]
+        public void DontSave()
+        {
+            new Dummy().Create();
+            IOStockFormat fmt = null;
+            using (var db = LexDb.GetDbInstance())
+                fmt = db.LoadAll<IOStockFormat>().Random();
+            var id = fmt.ID;
+            var viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
+
+            var specMemo = viewmodel.SpecificationMemo = "SOME SPECIFICATION MEMO";
+            var maker = viewmodel.Maker = viewmodel.MakerList.Where(x => x != viewmodel.Maker).Random();
+            var measure = viewmodel.Measure = viewmodel.MeasureList.Where(x => x != viewmodel.Measure).Random();
+            var warehouse = viewmodel.Warehouse = viewmodel.WarehouseList.Where(x => x != viewmodel.Warehouse).Random();
+            var employee = viewmodel.Employee = viewmodel.EmployeeList.Where(x => x != viewmodel.Employee).Random();
+            var memo = viewmodel.Memo = "MEMO";
+            var price = viewmodel.UnitPrice = 7777;
+
+            using (var db = LexDb.GetDbInstance())
+                fmt = db.LoadByKey<IOStockFormat>(id);
+
+            var obIOStock = new ObservableIOStock(fmt);
+            Assert.AreNotEqual(specMemo, obIOStock.Inventory.Memo);
+            Assert.AreNotEqual(maker, obIOStock.Inventory.Maker);
+            Assert.AreNotEqual(measure, obIOStock.Inventory.Measure);
+            Assert.AreNotEqual(warehouse, obIOStock.Warehouse);
+            Assert.AreNotEqual(employee, obIOStock.Employee);
+            Assert.AreNotEqual(memo, obIOStock.Memo);
         }
 
         /// <summary>
@@ -288,146 +511,6 @@ namespace R54IN0.Test.New
             Assert.IsTrue(viewmodel.Inventory.ID == obIOStock.Inventory.ID);
             Assert.IsTrue(viewmodel.InventoryList.Any(x => x.ID == viewmodel.Inventory.ID));
             Assert.IsTrue(viewmodel.InventoryList.Contains(viewmodel.Inventory)); //여기서 문제남
-        }
-
-        /// <summary>
-        /// 추가가 아닌 기존의 IOStockFormat을 수정하고자 할 때
-        /// </summary>
-        [TestMethod]
-        public void Modify()
-        {
-            new Dummy().Create();
-            IOStockFormat fmt = null;
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Random();
-            IOStockType type = fmt.StockType;
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
-
-            Assert.AreEqual(type, viewmodel.StockType);
-            string id = fmt.ID;
-            var clientText = viewmodel.ClientText = "SOME CLIENT";
-            viewmodel.Client = null;
-            var warehouseText = viewmodel.WarehouseText = "SOME WAREHOUSE";
-            viewmodel.Warehouse = null;
-            var employeeText = viewmodel.EmployeeText = "SOME EMPLOYEE";
-            viewmodel.Employee = null;
-            var proejctText = viewmodel.ProjectText = "SOME PROJECT";
-            viewmodel.Project = null;
-            var memo = viewmodel.Memo = "SOME MEMO";
-            var specificationMemo = viewmodel.SpecificationMemo = "SOME SPEC_MEMO";
-            var makerText = viewmodel.MakerText = "SOME MAKER";
-            viewmodel.Maker = null;
-            var measureText = viewmodel.MeasureText = "SOME MEASURE";
-            viewmodel.Measure = null;
-            var qty = viewmodel.Quantity = 1111;
-            var price = viewmodel.UnitPrice = 30302;
-
-            viewmodel.Record();
-
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadByKey<IOStockFormat>(fmt.ID);
-            ObservableIOStock obIOStock = new ObservableIOStock(fmt);
-
-            Assert.AreEqual(clientText, obIOStock.StockType == IOStockType.INCOMING ? obIOStock.Supplier.Name : obIOStock.Customer.Name);
-            Assert.AreEqual(warehouseText, obIOStock.Warehouse.Name);
-            Assert.AreEqual(employeeText, obIOStock.Employee.Name);
-            Assert.AreEqual(proejctText, obIOStock.Project.Name);
-            Assert.AreEqual(memo, obIOStock.Memo);
-            Assert.AreEqual(makerText, obIOStock.Inventory.Maker.Name);
-            Assert.AreEqual(measureText, obIOStock.Inventory.Measure.Name);
-            Assert.AreEqual(type, obIOStock.StockType);
-        }
-
-        [TestMethod]
-        public void Modify2()
-        {
-            new Dummy().Create();
-            IOStockFormat fmt = null;
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Random();
-            var viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
-
-            var specMemo = viewmodel.SpecificationMemo = "SOME SPECIFICATION MEMO";
-            var maker = viewmodel.Maker = viewmodel.MakerList.Random();
-            var measure = viewmodel.Measure = viewmodel.MeasureList.Random();
-            var client = viewmodel.Client = viewmodel.ClientList.Random();
-            var warehouse = viewmodel.Warehouse = viewmodel.WarehouseList.Random();
-            var employee = viewmodel.Employee = viewmodel.EmployeeList.Random();
-            var memo = viewmodel.Memo = "MEMO";
-            var price = viewmodel.UnitPrice = 7777;
-            var stock = viewmodel.Record();
-
-            Assert.AreEqual(specMemo, stock.Inventory.Memo);
-            Assert.AreEqual(maker, stock.Inventory.Maker);
-            Assert.AreEqual(measure, stock.Inventory.Measure);
-            Assert.AreEqual(warehouse, stock.Warehouse);
-            Assert.AreEqual(employee, stock.Employee);
-            Assert.AreEqual(memo, stock.Memo);
-            Assert.AreEqual(price, stock.UnitPrice);
-        }
-
-        /// <summary>
-        /// 출고 시, 출고된 수량만큼 RemainingQuantity, InventoryQuantity 프로퍼티가
-        /// 정상적으로 값을 가감하는지 테스트
-        /// </summary>
-        [TestMethod]
-        public void Quantity()
-        {
-            new Dummy().Create();
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
-
-            viewmodel.StockType = IOStockType.OUTGOING;
-            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CreateList<Product>().Random();
-            var specificationName = viewmodel.Inventory = viewmodel.InventoryList.Random();
-            var inventoryQty = viewmodel.Inventory.Quantity;
-            if (inventoryQty <= 1)
-                return;
-            viewmodel.Quantity = inventoryQty - 1; //현재 재고는 1개
-
-            Assert.AreEqual(1, viewmodel.RemainingQuantity); //따라서 잔여 재고도 1개이고
-            Assert.AreEqual(1, viewmodel.InventoryQuantity); //현재 재고도 1개
-        }
-
-        /// <summary>
-        /// 기존의 입출고 데이터의 입출고 수량을 수정하고 이에 따른 수량 데이터들의 변화가 올바르게 적용됨을 확인한다.
-        /// </summary>
-        [TestMethod]
-        public void Quantity2()
-        {
-            new Dummy().Create();
-            IOStockFormat fmt = null;
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).OrderBy(x => x.Date).Last();
-
-            ///////////////////////////////////////////입고
-            fmt.Quantity = 100; //입고 수량
-            fmt.RemainingQuantity = 200; //잔여 재고
-            var obIOStock = new ObservableIOStock(fmt);
-            obIOStock.Inventory.Quantity = 500; //현재 재고
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(obIOStock);
-            viewmodel.StockType = IOStockType.INCOMING;
-            viewmodel.Quantity = 99; //입고수량 하나 줄임
-            Assert.AreEqual(199, viewmodel.RemainingQuantity); //따라서 잔여 재고가 하나 줄어든다.
-            Assert.AreEqual(499, viewmodel.InventoryQuantity); //따라서 현재 재고도 하나 줄어든다.
-            viewmodel.Quantity = 101;
-            Assert.AreEqual(201, viewmodel.RemainingQuantity);
-            Assert.AreEqual(501, viewmodel.InventoryQuantity);
-
-            ///////////////////////////////////////////출고
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Where(x => x.StockType == IOStockType.OUTGOING).OrderBy(x => x.Date).Last();
-            fmt.Quantity = 100; //들어간 양
-            fmt.RemainingQuantity = 200; //잔여 재고
-            obIOStock = new ObservableIOStock(fmt);
-            obIOStock.Inventory.Quantity = 500; //현재 재고
-            viewmodel = new IOStockDataAmenderViewModel(obIOStock);
-            viewmodel.StockType = IOStockType.OUTGOING;
-            viewmodel.Quantity = 99; //출고수량 하나 줄임
-            Assert.AreEqual(201, viewmodel.RemainingQuantity); //따라서 잔여 재고가 하나 늘어난다.
-            Assert.AreEqual(501, viewmodel.InventoryQuantity); //따라서 현재 재고도 하나 늘어난다.
-            viewmodel.Quantity = 101;
-            Assert.AreEqual(199, viewmodel.RemainingQuantity);
-            Assert.AreEqual(499, viewmodel.InventoryQuantity);
         }
 
         /// <summary>

@@ -250,8 +250,10 @@ namespace R54IN0.Test
 
                         for (int i = 0; i < cnt; i++)
                         {
-                            var date1 = DateTime.Now.AddDays(-600.0 / (i + 1));
-                            var date2 = date1.AddMilliseconds(1);
+                            var date1 = DateTime.Now.AddDays(-600.0 / cnt * (cnt - i));
+                            var date2 = date1.AddMilliseconds(1000);
+                            var price1 = ((int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000))) / 1000 * 1000;
+                            var price2 = ((int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000))) / 1000 * 1000;
 
                             var incoming = _random.Next(10, 100);
                             var isfmt = new IOStockFormat()
@@ -264,7 +266,7 @@ namespace R54IN0.Test
                                 RemainingQuantity = qty + incoming,
                                 StockType = IOStockType.INCOMING,
                                 EmployeeID = employees.Random().ID,
-                                UnitPrice = (int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000)),
+                                UnitPrice = price1,
                             }.Save<IOStockFormat>();
                             qty += isfmt.Quantity;
 
@@ -280,7 +282,7 @@ namespace R54IN0.Test
                                 RemainingQuantity = qty - outgoing,
                                 StockType = IOStockType.OUTGOING,
                                 EmployeeID = employees.Random().ID,
-                                UnitPrice = (int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000)),
+                                UnitPrice = price2,
                             }.Save<IOStockFormat>();
                             qty -= isfmt.Quantity;
                         }

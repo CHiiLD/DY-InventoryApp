@@ -27,7 +27,8 @@ namespace R54IN0.WPF
             }
         }
 
-        private IObservableIOStockProperties _origin;
+        IOStockStatusViewModel _ioStockStatusViewModel;
+        private IObservableIOStockProperties _originObservableIOStock;
         private Mode _mode;
         private bool _isOpenFlyout;
         private bool _isReadOnlyProductTextBox;
@@ -56,6 +57,9 @@ namespace R54IN0.WPF
         private bool _isEnabledInOutGoingRadioButton;
         private int _inventoryQuantity;
 
+        /// <summary>
+        /// 새로운 IOStockFormat을 추가하고자 할 경우
+        /// </summary>
         public IOStockDataAmenderViewModel() : base()
         {
             _mode = Mode.ADD;
@@ -73,13 +77,17 @@ namespace R54IN0.WPF
             IsEnabledInComingRadioButton = true;
         }
 
-        public IOStockDataAmenderViewModel(IObservableIOStockProperties observableInoutStock) : base(
-            new IOStockFormat(observableInoutStock.Format))
+        /// <summary>
+        /// TEST용 생성자
+        /// </summary>
+        /// <param name="observableInoutStock"></param>
+        public IOStockDataAmenderViewModel(IObservableIOStockProperties observableInoutStock) :
+            base(new IOStockFormat(observableInoutStock.Format))
         {
             _mode = Mode.MODIFY;
             StockType = observableInoutStock.StockType;
             Initialize();
-            _origin = observableInoutStock;
+            _originObservableIOStock = observableInoutStock;
 
             IsReadOnlyProductTextBox = true;
             IsReadOnlySpecificationMemoTextBox = false;
@@ -90,6 +98,17 @@ namespace R54IN0.WPF
 
             IsEnabledOutGoingRadioButton = false;
             IsEnabledInComingRadioButton = false;
+        }
+
+        /// <summary>
+        /// 기존의 IOStockFormat을 수정하고자 할 경우
+        /// </summary>
+        /// <param name="ioStockStatusViewModel"></param>
+        /// <param name="observableInoutStock"></param>
+        public IOStockDataAmenderViewModel(IOStockStatusViewModel ioStockStatusViewModel, IObservableIOStockProperties observableInoutStock) :
+            this(observableInoutStock)
+        {
+            _ioStockStatusViewModel = ioStockStatusViewModel;
         }
 
         private void Initialize()
@@ -107,6 +126,7 @@ namespace R54IN0.WPF
             var oid = ObservableInventoryDirector.GetInstance();
             Product = Inventory.Product;
             Inventory = InventoryList.Where(x => x.ID == Inventory.ID).Single();
+            InventoryQuantity = Inventory.Quantity;
         }
 
         private void UpdateRecordCommand()
@@ -139,57 +159,90 @@ namespace R54IN0.WPF
                         break;
                 }
             }
+
             if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
             {
                 Warehouse = new Observable<Warehouse>() { Name = WarehouseText };
                 ofd.Add<Warehouse>(Warehouse);
             }
+
             if (Project == null && !string.IsNullOrEmpty(ProjectText))
             {
                 Project = new Observable<Project>() { Name = ProjectText };
                 ofd.Add<Project>(Project);
             }
+
             if (Employee == null && !string.IsNullOrEmpty(EmployeeText))
             {
                 Employee = new Observable<Employee>() { Name = EmployeeText };
                 ofd.Add<Employee>(Employee);
             }
+
             if (Inventory == null)
             {
-                ObservableInventory inven = new ObservableInventory(new InventoryFormat().Save<InventoryFormat>());
-                inven.Product = Product != null ? Product : new Observable<Product>() { Name = ProductText };
-                inven.Specification = SpecificationText;
-                inven.Memo = _specificationMemo;
+                ObservableInventory obInventory = new ObservableInventory(new InventoryFormat().Save<InventoryFormat>());
+                obInventory.Product = Product != null ? Product : new Observable<Product>() { Name = ProductText };
+                obInventory.Specification = SpecificationText;
+                obInventory.Memo = _specificationMemo;
                 if (!string.IsNullOrEmpty(MakerText) && Maker == null)
-                    inven.Maker = new Observable<Maker>() { Name = MakerText };
+                {
+                    obInventory.Maker = new Observable<Maker>() { Name = MakerText };
+                    ofd.Add<Maker>(obInventory.Maker);
+                }
                 else if (Maker != null)
-                    inven.Maker = Maker;
+                {
+                    obInventory.Maker = Maker;
+                }
+
                 if (!string.IsNullOrEmpty(MeasureText) && Measure == null)
-                    inven.Measure = new Observable<Measure>() { Name = MeasureText };
+                {
+                    obInventory.Measure = new Observable<Measure>() { Name = MeasureText };
+                    ofd.Add<Measure>(obInventory.Measure);
+                }
                 else if (Measure != null)
-                    inven.Measure = Measure;
-                inven.Quantity = InventoryQuantity;
-                ObservableInventoryDirector.GetInstance().Add(inven as ObservableInventory);
-                CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(inven);
-                Inventory = inven;
+                {
+                    obInventory.Measure = Measure;
+                }
+                obInventory.Quantity = InventoryQuantity;
+                ObservableInventoryDirector.GetInstance().Add(obInventory as ObservableInventory);
+                CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(obInventory);
+                Inventory = obInventory;
             }
             else
             {
-                ObservableInventory origin = oid.Search(Inventory.ID);
-                if (origin != null)
+                ObservableInventory originInventory = oid.Search(Inventory.ID);
+                if (originInventory != null)
                 {
                     if (!string.IsNullOrEmpty(MakerText) && Maker == null)
-                        origin.Maker = new Observable<Maker>() { Name = MakerText };
-                    else if (origin.Maker != Maker)
-                        origin.Maker = Maker;
+                    {
+                        originInventory.Maker = new Observable<Maker>() { Name = MakerText };
+                        ofd.Add<Maker>(originInventory.Maker);
+                    }
+                    else if (originInventory.Maker != Maker)
+                    {
+                        originInventory.Maker = Maker;
+                    }
                     if (!string.IsNullOrEmpty(MeasureText) && Measure == null)
-                        origin.Measure = new Observable<Measure>() { Name = MeasureText };
-                    else if (origin.Measure != Measure)
-                        origin.Measure = Measure;
-                    if (origin.Memo != SpecificationMemo)
-                        origin.Memo = SpecificationMemo;
-                    origin.Quantity = InventoryQuantity;
+                    {
+                        originInventory.Measure = new Observable<Measure>() { Name = MeasureText };
+                        ofd.Add<Measure>(originInventory.Measure);
+                    }
+                    else if (originInventory.Measure != Measure)
+                    {
+                        originInventory.Measure = Measure;
+                    }
+                    if (originInventory.Memo != SpecificationMemo)
+                        originInventory.Memo = SpecificationMemo;
+
+                     //using (var db = LexDb.GetDbInstance())
+                    //{
+                    //    var formats = db.Table<IOStockFormat>().IndexQueryByKey("InventoryID", Inventory.ID).ToList();
+                    //    formats.Where(x => x.Date > Date);
+
+                    //}
+                    originInventory.Quantity = InventoryQuantity;
                 }
+                originInventory.Quantity = InventoryQuantity;
             }
 
             ObservableIOStock result = null;
@@ -201,7 +254,7 @@ namespace R54IN0.WPF
                     break;
 
                 case Mode.MODIFY:
-                    result = _origin as ObservableIOStock;
+                    result = _originObservableIOStock as ObservableIOStock;
                     result.Format = Format;
                     break;
             }

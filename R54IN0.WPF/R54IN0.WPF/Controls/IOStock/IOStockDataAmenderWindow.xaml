@@ -343,7 +343,7 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="43*" />
                 </Grid.ColumnDefinitions>
-                <Label>합계</Label>
+                <Label>단가합계</Label>
                 <TextBlock
                     Text="{Binding Amount}"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left"></TextBlock>
