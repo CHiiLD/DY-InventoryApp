@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0", "R54IN0\R54IN0.csproj", "{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Metro.NET45", "MahApps.Metro\MahApps.Metro\MahApps.Metro.NET45.csproj", "{942D11C4-29F5-46C4-8C14-4B976D56C637}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lex.Db.Net45", "lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj", "{04608184-27B9-42A2-9E5E-69A6CB21ECFE}"
@@ -25,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyTools.Wpf_NET45", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyTools_PCL", "PropertyTools\Source\PropertyTools\PropertyTools_PCL.csproj", "{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moq", "moq4\Source\Moq.csproj", "{1C91AC30-5977-4BE5-BA67-8EB186C03514}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		lex.db\lib\Lex.Db.Shared\Lex.Db.Shared.projitems*{04608184-27b9-42a2-9e5e-69a6cb21ecfe}*SharedItemsImports = 4
@@ -38,18 +38,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.AppVeyor|x86.ActiveCfg = Release|Any CPU
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.AppVeyor|x86.Build.0 = Release|Any CPU
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.Debug|x86.Build.0 = Debug|Any CPU
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.Release|x86.ActiveCfg = Release|Any CPU
-		{B69CAAA1-3FD1-4C1A-90CC-2E63504B6CCB}.Release|x86.Build.0 = Release|Any CPU
 		{942D11C4-29F5-46C4-8C14-4B976D56C637}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
 		{942D11C4-29F5-46C4-8C14-4B976D56C637}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
 		{942D11C4-29F5-46C4-8C14-4B976D56C637}.AppVeyor|x86.ActiveCfg = Release|Any CPU
@@ -158,6 +146,18 @@ Global
 		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}.Release|x86.ActiveCfg = Release|Any CPU
 		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA}.Release|x86.Build.0 = Release|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.AppVeyor|x86.ActiveCfg = Release|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.AppVeyor|x86.Build.0 = Release|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.Debug|x86.Build.0 = Debug|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.Release|x86.ActiveCfg = Release|Any CPU
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -170,5 +170,6 @@ Global
 		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D} = {B3627858-8280-4E36-99B3-66543AD8BB9C}
 		{7168F82F-288A-42C4-9EB1-FBBE5112F211} = {B3627858-8280-4E36-99B3-66543AD8BB9C}
 		{C365CBC8-FB8C-439D-87A4-FAFBB25852EA} = {B3627858-8280-4E36-99B3-66543AD8BB9C}
+		{1C91AC30-5977-4BE5-BA67-8EB186C03514} = {B3627858-8280-4E36-99B3-66543AD8BB9C}
 	EndGlobalSection
 EndGlobal

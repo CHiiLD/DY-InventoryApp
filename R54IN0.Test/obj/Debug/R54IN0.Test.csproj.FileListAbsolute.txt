@@ -89,3 +89,4 @@ Y:\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.framework.dll
 Y:\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.util.dll
 Y:\Github\R54IN0\R54IN0.Test\bin\Debug\NUnit.VisualStudio.TestAdapter.dll
 Y:\Github\R54IN0\R54IN0.Test\bin\Debug\nunit.framework.xml
+C:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\R54IN0.Test.pdb

@@ -67,155 +67,229 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\IOStock\EnumBooleanConverter.cs" />
-    <Compile Include="Controls\IOStock\IOStockDataAmenderViewModel.cs" />
-    <Compile Include="Controls\IOStock\IOStockDataAmenderViewModel.Properties.cs" />
-    <Compile Include="Controls\IOStock\IOStockDataGridItem.cs" />
-    <Compile Include="Controls\IOStock\IOStockDataGridViewModel.cs" />
-    <Compile Include="Controls\IOStock\IOStockDatePicker.xaml.cs">
+    <Compile Include="R54IN0.WPF\Controls\ICollectionViewModel.cs" />
+    <Compile Include="R54IN0.WPF\Controls\ICollectionViewModelObserver.cs" />
+    <Compile Include="R54IN0.WPF\Controls\IOStock\EnumBooleanConverter.cs" />
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockDataAmenderViewModel.cs" />
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockDataAmenderViewModel.Properties.cs" />
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockDataGridItem.cs" />
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockDataGridViewModel.cs" />
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockDatePicker.xaml.cs">
       <DependentUpon>IOStockDatePicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\IOStock\IOStockDatePickerViewModel.cs" />
-    <Compile Include="Controls\IOStock\IOStockProjectListBoxViewModel.cs" />
-    <Compile Include="Controls\IOStock\IOStockProjectListBox.xaml.cs">
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockDatePickerViewModel.cs" />
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockProjectListBoxViewModel.cs" />
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockProjectListBox.xaml.cs">
       <DependentUpon>IOStockProjectListBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\IOStock\IOStockStatus.xaml.cs">
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockStatus.xaml.cs">
       <DependentUpon>IOStockStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\IOStock\IOStockStatusViewModel.cs" />
-    <Compile Include="Controls\Inventory\InventoryDataGridViewModel.cs" />
-    <Compile Include="Controls\Inventory\InventorySearchTextBoxViewModel.cs" />
-    <Compile Include="Controls\Inventory\InventoryStatus.xaml.cs">
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockStatusViewModel.cs" />
+    <Compile Include="R54IN0.WPF\Controls\Inventory\InventoryDataGridViewModel.cs" />
+    <Compile Include="R54IN0.WPF\Controls\Inventory\InventorySearchTextBoxViewModel.cs" />
+    <Compile Include="R54IN0.WPF\Controls\Inventory\InventoryStatus.xaml.cs">
       <DependentUpon>InventoryStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\IOStock\IOStockDataGrid.xaml.cs">
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockDataGrid.xaml.cs">
       <DependentUpon>IOStockDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Inventory\InventoryStatusViewModel.cs" />
-    <Compile Include="Controls\Inventory\InventoryDataGrid.xaml.cs">
+    <Compile Include="R54IN0.WPF\Controls\Inventory\InventoryStatusViewModel.cs" />
+    <Compile Include="R54IN0.WPF\Controls\Inventory\InventoryDataGrid.xaml.cs">
       <DependentUpon>InventoryDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TreeView\TreeViewNodeDirector.cs" />
-    <Compile Include="Controls\TreeView\TreeViewNodeExtension.cs" />
-    <Compile Include="Controls\TreeView\MultiSelectTreeView.xaml.cs">
+    <Compile Include="R54IN0.WPF\Controls\TreeView\NodeType.cs" />
+    <Compile Include="R54IN0.WPF\Controls\TreeView\TreeViewNodeDirector.cs" />
+    <Compile Include="R54IN0.WPF\Controls\TreeView\TreeViewNodeExtension.cs" />
+    <Compile Include="R54IN0.WPF\Controls\TreeView\MultiSelectTreeView.xaml.cs">
       <DependentUpon>MultiSelectTreeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TreeView\MultiSelectTreeViewModelView.cs" />
-    <Compile Include="Controls\TreeView\ProductSelector.xaml.cs">
+    <Compile Include="R54IN0.WPF\Controls\TreeView\MultiSelectTreeViewModelView.cs" />
+    <Compile Include="R54IN0.WPF\Controls\TreeView\ProductSelector.xaml.cs">
       <DependentUpon>ProductSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TreeView\ProductSelectorViewModel.cs" />
-    <Compile Include="Controls\TreeView\TreeViewNode.cs" />
-    <Compile Include="Windows\StartWindow.xaml.cs">
+    <Compile Include="R54IN0.WPF\Controls\TreeView\ProductSelectorViewModel.cs" />
+    <Compile Include="R54IN0.WPF\Controls\TreeView\TreeViewNode.cs" />
+    <Compile Include="R54IN0.WPF\Controls\CommandHandler.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Client.cs" />
+    <Compile Include="Deprecated\Deprecated Data\CollectionViewModelObserver.cs" />
+    <Compile Include="Deprecated\Deprecated Data\DataEditor\IInventoryViewModelProperties.cs" />
+    <Compile Include="Deprecated\Deprecated Data\DataEditor\InventoryWrapperEditorViewModel.cs" />
+    <Compile Include="Deprecated\Deprecated Data\DataEditor\InventoryWrapperProperties.cs" />
+    <Compile Include="Deprecated\Deprecated Data\DataEditor\IStockViewModelProperties.cs" />
+    <Compile Include="Deprecated\Deprecated Data\DataEditor\StockWrapperEditorViewModel.cs" />
+    <Compile Include="Deprecated\Deprecated Data\DataEditor\StockWrapperProperties.cs" />
+    <Compile Include="Deprecated\Deprecated Data\FieldWrapperDirector.cs" />
+    <Compile Include="Deprecated\Deprecated Data\FieldWrapperViewModelObserver.cs" />
+    <Compile Include="Deprecated\Deprecated Data\FieldWrapper\ClientWrapper.cs" />
+    <Compile Include="Deprecated\Deprecated Data\FieldWrapper\InventoryWrapper.cs" />
+    <Compile Include="Deprecated\Deprecated Data\FieldWrapper\IProductWrapper.cs" />
+    <Compile Include="Deprecated\Deprecated Data\FieldWrapper\ItemWrapper.cs" />
+    <Compile Include="Deprecated\Deprecated Data\FieldWrapper\ProductWrapper.cs" />
+    <Compile Include="Deprecated\Deprecated Data\FieldWrapper\SpecificationWrapper.cs" />
+    <Compile Include="Deprecated\Deprecated Data\FieldWrapper\StockWrapper.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Finder\Command\DragCommand.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Finder\Command\DropCommand.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Finder\FinderDirector.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Finder\FinderViewModel.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Finder\ItemFinderViewModel.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Finder\Node\FinderNode.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Finder\Node\FinderNodeExtension.cs" />
+    <Compile Include="Deprecated\Deprecated Data\IFieldSearchingWithDateTime.cs" />
+    <Compile Include="Deprecated\Deprecated Data\IFinderViewModelCreatation.cs" />
+    <Compile Include="Deprecated\Deprecated Data\IFinderViewModelOnSelectingCallback.cs" />
+    <Compile Include="Deprecated\Deprecated Data\IManagerButtonCommand.cs" />
+    <Compile Include="Deprecated\Deprecated Data\InOutStock.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Inventory.cs" />
+    <Compile Include="Deprecated\Deprecated Data\InventoryWrapperDirector.cs" />
+    <Compile Include="Deprecated\Deprecated Data\IStock.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Item.cs" />
+    <Compile Include="Deprecated\Deprecated Data\ItemSourceViewModel.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Observer\FieldWrapperViewModel.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Observer\InventoryWrapperViewModel.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Observer\ItemWrapperViewModel.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Observer\SearchStockWrapperViewModel.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Observer\SpecificationWrapperViewModel.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Observer\StockWrapperViewModel.cs" />
+    <Compile Include="Deprecated\Deprecated Data\Specification.cs" />
+    <Compile Include="Deprecated\Deprecated Data\StockWrapperDirector.cs" />
+    <Compile Include="R54IN0.WPF\Data\LexDb.cs" />
+    <Compile Include="R54IN0.WPF\Data\Director\CollectionViewModelObserverSubject.cs" />
+    <Compile Include="R54IN0.WPF\Data\Director\MultiSortedDictionary.cs" />
+    <Compile Include="R54IN0.WPF\Data\Director\ObservableFieldDirector.cs" />
+    <Compile Include="R54IN0.WPF\Data\Director\ObservableInvenDirector.cs" />
+    <Compile Include="R54IN0.WPF\Data\Fields\Currency.cs" />
+    <Compile Include="R54IN0.WPF\Data\Fields\Customer.cs" />
+    <Compile Include="R54IN0.WPF\Data\Fields\Employee.cs" />
+    <Compile Include="R54IN0.WPF\Data\Fields\Maker.cs" />
+    <Compile Include="R54IN0.WPF\Data\Fields\Measure.cs" />
+    <Compile Include="R54IN0.WPF\Data\Fields\Product.cs" />
+    <Compile Include="R54IN0.WPF\Data\Fields\Project.cs" />
+    <Compile Include="R54IN0.WPF\Data\Fields\Supplier.cs" />
+    <Compile Include="R54IN0.WPF\Data\Fields\Warehouse.cs" />
+    <Compile Include="R54IN0.WPF\Data\Interface\IField.cs" />
+    <Compile Include="R54IN0.WPF\Data\Interface\IID.cs" />
+    <Compile Include="R54IN0.WPF\Data\Interface\IIDExtension.cs" />
+    <Compile Include="R54IN0.WPF\Data\Interface\IName.cs" />
+    <Compile Include="R54IN0.WPF\Data\Interface\IObservableField.cs" />
+    <Compile Include="R54IN0.WPF\Data\Interface\Observable.cs" />
+    <Compile Include="R54IN0.WPF\Data\Inventory\InventoryFormat.cs" />
+    <Compile Include="R54IN0.WPF\Data\Inventory\IObservableInoutStockProperties.cs" />
+    <Compile Include="R54IN0.WPF\Data\Inventory\IObservableInventoryProperties.cs" />
+    <Compile Include="R54IN0.WPF\Data\Inventory\IOStockFormat.cs" />
+    <Compile Include="R54IN0.WPF\Data\Inventory\IOStockType.cs" />
+    <Compile Include="R54IN0.WPF\Data\Inventory\ObservableInventory.cs" />
+    <Compile Include="R54IN0.WPF\Data\Inventory\ObservableIOStock.cs" />
+    <Compile Include="R54IN0.WPF\Data\TreeViewNodeJsonFormat.cs" />
+    <Compile Include="R54IN0.WPF\Windows\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\IOStock\IOStockDataAmenderWindow.xaml.cs">
+    <Compile Include="R54IN0.WPF\Controls\IOStock\IOStockDataAmenderWindow.xaml.cs">
       <DependentUpon>IOStockDataAmenderWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window2.xaml.cs">
+    <Compile Include="Deprecated\Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window3.xaml.cs">
+    <Compile Include="Deprecated\Window3.xaml.cs">
       <DependentUpon>Window3.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\IOStock\IOStockDatePicker.xaml">
+    <Page Include="R54IN0.WPF\Controls\IOStock\IOStockDatePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\IOStock\IOStockProjectListBox.xaml">
+    <Page Include="R54IN0.WPF\Controls\IOStock\IOStockProjectListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\IOStock\IOStockStatus.xaml">
+    <Page Include="R54IN0.WPF\Controls\IOStock\IOStockStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Inventory\InventoryStatus.xaml">
+    <Page Include="R54IN0.WPF\Controls\Inventory\InventoryStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\IOStock\IOStockDataGrid.xaml">
+    <Page Include="R54IN0.WPF\Controls\IOStock\IOStockDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Inventory\InventoryDataGrid.xaml">
+    <Page Include="R54IN0.WPF\Controls\Inventory\InventoryDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TreeView\MultiSelectTreeView.xaml">
+    <Page Include="R54IN0.WPF\Controls\TreeView\MultiSelectTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\StartWindow.xaml">
+    <Page Include="R54IN0.WPF\Windows\StartWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\IOStock\IOStockDataAmenderWindow.xaml">
+    <Page Include="R54IN0.WPF\Controls\IOStock\IOStockDataAmenderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Deprecated\InventoryEditorWindow.xaml">
+    <Page Include="Deprecated\View\InventoryEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Deprecated\IOStockEditorWindow.xaml">
+    <Page Include="Deprecated\View\IOStockEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Deprecated\TabControls\Field\AccountDataGrid.xaml">
+    <Page Include="Deprecated\View\TabControls\Field\AccountDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Deprecated\TabControls\Field\ItemManager.xaml">
+    <Page Include="Deprecated\View\TabControls\Field\ItemManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Deprecated\TabControls\Field\MakerDataGrid.xaml">
+    <Page Include="Deprecated\View\TabControls\Field\MakerDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Deprecated\TabControls\Field\WarehouseDataGrid.xaml">
+    <Page Include="Deprecated\View\TabControls\Field\WarehouseDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Deprecated\TabControls\Field\EmployeeDataGrid.xaml">
+    <Page Include="Deprecated\View\TabControls\Field\EmployeeDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Deprecated\TabControls\Field\CurrencyDataGrid.xaml">
+    <Page Include="Deprecated\View\TabControls\Field\CurrencyDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Deprecated\TabControls\Field\MeasureDataGrid.xaml">
+    <Page Include="Deprecated\View\TabControls\Field\MeasureDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Deprecated\TabControls\Field\ItemDataGrid.xaml">
+    <Page Include="Deprecated\View\TabControls\Field\ItemDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Deprecated\TabControls\Stock\InOutStockManager.xaml">
+    <Page Include="Deprecated\View\TabControls\Stock\InOutStockManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Deprecated\TabControls\Stock\InOutStockDataGrid.xaml">
+    <Page Include="Deprecated\View\TabControls\Stock\InOutStockDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Deprecated\TabControls\Inventory\InventoryManager.xaml">
+    <Page Include="Deprecated\View\TabControls\Inventory\InventoryManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Deprecated\TabControls\Inventory\InventoryDataGrid.xaml">
+    <Page Include="Deprecated\View\TabControls\Inventory\InventoryDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Deprecated\FinderControl\Finder.xaml">
+    <Page Include="Deprecated\View\FinderControl\Finder.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Deprecated\MainWindow.xaml">
+    <Page Include="Deprecated\View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -223,67 +297,67 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Deprecated\Tool\DataGridBehavior.cs" />
-    <Compile Include="Deprecated\InventoryEditorWindow.xaml.cs">
+    <Compile Include="Deprecated\View\Tool\DataGridBehavior.cs" />
+    <Compile Include="Deprecated\View\InventoryEditorWindow.xaml.cs">
       <DependentUpon>InventoryEditorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\IOStockEditorWindow.xaml.cs">
+    <Compile Include="Deprecated\View\IOStockEditorWindow.xaml.cs">
       <DependentUpon>IOStockEditorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\TabControls\Field\AccountDataGrid.xaml.cs">
+    <Compile Include="Deprecated\View\TabControls\Field\AccountDataGrid.xaml.cs">
       <DependentUpon>AccountDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\TabControls\Field\ItemManager.xaml.cs">
+    <Compile Include="Deprecated\View\TabControls\Field\ItemManager.xaml.cs">
       <DependentUpon>ItemManager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\TabControls\Field\MakerDataGrid.xaml.cs">
+    <Compile Include="Deprecated\View\TabControls\Field\MakerDataGrid.xaml.cs">
       <DependentUpon>MakerDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\Tool\FieldTypeToStringConverter.cs" />
-    <Compile Include="Deprecated\Tool\StockTypeToStringConverter.cs" />
-    <Compile Include="Deprecated\TabControls\Field\WarehouseDataGrid.xaml.cs">
+    <Compile Include="Deprecated\View\Tool\FieldTypeToStringConverter.cs" />
+    <Compile Include="Deprecated\View\Tool\StockTypeToStringConverter.cs" />
+    <Compile Include="Deprecated\View\TabControls\Field\WarehouseDataGrid.xaml.cs">
       <DependentUpon>WarehouseDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\TabControls\Field\EmployeeDataGrid.xaml.cs">
+    <Compile Include="Deprecated\View\TabControls\Field\EmployeeDataGrid.xaml.cs">
       <DependentUpon>EmployeeDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\TabControls\Field\CurrencyDataGrid.xaml.cs">
+    <Compile Include="Deprecated\View\TabControls\Field\CurrencyDataGrid.xaml.cs">
       <DependentUpon>CurrencyDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\TabControls\Field\MeasureDataGrid.xaml.cs">
+    <Compile Include="Deprecated\View\TabControls\Field\MeasureDataGrid.xaml.cs">
       <DependentUpon>MeasureDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\TabControls\Field\ItemDataGrid.xaml.cs">
+    <Compile Include="Deprecated\View\TabControls\Field\ItemDataGrid.xaml.cs">
       <DependentUpon>ItemDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\TabControls\Stock\InOutStockManager.xaml.cs">
+    <Compile Include="Deprecated\View\TabControls\Stock\InOutStockManager.xaml.cs">
       <DependentUpon>InOutStockManager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\TabControls\Stock\InOutStockDataGrid.xaml.cs">
+    <Compile Include="Deprecated\View\TabControls\Stock\InOutStockDataGrid.xaml.cs">
       <DependentUpon>InOutStockDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\TabControls\Inventory\InventoryManager.xaml.cs">
+    <Compile Include="Deprecated\View\TabControls\Inventory\InventoryManager.xaml.cs">
       <DependentUpon>InventoryManager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\TabControls\Inventory\InventoryDataGrid.xaml.cs">
+    <Compile Include="Deprecated\View\TabControls\Inventory\InventoryDataGrid.xaml.cs">
       <DependentUpon>InventoryDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\FinderControl\Finder.xaml.cs">
+    <Compile Include="Deprecated\View\FinderControl\Finder.xaml.cs">
       <DependentUpon>Finder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Deprecated\MainWindow.xaml.cs">
+    <Compile Include="Deprecated\View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controls\TreeView\ProductSelector.xaml">
+    <Page Include="R54IN0.WPF\Controls\TreeView\ProductSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window2.xaml">
+    <Page Include="Deprecated\Window2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window3.xaml">
+    <Page Include="Deprecated\Window3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -331,10 +405,6 @@
     <ProjectReference Include="..\PropertyTools\Source\PropertyTools.Wpf\PropertyTools.Wpf_NET45.csproj">
       <Project>{7168f82f-288a-42c4-9eb1-fbbe5112f211}</Project>
       <Name>PropertyTools.Wpf_NET45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\R54IN0\R54IN0.csproj">
-      <Project>{b69caaa1-3fd1-4c1a-90cc-2e63504b6ccb}</Project>
-      <Name>R54IN0</Name>
     </ProjectReference>
     <ProjectReference Include="..\TreeViewEx\TreeViewEx\TreeViewEx.csproj">
       <Project>{2854814f-ea3c-41d4-aa94-460c4694f430}</Project>

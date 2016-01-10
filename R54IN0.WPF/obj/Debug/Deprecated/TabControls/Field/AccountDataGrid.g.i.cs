@@ -9,9 +9,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using MahApps.Metro.Controls;
-using R54IN0;
-using R54IN0.WPF;
 using System;
 using System.Diagnostics;
 using System.Windows;

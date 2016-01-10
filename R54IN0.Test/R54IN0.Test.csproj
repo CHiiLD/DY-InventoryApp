@@ -35,26 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.core, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.core.interfaces, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.interfaces.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.util, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.util.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NUnit.VisualStudio.TestAdapter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4cb40d35494691ac, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -75,29 +55,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="New\InoutStockDataAmenderWindowViewModelTest.cs" />
-    <Compile Include="New\InoutStockStatusViewModelTest.cs" />
-    <Compile Include="New\ObservableStockTest.cs" />
-    <Compile Include="New\Dummy2Test.cs" />
-    <Compile Include="New\InventorySearchTextBoxViewModelTest.cs" />
-    <Compile Include="New\InventoryStatusViewModelTest.cs" />
-    <Compile Include="New\ProductManagerViewModelTest.cs" />
-    <Compile Include="Test\IOStockWrapperEditorViewModelTest.cs" />
-    <Compile Include="Test\FieldWrapperViewModelTest.cs" />
-    <Compile Include="Test\FinderDirectorTest.cs" />
-    <Compile Include="Test\InventoryWrapperDirectorTest.cs" />
-    <Compile Include="Test\InventoryWrapperEditorViewModelTest.cs" />
-    <Compile Include="Test\IOStockWrapperDirectorTest.cs" />
-    <Compile Include="Test\IOStockWrapperViewModelTest.cs" />
-    <Compile Include="Test\ItemWrapperViewModelTest.cs" />
-    <Compile Include="Time\TimeMeasuration.cs" />
-    <Compile Include="Tool\Dummy2.cs" />
-    <Compile Include="Tool\DummyDbData.cs" />
-    <Compile Include="Test\FieldWrapperDirectorTest.cs" />
-    <Compile Include="Test\InventoryWrapperViewModelTest.cs" />
+    <Compile Include="Test\IOStockDataAmenderViewModelTest.cs" />
+    <Compile Include="Test\InoutStockStatusViewModelTest.cs" />
+    <Compile Include="Test\ObservableStockTest.cs" />
+    <Compile Include="Test\DummyTest.cs" />
+    <Compile Include="Test\InventorySearchTextBoxViewModelTest.cs" />
+    <Compile Include="Test\InventoryStatusViewModelTest.cs" />
+    <Compile Include="Test\ProductManagerViewModelTest.cs" />
+    <Compile Include="Test\Dummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tool\DYDummyDbData.cs" />
-    <Compile Include="Tool\RandomLinq.cs" />
+    <Compile Include="Test\RandomLinq.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
@@ -116,17 +83,10 @@
       <Project>{5a0c4ca1-b587-42a9-8df0-3151b1b33784}</Project>
       <Name>R54IN0.WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\R54IN0\R54IN0.csproj">
-      <Project>{b69caaa1-3fd1-4c1a-90cc-2e63504b6ccb}</Project>
-      <Name>R54IN0</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TreeViewEx\TreeViewEx\TreeViewEx.csproj">
       <Project>{2854814f-ea3c-41d4-aa94-460c4694f430}</Project>
       <Name>TreeViewEx</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
