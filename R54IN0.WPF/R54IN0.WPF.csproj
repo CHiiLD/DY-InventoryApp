@@ -155,67 +155,67 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Old\InventoryEditorWindow.xaml">
+    <Page Include="Deprecated\InventoryEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Old\IOStockEditorWindow.xaml">
+    <Page Include="Deprecated\IOStockEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Old\TabControls\Field\AccountDataGrid.xaml">
+    <Page Include="Deprecated\TabControls\Field\AccountDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Old\TabControls\Field\ItemManager.xaml">
+    <Page Include="Deprecated\TabControls\Field\ItemManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Old\TabControls\Field\MakerDataGrid.xaml">
+    <Page Include="Deprecated\TabControls\Field\MakerDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Old\TabControls\Field\WarehouseDataGrid.xaml">
+    <Page Include="Deprecated\TabControls\Field\WarehouseDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Old\TabControls\Field\EmployeeDataGrid.xaml">
+    <Page Include="Deprecated\TabControls\Field\EmployeeDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Old\TabControls\Field\CurrencyDataGrid.xaml">
+    <Page Include="Deprecated\TabControls\Field\CurrencyDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Old\TabControls\Field\MeasureDataGrid.xaml">
+    <Page Include="Deprecated\TabControls\Field\MeasureDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Old\TabControls\Field\ItemDataGrid.xaml">
+    <Page Include="Deprecated\TabControls\Field\ItemDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Old\TabControls\Stock\InOutStockManager.xaml">
+    <Page Include="Deprecated\TabControls\Stock\InOutStockManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Old\TabControls\Stock\InOutStockDataGrid.xaml">
+    <Page Include="Deprecated\TabControls\Stock\InOutStockDataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Old\TabControls\Inventory\InventoryManager.xaml">
+    <Page Include="Deprecated\TabControls\Inventory\InventoryManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Old\TabControls\Inventory\InventoryDataGrid.xaml">
+    <Page Include="Deprecated\TabControls\Inventory\InventoryDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Old\FinderControl\Finder.xaml">
+    <Page Include="Deprecated\FinderControl\Finder.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Old\MainWindow.xaml">
+    <Page Include="Deprecated\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -223,55 +223,55 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Old\Tool\DataGridBehavior.cs" />
-    <Compile Include="Old\InventoryEditorWindow.xaml.cs">
+    <Compile Include="Deprecated\Tool\DataGridBehavior.cs" />
+    <Compile Include="Deprecated\InventoryEditorWindow.xaml.cs">
       <DependentUpon>InventoryEditorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\IOStockEditorWindow.xaml.cs">
+    <Compile Include="Deprecated\IOStockEditorWindow.xaml.cs">
       <DependentUpon>IOStockEditorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\TabControls\Field\AccountDataGrid.xaml.cs">
+    <Compile Include="Deprecated\TabControls\Field\AccountDataGrid.xaml.cs">
       <DependentUpon>AccountDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\TabControls\Field\ItemManager.xaml.cs">
+    <Compile Include="Deprecated\TabControls\Field\ItemManager.xaml.cs">
       <DependentUpon>ItemManager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\TabControls\Field\MakerDataGrid.xaml.cs">
+    <Compile Include="Deprecated\TabControls\Field\MakerDataGrid.xaml.cs">
       <DependentUpon>MakerDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\Tool\FieldTypeToStringConverter.cs" />
-    <Compile Include="Old\Tool\StockTypeToStringConverter.cs" />
-    <Compile Include="Old\TabControls\Field\WarehouseDataGrid.xaml.cs">
+    <Compile Include="Deprecated\Tool\FieldTypeToStringConverter.cs" />
+    <Compile Include="Deprecated\Tool\StockTypeToStringConverter.cs" />
+    <Compile Include="Deprecated\TabControls\Field\WarehouseDataGrid.xaml.cs">
       <DependentUpon>WarehouseDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\TabControls\Field\EmployeeDataGrid.xaml.cs">
+    <Compile Include="Deprecated\TabControls\Field\EmployeeDataGrid.xaml.cs">
       <DependentUpon>EmployeeDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\TabControls\Field\CurrencyDataGrid.xaml.cs">
+    <Compile Include="Deprecated\TabControls\Field\CurrencyDataGrid.xaml.cs">
       <DependentUpon>CurrencyDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\TabControls\Field\MeasureDataGrid.xaml.cs">
+    <Compile Include="Deprecated\TabControls\Field\MeasureDataGrid.xaml.cs">
       <DependentUpon>MeasureDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\TabControls\Field\ItemDataGrid.xaml.cs">
+    <Compile Include="Deprecated\TabControls\Field\ItemDataGrid.xaml.cs">
       <DependentUpon>ItemDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\TabControls\Stock\InOutStockManager.xaml.cs">
+    <Compile Include="Deprecated\TabControls\Stock\InOutStockManager.xaml.cs">
       <DependentUpon>InOutStockManager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\TabControls\Stock\InOutStockDataGrid.xaml.cs">
+    <Compile Include="Deprecated\TabControls\Stock\InOutStockDataGrid.xaml.cs">
       <DependentUpon>InOutStockDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\TabControls\Inventory\InventoryManager.xaml.cs">
+    <Compile Include="Deprecated\TabControls\Inventory\InventoryManager.xaml.cs">
       <DependentUpon>InventoryManager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\TabControls\Inventory\InventoryDataGrid.xaml.cs">
+    <Compile Include="Deprecated\TabControls\Inventory\InventoryDataGrid.xaml.cs">
       <DependentUpon>InventoryDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\FinderControl\Finder.xaml.cs">
+    <Compile Include="Deprecated\FinderControl\Finder.xaml.cs">
       <DependentUpon>Finder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Old\MainWindow.xaml.cs">
+    <Compile Include="Deprecated\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
