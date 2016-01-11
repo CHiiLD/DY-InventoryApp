@@ -158,7 +158,7 @@
     <Compile Include="R54IN0.WPF\Data\Director\MultiSortedDictionary.cs" />
     <Compile Include="R54IN0.WPF\Data\Director\ObservableFieldDirector.cs" />
     <Compile Include="R54IN0.WPF\Data\Director\ObservableInvenDirector.cs" />
-    <Compile Include="R54IN0.WPF\Data\Fields\Currency.cs" />
+    <Compile Include="Deprecated\Currency.cs" />
     <Compile Include="R54IN0.WPF\Data\Fields\Customer.cs" />
     <Compile Include="R54IN0.WPF\Data\Fields\Employee.cs" />
     <Compile Include="R54IN0.WPF\Data\Fields\Maker.cs" />
@@ -174,7 +174,7 @@
     <Compile Include="R54IN0.WPF\Data\Interface\IObservableField.cs" />
     <Compile Include="R54IN0.WPF\Data\Interface\Observable.cs" />
     <Compile Include="R54IN0.WPF\Data\Inventory\InventoryFormat.cs" />
-    <Compile Include="R54IN0.WPF\Data\Inventory\IObservableInoutStockProperties.cs" />
+    <Compile Include="R54IN0.WPF\Data\Inventory\IObservableIOStockProperties.cs" />
     <Compile Include="R54IN0.WPF\Data\Inventory\IObservableInventoryProperties.cs" />
     <Compile Include="R54IN0.WPF\Data\Inventory\IOStockFormat.cs" />
     <Compile Include="R54IN0.WPF\Data\Inventory\IOStockType.cs" />

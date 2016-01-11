@@ -58,7 +58,7 @@ namespace R54IN0.WPF
         private int _inventoryQuantity;
 
         /// <summary>
-        /// 새로운 IOStockFormat을 추가하고자 할 경우
+        /// TEST용 생성자
         /// </summary>
         public IOStockDataAmenderViewModel() : base()
         {
@@ -98,6 +98,15 @@ namespace R54IN0.WPF
 
             IsEnabledOutGoingRadioButton = false;
             IsEnabledInComingRadioButton = false;
+        }
+
+        /// <summary>
+        /// 새로운 IOStockFormat을 추가하고자 할 경우
+        /// </summary>
+        /// <param name="ioStockStatusViewModel"></param>
+        public IOStockDataAmenderViewModel(IOStockStatusViewModel ioStockStatusViewModel) : this()
+        {
+            _ioStockStatusViewModel = ioStockStatusViewModel;
         }
 
         /// <summary>
@@ -142,42 +151,35 @@ namespace R54IN0.WPF
                 throw new Exception("제품의 이름을 입력해주세요.");
             if (Inventory == null && string.IsNullOrEmpty(SpecificationText))
                 throw new Exception("규격의 이름을 입력해주세요.");
+
+            CreateObservableFields();
+            ApplyModifiedInventoryProperties();
+            UpdateModifiedStockQuantity();
+
+            ObservableIOStock result = null;
+            switch (_mode)
+            {
+                case Mode.ADD:
+                    result = new ObservableIOStock(Format.Save<IOStockFormat>());
+                    CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(result);
+                    break;
+
+                case Mode.MODIFY:
+                    result = _originObservableIOStock as ObservableIOStock;
+                    result.Format = Format;
+                    break;
+            }
+            result.Format.Save<IOStockFormat>();
+            return result;
+        }
+
+        /// <summary>
+        /// 수정 또는 새로운 재고 데이터를 생성하여 데이터베이스에 이를 저장한다.
+        /// </summary>
+        private void ApplyModifiedInventoryProperties()
+        {
             var ofd = ObservableFieldDirector.GetInstance();
             var oid = ObservableInventoryDirector.GetInstance();
-            if (Client == null && !string.IsNullOrEmpty(ClientText)) //거래처
-            {
-                switch (StockType)
-                {
-                    case IOStockType.INCOMING:
-                        Supplier = new Observable<Supplier>() { Name = ClientText };
-                        ofd.Add<Supplier>(Supplier);
-                        break;
-
-                    case IOStockType.OUTGOING:
-                        Customer = new Observable<Customer>() { Name = ClientText };
-                        ofd.Add<Customer>(Customer);
-                        break;
-                }
-            }
-
-            if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
-            {
-                Warehouse = new Observable<Warehouse>() { Name = WarehouseText };
-                ofd.Add<Warehouse>(Warehouse);
-            }
-
-            if (Project == null && !string.IsNullOrEmpty(ProjectText))
-            {
-                Project = new Observable<Project>() { Name = ProjectText };
-                ofd.Add<Project>(Project);
-            }
-
-            if (Employee == null && !string.IsNullOrEmpty(EmployeeText))
-            {
-                Employee = new Observable<Employee>() { Name = EmployeeText };
-                ofd.Add<Employee>(Employee);
-            }
-
             if (Inventory == null)
             {
                 ObservableInventory obInventory = new ObservableInventory(new InventoryFormat().Save<InventoryFormat>());
@@ -204,7 +206,7 @@ namespace R54IN0.WPF
                     obInventory.Measure = Measure;
                 }
                 obInventory.Quantity = InventoryQuantity;
-                ObservableInventoryDirector.GetInstance().Add(obInventory as ObservableInventory);
+                oid.Add(obInventory as ObservableInventory);
                 CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(obInventory);
                 Inventory = obInventory;
             }
@@ -233,33 +235,63 @@ namespace R54IN0.WPF
                     }
                     if (originInventory.Memo != SpecificationMemo)
                         originInventory.Memo = SpecificationMemo;
-
-                     //using (var db = LexDb.GetDbInstance())
-                    //{
-                    //    var formats = db.Table<IOStockFormat>().IndexQueryByKey("InventoryID", Inventory.ID).ToList();
-                    //    formats.Where(x => x.Date > Date);
-
-                    //}
                     originInventory.Quantity = InventoryQuantity;
                 }
                 originInventory.Quantity = InventoryQuantity;
             }
+        }
 
-            ObservableIOStock result = null;
-            switch (_mode)
+        /// <summary>
+        /// 새로 추가할 텍스트 필드들을 Observable<T>객체로 초기화하여 생성
+        /// </summary>
+        private void CreateObservableFields()
+        {
+            var ofd = ObservableFieldDirector.GetInstance();
+            if (Client == null && !string.IsNullOrEmpty(ClientText)) //거래처
             {
-                case Mode.ADD:
-                    result = new ObservableIOStock(Format);
-                    CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(result);
-                    break;
+                switch (StockType)
+                {
+                    case IOStockType.INCOMING:
+                        Supplier = new Observable<Supplier>() { Name = ClientText };
+                        ofd.Add<Supplier>(Supplier);
+                        break;
 
-                case Mode.MODIFY:
-                    result = _originObservableIOStock as ObservableIOStock;
-                    result.Format = Format;
-                    break;
+                    case IOStockType.OUTGOING:
+                        Customer = new Observable<Customer>() { Name = ClientText };
+                        ofd.Add<Customer>(Customer);
+                        break;
+                }
             }
-            result.Format.Save<IOStockFormat>();
-            return result;
+            if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
+            {
+                Warehouse = new Observable<Warehouse>() { Name = WarehouseText };
+                ofd.Add<Warehouse>(Warehouse);
+            }
+            if (Project == null && !string.IsNullOrEmpty(ProjectText))
+            {
+                Project = new Observable<Project>() { Name = ProjectText };
+                ofd.Add<Project>(Project);
+            }
+            if (Employee == null && !string.IsNullOrEmpty(EmployeeText))
+            {
+                Employee = new Observable<Employee>() { Name = EmployeeText };
+                ofd.Add<Employee>(Employee);
+            }
+        }
+
+        /// <summary>
+        /// 입출고 데이터를 새로 추가하는 경우 또는 과거의 데이터를 수정할 경우 입출고 수량에 변화가 있다면 
+        /// 관련 IOStock 데이터들의 잔여수량 및 재고수량을 다시 계산하여 전부 업데이트하고 Owner의 DataGridItems 역시 변화된 값들을 반영하게 한다.
+        /// TODO
+        /// </summary>
+        private void UpdateModifiedStockQuantity()
+        {
+            //using (var db = LexDb.GetDbInstance())
+            //{
+            //    var formats = db.Table<IOStockFormat>().IndexQueryByKey("InventoryID", Inventory.ID).ToList();
+            //    formats.Where(x => x.Date > Date);
+
+            //}
         }
 
         private void OnTreeViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -269,6 +301,11 @@ namespace R54IN0.WPF
                 var cmd = ProductSelectCommand as CommandHandler;
                 cmd.UpdateCanExecute();
             }
+        }
+
+        private bool CanSelectProduct(object arg)
+        {
+            return TreeViewViewModel.SelectedNodes.Count == 1 && TreeViewViewModel.SelectedNodes.Single().Type == NodeType.PRODUCT;
         }
 
         private void ExecuteProductSelectCommand(object obj)
@@ -284,12 +321,6 @@ namespace R54IN0.WPF
             }
             IsOpenFlyout = false;
         }
-
-        private bool CanSelectProduct(object arg)
-        {
-            return TreeViewViewModel.SelectedNodes.Count == 1 && TreeViewViewModel.SelectedNodes.Single().Type == NodeType.PRODUCT;
-        }
-
         private bool CanRecord(object arg)
         {
             if (Product == null && string.IsNullOrEmpty(ProductText))

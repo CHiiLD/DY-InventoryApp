@@ -32,7 +32,19 @@ namespace R54IN0.WPF
         /// <summary>
         /// 데이터 그리드의 입출고 데이터를 일시적으로 보관
         /// </summary>
-        private IEnumerable<IOStockDataGridItem> _backupSource;
+        private SortedDictionary<string, IOStockDataGridItem> _backupSource;
+
+        public SortedDictionary<string, IOStockDataGridItem> BackupSource
+        {
+            get
+            {
+                return _backupSource;
+            }
+            set
+            {
+                _backupSource = value;
+            }
+        }
 
         private event PropertyChangedEventHandler _propertyChanged;
 
@@ -327,7 +339,7 @@ namespace R54IN0.WPF
                 var nodes = TreeViewViewModel.SelectedNodes.SelectMany(c => c.Descendants().Where(node => node.Type == NodeType.PRODUCT));
                 var oid = ObservableInventoryDirector.GetInstance();
                 List<ObservableInventory> observableInventoryList = new List<ObservableInventory>();
-                List<IOStockFormat> inoutStockFormatList = new List<IOStockFormat>();
+                List<IOStockFormat> ioStockList = new List<IOStockFormat>();
                 foreach (var node in nodes)
                 {
                     var searchResult = oid.SearchAsProductID(node.ProductID);
@@ -340,9 +352,10 @@ namespace R54IN0.WPF
                     using (var db = LexDb.GetDbInstance())
                         formats = db.Table<IOStockFormat>().IndexQueryByKey("InventoryID", inven.ID);
                     if (formats != null)
-                        inoutStockFormatList.AddRange(formats.ToList());
+                        ioStockList.AddRange(formats.ToList());
                 }
-                _backupSource = inoutStockFormatList.Select(x => new IOStockDataGridItem(x));
+                var dictionary = ioStockList.Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
+                BackupSource = new SortedDictionary<string, IOStockDataGridItem>(dictionary);
                 UpdateDataGridItems();
             }
         }
@@ -365,7 +378,8 @@ namespace R54IN0.WPF
                         formats = db.Table<IOStockFormat>().IndexQueryByKey("ProjectID", proejct.ID);
                     if (formats != null)
                     {
-                        _backupSource = formats.ToList().Select(x => new IOStockDataGridItem(x));
+                        var dictionary = formats.ToList().Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
+                        BackupSource = new SortedDictionary<string, IOStockDataGridItem>(dictionary);
                         UpdateDataGridItems();
                     }
                 }
@@ -389,7 +403,8 @@ namespace R54IN0.WPF
                     formats = db.Table<IOStockFormat>().LoadAll();
                 if (formats != null)
                 {
-                    _backupSource = formats.Where(fmt => fromDate <= fmt.Date && fmt.Date <= toDate).Select(x => new IOStockDataGridItem(x));
+                    var dictionary = formats.Where(fmt => fromDate <= fmt.Date && fmt.Date <= toDate).Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
+                    BackupSource = new SortedDictionary<string, IOStockDataGridItem>(dictionary);
                     UpdateDataGridItems();
                 }
             }
@@ -400,7 +415,7 @@ namespace R54IN0.WPF
         /// </summary>
         private void UpdateDataGridItems()
         {
-            if (_backupSource == null)
+            if (BackupSource == null)
                 return;
 
             IOStockType type = IOStockType.NONE;
@@ -409,7 +424,7 @@ namespace R54IN0.WPF
             if (IsCheckedOutGoing == true)
                 type = type | IOStockType.OUTGOING;
 
-            var items = _backupSource.Where(x => type.HasFlag(x.StockType)).OrderBy(x => x.Date);
+            var items = BackupSource.Values.Where(x => type.HasFlag(x.StockType)).OrderBy(x => x.Date);
             DataGridViewModel.Items = new ObservableCollection<IOStockDataGridItem>(items);
         }
 
@@ -417,7 +432,7 @@ namespace R54IN0.WPF
         {
             if (item is ObservableIOStock)
             {
-                if (_backupSource == null)
+                if (BackupSource == null)
                     return;
                 var observableInoutStock = item as ObservableIOStock;
                 bool can = false;
@@ -443,13 +458,8 @@ namespace R54IN0.WPF
                 }
                 if (can)
                 {
-                    List<IOStockDataGridItem> list = null;
-                    if (_backupSource is List<IOStockDataGridItem>)
-                        list = _backupSource as List<IOStockDataGridItem>;
-                    else
-                        list = _backupSource.ToList();
-                    list.Add(new IOStockDataGridItem(observableInoutStock.Format));
-                    _backupSource = list;
+                    IOStockDataGridItem ioStockDataGridItem = new IOStockDataGridItem(observableInoutStock.Format);
+                    BackupSource.Add(ioStockDataGridItem.ID, ioStockDataGridItem);
                     UpdateDataGridItems();
                 }
             }
