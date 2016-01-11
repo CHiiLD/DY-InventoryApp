@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 
@@ -45,9 +46,7 @@ namespace R54IN0.WPF
                     case IOStockType.INCOMING:
                         Project = null;
                         ProjectText = null;
-
                         ClientList = ofd.CreateList<Supplier>();
-
                         IsEditableSpecification = true;
                         IsReadOnlyProductTextBox = false;
                         IsEnabledWarehouseComboBox = true;
@@ -57,14 +56,11 @@ namespace R54IN0.WPF
                     case IOStockType.OUTGOING:
                         Warehouse = null;
                         WarehouseText = null;
-
                         ClientList = ofd.CreateList<Customer>();
-
                         IsEditableSpecification = false;
                         IsReadOnlyProductTextBox = true;
                         IsEnabledWarehouseComboBox = false;
                         IsEnabledProjectComboBox = true;
-
                         if (Product == null)
                             ProductText = null;
                         if (Inventory == null)
@@ -78,6 +74,7 @@ namespace R54IN0.WPF
                         }
                         break;
                 }
+                UpdateQuantityProperties(Quantity);
             }
         }
 
@@ -113,6 +110,27 @@ namespace R54IN0.WPF
             }
         }
 
+        public override DateTime Date
+        {
+            get
+            {
+                return base.Date;
+            }
+            set
+            {
+                base.Date = value;
+                using (var db = LexDb.GetDbInstance())
+                {
+                    if (Inventory != null)
+                    {
+                        var formats = db.Table<IOStockFormat>().IndexQueryByKey("InventoryID", Inventory.ID);
+                        _laststFormat = formats.ToList().Where(x => x.Date < value).OrderBy(x => x.Date).LastOrDefault();
+                    }
+                }
+                UpdateQuantityProperties(Quantity);
+            }
+        }
+
         /// <summary>
         /// 단가의 합계 (입출된 개수 * 가격)
         /// </summary>
@@ -136,46 +154,7 @@ namespace R54IN0.WPF
             set
             {
                 base.Quantity = value;
-                switch (_mode)
-                {
-                    case Mode.ADD:
-                        switch (StockType)
-                        {
-                            case IOStockType.INCOMING:
-                                if (Product == null || Inventory == null) //새로운 제품의 규격을 등록하는 경우
-                                {
-                                    RemainingQuantity = value;
-                                    InventoryQuantity = value;
-                                }
-                                else //기존 제품의 규격에 입고 하는 경우
-                                {
-                                    RemainingQuantity = Inventory.Quantity + value;
-                                    InventoryQuantity = Inventory.Quantity + value;
-                                }
-                                break;
-
-                            case IOStockType.OUTGOING: //출고할 경우 기존의 데이터만 사용하기에
-                                RemainingQuantity = Inventory.Quantity - value;
-                                InventoryQuantity = Inventory.Quantity - value;
-                                break;
-                        }
-                        break;
-
-                    case Mode.MODIFY:
-                        switch (StockType)
-                        {
-                            case IOStockType.INCOMING:
-                                RemainingQuantity = _originObservableIOStock.RemainingQuantity + value - _originObservableIOStock.Quantity;
-                                InventoryQuantity = _originObservableIOStock.Inventory.Quantity + value - _originObservableIOStock.Quantity;
-                                break;
-
-                            case IOStockType.OUTGOING:
-                                RemainingQuantity = _originObservableIOStock.RemainingQuantity + _originObservableIOStock.Quantity - value;
-                                InventoryQuantity = _originObservableIOStock.Inventory.Quantity + _originObservableIOStock.Quantity - value;
-                                break;
-                        }
-                        break;
-                }
+                UpdateQuantityProperties(value);
                 NotifyPropertyChanged("Amount");
             }
         }
@@ -312,6 +291,11 @@ namespace R54IN0.WPF
                     Measure = null;
                     MakerText = null;
                     MeasureText = null;
+                    _laststFormat = null;
+                }
+                else
+                {
+                    Date = Date; //for _laststFormat을 찾기 위해
                 }
                 NotifyPropertyChanged("Maker");
                 NotifyPropertyChanged("Measure");
@@ -510,6 +494,19 @@ namespace R54IN0.WPF
         #endregion TextBox Property
 
         #region IsEnabled Property
+
+        public bool IsEnabledDatePicker
+        {
+            get
+            {
+                return _isEnabledDatePicker;
+            }
+            set
+            {
+                _isEnabledDatePicker = value;
+                NotifyPropertyChanged("IsEnabledDatePicker");
+            }
+        }
 
         public bool IsEnabledWarehouseComboBox
         {

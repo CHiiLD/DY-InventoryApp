@@ -52,6 +52,7 @@ namespace R54IN0
             {
                 _fmt = value;
                 InitializeProperties(_fmt);
+                NotifyPropertyChanged("");
             }
         }
 

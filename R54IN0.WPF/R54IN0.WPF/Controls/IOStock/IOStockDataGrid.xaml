@@ -13,7 +13,7 @@
         </DataGrid.Resources>
 
         <DataGrid.Columns>
-            <DataGridCheckBoxColumn Header="체크" IsReadOnly="True" Binding="{Binding IsChecked}" />
+            <DataGridCheckBoxColumn Header="체크" Binding="{Binding IsChecked}" />
             <DataGridTextColumn Header="종류" IsReadOnly="True" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" />
             <DataGridTextColumn Header="날짜" IsReadOnly="True" Width="Auto" Binding="{Binding Date, StringFormat='{}{0:yyyy-MM-dd}'}" />
             <DataGridTextColumn Header="제품" IsReadOnly="True" Width="Auto" Binding="{Binding Inventory.Product.Name}" />

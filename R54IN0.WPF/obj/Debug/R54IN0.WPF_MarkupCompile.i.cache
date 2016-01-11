@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\
 R54IN0.WPF
 none
 false
 DEBUG;TRACE
-Z:\Users\Child\Github\R54IN0\R54IN0.WPF\App.xaml
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\App.xaml
 28-369813823
 
-129843982132
-24-446536575
+129-71858109
+24-853132260
 R54IN0.WPF\Controls\IOStock\IOStockDatePicker.xaml;R54IN0.WPF\Controls\IOStock\IOStockProjectListBox.xaml;R54IN0.WPF\Controls\IOStock\IOStockStatus.xaml;R54IN0.WPF\Controls\Inventory\InventoryStatus.xaml;R54IN0.WPF\Controls\IOStock\IOStockDataGrid.xaml;R54IN0.WPF\Controls\Inventory\InventoryDataGrid.xaml;R54IN0.WPF\Controls\TreeView\MultiSelectTreeView.xaml;R54IN0.WPF\Windows\StartWindow.xaml;R54IN0.WPF\Controls\IOStock\IOStockDataAmenderWindow.xaml;Deprecated\View\InventoryEditorWindow.xaml;Deprecated\View\IOStockEditorWindow.xaml;Deprecated\View\TabControls\Field\AccountDataGrid.xaml;Deprecated\View\TabControls\Field\ItemManager.xaml;Deprecated\View\TabControls\Field\MakerDataGrid.xaml;Deprecated\View\TabControls\Field\WarehouseDataGrid.xaml;Deprecated\View\TabControls\Field\EmployeeDataGrid.xaml;Deprecated\View\TabControls\Field\CurrencyDataGrid.xaml;Deprecated\View\TabControls\Field\MeasureDataGrid.xaml;Deprecated\View\TabControls\Field\ItemDataGrid.xaml;Deprecated\View\TabControls\Stock\InOutStockManager.xaml;Deprecated\View\TabControls\Stock\InOutStockDataGrid.xaml;Deprecated\View\TabControls\Inventory\InventoryManager.xaml;Deprecated\View\TabControls\Inventory\InventoryDataGrid.xaml;Deprecated\View\FinderControl\Finder.xaml;Deprecated\View\MainWindow.xaml;R54IN0.WPF\Controls\TreeView\ProductSelector.xaml;Deprecated\Window2.xaml;Deprecated\Window3.xaml;
 
 False

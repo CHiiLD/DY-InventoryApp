@@ -54,6 +54,8 @@ namespace R54IN0.Test.New
             var memo = viewmodel.Memo = "some memo";
             var qty = viewmodel.Quantity = 666;
             var price = viewmodel.UnitPrice = 6666;
+            var remain = viewmodel.RemainingQuantity;
+
             //저장
             var iostock = viewmodel.Record();
             Assert.IsTrue(iostock.StockType == IOStockType.INCOMING);
@@ -160,7 +162,8 @@ namespace R54IN0.Test.New
             using (var db = LexDb.GetDbInstance())
                 fmt = db.LoadAll<IOStockFormat>().Random();
             IOStockType type = fmt.StockType;
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
+            IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel, new ObservableIOStock(fmt));
 
             Assert.AreEqual(type, viewmodel.StockType);
             string id = fmt.ID;
@@ -301,6 +304,7 @@ namespace R54IN0.Test.New
         public void Quantity3()
         {
             new Dummy().Create();
+            IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
             IOStockFormat fmt = null;
             using (var db = LexDb.GetDbInstance())
                 fmt = db.LoadAll<IOStockFormat>().Random();
@@ -313,10 +317,11 @@ namespace R54IN0.Test.New
             int addQty = new Random().Next(-10, 10);
             if (addQty == 0)
                 addQty = -10;
+            int tQty = addQty;
 
             var inventoryQty = obIOStock.Inventory.Quantity;
-            var viewmodel = new IOStockDataAmenderViewModel(obIOStock);
-            viewmodel.Quantity = viewmodel.Quantity + addQty; //개수 하나를 늘린다.
+            var viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel, obIOStock);
+            viewmodel.Quantity += addQty; //개수 하나를 늘린다.
             obIOStock = viewmodel.Record();
 
             addQty = obIOStock.StockType == IOStockType.INCOMING ? addQty : -addQty;
@@ -344,7 +349,8 @@ namespace R54IN0.Test.New
         public void Quantity4()
         {
             new Dummy().Create();
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
+            IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel);
             //설정
             viewmodel.StockType = new Random().NextDouble() > 0.5 ? IOStockType.INCOMING : IOStockType.OUTGOING;
             var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CreateList<Product>().Random();
@@ -355,11 +361,16 @@ namespace R54IN0.Test.New
             viewmodel.Quantity = qty;
 
             IEnumerable<IOStockFormat> before = null;
+            IOStockFormat laststData = null;
+
             using (var db = LexDb.GetDbInstance())
+            {
+                laststData = db.LoadAll<IOStockFormat>().Where(x => x.InventoryID == inven.ID).Where(x => x.Date < date).OrderBy(x => x.Date).LastOrDefault();
                 before = db.LoadAll<IOStockFormat>().Where(x => x.InventoryID == inven.ID).Where(x => x.Date > date).OrderBy(x => x.Date);
+            }
 
             //저장
-            var obIOStock = viewmodel.Record();
+            IObservableIOStockProperties obIOStock = viewmodel.Record();
 
             IEnumerable<IOStockFormat> after = null;
             using (var db = LexDb.GetDbInstance())
@@ -368,6 +379,148 @@ namespace R54IN0.Test.New
             qty = obIOStock.StockType == IOStockType.INCOMING ? qty : -qty;
 
             Assert.AreEqual(before.Count(), after.Count());
+            Assert.AreEqual((laststData != null ? laststData.RemainingQuantity : 0) + qty, obIOStock.RemainingQuantity);
+            Assert.AreEqual(obIOStock.Inventory.Quantity, beforeInvenQty + qty);
+            int rqty = viewmodel.StockType == IOStockType.INCOMING ? obIOStock.RemainingQuantity : -obIOStock.RemainingQuantity;
+            for (int i = 0; i < after.Count(); i++)
+            {
+                var a = after.ElementAt(i);
+                var b = before.ElementAt(i);
+                Assert.AreEqual(a.ID, b.ID);
+                Assert.AreEqual(a.RemainingQuantity, b.RemainingQuantity + rqty);
+            }
+        }
+
+        /// <summary>
+        /// 입출고 데이터를 수정하는데, 그 날짜가 과거이다.
+        /// 이럴 경우 입출고 수량의 변동에 따라 잔여수량과 입고 수량의 변이를 올바르게 업데이트 할 수 있어야 한다.
+        /// </summary>
+        [TestMethod]
+        public void Quantity5()
+        {
+            new Dummy().Create();
+            IOStockFormat fmt = null;
+            IEnumerable<IOStockFormat> formats;
+            var inventory = ObservableInventoryDirector.GetInstance().CreateList().Random();
+            using (var db = LexDb.GetDbInstance())
+            {
+                formats = db.LoadAll<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
+                    .ToList();
+                fmt = formats.ElementAt(new Random().Next(0, formats.Count() -2)); //최신 데이터는 넣지 말도록 
+            }
+            var obIOStock = new ObservableIOStock(fmt);
+            int inventoryQty = obIOStock.Inventory.Quantity; //오리진 재고 수량
+            int remainQty = obIOStock.RemainingQuantity; //오리진 잔여 수량
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(obIOStock);
+
+            int ioStockQty = fmt.Quantity; //오리진 입출고 수량
+
+            int changeQty = 1;
+            int effectQty = viewmodel.StockType == IOStockType.INCOMING ? changeQty : -changeQty;
+
+            viewmodel.Quantity = ioStockQty + changeQty; //입출고 수량을 하나 증가함
+
+            Assert.AreEqual(viewmodel.InventoryQuantity, inventoryQty + effectQty);
+            Assert.AreEqual(viewmodel.RemainingQuantity, remainQty + effectQty);
+        }
+
+        /// <summary>
+        /// 입출고 데이터를 추가하는데 그 날짜가 과거이다.
+        /// 이럴 경우 입출고 수량의 변동에 따라 잔여수량과 입고 수량의 변이를 올바르게 업데이트 할 수 있어야 한다.
+        /// </summary>
+        [TestMethod]
+        public void Quantity6()
+        {
+            new Dummy().Create();
+            IOStockFormat fmt = null;
+            IEnumerable<IOStockFormat> formats;
+            var inventory = ObservableInventoryDirector.GetInstance().CreateList().Random();
+            using (var db = LexDb.GetDbInstance())
+            {
+                formats = db.LoadAll<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
+                    .ToList();
+            }
+            fmt = formats.ElementAt(new Random().Next(0, formats.Count() - 2));
+            
+            var iostock = new ObservableIOStock(fmt);
+            int inventoryQty = iostock.Inventory.Quantity;
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
+            viewmodel.StockType = IOStockType.INCOMING;
+            viewmodel.Product = iostock.Inventory.Product;
+            viewmodel.Inventory = viewmodel.InventoryList.Where(x => x.ID == iostock.Inventory.ID).Single();
+
+            //범위1 F .. T ... L
+            viewmodel.Date = fmt.Date.AddMilliseconds(10);
+            var lastst = formats.Where(x => x.Date < viewmodel.Date).OrderBy(x => x.Date).Last();
+            int qty = 1;
+            viewmodel.Quantity = qty;
+            Assert.AreEqual(inventoryQty + qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(lastst.RemainingQuantity + qty, viewmodel.RemainingQuantity); //잔여수량 업데이트 확인
+            viewmodel.StockType = IOStockType.OUTGOING;
+            Assert.AreEqual(inventoryQty - qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(lastst.RemainingQuantity - qty, viewmodel.RemainingQuantity); //잔여수량 업데이트 확인
+
+            //범위2 TF .... L
+            viewmodel.StockType = IOStockType.INCOMING;
+            viewmodel.Date = formats.First().Date.AddMilliseconds(-10000);
+            Assert.AreEqual(inventoryQty + qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(qty, viewmodel.RemainingQuantity); //잔여수량 업데이트 확인
+
+            viewmodel.StockType = IOStockType.OUTGOING;
+            viewmodel.Date = formats.First().Date.AddMilliseconds(-10000);
+            Assert.AreEqual(inventoryQty - qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(qty, -viewmodel.RemainingQuantity); //잔여수량 업데이트 확인
+
+            //범위3 F .... LT
+            viewmodel.StockType = IOStockType.INCOMING;
+            viewmodel.Date = formats.Last().Date.AddMilliseconds(1000);
+            lastst = formats.Where(x => x.Date < viewmodel.Date).OrderBy(x => x.Date).Last();
+            Assert.AreEqual(inventoryQty + qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(lastst.RemainingQuantity + qty, viewmodel.RemainingQuantity); //잔여수량 업데이트 확인
+
+            viewmodel.StockType = IOStockType.OUTGOING;
+            Assert.AreEqual(inventoryQty - qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(lastst.RemainingQuantity - qty, viewmodel.RemainingQuantity); //잔여수량 업데이트 확인
+        }
+
+        /// <summary>
+        /// Date가 제일 First한 입출고 데이터를 넣을 경우 그 다음 입출고 데이터들의 Quantity가 꼬이는 이슈를 해결
+        /// </summary>
+        [Ignore]
+        [TestMethod]
+        public void Quantity7()
+        {
+            new Dummy().Create();
+            IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel);
+            //설정
+
+            IEnumerable<IOStockFormat> before = null;
+            using (var db = LexDb.GetDbInstance())
+            {
+                before = db.LoadAll<IOStockFormat>().OrderBy(x => x.Date);
+            }
+
+            viewmodel.StockType = new Random().NextDouble() > 0.5 ? IOStockType.INCOMING : IOStockType.OUTGOING;
+            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CreateList<Product>().Random();
+            var inven = viewmodel.Inventory = viewmodel.InventoryList.Random();
+            var beforeInvenQty = inven.Quantity;
+            var date = viewmodel.Date = DateTime.Now.AddDays(-10000); //과거로 저장
+            int qty = 10;
+            viewmodel.Quantity = qty;
+
+            
+
+            IObservableIOStockProperties obIOStock = viewmodel.Record();
+
+            IEnumerable<IOStockFormat> after = null;
+            using (var db = LexDb.GetDbInstance())
+                after = db.LoadAll<IOStockFormat>().Where(x => x.ID != obIOStock.ID).OrderBy(x => x.Date);
+
+            qty = obIOStock.StockType == IOStockType.INCOMING ? qty : -qty;
+
+            Assert.AreEqual(before.Count(), after.Count());
+            Assert.AreEqual(qty, obIOStock.RemainingQuantity);
             Assert.AreEqual(obIOStock.Inventory.Quantity, beforeInvenQty + qty);
             for (int i = 0; i < after.Count(); i++)
             {
@@ -582,28 +735,6 @@ namespace R54IN0.Test.New
             Assert.AreEqual(obIOStock.Quantity, viewmodel.Quantity);
             Assert.AreEqual(obIOStock.RemainingQuantity, viewmodel.RemainingQuantity);
             Assert.AreEqual(obIOStock.UnitPrice, viewmodel.UnitPrice);
-        }
-
-        /// <summary>
-        /// 인벤토리 데이터 포맷 기반의 입출고 데이터들 중 가장 최근 날짜의 데이터가 추가되었다면(혹은 수정되었다면)
-        /// 인벤토리가 이 입출고 데이터의 범위식별자를 저장하여야 한다.
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        public void UpdateLaststIOStockID()
-        {
-            new Dummy().Create();
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
-            //설정
-            viewmodel.StockType = IOStockType.INCOMING;
-            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CreateList<Product>().Random();
-            var inven = viewmodel.Inventory = viewmodel.InventoryList.Random();
-            var memo = viewmodel.Memo = "some memo";
-            viewmodel.UnitPrice = 6666;
-            var obIOStock = viewmodel.Record();
-
-            //Assert.AreEqual(obIOStock.Inventory.LaststIOStockFormatID, obIOStock.ID);
-            //var inventory = ObservableInventoryDirector.GetInstance().Search(obIOStock.Inventory.ID);
         }
     }
 }

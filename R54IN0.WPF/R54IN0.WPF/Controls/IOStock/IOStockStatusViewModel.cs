@@ -293,9 +293,9 @@ namespace R54IN0.WPF
             var win = new IOStockDataAmenderWindow();
             IOStockDataAmenderViewModel amenderViewModel = null;
             if (selectedItem != null)
-                amenderViewModel = new IOStockDataAmenderViewModel(selectedItem);
+                amenderViewModel = new IOStockDataAmenderViewModel(this, selectedItem);
             else
-                amenderViewModel = new IOStockDataAmenderViewModel();
+                amenderViewModel = new IOStockDataAmenderViewModel(this);
             win.DataContext = amenderViewModel;
             win.ProductSelector.DataContext = amenderViewModel.TreeViewViewModel;
             win.ProductSelector.MultiSelectTreeView.TreeView.OnSelecting += amenderViewModel.TreeViewViewModel.OnNodeSelected;

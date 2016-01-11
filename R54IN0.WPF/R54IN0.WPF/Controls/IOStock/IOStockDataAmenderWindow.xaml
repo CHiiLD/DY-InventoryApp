@@ -91,7 +91,7 @@
                     <ColumnDefinition Width="43*" />
                 </Grid.ColumnDefinitions>
                 <Label>날짜</Label>
-                <DatePicker SelectedDate="{Binding Date}" Grid.Column="1" Width="200" HorizontalAlignment="Left" />
+                <DatePicker IsEnabled="{Binding IsEnabledDatePicker}" SelectedDate="{Binding Date}" Grid.Column="1" Width="200" HorizontalAlignment="Left" />
             </Grid>
 
             <Grid Grid.Row="2">

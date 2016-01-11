@@ -49,6 +49,7 @@ namespace R54IN0
             {
                 _fmt = value;
                 InitializeProperties(_fmt);
+                NotifyPropertyChanged("");
             }
         }
 
@@ -71,7 +72,7 @@ namespace R54IN0
         /// <summary>
         /// 기록된 날짜
         /// </summary>
-        public DateTime Date
+        public virtual DateTime Date
         {
             get
             {

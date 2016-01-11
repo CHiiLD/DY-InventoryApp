@@ -38,6 +38,7 @@ namespace R54IN0.WPF
         private string _specificationMemo;
         private Observable<Measure> _measure;
         private Observable<Maker> _maker;
+        private IOStockFormat _laststFormat;
         private bool _isEnabledWarehouseComboBox;
         private bool _isEnabledProjectComboBox;
         private string _productText;
@@ -56,6 +57,7 @@ namespace R54IN0.WPF
         private bool _isEnabledInComingRadioButton;
         private bool _isEnabledInOutGoingRadioButton;
         private int _inventoryQuantity;
+        private bool _isEnabledDatePicker;
 
         /// <summary>
         /// TEST용 생성자
@@ -75,6 +77,8 @@ namespace R54IN0.WPF
 
             IsEnabledOutGoingRadioButton = true;
             IsEnabledInComingRadioButton = true;
+
+            IsEnabledDatePicker = true;
         }
 
         /// <summary>
@@ -84,10 +88,10 @@ namespace R54IN0.WPF
         public IOStockDataAmenderViewModel(IObservableIOStockProperties observableInoutStock) :
             base(new IOStockFormat(observableInoutStock.Format))
         {
+            _originObservableIOStock = observableInoutStock;
             _mode = Mode.MODIFY;
             StockType = observableInoutStock.StockType;
             Initialize();
-            _originObservableIOStock = observableInoutStock;
 
             IsReadOnlyProductTextBox = true;
             IsReadOnlySpecificationMemoTextBox = false;
@@ -98,6 +102,8 @@ namespace R54IN0.WPF
 
             IsEnabledOutGoingRadioButton = false;
             IsEnabledInComingRadioButton = false;
+
+            IsEnabledDatePicker = false;
         }
 
         /// <summary>
@@ -129,6 +135,56 @@ namespace R54IN0.WPF
             ProductSelectCommand = new CommandHandler(ExecuteProductSelectCommand, CanSelectProduct);
         }
 
+        private void UpdateQuantityProperties(int value)
+        {
+            switch (_mode)
+            {
+                case Mode.ADD:
+                    switch (StockType)
+                    {
+                        case IOStockType.INCOMING:
+                            if (Product == null || Inventory == null) //새로운 제품의 규격을 등록하는 경우
+                            {
+                                RemainingQuantity = value;
+                                InventoryQuantity = value;
+                            }
+                            else //기존 제품의 규격에 입고 하는 경우
+                            {
+                                RemainingQuantity = (_laststFormat == null) ? value : _laststFormat.RemainingQuantity + Quantity;
+                                InventoryQuantity = Inventory.Quantity + value;
+                            }
+                            break;
+                        case IOStockType.OUTGOING: //출고할 경우 기존의 데이터만 사용하기에
+                            if (Product == null || Inventory == null) //새로운 제품의 규격을 등록하는 경우
+                            {
+                                RemainingQuantity = -value;
+                                InventoryQuantity = -value;
+                            }
+                            else //기존 제품의 규격에 입고 하는 경우
+                            {
+                                RemainingQuantity = (_laststFormat == null) ? -value : _laststFormat.RemainingQuantity - Quantity;
+                                InventoryQuantity = Inventory.Quantity - value;
+                            }
+                            break;
+                    }
+                    break;
+                case Mode.MODIFY:
+                    switch (StockType)
+                    {
+                        case IOStockType.INCOMING:
+                            RemainingQuantity = _originObservableIOStock.RemainingQuantity + value - _originObservableIOStock.Quantity;
+                            InventoryQuantity = _originObservableIOStock.Inventory.Quantity + value - _originObservableIOStock.Quantity;
+                            break;
+
+                        case IOStockType.OUTGOING:
+                            RemainingQuantity = _originObservableIOStock.RemainingQuantity + _originObservableIOStock.Quantity - value;
+                            InventoryQuantity = _originObservableIOStock.Inventory.Quantity + _originObservableIOStock.Quantity - value;
+                            break;
+                    }
+                    break;
+            }
+        }
+
         protected override void InitializeProperties(IOStockFormat inoutStockFormat)
         {
             base.InitializeProperties(inoutStockFormat);
@@ -154,9 +210,9 @@ namespace R54IN0.WPF
 
             CreateObservableFields();
             ApplyModifiedInventoryProperties();
-            UpdateModifiedStockQuantity();
+            UpdateModifiedRemainingQuantity();
 
-            ObservableIOStock result = null;
+            IObservableIOStockProperties result = null;
             switch (_mode)
             {
                 case Mode.ADD:
@@ -165,7 +221,7 @@ namespace R54IN0.WPF
                     break;
 
                 case Mode.MODIFY:
-                    result = _originObservableIOStock as ObservableIOStock;
+                    result = _originObservableIOStock;
                     result.Format = Format;
                     break;
             }
@@ -213,34 +269,31 @@ namespace R54IN0.WPF
             else
             {
                 ObservableInventory originInventory = oid.Search(Inventory.ID);
-                if (originInventory != null)
+                if (!string.IsNullOrEmpty(MakerText) && Maker == null)
                 {
-                    if (!string.IsNullOrEmpty(MakerText) && Maker == null)
-                    {
-                        originInventory.Maker = new Observable<Maker>() { Name = MakerText };
-                        ofd.Add<Maker>(originInventory.Maker);
-                    }
-                    else if (originInventory.Maker != Maker)
-                    {
-                        originInventory.Maker = Maker;
-                    }
-                    if (!string.IsNullOrEmpty(MeasureText) && Measure == null)
-                    {
-                        originInventory.Measure = new Observable<Measure>() { Name = MeasureText };
-                        ofd.Add<Measure>(originInventory.Measure);
-                    }
-                    else if (originInventory.Measure != Measure)
-                    {
-                        originInventory.Measure = Measure;
-                    }
-                    if (originInventory.Memo != SpecificationMemo)
-                        originInventory.Memo = SpecificationMemo;
-                    originInventory.Quantity = InventoryQuantity;
+                    originInventory.Maker = new Observable<Maker>() { Name = MakerText };
+                    ofd.Add<Maker>(originInventory.Maker);
                 }
+                else if (originInventory.Maker != Maker)
+                {
+                    originInventory.Maker = Maker;
+                }
+                if (!string.IsNullOrEmpty(MeasureText) && Measure == null)
+                {
+                    originInventory.Measure = new Observable<Measure>() { Name = MeasureText };
+                    ofd.Add<Measure>(originInventory.Measure);
+                }
+                else if (originInventory.Measure != Measure)
+                {
+                    originInventory.Measure = Measure;
+                }
+                if (originInventory.Memo != SpecificationMemo)
+                    originInventory.Memo = SpecificationMemo;
                 originInventory.Quantity = InventoryQuantity;
+                Inventory = originInventory;
             }
         }
-
+        
         /// <summary>
         /// 새로 추가할 텍스트 필드들을 Observable<T>객체로 초기화하여 생성
         /// </summary>
@@ -284,14 +337,44 @@ namespace R54IN0.WPF
         /// 관련 IOStock 데이터들의 잔여수량 및 재고수량을 다시 계산하여 전부 업데이트하고 Owner의 DataGridItems 역시 변화된 값들을 반영하게 한다.
         /// TODO
         /// </summary>
-        private void UpdateModifiedStockQuantity()
+        private void UpdateModifiedRemainingQuantity()
         {
-            //using (var db = LexDb.GetDbInstance())
-            //{
-            //    var formats = db.Table<IOStockFormat>().IndexQueryByKey("InventoryID", Inventory.ID).ToList();
-            //    formats.Where(x => x.Date > Date);
+            using (var db = LexDb.GetDbInstance())
+            {
+                List<IOStockFormat> formats = db.Table<IOStockFormat>().IndexQueryByKey("InventoryID", Inventory.ID).ToList();
+                if(formats.Count() == 0)
+                    return;
+                var orderedFormats = formats.Where(x => x.Date > Date).OrderBy(x => x.Date);
+                foreach(var fmt in orderedFormats)
+                {
+                    int qty = 0;
+                    switch (_mode)
+                    {
+                        case Mode.ADD:
+                            if (_laststFormat != null)
+                                qty = StockType == IOStockType.INCOMING ? RemainingQuantity : -RemainingQuantity;
+                            else
+                                qty = RemainingQuantity;
+                            break;
+                        case Mode.MODIFY:
+                            qty = RemainingQuantity - _originObservableIOStock.RemainingQuantity;
+                            break;
+                    }
+                    if (qty == 0)
+                        return;
 
-            //}
+                    var backupSource = _ioStockStatusViewModel.BackupSource;
+                    if (backupSource != null && backupSource.ContainsKey(fmt.ID))
+                    {
+                        backupSource[fmt.ID].RemainingQuantity += qty;
+                    }
+                    else
+                    {
+                        fmt.RemainingQuantity += qty;
+                        fmt.Save<IOStockFormat>();
+                    }
+                }
+            }
         }
 
         private void OnTreeViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -27,6 +27,8 @@
             <UniformGrid.Resources>
                 <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
                     <Setter Property="Margin" Value="2" />
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="FontFamily" Value="Segoe UI Light" />
                 </Style>
             </UniformGrid.Resources>
 
