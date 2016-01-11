@@ -128,7 +128,7 @@ namespace R54IN0.WPF
 
         private void Initialize()
         {
-            TreeViewViewModel = new ProductSelectorViewModel();
+            TreeViewViewModel = new MultiSelectTreeViewModelView();
             TreeViewViewModel.PropertyChanged += OnTreeViewModelPropertyChanged;
             ProductSearchCommand = new CommandHandler(ExecuteProductSearchCommand, CanSearch);
             RecordCommand = new CommandHandler(ExecuteRecordCommand, CanRecord);

@@ -33,19 +33,6 @@ namespace R54IN0.WPF
         /// 데이터 그리드의 입출고 데이터를 일시적으로 보관
         /// </summary>
         private SortedDictionary<string, IOStockDataGridItem> _backupSource;
-
-        public SortedDictionary<string, IOStockDataGridItem> BackupSource
-        {
-            get
-            {
-                return _backupSource;
-            }
-            set
-            {
-                _backupSource = value;
-            }
-        }
-
         private event PropertyChangedEventHandler _propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
@@ -70,6 +57,18 @@ namespace R54IN0.WPF
         ~IOStockStatusViewModel()
         {
             CollectionViewModelObserverSubject.GetInstance().Detach(this);
+        }
+
+        public SortedDictionary<string, IOStockDataGridItem> BackupSource
+        {
+            get
+            {
+                return _backupSource;
+            }
+            set
+            {
+                _backupSource = value;
+            }
         }
 
         public IOStockDataGridViewModel DataGridViewModel
@@ -297,8 +296,11 @@ namespace R54IN0.WPF
             else
                 amenderViewModel = new IOStockDataAmenderViewModel(this);
             win.DataContext = amenderViewModel;
-            win.ProductSelector.DataContext = amenderViewModel.TreeViewViewModel;
-            win.ProductSelector.MultiSelectTreeView.TreeView.OnSelecting += amenderViewModel.TreeViewViewModel.OnNodeSelected;
+            win.MultiSelectTreeView.DataContext = amenderViewModel.TreeViewViewModel;
+            win.MultiSelectTreeView.TreeView.OnSelecting += amenderViewModel.TreeViewViewModel.OnNodeSelected;
+            amenderViewModel.TreeViewViewModel.DragCommand = null;
+            amenderViewModel.TreeViewViewModel.DropCommand = null;
+
             win.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
             win.ShowDialog();
         }

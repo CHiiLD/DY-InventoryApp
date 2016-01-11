@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1"
-        Title="입출고 관리 다이얼로그" SizeToContent="Height" Width="770" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        Title="입출고 관리 다이얼로그" SizeToContent="Manual" Width="770" Height="416" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
 
     <mah:MetroWindow.Flyouts>
         <mah:FlyoutsControl>
@@ -17,14 +17,14 @@
                         Theme="Adapt"
                         Header="제품 탐색기"
                         Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=mah:MetroWindow}, Path=ActualWidth}"
-                        Height="Auto">
+                        Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=mah:MetroWindow}, Path=ActualHeight}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <local:ProductSelector x:Name="ProductSelector" />
-                    <Grid Grid.Row="1" Margin="0,12,0,5">
+                    <local:MultiSelectTreeView x:Name="MultiSelectTreeView" Height="300" />
+                    <Grid Grid.Row="1" Margin="0,5,0,5">
                         <Button Command="{Binding ProductSelectCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource AccentedSquareButtonStyle}" Width="60">선택</Button>
                     </Grid>
                 </Grid>

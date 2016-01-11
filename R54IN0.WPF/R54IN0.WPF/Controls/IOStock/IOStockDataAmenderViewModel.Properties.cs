@@ -7,7 +7,7 @@ namespace R54IN0.WPF
 {
     public partial class IOStockDataAmenderViewModel
     {
-        public ProductSelectorViewModel TreeViewViewModel { get; set; }
+        public MultiSelectTreeViewModelView TreeViewViewModel { get; set; }
 
         public ICommand ProductSearchCommand { get; set; }
 

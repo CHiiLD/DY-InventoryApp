@@ -30,15 +30,9 @@ namespace R54IN0.WPF
             get;
             set;
         }
-
-        public void CallCommandExecutedHandler()
-        {
-            if (CommandExecuted != null)
-                CommandExecuted(this, EventArgs.Empty);
-        }
-
         public IOStockDatePickerViewModel()
         {
+            SearchCommand = new CommandHandler(ExecuteSearchCommand, Can);
             TodayCommand = new CommandHandler(ExecuteTodayCommand, Can);
             YesterdayCommand = new CommandHandler(ExecuteYesterdayCommand, Can);
             TheDayBeforeYesterday = new CommandHandler(ExecuteTheDayBeforeYesterdayCommand, Can);
@@ -60,6 +54,7 @@ namespace R54IN0.WPF
             //베이스
             ExecuteThisWeekCommand(null);
         }
+        public ICommand SearchCommand { get; set; }
 
         public DateTime FromDate
         {
@@ -125,6 +120,24 @@ namespace R54IN0.WPF
         {
             if (_propertyChanged != null)
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
+        public void CallCommandExecutedHandler()
+        {
+            if (CommandExecuted != null)
+                CommandExecuted(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// 조회 버튼을 누를 경우
+        /// </summary>
+        /// <param name="obj"></param>
+        private void ExecuteSearchCommand(object obj)
+        {
+            var now = DateTime.Now;
+            FromDate = new DateTime(FromDate.Year, FromDate.Month, FromDate.Day, 0, 0, 0, 0, DateTimeKind.Local);
+            ToDate = new DateTime(ToDate.Year, ToDate.Month, ToDate.Day, 23, 59, 59, 999, DateTimeKind.Local);
+            CallCommandExecutedHandler();
         }
 
         private void ExecuteTheYearBeforeLastCommand(object obj)

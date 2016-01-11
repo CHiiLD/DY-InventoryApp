@@ -17,20 +17,19 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="70*" />
+                <RowDefinition />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="30*" />
+                <RowDefinition Height="227" />
             </Grid.RowDefinitions>
-            <GroupBox Header="제품 탐색기">
+            <GroupBox Header="제품 탐색기" Grid.RowSpan="3">
                 <local:ProductSelector x:Name="ProductSelector" />
             </GroupBox>
 
-            <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Margin="5,0,0,0" />
-
-            <GroupBox Grid.Row="2" Header="오늘 추가된 입출고 기록" Grid.RowSpan="2">
+            <!--<GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Margin="5,0,0,0" />-->
+            <!--<GroupBox Grid.Row="2" Header="오늘 추가된 입출고 기록" Grid.RowSpan="2">
                 <ListBox>
                 </ListBox>
-            </GroupBox>
+            </GroupBox>-->
         </Grid>
 
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" BorderThickness="0,5" />

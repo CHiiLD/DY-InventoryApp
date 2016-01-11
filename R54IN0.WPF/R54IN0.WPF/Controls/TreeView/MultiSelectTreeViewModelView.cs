@@ -9,10 +9,10 @@ using System.Windows.Input;
 
 namespace R54IN0.WPF
 {
-    public class MultiSelectTreeViewModelView : TreeViewNodeDirector, INotifyPropertyChanged
+    public class MultiSelectTreeViewModelView : INotifyPropertyChanged
     {
+        protected TreeViewNodeDirector nodeDirector;
         private event PropertyChangedEventHandler _propertyChanged;
-
         private ObservableCollection<TreeViewNode> _selectedNodes;
 
         public event PropertyChangedEventHandler PropertyChanged
@@ -30,13 +30,14 @@ namespace R54IN0.WPF
 
         public MultiSelectTreeViewModelView()
         {
-            Root = Collection;
+            nodeDirector = TreeViewNodeDirector.GetInstance();
+            Root = nodeDirector.Collection;
             SelectedNodes = new ObservableCollection<TreeViewNode>();
             DragCommand = new CommandHandler(ExecuteDrag, CanDrag);
             DropCommand = new CommandHandler(ExecuteDrop, CanDrop);
         }
 
-        public ObservableCollection<TreeViewNode> Root { get; set; }
+        public ObservableCollection<TreeViewNode> Root { get; private set; }
 
         public ObservableCollection<TreeViewNode> SelectedNodes
         {
@@ -163,7 +164,7 @@ namespace R54IN0.WPF
 
             foreach (TreeViewNode src in nodes.Reverse())
             {
-                Remove(src);
+                nodeDirector.Remove(src);
                 AddNode(des, index, src);
             }
         }

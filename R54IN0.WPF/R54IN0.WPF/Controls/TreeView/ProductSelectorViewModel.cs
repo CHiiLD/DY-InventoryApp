@@ -36,9 +36,9 @@ namespace R54IN0.WPF
             IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FORDER);
             TreeViewNode newTreeViewNode = new TreeViewNode(NodeType.FORDER, "새로운 폴더");
             if (folderNodes.Count() != 0)
-                Add(folderNodes.First(), newTreeViewNode);
+                nodeDirector.Add(folderNodes.First(), newTreeViewNode);
             else
-                Add(newTreeViewNode);
+                nodeDirector.Add(newTreeViewNode);
         }
 
         /// <summary>
@@ -55,9 +55,9 @@ namespace R54IN0.WPF
             IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FORDER);
             TreeViewNode newTreeViewNode = new TreeViewNode(NodeType.PRODUCT, newProduct.ID);
             if (folderNodes.Count() != 0)
-                Add(folderNodes.First(), newTreeViewNode);
+                nodeDirector.Add(folderNodes.First(), newTreeViewNode);
             else
-                Add(newTreeViewNode);
+                nodeDirector.Add(newTreeViewNode);
         }
 
         public override void OnNodeSelected(object sender, SelectionChangedCancelEventArgs e)
@@ -115,9 +115,9 @@ namespace R54IN0.WPF
             var productNodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Select(x => new TreeViewNode(NodeType.PRODUCT, x.ProductID));
             productNodes = new List<TreeViewNode>(productNodes); //논리적 이유는 추측하기 어려우나(WPF버그?), 이 코드가 없으면 논리에러가 발생!
             foreach (var node in new List<TreeViewNode>(SelectedNodes))
-                Remove(node);
+                nodeDirector.Remove(node);
             foreach (var itemNode in productNodes)
-                Add(itemNode);
+                nodeDirector.Add(itemNode);
             SelectedNodes.Clear();
         }
     }

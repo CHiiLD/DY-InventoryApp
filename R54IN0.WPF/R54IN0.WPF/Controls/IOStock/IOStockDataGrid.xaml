@@ -14,27 +14,70 @@
 
         <DataGrid.Columns>
             <DataGridCheckBoxColumn Header="체크" Binding="{Binding IsChecked}" />
-            <DataGridTextColumn Header="종류" IsReadOnly="True" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" />
+            <DataGridTextColumn Header="종류" IsReadOnly="True" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" >
+                <DataGridTextColumn.ElementStyle>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+                </DataGridTextColumn.ElementStyle>
+            </DataGridTextColumn>
             <DataGridTextColumn Header="날짜" IsReadOnly="True" Width="Auto" Binding="{Binding Date, StringFormat='{}{0:yyyy-MM-dd}'}" />
             <DataGridTextColumn Header="제품" IsReadOnly="True" Width="Auto" Binding="{Binding Inventory.Product.Name}" />
             <DataGridTextColumn Header="규격" IsReadOnly="True" Width="Auto"  Binding="{Binding Inventory.Specification}" />
             <DataGridTextColumn Header="규격의 설명" IsReadOnly="True" Width="1*" Binding="{Binding Inventory.Memo}" />
             <DataGridTextColumn Header="제조사" IsReadOnly="True" Width="Auto"  Binding="{Binding Inventory.Maker.Name}" />
 
-            <DataGridTextColumn Header="입고수량" IsReadOnly="True" Binding="{Binding InComingQuantity}" />
+            <DataGridTextColumn Header="입고수량" IsReadOnly="True" Binding="{Binding InComingQuantity, StringFormat='{}{0:#,#.}'}" >
+                <DataGridTextColumn.ElementStyle>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                    </Style>
+                </DataGridTextColumn.ElementStyle>
+            </DataGridTextColumn>
 
-            <DataGridTextColumn Header="출고수량" IsReadOnly="True" Binding="{Binding OutGoingQuantity}" />
+            <DataGridTextColumn Header="출고수량" IsReadOnly="True" Binding="{Binding OutGoingQuantity, StringFormat='{}{0:#,#.}'}" >
+                <DataGridTextColumn.ElementStyle>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                    </Style>
+                </DataGridTextColumn.ElementStyle>
+            </DataGridTextColumn>
 
-            <DataGridTextColumn Header="잔여수량" IsReadOnly="True" Binding="{Binding RemainingQuantity}" />
+            <DataGridTextColumn Header="잔여수량" IsReadOnly="True" Binding="{Binding RemainingQuantity, StringFormat='{}{0:#,#.}'}" >
+                <DataGridTextColumn.ElementStyle>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                    </Style>
+                </DataGridTextColumn.ElementStyle>
+            </DataGridTextColumn>
 
             <DataGridTextColumn Header="단위" IsReadOnly="True" Binding="{Binding Inventory.Measure.Name}" />
 
             <DataGridTextColumn Header="보관장소" IsReadOnly="True" Binding="{Binding Warehouse.Name}" />
             <DataGridTextColumn Header="프로젝트명" IsReadOnly="True" Binding="{Binding Project.Name}" />
 
-            <DataGridTextColumn Header="종류" IsReadOnly="True" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" />
-            <DataGridTextColumn Header="단가" IsReadOnly="True" Binding="{Binding UnitPrice}" />
-            <DataGridTextColumn Header="합계" IsReadOnly="True" Binding="{Binding TotalPrice}" />
+            <DataGridTextColumn Header="종류" IsReadOnly="True" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" >
+                <DataGridTextColumn.ElementStyle>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+                </DataGridTextColumn.ElementStyle>
+            </DataGridTextColumn>
+            <DataGridTextColumn Header="단가" IsReadOnly="True" Binding="{Binding UnitPrice, StringFormat='{}{0:#,#.}'}" >
+                <DataGridTextColumn.ElementStyle>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                    </Style>
+                </DataGridTextColumn.ElementStyle>
+            </DataGridTextColumn>
+            <DataGridTextColumn Header="합계" IsReadOnly="True" Binding="{Binding TotalPrice, StringFormat='{}{0:#,#.}'}" >
+                <DataGridTextColumn.ElementStyle>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                    </Style>
+                </DataGridTextColumn.ElementStyle>
+            </DataGridTextColumn>
+            
             <DataGridTextColumn Header="구입처" IsReadOnly="True" Binding="{Binding Supplier.Name}" />
             <DataGridTextColumn Header="판매처" IsReadOnly="True" Binding="{Binding Customer.Name}" />
             <DataGridTextColumn Header="담당자" IsReadOnly="True" Binding="{Binding Employee.Name}" />

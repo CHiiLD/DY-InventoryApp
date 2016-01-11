@@ -38,10 +38,17 @@
                                     IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}" />
                 <DataGridTextColumn x:Name="MemoColumn" Header="설명" Width="30*" Binding="{Binding Memo}"
                                     IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}" />
-                <DataGridTextColumn x:Name="QuantityColumn" Header="수량" Width="Auto" Binding="{Binding Quantity}" IsReadOnly="True" />
+                <DataGridTextColumn x:Name="QuantityColumn" Header="수량" Width="Auto" Binding="{Binding Quantity, StringFormat='{}{0:#,#.}'}" IsReadOnly="True" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn x:Name="MeasureColumn" Header="단위" Width="Auto" Binding="{Binding Measure.Name}"
                                     IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"
-                                    Visibility="{Binding Path=DataContext.MeasureVisibility, Mode=TwoWay, Source={x:Reference ProxyElement}}" />
+                                    Visibility="{Binding Path=DataContext.MeasureVisibility, Mode=TwoWay, Source={x:Reference ProxyElement}}" >
+                </DataGridTextColumn>
                 <DataGridTextColumn x:Name="MakerColumn" Header="제조사" Width="Auto" Binding="{Binding Maker.Name}"
                                     IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"
                                     Visibility="{Binding Path=DataContext.MakerVisibility, Mode=TwoWay, Source={x:Reference ProxyElement}}" />
