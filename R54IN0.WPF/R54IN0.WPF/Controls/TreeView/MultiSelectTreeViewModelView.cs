@@ -12,8 +12,12 @@ namespace R54IN0.WPF
     public class MultiSelectTreeViewModelView : INotifyPropertyChanged
     {
         protected TreeViewNodeDirector nodeDirector;
+
         private event PropertyChangedEventHandler _propertyChanged;
+
         private ObservableCollection<TreeViewNode> _selectedNodes;
+        private Visibility _newFolderAddVisibility;
+        private Visibility _newProductAddVisibility;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -35,6 +39,8 @@ namespace R54IN0.WPF
             SelectedNodes = new ObservableCollection<TreeViewNode>();
             DragCommand = new CommandHandler(ExecuteDrag, CanDrag);
             DropCommand = new CommandHandler(ExecuteDrop, CanDrop);
+            NewFolderAddMenuVisibility = Visibility.Visible;
+            NewProductAddMenuVisibility = Visibility.Visible;
         }
 
         public ObservableCollection<TreeViewNode> Root { get; private set; }
@@ -55,6 +61,32 @@ namespace R54IN0.WPF
         public ICommand DragCommand { get; set; }
 
         public ICommand DropCommand { get; set; }
+
+        public Visibility NewFolderAddMenuVisibility
+        {
+            get
+            {
+                return _newFolderAddVisibility;
+            }
+            set
+            {
+                _newFolderAddVisibility = value;
+                NotifyPropertyChanged("NewFolderAddVisibility");
+            }
+        }
+
+        public Visibility NewProductAddMenuVisibility
+        {
+            get
+            {
+                return _newProductAddVisibility;
+            }
+            set
+            {
+                _newProductAddVisibility = value;
+                NotifyPropertyChanged("NewProductAddVisibility");
+            }
+        }
 
         /// <summary>
         /// TreeViewEx의 OnSelecting 이벤트와 연결

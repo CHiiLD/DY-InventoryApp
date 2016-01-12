@@ -33,6 +33,7 @@ namespace R54IN0.WPF
         /// 데이터 그리드의 입출고 데이터를 일시적으로 보관
         /// </summary>
         private SortedDictionary<string, IOStockDataGridItem> _backupSource;
+
         private bool _canModify;
         private bool? _showSpecificationMemoColumn;
         private bool? _showMakerColumn;
@@ -364,6 +365,8 @@ namespace R54IN0.WPF
             TreeViewViewModel.PropertyChanged += OnTreeViewNodesSelected;
             TreeViewViewModel.DragCommand = null;
             TreeViewViewModel.DropCommand = null;
+            TreeViewViewModel.NewFolderAddMenuVisibility = Visibility.Collapsed;
+            TreeViewViewModel.NewProductAddMenuVisibility = Visibility.Collapsed;
 
             NewInoutStockAddCommand = new CommandHandler(ExecuteNewInoutStockAddCommand, (object obj) => { return true; });
             DataGridViewModel.PropertyChanged += OnDataGridViewModelPropertyChanged;

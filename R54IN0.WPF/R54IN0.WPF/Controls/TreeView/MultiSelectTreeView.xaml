@@ -10,13 +10,15 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
+        <local:BindingProxy x:Key="DataContextProxy" DataContext="{Binding}" />
+
         <ContextMenu x:Key="CellContextMenu">
-            <MenuItem Header="이름 바꾸기"></MenuItem>
-            <MenuItem Header="새로운 폴더 추가하기"></MenuItem>
-            <MenuItem Header="새로운 제품 추가하기"></MenuItem>
-            <Separator />
-            <MenuItem Header="제품별 입출고 현황으로 보기"></MenuItem>
-            <MenuItem Header="새로운 입출고 기록 추가하기"></MenuItem>
+            <MenuItem Header="이름 바꾸기" />
+            <MenuItem Visibility="{Binding DataContext.NewFolderAddMenuVisibility, Source={StaticResource DataContextProxy}}" Header="새로운 폴더 추가하기" />
+            <MenuItem Visibility="{Binding DataContext.NewProductAddMenuVisibility, Source={StaticResource DataContextProxy}}" Header="새로운 제품 추가하기" />
+            <MenuItem Header="제품별 입출고 현황으로 보기" />
+            <MenuItem Header="새로운 입출고 기록 추가하기" />
+            <MenuItem Header="재고현황으로 보기" />
         </ContextMenu>
 
         <HierarchicalDataTemplate DataType="{x:Type local:TreeViewNode}" ItemsSource="{Binding Root}">
@@ -31,7 +33,7 @@
                 <edttxt:EditableTextBlock
                      Grid.Column="1"
                     Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    IsInEditMode="{Binding IsNameEditable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    IsInEditMode="{Binding IsNameEditable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
             </Grid>
         </HierarchicalDataTemplate>
 

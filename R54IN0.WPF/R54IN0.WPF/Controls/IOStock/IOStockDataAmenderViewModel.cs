@@ -27,7 +27,7 @@ namespace R54IN0.WPF
             }
         }
 
-        IOStockStatusViewModel _ioStockStatusViewModel;
+        private IOStockStatusViewModel _ioStockStatusViewModel;
         private IObservableIOStockProperties _originObservableIOStock;
         private Mode _mode;
         private bool _isOpenFlyout;
@@ -154,6 +154,7 @@ namespace R54IN0.WPF
                                 InventoryQuantity = Inventory.Quantity + value;
                             }
                             break;
+
                         case IOStockType.OUTGOING: //출고할 경우 기존의 데이터만 사용하기에
                             if (Product == null || Inventory == null) //새로운 제품의 규격을 등록하는 경우
                             {
@@ -168,6 +169,7 @@ namespace R54IN0.WPF
                             break;
                     }
                     break;
+
                 case Mode.MODIFY:
                     switch (StockType)
                     {
@@ -293,7 +295,7 @@ namespace R54IN0.WPF
                 Inventory = originInventory;
             }
         }
-        
+
         /// <summary>
         /// 새로 추가할 텍스트 필드들을 Observable<T>객체로 초기화하여 생성
         /// </summary>
@@ -333,7 +335,7 @@ namespace R54IN0.WPF
         }
 
         /// <summary>
-        /// 입출고 데이터를 새로 추가하는 경우 또는 과거의 데이터를 수정할 경우 입출고 수량에 변화가 있다면 
+        /// 입출고 데이터를 새로 추가하는 경우 또는 과거의 데이터를 수정할 경우 입출고 수량에 변화가 있다면
         /// 관련 IOStock 데이터들의 잔여수량 및 재고수량을 다시 계산하여 전부 업데이트하고 Owner의 DataGridItems 역시 변화된 값들을 반영하게 한다.
         /// TODO
         /// </summary>
@@ -342,10 +344,10 @@ namespace R54IN0.WPF
             using (var db = LexDb.GetDbInstance())
             {
                 List<IOStockFormat> formats = db.Table<IOStockFormat>().IndexQueryByKey("InventoryID", Inventory.ID).ToList();
-                if(formats.Count() == 0)
+                if (formats.Count() == 0)
                     return;
                 var orderedFormats = formats.Where(x => x.Date > Date).OrderBy(x => x.Date);
-                foreach(var fmt in orderedFormats)
+                foreach (var fmt in orderedFormats)
                 {
                     int qty = 0;
                     switch (_mode)
@@ -356,6 +358,7 @@ namespace R54IN0.WPF
                             else
                                 qty = RemainingQuantity;
                             break;
+
                         case Mode.MODIFY:
                             qty = RemainingQuantity - _originObservableIOStock.RemainingQuantity;
                             break;
@@ -404,6 +407,7 @@ namespace R54IN0.WPF
             }
             IsOpenFlyout = false;
         }
+
         private bool CanRecord(object arg)
         {
             if (Product == null && string.IsNullOrEmpty(ProductText))

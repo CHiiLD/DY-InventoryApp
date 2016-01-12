@@ -30,6 +30,7 @@ namespace R54IN0.WPF
             get;
             set;
         }
+
         public IOStockDatePickerViewModel()
         {
             SearchCommand = new CommandHandler(ExecuteSearchCommand, Can);
@@ -54,6 +55,7 @@ namespace R54IN0.WPF
             //베이스
             ExecuteThisWeekCommand(null);
         }
+
         public ICommand SearchCommand { get; set; }
 
         public DateTime FromDate

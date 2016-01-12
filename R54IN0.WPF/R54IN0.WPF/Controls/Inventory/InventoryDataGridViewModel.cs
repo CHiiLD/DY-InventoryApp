@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,6 +30,43 @@ namespace R54IN0.WPF
                 _propertyChanged -= value;
             }
         }
+
+        /// <summary>
+        /// 생성자
+        /// </summary>
+        public InventoryDataGridViewModel()
+        {
+            _items = new ObservableCollection<ObservableInventory>();
+            InquiryAsIOStockDataCommand = new CommandHandler(ExecuteInquiryAsIOStockDataCommand, IsSelectedItem);
+            NewIOStockDataAddCommand = new CommandHandler(ExecuteNewIOStockDataAddCommand, IsSelectedItem);
+            InventoryDataDeleteCommand = new CommandHandler(ExecuteInventoryDataDeleteCommand, IsSelectedItem);
+        }
+
+        private void ExecuteInventoryDataDeleteCommand(object obj)
+        {
+
+        }
+
+        private void ExecuteNewIOStockDataAddCommand(object obj)
+        {
+
+        }
+
+        private void ExecuteInquiryAsIOStockDataCommand(object obj)
+        {
+
+        }
+
+        private bool IsSelectedItem(object arg)
+        {
+            return SelectedItem != null;
+        }
+
+        public ICommand InquiryAsIOStockDataCommand { get; set;}
+
+        public ICommand NewIOStockDataAddCommand { get; set; }
+
+        public ICommand InventoryDataDeleteCommand { get; set; }
 
         /// <summary>
         /// 제품열 보기/숨기기
@@ -77,15 +115,6 @@ namespace R54IN0.WPF
                 NotifyPropertyChanged("MeasureColumnVisibility");
             }
         }
-
-        /// <summary>
-        /// 생성자
-        /// </summary>
-        public InventoryDataGridViewModel()
-        {
-            _items = new ObservableCollection<ObservableInventory>();
-        }
-
         /// <summary>
         /// 수량을 제외한 모든열에 대한 IsReadOnly 바인딩 프로퍼티
         /// </summary>
@@ -149,6 +178,8 @@ namespace R54IN0.WPF
                 }
             }
         }
+
+
 
         public void NotifyPropertyChanged(string name)
         {

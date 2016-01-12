@@ -7,15 +7,18 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="900">
 
+    <UserControl.Resources>
+        <local:BindingProxy x:Key="DataContextProxy" DataContext="{Binding}" />
+    </UserControl.Resources>
+
     <Grid>
-        <FrameworkElement x:Name="ProxyElement" Visibility="Collapsed" />
         <DataGrid x:Name="DataGridControl" AutoGenerateColumns="False" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" GridLinesVisibility="All">
             <DataGrid.Resources>
                 <local:StockTypeToStringConverter x:Key="StockTypeConverter" />
-                <ContextMenu  x:Key="IOStockDataGridContextMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
-                    <MenuItem Header="새로운 입출고 기록 추가하기"/>
-                    <MenuItem Header="입출고 기록 수정하기"/>
-                    <MenuItem Header="입출고 기록 삭제하기"/>
+                <ContextMenu  x:Key="IOStockDataGridContextMenu">
+                    <MenuItem Header="새로운 입출고 기록 추가하기" />
+                    <MenuItem Header="입출고 기록 수정하기" />
+                    <MenuItem Header="입출고 기록 삭제하기" />
                     <MenuItem Header="제품별 입출고 현황으로 보기" />
                     <MenuItem Header="재고현황으로 보기" />
                 </ContextMenu>
@@ -27,31 +30,82 @@
                 </Style>
             </DataGrid.RowStyle>
 
+            <DataGrid.CellStyle>
+                <Style
+                    TargetType="{x:Type DataGridCell}"
+                    BasedOn="{StaticResource MetroDataGridCell}">
+
+                    <Setter Property="BorderThickness"
+                            Value="0" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                    <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="1" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Column.DisplayIndex}"
+                         Value="1">
+                            <Setter Property="Background"
+                        Value="{DynamicResource AccentColorBrush4}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Column.DisplayIndex}"
+                         Value="13">
+                            <Setter Property="Background"
+                        Value="{DynamicResource AccentColorBrush4}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn
-                ElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                Header="체크" Binding="{Binding IsChecked}" />
-                <DataGridTextColumn Header="종류" IsReadOnly="True" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" >
+                    ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                    EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                    Header="체크" Binding="{Binding IsChecked}" >
+                </DataGridCheckBoxColumn>
+                
+                <DataGridTextColumn Header="종류" IsReadOnly="True" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StockType}" Value="INCOMING">
+                                    <Setter Property="Foreground" Value="#FF3362FF"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding StockType}" Value="OUTGOING">
+                                    <Setter Property="Foreground" Value="#FFE24D83"/>
+                                </DataTrigger>
+                            </Style.Triggers>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="날짜" IsReadOnly="True" Width="Auto" Binding="{Binding Date, StringFormat='{}{0:yyyy-MM-dd}'}" />
-                <DataGridTextColumn Header="제품" Width="Auto" Binding="{Binding Inventory.Product.Name}" 
-                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
-                <DataGridTextColumn Header="규격" Width="Auto"  Binding="{Binding Inventory.Specification}" 
-                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
-                <DataGridTextColumn Header="규격의 설명" Width="1*" Binding="{Binding Inventory.Memo}" 
-                                IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"
-                                Visibility="{Binding Path=DataContext.SpecificationMemoColumnVisibility, Mode=TwoWay, Source={x:Reference ProxyElement}}" />
-                <DataGridTextColumn Header="제조사" Width="Auto"  Binding="{Binding Inventory.Maker.Name}" 
-                                IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"
-                                Visibility="{Binding Path=DataContext.MakerColumnVisibility, Mode=TwoWay, Source={x:Reference ProxyElement}}" />
+                <DataGridTextColumn Header="제품" Width="Auto" Binding="{Binding Inventory.Product.Name}"
+                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
+                <DataGridTextColumn Header="규격" Width="Auto"  Binding="{Binding Inventory.Specification}"
+                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
+                <DataGridTextColumn Header="규격의 설명" Width="1*" Binding="{Binding Inventory.Memo}"
+                                IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                Visibility="{Binding DataContext.SpecificationMemoColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
+                <DataGridTextColumn Header="제조사" Width="Auto"  Binding="{Binding Inventory.Maker.Name}"
+                                IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                Visibility="{Binding DataContext.MakerColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
 
-                <DataGridTextColumn Header="입고수량" IsReadOnly="True" Binding="{Binding InComingQuantity, StringFormat='{}{0:#,#.}'}" >
+                <DataGridTextColumn Header="입고수량" IsReadOnly="True" Binding="{Binding InComingQuantity, StringFormat='{}{0:#,#.}'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Right" />
@@ -59,7 +113,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="출고수량" IsReadOnly="True" Binding="{Binding OutGoingQuantity, StringFormat='{}{0:#,#.}'}" >
+                <DataGridTextColumn Header="출고수량" IsReadOnly="True" Binding="{Binding OutGoingQuantity, StringFormat='{}{0:#,#.}'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Right" />
@@ -68,7 +122,7 @@
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Header="잔여수량" Binding="{Binding RemainingQuantity, StringFormat='{}{0:#,#.}'}" IsReadOnly="True"
-                                    Visibility="{Binding Path=DataContext.RemainQtyColumnVisibility, Mode=TwoWay, Source={x:Reference ProxyElement}}">
+                                    Visibility="{Binding DataContext.RemainQtyColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Right" />
@@ -76,31 +130,39 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="단위" Binding="{Binding Inventory.Measure.Name}" 
-                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
+                <DataGridTextColumn Header="단위" Binding="{Binding Inventory.Measure.Name}"
+                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
 
-                <DataGridTextColumn Header="보관장소" Binding="{Binding Warehouse.Name}" 
-                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
-                <DataGridTextColumn Header="프로젝트명" Binding="{Binding Project.Name}" 
-                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
+                <DataGridTextColumn Header="보관장소" Binding="{Binding Warehouse.Name}"
+                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
+                <DataGridTextColumn Header="프로젝트명" Binding="{Binding Project.Name}"
+                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
 
-                <DataGridTextColumn Header="종류" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" 
-                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"
-                                    Visibility="{Binding Path=DataContext.SecondStockTypeColumnVisibility, Mode=TwoWay, Source={x:Reference ProxyElement}}">
+                <DataGridTextColumn Header="종류" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}"
+                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                    Visibility="{Binding DataContext.SecondStockTypeColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StockType}" Value="INCOMING">
+                                    <Setter Property="Foreground" Value="#FF3362FF"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding StockType}" Value="OUTGOING">
+                                    <Setter Property="Foreground" Value="#FFE24D83"/>
+                                </DataTrigger>
+                            </Style.Triggers>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="단가" IsReadOnly="True" Binding="{Binding UnitPrice, StringFormat='{}{0:#,#.}'}" >
+                <DataGridTextColumn Header="단가" IsReadOnly="True" Binding="{Binding UnitPrice, StringFormat='{}{0:#,#.}'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Right" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="합계" IsReadOnly="True" Binding="{Binding TotalPrice, StringFormat='{}{0:#,#.}'}" >
+                <DataGridTextColumn Header="합계" IsReadOnly="True" Binding="{Binding TotalPrice, StringFormat='{}{0:#,#.}'}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Right" />
@@ -108,15 +170,15 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="구입처" Binding="{Binding Supplier.Name}" 
-                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
-                <DataGridTextColumn Header="판매처" Binding="{Binding Customer.Name}" 
-                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
-                <DataGridTextColumn Header="담당자" Binding="{Binding Employee.Name}" 
-                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
+                <DataGridTextColumn Header="구입처" Binding="{Binding Supplier.Name}"
+                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
+                <DataGridTextColumn Header="판매처" Binding="{Binding Customer.Name}"
+                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
+                <DataGridTextColumn Header="담당자" Binding="{Binding Employee.Name}"
+                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
 
-                <DataGridTextColumn Header="비고" Width="2*" Binding="{Binding Memo}" 
-                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
+                <DataGridTextColumn Header="비고" Width="2*" Binding="{Binding Memo}"
+                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

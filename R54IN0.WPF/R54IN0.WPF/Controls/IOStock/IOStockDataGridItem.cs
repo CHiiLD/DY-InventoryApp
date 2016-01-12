@@ -7,7 +7,7 @@
             IsChecked = false;
         }
 
-        bool? _isChecked;
+        private bool? _isChecked;
 
         public bool? IsChecked
         {

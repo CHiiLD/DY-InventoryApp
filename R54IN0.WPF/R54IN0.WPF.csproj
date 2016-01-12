@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="R54IN0.WPF\Controls\BindingProxy.cs" />
     <Compile Include="R54IN0.WPF\Controls\ICollectionViewModel.cs" />
     <Compile Include="R54IN0.WPF\Controls\ICollectionViewModelObserver.cs" />
     <Compile Include="R54IN0.WPF\Controls\IOStock\EnumBooleanConverter.cs" />

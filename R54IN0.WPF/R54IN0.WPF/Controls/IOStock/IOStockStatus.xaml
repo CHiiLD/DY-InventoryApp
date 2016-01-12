@@ -59,20 +59,19 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <Grid Margin="0,-5,0,0" >
+                <Grid Margin="0,-5,0,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="13*"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="13*" />
                     </Grid.ColumnDefinitions>
                     <mah:ToggleSwitch OnLabel="빠른 편집" OffLabel="빠른 편집" IsChecked="{Binding CanModify}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,20,0" />
                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <StackPanel.Resources>
                             <Style TargetType="CheckBox" BasedOn="{StaticResource MetroCheckBox}">
-                                <Setter Property="Margin" Value="0,0,20,0" />
+                                <Setter Property="Margin" Value="0,0,10,0" />
                             </Style>
                         </StackPanel.Resources>
-
                         <CheckBox Content="설명열 보기" IsChecked="{Binding ShowSpecificationMemoColumn}" />
                         <CheckBox Content="제조사열 보기" IsChecked="{Binding ShowMakerColumn}" />
                         <CheckBox Content="잔여수량열 보기" IsChecked="{Binding ShowRemainQtyColumn}" />
