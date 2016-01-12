@@ -38,31 +38,31 @@ namespace R54IN0.Test.New
             var viewmodel = new InventoryStatusViewModel();
 
             viewmodel.ShowMakerColumn = true;
-            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.MakerVisibility);
+            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.MakerColumnVisibility);
 
             viewmodel.ShowProductColumn = true;
-            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.ProductVisibility);
+            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.ProductColumnVisibility);
 
             viewmodel.ShowMeasureColumn = true;
-            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.MeasureVisibility);
+            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.MeasureColumnVisibility);
 
             viewmodel.ShowMakerColumn = false;
-            Assert.AreEqual(Visibility.Collapsed, viewmodel.DataGridViewModel1.MakerVisibility);
+            Assert.AreEqual(Visibility.Collapsed, viewmodel.DataGridViewModel1.MakerColumnVisibility);
 
             viewmodel.ShowProductColumn = false;
-            Assert.AreEqual(Visibility.Collapsed, viewmodel.DataGridViewModel1.ProductVisibility);
+            Assert.AreEqual(Visibility.Collapsed, viewmodel.DataGridViewModel1.ProductColumnVisibility);
 
             viewmodel.ShowMeasureColumn = false;
-            Assert.AreEqual(Visibility.Collapsed, viewmodel.DataGridViewModel1.MeasureVisibility);
+            Assert.AreEqual(Visibility.Collapsed, viewmodel.DataGridViewModel1.MeasureColumnVisibility);
 
             viewmodel.ShowMakerColumn = true;
-            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.MakerVisibility);
+            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.MakerColumnVisibility);
 
             viewmodel.ShowProductColumn = true;
-            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.ProductVisibility);
+            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.ProductColumnVisibility);
 
             viewmodel.ShowMeasureColumn = true;
-            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.MeasureVisibility);
+            Assert.AreEqual(Visibility.Visible, viewmodel.DataGridViewModel1.MeasureColumnVisibility);
         }
 
         /// <summary>

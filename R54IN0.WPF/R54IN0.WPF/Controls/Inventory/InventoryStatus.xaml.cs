@@ -16,6 +16,8 @@ namespace R54IN0.WPF
             //datagrid binding
             DataGridL.DataContext = viewmodel.DataGridViewModel1;
             DataGridR.DataContext = viewmodel.DataGridViewModel2;
+            DataGridL.DataGridControl.PreviewTextInput += viewmodel.DataGridViewModel1.OnPreviewTextInputted;
+            DataGridR.DataGridControl.PreviewTextInput += viewmodel.DataGridViewModel2.OnPreviewTextInputted;
 
             ProductSelector.DataContext = viewmodel.TreeViewViewModel;
             ProductSelector.MultiSelectTreeView.TreeView.OnSelecting += viewmodel.TreeViewViewModel.OnNodeSelected;

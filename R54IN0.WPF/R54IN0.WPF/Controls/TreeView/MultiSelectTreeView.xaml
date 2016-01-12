@@ -11,11 +11,11 @@
 
     <UserControl.Resources>
         <ContextMenu x:Key="CellContextMenu">
-            <MenuItem Header="이름 변경하기"></MenuItem>
+            <MenuItem Header="이름 바꾸기"></MenuItem>
             <MenuItem Header="새로운 폴더 추가하기"></MenuItem>
             <MenuItem Header="새로운 제품 추가하기"></MenuItem>
             <Separator />
-            <MenuItem Header="입출고 현황으로 보기"></MenuItem>
+            <MenuItem Header="제품별 입출고 현황으로 보기"></MenuItem>
             <MenuItem Header="새로운 입출고 기록 추가하기"></MenuItem>
         </ContextMenu>
 

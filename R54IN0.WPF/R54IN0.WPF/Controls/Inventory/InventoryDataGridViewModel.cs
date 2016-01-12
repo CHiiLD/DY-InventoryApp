@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace R54IN0.WPF
 {
@@ -9,9 +11,9 @@ namespace R54IN0.WPF
         private ObservableCollection<ObservableInventory> _items;
         private ObservableInventory _selectedItem;
         private bool _isReadOnly;
-        private Visibility _productVisibility;
-        private Visibility _makerVisibility;
-        private Visibility _measureVisibility;
+        private Visibility _productColumnVisibility;
+        private Visibility _makerColumnVisibility;
+        private Visibility _measureColumnVisibility;
 
         private event PropertyChangedEventHandler _propertyChanged;
 
@@ -31,48 +33,48 @@ namespace R54IN0.WPF
         /// <summary>
         /// 제품열 보기/숨기기
         /// </summary>
-        public Visibility ProductVisibility
+        public Visibility ProductColumnVisibility
         {
             get
             {
-                return _productVisibility;
+                return _productColumnVisibility;
             }
             set
             {
-                _productVisibility = value;
-                NotifyPropertyChanged("ProductVisibility");
+                _productColumnVisibility = value;
+                NotifyPropertyChanged("ProductColumnVisibility");
             }
         }
 
         /// <summary>
         /// 제조사열 보기/숨기기
         /// </summary>
-        public Visibility MakerVisibility
+        public Visibility MakerColumnVisibility
         {
             get
             {
-                return _makerVisibility;
+                return _makerColumnVisibility;
             }
             set
             {
-                _makerVisibility = value;
-                NotifyPropertyChanged("MakerVisibility");
+                _makerColumnVisibility = value;
+                NotifyPropertyChanged("MakerColumnVisibility");
             }
         }
 
         /// <summary>
         /// 단위열 보기/숨기기
         /// </summary>
-        public Visibility MeasureVisibility
+        public Visibility MeasureColumnVisibility
         {
             get
             {
-                return _measureVisibility;
+                return _measureColumnVisibility;
             }
             set
             {
-                _measureVisibility = value;
-                NotifyPropertyChanged("MeasureVisibility");
+                _measureColumnVisibility = value;
+                NotifyPropertyChanged("MeasureColumnVisibility");
             }
         }
 
@@ -123,6 +125,28 @@ namespace R54IN0.WPF
             {
                 _selectedItem = value;
                 NotifyPropertyChanged("SelectedItem");
+            }
+        }
+
+        public void OnPreviewTextInputted(object sender, TextCompositionEventArgs e)
+        {
+            var datagrid = sender as DataGrid;
+            if (datagrid != null)
+            {
+                IOStockDataGridItem item = datagrid.CurrentItem as IOStockDataGridItem;
+                DataGridColumn column = datagrid.CurrentColumn;
+                if (column.SortMemberPath.Contains("Name"))
+                {
+                    string propertyPath = column.SortMemberPath.Replace(".Name", "");
+                    string[] paths = propertyPath.Split('.');
+                    object property = item;
+                    foreach (var path in paths)
+                    {
+                        property = property.GetType().GetProperty(path).GetValue(property, null);
+                    }
+                    if (property == null)
+                        e.Handled = true;
+                }
             }
         }
 

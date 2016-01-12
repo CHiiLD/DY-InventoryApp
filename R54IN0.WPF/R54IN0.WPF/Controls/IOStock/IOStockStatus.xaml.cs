@@ -14,12 +14,13 @@ namespace R54IN0.WPF
 
             IOStockStatusViewModel viewmodel = new IOStockStatusViewModel();
             DataContext = viewmodel;
-            this.DataGrid.DataContext = viewmodel.DataGridViewModel;
+            DataGrid.DataContext = viewmodel.DataGridViewModel;
+            DataGrid.DataGridControl.PreviewTextInput += viewmodel.DataGridViewModel.OnPreviewTextInputted;
 
             DatePicker.DataContext = viewmodel.DatePickerViewModel;
             ProjectListBox.DataContext = viewmodel.ProjectListBoxViewModel;
-            ProductSelector.DataContext = viewmodel.TreeViewViewModel;
-            ProductSelector.MultiSelectTreeView.TreeView.OnSelecting += viewmodel.TreeViewViewModel.OnNodeSelected;
+            MSTreeView.DataContext = viewmodel.TreeViewViewModel;
+            MSTreeView.TreeView.OnSelecting += viewmodel.TreeViewViewModel.OnNodeSelected;
 
             viewmodel.SelectedGroupItem = viewmodel.GroupItems.First();
         }

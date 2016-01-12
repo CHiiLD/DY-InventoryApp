@@ -33,6 +33,12 @@ namespace R54IN0.WPF
         /// 데이터 그리드의 입출고 데이터를 일시적으로 보관
         /// </summary>
         private SortedDictionary<string, IOStockDataGridItem> _backupSource;
+        private bool _canModify;
+        private bool? _showSpecificationMemoColumn;
+        private bool? _showMakerColumn;
+        private bool? _showRemainQtyColumn;
+        private bool? _showSecondStockTypeColumn;
+
         private event PropertyChangedEventHandler _propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
@@ -82,7 +88,7 @@ namespace R54IN0.WPF
             set;
         }
 
-        public ProductSelectorViewModel TreeViewViewModel
+        public MultiSelectTreeViewModelView TreeViewViewModel
         {
             get;
             set;
@@ -249,6 +255,91 @@ namespace R54IN0.WPF
         /// </summary>
         public ICommand SelectedItemModifyCommand { get; set; }
 
+        /// <summary>
+        /// ToggleSwitch 데이터그리드의 IsReadOnly프로퍼티와 연결
+        /// </summary>
+        public bool CanModify
+        {
+            get
+            {
+                return _canModify;
+            }
+            set
+            {
+                _canModify = value;
+                DataGridViewModel.IsReadOnly = !value;
+                NotifyPropertyChanged("CanModify");
+            }
+        }
+
+        /// <summary>
+        /// CheckBox IsChecked 바인딩 프로퍼티
+        /// </summary>
+        public bool? ShowSpecificationMemoColumn
+        {
+            get
+            {
+                return _showSpecificationMemoColumn;
+            }
+            set
+            {
+                _showSpecificationMemoColumn = value;
+                DataGridViewModel.SpecificationMemoColumnVisibility = value == true ? Visibility.Visible : Visibility.Collapsed;
+                NotifyPropertyChanged("ShowSpecificationMemoColumn");
+            }
+        }
+
+        /// <summary>
+        /// CheckBox IsChecked 바인딩 프로퍼티
+        /// </summary>
+        public bool? ShowMakerColumn
+        {
+            get
+            {
+                return _showMakerColumn;
+            }
+            set
+            {
+                _showMakerColumn = value;
+                DataGridViewModel.MakerColumnVisibility = value == true ? Visibility.Visible : Visibility.Collapsed;
+                NotifyPropertyChanged("ShowMakerColumn");
+            }
+        }
+
+        /// <summary>
+        /// CheckBox IsChecked 바인딩 프로퍼티
+        /// </summary>
+        public bool? ShowRemainQtyColumn
+        {
+            get
+            {
+                return _showRemainQtyColumn;
+            }
+            set
+            {
+                _showRemainQtyColumn = value;
+                DataGridViewModel.RemainQtyColumnVisibility = value == true ? Visibility.Visible : Visibility.Collapsed;
+                NotifyPropertyChanged("ShowRemainQtyColumn");
+            }
+        }
+
+        /// <summary>
+        /// CheckBox IsChecked 바인딩 프로퍼티
+        /// </summary>
+        public bool? ShowSecondStockTypeColumn
+        {
+            get
+            {
+                return _showSecondStockTypeColumn;
+            }
+            set
+            {
+                _showSecondStockTypeColumn = value;
+                DataGridViewModel.SecondStockTypeColumnVisibility = value == true ? Visibility.Visible : Visibility.Collapsed;
+                NotifyPropertyChanged("ShowSecondStockTypeColumn");
+            }
+        }
+
         public void NotifyPropertyChanged(string name)
         {
             if (_propertyChanged != null)
@@ -262,7 +353,7 @@ namespace R54IN0.WPF
         {
             DataGridViewModel = new IOStockDataGridViewModel();
             ProjectListBoxViewModel = new IOStockProjectListBoxViewModel();
-            TreeViewViewModel = new ProductSelectorViewModel();
+            TreeViewViewModel = new MultiSelectTreeViewModelView();
             DatePickerViewModel = new IOStockDatePickerViewModel();
 
             IsCheckedInComing = true;
@@ -271,10 +362,18 @@ namespace R54IN0.WPF
             DatePickerViewModel.CommandExecuted += OndatePickerCommandExecuted;
             ProjectListBoxViewModel.PropertyChanged += OnProjectListPropertyChanged;
             TreeViewViewModel.PropertyChanged += OnTreeViewNodesSelected;
+            TreeViewViewModel.DragCommand = null;
+            TreeViewViewModel.DropCommand = null;
 
             NewInoutStockAddCommand = new CommandHandler(ExecuteNewInoutStockAddCommand, (object obj) => { return true; });
             DataGridViewModel.PropertyChanged += OnDataGridViewModelPropertyChanged;
             SelectedItemModifyCommand = new CommandHandler(ExecuteSelectedItemModifyCommand, CanModifySelectedItem);
+
+            ShowMakerColumn = true;
+            ShowRemainQtyColumn = true;
+            ShowSecondStockTypeColumn = true;
+            ShowSpecificationMemoColumn = true;
+            CanModify = false;
         }
 
         private bool CanModifySelectedItem(object arg)

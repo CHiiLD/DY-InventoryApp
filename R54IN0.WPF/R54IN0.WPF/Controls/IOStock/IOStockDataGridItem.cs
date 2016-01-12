@@ -7,7 +7,20 @@
             IsChecked = false;
         }
 
-        public bool? IsChecked { get; set; }
+        bool? _isChecked;
+
+        public bool? IsChecked
+        {
+            get
+            {
+                return _isChecked;
+            }
+            set
+            {
+                _isChecked = value;
+                NotifyPropertyChanged("IsChecked");
+            }
+        }
 
         public int? InComingQuantity
         {

@@ -77,7 +77,7 @@ namespace R54IN0.WPF
             set
             {
                 _showProductColumn = value;
-                DataGridViewModel1.ProductVisibility = DataGridViewModel2.ProductVisibility = value == true ? Visibility.Visible : Visibility.Collapsed;
+                DataGridViewModel1.ProductColumnVisibility = DataGridViewModel2.ProductColumnVisibility = value == true ? Visibility.Visible : Visibility.Collapsed;
                 NotifyPropertyChanged("ShowProductColumn");
             }
         }
@@ -94,7 +94,7 @@ namespace R54IN0.WPF
             set
             {
                 _showMakerColumn = value;
-                DataGridViewModel1.MakerVisibility = DataGridViewModel2.MakerVisibility = value == true ? Visibility.Visible : Visibility.Collapsed;
+                DataGridViewModel1.MakerColumnVisibility = DataGridViewModel2.MakerColumnVisibility = value == true ? Visibility.Visible : Visibility.Collapsed;
                 NotifyPropertyChanged("ShowMakerColumn");
             }
         }
@@ -111,7 +111,7 @@ namespace R54IN0.WPF
             set
             {
                 _showMeasureColumn = value;
-                DataGridViewModel1.MeasureVisibility = DataGridViewModel2.MeasureVisibility = value == true ? Visibility.Visible : Visibility.Collapsed;
+                DataGridViewModel1.MeasureColumnVisibility = DataGridViewModel2.MeasureColumnVisibility = value == true ? Visibility.Visible : Visibility.Collapsed;
                 NotifyPropertyChanged("ShowMeasureColumn");
             }
         }

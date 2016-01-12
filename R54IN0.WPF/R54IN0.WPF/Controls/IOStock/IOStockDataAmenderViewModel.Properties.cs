@@ -124,7 +124,7 @@ namespace R54IN0.WPF
                     if (Inventory != null)
                     {
                         var formats = db.Table<IOStockFormat>().IndexQueryByKey("InventoryID", Inventory.ID);
-                        _laststFormat = formats.ToList().Where(x => x.Date < value).OrderBy(x => x.Date).LastOrDefault();
+                        _nearIOStockFormat = formats.ToList().Where(x => x.Date < value).OrderBy(x => x.Date).LastOrDefault();
                     }
                 }
                 UpdateQuantityProperties(Quantity);
@@ -291,7 +291,7 @@ namespace R54IN0.WPF
                     Measure = null;
                     MakerText = null;
                     MeasureText = null;
-                    _laststFormat = null;
+                    _nearIOStockFormat = null;
                 }
                 else
                 {

@@ -38,7 +38,7 @@ namespace R54IN0.WPF
         private string _specificationMemo;
         private Observable<Measure> _measure;
         private Observable<Maker> _maker;
-        private IOStockFormat _laststFormat;
+        private IOStockFormat _nearIOStockFormat;
         private bool _isEnabledWarehouseComboBox;
         private bool _isEnabledProjectComboBox;
         private string _productText;
@@ -150,7 +150,7 @@ namespace R54IN0.WPF
                             }
                             else //기존 제품의 규격에 입고 하는 경우
                             {
-                                RemainingQuantity = (_laststFormat == null) ? value : _laststFormat.RemainingQuantity + Quantity;
+                                RemainingQuantity = (_nearIOStockFormat == null) ? value : _nearIOStockFormat.RemainingQuantity + Quantity;
                                 InventoryQuantity = Inventory.Quantity + value;
                             }
                             break;
@@ -162,7 +162,7 @@ namespace R54IN0.WPF
                             }
                             else //기존 제품의 규격에 입고 하는 경우
                             {
-                                RemainingQuantity = (_laststFormat == null) ? -value : _laststFormat.RemainingQuantity - Quantity;
+                                RemainingQuantity = (_nearIOStockFormat == null) ? -value : _nearIOStockFormat.RemainingQuantity - Quantity;
                                 InventoryQuantity = Inventory.Quantity - value;
                             }
                             break;
@@ -351,7 +351,7 @@ namespace R54IN0.WPF
                     switch (_mode)
                     {
                         case Mode.ADD:
-                            if (_laststFormat != null)
+                            if (_nearIOStockFormat != null)
                                 qty = StockType == IOStockType.INCOMING ? RemainingQuantity : -RemainingQuantity;
                             else
                                 qty = RemainingQuantity;

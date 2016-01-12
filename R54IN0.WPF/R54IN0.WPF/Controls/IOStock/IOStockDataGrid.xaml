@@ -6,83 +6,118 @@
              xmlns:local="clr-namespace:R54IN0.WPF"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="900">
-    <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" GridLinesVisibility="All">
 
-        <DataGrid.Resources>
-            <local:StockTypeToStringConverter x:Key="StockTypeConverter" />
-        </DataGrid.Resources>
+    <Grid>
+        <FrameworkElement x:Name="ProxyElement" Visibility="Collapsed" />
+        <DataGrid x:Name="DataGridControl" AutoGenerateColumns="False" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" GridLinesVisibility="All">
+            <DataGrid.Resources>
+                <local:StockTypeToStringConverter x:Key="StockTypeConverter" />
+                <ContextMenu  x:Key="IOStockDataGridContextMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                    <MenuItem Header="새로운 입출고 기록 추가하기"/>
+                    <MenuItem Header="입출고 기록 수정하기"/>
+                    <MenuItem Header="입출고 기록 삭제하기"/>
+                    <MenuItem Header="제품별 입출고 현황으로 보기" />
+                    <MenuItem Header="재고현황으로 보기" />
+                </ContextMenu>
+            </DataGrid.Resources>
 
-        <DataGrid.Columns>
-            <DataGridCheckBoxColumn Header="체크" Binding="{Binding IsChecked}" />
-            <DataGridTextColumn Header="종류" IsReadOnly="True" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" >
-                <DataGridTextColumn.ElementStyle>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="HorizontalAlignment" Value="Center" />
-                    </Style>
-                </DataGridTextColumn.ElementStyle>
-            </DataGridTextColumn>
-            <DataGridTextColumn Header="날짜" IsReadOnly="True" Width="Auto" Binding="{Binding Date, StringFormat='{}{0:yyyy-MM-dd}'}" />
-            <DataGridTextColumn Header="제품" IsReadOnly="True" Width="Auto" Binding="{Binding Inventory.Product.Name}" />
-            <DataGridTextColumn Header="규격" IsReadOnly="True" Width="Auto"  Binding="{Binding Inventory.Specification}" />
-            <DataGridTextColumn Header="규격의 설명" IsReadOnly="True" Width="1*" Binding="{Binding Inventory.Memo}" />
-            <DataGridTextColumn Header="제조사" IsReadOnly="True" Width="Auto"  Binding="{Binding Inventory.Maker.Name}" />
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource MetroDataGridRow}">
+                    <Setter Property="ContextMenu" Value="{StaticResource IOStockDataGridContextMenu}" />
+                </Style>
+            </DataGrid.RowStyle>
 
-            <DataGridTextColumn Header="입고수량" IsReadOnly="True" Binding="{Binding InComingQuantity, StringFormat='{}{0:#,#.}'}" >
-                <DataGridTextColumn.ElementStyle>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="HorizontalAlignment" Value="Right" />
-                    </Style>
-                </DataGridTextColumn.ElementStyle>
-            </DataGridTextColumn>
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn
+                ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                Header="체크" Binding="{Binding IsChecked}" />
+                <DataGridTextColumn Header="종류" IsReadOnly="True" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="날짜" IsReadOnly="True" Width="Auto" Binding="{Binding Date, StringFormat='{}{0:yyyy-MM-dd}'}" />
+                <DataGridTextColumn Header="제품" Width="Auto" Binding="{Binding Inventory.Product.Name}" 
+                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
+                <DataGridTextColumn Header="규격" Width="Auto"  Binding="{Binding Inventory.Specification}" 
+                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
+                <DataGridTextColumn Header="규격의 설명" Width="1*" Binding="{Binding Inventory.Memo}" 
+                                IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"
+                                Visibility="{Binding Path=DataContext.SpecificationMemoColumnVisibility, Mode=TwoWay, Source={x:Reference ProxyElement}}" />
+                <DataGridTextColumn Header="제조사" Width="Auto"  Binding="{Binding Inventory.Maker.Name}" 
+                                IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"
+                                Visibility="{Binding Path=DataContext.MakerColumnVisibility, Mode=TwoWay, Source={x:Reference ProxyElement}}" />
 
-            <DataGridTextColumn Header="출고수량" IsReadOnly="True" Binding="{Binding OutGoingQuantity, StringFormat='{}{0:#,#.}'}" >
-                <DataGridTextColumn.ElementStyle>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="HorizontalAlignment" Value="Right" />
-                    </Style>
-                </DataGridTextColumn.ElementStyle>
-            </DataGridTextColumn>
+                <DataGridTextColumn Header="입고수량" IsReadOnly="True" Binding="{Binding InComingQuantity, StringFormat='{}{0:#,#.}'}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
 
-            <DataGridTextColumn Header="잔여수량" IsReadOnly="True" Binding="{Binding RemainingQuantity, StringFormat='{}{0:#,#.}'}" >
-                <DataGridTextColumn.ElementStyle>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="HorizontalAlignment" Value="Right" />
-                    </Style>
-                </DataGridTextColumn.ElementStyle>
-            </DataGridTextColumn>
+                <DataGridTextColumn Header="출고수량" IsReadOnly="True" Binding="{Binding OutGoingQuantity, StringFormat='{}{0:#,#.}'}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
 
-            <DataGridTextColumn Header="단위" IsReadOnly="True" Binding="{Binding Inventory.Measure.Name}" />
+                <DataGridTextColumn Header="잔여수량" Binding="{Binding RemainingQuantity, StringFormat='{}{0:#,#.}'}" IsReadOnly="True"
+                                    Visibility="{Binding Path=DataContext.RemainQtyColumnVisibility, Mode=TwoWay, Source={x:Reference ProxyElement}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
 
-            <DataGridTextColumn Header="보관장소" IsReadOnly="True" Binding="{Binding Warehouse.Name}" />
-            <DataGridTextColumn Header="프로젝트명" IsReadOnly="True" Binding="{Binding Project.Name}" />
+                <DataGridTextColumn Header="단위" Binding="{Binding Inventory.Measure.Name}" 
+                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
 
-            <DataGridTextColumn Header="종류" IsReadOnly="True" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" >
-                <DataGridTextColumn.ElementStyle>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="HorizontalAlignment" Value="Center" />
-                    </Style>
-                </DataGridTextColumn.ElementStyle>
-            </DataGridTextColumn>
-            <DataGridTextColumn Header="단가" IsReadOnly="True" Binding="{Binding UnitPrice, StringFormat='{}{0:#,#.}'}" >
-                <DataGridTextColumn.ElementStyle>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="HorizontalAlignment" Value="Right" />
-                    </Style>
-                </DataGridTextColumn.ElementStyle>
-            </DataGridTextColumn>
-            <DataGridTextColumn Header="합계" IsReadOnly="True" Binding="{Binding TotalPrice, StringFormat='{}{0:#,#.}'}" >
-                <DataGridTextColumn.ElementStyle>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="HorizontalAlignment" Value="Right" />
-                    </Style>
-                </DataGridTextColumn.ElementStyle>
-            </DataGridTextColumn>
-            
-            <DataGridTextColumn Header="구입처" IsReadOnly="True" Binding="{Binding Supplier.Name}" />
-            <DataGridTextColumn Header="판매처" IsReadOnly="True" Binding="{Binding Customer.Name}" />
-            <DataGridTextColumn Header="담당자" IsReadOnly="True" Binding="{Binding Employee.Name}" />
+                <DataGridTextColumn Header="보관장소" Binding="{Binding Warehouse.Name}" 
+                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
+                <DataGridTextColumn Header="프로젝트명" Binding="{Binding Project.Name}" 
+                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
 
-            <DataGridTextColumn Header="비고" IsReadOnly="True" Width="2*" Binding="{Binding Memo}" />
-        </DataGrid.Columns>
-    </DataGrid>
+                <DataGridTextColumn Header="종류" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}" 
+                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"
+                                    Visibility="{Binding Path=DataContext.SecondStockTypeColumnVisibility, Mode=TwoWay, Source={x:Reference ProxyElement}}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="단가" IsReadOnly="True" Binding="{Binding UnitPrice, StringFormat='{}{0:#,#.}'}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="합계" IsReadOnly="True" Binding="{Binding TotalPrice, StringFormat='{}{0:#,#.}'}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="구입처" Binding="{Binding Supplier.Name}" 
+                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
+                <DataGridTextColumn Header="판매처" Binding="{Binding Customer.Name}" 
+                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
+                <DataGridTextColumn Header="담당자" Binding="{Binding Employee.Name}" 
+                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
+
+                <DataGridTextColumn Header="비고" Width="2*" Binding="{Binding Memo}" 
+                                    IsReadOnly="{Binding Path=DataContext.IsReadOnly, Mode=TwoWay, Source={x:Reference ProxyElement}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </UserControl>
