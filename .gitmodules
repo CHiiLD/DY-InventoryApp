@@ -16,12 +16,6 @@
 [submodule "EventBindingMarkup"]
 	path = EventBindingMarkup
 	url = https://github.com/CHiiLD/EventBindingMarkup.git
-[submodule "PropertyTools"]
-	path = PropertyTools
-	url = https://github.com/objorke/PropertyTools.git
-[submodule "MaterialDesignInXamlTookit"]
-	path = MaterialDesignInXamlToolkit
-	url = https://github.com/ButchersBoy/MaterialDesignInXamlToolkit
 [submodule "moq4"]
 	path = moq4
 	url = https://github.com/Moq/moq4
