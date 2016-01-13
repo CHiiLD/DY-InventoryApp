@@ -7,11 +7,11 @@ namespace R54IN0
     {
         string Keyword { get; set; }
 
-        CommandHandler TodayCommand { get; set; }
-        CommandHandler YesterdayCommand { get; set; }
-        CommandHandler ThisWorkCommand { get; set; }
-        CommandHandler ThisMonthCommand { get; set; }
-        CommandHandler SearchCommand { get; set; }
+        RelayCommand<object> TodayCommand { get; set; }
+        RelayCommand<object> YesterdayCommand { get; set; }
+        RelayCommand<object> ThisWorkCommand { get; set; }
+        RelayCommand<object> ThisMonthCommand { get; set; }
+        RelayCommand<object> SearchCommand { get; set; }
 
         DateTime FromDateTime { get; set; } //시작
         DateTime ToDateTime { get; set; } //끝

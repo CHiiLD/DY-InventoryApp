@@ -16,6 +16,6 @@
 [submodule "EventBindingMarkup"]
 	path = EventBindingMarkup
 	url = https://github.com/CHiiLD/EventBindingMarkup.git
-[submodule "moq4"]
-	path = moq4
-	url = https://github.com/Moq/moq4
+[submodule "mvvmlight"]
+	path = mvvmlight
+	url = https://github.com/CHiiLD/mvvmlight.git

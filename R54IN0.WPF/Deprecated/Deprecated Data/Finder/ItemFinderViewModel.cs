@@ -15,8 +15,8 @@ namespace R54IN0
             DragCommand = new DragCommand();
             DropCommand = new DropCommand(this);
 
-            RemoveDirectoryCommand = new CommandHandler(RemoveSelectedDirectories, CanRemoveSelectedDirectoies);
-            AddNewDirectoryCommand = new CommandHandler(AddNewDirectories, CanAddNewDirectory);
+            RemoveDirectoryCommand = new RelayCommand<object>(RemoveSelectedDirectories, CanRemoveSelectedDirectoies);
+            AddNewDirectoryCommand = new RelayCommand<object>(AddNewDirectories, CanAddNewDirectory);
 
             _finderDirector = FinderDirector.GetInstance();
         }
@@ -40,8 +40,8 @@ namespace R54IN0
         public DragCommand DragCommand { get; private set; }
         public DropCommand DropCommand { get; private set; }
 
-        public CommandHandler AddNewDirectoryCommand { get; private set; }
-        public CommandHandler RemoveDirectoryCommand { get; private set; }
+        public RelayCommand<object> AddNewDirectoryCommand { get; private set; }
+        public RelayCommand<object> RemoveDirectoryCommand { get; private set; }
 
         public bool CanAddNewDirectory(object pamateter)
         {
@@ -93,7 +93,7 @@ namespace R54IN0
         public override void OnNodeSelected(object sender, SelectionChangedCancelEventArgs e)
         {
             base.OnNodeSelected(sender, e);
-            RemoveDirectoryCommand.UpdateCanExecute();
+            RemoveDirectoryCommand.RaiseCanExecuteChanged();
         }
     }
 }

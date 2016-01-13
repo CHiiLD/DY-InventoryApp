@@ -6,14 +6,14 @@
 
         public ItemSourceViewModel(CollectionViewModelObserverSubject subject) : base(subject)
         {
-            AddCommand = new CommandHandler(ExecuteAddCommand, CanAddNewItem);
-            ModifyCommand = new CommandHandler(ExecuteModifyCommand, CanModifySelectedItem);
-            RemoveCommand = new CommandHandler(ExecuteRemoveCommand, CanRemoveSelectedItem);
+            AddCommand = new RelayCommand<object>(ExecuteAddCommand, CanAddNewItem);
+            ModifyCommand = new RelayCommand<object>(ExecuteModifyCommand, CanModifySelectedItem);
+            RemoveCommand = new RelayCommand<object>(ExecuteRemoveCommand, CanRemoveSelectedItem);
         }
 
-        public CommandHandler AddCommand { get; set; }
-        public CommandHandler RemoveCommand { get; set; }
-        public CommandHandler ModifyCommand { get; set; }
+        public RelayCommand<object> AddCommand { get; set; }
+        public RelayCommand<object> RemoveCommand { get; set; }
+        public RelayCommand<object> ModifyCommand { get; set; }
 
         public virtual T SelectedItem
         {
@@ -24,8 +24,8 @@
             set
             {
                 _selectedItem = value;
-                ModifyCommand.UpdateCanExecute();
-                RemoveCommand.UpdateCanExecute();
+                ModifyCommand.RaiseCanExecuteChanged();
+                RemoveCommand.RaiseCanExecuteChanged();
             }
         }
 

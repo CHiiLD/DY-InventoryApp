@@ -14,16 +14,16 @@ namespace R54IN0
 
         public FieldWrapperViewModel(CollectionViewModelObserverSubject sub) : base(sub)
         {
-            AddNewItemCommand = new CommandHandler(ExecuteNewItemAddition, CanAddNewItem);
-            DeleteItemCommand = new CommandHandler(ExecuteSelectedItemDeletion, CanDeleteSelectedItem);
+            AddNewItemCommand = new RelayCommand<object>(ExecuteNewItemAddition, CanAddNewItem);
+            DeleteItemCommand = new RelayCommand<object>(ExecuteSelectedItemDeletion, CanDeleteSelectedItem);
         }
 
-        public CommandHandler AddNewItemCommand
+        public RelayCommand<object> AddNewItemCommand
         {
             get; set;
         }
 
-        public CommandHandler DeleteItemCommand
+        public RelayCommand<object> DeleteItemCommand
         {
             get; set;
         }
@@ -51,7 +51,7 @@ namespace R54IN0
             {
                 _selectedItem = value;
                 OnPropertyChanged("SelectedItem");
-                DeleteItemCommand.UpdateCanExecute();
+                DeleteItemCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -75,14 +75,14 @@ namespace R54IN0
             Add(wrapper);
 
             SelectedItem = Items.LastOrDefault();
-            DeleteItemCommand.UpdateCanExecute();
+            DeleteItemCommand.RaiseCanExecuteChanged();
         }
 
         public virtual void ExecuteSelectedItemDeletion(object parameter)
         {
             Remove(SelectedItem);
             SelectedItem = null;
-            DeleteItemCommand.UpdateCanExecute();
+            DeleteItemCommand.RaiseCanExecuteChanged();
         }
 
         protected void OnPropertyChanged(string name)

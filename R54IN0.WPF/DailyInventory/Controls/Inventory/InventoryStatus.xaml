@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="R54IN0.WPF.InventoryStatus"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:R54IN0.WPF"
+             xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mvvmlight="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             mc:Ignorable="d"
+             d:DesignHeight="768" d:DesignWidth="1366">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="18*" MinWidth="200" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="80*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="227" />
+            </Grid.RowDefinitions>
+            <GroupBox Header="제품 탐색기" Grid.RowSpan="3">
+                <local:ProductSelector DataContext="{Binding TreeViewViewModel}"/>
+            </GroupBox>
+        </Grid>
+
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" BorderThickness="0,5" />
+
+        <GroupBox Header="재고 현황 데이터 그리드" Grid.Column="2">
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <mah:ToggleSwitch OnLabel="빠른 편집" OffLabel="빠른 편집" IsChecked="{Binding CanModify}" Margin="0,-5,0,0" />
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="20,0,0,5" HorizontalAlignment="Left">
+                        <UniformGrid Rows="1" Columns="3" Width="Auto">
+                            <CheckBox x:Name="ProductCheckBox" Content="제품열 보기" IsChecked="{Binding ShowProductColumn}" />
+                            <CheckBox x:Name="MeasureCheckBox" Content="단위열 보기" IsChecked="{Binding ShowMeasureColumn}" />
+                            <CheckBox x:Name="MakerCheckBox" Content="제조사열 보기" IsChecked="{Binding ShowMakerColumn}" />
+                        </UniformGrid>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,5,5" HorizontalAlignment="Right">
+                    <TextBox x:Name="SearchTextBox"
+                         Text="{Binding SearchViewModel.Text}"
+                         ToolTip="검색어를 기준으로 제품과 규격의 이름이 포함된 재고 정보를 검색합니다. 검색어가 여러개인 경우 OR연산으로 처리됩니다."
+                         mah:TextBoxHelper.ButtonCommand="{Binding SearchViewModel.SearchCommand}"
+                         mah:TextBoxHelper.Watermark="검색어를 입력해주세요"
+                         mah:TextBoxHelper.UseFloatingWatermark="False"
+                         mah:TextBoxHelper.ClearTextButton="False" Width="200" VerticalAlignment="Center">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}"
+                               BasedOn="{StaticResource SearchMetroTextBox}">
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+
+                <local:InventoryDataGrid DataContext="{Binding DataGridViewModel1}" Grid.Row="1" Grid.Column="0" />
+                <local:InventoryDataGrid DataContext="{Binding DataGridViewModel2}" Grid.Row="1" Grid.Column="2" />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

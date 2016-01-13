@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>R54IN0.Test</RootNamespace>
     <AssemblyName>R54IN0.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -74,10 +75,6 @@
     <ProjectReference Include="..\MahApps.Metro\MahApps.Metro\MahApps.Metro.NET45.csproj">
       <Project>{942d11c4-29f5-46c4-8c14-4b976d56c637}</Project>
       <Name>MahApps.Metro.NET45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\moq4\Source\Moq.csproj">
-      <Project>{1c91ac30-5977-4be5-ba67-8eb186c03514}</Project>
-      <Name>Moq</Name>
     </ProjectReference>
     <ProjectReference Include="..\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
       <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>

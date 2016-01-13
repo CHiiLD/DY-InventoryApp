@@ -15,24 +15,24 @@ namespace R54IN0
         {
             SearchTypes = new Type[] { typeof(Item), typeof(Specification), typeof(Maker), typeof(Warehouse) };
             SelectedSearchType = SearchTypes.First();
-            TodayCommand = new CommandHandler(ExecuteTodaySetCommand, ReturnTrue);
-            YesterdayCommand = new CommandHandler(ExecuteYesterdaySetCommand, ReturnTrue);
-            ThisWorkCommand = new CommandHandler(ExecuteThisWorkSetCommand, ReturnTrue);
-            ThisMonthCommand = new CommandHandler(ExecuteThisMonthSetCommand, ReturnTrue);
-            SearchCommand = new CommandHandler(ExecuteSearchCommand, ReturnTrue);
+            TodayCommand = new RelayCommand<object>(ExecuteTodaySetCommand, ReturnTrue);
+            YesterdayCommand = new RelayCommand<object>(ExecuteYesterdaySetCommand, ReturnTrue);
+            ThisWorkCommand = new RelayCommand<object>(ExecuteThisWorkSetCommand, ReturnTrue);
+            ThisMonthCommand = new RelayCommand<object>(ExecuteThisMonthSetCommand, ReturnTrue);
+            SearchCommand = new RelayCommand<object>(ExecuteSearchCommand, ReturnTrue);
 
             ExecuteThisMonthSetCommand(null);
         }
 
-        public CommandHandler TodayCommand { get; set; }
+        public RelayCommand<object> TodayCommand { get; set; }
 
-        public CommandHandler YesterdayCommand { get; set; }
+        public RelayCommand<object> YesterdayCommand { get; set; }
 
-        public CommandHandler ThisWorkCommand { get; set; }
+        public RelayCommand<object> ThisWorkCommand { get; set; }
 
-        public CommandHandler ThisMonthCommand { get; set; }
+        public RelayCommand<object> ThisMonthCommand { get; set; }
 
-        public CommandHandler SearchCommand { get; set; }
+        public RelayCommand<object> SearchCommand { get; set; }
 
         public DateTime FromDateTime
         {

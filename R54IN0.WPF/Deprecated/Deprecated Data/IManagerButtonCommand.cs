@@ -5,9 +5,9 @@
     /// </summary>
     public interface IButtonCommands
     {
-        CommandHandler AddCommand { get; set; }
-        CommandHandler RemoveCommand { get; set; }
-        CommandHandler ModifyCommand { get; set; }
+        RelayCommand<object> AddCommand { get; set; }
+        RelayCommand<object> RemoveCommand { get; set; }
+        RelayCommand<object> ModifyCommand { get; set; }
 
         bool CanAddNewItem(object parameter);
 

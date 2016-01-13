@@ -18,7 +18,7 @@ namespace R54IN0
         /// <summary>
         /// 새로운 규격 데이터 추가
         /// </summary>
-        public CommandHandler AddNewSpecCommand
+        public RelayCommand<object> AddNewSpecCommand
         {
             get
             {
@@ -29,7 +29,7 @@ namespace R54IN0
         /// <summary>
         /// 선택된 규격 데이터 삭제
         /// </summary>
-        public CommandHandler RemoveSpecCommand
+        public RelayCommand<object> RemoveSpecCommand
         {
             get
             {
@@ -68,7 +68,7 @@ namespace R54IN0
                     Specifications = new ObservableCollection<SpecificationWrapper>(collection);
                 }
                 if (_specViewModel != null)
-                    _specViewModel.AddNewItemCommand.UpdateCanExecute();
+                    _specViewModel.AddNewItemCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -82,7 +82,7 @@ namespace R54IN0
             {
                 _specViewModel.SelectedItem = value;
                 OnPropertyChanged("SelectedSpecification");
-                RemoveSpecCommand.UpdateCanExecute();
+                RemoveSpecCommand.RaiseCanExecuteChanged();
             }
         }
 
