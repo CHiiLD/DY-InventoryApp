@@ -131,6 +131,8 @@ namespace R54IN0.WPF
         {
             TreeViewViewModel = new MultiSelectTreeViewModelView();
             TreeViewViewModel.PropertyChanged += OnTreeViewModelPropertyChanged;
+            TreeViewViewModel.ContextMenuVisibility = Visibility.Collapsed;
+
             ProductSearchCommand = new RelayCommand<object>(ExecuteProductSearchCommand, CanSearch);
             RecordCommand = new RelayCommand<object>(ExecuteRecordCommand, CanRecord);
             ProductSelectCommand = new RelayCommand<object>(ExecuteProductSelectCommand, CanSelectProduct);
@@ -421,9 +423,9 @@ namespace R54IN0.WPF
         private void ExecuteRecordCommand(object obj)
         {
             Record();
-            var currentWindow = Application.Current.Windows.OfType<Window>().Where(x => x.IsActive).FirstOrDefault();
-            if (currentWindow != null)
-                currentWindow.Close();
+            var window = Application.Current.Windows.OfType<Window>().Where(x => x.IsActive).FirstOrDefault();
+            if (window != null)
+                window.Close();
         }
 
         /// <summary>

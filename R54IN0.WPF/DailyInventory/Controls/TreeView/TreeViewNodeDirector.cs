@@ -66,6 +66,14 @@ namespace R54IN0.WPF
                _nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Any(x => x.ProductID == node.ProductID); //동일한 item 유니크키를 가지고 있는 경우
         }
 
+        public TreeViewNode SearchProductNode(string id)
+        {
+            var nodes = Collection.SelectMany(x => x.Descendants().Where(y => y.ProductID == id));
+            if (nodes.Count() == 1)
+                return nodes.Single();
+            return null;
+        }
+
         /// <summary>
         /// Node삭제
         /// </summary>

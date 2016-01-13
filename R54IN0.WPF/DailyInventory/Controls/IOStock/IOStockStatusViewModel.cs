@@ -392,19 +392,44 @@ namespace R54IN0.WPF
             OpenAmender(DataGridViewModel.SelectedItem);
         }
 
-        private void OpenAmender(IObservableIOStockProperties selectedItem = null)
+        public void OpenAmender(IObservableIOStockProperties selectedItem = null)
         {
             IOStockDataAmenderViewModel viewmodel = null;
-            viewmodel.TreeViewViewModel.DragCommand = null;
-            viewmodel.TreeViewViewModel.DropCommand = null;
-
             if (selectedItem != null)
                 viewmodel = new IOStockDataAmenderViewModel(this, selectedItem);
             else
                 viewmodel = new IOStockDataAmenderViewModel(this);
-            var window = new IOStockDataAmenderWindow();
+            viewmodel.TreeViewViewModel.DragCommand = null;
+            viewmodel.TreeViewViewModel.DropCommand = null;
+            IOStockDataAmenderWindow window = new IOStockDataAmenderWindow();
             window.DataContext = viewmodel;
-            window.Owner = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            window.Owner = Application.Current.MainWindow;
+            window.ShowDialog();
+        }
+
+        public void OpenAmender(Observable<Product> product)
+        {
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(this);
+            viewmodel.TreeViewViewModel.DragCommand = null;
+            viewmodel.TreeViewViewModel.DropCommand = null;
+            viewmodel.Product = product;
+            IOStockDataAmenderWindow window = new IOStockDataAmenderWindow();
+            window.DataContext = viewmodel;
+            window.Owner = Application.Current.MainWindow;
+            window.ShowDialog();
+        }
+
+        public void OpenAmender(IObservableInventoryProperties inventory)
+        {
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(this);
+            viewmodel.TreeViewViewModel.DragCommand = null;
+            viewmodel.TreeViewViewModel.DropCommand = null;
+            viewmodel.Product = inventory.Product;
+            if (inventory != null)
+                viewmodel.Inventory = viewmodel.InventoryList.Where(x => x.ID == inventory.ID).SingleOrDefault();
+            IOStockDataAmenderWindow window = new IOStockDataAmenderWindow();
+            window.DataContext = viewmodel;
+            window.Owner = Application.Current.MainWindow;
             window.ShowDialog();
         }
 

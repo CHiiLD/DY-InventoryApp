@@ -21,6 +21,7 @@ namespace R54IN0.WPF
         private ObservableCollection<TreeViewNode> _selectedNodes;
         private Visibility _newFolderAddVisibility;
         private Visibility _newProductAddVisibility;
+        private Visibility _contextMenuVisibility;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -40,44 +41,23 @@ namespace R54IN0.WPF
             nodeDirector = TreeViewNodeDirector.GetInstance();
             Root = nodeDirector.Collection;
             SelectedNodes = new ObservableCollection<TreeViewNode>();
+
             DragCommand = new RelayCommand<object>(ExecuteDrag, CanDrag);
             DropCommand = new RelayCommand<object>(ExecuteDrop, CanDrop);
+
             NodesSelectedEventCommand = new RelayCommand<object>(ExecuteNodesSelectedEventCommand);
             MouseRightButtonDownEventCommand = new RelayCommand<object>(ExecuteMouseRightButtonDownEventCommand);
+
             NewFolderAddMenuVisibility = Visibility.Visible;
             NewProductAddMenuVisibility = Visibility.Visible;
-        }
+            ContextMenuVisibility = Visibility.Visible;
 
-        private void ExecuteMouseRightButtonDownEventCommand(object obj)
-        {
-            var e = obj as MouseButtonEventArgs;
-            Point pt = e.GetPosition((UIElement)e.Source);
-            TreeViewEx treeViewEx = e.Source as TreeViewEx;
-            HitTestResult hitTestResult = VisualTreeHelper.HitTest(treeViewEx, pt);
-            if (hitTestResult == null || hitTestResult.VisualHit == null)
-                return;
-            FrameworkElement child = hitTestResult.VisualHit as FrameworkElement;
-            do
-            {
-                if (child is TreeViewExItem)
-                {
-                    TreeViewNode node = child.DataContext as TreeViewNode;
-                    if (node != null)
-                    {
-                        SelectedNodes.Clear();
-                        SelectedNodes.Add(node);
-                    }
-                    break;
-                }
-                else if (child is TreeViewEx)
-                {
-                    break;
-                }
-                else
-                {
-                    child = VisualTreeHelper.GetParent(child) as FrameworkElement;
-                }
-            } while (child != null);
+            NodeRenameCommand = new RelayCommand<object>(ExecuteNodeRenameCommand);
+            NewFolderNodeAddCommand = new RelayCommand<object>(ExecuteNewFolderNodeAddCommand);
+            NewProductNodeAddCommand = new RelayCommand<object>(ExecuteNewProductNodeAddCommand);
+            IOStockStatusTurnningCommand = new RelayCommand<object>(ExecuteIOStockStatusTurnningCommand, HasOneNode);
+            NewIOStockFormatAddCommand = new RelayCommand<object>(ExecuteNewIOStockFormatAddCommand, IsProductNode);
+            InventoryStatusTurnningCommand = new RelayCommand<object>(ExecuteInventoryStatusTurnningCommand, HasOneNode);
         }
 
         public ObservableCollection<TreeViewNode> Root { get; private set; }
@@ -128,6 +108,129 @@ namespace R54IN0.WPF
                 NotifyPropertyChanged("NewProductAddVisibility");
             }
         }
+
+        #region ContextMenu Command
+
+        //객체 할당하고 execute 메서드 만들기 ~ TODO
+
+        public ICommand NodeRenameCommand { get; set; }
+
+        public ICommand NewFolderNodeAddCommand { get; set; }
+
+        public ICommand NewProductNodeAddCommand { get; set; }
+
+        public RelayCommand<object> IOStockStatusTurnningCommand { get; set; }
+
+        public RelayCommand<object> NewIOStockFormatAddCommand { get; set; }
+
+        public RelayCommand<object> InventoryStatusTurnningCommand { get; set; }
+
+        #endregion
+
+        public Visibility ContextMenuVisibility
+        {
+            get
+            {
+                return _contextMenuVisibility;
+            }
+            set
+            {
+                _contextMenuVisibility = value;
+                NotifyPropertyChanged("ContextMenuVisibility");
+            }
+        }
+
+        private void ExecuteNodeRenameCommand(object obj)
+        {
+            SelectedNodes.First().IsNameEditable = true; 
+        }
+
+        protected virtual void ExecuteNewProductNodeAddCommand(object obj)
+        {
+        }
+
+        protected virtual void ExecuteNewFolderNodeAddCommand(object obj)
+        {
+        }
+
+        private bool IsProductNode(object obj)
+        {
+            if (SelectedNodes.Count() == 1)
+            {
+                var node = SelectedNodes.Single();
+                return node.Type == NodeType.PRODUCT;
+            }
+            return false;
+        }
+
+        private bool HasOneNode(object obj)
+        {
+            return SelectedNodes.Count() == 1;
+        }
+
+        private void ExecuteNewIOStockFormatAddCommand(object obj)
+        {
+            MainWindowViewModel main = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+            var node = SelectedNodes.First();
+            if (node.Type == NodeType.PRODUCT)
+            {
+                var ofd = ObservableFieldDirector.GetInstance();
+                var product = ofd.Search<Product>(node.ProductID);
+                if (product != null)
+                    main.IOStockViewModel.OpenAmender(product);
+            }
+        }
+
+        private void ExecuteIOStockStatusTurnningCommand(object obj)
+        {
+            MainWindowViewModel main = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+            main.IOStockStatusProductModeCommand.Execute(null);
+            main.IOStockViewModel.TreeViewViewModel.SelectedNodes.Clear();
+            main.IOStockViewModel.TreeViewViewModel.SelectedNodes.Add(SelectedNodes.First());
+            main.IOStockViewModel.TreeViewViewModel.NotifyPropertyChanged("SelectedNodes");
+        }
+
+        private void ExecuteInventoryStatusTurnningCommand(object obj)
+        {
+            MainWindowViewModel main = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+            main.InventoryStatusCommand.Execute(null);
+            main.InventoryViewModel.TreeViewViewModel.SelectedNodes.Clear();
+            main.InventoryViewModel.TreeViewViewModel.SelectedNodes.Add(SelectedNodes.First());
+            main.InventoryViewModel.TreeViewViewModel.NotifyPropertyChanged("SelectedNodes");
+        }
+
+        private void ExecuteMouseRightButtonDownEventCommand(object obj)
+        {
+            var e = obj as MouseButtonEventArgs;
+            Point pt = e.GetPosition((UIElement)e.Source);
+            TreeViewEx treeViewEx = e.Source as TreeViewEx;
+            HitTestResult hitTestResult = VisualTreeHelper.HitTest(treeViewEx, pt);
+            if (hitTestResult == null || hitTestResult.VisualHit == null)
+                return;
+            FrameworkElement child = hitTestResult.VisualHit as FrameworkElement;
+            do
+            {
+                if (child is TreeViewExItem)
+                {
+                    TreeViewNode node = child.DataContext as TreeViewNode;
+                    if (node != null)
+                    {
+                        SelectedNodes.Clear();
+                        SelectedNodes.Add(node);
+                    }
+                    break;
+                }
+                else if (child is TreeViewEx)
+                {
+                    break;
+                }
+                else
+                {
+                    child = VisualTreeHelper.GetParent(child) as FrameworkElement;
+                }
+            } while (child != null);
+        }
+
         /// <summary>
         /// TreeViewEx의 OnSelecting 이벤트와 연결
         /// </summary>
@@ -147,6 +250,9 @@ namespace R54IN0.WPF
                     SelectedNodes.Add(itemToSelect as TreeViewNode);
             }
             NotifyPropertyChanged("SelectedNodes");
+            IOStockStatusTurnningCommand.RaiseCanExecuteChanged();
+            NewIOStockFormatAddCommand.RaiseCanExecuteChanged();
+            InventoryStatusTurnningCommand.RaiseCanExecuteChanged();
         }
 
         public void ExecuteNodesSelectedEventCommand(object obj)

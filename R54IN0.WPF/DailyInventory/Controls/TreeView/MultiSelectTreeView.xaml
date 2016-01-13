@@ -14,13 +14,13 @@
     <UserControl.Resources>
         <local:BindingProxy x:Key="DataContextProxy" DataContext="{Binding}" />
 
-        <ContextMenu x:Key="CellContextMenu">
-            <MenuItem Header="이름 바꾸기" />
-            <MenuItem Visibility="{Binding DataContext.NewFolderAddMenuVisibility, Source={StaticResource DataContextProxy}}" Header="새로운 폴더 추가하기" />
-            <MenuItem Visibility="{Binding DataContext.NewProductAddMenuVisibility, Source={StaticResource DataContextProxy}}" Header="새로운 제품 추가하기" />
-            <MenuItem Header="제품별 입출고 현황으로 보기" />
-            <MenuItem Header="새로운 입출고 기록 추가하기" />
-            <MenuItem Header="재고현황으로 보기" />
+        <ContextMenu x:Key="CellContextMenu" Visibility="{Binding DataContext.ContextMenuVisibility, Source={StaticResource DataContextProxy}}">
+            <MenuItem Header="이름 바꾸기" Command="{Binding DataContext.NodeRenameCommand, Source={StaticResource DataContextProxy}}"/>
+            <MenuItem Header="새로운 폴더 추가하기" Command="{Binding DataContext.NewFolderNodeAddCommand, Source={StaticResource DataContextProxy}}" Visibility="{Binding DataContext.NewFolderAddMenuVisibility, Source={StaticResource DataContextProxy}}"  />
+            <MenuItem Header="새로운 제품 추가하기" Command="{Binding DataContext.NewProductNodeAddCommand, Source={StaticResource DataContextProxy}}" Visibility="{Binding DataContext.NewProductAddMenuVisibility, Source={StaticResource DataContextProxy}}" />
+            <MenuItem Header="제품별 입출고 현황으로 보기" Command="{Binding DataContext.IOStockStatusTurnningCommand, Source={StaticResource DataContextProxy}}"/>
+            <MenuItem Header="새로운 입출고 기록 추가하기" Command="{Binding DataContext.NewIOStockFormatAddCommand, Source={StaticResource DataContextProxy}}"/>
+            <MenuItem Header="재고현황으로 보기" Command="{Binding DataContext.InventoryStatusTurnningCommand, Source={StaticResource DataContextProxy}}"/>
         </ContextMenu>
 
         <HierarchicalDataTemplate DataType="{x:Type local:TreeViewNode}" ItemsSource="{Binding Root}">

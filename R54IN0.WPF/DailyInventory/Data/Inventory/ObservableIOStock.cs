@@ -15,6 +15,17 @@ namespace R54IN0
         private IObservableInventoryProperties _inventory;
         protected PropertyChangedEventHandler propertyChanged;
 
+        public ObservableIOStock()
+        {
+            _fmt = new IOStockFormat();
+        }
+
+        public ObservableIOStock(IOStockFormat inoutStockFormat)
+        {
+            _fmt = inoutStockFormat;
+            InitializeProperties(inoutStockFormat);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
@@ -26,17 +37,6 @@ namespace R54IN0
             {
                 propertyChanged -= value;
             }
-        }
-
-        public ObservableIOStock()
-        {
-            _fmt = new IOStockFormat();
-        }
-
-        public ObservableIOStock(IOStockFormat inoutStockFormat)
-        {
-            _fmt = inoutStockFormat;
-            InitializeProperties(inoutStockFormat);
         }
 
         public IOStockFormat Format

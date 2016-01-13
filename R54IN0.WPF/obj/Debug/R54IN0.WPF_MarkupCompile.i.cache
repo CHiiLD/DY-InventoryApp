@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 Z:\Users\Child\Github\R54IN0\R54IN0.WPF\App.xaml
-10991560160
+10-1399744021
 
-66592277158
+67-3213389
 73-2120837586
-DailyInventory\Controls\IOStock\IOStockDatePicker.xaml;DailyInventory\Controls\IOStock\IOStockProjectListBox.xaml;DailyInventory\Controls\IOStock\IOStockStatus.xaml;DailyInventory\Controls\Inventory\InventoryStatus.xaml;DailyInventory\Controls\IOStock\IOStockDataGrid.xaml;DailyInventory\Controls\Inventory\InventoryDataGrid.xaml;DailyInventory\Controls\TreeView\MultiSelectTreeView.xaml;DailyInventory\Windows\StartWindow.xaml;DailyInventory\Controls\IOStock\IOStockDataAmenderWindow.xaml;DailyInventory\Controls\TreeView\ProductSelector.xaml;
+DailyInventory\Controls\IOStock\IOStockDatePicker.xaml;DailyInventory\Controls\IOStock\IOStockProjectListBox.xaml;DailyInventory\Controls\IOStock\IOStockStatus.xaml;DailyInventory\Controls\Inventory\InventoryStatus.xaml;DailyInventory\Controls\IOStock\IOStockDataGrid.xaml;DailyInventory\Controls\Inventory\InventoryDataGrid.xaml;DailyInventory\Controls\TreeView\MultiSelectTreeView.xaml;DailyInventory\Windows\MainWindow.xaml;DailyInventory\Controls\IOStock\IOStockDataAmenderWindow.xaml;DailyInventory\Controls\TreeView\ProductSelector.xaml;
 
 False
 

@@ -32,6 +32,16 @@ namespace R54IN0.WPF
         /// </summary>
         public ICommand NodeDeleteCommand { get; set; }
 
+        protected override void ExecuteNewProductNodeAddCommand(object obj)
+        {
+            ExecuteNewProductAdd(obj);
+        }
+
+        protected override void ExecuteNewFolderNodeAddCommand(object obj)
+        {
+            ExecuteNewFolderAdd(obj);
+        }
+
         public void ExecuteNewFolderAdd(object parameter)
         {
             IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FORDER);
@@ -51,7 +61,6 @@ namespace R54IN0.WPF
             Product product = new Product() { Name = "새로운 제품" }.Save<Product>();
             Observable<Product> newProduct = new Observable<Product>(product);
             ObservableFieldDirector.GetInstance().Add<Product>(newProduct);
-            //CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(newProduct);
 
             IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FORDER);
             TreeViewNode newTreeViewNode = new TreeViewNode(NodeType.PRODUCT, newProduct.ID);

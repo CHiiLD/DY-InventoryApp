@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -38,17 +39,16 @@ namespace R54IN0.WPF
         public InventoryDataGridViewModel()
         {
             _items = new ObservableCollection<ObservableInventory>();
-            InquiryAsIOStockDataCommand = new RelayCommand<object>(ExecuteInquiryAsIOStockDataCommand, IsSelectedItem);
-            NewIOStockDataAddCommand = new RelayCommand<object>(ExecuteNewIOStockDataAddCommand, IsSelectedItem);
-            InventoryDataDeleteCommand = new RelayCommand<object>(ExecuteInventoryDataDeleteCommand, IsSelectedItem);
+            IOStockStatusTurnningCommand = new RelayCommand<object>(ExecuteIOStockStatusTurnningCommand, IsSelected);
+            NewIOStockDataAddCommand = new RelayCommand<object>(ExecuteNewIOStockDataAddCommand, IsSelected);
+            InventoryDataDeleteCommand = new RelayCommand<object>(ExecuteInventoryDataDeleteCommand, IsSelected);
             PreviewTextInputEventCommand = new RelayCommand<object>(ExecutePreviewTextInputEvent);
         }
-        public ICommand PreviewTextInputEventCommand { get; set; }
-        public ICommand InquiryAsIOStockDataCommand { get; set; }
 
-        public ICommand NewIOStockDataAddCommand { get; set; }
-
-        public ICommand InventoryDataDeleteCommand { get; set; }
+        public RelayCommand<object> PreviewTextInputEventCommand { get; set; }
+        public RelayCommand<object> IOStockStatusTurnningCommand { get; set; }
+        public RelayCommand<object> NewIOStockDataAddCommand { get; set; }
+        public RelayCommand<object> InventoryDataDeleteCommand { get; set; }
 
         /// <summary>
         /// 제품열 보기/숨기기
@@ -136,6 +136,9 @@ namespace R54IN0.WPF
             {
                 _selectedItem = value;
                 NotifyPropertyChanged("SelectedItem");
+                IOStockStatusTurnningCommand.RaiseCanExecuteChanged();
+                NewIOStockDataAddCommand.RaiseCanExecuteChanged();
+                InventoryDataDeleteCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -152,15 +155,28 @@ namespace R54IN0.WPF
 
         private void ExecuteNewIOStockDataAddCommand(object obj)
         {
-
+            MainWindowViewModel main = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+            main.IOStockViewModel.OpenAmender(SelectedItem);
         }
 
-        private void ExecuteInquiryAsIOStockDataCommand(object obj)
+        private void ExecuteIOStockStatusTurnningCommand(object obj)
         {
-
+            var id = SelectedItem.Product.ID;
+            if (id != null)
+            {
+                var node = TreeViewNodeDirector.GetInstance().SearchProductNode(id);
+                if (node != null)
+                {
+                    MainWindowViewModel main = Application.Current.MainWindow.DataContext as MainWindowViewModel;
+                    main.IOStockStatusProductModeCommand.Execute(null);
+                    main.IOStockViewModel.TreeViewViewModel.SelectedNodes.Clear();
+                    main.IOStockViewModel.TreeViewViewModel.SelectedNodes.Add(node);
+                    main.IOStockViewModel.TreeViewViewModel.NotifyPropertyChanged("SelectedNodes");
+                }
+            }
         }
 
-        private bool IsSelectedItem(object arg)
+        private bool IsSelected(object arg)
         {
             return SelectedItem != null;
         }
@@ -186,8 +202,6 @@ namespace R54IN0.WPF
                 }
             }
         }
-
-
 
         public void NotifyPropertyChanged(string name)
         {

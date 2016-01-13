@@ -28,7 +28,7 @@
             
             <DataGrid.Resources>
                 <ContextMenu  x:Key="InventoryDataGridContextMenu">
-                    <MenuItem Header="제품별 입출고 현황으로 보기" Command="{Binding DataContext.InquiryAsIOStockDataCommand, Source={StaticResource DataContextProxy}}"/>
+                    <MenuItem Header="제품별 입출고 현황으로 보기" Command="{Binding DataContext.IOStockStatusTurnningCommand, Source={StaticResource DataContextProxy}}"/>
                     <MenuItem Header="새로운 입출고 기록 추가하기" Command="{Binding DataContext.NewIOStockDataAddCommand, Source={StaticResource DataContextProxy}}"/>
                     <MenuItem Header="재고와 입출고 기록을 모두 삭제하기" Command="{Binding DataContext.InventoryDataDeleteCommand, Source={StaticResource DataContextProxy}}"/>
                 </ContextMenu>
