@@ -9,7 +9,7 @@ namespace R54IN0.WPF
     {
         public MainWindow()
         {
-            DataContext = new MainWindowViewModel();
+            DataContext = MainWindowViewModel.GetInstance();
             InitializeComponent();
         }
     }

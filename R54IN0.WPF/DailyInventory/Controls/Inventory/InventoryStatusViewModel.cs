@@ -46,7 +46,7 @@ namespace R54IN0.WPF
 
         public InventorySearchTextBoxViewModel SearchViewModel { get; set; }
 
-        public ProductSelectorViewModel TreeViewViewModel { get; set; }
+        public MultiSelectTreeViewModelView TreeViewViewModel { get; set; }
 
         /// <summary>
         /// ToggleSwitch 데이터그리드의 IsReadOnly프로퍼티와 연결
@@ -137,7 +137,7 @@ namespace R54IN0.WPF
             CanModify = false;
             ShowProductColumn = ShowMeasureColumn = ShowMakerColumn = true;
 
-            TreeViewViewModel = new ProductSelectorViewModel();
+            TreeViewViewModel = new MultiSelectTreeViewModelView();
             TreeViewViewModel.PropertyChanged += OnTreeViewPropertyChanged;
         }
 
@@ -258,15 +258,23 @@ namespace R54IN0.WPF
         {
             if (item is ObservableInventory)
             {
-                var observableInventory = item as ObservableInventory;
+                var obInven = item as ObservableInventory;
                 var nodes = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
-                if (TreeViewViewModel.SelectedNodes.Count == 0 || nodes.Any(x => x.ProductID == observableInventory.Product.ID))
-                    PushDataGridItems(new ObservableInventory[] { observableInventory });
+                if (TreeViewViewModel.SelectedNodes.Count == 0 || nodes.Any(x => x.ProductID == obInven.Product.ID))
+                    PushDataGridItems(new ObservableInventory[] { obInven });
             }
         }
 
         public void UpdateDelItem(object item)
         {
+            if (item is ObservableInventory)
+            {
+                ObservableInventory obInven = item as ObservableInventory;
+                if (DataGridViewModel1.Items.Contains(obInven))
+                    DataGridViewModel1.Items.Remove(obInven);
+                else if (DataGridViewModel2.Items.Contains(obInven))
+                    DataGridViewModel2.Items.Remove(obInven);
+            }
         }
     }
 }

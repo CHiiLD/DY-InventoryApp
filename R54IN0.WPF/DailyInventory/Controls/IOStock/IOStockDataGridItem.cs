@@ -11,7 +11,7 @@
         /// 복사생성자
         /// </summary>
         /// <param name="thiz"></param>
-        public IOStockDataGridItem(IOStockDataGridItem thiz) : base(new IOStockFormat(thiz.Format) { ID = null} )
+        public IOStockDataGridItem(IOStockDataGridItem thiz) : base(new IOStockFormat(thiz.Format) { ID = null })
         {
             IsChecked = thiz.IsChecked;
         }

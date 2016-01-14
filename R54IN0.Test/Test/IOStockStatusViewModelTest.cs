@@ -67,7 +67,7 @@ namespace R54IN0.Test
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count);
             viewmodel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
             var node = viewmodel.TreeViewViewModel.Root.SelectMany(root => root.Descendants().Where(x => x.Type == NodeType.PRODUCT)).Random();
-            viewmodel.TreeViewViewModel.OnNodeSelected(viewmodel.TreeViewViewModel,
+            viewmodel.TreeViewViewModel.ExecuteNodesSelectedEventCommand(
                 new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, new List<TreeViewNode>()));
 
             Assert.AreNotEqual(0, viewmodel.DataGridViewModel.Items.Count);
@@ -90,7 +90,7 @@ namespace R54IN0.Test
             //제품 하나 선택
             viewmodel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
             var node = viewmodel.TreeViewViewModel.Root.SelectMany(root => root.Descendants().Where(x => x.Type == NodeType.PRODUCT)).Random();
-            viewmodel.TreeViewViewModel.OnNodeSelected(viewmodel.TreeViewViewModel,
+            viewmodel.TreeViewViewModel.ExecuteNodesSelectedEventCommand(
                 new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, new List<TreeViewNode>()));
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(i => IOStockType.ALL.HasFlag(i.StockType)));
 

@@ -389,10 +389,10 @@ namespace R54IN0.WPF
 
         private void ExecuteSelectedItemModifyCommand(object obj)
         {
-            OpenAmender(DataGridViewModel.SelectedItem);
+            OpenIOStockDataAmenderWindow(DataGridViewModel.SelectedItem);
         }
 
-        public void OpenAmender(IObservableIOStockProperties selectedItem = null)
+        public void OpenIOStockDataAmenderWindow(IObservableIOStockProperties selectedItem = null)
         {
             IOStockDataAmenderViewModel viewmodel = null;
             if (selectedItem != null)
@@ -407,7 +407,7 @@ namespace R54IN0.WPF
             window.ShowDialog();
         }
 
-        public void OpenAmender(Observable<Product> product)
+        public void OpenIOStockDataAmenderWindow(Observable<Product> product)
         {
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(this);
             viewmodel.TreeViewViewModel.DragCommand = null;
@@ -419,7 +419,7 @@ namespace R54IN0.WPF
             window.ShowDialog();
         }
 
-        public void OpenAmender(IObservableInventoryProperties inventory)
+        public void OpenIOStockDataAmenderWindow(IObservableInventoryProperties inventory)
         {
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(this);
             viewmodel.TreeViewViewModel.DragCommand = null;
@@ -453,7 +453,7 @@ namespace R54IN0.WPF
         /// <param name="obj"></param>
         private void ExecuteNewInoutStockAddCommand(object obj)
         {
-            OpenAmender();
+            OpenIOStockDataAmenderWindow();
         }
 
         /// <summary>

@@ -23,13 +23,13 @@
                 <MenuItem Header="종료" Command="{Binding AppExitCommand}" />
             </MenuItem>
 
-            <MenuItem Header="재고 현황" Command="{Binding InventoryStatusCommand}">
+            <MenuItem Header="재고 현황" Command="{Binding ChangeInventoryViewCommand}">
             </MenuItem>
 
             <MenuItem Header="입출고 현황">
-                <MenuItem Header="제품별로 보기" Command="{Binding IOStockStatusProductModeCommand}" />
-                <MenuItem Header="날짜별로 보기" Command="{Binding IOStockStatusDateModeCommand}" />
-                <MenuItem Header="프로젝트별로 보기" Command="{Binding IOStockStatusProjectModeCommand}" />
+                <MenuItem Header="제품별로 보기" Command="{Binding ChangeIOStockViewByProductCommand}" />
+                <MenuItem Header="날짜별로 보기" Command="{Binding ChangeIOStockByDateCommand}" />
+                <MenuItem Header="프로젝트별로 보기" Command="{Binding ChangeIOStockByProjectCommand}" />
             </MenuItem>
 
             <MenuItem Visibility="Collapsed" Header="정보 수정">
@@ -57,9 +57,9 @@
         <StatusBar Grid.Row="2">
             <StatusBarItem Content="{Binding AppName, Mode=OneTime}" />
             <Separator Style="{StaticResource MetroStatusBarSeparator}" />
-            <StatusBarItem Content="{Binding AppVersion, Mode=OneTime}"/>
+            <StatusBarItem Content="{Binding AppVersion, Mode=OneTime}" />
             <Separator Style="{StaticResource MetroStatusBarSeparator}" />
-            <StatusBarItem Content="{Binding Copyright, Mode=OneTime}"/>
+            <StatusBarItem Content="{Binding Copyright, Mode=OneTime}" />
         </StatusBar>
     </Grid>
 </mah:MetroWindow>

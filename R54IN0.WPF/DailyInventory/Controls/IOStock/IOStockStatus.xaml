@@ -88,11 +88,11 @@
                                 <Setter Property="FontFamily" Value="Segoe UI Light" />
                             </Style>
                         </StackPanel.Resources>
-                        <Button Visibility="Collapsed" Command="{Binding NewInoutStockAddCommand}" HorizontalAlignment="Center" VerticalAlignment="Center">새로운 입출고 기록을 추가하기</Button>
-                        <Button Visibility="Collapsed" Command="{Binding SelectedItemModifyCommand}">선택된 기록을 수정하기</Button>
-                        <Button>체크된 기록을 삭제하기</Button>
+                        <Button Visibility="Visible" Command="{Binding NewInoutStockAddCommand}" HorizontalAlignment="Center" VerticalAlignment="Center">새로운 입출고 기록을 추가하기</Button>
+                        <Button Visibility="Visible" Command="{Binding SelectedItemModifyCommand}">선택된 기록을 수정하기</Button>
+                        <!--<Button>체크된 기록을 삭제하기</Button>
                         <Button>체크된 기록을 오늘 날짜로 복사하여 추가하기</Button>
-                        <Button  Visibility="Collapsed">선택된 기록을 재고현황 기록으로 보기</Button>
+                        <Button  Visibility="Collapsed">선택된 기록을 재고현황 기록으로 보기</Button>-->
                     </StackPanel>
                 </Grid>
                 <local:IOStockDataGrid DataContext="{Binding DataGridViewModel}" x:Name="DataGrid" Grid.Row="1" />

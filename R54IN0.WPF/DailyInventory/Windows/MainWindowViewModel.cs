@@ -1,20 +1,22 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace R54IN0.WPF
 {
     public class MainWindowViewModel : INotifyPropertyChanged, ICollectionViewModel<TabItem>
     {
+        private static MainWindowViewModel _thiz;
+
         private ObservableCollection<TabItem> _items;
         private TabItem _selectedItem;
+
+        private event PropertyChangedEventHandler _propertyChanged;
 
         public MainWindowViewModel()
         {
@@ -27,15 +29,13 @@ namespace R54IN0.WPF
             InventoryViewModel = inventoryStatus.DataContext as InventoryStatusViewModel;
             IOStockViewModel = ioStockStatus.DataContext as IOStockStatusViewModel;
 
-            AppExitCommand = new RelayCommand<object>(ExecuteAppExitCommand);
-            AboutAppCommand = new RelayCommand<object>(ExecuteAboutAppCommand);
-            InventoryStatusCommand = new RelayCommand<object>(ExecuteInventoryStatusCommand);
-            IOStockStatusProductModeCommand = new RelayCommand<object>(ExecuteIOStockStatusProductModeCommand);
-            IOStockStatusDateModeCommand = new RelayCommand<object>(ExecuteIOStockStatusDateModeCommand);
-            IOStockStatusProjectModeCommand = new RelayCommand<object>(ExecuteIOStockStatusProjectModeCommand);
+            AppExitCommand = new RelayCommand(ExecuteAppExitCommand);
+            AboutAppCommand = new RelayCommand(ExecuteAboutAppCommand);
+            ChangeInventoryViewCommand = new RelayCommand(ExecuteSelectInventoryStatusViewCommand);
+            ChangeIOStockViewByProductCommand = new RelayCommand(ExecuteChangeIOStockViewByProductCommand);
+            ChangeIOStockByDateCommand = new RelayCommand(ExecuteChangeIOStockByDateCommand);
+            ChangeIOStockByProjectCommand = new RelayCommand(ExecuteChangeIOStockByProjectCommand);
         }
-
-        private event PropertyChangedEventHandler _propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -74,12 +74,12 @@ namespace R54IN0.WPF
             }
         }
 
-        public ICommand AboutAppCommand { get; set; }
-        public ICommand AppExitCommand { get; set; }
-        public ICommand InventoryStatusCommand { get; set; }
-        public ICommand IOStockStatusProductModeCommand { get; set; }
-        public ICommand IOStockStatusDateModeCommand { get; set; }
-        public ICommand IOStockStatusProjectModeCommand { get; set; }
+        public RelayCommand AboutAppCommand { get; set; }
+        public RelayCommand AppExitCommand { get; set; }
+        public RelayCommand ChangeInventoryViewCommand { get; set; }
+        public RelayCommand ChangeIOStockViewByProductCommand { get; set; }
+        public RelayCommand ChangeIOStockByDateCommand { get; set; }
+        public RelayCommand ChangeIOStockByProjectCommand { get; set; }
 
         public ObservableCollection<TabItem> Items
         {
@@ -111,30 +111,87 @@ namespace R54IN0.WPF
 
         public IOStockStatusViewModel IOStockViewModel { get; set; }
 
-        private void ExecuteIOStockStatusProjectModeCommand(object obj)
+        public static MainWindowViewModel GetInstance()
+        {
+            if (_thiz == null)
+                _thiz = new MainWindowViewModel();
+            return _thiz;
+        }
+
+        /// <summary>
+        /// 입출고 데이터 등록창을 띄운다.
+        /// </summary>
+        /// <param name="productID"></param>
+        public void ShowIOStockDataAmenderWindow(string productID)
+        {
+            var ofd = ObservableFieldDirector.GetInstance();
+            var product = ofd.Search<Product>(productID);
+            if (product != null)
+                IOStockViewModel.OpenIOStockDataAmenderWindow(product);
+        }
+
+        /// <summary>
+        /// 재고현황 탭아이템으로 이동한 후 제품 데이터를 데이터그리드에 출력한다.
+        /// </summary>
+        /// <param name="node"></param>
+        public void ShowInventoryStatus(string productID)
+        {
+            var viewmodel = SelectedItem.Content as UserControl;
+            if (viewmodel.DataContext != InventoryViewModel)
+                ExecuteChangeIOStockViewByProductCommand();
+
+            TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchProductNode(productID);
+            if (node != null)
+            {
+                MultiSelectTreeViewModelView treeView = InventoryViewModel.TreeViewViewModel;
+                treeView.SelectedNodes.Clear();
+                treeView.ExecuteNodesSelectedEventCommand(new SelectionChangedCancelEventArgs(new TreeViewNode[] { node }, null));
+            }
+        }
+
+        /// <summary>
+        /// 제품별 입출고 현황 탭아이템으로 이동 후 제품의 입출고 데이터를 데이터그리드에 출력한다.
+        /// </summary>
+        /// <param name="node"></param>
+        public void ShowIOStockStatusByProduct(string productID)
+        {
+            var viewmodel = SelectedItem.Content as UserControl;
+            if (viewmodel.DataContext != IOStockViewModel)
+                ExecuteChangeIOStockViewByProductCommand();
+
+            TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchProductNode(productID);
+            if (node != null)
+            {
+                MultiSelectTreeViewModelView treeView = IOStockViewModel.TreeViewViewModel;
+                treeView.SelectedNodes.Clear();
+                treeView.ExecuteNodesSelectedEventCommand(new SelectionChangedCancelEventArgs(new TreeViewNode[] { node }, null));
+            }
+        }
+
+        private void ExecuteChangeIOStockByProjectCommand()
         {
             SelectedItem = Items.Where(x => ((UserControl)x.Content).DataContext == IOStockViewModel).Single();
             IOStockViewModel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PROJECT;
         }
 
-        private void ExecuteIOStockStatusDateModeCommand(object obj)
+        private void ExecuteChangeIOStockByDateCommand()
         {
             SelectedItem = Items.Where(x => ((UserControl)x.Content).DataContext == IOStockViewModel).Single();
             IOStockViewModel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_DATE;
         }
 
-        private void ExecuteIOStockStatusProductModeCommand(object obj)
+        private void ExecuteChangeIOStockViewByProductCommand()
         {
             SelectedItem = Items.Where(x => ((UserControl)x.Content).DataContext == IOStockViewModel).Single();
             IOStockViewModel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
         }
 
-        private void ExecuteInventoryStatusCommand(object obj)
+        private void ExecuteSelectInventoryStatusViewCommand()
         {
             SelectedItem = Items.Where(x => ((UserControl)x.Content).DataContext == InventoryViewModel).Single();
         }
 
-        private async void ExecuteAboutAppCommand(object obj)
+        private async void ExecuteAboutAppCommand()
         {
             Window window = Application.Current.MainWindow;
             if (window != null && window is MetroWindow)
@@ -148,7 +205,7 @@ namespace R54IN0.WPF
             }
         }
 
-        private void ExecuteAppExitCommand(object obj)
+        private void ExecuteAppExitCommand()
         {
             Application.Current.Shutdown(110);
         }

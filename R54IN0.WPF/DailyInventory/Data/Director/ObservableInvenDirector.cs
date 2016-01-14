@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace R54IN0
 {
@@ -67,6 +68,12 @@ namespace R54IN0
                 return;
             _dic.Add(inventory.ID, inventory);
             _productDic.Add(inventory.Product.ID, inventory);
+        }
+
+        public void Remove(ObservableInventory inven)
+        {
+            _dic.Remove(inven.ID);
+            _productDic.Remove(inven.Product.ID, inven);
         }
     }
 }

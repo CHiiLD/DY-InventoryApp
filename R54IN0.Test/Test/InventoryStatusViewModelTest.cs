@@ -94,16 +94,16 @@ namespace R54IN0.Test.New
             var viewmodel = new InventoryStatusViewModel();
             //NODE 하나 선택
             var node = viewmodel.TreeViewViewModel.Root.Where(x => x.Type == NodeType.PRODUCT).Random();
-            viewmodel.TreeViewViewModel.OnNodeSelected(null, new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, new List<TreeViewNode>()));
+            viewmodel.TreeViewViewModel.ExecuteNodesSelectedEventCommand( new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, new List<TreeViewNode>()));
             Assert.IsTrue(viewmodel.GetDataGridItems().All(x => x.Product.ID == node.ProductID));
 
             //다른 NODE하나를 선택
             var node2 = viewmodel.TreeViewViewModel.Root.Where(x => x.Type == NodeType.PRODUCT).Random();
-            viewmodel.TreeViewViewModel.OnNodeSelected(null, new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node2 }, new List<TreeViewNode>() { node }));
+            viewmodel.TreeViewViewModel.ExecuteNodesSelectedEventCommand( new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node2 }, new List<TreeViewNode>() { node }));
             Assert.IsTrue(viewmodel.GetDataGridItems().All(x => x.Product.ID == node2.ProductID));
 
             //NODE 2개를 선택
-            viewmodel.TreeViewViewModel.OnNodeSelected(null, new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, new List<TreeViewNode>() { node }));
+            viewmodel.TreeViewViewModel.ExecuteNodesSelectedEventCommand( new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, new List<TreeViewNode>() { node }));
             Assert.IsTrue(viewmodel.GetDataGridItems().All(x => x.Product.ID == node2.ProductID || x.Product.ID == node.ProductID));
         }
     }

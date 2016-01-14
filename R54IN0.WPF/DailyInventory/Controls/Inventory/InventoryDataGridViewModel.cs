@@ -1,8 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -39,16 +37,33 @@ namespace R54IN0.WPF
         public InventoryDataGridViewModel()
         {
             _items = new ObservableCollection<ObservableInventory>();
-            IOStockStatusTurnningCommand = new RelayCommand<object>(ExecuteIOStockStatusTurnningCommand, IsSelected);
-            NewIOStockDataAddCommand = new RelayCommand<object>(ExecuteNewIOStockDataAddCommand, IsSelected);
-            InventoryDataDeleteCommand = new RelayCommand<object>(ExecuteInventoryDataDeleteCommand, IsSelected);
-            PreviewTextInputEventCommand = new RelayCommand<object>(ExecutePreviewTextInputEvent);
+            SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, IsSelected);
+            IOStockAmenderWindowCallCommand = new RelayCommand(ExecuteIOStockAmenderWindowCallCommand, IsSelected);
+            InventoryDataDeletionCommand = new RelayCommand(ExecuteInventoryDataDeletionCommand, IsSelected);
+
+            PreviewTextInputEventCommand = new RelayCommand<TextCompositionEventArgs>(ExecutePreviewTextInputEvent);
         }
 
-        public RelayCommand<object> PreviewTextInputEventCommand { get; set; }
-        public RelayCommand<object> IOStockStatusTurnningCommand { get; set; }
-        public RelayCommand<object> NewIOStockDataAddCommand { get; set; }
-        public RelayCommand<object> InventoryDataDeleteCommand { get; set; }
+        public RelayCommand<TextCompositionEventArgs> PreviewTextInputEventCommand { get; set; }
+
+        #region ContextMenu MenuItem Binding Command
+
+        /// <summary>
+        /// 선택된 재고데이터를 입출고 데이터로 보기
+        /// </summary>
+        public RelayCommand SearchAsIOStockRecordCommand { get; set; }
+
+        /// <summary>
+        /// 선택된 재고데이터를 기반으로 새로운 입출고 데이터를 등록한다.
+        /// </summary>
+        public RelayCommand IOStockAmenderWindowCallCommand { get; set; }
+
+        /// <summary>
+        /// 선택된 재고데이터를 삭제한다.
+        /// </summary>
+        public RelayCommand InventoryDataDeletionCommand { get; set; }
+
+        #endregion ContextMenu MenuItem Binding Command
 
         /// <summary>
         /// 제품열 보기/숨기기
@@ -97,6 +112,7 @@ namespace R54IN0.WPF
                 NotifyPropertyChanged("MeasureColumnVisibility");
             }
         }
+
         /// <summary>
         /// 수량을 제외한 모든열에 대한 IsReadOnly 바인딩 프로퍼티
         /// </summary>
@@ -136,10 +152,15 @@ namespace R54IN0.WPF
             {
                 _selectedItem = value;
                 NotifyPropertyChanged("SelectedItem");
-                IOStockStatusTurnningCommand.RaiseCanExecuteChanged();
-                NewIOStockDataAddCommand.RaiseCanExecuteChanged();
-                InventoryDataDeleteCommand.RaiseCanExecuteChanged();
+                SearchAsIOStockRecordCommand.RaiseCanExecuteChanged();
+                IOStockAmenderWindowCallCommand.RaiseCanExecuteChanged();
+                InventoryDataDeletionCommand.RaiseCanExecuteChanged();
             }
+        }
+
+        private bool IsSelected()
+        {
+            return SelectedItem != null;
         }
 
         private void ExecutePreviewTextInputEvent(object parameter)
@@ -148,37 +169,28 @@ namespace R54IN0.WPF
             OnPreviewTextInputted(eventArgs.Source, eventArgs);
         }
 
-        private void ExecuteInventoryDataDeleteCommand(object obj)
+        /// <summary>
+        /// 선택된 재고 데이터를 삭제한다.
+        /// </summary>
+        private void ExecuteInventoryDataDeletionCommand()
         {
-
         }
 
-        private void ExecuteNewIOStockDataAddCommand(object obj)
+        /// <summary>
+        /// 입출고 데이터 수정창을 연다.
+        /// </summary>
+        private void ExecuteIOStockAmenderWindowCallCommand()
         {
-            MainWindowViewModel main = Application.Current.MainWindow.DataContext as MainWindowViewModel;
-            main.IOStockViewModel.OpenAmender(SelectedItem);
+            MainWindowViewModel.GetInstance().IOStockViewModel.OpenIOStockDataAmenderWindow(SelectedItem);
         }
 
-        private void ExecuteIOStockStatusTurnningCommand(object obj)
+        /// <summary>
+        /// 선택된 재고 데이터를 기반으로 입출고 현황으로 탭 아이템을 변경한다.
+        /// </summary>
+        private void ExecuteSearchAsIOStockRecordCommand()
         {
-            var id = SelectedItem.Product.ID;
-            if (id != null)
-            {
-                var node = TreeViewNodeDirector.GetInstance().SearchProductNode(id);
-                if (node != null)
-                {
-                    MainWindowViewModel main = Application.Current.MainWindow.DataContext as MainWindowViewModel;
-                    main.IOStockStatusProductModeCommand.Execute(null);
-                    main.IOStockViewModel.TreeViewViewModel.SelectedNodes.Clear();
-                    main.IOStockViewModel.TreeViewViewModel.SelectedNodes.Add(node);
-                    main.IOStockViewModel.TreeViewViewModel.NotifyPropertyChanged("SelectedNodes");
-                }
-            }
-        }
-
-        private bool IsSelected(object arg)
-        {
-            return SelectedItem != null;
+            if (SelectedItem != null)
+                MainWindowViewModel.GetInstance().ShowIOStockStatusByProduct(SelectedItem.Product.ID);
         }
 
         public void OnPreviewTextInputted(object sender, TextCompositionEventArgs e)

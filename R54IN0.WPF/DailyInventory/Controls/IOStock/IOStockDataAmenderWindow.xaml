@@ -38,7 +38,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Margin="0,0,2,2">
             <Grid.Resources>
                 <Style TargetType="Grid">
                     <Setter Property="Margin" Value="1" />
@@ -323,7 +323,7 @@
                 </Grid.ColumnDefinitions>
                 <Label>잔여수량</Label>
                 <TextBlock
-                    Text="{Binding RemainingQuantity}"
+                    Text="{Binding RemainingQuantity, StringFormat='{}{0:#,#.}'}"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left"></TextBlock>
             </Grid>
 
@@ -334,7 +334,7 @@
                 </Grid.ColumnDefinitions>
                 <Label>재고수량</Label>
                 <TextBlock
-                    Text="{Binding InventoryQuantity}"
+                    Text="{Binding InventoryQuantity, StringFormat='{}{0:#,#.}'}"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left"></TextBlock>
             </Grid>
 
@@ -345,7 +345,7 @@
                 </Grid.ColumnDefinitions>
                 <Label>단가합계</Label>
                 <TextBlock
-                    Text="{Binding Amount}"
+                    Text="{Binding Amount, StringFormat='{}{0:#,#.}'}"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left"></TextBlock>
             </Grid>
         </Grid>

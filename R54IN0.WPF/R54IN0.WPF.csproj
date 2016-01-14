@@ -64,9 +64,12 @@
     <Compile Include="DailyInventory\Controls\ICollectionViewModel.cs" />
     <Compile Include="DailyInventory\Controls\ICollectionViewModelObserver.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\EnumBooleanConverter.cs" />
+    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.Inner.cs" />
+    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.Record.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.Properties.cs" />
+    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.Property.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridItem.cs" />
+    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridViewModel.MenuCommand.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridViewModel.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDatePicker.xaml.cs">
       <DependentUpon>IOStockDatePicker.xaml</DependentUpon>
@@ -93,6 +96,7 @@
       <DependentUpon>InventoryDataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="DailyInventory\Controls\IOStock\StockTypeToStringConverter.cs" />
+    <Compile Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewModelView.MenuCommand.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\NodeType.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNodeDirector.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNodeExtension.cs" />
@@ -100,10 +104,6 @@
       <DependentUpon>MultiSelectTreeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewModelView.cs" />
-    <Compile Include="DailyInventory\Controls\TreeView\ProductSelector.xaml.cs">
-      <DependentUpon>ProductSelector.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DailyInventory\Controls\TreeView\ProductSelectorViewModel.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNode.cs" />
     <Compile Include="DailyInventory\Data\LexDb.cs" />
     <Compile Include="DailyInventory\Data\Director\CollectionViewModelObserverSubject.cs" />
@@ -179,10 +179,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="DailyInventory\Controls\TreeView\ProductSelector.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -220,6 +216,14 @@
       <Project>{942d11c4-29f5-46c4-8c14-4b976d56c637}</Project>
       <Name>MahApps.Metro.NET45</Name>
     </ProjectReference>
+    <ProjectReference Include="..\mvvmlight\GalaSoft.MvvmLight\GalaSoft.MvvmLight %28PCL%29\GalaSoft.MvvmLight %28PCL%29.csproj">
+      <Project>{6a912701-3ba1-4975-adbf-160caf66b640}</Project>
+      <Name>GalaSoft.MvvmLight %28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mvvmlight\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Platform %28NET45%29\GalaSoft.MvvmLight.Platform %28NET45%29.csproj">
+      <Project>{0722b3db-76cd-4562-bea9-5c5c416b6a39}</Project>
+      <Name>GalaSoft.MvvmLight.Platform %28NET45%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
       <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
       <Name>Newtonsoft.Json.Net40</Name>
@@ -231,14 +235,6 @@
     <ProjectReference Include="..\WPFEditableTextBlock\EditableTextBlock.csproj">
       <Project>{f33e2408-9254-4bae-9b0a-52acdee00bd9}</Project>
       <Name>EditableTextBlock</Name>
-    </ProjectReference>
-    <ProjectReference Include="Y:\Github\R54IN0\mvvmlight\GalaSoft.MvvmLight\GalaSoft.MvvmLight %28PCL%29\GalaSoft.MvvmLight %28PCL%29.csproj">
-      <Project>{6a912701-3ba1-4975-adbf-160caf66b640}</Project>
-      <Name>GalaSoft.MvvmLight %28PCL%29</Name>
-    </ProjectReference>
-    <ProjectReference Include="Y:\Github\R54IN0\mvvmlight\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Platform %28NET45%29\GalaSoft.MvvmLight.Platform %28NET45%29.csproj">
-      <Project>{0722b3db-76cd-4562-bea9-5c5c416b6a39}</Project>
-      <Name>GalaSoft.MvvmLight.Platform %28NET45%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

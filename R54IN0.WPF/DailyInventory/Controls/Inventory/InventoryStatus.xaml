@@ -23,7 +23,7 @@
                 <RowDefinition Height="227" />
             </Grid.RowDefinitions>
             <GroupBox Header="제품 탐색기" Grid.RowSpan="3">
-                <local:ProductSelector DataContext="{Binding TreeViewViewModel}"/>
+                <local:MultiSelectTreeView DataContext="{Binding TreeViewViewModel}" />
             </GroupBox>
         </Grid>
 
