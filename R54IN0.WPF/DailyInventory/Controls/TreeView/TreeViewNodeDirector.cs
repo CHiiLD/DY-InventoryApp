@@ -134,7 +134,7 @@ namespace R54IN0.WPF
             }
 
             productNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT);
-            foreach (var product in ofd.CreateList<Product>()) //Item 목록에는 존재하지만 Finder에는 없는 경우
+            foreach (var product in ofd.Copy<Product>()) //Item 목록에는 존재하지만 Finder에는 없는 경우
             {
                 if (!productNodes.Any(x => x.ProductID == product.ID))
                     Add(new TreeViewNode(NodeType.PRODUCT, product.ID));

@@ -2,6 +2,7 @@
 using R54IN0.WPF;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,9 +21,9 @@ namespace R54IN0.Test.New
         /// 재고현황의 데이터그리드들과 데이터그리드의 아이템 개수를 체크한다. (항상 좌측이 많아야 한다)
         /// </summary>
         [TestMethod]
-        public void DataGridInitializationTest()
+        public async Task DataGridInitializationTest()
         {
-            new Dummy().Create();
+            await new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
             Assert.IsNotNull(viewmodel.DataGridViewModel1.Items);
             Assert.IsNotNull(viewmodel.DataGridViewModel2.Items);
@@ -69,9 +70,9 @@ namespace R54IN0.Test.New
         /// TreeViewNode의 이름 변경을 검사
         /// </summary>
         [TestMethod]
-        public void ReNameTreeViewNode()
+        public async Task ReNameTreeViewNode()
         {
-            new Dummy().Create();
+            await new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
             var node = viewmodel.TreeViewViewModel.Root.Where(x => x.Type == NodeType.PRODUCT).Random();
             node.IsNameEditable = false;
@@ -88,9 +89,9 @@ namespace R54IN0.Test.New
         /// TreeView에서 Node를 여러개 선택했을 경우 관련 재고 데이터를 데이터그리드에 업데이트한다.
         /// </summary>
         [TestMethod]
-        public void WhenSelectNodesThenUpdateDataGrid()
+        public async Task WhenSelectNodesThenUpdateDataGrid()
         {
-            new Dummy().Create();
+            await new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
             //NODE 하나 선택
             var node = viewmodel.TreeViewViewModel.Root.Where(x => x.Type == NodeType.PRODUCT).Random();

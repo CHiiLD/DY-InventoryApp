@@ -2,6 +2,7 @@
 using R54IN0.WPF;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace R54IN0.Test
 {
@@ -18,9 +19,9 @@ namespace R54IN0.Test
         /// 재고 현황의 재고 검색 테스트
         /// </summary>
         [TestMethod]
-        public void Search()
+        public async Task Search()
         {
-            new Dummy().Create();
+            await new Dummy().Create();
             string product = "     스위치 ";
             string dummyName = "23094832098432";
             string somethingName = "버튼\t 단자부\n버섯\r 213o4u12oi\t";

@@ -1,6 +1,7 @@
 ﻿using R54IN0.WPF;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace R54IN0.Test
 {
@@ -201,10 +202,11 @@ namespace R54IN0.Test
             }
         }
 
-        public void Create()
+        public async Task Create()
         {
             ////////////INIT
-            LexDb.Distroy();
+            LexDb.Destroy();
+            DbAdapter.Destroy();
             CollectionViewModelObserverSubject.Destory();
             ObservableInventoryDirector.Destory();
             ObservableFieldDirector.Destory();
@@ -249,7 +251,7 @@ namespace R54IN0.Test
                         }.Save<InventoryFormat>();
 
                         int qty = 0;
-                        int cnt = _random.Next(2, 10);
+                        int cnt = _random.Next(2, 5);
 
                         for (int i = 0; i < cnt; i++)
                         {
@@ -294,6 +296,7 @@ namespace R54IN0.Test
                     }
                 }
             }
+            await DbAdapter.GetInstance().ConnectAsync();
         }
     }
 }

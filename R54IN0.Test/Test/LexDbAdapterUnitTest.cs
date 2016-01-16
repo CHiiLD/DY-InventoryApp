@@ -21,7 +21,7 @@ namespace R54IN0.Test
         [TestMethod]
         public async Task DeleteAsync()
         {
-            new Dummy().Create();
+            await new Dummy().Create();
 
             string stockID = null;
             string inventoryID = null;
@@ -111,7 +111,7 @@ namespace R54IN0.Test
         [TestMethod]
         public async Task SelectAllAsync()
         {
-            new Dummy().Create();
+            await new Dummy().Create();
             Product[] products = null;
             Product[] products2 = null;
             using (var db = LexDb.GetDbInstance())

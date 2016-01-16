@@ -5,9 +5,9 @@ namespace R54IN0
     public class ObservableInventory : IObservableInventoryProperties
     {
         private InventoryFormat _fmt;
-        private Observable<Product> _product;
-        private Observable<Maker> _maker;
-        private Observable<Measure> _measure;
+        protected Observable<Product> product;
+        protected Observable<Maker> maker;
+        protected Observable<Measure> measure;
         protected PropertyChangedEventHandler propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
@@ -37,12 +37,12 @@ namespace R54IN0
         protected void InitializeProperties(InventoryFormat fmt)
         {
             var ofd = ObservableFieldDirector.GetInstance();
-            _product = ofd.Search<Product>(fmt.ProductID);
-            _measure = ofd.Search<Measure>(fmt.MeasureID);
-            _maker = ofd.Search<Maker>(fmt.MakerID);
+            product = ofd.Search<Product>(fmt.ProductID);
+            measure = ofd.Search<Measure>(fmt.MeasureID);
+            maker = ofd.Search<Maker>(fmt.MakerID);
         }
 
-        public InventoryFormat Format
+        public virtual InventoryFormat Format
         {
             get
             {
@@ -52,14 +52,14 @@ namespace R54IN0
             {
                 _fmt = value;
                 InitializeProperties(_fmt);
-                NotifyPropertyChanged("");
+                NotifyPropertyChanged(string.Empty);
             }
         }
 
         /// <summary>
         /// 제품의 규격 이름
         /// </summary>
-        public string Specification
+        public virtual string Specification
         {
             get
             {
@@ -75,7 +75,7 @@ namespace R54IN0
         /// <summary>
         /// 적재 수량
         /// </summary>
-        public int Quantity
+        public virtual int Quantity
         {
             get
             {
@@ -91,7 +91,7 @@ namespace R54IN0
         /// <summary>
         /// 비고
         /// </summary>
-        public string Memo
+        public virtual string Remark
         {
             get
             {
@@ -100,23 +100,23 @@ namespace R54IN0
             set
             {
                 _fmt.Remark = value;
-                NotifyPropertyChanged("Memo");
+                NotifyPropertyChanged("Remark");
             }
         }
 
         /// <summary>
         /// 제품
         /// </summary>
-        public Observable<Product> Product
+        public virtual Observable<Product> Product
         {
             get
             {
-                return _product;
+                return product;
             }
             set
             {
                 _fmt.ProductID = value != null ? value.ID : null;
-                _product = value;
+                product = value;
                 NotifyPropertyChanged("Product");
             }
         }
@@ -124,16 +124,16 @@ namespace R54IN0
         /// <summary>
         /// 단위
         /// </summary>
-        public Observable<Measure> Measure
+        public virtual Observable<Measure> Measure
         {
             get
             {
-                return _measure;
+                return measure;
             }
             set
             {
                 _fmt.MeasureID = value != null ? value.ID : null;
-                _measure = value;
+                measure = value;
                 NotifyPropertyChanged("Measure");
             }
         }
@@ -141,21 +141,21 @@ namespace R54IN0
         /// <summary>
         /// 제조사
         /// </summary>
-        public Observable<Maker> Maker
+        public virtual Observable<Maker> Maker
         {
             get
             {
-                return _maker;
+                return maker;
             }
             set
             {
                 _fmt.MakerID = value != null ? value.ID : null;
-                _maker = value;
+                maker = value;
                 NotifyPropertyChanged("Maker");
             }
         }
 
-        public string ID
+        public virtual string ID
         {
             get
             {
@@ -173,9 +173,14 @@ namespace R54IN0
                 propertyChanged(this, new PropertyChangedEventArgs(name));
 
             if (ID == null)
+            {
                 await DbAdapter.GetInstance().InsertAsync(Format);
+                ObservableInventoryDirector.GetInstance().Add(this);
+            }
             else
+            {
                 await DbAdapter.GetInstance().UpdateAsync(Format, name);
+            }
         }
     }
 }

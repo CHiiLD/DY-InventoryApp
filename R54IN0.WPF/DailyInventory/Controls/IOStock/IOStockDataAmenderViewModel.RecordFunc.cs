@@ -44,39 +44,27 @@ namespace R54IN0.WPF
         /// </summary>
         private void CreateIOStockNewProperies()
         {
-            var ofd = ObservableFieldDirector.GetInstance();
             switch (StockType)
             {
                 case IOStockType.INCOMING:
-                    if (Client == null)
-                    {
+                    if (Client == null && !string.IsNullOrEmpty(ClientText))
                         Supplier = new Observable<Supplier>() { Name = ClientText };
-                        ofd.Add<Supplier>(Supplier);
-                    }
-                    if (Warehouse == null)
-                    {
+                    if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
                         Warehouse = new Observable<Warehouse>() { Name = WarehouseText };
-                        ofd.Add<Warehouse>(Warehouse);
-                    }
                     break;
                 case IOStockType.OUTGOING:
-                    if (Client == null)
-                    {
+                    if (Client == null && !string.IsNullOrEmpty(ClientText))
                         Customer = new Observable<Customer>() { Name = ClientText };
-                        ofd.Add<Customer>(Customer);
-                    }
-                    if (Project == null)
-                    {
+                    if (Project == null && !string.IsNullOrEmpty(ProjectText))
                         Project = new Observable<Project>() { Name = ProjectText };
-                        ofd.Add<Project>(Project);
-                    }
                     break;
             }
-            if (Employee == null)
-            {
+            if (Employee == null && !string.IsNullOrEmpty(EmployeeText))
                 Employee = new Observable<Employee>() { Name = EmployeeText };
-                ofd.Add<Employee>(Employee);
-            }
+            if (Maker == null && !string.IsNullOrEmpty(MakerText))
+                Maker = new Observable<Maker>() { Name = MakerText };
+            if (Measure == null && !string.IsNullOrEmpty(MeasureText))
+                Measure = new Observable<Measure>() { Name = MeasureText };
         }
 
         /// <summary>
@@ -87,35 +75,46 @@ namespace R54IN0.WPF
             switch (StockType)
             {
                 case IOStockType.INCOMING:
-                    if (Client == null) //거래처
+                    if (_originSource.Supplier != null && Client == null)
                     {
+                        _originSource.Supplier.Name = ClientText;
                         Client = _originSource.Supplier;
-                        Client.Name = ClientText;
                     }
-                    if (Warehouse == null)
+                    if (_originSource.Warehouse != null && Warehouse == null)
                     {
+                        _originSource.Warehouse.Name = WarehouseText;
                         Warehouse = _originSource.Warehouse;
-                        Warehouse.Name = WarehouseText;
                     }
                     break;
                 case IOStockType.OUTGOING:
-                    if (Client == null) //거래처
+                    if (_originSource.Customer != null && Client == null)
                     {
+                        _originSource.Customer.Name = ClientText;
                         Client = _originSource.Customer;
-                        Client.Name = ClientText;
                     }
-                    if (Project == null)
+                    if (_originSource.Project != null && Project == null)
                     {
+                        _originSource.Project.Name = ProjectText;
                         Project = _originSource.Project;
-                        Project.Name = ProjectText;
                     }
                     break;
             }
-            if (Employee == null)
+            if (_originSource.Employee != null && Employee == null)
             {
+                _originSource.Employee.Name = EmployeeText;
                 Employee = _originSource.Employee;
-                Employee.Name = EmployeeText;
             }
+            if (_originSource.Inventory.Maker != null && Maker == null)
+            {
+                _originSource.Inventory.Maker.Name = MakerText;
+                Maker = _originSource.Inventory.Maker;
+            }
+            if (_originSource.Inventory.Measure != null && Measure == null)
+            {
+                _originSource.Inventory.Measure.Name = MeasureText;
+                Measure = _originSource.Inventory.Measure;
+            }
+            CreateIOStockNewProperies();
         }
 
         /// <summary>
@@ -123,52 +122,29 @@ namespace R54IN0.WPF
         /// </summary>
         private void ApplyModifiedInventoryProperties()
         {
-            var ofd = ObservableFieldDirector.GetInstance();
-            var oid = ObservableInventoryDirector.GetInstance();
             ObservableInventory inventory = null;
             if (Inventory == null)
             {
-                inventory = new ObservableInventory(new InventoryFormat())
+                Observable<Product> product = Product;
+                if (product == null)
                 {
-                    Product = this.Product,
-                    Maker = this.Maker,
-                    Measure = this.Measure,
+                    product = new Observable<Product>() { Name = ProductText };
+                    CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(product);
+                }
+                inventory = new ObservableInventory()
+                {
                     Specification = SpecificationText,
-                    Memo = _specificationMemo
+                    Remark = SpecificationMemo,
+                    Maker = Maker,
+                    Measure = Measure,
+                    Product = product,
                 };
-                if (inventory.Product == null)
-                {
-                    Observable<Product> newProduct = new Observable<Product>() { Name = ProductText };
-                    ObservableFieldDirector.GetInstance().Add<Product>(newProduct);
-                    CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(newProduct);
-                    inventory.Product = newProduct;
-                }
-                if (inventory.Maker == null)
-                {
-                    inventory.Maker = new Observable<Maker>() { Name = MakerText };
-                    ofd.Add<Maker>(inventory.Maker);
-                }
-                if (inventory.Measure == null)
-                {
-                    inventory.Measure = new Observable<Measure>() { Name = MeasureText };
-                    ofd.Add<Measure>(inventory.Measure);
-                }
-                oid.Add(inventory);
                 CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(inventory);
             }
             else
             {
-                inventory = oid.Search(Inventory.ID);
-                if (Maker == null)
-                    inventory.Maker.Name = MakerText;
-                else if (inventory.Maker != Maker)
-                    inventory.Maker = Maker;
-                if (Measure == null)
-                    inventory.Measure.Name = MeasureText;
-                else if (inventory.Measure != Measure)
-                    inventory.Measure = Measure;
-                if (inventory.Memo != SpecificationMemo)
-                    inventory.Memo = SpecificationMemo;
+                inventory = ObservableInventoryDirector.GetInstance().Search(Inventory.ID);
+                inventory.Format = Inventory.Format;
             }
             inventory.Quantity = InventoryQuantity;
             Inventory = inventory;

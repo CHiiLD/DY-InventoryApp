@@ -22,9 +22,22 @@ namespace R54IN0
             return _thiz;
         }
 
+        public static void Destroy()
+        {
+            if (_thiz != null)
+                _thiz = null;
+        }
+
         public async Task<bool> ConnectAsync()
         {
+            await ObservableFieldDirector.GetInstance().LoadDataFromServerAsync();
+            await ObservableInventoryDirector.GetInstance().LoadDataFromServerAsync();
             return LexDb.GetDbInstance() != null;
+        }
+
+        public async Task DisconnectAsync()
+        {
+            LexDb.Destroy();
         }
 
         public async Task<bool> DeleteAsync<TableT>(string id) where TableT : class
@@ -45,6 +58,7 @@ namespace R54IN0
         {
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException();
+
             var lexdb = LexDb.GetDbInstance();
             return lexdb.Table<TableT>().LoadByKey(id);
         }
@@ -53,8 +67,10 @@ namespace R54IN0
         {
             if (string.IsNullOrEmpty(item.ID))
                 throw new ArgumentNullException();
+
             if (item is IOStockFormat)
                 await CalculateDeledtedIOSFmtQuantity(item as IOStockFormat);
+
             var lexdb = LexDb.GetDbInstance();
             return lexdb.Table<TableT>().Delete(item);
         }
@@ -65,8 +81,10 @@ namespace R54IN0
                 throw new ArgumentNullException();
             if (string.IsNullOrEmpty(item.ID))
                 item.ID = Guid.NewGuid().ToString();
+
             if (item is IOStockFormat)
                 await CalculateAddedIOSFmtQuantity(item as IOStockFormat);
+
             var lexdb = LexDb.GetDbInstance();
             lexdb.Table<TableT>().Save(item);
         }
@@ -77,8 +95,10 @@ namespace R54IN0
                 throw new ArgumentNullException();
             if (string.IsNullOrEmpty(item.ID))
                 item.ID = Guid.NewGuid().ToString();
+
             if (item is IOStockFormat)
                 await CalculateModifiedIOSFmtQuantity(item as IOStockFormat);
+
             var lexdb = LexDb.GetDbInstance();
             lexdb.Table<TableT>().Save(item);
         }
@@ -158,6 +178,8 @@ namespace R54IN0
 
         private async Task CalculateAddedIOSFmtQuantity(IOStockFormat iosfmt)
         {
+            if (iosfmt.InventoryID == null)
+                return;
             int qty = iosfmt.Quantity;
             IOStockFormat near = null;
             IEnumerable<IOStockFormat> queryResult = await QueryAsync<IOStockFormat>(
@@ -191,6 +213,8 @@ namespace R54IN0
 
         private async Task CalculateModifiedIOSFmtQuantity(IOStockFormat iosfmt)
         {
+            if (iosfmt.InventoryID == null)
+                return;
             var lexdb = LexDb.GetDbInstance();
             InventoryFormat infmt = lexdb.Table<InventoryFormat>().LoadByKey(iosfmt.InventoryID);
             IOStockFormat origin = lexdb.Table<IOStockFormat>().LoadByKey(iosfmt.ID);

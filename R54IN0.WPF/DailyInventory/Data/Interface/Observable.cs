@@ -2,9 +2,9 @@
 
 namespace R54IN0
 {
-    public class Observable<T> : IObservableField, INotifyPropertyChanged where T : class, IField, new()
+    public class Observable<FieldT> : IObservableField, INotifyPropertyChanged where FieldT : class, IField, new()
     {
-        private T _t;
+        private FieldT _t;
 
         private event PropertyChangedEventHandler _propertyChanged;
 
@@ -23,10 +23,10 @@ namespace R54IN0
 
         public Observable()
         {
-            _t = new T();
+            _t = new FieldT();
         }
 
-        public Observable(T field)
+        public Observable(FieldT field)
         {
             _t = field;
         }
@@ -77,11 +77,11 @@ namespace R54IN0
             }
             set
             {
-                Field = (T)value;
+                Field = (FieldT)value;
             }
         }
 
-        public virtual T Field
+        public virtual FieldT Field
         {
             get
             {
@@ -100,9 +100,14 @@ namespace R54IN0
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
 
             if (ID == null)
+            {
                 await DbAdapter.GetInstance().InsertAsync(Field);
+                ObservableFieldDirector.GetInstance().Add<FieldT>(this);
+            }
             else
+            {
                 await DbAdapter.GetInstance().UpdateAsync(Field, name);
+            }
         }
     }
 }

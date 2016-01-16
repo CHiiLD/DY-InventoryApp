@@ -64,11 +64,11 @@
     <Compile Include="DailyInventory\Controls\ICollectionViewModel.cs" />
     <Compile Include="DailyInventory\Controls\ICollectionViewModelObserver.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\EnumBooleanConverter.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.IOStockProperty.cs" />
+    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.Property2.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.Inner.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.RecordFunc.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.BindingProperty.cs" />
+    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.Property1.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridItem.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridViewModel.MenuCommand.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridViewModel.cs" />
@@ -110,7 +110,7 @@
     <Compile Include="DailyInventory\Data\Director\CollectionViewModelObserverSubject.cs" />
     <Compile Include="DailyInventory\Data\Director\MultiSortedDictionary.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableFieldDirector.cs" />
-    <Compile Include="DailyInventory\Data\Director\ObservableInvenDirector.cs" />
+    <Compile Include="DailyInventory\Data\Director\ObservableInventoryDirector.cs" />
     <Compile Include="DailyInventory\Data\Fields\Customer.cs" />
     <Compile Include="DailyInventory\Data\Fields\Employee.cs" />
     <Compile Include="DailyInventory\Data\Fields\Maker.cs" />

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Threading.Tasks;
 
 namespace R54IN0.Test
 {
@@ -15,15 +16,13 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void LoadProperties()
+        public async Task LoadProperties()
         {
-            new Dummy().Create();
-            using (var db = LexDb.GetDbInstance())
-                db.Purge();
+            await new Dummy().Create();
             ObservableInventory oinven = new ObservableInventory();
             oinven.Measure = new Observable<Measure>() { Name = "EA" };
             oinven.Product = new Observable<Product>() { Name = "product name" };
-            oinven.Memo = "memo";
+            oinven.Remark = "memo";
             oinven.Quantity = 123;
             oinven.Maker = new Observable<Maker>() { Name = "maker name" };
             oinven.Specification = "product's specification name(standard)";
@@ -43,7 +42,6 @@ namespace R54IN0.Test
             using (var db = LexDb.GetDbInstance())
                 stockFormat = db.LoadByKey<IOStockFormat>(ostock.ID);
 
-            ObservableInventoryDirector.Destory();
             ObservableIOStock newOStock = new ObservableIOStock(stockFormat);
             Assert.AreEqual(ostock.ID, newOStock.ID);
             Assert.AreEqual(ostock.Project.ID, newOStock.Project.ID);

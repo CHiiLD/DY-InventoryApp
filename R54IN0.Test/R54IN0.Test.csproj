@@ -56,19 +56,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Test\IIDExtension.cs" />
+    <Compile Include="IIDExtension.cs" />
     <Compile Include="Test\LexDbAdapterUnitTest.cs" />
     <Compile Include="Test\IOStockDataAmenderViewModelTest.cs" />
     <Compile Include="Test\IOStockStatusViewModelTest.cs" />
-    <Compile Include="Test\MainWindowViewModelTest.cs" />
     <Compile Include="Test\ObservableStockTest.cs" />
     <Compile Include="Test\DummyTest.cs" />
     <Compile Include="Test\InventorySearchTextBoxViewModelTest.cs" />
     <Compile Include="Test\InventoryStatusViewModelTest.cs" />
     <Compile Include="Test\ProductManagerViewModelTest.cs" />
-    <Compile Include="Test\Dummy.cs" />
+    <Compile Include="Dummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test\RandomLinq.cs" />
+    <Compile Include="RandomLinq.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">

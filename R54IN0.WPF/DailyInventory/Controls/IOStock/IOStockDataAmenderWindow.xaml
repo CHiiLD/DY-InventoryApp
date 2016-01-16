@@ -139,7 +139,6 @@
                 </Grid.ColumnDefinitions>
                 <Label>규격의 설명</Label>
                 <TextBox
-                    IsReadOnly="{Binding IsReadOnlySpecificationMemoTextBox}"
                     Grid.Column="1" Text="{Binding SpecificationMemo}" Margin="0,0,1,0">
                     <TextBox.Style>
                         <Style TargetType="{x:Type TextBox}"
@@ -176,7 +175,6 @@
                           SelectedItem="{Binding Maker}"
                           ItemsSource="{Binding MakerList}"
                           IsEditable="True"
-                          IsEnabled="{Binding IsEnabledMakerComboBox}"
                           DisplayMemberPath="Name"
                           Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
             </Grid>
@@ -204,7 +202,6 @@
                     SelectedItem="{Binding Measure}"
                     ItemsSource="{Binding MeasureList}"
                     IsEditable="True"
-                    IsEnabled="{Binding IsEnabledMeasureComboBox}"
                     DisplayMemberPath="Name"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left" />
             </Grid>

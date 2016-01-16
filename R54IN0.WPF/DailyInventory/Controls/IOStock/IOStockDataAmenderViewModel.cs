@@ -9,16 +9,8 @@ using System.Windows;
 
 namespace R54IN0.WPF
 {
-    public partial class IOStockDataAmenderViewModel : IObservableIOStockProperties
+    public partial class IOStockDataAmenderViewModel : ObservableIOStock
     {
-        private IOStockFormat _fmt;
-        private Observable<Customer> _customer;
-        private Observable<Supplier> _supplier;
-        private Observable<Project> _project;
-        private Observable<Employee> _employee;
-        private Observable<Warehouse> _warehouse;
-        private IObservableInventoryProperties _inventory;
-
         private IOStockStatusViewModel _ioStockStatusViewModel;
         private IObservableIOStockProperties _originSource;
         private Mode _mode;
@@ -42,43 +34,21 @@ namespace R54IN0.WPF
         private string _employeeText;
         private bool _isEditableSpecification;
         private bool _isEnabledSpecificationComboBox;
-        private bool _isReadOnlySpecificationMemoTextBox;
-        private bool _isEnabledMakerComboBox;
-        private bool _isEnabledMeasureComboBox;
         private bool _isEnabledInComingRadioButton;
         private bool _isEnabledInOutGoingRadioButton;
         private int _inventoryQuantity;
         private bool _isEnabledDatePicker;
 
-        private event PropertyChangedEventHandler _propertyChanged;
-
-        public event PropertyChangedEventHandler PropertyChanged
-        {
-            add
-            {
-                _propertyChanged -= value;
-                _propertyChanged += value;
-            }
-            remove
-            {
-                _propertyChanged -= value;
-            }
-        }
-
         /// <summary>
         /// TEST용 생성자
-        /// </summary>
-        public IOStockDataAmenderViewModel()
+        /// </summary> 
+        public IOStockDataAmenderViewModel() : base()
         {
             Initialize();
-            _fmt = new IOStockFormat();
             _mode = Mode.ADD;
             StockType = IOStockType.INCOMING;
             Date = DateTime.Now;
 
-            IsReadOnlySpecificationMemoTextBox = false;
-            IsEnabledMakerComboBox = true;
-            IsEnabledMeasureComboBox = true;
             IsEnabledSpecificationComboBox = true;
             IsEnabledOutGoingRadioButton = true;
             IsEnabledInComingRadioButton = true;
@@ -88,20 +58,16 @@ namespace R54IN0.WPF
         /// <summary>
         /// TEST용 생성자
         /// </summary>
-        /// <param name="observableInoutStock"></param>
-        public IOStockDataAmenderViewModel(IObservableIOStockProperties observableInoutStock)
+        /// <param name="ioStock"></param>
+        public IOStockDataAmenderViewModel(IObservableIOStockProperties ioStock) : base(
+            new IOStockFormat(ioStock.Format))
         {
             Initialize();
-            _fmt = new IOStockFormat(observableInoutStock.Format);
-            InitializeProperties(_fmt);
             _mode = Mode.MODIFY;
-            _originSource = observableInoutStock;
-            StockType = observableInoutStock.StockType;
+            _originSource = ioStock;
+            StockType = ioStock.StockType;
 
             IsReadOnlyProductTextBox = true;
-            IsReadOnlySpecificationMemoTextBox = false;
-            IsEnabledMakerComboBox = true;
-            IsEnabledMeasureComboBox = true;
             IsEnabledSpecificationComboBox = false;
             IsEnabledOutGoingRadioButton = false;
             IsEnabledInComingRadioButton = false;
@@ -121,9 +87,9 @@ namespace R54IN0.WPF
         /// 기존의 IOStockFormat을 수정하고자 할 경우
         /// </summary>
         /// <param name="ioStockStatusViewModel"></param>
-        /// <param name="observableInoutStock"></param>
-        public IOStockDataAmenderViewModel(IOStockStatusViewModel ioStockStatusViewModel, IObservableIOStockProperties observableInoutStock) :
-            this(observableInoutStock)
+        /// <param name="ioStock"></param>
+        public IOStockDataAmenderViewModel(IOStockStatusViewModel ioStockStatusViewModel, IObservableIOStockProperties ioStock) :
+            this(ioStock)
         {
             _ioStockStatusViewModel = ioStockStatusViewModel;
         }
@@ -132,15 +98,15 @@ namespace R54IN0.WPF
         /// IOStockProperties 속성 초기화
         /// </summary>
         /// <param name="iosFmt"></param>
-        protected void InitializeProperties(IOStockFormat iosFmt)
+        protected override void InitializeProperties(IOStockFormat iosFmt)
         {
             var ofd = ObservableFieldDirector.GetInstance();
             var oid = ObservableInventoryDirector.GetInstance();
-            _customer = ofd.Search<Customer>(iosFmt.CustomerID);
-            _supplier = ofd.Search<Supplier>(iosFmt.SupplierID);
-            _project = ofd.Search<Project>(iosFmt.ProjectID);
-            _employee = ofd.Search<Employee>(iosFmt.EmployeeID);
-            _warehouse = ofd.Search<Warehouse>(iosFmt.WarehouseID);
+            customer = ofd.Search<Customer>(iosFmt.CustomerID);
+            supplier = ofd.Search<Supplier>(iosFmt.SupplierID);
+            project = ofd.Search<Project>(iosFmt.ProjectID);
+            employee = ofd.Search<Employee>(iosFmt.EmployeeID);
+            warehouse = ofd.Search<Warehouse>(iosFmt.WarehouseID);
 
             Product = oid.Search(iosFmt.InventoryID).Product;
             Inventory = InventoryList.Where(x => x.ID == iosFmt.InventoryID).SingleOrDefault();
@@ -161,68 +127,26 @@ namespace R54IN0.WPF
             ProductSelectCommand = new RelayCommand(ExecuteProductSelectCommand, CanSelectProduct);
         }
 
-        private void UpdateQuantityProperties()
+        private void UpdateQuantityProperties(int value)
         {
-            int value = Quantity;
             switch (_mode)
             {
                 case Mode.ADD:
                     switch (StockType)
                     {
                         case IOStockType.INCOMING:
-                            InventoryQuantity = (Product == null || Inventory == null) ? value : Inventory.Quantity + value;
-                            break;
+                            InventoryQuantity = (Inventory == null) ? value : Inventory.Quantity + value; break;
                         case IOStockType.OUTGOING:
-                            InventoryQuantity = (Product == null || Inventory == null) ? -value : Inventory.Quantity - value;
-                            break;
+                            InventoryQuantity = (Inventory == null) ? -value : Inventory.Quantity - value; break;
                     }
                     break;
                 case Mode.MODIFY:
                     switch (StockType)
                     {
                         case IOStockType.INCOMING:
-                            InventoryQuantity = _originSource.Inventory.Quantity + value - _originSource.Quantity;
-                            break;
+                            InventoryQuantity = _originSource.Inventory.Quantity + value - _originSource.Quantity; break;
                         case IOStockType.OUTGOING:
-                            InventoryQuantity = _originSource.Inventory.Quantity + _originSource.Quantity - value;
-                            break;
-                    }
-                    break;
-            }
-        }
-
-        private void CalculateRemainingQuantity(IOStockFormat near = null)
-        {
-            int qty = Quantity;
-            switch (_mode)
-            {
-                case Mode.ADD:
-                    if (Product == null || Inventory == null)
-                    {
-                        switch (StockType)
-                        {
-                            case IOStockType.INCOMING: RemainingQuantity = qty; break;
-                            case IOStockType.OUTGOING: RemainingQuantity = -qty; break;
-                        }
-                    }
-                    else
-                    {
-                        switch (StockType)
-                        {
-                            case IOStockType.INCOMING: RemainingQuantity = (near == null) ? qty : near.RemainingQuantity + Quantity; break;
-                            case IOStockType.OUTGOING: RemainingQuantity = (near == null) ? -qty : near.RemainingQuantity - Quantity; break;
-                        }
-                    }
-                    break;
-                case Mode.MODIFY:
-                    switch (StockType)
-                    {
-                        case IOStockType.INCOMING:
-                            RemainingQuantity = _originSource.RemainingQuantity + qty - _originSource.Quantity;
-                            break;
-                        case IOStockType.OUTGOING:
-                            RemainingQuantity = _originSource.RemainingQuantity + _originSource.Quantity - qty;
-                            break;
+                            InventoryQuantity = _originSource.Inventory.Quantity + _originSource.Quantity - value; break;
                     }
                     break;
             }
@@ -300,11 +224,13 @@ namespace R54IN0.WPF
             IsOpenFlyout = true;
         }
 
-        public void NotifyPropertyChanged(string propertyName)
+        public override void NotifyPropertyChanged(string propertyName)
         {
-            var eventHandler = _propertyChanged;
+            var eventHandler = propertyChanged;
             if (eventHandler != null)
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));
+            if (propertyName == "Quantity" || propertyName == "UnitPrice")
+                NotifyPropertyChanged("Amount");
         }
     }
 }

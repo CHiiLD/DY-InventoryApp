@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
 
 namespace R54IN0.Test.New
 {
@@ -6,9 +7,9 @@ namespace R54IN0.Test.New
     public class DummyTest
     {
         [TestMethod]
-        public void CanCreate()
+        public async Task CanCreate()
         {
-            new Dummy().Create();
+            await new Dummy().Create();
         }
     }
 }

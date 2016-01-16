@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace R54IN0.Test
@@ -21,9 +22,9 @@ namespace R54IN0.Test
         /// 뷰에서 날짜별로 그룹화를 선택해서 오늘날짜를 클릭한다.
         /// </summary>
         [TestMethod]
-        public void SelectDatePicker()
+        public async Task SelectDatePicker()
         {
-            new Dummy().Create();
+            await new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count);
             //날짜를 선택
@@ -41,9 +42,9 @@ namespace R54IN0.Test
         /// 뷰에서 프로젝트별 그룹화를 선택한 후 프로젝트를 클릭한다.
         /// </summary>
         [TestMethod]
-        public void SelectProject()
+        public async Task SelectProject()
         {
-            new Dummy().Create();
+            await new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count);
             //프로젝트 선택
@@ -61,9 +62,9 @@ namespace R54IN0.Test
         /// 뷰에서 제품별 그룹화를 선택한 후 탐색기에서 제품셀을 선택
         /// </summary>
         [TestMethod]
-        public void SelectProduct()
+        public async Task SelectProduct()
         {
-            new Dummy().Create();
+            await new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count);
             viewmodel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
@@ -82,9 +83,9 @@ namespace R54IN0.Test
         /// 입고와 출고 체크박스를 선택하였을 때 그에 맞는 데이터가 데이터 그리드에 업데이트 되어야 한다.
         /// </summary>
         [TestMethod]
-        public void ControlInoutStockCheckBox()
+        public async Task ControlInoutStockCheckBox()
         {
-            new Dummy().Create();
+            await new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             viewmodel.IsCheckedInComing = true;
             viewmodel.IsCheckedOutGoing = true;

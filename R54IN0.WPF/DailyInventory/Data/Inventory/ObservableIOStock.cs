@@ -6,13 +6,13 @@ namespace R54IN0
     public class ObservableIOStock : IObservableIOStockProperties
     {
         private IOStockFormat _fmt;
-        private Observable<Customer> _customer;
-        private Observable<Supplier> _supplier;
-        private Observable<Project> _project;
-        private Observable<Employee> _employee;
-        private Observable<Warehouse> _warehouse;
-
         private IObservableInventoryProperties _inventory;
+
+        protected Observable<Customer> customer;
+        protected Observable<Supplier> supplier;
+        protected Observable<Project> project;
+        protected Observable<Employee> employee;
+        protected Observable<Warehouse> warehouse;
         protected PropertyChangedEventHandler propertyChanged;
 
         public ObservableIOStock()
@@ -49,7 +49,7 @@ namespace R54IN0
             {
                 _fmt = value;
                 InitializeProperties(_fmt);
-                NotifyPropertyChanged("");
+                NotifyPropertyChanged(string.Empty);
             }
         }
 
@@ -140,12 +140,12 @@ namespace R54IN0
         {
             get
             {
-                return _customer;
+                return customer;
             }
             set
             {
                 _fmt.CustomerID = value != null ? value.ID : null;
-                _customer = value;
+                customer = value;
                 NotifyPropertyChanged("Customer");
             }
         }
@@ -154,12 +154,12 @@ namespace R54IN0
         {
             get
             {
-                return _supplier;
+                return supplier;
             }
             set
             {
                 _fmt.SupplierID = value != null ? value.ID : null;
-                _supplier = value;
+                supplier = value;
                 NotifyPropertyChanged("Supplier");
             }
         }
@@ -171,12 +171,12 @@ namespace R54IN0
         {
             get
             {
-                return _project;
+                return project;
             }
             set
             {
                 _fmt.ProjectID = value != null ? value.ID : null;
-                _project = value;
+                project = value;
                 NotifyPropertyChanged("Project");
             }
         }
@@ -211,12 +211,12 @@ namespace R54IN0
         {
             get
             {
-                return _employee;
+                return employee;
             }
             set
             {
                 _fmt.EmployeeID = value != null ? value.ID : null;
-                _employee = value;
+                employee = value;
                 NotifyPropertyChanged("Employee");
             }
         }
@@ -225,12 +225,12 @@ namespace R54IN0
         {
             get
             {
-                return _warehouse;
+                return warehouse;
             }
             set
             {
                 _fmt.WarehouseID = value != null ? value.ID : null;
-                _warehouse = value;
+                warehouse = value;
                 NotifyPropertyChanged("Warehouse");
             }
         }
@@ -248,17 +248,17 @@ namespace R54IN0
             }
         }
 
-        protected virtual void InitializeProperties(IOStockFormat inoutStockFormat)
+        protected virtual void InitializeProperties(IOStockFormat iosfmt)
         {
             var ofd = ObservableFieldDirector.GetInstance();
-            _customer = ofd.Search<Customer>(inoutStockFormat.CustomerID);
-            _supplier = ofd.Search<Supplier>(inoutStockFormat.SupplierID);
-            _project = ofd.Search<Project>(inoutStockFormat.ProjectID);
-            _employee = ofd.Search<Employee>(inoutStockFormat.EmployeeID);
-            _warehouse = ofd.Search<Warehouse>(inoutStockFormat.WarehouseID);
+            customer = ofd.Search<Customer>(iosfmt.CustomerID);
+            supplier = ofd.Search<Supplier>(iosfmt.SupplierID);
+            project = ofd.Search<Project>(iosfmt.ProjectID);
+            employee = ofd.Search<Employee>(iosfmt.EmployeeID);
+            warehouse = ofd.Search<Warehouse>(iosfmt.WarehouseID);
 
             var oid = ObservableInventoryDirector.GetInstance();
-            _inventory = oid.Search(inoutStockFormat.InventoryID);
+            _inventory = oid.Search(iosfmt.InventoryID);
         }
 
         public virtual async void NotifyPropertyChanged(string name)

@@ -26,7 +26,7 @@ namespace R54IN0.WPF
         public IOStockProjectListBoxViewModel()
         {
             var ofd = ObservableFieldDirector.GetInstance();
-            var list = ofd.CreateList<Project>();
+            var list = ofd.Copy<Project>();
             Items = new ObservableCollection<Observable<Project>>(list);
         }
 

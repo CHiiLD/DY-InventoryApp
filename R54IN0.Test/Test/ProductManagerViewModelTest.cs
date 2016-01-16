@@ -19,7 +19,7 @@
 //        [TestMethod]
 //        public void CreateNewFolder()
 //        {
-//            new Dummy().Create();
+//            await new Dummy().Create();
 //            var viewmodel = new ProductSelectorViewModel();
 //            //새로운 폴더를 생성
 //            viewmodel.NewFolderAddCommand.Execute(null);
@@ -38,7 +38,7 @@
 //        [TestMethod]
 //        public void CreateNewProduct()
 //        {
-//            new Dummy().Create();
+//            await new Dummy().Create();
 //            var viewmodel = new ProductSelectorViewModel();
 //            //새로운 제품을 추가
 //            viewmodel.NewProductAddCommand.Execute(null);
@@ -56,7 +56,7 @@
 //        [TestMethod]
 //        public void DeleteFordelAndProduct()
 //        {
-//            new Dummy().Create();
+//            await new Dummy().Create();
 //            var viewmodel = new ProductSelectorViewModel();
 //            var isvm = new InventoryStatusViewModel();
 //            //새로운 폴더를 생성
