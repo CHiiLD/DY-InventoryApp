@@ -316,17 +316,6 @@
                 </TextBox>
             </Grid>
 
-            <Grid Grid.Row="9" Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="43*" />
-                </Grid.ColumnDefinitions>
-                <Label>잔여수량</Label>
-                <TextBlock
-                    Text="{Binding RemainingQuantity, StringFormat='{}{0:#,#.}'}"
-                    Grid.Column="1" Width="200" HorizontalAlignment="Left"></TextBlock>
-            </Grid>
-
             <Grid Grid.Row="10" Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />

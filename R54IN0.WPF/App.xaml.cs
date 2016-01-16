@@ -9,7 +9,7 @@ namespace R54IN0.WPF
     {
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            TreeViewNodeDirector.Distroy();
+            TreeViewNodeDirector.Destroy();
             LexDb.Distroy();
         }
 

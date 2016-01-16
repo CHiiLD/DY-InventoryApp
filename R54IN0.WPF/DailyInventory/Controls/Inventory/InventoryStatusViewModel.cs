@@ -275,6 +275,20 @@ namespace R54IN0.WPF
                 else if (DataGridViewModel2.Items.Contains(obInven))
                     DataGridViewModel2.Items.Remove(obInven);
             }
+            else if (item is Observable<Product>)
+            {
+                Observable<Product> product = item as Observable<Product>;
+                foreach (var obInven in new List<ObservableInventory>(DataGridViewModel1.Items))
+                {
+                    if (obInven.Product.ID == product.ID)
+                        DataGridViewModel1.Items.Remove(obInven);
+                }
+                foreach (var obInven in new List<ObservableInventory>(DataGridViewModel2.Items))
+                {
+                    if (obInven.Product.ID == product.ID)
+                        DataGridViewModel2.Items.Remove(obInven);
+                }
+            }
         }
     }
 }

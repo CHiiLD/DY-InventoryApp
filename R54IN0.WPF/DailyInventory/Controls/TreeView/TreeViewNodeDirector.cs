@@ -33,7 +33,7 @@ namespace R54IN0.WPF
             return _thiz;
         }
 
-        public static void Distroy()
+        public static void Destroy()
         {
             if (_thiz != null)
             {

@@ -34,27 +34,27 @@ namespace R54IN0.WPF
 
         public IOStockDatePickerViewModel()
         {
-            SearchCommand = new RelayCommand<object>(ExecuteSearchCommand, Can);
-            TodayCommand = new RelayCommand<object>(ExecuteTodayCommand, Can);
-            YesterdayCommand = new RelayCommand<object>(ExecuteYesterdayCommand, Can);
-            TheDayBeforeYesterday = new RelayCommand<object>(ExecuteTheDayBeforeYesterdayCommand, Can);
-            ThisWeekCommand = new RelayCommand<object>(ExecuteThisWeekCommand, Can);
-            LastWeekCommand = new RelayCommand<object>(ExecuteLastWeekCommand, Can);
-            FromLastWeekToTodayCommand = new RelayCommand<object>(ExecuteFromLastWeekToTodayCommand, Can);
-            ThisMonthCommand = new RelayCommand<object>(ExecuteThisMonthCommand, Can);
-            LastMonthCommand = new RelayCommand<object>(ExecuteLastMonthCommand, Can);
-            FirstQuarterCommand = new RelayCommand<object>(ExecuteFirstQuarterCommand, Can);
-            SecondQuarterCommand = new RelayCommand<object>(ExecuteSecondQuarterCommand, Can);
-            ThirdQuarterCommand = new RelayCommand<object>(ExecuteThirdQuarterCommand, Can);
-            FourthQuarterCommand = new RelayCommand<object>(ExecuteFourthQuarterCommand, Can);
-            FirstHalfYearCommand = new RelayCommand<object>(ExecuteFirstHalfYearCommand, Can);
-            SecondHalfYearCommand = new RelayCommand<object>(ExecuteSecondHalfYearCommand, Can);
-            ThisYearCommand = new RelayCommand<object>(ExecuteThisYearCommand, Can);
-            LastYearCommand = new RelayCommand<object>(ExecuteLastYearCommand, Can);
-            TheYearBeforeLastCommand = new RelayCommand<object>(ExecuteTheYearBeforeLastCommand, Can);
+            SearchCommand = new RelayCommand(ExecuteSearchCommand, Can);
+            TodayCommand = new RelayCommand(ExecuteTodayCommand, Can);
+            YesterdayCommand = new RelayCommand(ExecuteYesterdayCommand, Can);
+            TheDayBeforeYesterday = new RelayCommand(ExecuteTheDayBeforeYesterdayCommand, Can);
+            ThisWeekCommand = new RelayCommand(ExecuteThisWeekCommand, Can);
+            LastWeekCommand = new RelayCommand(ExecuteLastWeekCommand, Can);
+            FromLastWeekToTodayCommand = new RelayCommand(ExecuteFromLastWeekToTodayCommand, Can);
+            ThisMonthCommand = new RelayCommand(ExecuteThisMonthCommand, Can);
+            LastMonthCommand = new RelayCommand(ExecuteLastMonthCommand, Can);
+            FirstQuarterCommand = new RelayCommand(ExecuteFirstQuarterCommand, Can);
+            SecondQuarterCommand = new RelayCommand(ExecuteSecondQuarterCommand, Can);
+            ThirdQuarterCommand = new RelayCommand(ExecuteThirdQuarterCommand, Can);
+            FourthQuarterCommand = new RelayCommand(ExecuteFourthQuarterCommand, Can);
+            FirstHalfYearCommand = new RelayCommand(ExecuteFirstHalfYearCommand, Can);
+            SecondHalfYearCommand = new RelayCommand(ExecuteSecondHalfYearCommand, Can);
+            ThisYearCommand = new RelayCommand(ExecuteThisYearCommand, Can);
+            LastYearCommand = new RelayCommand(ExecuteLastYearCommand, Can);
+            TheYearBeforeLastCommand = new RelayCommand(ExecuteTheYearBeforeLastCommand, Can);
 
             //베이스
-            ExecuteThisWeekCommand(null);
+            ExecuteThisWeekCommand();
         }
 
         public ICommand SearchCommand { get; set; }
@@ -135,7 +135,7 @@ namespace R54IN0.WPF
         /// 조회 버튼을 누를 경우
         /// </summary>
         /// <param name="obj"></param>
-        private void ExecuteSearchCommand(object obj)
+        private void ExecuteSearchCommand()
         {
             var now = DateTime.Now;
             FromDate = new DateTime(FromDate.Year, FromDate.Month, FromDate.Day, 0, 0, 0, 0, DateTimeKind.Local);
@@ -143,70 +143,70 @@ namespace R54IN0.WPF
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteTheYearBeforeLastCommand(object obj)
+        private void ExecuteTheYearBeforeLastCommand()
         {
             FromDate = new DateTime(DateTime.Now.Year - 2, 1, 1, 0, 0, 0, 0, DateTimeKind.Local); //1.1
             ToDate = new DateTime(FromDate.Year, FromDate.Month + 11, DateTime.DaysInMonth(FromDate.Year, FromDate.Month + 11), 23, 59, 59, 999, DateTimeKind.Local); //12.31
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteLastYearCommand(object obj)
+        private void ExecuteLastYearCommand()
         {
             FromDate = new DateTime(DateTime.Now.Year - 1, 1, 1, 0, 0, 0, 0, DateTimeKind.Local); //1.1
             ToDate = new DateTime(FromDate.Year, FromDate.Month + 11, DateTime.DaysInMonth(FromDate.Year, FromDate.Month + 11), 23, 59, 59, 999, DateTimeKind.Local); //12.31
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteThisYearCommand(object obj)
+        private void ExecuteThisYearCommand()
         {
             FromDate = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0, 0, DateTimeKind.Local); //1.1
             ToDate = new DateTime(FromDate.Year, FromDate.Month + 11, DateTime.DaysInMonth(FromDate.Year, FromDate.Month + 11), 23, 59, 59, 999, DateTimeKind.Local); //12.31
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteSecondHalfYearCommand(object obj)
+        private void ExecuteSecondHalfYearCommand()
         {
             FromDate = new DateTime(DateTime.Now.Year, 7, 1, 0, 0, 0, 0, DateTimeKind.Local); //7.1
             ToDate = new DateTime(FromDate.Year, FromDate.Month + 5, DateTime.DaysInMonth(FromDate.Year, FromDate.Month + 5), 23, 59, 59, 999, DateTimeKind.Local); //12.31
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteFirstHalfYearCommand(object obj)
+        private void ExecuteFirstHalfYearCommand()
         {
             FromDate = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0, 0, DateTimeKind.Local); //1.1
             ToDate = new DateTime(FromDate.Year, FromDate.Month + 5, DateTime.DaysInMonth(FromDate.Year, FromDate.Month + 5), 23, 59, 59, 999, DateTimeKind.Local); //6.30
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteFourthQuarterCommand(object obj)
+        private void ExecuteFourthQuarterCommand()
         {
             FromDate = new DateTime(DateTime.Now.Year, 10, 1, 0, 0, 0, 0, DateTimeKind.Local); //10.1
             ToDate = new DateTime(FromDate.Year, FromDate.Month + 2, DateTime.DaysInMonth(FromDate.Year, FromDate.Month + 2), 23, 59, 59, 999, DateTimeKind.Local); //12.31
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteThirdQuarterCommand(object obj)
+        private void ExecuteThirdQuarterCommand()
         {
             FromDate = new DateTime(DateTime.Now.Year, 7, 1, 0, 0, 0, 0, DateTimeKind.Local); //7.1
             ToDate = new DateTime(FromDate.Year, FromDate.Month + 2, DateTime.DaysInMonth(FromDate.Year, FromDate.Month + 2), 23, 59, 59, 999, DateTimeKind.Local); //10.31
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteSecondQuarterCommand(object obj)
+        private void ExecuteSecondQuarterCommand()
         {
             FromDate = new DateTime(DateTime.Now.Year, 4, 1, 0, 0, 0, 0, DateTimeKind.Local); //4.1
             ToDate = new DateTime(FromDate.Year, FromDate.Month + 2, DateTime.DaysInMonth(FromDate.Year, FromDate.Month + 2), 23, 59, 59, 999, DateTimeKind.Local); //6.30
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteFirstQuarterCommand(object obj)
+        private void ExecuteFirstQuarterCommand()
         {
             FromDate = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0, 0, DateTimeKind.Local); //1.1
             ToDate = new DateTime(FromDate.Year, FromDate.Month + 2, DateTime.DaysInMonth(FromDate.Year, FromDate.Month + 2), 23, 59, 59, 999, DateTimeKind.Local); //3.31
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteLastMonthCommand(object obj)
+        private void ExecuteLastMonthCommand()
         {
             var date = DateTime.Now.AddMonths(-1);
             FromDate = new DateTime(date.Year, date.Month, 1, 0, 0, 0, 0, DateTimeKind.Local);
@@ -214,7 +214,7 @@ namespace R54IN0.WPF
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteThisMonthCommand(object obj)
+        private void ExecuteThisMonthCommand()
         {
             var now = DateTime.Now;
             FromDate = new DateTime(now.Year, now.Month, 1, 0, 0, 0, 0, DateTimeKind.Local);
@@ -222,7 +222,7 @@ namespace R54IN0.WPF
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteFromLastWeekToTodayCommand(object obj)
+        private void ExecuteFromLastWeekToTodayCommand()
         {
             var now = DateTime.Now;
             var from = now.AddDays(-(int)now.DayOfWeek - 7);
@@ -231,7 +231,7 @@ namespace R54IN0.WPF
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteLastWeekCommand(object obj)
+        private void ExecuteLastWeekCommand()
         {
             var now = DateTime.Now;
             var from = now.AddDays(-(int)now.DayOfWeek - 7);
@@ -241,7 +241,7 @@ namespace R54IN0.WPF
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteThisWeekCommand(object obj)
+        private void ExecuteThisWeekCommand()
         {
             var now = DateTime.Now;
             var from = now.AddDays(-(int)now.DayOfWeek);
@@ -251,7 +251,7 @@ namespace R54IN0.WPF
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteTheDayBeforeYesterdayCommand(object obj)
+        private void ExecuteTheDayBeforeYesterdayCommand()
         {
             var date = DateTime.Now.AddDays(-2);
             FromDate = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0, 0, DateTimeKind.Local);
@@ -259,7 +259,7 @@ namespace R54IN0.WPF
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteYesterdayCommand(object obj)
+        private void ExecuteYesterdayCommand()
         {
             var date = DateTime.Now.AddDays(-1);
             FromDate = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0, 0, DateTimeKind.Local);
@@ -267,7 +267,7 @@ namespace R54IN0.WPF
             CallCommandExecutedHandler();
         }
 
-        private void ExecuteTodayCommand(object obj)
+        private void ExecuteTodayCommand()
         {
             var now = DateTime.Now;
             FromDate = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0, 0, DateTimeKind.Local);
@@ -275,7 +275,7 @@ namespace R54IN0.WPF
             CallCommandExecutedHandler();
         }
 
-        public bool Can(object parameter)
+        public bool Can()
         {
             return true;
         }

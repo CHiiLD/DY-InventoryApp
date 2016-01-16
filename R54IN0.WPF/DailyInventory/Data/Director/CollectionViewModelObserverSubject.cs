@@ -19,7 +19,7 @@ namespace R54IN0
             return _thiz;
         }
 
-        public static void Distory()
+        public static void Destory()
         {
             if (_thiz != null)
                 _thiz = null;

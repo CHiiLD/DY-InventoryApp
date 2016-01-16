@@ -2,7 +2,7 @@
 
 namespace R54IN0.WPF
 {
-    public partial class IOStockDataAmenderViewModel : ObservableIOStock
+    public partial class IOStockDataAmenderViewModel
     {
         private enum Mode
         {

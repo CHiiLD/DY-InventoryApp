@@ -2,15 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
     public partial class IOStockDataAmenderViewModel
     {
+        /// <summary>
+        /// 제품 탐색기 뷰모델
+        /// </summary>
         public MultiSelectTreeViewModelView TreeViewViewModel { get; set; }
 
+        /// <summary>
+        /// 제품 탐색기 열기 버튼의 명령어 
+        /// </summary>
         public RelayCommand ProductSearchCommand { get; set; }
 
+        /// <summary>
+        /// 저장 버튼 명령어
+        /// </summary>
         public RelayCommand RecordCommand { get; set; }
 
         /// <summary>
@@ -31,53 +41,6 @@ namespace R54IN0.WPF
             }
         }
 
-        public override IOStockType StockType
-        {
-            get
-            {
-                return base.StockType;
-            }
-            set
-            {
-                base.StockType = value;
-                var ofd = ObservableFieldDirector.GetInstance();
-                switch (base.StockType)
-                {
-                    case IOStockType.INCOMING:
-                        Project = null;
-                        ProjectText = null;
-                        ClientList = ofd.CreateList<Supplier>();
-                        IsEditableSpecification = true;
-                        IsReadOnlyProductTextBox = false;
-                        IsEnabledWarehouseComboBox = true;
-                        IsEnabledProjectComboBox = false;
-                        break;
-
-                    case IOStockType.OUTGOING:
-                        Warehouse = null;
-                        WarehouseText = null;
-                        ClientList = ofd.CreateList<Customer>();
-                        IsEditableSpecification = false;
-                        IsReadOnlyProductTextBox = true;
-                        IsEnabledWarehouseComboBox = false;
-                        IsEnabledProjectComboBox = true;
-                        if (Product == null)
-                            ProductText = null;
-                        if (Inventory == null)
-                        {
-                            SpecificationText = null;
-                            SpecificationMemo = null;
-                            MakerText = null;
-                            MeasureText = null;
-                            Maker = null;
-                            Measure = null;
-                        }
-                        break;
-                }
-                UpdateQuantityProperties(Quantity);
-            }
-        }
-
         /// <summary>
         /// 제품 탐색기 플라이아웃의 가시 여부 바인딩 프로퍼티
         /// </summary>
@@ -95,43 +58,6 @@ namespace R54IN0.WPF
         }
 
         /// <summary>
-        /// 제품의 개별적 입고가, 출고가
-        /// </summary>
-        public override decimal UnitPrice
-        {
-            get
-            {
-                return base.UnitPrice;
-            }
-            set
-            {
-                base.UnitPrice = value;
-                NotifyPropertyChanged("Amount");
-            }
-        }
-
-        public override DateTime Date
-        {
-            get
-            {
-                return base.Date;
-            }
-            set
-            {
-                base.Date = value;
-                using (var db = LexDb.GetDbInstance())
-                {
-                    if (Inventory != null)
-                    {
-                        var formats = db.Table<IOStockFormat>().IndexQueryByKey("InventoryID", Inventory.ID);
-                        _nearIOStockFormat = formats.ToList().Where(x => x.Date < value).OrderBy(x => x.Date).LastOrDefault();
-                    }
-                }
-                UpdateQuantityProperties(Quantity);
-            }
-        }
-
-        /// <summary>
         /// 단가의 합계 (입출된 개수 * 가격)
         /// </summary>
         public decimal Amount
@@ -139,23 +65,6 @@ namespace R54IN0.WPF
             get
             {
                 return Quantity * UnitPrice;
-            }
-        }
-
-        /// <summary>
-        /// 입고 또는 출고 수량
-        /// </summary>
-        public override int Quantity
-        {
-            get
-            {
-                return base.Quantity;
-            }
-            set
-            {
-                base.Quantity = value;
-                UpdateQuantityProperties(value);
-                NotifyPropertyChanged("Amount");
             }
         }
 
@@ -276,36 +185,6 @@ namespace R54IN0.WPF
             }
         }
 
-        public override IObservableInventoryProperties Inventory
-        {
-            get
-            {
-                return base.Inventory;
-            }
-            set
-            {
-                base.Inventory = value;
-                if (value == null)
-                {
-                    SpecificationText = null;
-                    SpecificationMemo = null;
-                    Maker = null;
-                    Measure = null;
-                    MakerText = null;
-                    MeasureText = null;
-                    _nearIOStockFormat = null;
-                }
-                else
-                {
-                    Date = Date; //for _laststFormat을 찾기 위해
-                }
-                NotifyPropertyChanged("Maker");
-                NotifyPropertyChanged("Measure");
-                NotifyPropertyChanged("SpecificationMemo");
-                RecordCommand.RaiseCanExecuteChanged();
-            }
-        }
-
         public IObservableField Client
         {
             get
@@ -381,7 +260,8 @@ namespace R54IN0.WPF
                         InventoryList = null;
                 }
                 NotifyPropertyChanged("ProductText");
-                RecordCommand.RaiseCanExecuteChanged();
+                if (RecordCommand != null)
+                    RecordCommand.RaiseCanExecuteChanged();
             }
         }
 

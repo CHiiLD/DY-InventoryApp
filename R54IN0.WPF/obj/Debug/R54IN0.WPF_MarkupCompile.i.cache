@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\
 R54IN0.WPF
 none
 false
 DEBUG;TRACE
-C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\App.xaml
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\App.xaml
 9-1185174946
 
-69-1844353396
-73-1198728415
+722052431877
+731537630227
 DailyInventory\Controls\IOStock\IOStockDatePicker.xaml;DailyInventory\Controls\IOStock\IOStockProjectListBox.xaml;DailyInventory\Controls\IOStock\IOStockStatus.xaml;DailyInventory\Controls\Inventory\InventoryStatus.xaml;DailyInventory\Controls\IOStock\IOStockDataGrid.xaml;DailyInventory\Controls\Inventory\InventoryDataGrid.xaml;DailyInventory\Controls\TreeView\MultiSelectTreeView.xaml;DailyInventory\Windows\MainWindow.xaml;DailyInventory\Controls\IOStock\IOStockDataAmenderWindow.xaml;
 
 False

@@ -64,10 +64,11 @@
     <Compile Include="DailyInventory\Controls\ICollectionViewModel.cs" />
     <Compile Include="DailyInventory\Controls\ICollectionViewModelObserver.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\EnumBooleanConverter.cs" />
+    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.IOStockProperty.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.Inner.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.Record.cs" />
+    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.RecordFunc.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.Property.cs" />
+    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataAmenderViewModel.BindingProperty.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridItem.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridViewModel.MenuCommand.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridViewModel.cs" />
@@ -131,7 +132,9 @@
     <Compile Include="DailyInventory\Data\Inventory\IOStockType.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableInventory.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableIOStock.cs" />
+    <Compile Include="DailyInventory\Data\DbAdapter.cs" />
     <Compile Include="DailyInventory\Data\TreeViewNodeJsonFormat.cs" />
+    <Compile Include="DailyInventory\Data\DbCommand.cs" />
     <Compile Include="DailyInventory\Windows\MainWindowViewModel.cs" />
     <Compile Include="DailyInventory\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

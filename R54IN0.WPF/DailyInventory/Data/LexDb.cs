@@ -41,59 +41,22 @@ namespace R54IN0
         public void InitializeIndex()
         {
             CustomLexDb me = this;
-            //me.Map<Currency>().Automap(i => i.ID).
-            //WithIndex("Name", i => i.Name).
-            //WithIndex("IsDeleted", i => i.IsDeleted);
+            
             me.Map<Employee>().Automap(i => i.ID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsDeleted", i => i.IsDeleted);
             me.Map<Maker>().Automap(i => i.ID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsDeleted", i => i.IsDeleted);
-            //me.Map<Item>().Automap(i => i.ID).
-            //WithIndex("Name", i => i.Name).
-            //WithIndex("IsDeleted", i => i.IsDeleted).
-            //WithIndex("MeasureID", i => i.MeasureID).
-            //WithIndex("CurrencyID", i => i.CurrencyID).
-            //WithIndex("MakerID", i => i.MakerID);
-            //me.Map<Specification>().Automap(i => i.ID).
-            //WithIndex("Name", i => i.Name).
-            //WithIndex("IsDeleted", i => i.IsDeleted).
-            //WithIndex("PurchaseUnitPrice", i => i.PurchaseUnitPrice).
-            //WithIndex("SalesUnitPrice", i => i.SalesUnitPrice).
-            //WithIndex("ItemID", i => i.ItemID).
-            //WithIndex("Remark", i => i.Remark);
+            
             me.Map<Measure>().Automap(i => i.ID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsDeleted", i => i.IsDeleted);
-            //me.Map<Client>().Automap(i => i.ID).
-            //WithIndex("Name", i => i.Name).
-            //WithIndex("IsDeleted", i => i.IsDeleted).
-            //WithIndex("Delegator", i => i.Delegator).
-            //WithIndex("PhoneNumber", i => i.PhoneNumber).
-            //WithIndex("MobileNumber", i => i.MobileNumber);
+            
             me.Map<Warehouse>().Automap(i => i.ID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsDeleted", i => i.IsDeleted);
-            //me.Map<Inventory>().Automap(i => i.ID).
-            //    WithIndex("SpecificationID", i => i.SpecificationID).
-            //    WithIndex("WarehouseID", i => i.WarehouseID).
-            //    WithIndex("Remark", i => i.Remark).
-            //    WithIndex("ItemID", i => i.ItemID).
-            //    WithIndex("Quantity", i => i.Quantity);
-            //me.Map<InOutStock>().Automap(i => i.ID).
-            //    WithIndex("StockType", i => i.StockType).
-            //    WithIndex("Date", i => i.Date).
-            //    WithIndex("SpecificationID", i => i.SpecificationID).
-            //    WithIndex("Quantity", i => i.Quantity).
-            //    WithIndex("EnterpriseID", i => i.EnterpriseID).
-            //    WithIndex("EmployeeID", i => i.EmployeeID).
-            //    WithIndex("ItemID", i => i.ItemID).
-            //    WithIndex("Remark", i => i.Remark).
-            //    WithIndex("InventoryID", i => i.InventoryID);
-            //me.Map<FinderTreeNodeJsonRecord>().Automap(i => i.ID).
-            //    WithIndex("Data", i => i.Data);
-
+          
             me.Map<TreeViewNodeJsonFormat>().Automap(i => i.ID).
             WithIndex("Data", i => i.Data);
             me.Map<Project>().Automap(i => i.ID).
@@ -112,7 +75,7 @@ namespace R54IN0
             WithIndex("MeasureID", i => i.MeasureID).
             WithIndex("ProductID", i => i.ProductID).
             WithIndex("Specification", i => i.Specification).
-            WithIndex("Memo", i => i.Memo).
+            WithIndex("Remark", i => i.Remark).
             WithIndex("MakerID", i => i.MakerID).
             WithIndex("Quantity", i => i.Quantity);
 

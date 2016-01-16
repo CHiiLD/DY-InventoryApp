@@ -95,11 +95,11 @@ namespace R54IN0
         {
             get
             {
-                return _fmt.Memo;
+                return _fmt.Remark;
             }
             set
             {
-                _fmt.Memo = value;
+                _fmt.Remark = value;
                 NotifyPropertyChanged("Memo");
             }
         }

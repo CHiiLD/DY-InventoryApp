@@ -7,13 +7,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.DragNDrop;
 using System.Windows.Input;
+using System;
 
 namespace R54IN0.WPF
 {
     /// <summary>
     /// MultiSelectTreeView ViewModel 클래스
     /// </summary>
-    public partial class MultiSelectTreeViewModelView : INotifyPropertyChanged
+    public partial class MultiSelectTreeViewModelView : INotifyPropertyChanged, ICollectionViewModelObserver
     {
         private TreeViewNodeDirector _director;
         private ObservableCollection<TreeViewNode> _selectedNodes;
@@ -45,7 +46,7 @@ namespace R54IN0.WPF
             SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, HasOneNode);
             SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, HasOneNode);
             IOStockAmenderWindowCallCommand = new RelayCommand(ExecuteIOStockAmenderWindowCallCommand, IsProductNode);
-            SelectedNodeDeletionCommand = new RelayCommand(ExecuteNodeDeletionCommand, CanDeleteNode);
+            SelectedNodeDeletionCommand = new RelayCommand(ExecuteSelectedNodeDeletionCommand, CanDeleteNode);
         }
 
         public event PropertyChangedEventHandler PropertyChanged
@@ -235,6 +236,28 @@ namespace R54IN0.WPF
         {
             if (_propertyChanged != null)
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
+        public void UpdateNewItem(object item)
+        {
+            if (item is Observable<Product>)
+            {
+                var product = item as Observable<Product>;
+                var result = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ProductID == product.ID));
+                if (result.Count() == 0)
+                    Root.Add(new TreeViewNode(NodeType.PRODUCT, product.ID));
+            }
+        }
+
+        public void UpdateDelItem(object item)
+        {
+            if (item is Observable<Product>)
+            {
+                var product = item as Observable<Product>;
+                var result = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ProductID == product.ID));
+                if (result.Count() == 1)
+                    _director.Remove(result.Single());
+            }
         }
     }
 }

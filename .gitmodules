@@ -19,3 +19,6 @@
 [submodule "mvvmlight"]
 	path = mvvmlight
 	url = https://github.com/CHiiLD/mvvmlight.git
+[submodule "AsyncMvvm"]
+	path = AsyncMvvm
+	url = https://github.com/CHiiLD/AsyncMvvm.git

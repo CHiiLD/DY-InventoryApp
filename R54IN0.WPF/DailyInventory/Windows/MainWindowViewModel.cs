@@ -22,6 +22,7 @@ namespace R54IN0.WPF
         {
             InventoryStatus inventoryStatus = new InventoryStatus();
             IOStockStatus ioStockStatus = new IOStockStatus();
+
             _items = new ObservableCollection<TabItem>();
             _items.Add(new TabItem() { Content = inventoryStatus, Header = "재고 현황" });
             _items.Add(new TabItem() { Content = ioStockStatus, Header = "입출고 현황" });
@@ -116,6 +117,11 @@ namespace R54IN0.WPF
             if (_thiz == null)
                 _thiz = new MainWindowViewModel();
             return _thiz;
+        }
+
+        public static void Destory()
+        {
+            _thiz = null;
         }
 
         /// <summary>

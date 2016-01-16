@@ -52,7 +52,7 @@ namespace R54IN0
             return new List<ObservableInventory>(_dic.Values);
         }
 
-        public static void Distory()
+        public static void Destory()
         {
             if (_thiz != null)
             {

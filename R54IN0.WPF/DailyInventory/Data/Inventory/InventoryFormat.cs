@@ -20,7 +20,7 @@
         /// <summary>
         /// 비고
         /// </summary>
-        public virtual string Memo { get; set; }
+        public virtual string Remark { get; set; }
 
         /// <summary>
         /// 제품 범용식별자
@@ -46,7 +46,7 @@
             ID = thiz.ID;
             Specification = thiz.Specification;
             Quantity = thiz.Quantity;
-            Memo = thiz.Memo;
+            Remark = thiz.Remark;
             ProductID = thiz.ProductID;
             MakerID = thiz.MakerID;
             MeasureID = thiz.MeasureID;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using R54IN0.WPF;
+using System;
 using System.Collections.Generic;
 
 namespace R54IN0.Test
@@ -204,9 +205,11 @@ namespace R54IN0.Test
         {
             ////////////INIT
             LexDb.Distroy();
-            CollectionViewModelObserverSubject.Distory();
-            ObservableInventoryDirector.Distory();
-            ObservableFieldDirector.Distory();
+            CollectionViewModelObserverSubject.Destory();
+            ObservableInventoryDirector.Destory();
+            ObservableFieldDirector.Destory();
+            MainWindowViewModel.Destory();
+            TreeViewNodeDirector.Destroy();
 
             using (var db = LexDb.GetDbInstance())
                 db.Purge();

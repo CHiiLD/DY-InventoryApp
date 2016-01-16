@@ -82,6 +82,8 @@ namespace R54IN0.WPF
                 _director.Add(folderNodes.First(), newTreeViewNode);
             else
                 _director.Add(newTreeViewNode);
+
+            CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(newProduct);
         }
 
         /// <summary>
@@ -192,24 +194,14 @@ namespace R54IN0.WPF
         /// <summary>
         /// 선택된 노드를 삭제한다.
         /// </summary>
-        private void ExecuteNodeDeletionCommand()
+        private void ExecuteSelectedNodeDeletionCommand()
         {
             var nodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Select(x => new TreeViewNode(NodeType.PRODUCT, x.ProductID));
             foreach (var node in nodes)
             {
-                var subject = CollectionViewModelObserverSubject.GetInstance();
-                var inventodyDirector = ObservableInventoryDirector.GetInstance();
-                var inventoryList = inventodyDirector.CreateList();
-                foreach (var inven in inventoryList)
-                {
-                    subject.NotifyItemDeleted(inven);
-                    if (inven.Product.ID == node.ProductID)
-                        inventodyDirector.Remove(inven);
-                    inven.Format.Delete<InventoryFormat>();
-                }
                 var product = ObservableFieldDirector.GetInstance().Search<Product>(node.ProductID);
-                ObservableFieldDirector.GetInstance().Remove<Product>(node.ProductID);
-                product.Field.Delete<Product>();
+                var subject = CollectionViewModelObserverSubject.GetInstance();
+                subject.NotifyItemDeleted(product);
             }
             _director.Remove(SelectedNodes.First());
             SelectedNodes.Clear();

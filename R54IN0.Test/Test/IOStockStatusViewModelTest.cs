@@ -2,6 +2,7 @@
 using R54IN0.WPF;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Controls;
 
@@ -69,7 +70,7 @@ namespace R54IN0.Test
             var node = viewmodel.TreeViewViewModel.Root.SelectMany(root => root.Descendants().Where(x => x.Type == NodeType.PRODUCT)).Random();
             viewmodel.TreeViewViewModel.ExecuteNodesSelectedEventCommand(
                 new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, new List<TreeViewNode>()));
-
+            viewmodel.OnTreeViewNodesSelected(viewmodel.TreeViewViewModel, new PropertyChangedEventArgs("SelectedNodes"));
             Assert.AreNotEqual(0, viewmodel.DataGridViewModel.Items.Count);
             foreach (var item in viewmodel.DataGridViewModel.Items)
             {

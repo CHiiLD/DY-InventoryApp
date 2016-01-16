@@ -43,7 +43,7 @@ namespace R54IN0.Test
             using (var db = LexDb.GetDbInstance())
                 stockFormat = db.LoadByKey<IOStockFormat>(ostock.ID);
 
-            ObservableInventoryDirector.Distory();
+            ObservableInventoryDirector.Destory();
             ObservableIOStock newOStock = new ObservableIOStock(stockFormat);
             Assert.AreEqual(ostock.ID, newOStock.ID);
             Assert.AreEqual(ostock.Project.ID, newOStock.Project.ID);

@@ -361,7 +361,7 @@ namespace R54IN0.WPF
             IsCheckedInComing = true;
             IsCheckedOutGoing = true;
 
-            DatePickerViewModel.CommandExecuted += OndatePickerCommandExecuted;
+            DatePickerViewModel.CommandExecuted += OnDatePickerCommandExecuted;
             ProjectListBoxViewModel.PropertyChanged += OnProjectListPropertyChanged;
             TreeViewViewModel.PropertyChanged += OnTreeViewNodesSelected;
             TreeViewViewModel.DragCommand = null;
@@ -461,30 +461,28 @@ namespace R54IN0.WPF
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTreeViewNodesSelected(object sender, PropertyChangedEventArgs e)
+        public async void OnTreeViewNodesSelected(object sender, PropertyChangedEventArgs e)
         {
             if (sender == TreeViewViewModel && e.PropertyName == "SelectedNodes")
             {
                 DataGridViewModel.Items.Clear();
                 var nodes = TreeViewViewModel.SelectedNodes.SelectMany(c => c.Descendants().Where(node => node.Type == NodeType.PRODUCT));
                 var oid = ObservableInventoryDirector.GetInstance();
-                List<ObservableInventory> observableInventoryList = new List<ObservableInventory>();
-                List<IOStockFormat> ioStockList = new List<IOStockFormat>();
+                List<ObservableInventory> obInvenList = new List<ObservableInventory>();
+                List<IOStockFormat> iosFmtList = new List<IOStockFormat>();
                 foreach (var node in nodes)
                 {
                     var searchResult = oid.SearchAsProductID(node.ProductID);
                     if (searchResult != null)
-                        observableInventoryList.AddRange(searchResult);
+                        obInvenList.AddRange(searchResult);
                 }
-                foreach (var inven in observableInventoryList)
+                foreach (var inven in obInvenList)
                 {
-                    IIndexQuery<IOStockFormat, string> formats = null;
-                    using (var db = LexDb.GetDbInstance())
-                        formats = db.Table<IOStockFormat>().IndexQueryByKey("InventoryID", inven.ID);
+                    IEnumerable<IOStockFormat> formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.WHERE, "InventoryID", inven.ID);
                     if (formats != null)
-                        ioStockList.AddRange(formats.ToList());
+                        iosFmtList.AddRange(formats);
                 }
-                var dictionary = ioStockList.Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
+                var dictionary = iosFmtList.Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
                 BackupSource = new SortedDictionary<string, IOStockDataGridItem>(dictionary);
                 UpdateDataGridItems();
             }
@@ -495,7 +493,7 @@ namespace R54IN0.WPF
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnProjectListPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private async void OnProjectListPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (sender == ProjectListBoxViewModel && e.PropertyName == "SelectedItem")
             {
@@ -503,12 +501,10 @@ namespace R54IN0.WPF
                 Observable<Project> proejct = ProjectListBoxViewModel.SelectedItem;
                 if (proejct != null)
                 {
-                    IIndexQuery<IOStockFormat, string> formats = null;
-                    using (var db = LexDb.GetDbInstance())
-                        formats = db.Table<IOStockFormat>().IndexQueryByKey("ProjectID", proejct.ID);
+                    IEnumerable<IOStockFormat> formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.WHERE, "ProjectID", proejct.ID);
                     if (formats != null)
                     {
-                        var dictionary = formats.ToList().Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
+                        var dictionary = formats.Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
                         BackupSource = new SortedDictionary<string, IOStockDataGridItem>(dictionary);
                         UpdateDataGridItems();
                     }
@@ -521,19 +517,17 @@ namespace R54IN0.WPF
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OndatePickerCommandExecuted(object sender, EventArgs e)
+        private async void OnDatePickerCommandExecuted(object sender, EventArgs e)
         {
             if (sender == DatePickerViewModel)
             {
                 DataGridViewModel.Items.Clear();
                 var fromDate = DatePickerViewModel.FromDate;
                 var toDate = DatePickerViewModel.ToDate;
-                IOStockFormat[] formats = null;
-                using (var db = LexDb.GetDbInstance())
-                    formats = db.Table<IOStockFormat>().LoadAll();
+                var formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.BETWEEN | DbCommand.OR_EQUAL, "Date", fromDate, toDate);
                 if (formats != null)
                 {
-                    var dictionary = formats.Where(fmt => fromDate <= fmt.Date && fmt.Date <= toDate).Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
+                    var dictionary = formats.Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
                     BackupSource = new SortedDictionary<string, IOStockDataGridItem>(dictionary);
                     UpdateDataGridItems();
                 }
@@ -597,6 +591,37 @@ namespace R54IN0.WPF
 
         public void UpdateDelItem(object item)
         {
+            IEnumerable<IOStockDataGridItem> datagridItem = null;
+            IEnumerable<KeyValuePair<string, IOStockDataGridItem>> pairs = null;
+            if (item is IObservableInventoryProperties)
+            {
+                IObservableInventoryProperties obInven = item as IObservableInventoryProperties;
+                datagridItem = DataGridViewModel.Items.Where(x => x.Inventory.ID == obInven.ID);
+                if (BackupSource != null)
+                    pairs = BackupSource.Where(x => x.Value.Inventory.ID == obInven.ID);
+            }
+            else if (item is Observable<Product>)
+            {
+                Observable<Product> product = item as Observable<Product>;
+                datagridItem = DataGridViewModel.Items.Where(x => x.Inventory.Product.ID == product.ID);
+                if (BackupSource != null)
+                    pairs = BackupSource.Where(x => x.Value.Inventory.Product.ID == product.ID);
+            }
+            else if (item is IObservableIOStockProperties)
+            {
+                IObservableIOStockProperties iostock = item as IObservableIOStockProperties;
+                datagridItem = DataGridViewModel.Items.Where(x => x.ID == iostock.ID);
+                if (BackupSource != null)
+                    pairs = BackupSource.Where(x => x.Value.ID == iostock.ID);
+            }
+
+            foreach (IOStockDataGridItem dgItem in datagridItem)
+                DataGridViewModel.Items.Remove(dgItem);
+            if (pairs != null)
+            {
+                foreach (KeyValuePair<string, IOStockDataGridItem> pair in pairs)
+                    BackupSource.Remove(pair.Key);
+            }
         }
     }
 }
