@@ -12,6 +12,10 @@ namespace R54IN0.WPF
 
         public class NonSaveObservableInventory : ObservableInventory
         {
+            public NonSaveObservableInventory() : base()
+            {
+            }
+
             public NonSaveObservableInventory(InventoryFormat inventory) : base(inventory)
             {
             }

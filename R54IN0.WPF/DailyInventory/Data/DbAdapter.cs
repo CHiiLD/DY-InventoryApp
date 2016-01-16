@@ -36,9 +36,17 @@ namespace R54IN0
             if (item == null)
                 return false;
 
-            if (item is IOStockFormat)
-                await CalculateDeledtedIOSFmtQuantity(item as IOStockFormat);
+            //if (item is IOStockFormat)
+            //    await CalculateDeledtedIOSFmtQuantity(item as IOStockFormat);
             return lexdb.Table<TableT>().DeleteByKey(id);
+        }
+
+        public async Task<TableT> SelectAsync<TableT>(string id) where TableT : class
+        {
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentNullException();
+            var lexdb = LexDb.GetDbInstance();
+            return lexdb.Table<TableT>().LoadByKey(id);
         }
 
         public async Task<bool> DeleteAsync<TableT>(TableT item) where TableT : class, IID
@@ -161,28 +169,18 @@ namespace R54IN0
                 near = queryResult.Single();
             var lexdb = LexDb.GetDbInstance();
             InventoryFormat infmt = lexdb.Table<InventoryFormat>().LoadByKey(iosfmt.InventoryID);
+            qty = iosfmt.StockType == IOStockType.OUTGOING ? -qty : qty;
             ///잔여수량과 재고수량 계산
-            switch (iosfmt.StockType)
-            {
-                case IOStockType.INCOMING:
-                    iosfmt.RemainingQuantity = (near == null) ? qty : near.RemainingQuantity + qty;
-                    infmt.Quantity = (infmt == null) ? qty : infmt.Quantity + qty;
-                    break;
-
-                case IOStockType.OUTGOING:
-                    iosfmt.RemainingQuantity = (near == null) ? -qty : near.RemainingQuantity - qty;
-                    infmt.Quantity = (infmt == null) ? -qty : infmt.Quantity - qty;
-                    break;
-            }
+            iosfmt.RemainingQuantity = (near == null) ? qty : near.RemainingQuantity + qty;
+            infmt.Quantity = infmt.Quantity + qty;
             lexdb.Save(infmt);
             ///잔여 수량 동기화 및 저장
             IEnumerable<IOStockFormat> formats = await QueryAsync<IOStockFormat>(
                 DbCommand.WHERE, "InventoryID", iosfmt.InventoryID,
                 DbCommand.IS_GRETER_THEN, "Date", iosfmt.Date,
                 DbCommand.ASCENDING, "Date");
-            if (qty == 0 || formats.Count() == 0)
+            if (qty != 0 && formats.Count() != 0)
             {
-                qty = iosfmt.StockType == IOStockType.OUTGOING ? -qty : qty;
                 foreach (IOStockFormat fmt in formats)
                 {
                     fmt.RemainingQuantity += qty;
@@ -193,32 +191,25 @@ namespace R54IN0
 
         private async Task CalculateModifiedIOSFmtQuantity(IOStockFormat iosfmt)
         {
-            int qty = iosfmt.Quantity;
             var lexdb = LexDb.GetDbInstance();
             InventoryFormat infmt = lexdb.Table<InventoryFormat>().LoadByKey(iosfmt.InventoryID);
             IOStockFormat origin = lexdb.Table<IOStockFormat>().LoadByKey(iosfmt.ID);
-            switch (iosfmt.StockType)
-            {
-                case IOStockType.INCOMING:
-                    iosfmt.RemainingQuantity = origin.RemainingQuantity + qty - origin.Quantity;
-                    infmt.Quantity = infmt.Quantity + qty - origin.Quantity;
-                    break;
-                case IOStockType.OUTGOING:
-                    iosfmt.RemainingQuantity = origin.RemainingQuantity + origin.Quantity - qty;
-                    infmt.Quantity = infmt.Quantity + origin.Quantity - qty;
-                    break;
-            }
+            int orQty = origin.Quantity;
+            int qty = iosfmt.Quantity;
+            qty = iosfmt.StockType == IOStockType.OUTGOING ? -qty : qty;
+            orQty = iosfmt.StockType == IOStockType.OUTGOING ? orQty : -orQty;
+            iosfmt.RemainingQuantity = origin.RemainingQuantity + qty + orQty;
+            infmt.Quantity = infmt.Quantity + qty + orQty;
             lexdb.Save(infmt);
             IEnumerable<IOStockFormat> formats = await QueryAsync<IOStockFormat>(
                 DbCommand.WHERE, "InventoryID", iosfmt.InventoryID,
                 DbCommand.IS_GRETER_THEN, "Date", iosfmt.Date,
                 DbCommand.ASCENDING, "Date");
-            if (qty == 0 || formats.Count() == 0)
+            if (qty != 0 && formats.Count() != 0)
             {
-                qty = iosfmt.StockType == IOStockType.OUTGOING ? origin.Quantity - qty : qty - origin.Quantity;
                 foreach (IOStockFormat fmt in formats)
                 {
-                    fmt.RemainingQuantity += qty;
+                    fmt.RemainingQuantity += orQty + qty;
                     lexdb.Save(fmt);
                 }
             }

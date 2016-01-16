@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace R54IN0
+namespace R54IN0.Test
 {
     public static class IIDExtension
     {

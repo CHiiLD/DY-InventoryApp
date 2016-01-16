@@ -72,7 +72,7 @@ namespace R54IN0.WPF
         /// </summary>
         private void ExecuteNewProductNodeAddCommand()
         {
-            Product product = new Product() { Name = "새로운 제품" }.Save<Product>();
+            Product product = new Product() { Name = "새로운 제품" };
             Observable<Product> newProduct = new Observable<Product>(product);
             ObservableFieldDirector.GetInstance().Add<Product>(newProduct);
 

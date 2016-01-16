@@ -52,7 +52,7 @@ namespace R54IN0
             set
             {
                 _t.Name = value;
-                OnPropertyChanged("Name");
+                NotifyPropertyChanged("Name");
             }
         }
 
@@ -65,7 +65,7 @@ namespace R54IN0
             set
             {
                 _t.IsDeleted = value;
-                OnPropertyChanged("IsDeleted");
+                NotifyPropertyChanged("IsDeleted");
             }
         }
 
@@ -90,16 +90,19 @@ namespace R54IN0
             set
             {
                 _t = value;
-                OnPropertyChanged("");
+                NotifyPropertyChanged(string.Empty);
             }
         }
 
-        protected void OnPropertyChanged(string name)
+        protected async void NotifyPropertyChanged(string name)
         {
             if (_propertyChanged != null)
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
-            if (!string.IsNullOrEmpty(name))
-                _t.Save<T>();
+
+            if (ID == null)
+                await DbAdapter.GetInstance().InsertAsync(Field);
+            else
+                await DbAdapter.GetInstance().UpdateAsync(Field, name);
         }
     }
 }

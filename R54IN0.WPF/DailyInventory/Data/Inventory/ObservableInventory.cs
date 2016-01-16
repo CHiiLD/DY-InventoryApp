@@ -167,12 +167,15 @@ namespace R54IN0
             }
         }
 
-        public virtual void NotifyPropertyChanged(string propertyName)
+        public virtual async void NotifyPropertyChanged(string name)
         {
             if (propertyChanged != null)
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            if (!string.IsNullOrEmpty(propertyName))
-                _fmt.Save<InventoryFormat>();
+                propertyChanged(this, new PropertyChangedEventArgs(name));
+
+            if (ID == null)
+                await DbAdapter.GetInstance().InsertAsync(Format);
+            else
+                await DbAdapter.GetInstance().UpdateAsync(Format, name);
         }
     }
 }

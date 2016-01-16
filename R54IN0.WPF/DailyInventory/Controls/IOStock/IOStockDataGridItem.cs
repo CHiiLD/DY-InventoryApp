@@ -1,4 +1,7 @@
-﻿namespace R54IN0.WPF
+﻿using System;
+using System.Threading.Tasks;
+
+namespace R54IN0.WPF
 {
     public class IOStockDataGridItem : ObservableIOStock
     {
@@ -53,6 +56,11 @@
             {
                 return UnitPrice * Quantity;
             }
+        }
+
+        public async Task LoadFromServer()
+        {
+            Format = await DbAdapter.GetInstance().SelectAsync<IOStockFormat>(ID);
         }
     }
 }

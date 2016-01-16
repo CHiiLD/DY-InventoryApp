@@ -22,21 +22,20 @@ namespace R54IN0.WPF
                 case Mode.ADD:
                     CreateIOStockNewProperies();
                     ApplyModifiedInventoryProperties();
-                    //await UpdateModifiedRemainingQuantity();
                     await DbAdapter.GetInstance().InsertAsync(Format);
+                    await UpdateModifiedRemainingQuantity();
                     result = new ObservableIOStock(Format);
                     CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(result);
                     break;
                 case Mode.MODIFY:
                     ApplyModifiedIOStockProperties();
                     ApplyModifiedInventoryProperties();
-                    //await UpdateModifiedRemainingQuantity();
                     await DbAdapter.GetInstance().UpdateAsync(Format);
+                    await UpdateModifiedRemainingQuantity();
                     result = _originSource;
                     result.Format = Format;
                     break;
             }
-            //result.Format.Save<IOStockFormat>();
             return result;
         }
 
@@ -182,46 +181,13 @@ namespace R54IN0.WPF
         /// </summary>
         private async Task UpdateModifiedRemainingQuantity()
         {
-            IOStockFormat near = null;
-            int qty = 0;
-            if (_mode == Mode.ADD)
+            if (_ioStockStatusViewModel != null && _ioStockStatusViewModel.BackupSource != null)
             {
-                var queryResult = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
-                            DbCommand.WHERE, "InventoryID", Inventory.ID,
-                            DbCommand.IS_LESS_THEN, "Date", Date,
-                            DbCommand.DESCENDING, "Date",
-                            DbCommand.LIMIT, 1);
-                if (queryResult != null && queryResult.Count() == 1) 
-                    near = queryResult.Single();
-            }
-            CalculateRemainingQuantity(near);
-            var formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
-                DbCommand.WHERE, "InventoryID", Inventory.ID,
-                DbCommand.IS_GRETER_THEN, "Date", Date,
-                DbCommand.ASCENDING, "Date");
-            switch (_mode)
-            {
-                case Mode.ADD:
-                    qty = StockType == IOStockType.OUTGOING ? -Quantity : Quantity;
-                    break;
-                case Mode.MODIFY:
-                    qty = StockType == IOStockType.OUTGOING ? _originSource.Quantity - Quantity : Quantity - _originSource.Quantity;
-                    break;
-            }
-            if (qty == 0 || formats.Count() == 0)
-                return;
-
-            SortedDictionary<string, IOStockDataGridItem> backupSource = _ioStockStatusViewModel.BackupSource;
-            foreach (var fmt in formats)
-            {
-                if (backupSource != null && backupSource.ContainsKey(fmt.ID))
+                SortedDictionary<string, IOStockDataGridItem> backupSource = _ioStockStatusViewModel.BackupSource;
+                foreach (var src in backupSource)
                 {
-                    backupSource[fmt.ID].RemainingQuantity += qty;
-                }
-                else
-                {
-                    fmt.RemainingQuantity += qty;
-                    fmt.Save<IOStockFormat>();
+                    if (src.Value.Inventory.ID == Inventory.ID && src.Value.Date > Date)
+                        await src.Value.LoadFromServer();
                 }
             }
         }

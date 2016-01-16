@@ -208,19 +208,5 @@ namespace R54IN0.Test
                 Assert.AreEqual(max, result.Single().Date);
             }
         }
-
-        /// <summary>
-        /// 수량을 변화시켜야할 필요가 있는 경우 (즉, 새로운 입출고 데이터의 추가나 삭제 또는 변경일 때) 
-        /// 이를 서버에 처리하도록 한다.
-        /// </summary>
-        /// <returns></returns>
-        [TestMethod]
-        public async Task UpdateQtyAsync()
-        {
-            DbAdapter adapter = new DbAdapter();
-            IOStockFormat iosfmt;
-            using (var db = LexDb.GetDbInstance())
-                iosfmt = db.LoadAll<IOStockFormat>().Random();
-        }
     }
 }

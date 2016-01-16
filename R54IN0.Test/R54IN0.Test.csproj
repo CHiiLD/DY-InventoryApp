@@ -56,6 +56,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Test\IIDExtension.cs" />
     <Compile Include="Test\LexDbAdapterUnitTest.cs" />
     <Compile Include="Test\IOStockDataAmenderViewModelTest.cs" />
     <Compile Include="Test\IOStockStatusViewModelTest.cs" />

@@ -121,7 +121,6 @@
     <Compile Include="DailyInventory\Data\Fields\Warehouse.cs" />
     <Compile Include="DailyInventory\Data\Interface\IField.cs" />
     <Compile Include="DailyInventory\Data\Interface\IID.cs" />
-    <Compile Include="DailyInventory\Data\Interface\IIDExtension.cs" />
     <Compile Include="DailyInventory\Data\Interface\IName.cs" />
     <Compile Include="DailyInventory\Data\Interface\IObservableField.cs" />
     <Compile Include="DailyInventory\Data\Interface\Observable.cs" />
