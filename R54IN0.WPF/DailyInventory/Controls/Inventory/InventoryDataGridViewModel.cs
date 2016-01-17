@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -171,6 +173,19 @@ namespace R54IN0.WPF
             if (SelectedItem != null)
             {
                 var item = SelectedItem;
+                MessageDialogResult result = MessageDialogResult.Affirmative;
+                if (Application.Current != null)
+                {
+                    var metro = Application.Current.MainWindow as MetroWindow;
+                    string title = "주의!";
+                    string msg = string.Format("{0} 규격과 관련된 재고기록과 입출고기록을 삭제합니다.\n정말로 삭제하시겠습니까?", item.Specification);
+                    result = await metro.ShowMessageAsync(
+                        title, msg, MessageDialogStyle.AffirmativeAndNegative,
+                        new MetroDialogSettings() { AffirmativeButtonText = "네", NegativeButtonText = "아니오", ColorScheme = MetroDialogColorScheme.Accented });
+                }
+                if (result != MessageDialogResult.Affirmative)
+                    return;
+
                 ObservableInventoryDirector.GetInstance().Remove(item);
                 CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(item);
                 await DbAdapter.GetInstance().DeleteAsync(item.Format);

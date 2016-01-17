@@ -26,5 +26,48 @@ namespace R54IN0.Test
 
             Assert.AreEqual(record.Inventory.Quantity, inQty + icQty);
         }
+
+        /// <summary>
+        /// 기존의 데이터를 불러와서 각 항목을 채움 물론 입출고 별로 달리
+        /// 채우는 것들 .. 
+        /// 수량, 가격
+        /// 입출고처, 
+        /// 창고 or 프로젝트 이름 
+        /// 적은 사람
+        /// </summary>
+        /// <returns></returns>
+        [TestMethod]
+        public async Task ClickLoadButton()
+        {
+            await new Dummy().Create();
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
+            viewmodel.StockType = IOStockType.INCOMING;
+            viewmodel.Product = ObservableFieldDirector.GetInstance().Copy<Product>().Random();
+            viewmodel.Inventory = viewmodel.InventoryList.Random();
+
+            viewmodel.LoadLastRecordCommand.Execute(null);
+
+            Assert.IsNotNull(viewmodel.Client);
+            Assert.IsNotNull(viewmodel.Warehouse);
+            Assert.IsNotNull(viewmodel.Employee);
+            Assert.IsNull(viewmodel.Project);
+        }
+
+        [TestMethod]
+        public async Task ClickLoadButton2()
+        {
+            await new Dummy().Create();
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
+            viewmodel.StockType = IOStockType.OUTGOING;
+            viewmodel.Product = ObservableFieldDirector.GetInstance().Copy<Product>().Random();
+            viewmodel.Inventory = viewmodel.InventoryList.Random();
+
+            viewmodel.LoadLastRecordCommand.Execute(null);
+
+            Assert.IsNotNull(viewmodel.Client);
+            Assert.IsNotNull(viewmodel.Project);
+            Assert.IsNotNull(viewmodel.Employee);
+            Assert.IsNull(viewmodel.Warehouse);
+        }
     }
 }

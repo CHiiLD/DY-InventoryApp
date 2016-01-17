@@ -4,11 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:R54IN0.WPF"
-        mc:Ignorable="d"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="데일리 인벤토리" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="{Binding AppName}" WindowStartupLocation="CenterScreen"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1">
+
+    <mah:MetroWindow.InputBindings>
+        <KeyBinding Key="F1" Command="{Binding ChangeInventoryViewCommand}"/>
+        <KeyBinding Key="F2" Command="{Binding ChangeIOStockViewByProductCommand}"/>
+        <KeyBinding Key="F3" Command="{Binding ChangeIOStockByDateCommand}"/>
+        <KeyBinding Key="F4" Command="{Binding ChangeIOStockByProjectCommand}"/>
+    </mah:MetroWindow.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -23,13 +31,13 @@
                 <MenuItem Header="종료" Command="{Binding AppExitCommand}" />
             </MenuItem>
 
-            <MenuItem Header="재고 현황" Command="{Binding ChangeInventoryViewCommand}">
+            <MenuItem Header="재고 현황" Command="{Binding ChangeInventoryViewCommand}" InputGestureText="F1">
             </MenuItem>
 
             <MenuItem Header="입출고 현황">
-                <MenuItem Header="제품별로 보기" Command="{Binding ChangeIOStockViewByProductCommand}" />
-                <MenuItem Header="날짜별로 보기" Command="{Binding ChangeIOStockByDateCommand}" />
-                <MenuItem Header="프로젝트별로 보기" Command="{Binding ChangeIOStockByProjectCommand}" />
+                <MenuItem Header="제품별로 보기" Command="{Binding ChangeIOStockViewByProductCommand}" InputGestureText="F2"/>
+                <MenuItem Header="날짜별로 보기" Command="{Binding ChangeIOStockByDateCommand}" InputGestureText="F3"/>
+                <MenuItem Header="프로젝트별로 보기" Command="{Binding ChangeIOStockByProjectCommand}" InputGestureText="F4"/>
             </MenuItem>
 
             <MenuItem Visibility="Collapsed" Header="정보 수정">

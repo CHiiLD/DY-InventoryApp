@@ -55,7 +55,7 @@ namespace R54IN0.WPF
         {
             get
             {
-                return "Daily Inventory";
+                return "DailY Inventory";
             }
         }
 
@@ -63,7 +63,7 @@ namespace R54IN0.WPF
         {
             get
             {
-                return "Version beta 0.101";
+                return "Version beta 0101";
             }
         }
 

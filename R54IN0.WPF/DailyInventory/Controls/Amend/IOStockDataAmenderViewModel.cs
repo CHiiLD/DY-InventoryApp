@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace R54IN0.WPF
 {
@@ -38,6 +39,7 @@ namespace R54IN0.WPF
         private bool _isEnabledInOutGoingRadioButton;
         private int _inventoryQuantity;
         private bool _isEnabledDatePicker;
+        private string _accountTypeText;
 
         /// <summary>
         /// TEST용 생성자
@@ -45,6 +47,7 @@ namespace R54IN0.WPF
         public IOStockDataAmenderViewModel() : base()
         {
             Initialize();
+            Quantity = 1;
             _mode = Mode.ADD;
             StockType = IOStockType.INCOMING;
             Date = DateTime.Now;
@@ -125,6 +128,48 @@ namespace R54IN0.WPF
             ProductSearchCommand = new RelayCommand(ExecuteProductSearchCommand, CanSearch);
             RecordCommand = new RelayCommand(ExecuteRecordCommand, CanRecord);
             ProductSelectCommand = new RelayCommand(ExecuteProductSelectCommand, CanSelectProduct);
+            ProjectComboBoxGotFocusEventCommand = new RelayCommand<RoutedEventArgs>(ExecuteProjectComboBoxGotFocusEventCommand);
+            LoadLastRecordCommand = new RelayCommand(ExecuteLoadLastRecordCommand, CanLoadLastRecord);
+        }
+
+        private async void ExecuteLoadLastRecordCommand()
+        {
+            if (Inventory == null)
+                return;
+            var query = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
+                DbCommand.WHERE, "InventoryID", Inventory.ID,
+                DbCommand.WHERE, "StockType", StockType,
+                DbCommand.DESCENDING, "Date",
+                DbCommand.LIMIT, 1);
+            if (query.Count() != 1)
+                return;
+            var item = query.Single();
+            Quantity = item.Quantity;
+            UnitPrice = item.UnitPrice;
+            Employee = ObservableFieldDirector.GetInstance().Search<Employee>(item.EmployeeID);
+            if (StockType == IOStockType.INCOMING)
+            {
+                Client = ObservableFieldDirector.GetInstance().Search<Supplier>(item.SupplierID);
+                Warehouse = ObservableFieldDirector.GetInstance().Search<Warehouse>(item.WarehouseID);
+            }
+            else if (StockType == IOStockType.OUTGOING)
+            {
+                Client = ObservableFieldDirector.GetInstance().Search<Customer>(item.CustomerID);
+                Project = ObservableFieldDirector.GetInstance().Search<Project>(item.ProjectID);
+            }
+        }
+
+        private void ExecuteProjectComboBoxGotFocusEventCommand(RoutedEventArgs e)
+        {
+            if(e.OriginalSource is TextBox)
+            {
+                TextBox tb = e.OriginalSource as TextBox;
+                if (string.IsNullOrEmpty(tb.Text))
+                {
+                    tb.Text = PROJECT_PREPIX;
+                    tb.CaretIndex = tb.Text.Length;
+                }
+            }
         }
 
         private void UpdateQuantityProperties(int value)
@@ -184,6 +229,11 @@ namespace R54IN0.WPF
             if (Inventory == null && string.IsNullOrEmpty(SpecificationText))
                 return false;
             return true;
+        }
+
+        private bool CanLoadLastRecord()
+        {
+            return Product != null && Inventory != null;
         }
 
         private async void ExecuteRecordCommand()

@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -187,16 +189,43 @@ namespace R54IN0.WPF
         /// <summary>
         /// 선택된 노드를 삭제한다.
         /// </summary>
-        private void ExecuteSelectedNodeDeletionCommand()
+        private async void ExecuteSelectedNodeDeletionCommand()
         {
-            var nodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Select(x => new TreeViewNode(NodeType.PRODUCT, x.ProductID));
-            _director.Remove(SelectedNodes.First());
-            foreach (var node in nodes)
+            if (SelectedNodes.Count() != 1)
+                return;
+
+            var selectedNode = SelectedNodes.Single();
+            switch (selectedNode.Type)
             {
-                //var product = ObservableFieldDirector.GetInstance().Search<Product>(node.ProductID);
-                //var subject = CollectionViewModelObserverSubject.GetInstance();
-                //subject.NotifyItemDeleted(product);
-                _director.Add(node);
+                case NodeType.FORDER:
+                    var productNodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).ToList();
+                    _director.Remove(selectedNode);
+                    productNodes.ForEach(x => _director.Add(x));
+                    break;
+                case NodeType.PRODUCT:
+                    MessageDialogResult result = MessageDialogResult.Affirmative;
+                    if (Application.Current != null)
+                    {
+                        var metro = Application.Current.MainWindow as MetroWindow;
+                        string title = "주의!";
+                        string msg = string.Format("{0} 제품과 관련된 모든 재고기록과 입출고기록을 삭제합니다.\n정말로 삭제하시겠습니까?" ,selectedNode.Name);
+                        result = await metro.ShowMessageAsync(
+                            title, msg, MessageDialogStyle.AffirmativeAndNegative,
+                            new MetroDialogSettings() { AffirmativeButtonText = "네", NegativeButtonText = "아니오", ColorScheme = MetroDialogColorScheme.Accented });
+                    }
+                    if (result != MessageDialogResult.Affirmative)
+                        return;
+
+                    _director.Remove(selectedNode);
+                    var product = ObservableFieldDirector.GetInstance().Search<Product>(selectedNode.ProductID);
+                    if (product != null)
+                        CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(product);
+                    var oid = ObservableInventoryDirector.GetInstance();
+                    var invens = oid.SearchAsProductID(product.ID).ToList();
+                    invens.ForEach(x => oid.Remove(x));
+                    ObservableFieldDirector.GetInstance().Remove<Product>(product.ID);
+                    await DbAdapter.GetInstance().DeleteAsync(product.Field);
+                    break;
             }
             SelectedNodes.Clear();
         }
@@ -226,9 +255,7 @@ namespace R54IN0.WPF
 
         public bool CanDeleteNode()
         {
-            if (SelectedNodes.Count() != 1)
-                return false;
-            return SelectedNodes.First().Type == NodeType.FORDER;
+            return SelectedNodes.Count() == 1;
         }
     }
 }

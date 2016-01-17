@@ -278,12 +278,12 @@ namespace R54IN0.WPF
             else if (item is Observable<Product>)
             {
                 Observable<Product> product = item as Observable<Product>;
-                foreach (var obInven in new List<ObservableInventory>(DataGridViewModel1.Items))
+                foreach (var obInven in DataGridViewModel1.Items.ToList())
                 {
                     if (obInven.Product.ID == product.ID)
                         DataGridViewModel1.Items.Remove(obInven);
                 }
-                foreach (var obInven in new List<ObservableInventory>(DataGridViewModel2.Items))
+                foreach (var obInven in DataGridViewModel2.Items.ToList())
                 {
                     if (obInven.Product.ID == product.ID)
                         DataGridViewModel2.Items.Remove(obInven);

@@ -87,7 +87,8 @@ namespace R54IN0.WPF {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/R54IN0.WPF;component/dailyinventory/controls/inventory/inventorystatus.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/DailY Inventory;component/dailyinventory/controls/inventory/inventorystatus.xaml" +
+                    "", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\DailyInventory\Controls\Inventory\InventoryStatus.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -9,6 +9,10 @@ namespace R54IN0.WPF
 {
     public partial class IOStockDataAmenderViewModel
     {
+        public const string SUPPLIER = "입고처";
+        public const string CUSTOMER = "출고처";
+        public const string PROJECT_PREPIX = "DY";
+
         public override IOStockType StockType
         {
             get
@@ -30,6 +34,7 @@ namespace R54IN0.WPF
                         IsReadOnlyProductTextBox = false;
                         IsEnabledWarehouseComboBox = true;
                         IsEnabledProjectComboBox = false;
+                        AccountTypeText = SUPPLIER;
                         break;
 
                     case IOStockType.OUTGOING:
@@ -40,6 +45,8 @@ namespace R54IN0.WPF
                         IsReadOnlyProductTextBox = true;
                         IsEnabledWarehouseComboBox = false;
                         IsEnabledProjectComboBox = true;
+                        AccountTypeText = CUSTOMER;
+
                         if (Product == null)
                             ProductText = null;
                         if (Inventory == null)
@@ -191,6 +198,11 @@ namespace R54IN0.WPF
                 }
                 if (RecordCommand != null)
                     RecordCommand.RaiseCanExecuteChanged();
+                if (LoadLastRecordCommand != null)
+                    LoadLastRecordCommand.RaiseCanExecuteChanged();
+
+                UpdateQuantityProperties(Quantity);
+
                 NotifyPropertyChanged("Maker");
                 NotifyPropertyChanged("Measure");
                 NotifyPropertyChanged("SpecificationMemo");

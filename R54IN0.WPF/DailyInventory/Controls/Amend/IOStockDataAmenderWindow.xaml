@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:R54IN0.WPF"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:mvvmlight="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         mc:Ignorable="d"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1"
@@ -187,7 +189,7 @@
                 <Label>수량</Label>
                 <mah:NumericUpDown
                     Minimum="1"
-                    Value="{Binding Quantity}"
+                    Value="{Binding Quantity, Mode=TwoWay}"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left" />
             </Grid>
 
@@ -214,8 +216,18 @@
                 <Label>단가</Label>
                 <mah:NumericUpDown
                     Minimum="0"
-                    Value="{Binding UnitPrice}"
+                    Value="{Binding UnitPrice, Mode=TwoWay}"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left" Interval="10000"></mah:NumericUpDown>
+            </Grid>
+
+            <Grid Grid.Row="8" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="43*" />
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding LoadLastRecordCommand }" Style="{DynamicResource AccentedSquareButtonStyle}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    최근에 저장한 기록 불러오기
+                </Button>
             </Grid>
 
             <Grid Grid.Row="7" Grid.Column="1">
@@ -223,7 +235,7 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="43*" />
                 </Grid.ColumnDefinitions>
-                <Label>거래처</Label>
+                <Label Content="{Binding AccountTypeText}"/>
                 <ComboBox
                           Text="{Binding ClientText}"
                           SelectedItem="{Binding Client}"
@@ -262,7 +274,13 @@
                     IsEditable="True"
                     IsEnabled="{Binding IsEnabledProjectComboBox}"
                     DisplayMemberPath="Name"
-                    Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
+                    Grid.Column="1" Width="200" HorizontalAlignment="Left">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="GotFocus">
+                            <mvvmlight:EventToCommand Command="{Binding ProjectComboBoxGotFocusEventCommand}" PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
             </Grid>
 
             <Grid Grid.Row="10" Grid.Column="1">
@@ -318,10 +336,11 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="43*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center">재고수량</TextBlock>
-                <TextBlock
-                    Text="{Binding InventoryQuantity, StringFormat='{}{0:#,#.}'}"
-                    Grid.Column="1" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                <Label >재고수량</Label>
+                <Label
+                    ContentStringFormat='{}{0:#,#.}'
+                    Content="{Binding InventoryQuantity}"
+                    Grid.Column="1" Width="200" ></Label>
             </Grid>
 
             <Grid Grid.Row="11" Grid.Column="0">
@@ -329,10 +348,11 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="43*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center">단가합계</TextBlock>
-                <TextBlock
-                    Text="{Binding Amount, StringFormat='{}{0:#,#.}'}"
-                    Grid.Column="1" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                <Label >단가합계</Label>
+                <Label
+                    ContentStringFormat='{}{0:#,#.}'
+                    Content="{Binding Amount}"
+                    Grid.Column="1" Width="200" ></Label>
             </Grid>
         </Grid>
 

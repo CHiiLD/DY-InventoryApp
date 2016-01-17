@@ -55,13 +55,27 @@ namespace R54IN0
                 throw new ArgumentNullException();
             var lexdb = LexDb.GetDbInstance();
 
+            if (item is Product)
+            {
+                var product = item as Product;
+                var infmts = lexdb.Table<InventoryFormat>().IndexQueryByKey("ProductID", product.ID).ToList();
+                foreach (var infmt in infmts)
+                {
+                    var iosfmts = lexdb.Table<IOStockFormat>().IndexQueryByKey("InventoryID", infmt.ID).ToList();
+                    lexdb.Table<IOStockFormat>().Delete(iosfmts);
+                }
+                lexdb.Table<InventoryFormat>().Delete(infmts);
+            }
             if (item is InventoryFormat)
             {
                 var fmts = lexdb.Table<IOStockFormat>().IndexQueryByKey("InventoryID", item.ID);
                 lexdb.Table<IOStockFormat>().Delete(fmts.ToList());
             }
             if (item is IOStockFormat)
+            {
                 await CalculateDeledtedIOSFmtQuantity(item as IOStockFormat);
+            }
+
             return lexdb.Table<TableT>().Delete(item);
         }
 

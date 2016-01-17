@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace R54IN0.WPF
 {
     public partial class IOStockDataAmenderViewModel
     {
+       
         /// <summary>
         /// 제품 탐색기 뷰모델
         /// </summary>
@@ -27,6 +29,13 @@ namespace R54IN0.WPF
         /// 제품 탐색기에서 제품을 선택한 뒤, 확인 버튼의 Command 객체
         /// </summary>
         public RelayCommand ProductSelectCommand { get; set; }
+
+        /// <summary>
+        /// 최근 저장된 데이터를 불러온다.
+        /// </summary>
+        public RelayCommand LoadLastRecordCommand { get; set; }
+
+        public RelayCommand<RoutedEventArgs> ProjectComboBoxGotFocusEventCommand { get; set; }
 
         public bool IsEditableSpecification
         {
@@ -83,6 +92,20 @@ namespace R54IN0.WPF
                 NotifyPropertyChanged("InventoryQuantity");
             }
         }
+
+        public string AccountTypeText
+        {
+            get
+            {
+                return _accountTypeText;
+            }
+            set
+            {
+                _accountTypeText = value;
+                NotifyPropertyChanged("AccountTypeText");
+            }
+        }
+
 
         #region IsEnabled Property
 

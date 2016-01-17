@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Threading;
+using System.Windows;
 
 namespace R54IN0.WPF
 {
@@ -7,14 +10,23 @@ namespace R54IN0.WPF
     /// </summary>
     public partial class App : Application
     {
-        private async void Application_Exit(object sender, ExitEventArgs e)
+        protected async override void OnExit(ExitEventArgs e)
         {
-            await DbAdapter.GetInstance().DisconnectAsync();
             TreeViewNodeDirector.Destroy();
+            await DbAdapter.GetInstance().DisconnectAsync();
+            base.OnExit(e);
         }
 
-        private async void Application_Startup(object sender, StartupEventArgs e)
+        protected async override void OnStartup(StartupEventArgs e)
         {
+            Process thisProc = Process.GetCurrentProcess();
+            if (Process.GetProcessesByName(thisProc.ProcessName).Length > 1)
+            {
+                MessageBox.Show("이미 실행중입니다");
+                Application.Current.Shutdown();
+                return;
+            }
+            base.OnStartup(e);
             await DbAdapter.GetInstance().ConnectAsync();
         }
     }
