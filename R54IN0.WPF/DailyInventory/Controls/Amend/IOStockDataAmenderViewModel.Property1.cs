@@ -64,7 +64,7 @@ namespace R54IN0.WPF
         {
             get
             {
-                return InventoryQuantity * UnitPrice;
+                return Quantity * UnitPrice;
             }
         }
 

@@ -21,8 +21,8 @@
               SelectedItem="{Binding SelectedItem}">
 
             <i:Interaction.Triggers>
-                <i:EventTrigger EventName="PreviewTextInput">
-                    <mvvmlight:EventToCommand Command="{Binding PreviewTextInputEventCommand}" PassEventArgsToCommand="True" />
+                <i:EventTrigger EventName="CellEditEnding">
+                    <mvvmlight:EventToCommand Command="{Binding CellEditEndingEventCommand}" PassEventArgsToCommand="True" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
 

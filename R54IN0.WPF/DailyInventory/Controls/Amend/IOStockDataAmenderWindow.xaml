@@ -318,10 +318,10 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="43*" />
                 </Grid.ColumnDefinitions>
-                <Label>재고수량</Label>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center">재고수량</TextBlock>
                 <TextBlock
                     Text="{Binding InventoryQuantity, StringFormat='{}{0:#,#.}'}"
-                    Grid.Column="1" Width="200" HorizontalAlignment="Left"></TextBlock>
+                    Grid.Column="1" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
             </Grid>
 
             <Grid Grid.Row="11" Grid.Column="0">
@@ -329,10 +329,10 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="43*" />
                 </Grid.ColumnDefinitions>
-                <Label>단가합계</Label>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center">단가합계</TextBlock>
                 <TextBlock
                     Text="{Binding Amount, StringFormat='{}{0:#,#.}'}"
-                    Grid.Column="1" Width="200" HorizontalAlignment="Left"></TextBlock>
+                    Grid.Column="1" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
             </Grid>
         </Grid>
 

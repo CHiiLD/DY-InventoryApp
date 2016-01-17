@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace R54IN0
 {
@@ -33,15 +35,6 @@ namespace R54IN0
             _fmt = inventoryFormat;
             InitializeProperties(inventoryFormat);
         }
-
-        protected void InitializeProperties(InventoryFormat fmt)
-        {
-            var ofd = ObservableFieldDirector.GetInstance();
-            product = ofd.Search<Product>(fmt.ProductID);
-            measure = ofd.Search<Measure>(fmt.MeasureID);
-            maker = ofd.Search<Maker>(fmt.MakerID);
-        }
-
         public virtual InventoryFormat Format
         {
             get
@@ -91,16 +84,16 @@ namespace R54IN0
         /// <summary>
         /// 비고
         /// </summary>
-        public virtual string Remark
+        public virtual string Memo
         {
             get
             {
-                return _fmt.Remark;
+                return _fmt.Memo;
             }
             set
             {
-                _fmt.Remark = value;
-                NotifyPropertyChanged("Remark");
+                _fmt.Memo = value;
+                NotifyPropertyChanged("Memo");
             }
         }
 
@@ -167,6 +160,14 @@ namespace R54IN0
             }
         }
 
+        protected void InitializeProperties(InventoryFormat fmt)
+        {
+            var ofd = ObservableFieldDirector.GetInstance();
+            product = ofd.Search<Product>(fmt.ProductID);
+            measure = ofd.Search<Measure>(fmt.MeasureID);
+            maker = ofd.Search<Maker>(fmt.MakerID);
+        }
+
         public virtual async void NotifyPropertyChanged(string name)
         {
             if (propertyChanged != null)
@@ -181,6 +182,13 @@ namespace R54IN0
             {
                 await DbAdapter.GetInstance().UpdateAsync(Format, name);
             }
+        }
+
+        public async Task SyncDataFromServer()
+        {
+            InventoryFormat fmt = await DbAdapter.GetInstance().SelectAsync<InventoryFormat>(ID);
+            if (fmt != null)
+                Format = fmt;
         }
     }
 }

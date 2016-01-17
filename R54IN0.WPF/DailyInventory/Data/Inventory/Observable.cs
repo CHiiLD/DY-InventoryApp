@@ -1,8 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public class Observable<FieldT> : IObservableField, INotifyPropertyChanged where FieldT : class, IField, new()
+    public class Observable<FieldT> : IObservableField, ISync, INotifyPropertyChanged where FieldT : class, IField, new()
     {
         private FieldT _t;
 
@@ -107,6 +109,18 @@ namespace R54IN0
             else
             {
                 await DbAdapter.GetInstance().UpdateAsync(Field, name);
+            }
+        }
+
+        public async Task SyncDataFromServer()
+        {
+            FieldT field = await DbAdapter.GetInstance().SelectAsync<FieldT>(ID);
+            if (field != null)
+            {
+                if (Name != field.Name)
+                    Name = field.Name;
+                if (IsDeleted != field.IsDeleted)
+                    IsDeleted = field.IsDeleted;
             }
         }
     }

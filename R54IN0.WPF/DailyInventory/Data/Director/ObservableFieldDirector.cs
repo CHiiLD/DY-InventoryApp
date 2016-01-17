@@ -60,10 +60,10 @@ namespace R54IN0
             return _dictionary[type].ContainsKey(id) ? _dictionary[type][id] as Observable<T> : null;
         }
 
-        public List<Observable<T>> Copy<T>() where T : class, IField, new()
+        public IEnumerable<Observable<T>> Copy<T>() where T : class, IField, new()
         {
             Type type = typeof(T);
-            return _dictionary[type].Values.Cast<Observable<T>>().ToList();
+            return _dictionary[type].Values.Cast<Observable<T>>();
         }
 
         public void Add<T>(object field) where T : class, IField, new()

@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -23,6 +24,7 @@ namespace R54IN0.WPF
         {
             Items = new ObservableCollection<IOStockDataGridItem>();
             PreviewTextInputEventCommand = new RelayCommand<TextCompositionEventArgs>(ExecutePreviewTextInputEventCommand);
+            CellEditEndingEventCommand = new RelayCommand<DataGridCellEditEndingEventArgs>(ExecuteCellEditEndingEventCommand);
 
             SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, IsSelected);
             NewIOStockFormatAdditionCommand = new RelayCommand(ExecuteNewIOStockFormatAdditionCommand);
@@ -31,8 +33,8 @@ namespace R54IN0.WPF
             ChekcedIOStockFormatsDeletionCommand = new RelayCommand(ExecuteChekcedIOStockFormatsDeletionCommand);
             CheckedIOStockFormatsCopyCommand = new RelayCommand(ExecuteCheckedIOStockFormatsCopyCommand);
             SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, IsSelected);
+            ContextMenuOpeningEventCommand = new RelayCommand(ExecuteContextMenuOpeningEventCommand);
         }
-
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
@@ -142,6 +144,10 @@ namespace R54IN0.WPF
 
         public RelayCommand<TextCompositionEventArgs> PreviewTextInputEventCommand { get; set; }
 
+        public RelayCommand<DataGridCellEditEndingEventArgs> CellEditEndingEventCommand { get; set; }
+
+        public RelayCommand ContextMenuOpeningEventCommand { get; set; }
+
         private void ExecutePreviewTextInputEventCommand(TextCompositionEventArgs e)
         {
             var datagrid = e.Source as DataGrid;
@@ -149,19 +155,70 @@ namespace R54IN0.WPF
             {
                 IOStockDataGridItem item = datagrid.CurrentItem as IOStockDataGridItem;
                 DataGridColumn column = datagrid.CurrentColumn;
-                if (column.SortMemberPath.Contains("Name"))
+                string sortMemberPath = column.SortMemberPath;
+                IOStockType iosType = item.StockType;
+
+                if (iosType == IOStockType.INCOMING && (sortMemberPath.Contains("Customer") || sortMemberPath.Contains("Project")) ||
+                iosType == IOStockType.OUTGOING && (sortMemberPath.Contains("Supplier") || sortMemberPath.Contains("Warehouse")))
+                    e.Handled = true;
+            }
+        }
+
+        private void ExecuteCellEditEndingEventCommand(DataGridCellEditEndingEventArgs e)
+        {
+            DataGridColumn column = e.Column;
+            DataGridRow row = e.Row;
+            TextBox textBox = e.EditingElement as TextBox;
+            string sortMemberPath = column.SortMemberPath;
+            IOStockDataGridItem item = row.Item as IOStockDataGridItem;
+            IOStockType iosType = item.StockType;
+
+            if (!sortMemberPath.Contains("Name") || item == null || textBox == null)
+                return;
+            if (iosType == IOStockType.INCOMING && (sortMemberPath.Contains("Customer") || sortMemberPath.Contains("Project")) ||
+                iosType == IOStockType.OUTGOING && (sortMemberPath.Contains("Supplier") || sortMemberPath.Contains("Warehouse")))
+                return;
+            
+            string[] paths = column.SortMemberPath.Replace(".Name", "").Split('.');
+            object property = item;
+            foreach (var path in paths)
+                property = property.GetType().GetProperty(path).GetValue(property, null);
+            if (property == null)
+            {
+                string propertyName = paths.Last();
+                switch (propertyName)
                 {
-                    string propertyPath = column.SortMemberPath.Replace(".Name", "");
-                    string[] paths = propertyPath.Split('.');
-                    object property = item;
-                    foreach (var path in paths)
-                    {
-                        property = property.GetType().GetProperty(path).GetValue(property, null);
-                    }
-                    if (property == null)
-                        e.Handled = true;
+                    case "Maker":
+                        item.Inventory.Maker = new Observable<Maker>() { Name = textBox.Text };
+                        break;
+                    case "Measure":
+                        item.Inventory.Measure = new Observable<Measure>() { Name = textBox.Text };
+                        break;
+                    case "Warehouse":
+                        item.Warehouse = new Observable<Warehouse>() { Name = textBox.Text };
+                        break;
+                    case "Project":
+                        item.Project = new Observable<Project>() { Name = textBox.Text };
+                        break;
+                    case "Customer":
+                        item.Customer = new Observable<Customer>() { Name = textBox.Text };
+                        break;
+                    case "Supplier":
+                        item.Supplier = new Observable<Supplier>() { Name = textBox.Text };
+                        break;
+                    case "Employee":
+                        item.Employee = new Observable<Employee>() { Name = textBox.Text };
+                        break;
                 }
             }
+        }
+
+        private void ExecuteContextMenuOpeningEventCommand()
+        {
+            SearchAsIOStockRecordCommand.RaiseCanExecuteChanged();
+            IOStockFormatModificationCommand.RaiseCanExecuteChanged();
+            IOStockFormatDeletionCommand.RaiseCanExecuteChanged();
+            SearchAsInventoryRecordCommand.RaiseCanExecuteChanged();
         }
 
         public void NotifyPropertyChanged(string name)

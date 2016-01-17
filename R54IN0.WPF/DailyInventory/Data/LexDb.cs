@@ -75,7 +75,7 @@ namespace R54IN0
             WithIndex("MeasureID", i => i.MeasureID).
             WithIndex("ProductID", i => i.ProductID).
             WithIndex("Specification", i => i.Specification).
-            WithIndex("Remark", i => i.Remark).
+            WithIndex("Memo", i => i.Memo).
             WithIndex("MakerID", i => i.MakerID).
             WithIndex("Quantity", i => i.Quantity);
 

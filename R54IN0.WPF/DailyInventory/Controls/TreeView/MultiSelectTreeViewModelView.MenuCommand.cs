@@ -72,10 +72,7 @@ namespace R54IN0.WPF
         /// </summary>
         private void ExecuteNewProductNodeAddCommand()
         {
-            Product product = new Product() { Name = "새로운 제품" };
-            Observable<Product> newProduct = new Observable<Product>(product);
-            ObservableFieldDirector.GetInstance().Add<Product>(newProduct);
-
+            Observable<Product> newProduct = new Observable<Product>() { Name = "새로운 제품" };
             IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FORDER);
             TreeViewNode newTreeViewNode = new TreeViewNode(NodeType.PRODUCT, newProduct.ID);
             if (folderNodes.Count() != 0)
@@ -129,14 +126,15 @@ namespace R54IN0.WPF
         /// <summary>
         /// 마우스 좌측클릭으로 노드를 선택했을 경우 그 노드만 SelectedNodes에 추가한다.
         /// </summary>
-        /// <param name="eventArgs"></param>
-        private void ExecuteMouseRightButtonDownEventCommand(MouseButtonEventArgs eventArgs)
+        /// <param name="e"></param>
+        private void ExecuteMouseRightButtonDownEventCommand(MouseButtonEventArgs e)
         {
-            Point pt = eventArgs.GetPosition((UIElement)eventArgs.Source);
-            TreeViewEx treeViewEx = eventArgs.Source as TreeViewEx;
+            Point pt = e.GetPosition((UIElement)e.Source);
+            TreeViewEx treeViewEx = e.Source as TreeViewEx;
             HitTestResult hitTestResult = VisualTreeHelper.HitTest(treeViewEx, pt);
             if (hitTestResult == null || hitTestResult.VisualHit == null)
                 return;
+            SelectedNodes.Clear();
             FrameworkElement child = hitTestResult.VisualHit as FrameworkElement;
             do
             {
@@ -144,21 +142,20 @@ namespace R54IN0.WPF
                 {
                     TreeViewNode node = child.DataContext as TreeViewNode;
                     if (node != null)
-                    {
-                        SelectedNodes.Clear();
-                        SelectedNodes.Add(node);
-                    }
+                        ExecuteNodesSelectedEventCommand(new SelectionChangedCancelEventArgs(new TreeViewNode[] { node }, null));
                     break;
                 }
                 else if (child is TreeViewEx)
-                {
                     break;
-                }
                 else
-                {
                     child = VisualTreeHelper.GetParent(child) as FrameworkElement;
-                }
             } while (child != null);
+
+            SelectedNodeRenameCommand.RaiseCanExecuteChanged();
+            SearchAsIOStockRecordCommand.RaiseCanExecuteChanged();
+            IOStockAmenderWindowCallCommand.RaiseCanExecuteChanged();
+            SearchAsInventoryRecordCommand.RaiseCanExecuteChanged();
+            SelectedNodeDeletionCommand.RaiseCanExecuteChanged();
         }
 
         /// <summary>
@@ -185,10 +182,6 @@ namespace R54IN0.WPF
                 }
             }
             NotifyPropertyChanged("SelectedNodes");
-            SearchAsIOStockRecordCommand.RaiseCanExecuteChanged();
-            IOStockAmenderWindowCallCommand.RaiseCanExecuteChanged();
-            SearchAsInventoryRecordCommand.RaiseCanExecuteChanged();
-            SelectedNodeDeletionCommand.RaiseCanExecuteChanged();
         }
 
         /// <summary>
@@ -197,13 +190,14 @@ namespace R54IN0.WPF
         private void ExecuteSelectedNodeDeletionCommand()
         {
             var nodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Select(x => new TreeViewNode(NodeType.PRODUCT, x.ProductID));
+            _director.Remove(SelectedNodes.First());
             foreach (var node in nodes)
             {
-                var product = ObservableFieldDirector.GetInstance().Search<Product>(node.ProductID);
-                var subject = CollectionViewModelObserverSubject.GetInstance();
-                subject.NotifyItemDeleted(product);
+                //var product = ObservableFieldDirector.GetInstance().Search<Product>(node.ProductID);
+                //var subject = CollectionViewModelObserverSubject.GetInstance();
+                //subject.NotifyItemDeleted(product);
+                _director.Add(node);
             }
-            _director.Remove(SelectedNodes.First());
             SelectedNodes.Clear();
         }
 
@@ -232,7 +226,9 @@ namespace R54IN0.WPF
 
         public bool CanDeleteNode()
         {
-            return SelectedNodes.Count() == 1;
+            if (SelectedNodes.Count() != 1)
+                return false;
+            return SelectedNodes.First().Type == NodeType.FORDER;
         }
     }
 }

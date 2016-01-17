@@ -27,12 +27,9 @@ namespace R54IN0.Test
             string inventoryID = null;
             string prodoctID = null;
 
-            using (var db = LexDb.GetDbInstance())
-            {
-                stockID = db.LoadAll<IOStockFormat>().Random().ID;
-                inventoryID = db.LoadAll<InventoryFormat>().Random().ID;
-                prodoctID = db.LoadAll<Product>().Random().ID;
-            }
+            stockID = LexDb.GetDbInstance().LoadAll<IOStockFormat>().Random().ID;
+            inventoryID = LexDb.GetDbInstance().LoadAll<InventoryFormat>().Random().ID;
+            prodoctID = LexDb.GetDbInstance().LoadAll<Product>().Random().ID;
 
             DbAdapter adapter = new DbAdapter();
             bool isConnected = await adapter.ConnectAsync();
@@ -43,12 +40,9 @@ namespace R54IN0.Test
                 await adapter.DeleteAsync<Product>(prodoctID);
             }
 
-            using (var db = LexDb.GetDbInstance())
-            {
-                Assert.IsNull(db.LoadByKey<IOStockFormat>(stockID));
-                Assert.IsNull(db.LoadByKey<InventoryFormat>(inventoryID));
-                Assert.IsNull(db.LoadByKey<Product>(prodoctID));
-            }
+            Assert.IsNull(LexDb.GetDbInstance().LoadByKey<IOStockFormat>(stockID));
+            Assert.IsNull(LexDb.GetDbInstance().LoadByKey<InventoryFormat>(inventoryID));
+            Assert.IsNull(LexDb.GetDbInstance().LoadByKey<Product>(prodoctID));
         }
 
         /// <summary>
@@ -71,12 +65,9 @@ namespace R54IN0.Test
                 await adapter.InsertAsync<IOStockFormat>(iosFmt);
             }
 
-            using (var db = LexDb.GetDbInstance())
-            {
-                Assert.IsNotNull(db.LoadByKey<Product>(product.ID));
-                Assert.IsNotNull(db.LoadByKey<InventoryFormat>(invenFmt.ID));
-                Assert.IsNotNull(db.LoadByKey<IOStockFormat>(iosFmt.ID));
-            }
+            Assert.IsNotNull(LexDb.GetDbInstance().LoadByKey<Product>(product.ID));
+            Assert.IsNotNull(LexDb.GetDbInstance().LoadByKey<InventoryFormat>(invenFmt.ID));
+            Assert.IsNotNull(LexDb.GetDbInstance().LoadByKey<IOStockFormat>(iosFmt.ID));
         }
 
         /// <summary>
@@ -95,12 +86,9 @@ namespace R54IN0.Test
                 product.Name = "new name";
                 await adapter.UpdateAsync(product, "Name");
             }
-            using (var db = LexDb.GetDbInstance())
-            {
-                var loadedProduct = db.LoadByKey<Product>(product.ID);
-                Assert.IsNotNull(loadedProduct);
-                Assert.AreEqual(product.Name, loadedProduct.Name);
-            }
+            var loadedProduct = LexDb.GetDbInstance().LoadByKey<Product>(product.ID);
+            Assert.IsNotNull(loadedProduct);
+            Assert.AreEqual(product.Name, loadedProduct.Name);
         }
 
         /// <summary>
@@ -114,8 +102,7 @@ namespace R54IN0.Test
             await new Dummy().Create();
             Product[] products = null;
             Product[] products2 = null;
-            using (var db = LexDb.GetDbInstance())
-                products = db.LoadAll<Product>();
+            products = LexDb.GetDbInstance().LoadAll<Product>();
 
             DbAdapter adapter = new DbAdapter();
             bool isConnected = await adapter.ConnectAsync();
@@ -135,8 +122,7 @@ namespace R54IN0.Test
         public async Task QueryAsync()
         {
             Product product = null;
-            using (var db = LexDb.GetDbInstance())
-                product = db.LoadAll<Product>().Random();
+            product = LexDb.GetDbInstance().LoadAll<Product>().Random();
             DbAdapter adapter = new DbAdapter();
             bool isConnected = await adapter.ConnectAsync();
             if (isConnected)
@@ -150,8 +136,7 @@ namespace R54IN0.Test
         public async Task QueryAsync2()
         {
             InventoryFormat infmt = null;
-            using (var db = LexDb.GetDbInstance())
-                infmt = db.LoadAll<InventoryFormat>().Random();
+            infmt = LexDb.GetDbInstance().LoadAll<InventoryFormat>().Random();
 
             DbAdapter adapter = new DbAdapter();
             bool isConnected = await adapter.ConnectAsync();
@@ -170,8 +155,7 @@ namespace R54IN0.Test
         public async Task QueryAsync3()
         {
             InventoryFormat infmt = null;
-            using (var db = LexDb.GetDbInstance())
-                infmt = db.LoadAll<InventoryFormat>().Random();
+            infmt = LexDb.GetDbInstance().LoadAll<InventoryFormat>().Random();
 
             DbAdapter adapter = new DbAdapter();
             bool isConnected = await adapter.ConnectAsync();
@@ -202,7 +186,7 @@ namespace R54IN0.Test
                 Assert.IsTrue(result.All(x => x.Date < date));
                 var max = result.Max(x => x.Date);
                 result = await adapter.QueryAsync<IOStockFormat>(
-                    DbCommand.IS_LESS_THEN, "Date", date, 
+                    DbCommand.IS_LESS_THEN, "Date", date,
                     DbCommand.DESCENDING, "Date",
                     DbCommand.LIMIT, 1);
                 Assert.AreEqual(max, result.Single().Date);

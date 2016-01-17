@@ -295,12 +295,12 @@ namespace R54IN0.WPF
         {
             get
             {
-                return Inventory != null ? Inventory.Remark : _specificationMemo;
+                return Inventory != null ? Inventory.Memo : _specificationMemo;
             }
             set
             {
                 if (Inventory != null)
-                    Inventory.Remark = value;
+                    Inventory.Memo = value;
                 else
                     _specificationMemo = value;
                 NotifyPropertyChanged("SpecificationMemo");

@@ -22,7 +22,7 @@ namespace R54IN0.Test
             ObservableInventory oinven = new ObservableInventory();
             oinven.Measure = new Observable<Measure>() { Name = "EA" };
             oinven.Product = new Observable<Product>() { Name = "product name" };
-            oinven.Remark = "memo";
+            oinven.Memo = "memo";
             oinven.Quantity = 123;
             oinven.Maker = new Observable<Maker>() { Name = "maker name" };
             oinven.Specification = "product's specification name(standard)";

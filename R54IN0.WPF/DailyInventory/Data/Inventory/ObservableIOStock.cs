@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace R54IN0
 {
@@ -270,6 +271,13 @@ namespace R54IN0
                 await DbAdapter.GetInstance().InsertAsync(Format);
             else
                 await DbAdapter.GetInstance().UpdateAsync(Format, name);
+        }
+
+        public async Task SyncDataFromServer()
+        {
+            IOStockFormat fmt = await DbAdapter.GetInstance().SelectAsync<IOStockFormat>(ID);
+            if (fmt != null)
+                Format = fmt;
         }
     }
 }

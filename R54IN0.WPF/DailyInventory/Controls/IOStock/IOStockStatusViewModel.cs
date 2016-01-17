@@ -364,10 +364,6 @@ namespace R54IN0.WPF
             DatePickerViewModel.CommandExecuted += OnDatePickerCommandExecuted;
             ProjectListBoxViewModel.PropertyChanged += OnProjectListPropertyChanged;
             TreeViewViewModel.PropertyChanged += OnTreeViewNodesSelected;
-            TreeViewViewModel.DragCommand = null;
-            TreeViewViewModel.DropCommand = null;
-            TreeViewViewModel.NewFolderAddMenuVisibility = Visibility.Collapsed;
-            TreeViewViewModel.NewProductAddMenuVisibility = Visibility.Collapsed;
 
             NewInoutStockAddCommand = new RelayCommand<object>(ExecuteNewInoutStockAddCommand, (object obj) => { return true; });
             DataGridViewModel.PropertyChanged += OnDataGridViewModelPropertyChanged;
@@ -591,36 +587,35 @@ namespace R54IN0.WPF
 
         public void UpdateDelItem(object item)
         {
-            IEnumerable<IOStockDataGridItem> datagridItem = null;
             IEnumerable<KeyValuePair<string, IOStockDataGridItem>> pairs = null;
             if (item is IObservableInventoryProperties)
             {
                 IObservableInventoryProperties obInven = item as IObservableInventoryProperties;
-                datagridItem = DataGridViewModel.Items.Where(x => x.Inventory.ID == obInven.ID);
                 if (BackupSource != null)
                     pairs = BackupSource.Where(x => x.Value.Inventory.ID == obInven.ID);
             }
             else if (item is Observable<Product>)
             {
                 Observable<Product> product = item as Observable<Product>;
-                datagridItem = DataGridViewModel.Items.Where(x => x.Inventory.Product.ID == product.ID);
                 if (BackupSource != null)
                     pairs = BackupSource.Where(x => x.Value.Inventory.Product.ID == product.ID);
             }
             else if (item is IObservableIOStockProperties)
             {
                 IObservableIOStockProperties iostock = item as IObservableIOStockProperties;
-                datagridItem = DataGridViewModel.Items.Where(x => x.ID == iostock.ID);
                 if (BackupSource != null)
                     pairs = BackupSource.Where(x => x.Value.ID == iostock.ID);
             }
 
-            foreach (IOStockDataGridItem dgItem in datagridItem)
-                DataGridViewModel.Items.Remove(dgItem);
             if (pairs != null)
             {
-                foreach (KeyValuePair<string, IOStockDataGridItem> pair in pairs)
+                var items = DataGridViewModel.Items;
+                foreach (KeyValuePair<string, IOStockDataGridItem> pair in pairs.ToList())
+                {
                     BackupSource.Remove(pair.Key);
+                    if (items.Contains(pair.Value))
+                        items.Remove(pair.Value);
+                }
             }
         }
     }

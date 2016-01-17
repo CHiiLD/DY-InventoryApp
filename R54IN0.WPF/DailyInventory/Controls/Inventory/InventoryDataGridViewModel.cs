@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace R54IN0.WPF
 {
@@ -41,10 +41,10 @@ namespace R54IN0.WPF
             IOStockAmenderWindowCallCommand = new RelayCommand(ExecuteIOStockAmenderWindowCallCommand, IsSelected);
             InventoryDataDeletionCommand = new RelayCommand(ExecuteInventoryDataDeletionCommand, IsSelected);
 
-            PreviewTextInputEventCommand = new RelayCommand<TextCompositionEventArgs>(ExecutePreviewTextInputEvent);
+            CellEditEndingEventCommand = new RelayCommand<DataGridCellEditEndingEventArgs>(ExecuteCellEditEndingEventCommand);
         }
 
-        public RelayCommand<TextCompositionEventArgs> PreviewTextInputEventCommand { get; set; }
+        public RelayCommand<DataGridCellEditEndingEventArgs> CellEditEndingEventCommand { get; set; }
 
         #region ContextMenu MenuItem Binding Command
 
@@ -163,17 +163,19 @@ namespace R54IN0.WPF
             return SelectedItem != null;
         }
 
-        private void ExecutePreviewTextInputEvent(object parameter)
-        {
-            var eventArgs = parameter as TextCompositionEventArgs;
-            OnPreviewTextInputted(eventArgs.Source, eventArgs);
-        }
-
         /// <summary>
         /// 선택된 재고 데이터를 삭제한다.
         /// </summary>
-        private void ExecuteInventoryDataDeletionCommand()
+        private async void ExecuteInventoryDataDeletionCommand()
         {
+            if (SelectedItem != null)
+            {
+                var item = SelectedItem;
+                ObservableInventoryDirector.GetInstance().Remove(item);
+                CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(item);
+                await DbAdapter.GetInstance().DeleteAsync(item.Format);
+                SelectedItem = null;
+            }
         }
 
         /// <summary>
@@ -193,24 +195,31 @@ namespace R54IN0.WPF
                 MainWindowViewModel.GetInstance().ShowIOStockStatusByProduct(SelectedItem.Product.ID);
         }
 
-        public void OnPreviewTextInputted(object sender, TextCompositionEventArgs e)
+        private void ExecuteCellEditEndingEventCommand(DataGridCellEditEndingEventArgs e)
         {
-            var datagrid = sender as DataGrid;
-            if (datagrid != null)
+            DataGridColumn column = e.Column;
+            DataGridRow row = e.Row;
+            TextBox textBox = e.EditingElement as TextBox;
+            string sortMemberPath = column.SortMemberPath;
+            ObservableInventory item = row.Item as ObservableInventory;
+            if (!sortMemberPath.Contains("Name") || item == null || textBox == null)
+                return;
+            string[] paths = column.SortMemberPath.Replace(".Name", "").Split('.');
+            object property = item;
+            foreach (var path in paths)
+                property = property.GetType().GetProperty(path).GetValue(property, null);
+            if (property == null)
             {
-                ObservableInventory item = datagrid.CurrentItem as ObservableInventory;
-                DataGridColumn column = datagrid.CurrentColumn;
-                if (column.SortMemberPath.Contains("Name"))
+                string propertyName = paths.Last();
+                switch (propertyName)
                 {
-                    string propertyPath = column.SortMemberPath.Replace(".Name", "");
-                    string[] paths = propertyPath.Split('.');
-                    object property = item;
-                    foreach (var path in paths)
-                    {
-                        property = property.GetType().GetProperty(path).GetValue(property, null);
-                    }
-                    if (property == null)
-                        e.Handled = true;
+                    case "Maker":
+                        item.Maker = new Observable<Maker>() { Name = textBox.Text };
+                        break;
+
+                    case "Measure":
+                        item.Measure = new Observable<Measure>() { Name = textBox.Text };
+                        break;
                 }
             }
         }

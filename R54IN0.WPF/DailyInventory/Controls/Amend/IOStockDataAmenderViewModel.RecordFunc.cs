@@ -23,7 +23,7 @@ namespace R54IN0.WPF
                     CreateIOStockNewProperies();
                     ApplyModifiedInventoryProperties();
                     await DbAdapter.GetInstance().InsertAsync(Format);
-                    await UpdateModifiedRemainingQuantity();
+                    await Inventory.SyncDataFromServer();
                     result = new ObservableIOStock(Format);
                     CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(result);
                     break;
@@ -31,11 +31,12 @@ namespace R54IN0.WPF
                     ApplyModifiedIOStockProperties();
                     ApplyModifiedInventoryProperties();
                     await DbAdapter.GetInstance().UpdateAsync(Format);
-                    await UpdateModifiedRemainingQuantity();
+                    await Inventory.SyncDataFromServer();
+                    _originSource.Format = Format;
                     result = _originSource;
-                    result.Format = Format;
                     break;
             }
+            await RefreshDataGridItems();
             return result;
         }
 
@@ -134,7 +135,7 @@ namespace R54IN0.WPF
                 inventory = new ObservableInventory()
                 {
                     Specification = SpecificationText,
-                    Remark = SpecificationMemo,
+                    Memo = SpecificationMemo,
                     Maker = Maker,
                     Measure = Measure,
                     Product = product,
@@ -146,7 +147,6 @@ namespace R54IN0.WPF
                 inventory = ObservableInventoryDirector.GetInstance().Search(Inventory.ID);
                 inventory.Format = Inventory.Format;
             }
-            inventory.Quantity = InventoryQuantity;
             Inventory = inventory;
         }
 
@@ -155,7 +155,7 @@ namespace R54IN0.WPF
         /// 관련 IOStock 데이터들의 잔여수량 및 재고수량을 다시 계산하여 전부 업데이트하고 Owner의 DataGridItems 역시 변화된 값들을 반영하게 한다.
         /// TODO
         /// </summary>
-        private async Task UpdateModifiedRemainingQuantity()
+        private async Task RefreshDataGridItems()
         {
             if (_ioStockStatusViewModel != null && _ioStockStatusViewModel.BackupSource != null)
             {
@@ -163,7 +163,7 @@ namespace R54IN0.WPF
                 foreach (var src in backupSource)
                 {
                     if (src.Value.Inventory.ID == Inventory.ID && src.Value.Date > Date)
-                        await src.Value.LoadFromServer();
+                        await src.Value.SyncDataFromServer();
                 }
             }
         }

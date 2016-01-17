@@ -40,21 +40,32 @@ namespace R54IN0
             LexDb.Destroy();
         }
 
-        public async Task<bool> DeleteAsync<TableT>(string id) where TableT : class
+        public async Task<bool> DeleteAsync<TableT>(string id) where TableT : class, IID
         {
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException();
             var lexdb = LexDb.GetDbInstance();
             TableT item = lexdb.Table<TableT>().LoadByKey(id);
-            if (item == null)
-                return false;
-
-            //if (item is IOStockFormat)
-            //    await CalculateDeledtedIOSFmtQuantity(item as IOStockFormat);
-            return lexdb.Table<TableT>().DeleteByKey(id);
+            return await DeleteAsync(item);
         }
 
-        public async Task<TableT> SelectAsync<TableT>(string id) where TableT : class
+        public async Task<bool> DeleteAsync<TableT>(TableT item) where TableT : class, IID
+        {
+            if (string.IsNullOrEmpty(item.ID))
+                throw new ArgumentNullException();
+            var lexdb = LexDb.GetDbInstance();
+
+            if (item is InventoryFormat)
+            {
+                var fmts = lexdb.Table<IOStockFormat>().IndexQueryByKey("InventoryID", item.ID);
+                lexdb.Table<IOStockFormat>().Delete(fmts.ToList());
+            }
+            if (item is IOStockFormat)
+                await CalculateDeledtedIOSFmtQuantity(item as IOStockFormat);
+            return lexdb.Table<TableT>().Delete(item);
+        }
+
+        public async Task<TableT> SelectAsync<TableT>(string id) where TableT : class, IID
         {
             if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException();
@@ -63,16 +74,11 @@ namespace R54IN0
             return lexdb.Table<TableT>().LoadByKey(id);
         }
 
-        public async Task<bool> DeleteAsync<TableT>(TableT item) where TableT : class, IID
+        public async Task<IEnumerable<TableT>> SelectAllAsync<TableT>() where TableT : class, IID
         {
-            if (string.IsNullOrEmpty(item.ID))
-                throw new ArgumentNullException();
-
-            if (item is IOStockFormat)
-                await CalculateDeledtedIOSFmtQuantity(item as IOStockFormat);
-
             var lexdb = LexDb.GetDbInstance();
-            return lexdb.Table<TableT>().Delete(item);
+            var items = lexdb.Table<TableT>().LoadAll();
+            return items as IEnumerable<TableT>;
         }
 
         public async Task InsertAsync<TableT>(TableT item) where TableT : class, IID
@@ -103,13 +109,6 @@ namespace R54IN0
             lexdb.Table<TableT>().Save(item);
         }
 
-        public async Task<IEnumerable<TableT>> SelectAllAsync<TableT>() where TableT : class
-        {
-            var lexdb = LexDb.GetDbInstance();
-            var items = lexdb.Table<TableT>().LoadAll();
-            return items as IEnumerable<TableT>;
-        }
-
         /// <summary>
         /// 데이터베이스의 쿼리 기능을 지원합니다. 복수의 명령어를 조합하여 사용할 수 있습니다.
         /// </summary>
@@ -117,7 +116,7 @@ namespace R54IN0
         /// <typeparam name="KeyT"></typeparam>
         /// <param name="args"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<TableT>> QueryAsync<TableT>(params object[] commandOptions) where TableT : class
+        public async Task<IEnumerable<TableT>> QueryAsync<TableT>(params object[] commandOptions) where TableT : class, IID
         {
             if (commandOptions == null || commandOptions.Count() == 0 || !(commandOptions.ElementAt(0) is DbCommand))
                 throw new ArgumentException();
@@ -204,10 +203,8 @@ namespace R54IN0
             if (qty != 0 && formats.Count() != 0)
             {
                 foreach (IOStockFormat fmt in formats)
-                {
                     fmt.RemainingQuantity += qty;
-                    lexdb.Save(fmt);
-                }
+                lexdb.Save(formats);
             }
         }
 
@@ -232,16 +229,32 @@ namespace R54IN0
             if (qty != 0 && formats.Count() != 0)
             {
                 foreach (IOStockFormat fmt in formats)
-                {
                     fmt.RemainingQuantity += orQty + qty;
-                    lexdb.Save(fmt);
-                }
+                lexdb.Save(formats);
             }
         }
 
-        private Task CalculateDeledtedIOSFmtQuantity(IOStockFormat iosfmt)
+        private async Task CalculateDeledtedIOSFmtQuantity(IOStockFormat iosfmt)
         {
-            throw new NotSupportedException();
+            if (iosfmt.InventoryID == null)
+                return;
+            int qty = iosfmt.Quantity;
+            qty = iosfmt.StockType == IOStockType.OUTGOING ? qty : -qty;
+            var lexdb = LexDb.GetDbInstance();
+            InventoryFormat infmt = lexdb.Table<InventoryFormat>().LoadByKey(iosfmt.InventoryID);
+            infmt.Quantity = infmt.Quantity + qty;
+            lexdb.Save(infmt);
+            ///잔여 수량 동기화 및 저장
+            IEnumerable<IOStockFormat> formats = await QueryAsync<IOStockFormat>(
+                DbCommand.WHERE, "InventoryID", iosfmt.InventoryID,
+                DbCommand.IS_GRETER_THEN, "Date", iosfmt.Date,
+                DbCommand.ASCENDING, "Date");
+            if (qty != 0 && formats.Count() != 0)
+            {
+                foreach (IOStockFormat fmt in formats)
+                    fmt.RemainingQuantity += qty;
+                lexdb.Save(formats);
+            }
         }
 
         private IEnumerable<TableT> ExecuteWhereCommand<TableT>(DbCommand cmd, IEnumerable<TableT> source, params object[] args)

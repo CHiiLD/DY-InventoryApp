@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace R54IN0.WPF
 {
@@ -91,36 +92,55 @@ namespace R54IN0.WPF
         /// <summary>
         /// 선택된 입출고 데이터 삭제하기
         /// </summary>
-        private void ExecuteIOStockFormatDeletionCommand()
+        private async void ExecuteIOStockFormatDeletionCommand()
         {
+            if (SelectedItem != null)
+            {
+                var item = SelectedItem;
+                CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(item);
+                await DbAdapter.GetInstance().DeleteAsync(item.Format);
+                await item.Inventory.SyncDataFromServer();
+                foreach (var i in Items.Where(x => x.Inventory.ID == item.Inventory.ID))
+                    await i.SyncDataFromServer();
+                SelectedItem = null;
+            }
         }
 
         /// <summary>
         /// 체크된 입출고 데이터 삭제하기
         /// </summary>
-        private void ExecuteChekcedIOStockFormatsDeletionCommand()
+        private async void ExecuteChekcedIOStockFormatsDeletionCommand()
         {
+            var items = Items.Where(x => x.IsChecked == true).ToList();
+            foreach (var item in items)
+            {
+                CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(item);
+                await DbAdapter.GetInstance().DeleteAsync(item.Format);
+            }
+            foreach (var i in items.Select(x => x.Inventory).Distinct().ToList())
+                await i.SyncDataFromServer();
+            foreach (var i in Items)
+                await i.SyncDataFromServer();
         }
 
         /// <summary>
         /// 체크된 입출고 데이터를 오늘날짜로 복사하여 데이터그리드에 추가하기
         /// </summary>
-        private void ExecuteCheckedIOStockFormatsCopyCommand()
+        private async void ExecuteCheckedIOStockFormatsCopyCommand()
         {
-            List<IOStockDataGridItem> list = new List<IOStockDataGridItem>();
-            foreach (var item in Items)
+            var items = Items.Where(x => x.IsChecked == true).ToList();
+            foreach (var item in items)
             {
-                //TODO 이제 추가된 새로운 데이터들의 수량만큼 재고수량과 잔여수량을 적용시켜야함 그리고 삭제 기능들을 넣자..
-                if (item.IsChecked == true)
-                {
-                    IOStockDataGridItem copy = new IOStockDataGridItem(item);
-                    copy.IsChecked = false;
-                    copy.Date = DateTime.Now;
-                    list.Add(copy);
-                }
+                var copyFmt = new IOStockFormat(item.Format) { ID = null };
+                IOStockDataGridItem copy = new IOStockDataGridItem(copyFmt);
+                copy.Date = DateTime.Now;
+                CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(copy);
             }
-            foreach (var item in list)
-                CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(item);
+            var invens = items.Select(x => x.Inventory).Distinct();
+            foreach (var item in invens)
+                await item.SyncDataFromServer();
+            foreach (var item in items)
+                await item.SyncDataFromServer();
         }
     }
 }

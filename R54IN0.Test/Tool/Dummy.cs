@@ -15,12 +15,6 @@ namespace R54IN0.Test
 
         private string[] _humanNames = new string[]
         {
-            "Allene",
-            "Margart",
-            "Marlon",
-            "Jessika",
-            "Terrie",
-            "Eufemia",
             "Emma",
             "Peg",
             "Wai",
@@ -28,35 +22,8 @@ namespace R54IN0.Test
             "Stanford",
             "Jayme",
             "Carter",
-            "Suzanna",
-            "Dania",
-            "Haywood",
-            "Donovan",
-            "Antoine",
-            "Minda",
-            "Aurelio",
-            "Pasquale",
-            "Lucretia",
-            "Flavia",
-            "Jospeh",
-            "Carmela",
-            "Nieves",
-            "Ardith",
-            "Evelynn",
-            "Sheryl",
-            "Jovita",
-            "Ardis",
-            "Ella",
-            "Kristyn",
-            "Edelmira",
-            "Carmelita",
             "Laila",
             "Jeanna" };
-
-        private string[] _currencyNames = new string[]
-        {
-            "원",
-        };
 
         private string[] _makerNames = new string[]
         {
@@ -202,27 +169,8 @@ namespace R54IN0.Test
             }
         }
 
-        public async Task Create()
+        private void CreateData()
         {
-            ////////////INIT
-            LexDb.Destroy();
-            DbAdapter.Destroy();
-            CollectionViewModelObserverSubject.Destory();
-            ObservableInventoryDirector.Destory();
-            ObservableFieldDirector.Destory();
-            MainWindowViewModel.Destory();
-            TreeViewNodeDirector.Destroy();
-
-            using (var db = LexDb.GetDbInstance())
-                db.Purge();
-
-            CreateClient();
-            CreateMaker();
-            CreateMeasure();
-            CreateWarehouse();
-            CreateProject();
-            CreateEmployee();
-
             using (var db = LexDb.GetDbInstance())
             {
                 Maker[] makers = db.LoadAll<Maker>();
@@ -296,6 +244,29 @@ namespace R54IN0.Test
                     }
                 }
             }
+        }
+
+        public async Task Create()
+        {
+            LexDb.Destroy();
+            DbAdapter.Destroy();
+            CollectionViewModelObserverSubject.Destory();
+            ObservableInventoryDirector.Destory();
+            ObservableFieldDirector.Destory();
+            MainWindowViewModel.Destory();
+            TreeViewNodeDirector.Destroy();
+
+            using (var db = LexDb.GetDbInstance())
+                db.Purge();
+
+            CreateClient();
+            CreateMaker();
+            CreateMeasure();
+            CreateWarehouse();
+            CreateProject();
+            CreateEmployee();
+            CreateData();
+
             await DbAdapter.GetInstance().ConnectAsync();
         }
     }

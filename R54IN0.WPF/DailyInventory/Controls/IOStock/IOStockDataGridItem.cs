@@ -10,15 +10,6 @@ namespace R54IN0.WPF
             IsChecked = false;
         }
 
-        /// <summary>
-        /// 복사생성자
-        /// </summary>
-        /// <param name="thiz"></param>
-        public IOStockDataGridItem(IOStockDataGridItem thiz) : base(new IOStockFormat(thiz.Format) { ID = null })
-        {
-            IsChecked = thiz.IsChecked;
-        }
-
         private bool? _isChecked;
 
         public bool? IsChecked
@@ -58,9 +49,10 @@ namespace R54IN0.WPF
             }
         }
 
-        public async Task LoadFromServer()
+        public override void NotifyPropertyChanged(string name)
         {
-            Format = await DbAdapter.GetInstance().SelectAsync<IOStockFormat>(ID);
+            if (name != "IsChecked")
+                base.NotifyPropertyChanged(name);
         }
     }
 }

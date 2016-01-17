@@ -73,7 +73,7 @@ namespace R54IN0.Test.New
             //검사
             Assert.IsNotNull(oid.Search(iostock.Inventory.ID)); //inventory director에 추가되었는지 확인한다.
             Assert.AreEqual(spec, iostock.Inventory.Specification);
-            Assert.AreEqual(specMemo, iostock.Inventory.Remark);
+            Assert.AreEqual(specMemo, iostock.Inventory.Memo);
             Assert.AreEqual(maker, iostock.Inventory.Maker.Name);
             Assert.AreEqual(measure, iostock.Inventory.Measure.Name);
             Assert.AreEqual(client, iostock.Supplier.Name);
@@ -113,7 +113,7 @@ namespace R54IN0.Test.New
             //검사
             Assert.AreEqual(product, stock.Inventory.Product);
             Assert.AreEqual(inven.ID, stock.Inventory.ID);
-            Assert.AreEqual(specMemo, stock.Inventory.Remark);
+            Assert.AreEqual(specMemo, stock.Inventory.Memo);
             Assert.AreEqual(maker, stock.Inventory.Maker);
             Assert.AreEqual(measure, stock.Inventory.Measure);
             Assert.AreEqual(warehouse, stock.Warehouse);
@@ -145,7 +145,7 @@ namespace R54IN0.Test.New
             //검사
             Assert.AreEqual(product, obIOStock.Inventory.Product);
             Assert.AreEqual(specificationName, obIOStock.Inventory.Specification);
-            Assert.AreEqual(specMemo, obIOStock.Inventory.Remark);
+            Assert.AreEqual(specMemo, obIOStock.Inventory.Memo);
             Assert.AreEqual(maker, obIOStock.Inventory.Maker);
             Assert.AreEqual(measure, obIOStock.Inventory.Measure);
             Assert.AreEqual(warehouse, obIOStock.Warehouse);
@@ -232,7 +232,7 @@ namespace R54IN0.Test.New
             var price = viewmodel.UnitPrice = 7777;
             var stock = await viewmodel.RecordAsync();
 
-            Assert.AreEqual(specMemo, stock.Inventory.Remark);
+            Assert.AreEqual(specMemo, stock.Inventory.Memo);
             Assert.AreEqual(maker, stock.Inventory.Maker);
             Assert.AreEqual(measure, stock.Inventory.Measure);
             Assert.AreEqual(warehouse, stock.Warehouse);
@@ -648,7 +648,7 @@ namespace R54IN0.Test.New
                 fmt = db.LoadByKey<IOStockFormat>(id);
 
             var obIOStock = new ObservableIOStock(fmt);
-            Assert.AreNotEqual(specMemo, obIOStock.Inventory.Remark);
+            Assert.AreNotEqual(specMemo, obIOStock.Inventory.Memo);
             Assert.AreNotEqual(maker, obIOStock.Inventory.Maker);
             Assert.AreNotEqual(measure, obIOStock.Inventory.Measure);
             Assert.AreNotEqual(warehouse, obIOStock.Warehouse);
@@ -720,7 +720,7 @@ namespace R54IN0.Test.New
             var product = viewmodel.Product = ObservableFieldDirector.GetInstance().Copy<Product>().Random();
             var inventory = viewmodel.Inventory = viewmodel.InventoryList.Random();
 
-            Assert.AreEqual(viewmodel.Inventory.Remark, viewmodel.SpecificationMemo);
+            Assert.AreEqual(viewmodel.Inventory.Memo, viewmodel.SpecificationMemo);
             Assert.AreEqual(viewmodel.Inventory.Maker, viewmodel.Maker);
             Assert.AreEqual(viewmodel.Inventory.Measure, viewmodel.Measure);
         }
@@ -740,7 +740,7 @@ namespace R54IN0.Test.New
             viewmodel.StockType = IOStockType.INCOMING;
             var product = viewmodel.Product = ObservableFieldDirector.GetInstance().Copy<Product>().Random();
             var inventory = viewmodel.Inventory = viewmodel.InventoryList.Random();
-            inventory.Remark = "some specification memo";
+            inventory.Memo = "some specification memo";
             viewmodel.MeasureText = "some measure";
             viewmodel.MakerText = "some maker";
             //규격의 관련 속성이 로드됨을 확인

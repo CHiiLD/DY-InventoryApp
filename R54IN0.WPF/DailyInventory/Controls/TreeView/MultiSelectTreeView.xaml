@@ -10,22 +10,24 @@
              xmlns:edttxt="clr-namespace:Custom.Controls;assembly=Custom.Controls.EditableTextBlock"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-
     <UserControl.Resources>
         <local:BindingProxy x:Key="DataContextProxy" DataContext="{Binding}" />
 
         <ContextMenu x:Key="CellContextMenu" Visibility="{Binding DataContext.ContextMenuVisibility, Source={StaticResource DataContextProxy}}">
-            <MenuItem Header="이름 바꾸기" Command="{Binding DataContext.NewFolderNodeAddCommand, Source={StaticResource DataContextProxy}}" />
-            <MenuItem Header="새로운 폴더 추가하기" Command="{Binding DataContext.NewFolderNodeAddCommand, Source={StaticResource DataContextProxy}}" Visibility="{Binding DataContext.NewFolderAddMenuVisibility, Source={StaticResource DataContextProxy}}" />
-            <MenuItem Header="새로운 제품 추가하기" Command="{Binding DataContext.NewProductNodeAddCommand, Source={StaticResource DataContextProxy}}" Visibility="{Binding DataContext.NewProductAddMenuVisibility, Source={StaticResource DataContextProxy}}" />
+            <MenuItem Header="이름 바꾸기" Command="{Binding DataContext.SelectedNodeRenameCommand, Source={StaticResource DataContextProxy}}" />
+            <MenuItem Header="추가">
+                <MenuItem Header="새로운 폴더" Command="{Binding DataContext.NewFolderNodeAddCommand, Source={StaticResource DataContextProxy}}" Visibility="{Binding DataContext.NewFolderAddMenuVisibility, Source={StaticResource DataContextProxy}}" />
+                <MenuItem Header="새로운 제품" Command="{Binding DataContext.NewProductNodeAddCommand, Source={StaticResource DataContextProxy}}" Visibility="{Binding DataContext.NewProductAddMenuVisibility, Source={StaticResource DataContextProxy}}" />
+            </MenuItem>
+            <MenuItem Header="삭제하기" Command="{Binding DataContext.SelectedNodeDeletionCommand, Source={StaticResource DataContextProxy}}" />
+            <Separator/>
             <MenuItem Header="재고현황으로 보기" Command="{Binding DataContext.SearchAsInventoryRecordCommand, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="제품별 입출고 현황으로 보기" Command="{Binding DataContext.SearchAsIOStockRecordCommand, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="새로운 입출고 기록 추가하기" Command="{Binding DataContext.IOStockAmenderWindowCallCommand, Source={StaticResource DataContextProxy}}" />
-            <MenuItem Header="삭제하기" Command="{Binding DataContext.SelectedNodeDeletionCommand, Source={StaticResource DataContextProxy}}" />
         </ContextMenu>
 
         <HierarchicalDataTemplate DataType="{x:Type local:TreeViewNode}" ItemsSource="{Binding Root}">
-            <Grid x:Name="NodeGrid" ContextMenu="{StaticResource CellContextMenu}">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="1*" />
@@ -34,7 +36,7 @@
                 <Border Grid.Column="0" CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <!--Mode=TwoWay, UpdateSourceTrigger=PropertyChanged을 선언하지 않으면 연동이 되지 않음-->
                 <edttxt:EditableTextBlock
-                     Grid.Column="1"
+                    Grid.Column="1"
                     Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     IsInEditMode="{Binding IsNameEditable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
             </Grid>
@@ -67,6 +69,7 @@
             DragCommand="{Binding DragCommand}"
             DropCommand="{Binding DropCommand}"
             SelectedItems="{Binding SelectedNodes}"
+            ContextMenu="{StaticResource CellContextMenu}"
             BorderBrush="{x:Null}">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="OnSelecting">

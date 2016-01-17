@@ -144,7 +144,7 @@ namespace R54IN0.WPF
         {
             var viewmodel = SelectedItem.Content as UserControl;
             if (viewmodel.DataContext != InventoryViewModel)
-                ExecuteChangeIOStockViewByProductCommand();
+                ExecuteSelectInventoryStatusViewCommand();
 
             TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchProductNode(productID);
             if (node != null)

@@ -47,8 +47,9 @@ namespace R54IN0.WPF
             SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, HasOneNode);
             IOStockAmenderWindowCallCommand = new RelayCommand(ExecuteIOStockAmenderWindowCallCommand, IsProductNode);
             SelectedNodeDeletionCommand = new RelayCommand(ExecuteSelectedNodeDeletionCommand, CanDeleteNode);
-        }
 
+            CollectionViewModelObserverSubject.GetInstance().Attach(this);
+        }
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
@@ -127,17 +128,6 @@ namespace R54IN0.WPF
 
         public RelayCommand<DragParameters> DragCommand { get; set; }
         public RelayCommand<DropParameters> DropCommand { get; set; }
-
-        /// <summary>
-        /// 드래그 기능을 실행한다.
-        /// </summary>
-        /// <param name="dragParameters"></param>
-        private void ExecuteDrag(DragParameters dragParameters)
-        {
-            TreeViewExItem treeviewExItem = dragParameters.DragItem;
-            dragParameters.DraggedObject = treeviewExItem.DataContext;
-        }
-
         /// <summary>
         /// 드랍 기능을 실행한다.
         /// </summary>
@@ -163,6 +153,16 @@ namespace R54IN0.WPF
         }
 
         /// <summary>
+        /// 드래그 기능을 실행한다.
+        /// </summary>
+        /// <param name="dragParameters"></param>
+        private void ExecuteDrag(DragParameters dragParameters)
+        {
+            TreeViewExItem treeviewExItem = dragParameters.DragItem;
+            dragParameters.DraggedObject = treeviewExItem.DataContext;
+        }
+
+        /// <summary>
         /// 드래그 허용 여부
         /// </summary>
         /// <param name="dragParameters"></param>
@@ -170,9 +170,9 @@ namespace R54IN0.WPF
         public bool CanDrag(DragParameters dragParameters)
         {
             TreeViewExItem treeviewExitem = dragParameters.DragItem;
-            TreeViewNode TreeViewNode = treeviewExitem.DataContext as TreeViewNode;
-            if (TreeViewNode != null)
-                return TreeViewNode.AllowDrag;
+            TreeViewNode treeViewNode = treeviewExitem.DataContext as TreeViewNode;
+            if (treeViewNode != null)
+                return treeViewNode.AllowDrag;
             return false;
         }
 
@@ -193,27 +193,30 @@ namespace R54IN0.WPF
             if (treeviewExItem == null)
                 return true; //drop to root
 
-            TreeViewNode des = (treeviewExItem == null) ? null : treeviewExItem.DataContext as TreeViewNode; //넣고자 할 장소(목적지)
+            TreeViewNode destnode = (treeviewExItem == null) ? null : treeviewExItem.DataContext as TreeViewNode; //넣고자 할 장소(목적지)
             int index = dropParameters.Index;
             DragContent dragContent = dataObject.GetData(fmt) as DragContent;
             IEnumerable<TreeViewNode> nodes = dragContent.Items.OfType<TreeViewNode>();
 
-            foreach (TreeViewNode src in nodes)
+            foreach (TreeViewNode selectedNode in nodes)
             {
                 //자기노트에 자기자신을 하위로 다시 추가하는 것을 차단
-                if (des == src)
+                if (destnode == selectedNode)
                     return false;
                 //자신의 부모에 이미 자식으로 있음에도 다시 그 부모에 자기 자신을 추가하는 경우를 차단
-                if (des.Root.Any(x => x == src))
+                if (destnode.Root.Any(x => x == selectedNode))
                     return false;
                 //부모의 하위 자식에게 부모를 추가하는 경우를 차단
-                if (src.Descendants().Any(x => x == des))
+                if (selectedNode.Descendants().Any(x => x == destnode))
+                    return false;
+                //부모와 자식이 같이 선택된 경우
+                if (nodes.Any(ns => ns.Descendants().Any(n => n != selectedNode && n.Root.Any(c => c == selectedNode))))
                     return false;
             }
             if (index == -1)
-                return des.AllowDrop;
+                return destnode.AllowDrop;
             else
-                return des.AllowInsert;
+                return destnode.AllowInsert;
         }
 
         private void AddNode(TreeViewNode node, int index, TreeViewNode newNode)
