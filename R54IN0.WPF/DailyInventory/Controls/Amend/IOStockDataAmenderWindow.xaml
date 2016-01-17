@@ -217,7 +217,7 @@
                 <mah:NumericUpDown
                     Minimum="0"
                     Value="{Binding UnitPrice, Mode=TwoWay}"
-                    Grid.Column="1" Width="200" HorizontalAlignment="Left" Interval="10000"></mah:NumericUpDown>
+                    Grid.Column="1" Width="200" HorizontalAlignment="Left" Interval="1000"></mah:NumericUpDown>
             </Grid>
 
             <Grid Grid.Row="8" Grid.Column="0">
@@ -225,7 +225,9 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="43*" />
                 </Grid.ColumnDefinitions>
-                <Button Command="{Binding LoadLastRecordCommand }" Style="{DynamicResource AccentedSquareButtonStyle}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Button Command="{Binding LoadLastRecordCommand }" 
+                        Style="{DynamicResource AccentedSquareButtonStyle}" Grid.Column="1" VerticalAlignment="Center" 
+                        HorizontalAlignment="Left" ToolTip="가장 최근에 저장된 제품과 규격에 해당되는 입출고 기록의 수량, 단가, 보관장소, 프로젝트, 담당자 설정을 덮어씌웁니다.">
                     최근에 저장한 기록 불러오기
                 </Button>
             </Grid>
