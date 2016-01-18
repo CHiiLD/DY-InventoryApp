@@ -16,7 +16,7 @@ namespace R54IN0.WPF
         public const string GROUPITEM_PROJECT = "프로젝트별";
         public const string GROUPITEM_PRODUCT = "제품별";
 
-        private string[] _groupItems = new string[] { GROUPITEM_PRODUCT, GROUPITEM_DATE, GROUPITEM_PROJECT  };
+        private string[] _groupItems = new string[] { GROUPITEM_PRODUCT, GROUPITEM_DATE, GROUPITEM_PROJECT };
         private string _selectedGroupItem;
 
         private string[] _userHelperTexts = new string[] { "제품 탐색기", "Date Picker", "프로젝트 리스트" };
@@ -583,6 +583,12 @@ namespace R54IN0.WPF
                     UpdateDataGridItems();
                 }
             }
+            else if (item is Observable<Project>)
+            {
+                var project = item as Observable<Project>;
+                if (!ProjectListBoxViewModel.Items.Contains(project))
+                    ProjectListBoxViewModel.Items.Add(project);
+            }
         }
 
         public void UpdateDelItem(object item)
@@ -617,6 +623,7 @@ namespace R54IN0.WPF
                         items.Remove(pair.Value);
                 }
             }
+            
         }
     }
 }

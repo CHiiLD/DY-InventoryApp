@@ -63,7 +63,7 @@ namespace R54IN0.WPF
         {
             get
             {
-                return "Version beta 0101";
+                return "Version beta 0.1.0.15";
             }
         }
 

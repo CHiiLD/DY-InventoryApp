@@ -53,6 +53,26 @@ namespace R54IN0.Test
             Assert.IsNull(viewmodel.Project);
         }
 
+        /// <summary>
+        /// AmenderView에서 새로운 프로젝트를 등록하였다면 ProjectListView에도 추가가 되어야 한다.
+        /// </summary>
+        /// <returns></returns>
+        [TestMethod]
+        public async Task SyncProjectListViewModel()
+        {
+            await new Dummy().Create();
+            IOStockStatusViewModel iosViewModel = new IOStockStatusViewModel();
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iosViewModel);
+            viewmodel.StockType = IOStockType.OUTGOING;
+            viewmodel.Product = ObservableFieldDirector.GetInstance().Copy<Product>().Random();
+            viewmodel.Inventory = viewmodel.InventoryList.Random();
+            var name = viewmodel.ProjectText = "DY=NEW=FACE";
+
+            var record = await viewmodel.RecordAsync();
+
+            Assert.IsTrue(iosViewModel.ProjectListBoxViewModel.Items.Contains(record.Project));
+        }
+
         [TestMethod]
         public async Task ClickLoadButton2()
         {

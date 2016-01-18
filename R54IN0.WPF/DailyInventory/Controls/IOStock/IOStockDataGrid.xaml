@@ -23,7 +23,8 @@
     <Grid>
         <DataGrid x:Name="DataGridControl" AutoGenerateColumns="False"
                   ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" 
-                  CanUserAddRows="False" GridLinesVisibility="All">
+                  CanUserAddRows="False" GridLinesVisibility="All" 
+                  CanUserDeleteRows="False">
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PreviewTextInput">
@@ -166,7 +167,7 @@
                                     IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
 
                 <DataGridTextColumn Header="종류" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}"
-                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                    IsReadOnly="True"
                                     Visibility="{Binding DataContext.SecondStockTypeColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">

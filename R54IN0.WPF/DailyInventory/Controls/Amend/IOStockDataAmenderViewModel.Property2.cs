@@ -174,6 +174,8 @@ namespace R54IN0.WPF
                     if (InventoryList.Count() == 1)
                         Inventory = InventoryList.Single();
                 }
+                if (RecordCommand != null)
+                    RecordCommand.RaiseCanExecuteChanged();
                 NotifyPropertyChanged("Product");
             }
         }

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>게시\</PublishUrlHistory>
-    <InstallUrlHistory />
+    <PublishUrlHistory>ftp://192.168.10.89/|C:\Users\CHILD\publish\|C:\Users\CHILD\Documents\public\inventory\|C:\Users\CHILD\Documents\public\|ftp://192.168.10.89/inventory/</PublishUrlHistory>
+    <InstallUrlHistory>http://192.168.10.89/inventory/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory />
+    <UpdateUrlHistory>http://localhost/DailY Inventory/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>ko-KR</FallbackCulture>

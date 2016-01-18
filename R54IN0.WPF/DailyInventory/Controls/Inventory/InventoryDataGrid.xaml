@@ -22,7 +22,8 @@
         <DataGrid x:Name="DataGridControl" AutoGenerateColumns="False" CanUserAddRows="False" GridLinesVisibility="All"
               Style="{DynamicResource AzureDataGrid}"
               ItemsSource="{Binding Items}"
-              SelectedItem="{Binding SelectedItem}">
+              SelectedItem="{Binding SelectedItem}" 
+              CanUserDeleteRows="False">
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="CellEditEnding">

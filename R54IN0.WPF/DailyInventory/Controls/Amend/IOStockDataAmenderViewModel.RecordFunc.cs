@@ -57,7 +57,10 @@ namespace R54IN0.WPF
                     if (Client == null && !string.IsNullOrEmpty(ClientText))
                         Customer = new Observable<Customer>() { Name = ClientText };
                     if (Project == null && !string.IsNullOrEmpty(ProjectText))
+                    {
                         Project = new Observable<Project>() { Name = ProjectText };
+                        CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(Project);
+                    }
                     break;
             }
             if (Employee == null && !string.IsNullOrEmpty(EmployeeText))
