@@ -43,23 +43,23 @@
         </HierarchicalDataTemplate>
 
         <Style TargetType="tree:TreeViewExItem">
-            <Setter Property="BorderBrushFocusedSelected" Value="{StaticResource AccentColorBrush}" />
-            <Setter Property="BackgroundFocusedSelected" Value="{StaticResource AccentColorBrush}" />
+            <Setter Property="BorderBrushFocusedSelected" Value="{DynamicResource AccentColorBrush}" />
+            <Setter Property="BackgroundFocusedSelected" Value="{DynamicResource AccentColorBrush}" />
 
-            <Setter Property="BorderBrushSelected" Value="{StaticResource AccentColorBrush}" />
-            <Setter Property="BackgroundSelected" Value="{StaticResource AccentColorBrush}" />
+            <Setter Property="BorderBrushSelected" Value="{DynamicResource AccentColorBrush}" />
+            <Setter Property="BackgroundSelected" Value="{DynamicResource AccentColorBrush}" />
 
-            <Setter Property="BorderBrushSelectedHovered" Value="{StaticResource AccentColorBrush3}" />
-            <Setter Property="BackgroundSelectedHovered" Value="{StaticResource AccentColorBrush3}" />
+            <Setter Property="BorderBrushSelectedHovered" Value="{DynamicResource AccentColorBrush3}" />
+            <Setter Property="BackgroundSelectedHovered" Value="{DynamicResource AccentColorBrush3}" />
 
-            <Setter Property="BorderBrushHovered" Value="{StaticResource AccentColorBrush3}" />
-            <Setter Property="BackgroundHovered" Value="{StaticResource AccentColorBrush3}" />
+            <Setter Property="BorderBrushHovered" Value="{DynamicResource AccentColorBrush3}" />
+            <Setter Property="BackgroundHovered" Value="{DynamicResource AccentColorBrush3}" />
 
-            <Setter Property="BorderBrushFocused" Value="{StaticResource AccentColorBrush3}" />
-            <Setter Property="BackgroundFocused" Value="{StaticResource AccentColorBrush3}" />
+            <Setter Property="BorderBrushFocused" Value="{DynamicResource AccentColorBrush3}" />
+            <Setter Property="BackgroundFocused" Value="{DynamicResource AccentColorBrush3}" />
 
-            <Setter Property="BorderBrushInactive" Value="{StaticResource AccentColorBrush3}" />
-            <Setter Property="BackgroundInactive" Value="{StaticResource AccentColorBrush3}" />
+            <Setter Property="BorderBrushInactive" Value="{DynamicResource AccentColorBrush3}" />
+            <Setter Property="BackgroundInactive" Value="{DynamicResource AccentColorBrush3}" />
         </Style>
     </UserControl.Resources>
 

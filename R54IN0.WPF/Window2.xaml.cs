@@ -14,13 +14,31 @@ using System.Windows.Shapes;
 
 namespace R54IN0.WPF
 {
-    /// <summary>
-    /// Window1.xaml에 대한 상호 작용 논리
-    /// </summary>
-    public partial class Window1 : Window
+    public class Nami
     {
-        public Window1()
+        public string Name
         {
+            get;
+            set;
+        }
+    }
+
+    /// <summary>
+    /// Window2.xaml에 대한 상호 작용 논리
+    /// </summary>
+    public partial class Window2 : Window
+    {
+        public List<Nami> Items
+        {
+            get;
+            set;
+        }
+
+        public Window2()
+        {
+            Items = new List<Nami>();
+            Items.Add(new Nami() { Name = "A"});
+            Items.Add(new Nami() { Name = "B" });
             InitializeComponent();
         }
     }

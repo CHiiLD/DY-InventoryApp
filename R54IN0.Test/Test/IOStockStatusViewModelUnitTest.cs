@@ -10,12 +10,12 @@ using System.Windows.Controls;
 namespace R54IN0.Test
 {
     [TestClass]
-    public class IOStockStatusViewModelTest
+    public class IOStockStatusViewModelUnitTest
     {
         [TestMethod]
-        public async Task CanCreate()
+        public void CanCreate()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             new IOStockStatusViewModel();
         }
 
@@ -23,9 +23,9 @@ namespace R54IN0.Test
         /// 뷰에서 날짜별로 그룹화를 선택해서 오늘날짜를 클릭한다.
         /// </summary>
         [TestMethod]
-        public async Task SelectDatePicker()
+        public void SelectDatePicker()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count);
             //날짜를 선택
@@ -43,9 +43,9 @@ namespace R54IN0.Test
         /// 뷰에서 프로젝트별 그룹화를 선택한 후 프로젝트를 클릭한다.
         /// </summary>
         [TestMethod]
-        public async Task SelectProject()
+        public void SelectProject()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count);
             //프로젝트 선택
@@ -63,9 +63,9 @@ namespace R54IN0.Test
         /// 뷰에서 제품별 그룹화를 선택한 후 탐색기에서 제품셀을 선택
         /// </summary>
         [TestMethod]
-        public async Task SelectProduct()
+        public void SelectProduct()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count);
             viewmodel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
@@ -84,9 +84,9 @@ namespace R54IN0.Test
         /// 입고와 출고 체크박스를 선택하였을 때 그에 맞는 데이터가 데이터 그리드에 업데이트 되어야 한다.
         /// </summary>
         [TestMethod]
-        public async Task ControlInoutStockCheckBox()
+        public void ControlInoutStockCheckBox()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             viewmodel.IsCheckedInComing = true;
             viewmodel.IsCheckedOutGoing = true;
@@ -115,9 +115,9 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task CheckDataGridRowCell()
+        public void CheckDataGridRowCell()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             var item = viewmodel.DataGridViewModel.Items.Random();
             item.IsChecked = true;
         }
@@ -127,9 +127,9 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task CopyCheckedDataGridRowCell()
+        public void CopyCheckedDataGridRowCell()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             int itemsCount = viewmodel.DataGridViewModel.Items.Count();
             var item = viewmodel.DataGridViewModel.Items.Random();
             item.IsChecked = true;
@@ -147,9 +147,9 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task CopyCheckedDataGridRowCells()
+        public void CopyCheckedDataGridRowCells()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             int itemsCount = viewmodel.DataGridViewModel.Items.Count();
             for (int i = 0; i < 10; i++)
             {
@@ -158,7 +158,7 @@ namespace R54IN0.Test
                 item.IsChecked = !item.IsChecked;
             }
             int checkedItemsCount = viewmodel.DataGridViewModel.Items.Where(x => x.IsChecked == true).Count();
-            
+
             Console.WriteLine("입출고 데이터를 복사하기 전 데이터그리드 아이템소스 개수: " + itemsCount);
             viewmodel.DataGridViewModel.CheckedIOStockFormatsCopyCommand.Execute(null);
 
@@ -172,14 +172,14 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task CopyRowCellThenCheckThatQuantityHaveToCalc()
+        public void CopyRowCellThenCheckThatQuantityHaveToCalc()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             int itemsCount = viewmodel.DataGridViewModel.Items.Count();
             var item = viewmodel.DataGridViewModel.Items.Random();
             item.IsChecked = true;
 
-            Console.WriteLine("선택된 아이템의 IOSQty: {0}, RemainQty: {1}, InvQty: {2}",item.Quantity, item.RemainingQuantity, item.Inventory.Quantity);
+            Console.WriteLine("선택된 아이템의 IOSQty: {0}, RemainQty: {1}, InvQty: {2}", item.Quantity, item.RemainingQuantity, item.Inventory.Quantity);
             viewmodel.DataGridViewModel.CheckedIOStockFormatsCopyCommand.Execute(null);
 
             AssertQuantityChecking(viewmodel.DataGridViewModel.Items);
@@ -190,15 +190,15 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task CopyRowCellThenCheckThatQuantityHaveToCalc2()
+        public void CopyRowCellThenCheckThatQuantityHaveToCalc2()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             int itemsCount = viewmodel.DataGridViewModel.Items.Count();
             for (int i = 0; i < 10; i++)
             {
                 int idx = new Random().Next(0, itemsCount);
                 var item = viewmodel.DataGridViewModel.Items.ElementAt(idx);
-                if(item.IsChecked != true)
+                if (item.IsChecked != true)
                     item.IsChecked = true;
             }
 
@@ -211,9 +211,9 @@ namespace R54IN0.Test
         /// 데이터그리드의 아이템을 하나 삭제하고 데이터그리드를 최신화 시킨다.
         /// </summary>
         [TestMethod]
-        public async Task DeleteItemThenSyncDataGridItems()
+        public void DeleteItemThenSyncDataGridItems()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
 
             viewmodel.DataGridViewModel.IOStockFormatDeletionCommand.Execute(null);
@@ -227,7 +227,7 @@ namespace R54IN0.Test
         [TestMethod]
         public async Task DeleteItemThenSyncDb()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
             string iosID = item.ID;
 
@@ -242,9 +242,9 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task DeleteItemThenSyncQty()
+        public void DeleteItemThenSyncQty()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
             string iosID = item.ID;
 
@@ -258,9 +258,9 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task DeleteItemThenSyncInventoryQty()
+        public void DeleteItemThenSyncInventoryQty()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
             int inQty = item.Inventory.Quantity;
             string iosID = item.ID;
@@ -270,11 +270,11 @@ namespace R54IN0.Test
 
             Assert.AreNotEqual(inQty, inQty2);
         }
-        
+
         [TestMethod]
-        public async Task DeleteCheckedItemThenSyncDataGridItems()
+        public void DeleteCheckedItemThenSyncDataGridItems()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
             item.IsChecked = true;
 
@@ -283,14 +283,13 @@ namespace R54IN0.Test
             Assert.IsTrue(!viewmodel.DataGridViewModel.Items.Contains(item));
         }
 
-
         /// <summary>
         /// 삭제 후 데이터베이스에서 관련 자료가 모두 삭제되어야 한다.
         /// </summary>
         [TestMethod]
         public async Task DeleteCheckedItemThenSyncDb()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
             item.IsChecked = true;
             string iosID = item.ID;
@@ -306,9 +305,9 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task DeleteCheckedItemThenSyncQty()
+        public void DeleteCheckedItemThenSyncQty()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
             item.IsChecked = true;
             string iosID = item.ID;
@@ -323,9 +322,9 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task DeleteCheckedItemThenSyncInventoryQty()
+        public void DeleteCheckedItemThenSyncInventoryQty()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
             item.IsChecked = true;
             int inQty = item.Inventory.Quantity;
@@ -337,11 +336,10 @@ namespace R54IN0.Test
             Assert.AreNotEqual(inQty, inQty2);
         }
 
-
         [TestMethod]
-        public async Task DeleteCheckedItemsThenSyncDataGridItems()
+        public void DeleteCheckedItemsThenSyncDataGridItems()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             for (int i = 0; i < 10; i++)
             {
                 int idx = new Random().Next(0, viewmodel.DataGridViewModel.Items.Count());
@@ -358,7 +356,7 @@ namespace R54IN0.Test
         [TestMethod]
         public async Task DeleteCheckedItemsThenSyncDb()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             for (int i = 0; i < 10; i++)
             {
                 int idx = new Random().Next(0, viewmodel.DataGridViewModel.Items.Count());
@@ -370,7 +368,7 @@ namespace R54IN0.Test
 
             viewmodel.DataGridViewModel.ChekcedIOStockFormatsDeletionCommand.Execute(null);
 
-            foreach(var item in checkedItems)
+            foreach (var item in checkedItems)
             {
                 var iofmts = await DbAdapter.GetInstance().SelectAsync<IOStockFormat>(item.ID);
                 Assert.IsNull(iofmts);
@@ -378,9 +376,9 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public async Task DeleteCheckedItemsThenSyncQty()
+        public void DeleteCheckedItemsThenSyncQty()
         {
-            var viewmodel = await CreateViewModelThenSelectedTreeViewNodeRandomly();
+            var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             for (int i = 0; i < 10; i++)
             {
                 int idx = new Random().Next(0, viewmodel.DataGridViewModel.Items.Count());
@@ -394,10 +392,63 @@ namespace R54IN0.Test
             AssertQuantityChecking(viewmodel.DataGridViewModel.Items);
         }
 
+        /// <summary>
+        /// 제품을 검색하기
+        /// </summary>
+        [TestMethod]
+        public void SearchProductName()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var oid = ObservableInventoryDirector.GetInstance();
+            var text = viewmodel.SearchViewModel.Text = oid.Copy().Select(x => x.Product).Distinct().Random().Name;
+
+            viewmodel.SearchViewModel.SearchCommand.Execute(null);
+
+            var items = viewmodel.DataGridViewModel.Items;
+            Assert.AreNotEqual(0, items.Count());
+        }
+
+        /// <summary>
+        /// 규격을 검색하기
+        /// </summary>
+        [TestMethod]
+        public void SearchSpecificationName()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var oid = ObservableInventoryDirector.GetInstance();
+            var text = viewmodel.SearchViewModel.Text = oid.Copy().Random().Specification;
+
+            viewmodel.SearchViewModel.SearchCommand.Execute(null);
+
+            var items = viewmodel.DataGridViewModel.Items;
+            Assert.AreNotEqual(0, items.Count());
+        }
+
+        /// <summary>
+        /// 제품과 규격 검색하기
+        /// </summary>
+        [TestMethod]
+        public void SearchCommand()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var oid = ObservableInventoryDirector.GetInstance();
+            var text1 = oid.Copy().Random().Specification;
+            var text2 = oid.Copy().Select(x => x.Product).Distinct().Random().Name;
+
+            viewmodel.SearchViewModel.Text = text1 + " " + text2;
+            viewmodel.SearchViewModel.SearchCommand.Execute(null);
+
+            var items = viewmodel.DataGridViewModel.Items;
+            Assert.AreNotEqual(0, items.Count());
+        }
+
         public void AssertQuantityChecking(IEnumerable<IOStockDataGridItem> items)
         {
             var lookup = items.ToLookup(x => x.Inventory);
-            foreach(var item in lookup)
+            foreach (var item in lookup)
             {
                 var orderedItem = item.OrderBy(x => x.Date);
                 var lastItem = orderedItem.Last();
@@ -418,9 +469,10 @@ namespace R54IN0.Test
                 }
             }
         }
-        public async Task<IOStockStatusViewModel> CreateViewModelThenSelectedTreeViewNodeRandomly()
+
+        public IOStockStatusViewModel CreateViewModelThenSelectedTreeViewNodeRandomly()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             viewmodel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
             TreeViewNode node = viewmodel.TreeViewViewModel.Root.SelectMany(root => root.Descendants().Where(x => x.Type == NodeType.PRODUCT)).Random();

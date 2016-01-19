@@ -59,10 +59,10 @@
                     </StackPanel>
                 </Grid>
 
-                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,5,5" HorizontalAlignment="Right">
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,0,5" HorizontalAlignment="Right">
                     <TextBox x:Name="SearchTextBox"
                          Text="{Binding SearchViewModel.Text}"
-                         ToolTip="검색어를 기준으로 제품과 규격의 이름이 포함된 재고 정보를 검색합니다. 검색어가 여러개인 경우 OR연산으로 처리됩니다."
+                         ToolTip="검색어를 기준으로 제품과 규격의 이름이 포함된 재고 기록을 검색합니다. 검색어가 여러개인 경우 OR연산으로 처리됩니다."
                          mah:TextBoxHelper.ButtonCommand="{Binding SearchViewModel.SearchCommand}"
                          mah:TextBoxHelper.Watermark="검색어를 입력해주세요"
                          mah:TextBoxHelper.UseFloatingWatermark="False"

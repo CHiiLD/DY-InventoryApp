@@ -246,7 +246,7 @@ namespace R54IN0.Test
             }
         }
 
-        public async Task Create()
+        public async void Create()
         {
             LexDb.Destroy();
             DbAdapter.Destroy();

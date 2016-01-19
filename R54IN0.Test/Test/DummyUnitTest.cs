@@ -7,9 +7,9 @@ namespace R54IN0.Test.New
     public class DummyTest
     {
         [TestMethod]
-        public async Task CanCreate()
+        public void CanCreate()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
         }
     }
 }

@@ -1,11 +1,14 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MahApps.Metro;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace R54IN0.WPF
 {
@@ -36,7 +39,24 @@ namespace R54IN0.WPF
             ChangeIOStockViewByProductCommand = new RelayCommand(ExecuteChangeIOStockViewByProductCommand);
             ChangeIOStockByDateCommand = new RelayCommand(ExecuteChangeIOStockByDateCommand);
             ChangeIOStockByProjectCommand = new RelayCommand(ExecuteChangeIOStockByProjectCommand);
+
+            AccentColors = ThemeManager.Accents.Select(a => new AccentColorMenuData()
+            {
+                Name = a.Name,
+                ColorBrush = a.Resources["AccentColorBrush"] as Brush
+            });
+
+            AppThemes = ThemeManager.AppThemes.Select(a => new AppThemeMenuData()
+            {
+                Name = a.Name,
+                BorderColorBrush = a.Resources["BlackColorBrush"] as Brush,
+                ColorBrush = a.Resources["WhiteColorBrush"] as Brush
+            });
         }
+
+        public IEnumerable<AccentColorMenuData> AccentColors { get; set; }
+
+        public IEnumerable<AppThemeMenuData> AppThemes { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged
         {

@@ -33,7 +33,7 @@ namespace R54IN0.WPF
         /// <summary>
         /// 데이터 그리드의 입출고 데이터를 일시적으로 보관
         /// </summary>
-        private SortedDictionary<string, IOStockDataGridItem> _backupSource;
+        private List<IOStockDataGridItem> _backupSource;
 
         private bool _canModify;
         private bool? _showSpecificationMemoColumn;
@@ -67,7 +67,7 @@ namespace R54IN0.WPF
             CollectionViewModelObserverSubject.GetInstance().Detach(this);
         }
 
-        public SortedDictionary<string, IOStockDataGridItem> BackupSource
+        public List<IOStockDataGridItem> BackupSource
         {
             get
             {
@@ -342,6 +342,8 @@ namespace R54IN0.WPF
             }
         }
 
+        public InventorySearchTextBoxViewModel SearchViewModel { get; set; }
+
         public void NotifyPropertyChanged(string name)
         {
             if (_propertyChanged != null)
@@ -357,6 +359,8 @@ namespace R54IN0.WPF
             ProjectListBoxViewModel = new IOStockProjectListBoxViewModel();
             TreeViewViewModel = new MultiSelectTreeViewModelView();
             DatePickerViewModel = new IOStockDatePickerViewModel();
+            SearchViewModel = new InventorySearchTextBoxViewModel();
+            SearchViewModel.SearchCommand = new RelayCommand(ExecuteSearchCommand, CanSearch);
 
             IsCheckedInComing = true;
             IsCheckedOutGoing = true;
@@ -377,7 +381,6 @@ namespace R54IN0.WPF
 
             SelectedGroupItem = GroupItems.First();
         }
-
         private bool CanModifySelectedItem(object arg)
         {
             return DataGridViewModel.SelectedItem != null ? true : false;
@@ -478,8 +481,7 @@ namespace R54IN0.WPF
                     if (formats != null)
                         iosFmtList.AddRange(formats);
                 }
-                var dictionary = iosFmtList.Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
-                BackupSource = new SortedDictionary<string, IOStockDataGridItem>(dictionary);
+                BackupSource = iosFmtList.Select(x => new IOStockDataGridItem(x)).ToList();
                 UpdateDataGridItems();
             }
         }
@@ -500,8 +502,7 @@ namespace R54IN0.WPF
                     IEnumerable<IOStockFormat> formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.WHERE, "ProjectID", proejct.ID);
                     if (formats != null)
                     {
-                        var dictionary = formats.Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
-                        BackupSource = new SortedDictionary<string, IOStockDataGridItem>(dictionary);
+                        BackupSource = formats.Select(x => new IOStockDataGridItem(x)).ToList();
                         UpdateDataGridItems();
                     }
                 }
@@ -523,8 +524,7 @@ namespace R54IN0.WPF
                 var formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.BETWEEN | DbCommand.OR_EQUAL, "Date", fromDate, toDate);
                 if (formats != null)
                 {
-                    var dictionary = formats.Select(x => new IOStockDataGridItem(x)).ToDictionary(x => x.ID);
-                    BackupSource = new SortedDictionary<string, IOStockDataGridItem>(dictionary);
+                    BackupSource = formats.Select(x => new IOStockDataGridItem(x)).ToList();
                     UpdateDataGridItems();
                 }
             }
@@ -544,8 +544,33 @@ namespace R54IN0.WPF
             if (IsCheckedOutGoing == true)
                 type = type | IOStockType.OUTGOING;
 
-            var items = BackupSource.Values.Where(x => type.HasFlag(x.StockType)).OrderBy(x => x.Date);
+            var items = BackupSource.Where(x => type.HasFlag(x.StockType)).OrderBy(x => x.Date);
             DataGridViewModel.Items = new ObservableCollection<IOStockDataGridItem>(items);
+        }
+
+        private bool CanSearch()
+        {
+            return !string.IsNullOrEmpty(SearchViewModel.Text);
+        }
+
+        /// <summary>
+        /// 검색 명령어 실행
+        /// </summary>
+        /// <param name="parameter"></param>
+        protected async void ExecuteSearchCommand()
+        {
+            TreeViewViewModel.SelectedNodes.Clear();
+            DataGridViewModel.Items.Clear();
+            BackupSource = new List<IOStockDataGridItem>();
+
+            var searchResult = SearchViewModel.Search();
+            foreach (var inven in searchResult)
+            {
+                var formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
+                    DbCommand.WHERE, "InventoryID", inven.ID);
+                BackupSource.AddRange(formats.Select(x => new IOStockDataGridItem(x)));
+            }
+            UpdateDataGridItems();
         }
 
         public void UpdateNewItem(object item)
@@ -554,32 +579,32 @@ namespace R54IN0.WPF
             {
                 if (BackupSource == null)
                     return;
-                var observableInoutStock = item as ObservableIOStock;
+                var obIOStock = item as ObservableIOStock;
                 bool can = false;
                 switch (SelectedGroupItem)
                 {
                     case GROUPITEM_DATE:
                         DateTime fromDate = DatePickerViewModel.FromDate;
                         DateTime toDate = DatePickerViewModel.ToDate;
-                        if (fromDate <= observableInoutStock.Date && observableInoutStock.Date <= toDate)
+                        if (fromDate <= obIOStock.Date && obIOStock.Date <= toDate)
                             can = true;
                         break;
 
                     case GROUPITEM_PROJECT:
-                        if (ProjectListBoxViewModel.SelectedItem != null && ProjectListBoxViewModel.SelectedItem.ID == observableInoutStock.Project.ID)
+                        if (ProjectListBoxViewModel.SelectedItem != null && ProjectListBoxViewModel.SelectedItem.ID == obIOStock.Project.ID)
                             can = true;
                         break;
 
                     case GROUPITEM_PRODUCT:
                         var nodes = TreeViewViewModel.SelectedNodes.SelectMany(c => c.Descendants().Where(node => node.Type == NodeType.PRODUCT));
-                        if (nodes.Any(node => node.ProductID == observableInoutStock.Inventory.Product.ID))
+                        if (nodes.Any(node => node.ProductID == obIOStock.Inventory.Product.ID))
                             can = true;
                         break;
                 }
                 if (can)
                 {
-                    IOStockDataGridItem ioStockDataGridItem = new IOStockDataGridItem(observableInoutStock.Format);
-                    BackupSource.Add(ioStockDataGridItem.ID, ioStockDataGridItem);
+                    IOStockDataGridItem ioStockDataGridItem = new IOStockDataGridItem(obIOStock.Format);
+                    BackupSource.Add(ioStockDataGridItem);
                     UpdateDataGridItems();
                 }
             }
@@ -593,37 +618,35 @@ namespace R54IN0.WPF
 
         public void UpdateDelItem(object item)
         {
-            IEnumerable<KeyValuePair<string, IOStockDataGridItem>> pairs = null;
+            IEnumerable<IOStockDataGridItem> items = null;
             if (item is IObservableInventoryProperties)
             {
                 IObservableInventoryProperties obInven = item as IObservableInventoryProperties;
                 if (BackupSource != null)
-                    pairs = BackupSource.Where(x => x.Value.Inventory.ID == obInven.ID);
+                    items = BackupSource.Where(x => x.Inventory.ID == obInven.ID);
             }
             else if (item is Observable<Product>)
             {
                 Observable<Product> product = item as Observable<Product>;
                 if (BackupSource != null)
-                    pairs = BackupSource.Where(x => x.Value.Inventory.Product.ID == product.ID);
+                    items = BackupSource.Where(x => x.Inventory.Product.ID == product.ID);
             }
             else if (item is IObservableIOStockProperties)
             {
                 IObservableIOStockProperties iostock = item as IObservableIOStockProperties;
                 if (BackupSource != null)
-                    pairs = BackupSource.Where(x => x.Value.ID == iostock.ID);
+                    items = BackupSource.Where(x => x.ID == iostock.ID);
             }
 
-            if (pairs != null)
+            if (items != null)
             {
-                var items = DataGridViewModel.Items;
-                foreach (KeyValuePair<string, IOStockDataGridItem> pair in pairs.ToList())
+                foreach (var i in items.ToList())
                 {
-                    BackupSource.Remove(pair.Key);
-                    if (items.Contains(pair.Value))
-                        items.Remove(pair.Value);
+                    BackupSource.Remove(i);
+                    if (DataGridViewModel.Items.Contains(i))
+                        DataGridViewModel.Items.Remove(i);
                 }
             }
-            
         }
     }
 }

@@ -43,50 +43,50 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Custom.Controls.EditableTextBlock.dll" size="24064">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Custom.Controls.EditableTextBlock.dll" size="23552">
       <assemblyIdentity name="Custom.Controls.EditableTextBlock" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UuboD9LvyPjFiMT8D/zNJ4HTRCoLpzSzPGYqjsYus8Q=</dsig:DigestValue>
+        <dsig:DigestValue>2Sy9tQL/yB/iMYkTwOUubcrRS8DAnSns3mC2U2EKOXU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DailY Inventory.exe" size="416256">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DailY Inventory.exe" size="424448">
       <assemblyIdentity name="DailY Inventory" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>BNjapwXO0TjyE4x9DUfeDe8vjf2Z5dJohuHXmeKIySQ=</dsig:DigestValue>
+        <dsig:DigestValue>zAW0+yBr6S8gt5wm0kqIvYqbhvnQ0d3QrHcXn7Dqjtc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GalaSoft.MvvmLight.dll" size="31744">
-      <assemblyIdentity name="GalaSoft.MvvmLight" version="5.2.1.37666" publicKeyToken="E7570AB207BCB616" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GalaSoft.MvvmLight.dll" size="31232">
+      <assemblyIdentity name="GalaSoft.MvvmLight" version="5.2.1.14123" publicKeyToken="E7570AB207BCB616" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>H79LF8dkLXpbhw62to3UfuifU1u7fRt+zk09VmsZqwA=</dsig:DigestValue>
+        <dsig:DigestValue>O+jJhcWAgP0MoMQJk1W4xhnmRxzjxCGdbDCZOCkhP7s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GalaSoft.MvvmLight.Platform.dll" size="14848">
-      <assemblyIdentity name="GalaSoft.MvvmLight.Platform" version="5.2.1.37667" publicKeyToken="5F873C45E98AF8A1" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GalaSoft.MvvmLight.Platform.dll" size="14336">
+      <assemblyIdentity name="GalaSoft.MvvmLight.Platform" version="5.2.1.1174" publicKeyToken="5F873C45E98AF8A1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>CmjQK14UGwQOcD4R7nRkxQVikp3F7UYO9mKWDlM4Cfc=</dsig:DigestValue>
+        <dsig:DigestValue>zDJMm38buLIIsLiSIqfAt8L4SU1QDOj4hj2ZGUKJVZ4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,31 +98,43 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1MuSA5PnQEE2Or1OZXYtRpeWEIuLxBx4tSygZ3AWlOE=</dsig:DigestValue>
+        <dsig:DigestValue>B/rfP3ZlUEyEcVUrkl8tX5nvAHXC/OPkjetfGDmfRYQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MahApps.Metro.dll" size="1136640">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MahApps.Metro.dll" size="1137152">
       <assemblyIdentity name="MahApps.Metro" version="1.1.3.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>S+fdgX9pNb5c+78dyAceuvKoRcwdlkCKw8ubReaWUKo=</dsig:DigestValue>
+        <dsig:DigestValue>rSU9PtfEiTm7M/u/1rCu//zA9jCz5RBnYF33HyuJUjo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="530432">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MahApps.Metro.Resources.dll" size="1155072">
+      <assemblyIdentity name="MahApps.Metro.Resources" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>VI7ZNW7UDGAd0zMvTIDHxZE327/gYO4G4g/tS6UYJ9w=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="531456">
       <assemblyIdentity name="Newtonsoft.Json" version="7.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4EUCOF7fXTM4srsyygsWMCmZFW0+UxETyetKpzH8nl0=</dsig:DigestValue>
+        <dsig:DigestValue>dTO1T2nkpyy466wQSIVRCPCZWnPNClR5M/kbouqocnc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -266,7 +278,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>yxbG+FRMHRQ7t+bGDFvPRDn6Iw+IUt5FYBgSXMKTYA8=</dsig:DigestValue>
+        <dsig:DigestValue>/yK5hOpyoZE4UCBJP5J475O/1Ot2qxnIW2PcsqCWiTY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

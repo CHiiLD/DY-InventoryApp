@@ -167,6 +167,47 @@
             </Grid>
 
             <Grid Grid.Row="4" Grid.Column="1">
+                <!--<Grid.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro.Resources;component/Icons.xaml" />
+                        </ResourceDictionary.MergedDictionaries>
+
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource MetroComboBox}">
+                            <Setter Property="ItemTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                                            <Button Grid.Column="1" Style="{DynamicResource MetroCircleButtonStyle}">
+                                                <Path Width="20" Height="20"
+                                                      Data="{DynamicResource appbar_3d_x}"/>
+                                                --><!--<Rectangle 
+                                                    Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Rectangle.OpacityMask>
+                                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_3d_x}"/>
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>--><!--
+                                            </Button>
+                                        </Grid>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="ItemContainerStyle">
+                                <Setter.Value>
+                                    <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource MetroComboBoxItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ResourceDictionary>
+                </Grid.Resources>-->
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="43*" />
@@ -178,7 +219,7 @@
                           ItemsSource="{Binding MakerList}"
                           IsEditable="True"
                           DisplayMemberPath="Name"
-                          Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
+                          Grid.Column="1" Width="200" HorizontalAlignment="Left" />
             </Grid>
 
             <Grid Grid.Row="5" Grid.Column="0">

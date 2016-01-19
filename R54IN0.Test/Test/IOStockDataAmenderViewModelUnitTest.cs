@@ -15,9 +15,9 @@ namespace R54IN0.Test.New
         /// 생성자 검사
         /// </summary>
         [TestMethod]
-        public async Task CanCreate()
+        public void CanCreate()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             new IOStockDataAmenderViewModel();
             using (var db = LexDb.GetDbInstance())
             {
@@ -32,7 +32,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public async Task Add()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             InventoryStatusViewModel inventoryStatusViewModel = new InventoryStatusViewModel();
             IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
@@ -95,7 +95,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public async Task Add2()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             //설정
             viewmodel.StockType = IOStockType.INCOMING;
@@ -127,7 +127,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public async Task Add3()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             //설정
             var product = viewmodel.Product = ObservableFieldDirector.GetInstance().Copy<Product>().Random();
@@ -159,7 +159,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public async Task Modify()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockFormat fmt = null;
             using (var db = LexDb.GetDbInstance())
                 fmt = db.LoadAll<IOStockFormat>().Random();
@@ -192,7 +192,7 @@ namespace R54IN0.Test.New
                 fmt = db.LoadByKey<IOStockFormat>(fmt.ID);
             ObservableIOStock stock = new ObservableIOStock(fmt);
 
-            if(stock.StockType == IOStockType.INCOMING)
+            if (stock.StockType == IOStockType.INCOMING)
             {
                 Assert.AreEqual(clientText, stock.Supplier.Name);
                 Assert.AreEqual(warehouseText, stock.Warehouse.Name);
@@ -216,7 +216,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public async Task Modify2()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockFormat fmt = null;
             using (var db = LexDb.GetDbInstance())
                 fmt = db.LoadAll<IOStockFormat>().Random();
@@ -244,7 +244,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public async Task Modify3()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockFormat fmt = null;
             using (var db = LexDb.GetDbInstance())
                 fmt = db.LoadAll<IOStockFormat>().Random();
@@ -268,12 +268,13 @@ namespace R54IN0.Test.New
 
             var stock = await viewmodel.RecordAsync();
 
-            switch(stock.StockType)
+            switch (stock.StockType)
             {
                 case IOStockType.INCOMING:
                     Assert.AreEqual(ware, stock.Warehouse.Name);
                     Assert.AreEqual(fmt.WarehouseID, stock.Warehouse.ID);
                     break;
+
                 case IOStockType.OUTGOING:
 
                     break;
@@ -295,7 +296,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public async Task Modify4()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             var formats = await DbAdapter.GetInstance().SelectAllAsync<IOStockFormat>();
             var fmt = formats.Random();
             ObservableIOStock ios = new ObservableIOStock(fmt);
@@ -344,7 +345,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public async Task Modify5()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             var formats = await DbAdapter.GetInstance().SelectAllAsync<IOStockFormat>();
             var fmt = formats.Random();
             ObservableIOStock ios = new ObservableIOStock(fmt);
@@ -395,9 +396,9 @@ namespace R54IN0.Test.New
         /// 정상적으로 값을 가감하는지 테스트
         /// </summary>
         [TestMethod]
-        public async Task Quantity()
+        public void Quantity()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
 
             viewmodel.StockType = IOStockType.OUTGOING;
@@ -415,9 +416,9 @@ namespace R54IN0.Test.New
         /// 기존의 입출고 데이터의 입출고 수량을 수정하고 이에 따른 수량 데이터들의 변화가 올바르게 적용됨을 확인한다.
         /// </summary>
         [TestMethod]
-        public async Task Quantity2()
+        public void Quantity2()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockFormat fmt = null;
             using (var db = LexDb.GetDbInstance())
                 fmt = db.LoadAll<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).OrderBy(x => x.Date).Last();
@@ -456,7 +457,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public async Task Quantity3()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
             IOStockFormat fmt = null;
             using (var db = LexDb.GetDbInstance())
@@ -476,7 +477,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public async Task Quantity4()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel);
             //설정
@@ -485,7 +486,7 @@ namespace R54IN0.Test.New
             var inven = viewmodel.Inventory = viewmodel.InventoryList.Random();
             var beforeInvenQty = inven.Quantity;
             var date = viewmodel.Date = DateTime.Now.AddDays(-600.0 * new Random().NextDouble()); //과거로 저장
-            int qty  = new Random().Next(1, 10);
+            int qty = new Random().Next(1, 10);
             viewmodel.Quantity = qty;
             //저장
             IObservableIOStockProperties obIOStock = await viewmodel.RecordAsync();
@@ -497,9 +498,9 @@ namespace R54IN0.Test.New
         /// 이럴 경우 입출고 수량의 변동에 따라 잔여수량과 입고 수량의 변이를 올바르게 업데이트 할 수 있어야 한다.
         /// </summary>
         [TestMethod]
-        public async Task Quantity5()
+        public void Quantity5()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockFormat fmt = null;
             IEnumerable<IOStockFormat> formats;
             var inventory = ObservableInventoryDirector.GetInstance().Copy().Random();
@@ -507,7 +508,7 @@ namespace R54IN0.Test.New
             {
                 formats = db.LoadAll<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
                     .ToList();
-                fmt = formats.ElementAt(new Random().Next(0, formats.Count() -2)); //최신 데이터는 넣지 말도록 
+                fmt = formats.ElementAt(new Random().Next(0, formats.Count() - 2)); //최신 데이터는 넣지 말도록
             }
             var obIOStock = new ObservableIOStock(fmt);
             int inventoryQty = obIOStock.Inventory.Quantity; //오리진 재고 수량
@@ -527,9 +528,9 @@ namespace R54IN0.Test.New
         /// 이럴 경우 입출고 수량의 변동에 따라 잔여수량과 입고 수량의 변이를 올바르게 업데이트 할 수 있어야 한다.
         /// </summary>
         [TestMethod]
-        public async Task Quantity6()
+        public void Quantity6()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockFormat fmt = null;
             IEnumerable<IOStockFormat> formats;
             var inventory = ObservableInventoryDirector.GetInstance().Copy().Random();
@@ -539,7 +540,7 @@ namespace R54IN0.Test.New
                     .ToList();
             }
             fmt = formats.ElementAt(new Random().Next(0, formats.Count() - 2));
-            
+
             var iostock = new ObservableIOStock(fmt);
             int inventoryQty = iostock.Inventory.Quantity;
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
@@ -552,37 +553,37 @@ namespace R54IN0.Test.New
             var lastst = formats.Where(x => x.Date < viewmodel.Date).OrderBy(x => x.Date).Last();
             int qty = 1;
             viewmodel.Quantity = qty;
-            Assert.AreEqual(inventoryQty + qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(inventoryQty + qty, viewmodel.InventoryQuantity); //재고수량 증가 확인
             viewmodel.StockType = IOStockType.OUTGOING;
-            Assert.AreEqual(inventoryQty - qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(inventoryQty - qty, viewmodel.InventoryQuantity); //재고수량 증가 확인
 
             //범위2 TF .... L
             viewmodel.StockType = IOStockType.INCOMING;
             viewmodel.Date = formats.First().Date.AddMilliseconds(-10000);
-            Assert.AreEqual(inventoryQty + qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(inventoryQty + qty, viewmodel.InventoryQuantity); //재고수량 증가 확인
 
             viewmodel.StockType = IOStockType.OUTGOING;
             viewmodel.Date = formats.First().Date.AddMilliseconds(-10000);
-            Assert.AreEqual(inventoryQty - qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(inventoryQty - qty, viewmodel.InventoryQuantity); //재고수량 증가 확인
 
             //범위3 F .... LT
             viewmodel.StockType = IOStockType.INCOMING;
             viewmodel.Date = formats.Last().Date.AddMilliseconds(1000);
             lastst = formats.Where(x => x.Date < viewmodel.Date).OrderBy(x => x.Date).Last();
-            Assert.AreEqual(inventoryQty + qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(inventoryQty + qty, viewmodel.InventoryQuantity); //재고수량 증가 확인
 
             viewmodel.StockType = IOStockType.OUTGOING;
-            Assert.AreEqual(inventoryQty - qty, viewmodel.InventoryQuantity); //재고수량 증가 확인 
+            Assert.AreEqual(inventoryQty - qty, viewmodel.InventoryQuantity); //재고수량 증가 확인
         }
 
         /// <summary>
-        /// 제일 과거의 출고 데이터를 넣을 경우 
-        /// 잔여수량이 꼬이는 이슈를 해결 
+        /// 제일 과거의 출고 데이터를 넣을 경우
+        /// 잔여수량이 꼬이는 이슈를 해결
         /// </summary>
         [TestMethod]
         public async Task Quantity7()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockFormat fmt = null;
             IEnumerable<IOStockFormat> formats;
             var inventory = ObservableInventoryDirector.GetInstance().Copy().Random();
@@ -606,7 +607,7 @@ namespace R54IN0.Test.New
             var formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
                 DbCommand.WHERE, "InventoryID", inventoryID, DbCommand.ASCENDING, "Date");
             IOStockFormat near = null;
-            foreach(var fmt in formats)
+            foreach (var fmt in formats)
             {
                 int remainQty = 0;
                 int iosQty = fmt.Quantity;
@@ -627,9 +628,9 @@ namespace R54IN0.Test.New
         /// 수정만 할 뿐 저장을 하지 않을 때 수정된 부분은 원본에 영향을 끼쳐서는 안된다.
         /// </summary>
         [TestMethod]
-        public async Task DontSave()
+        public void DontSave()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockFormat fmt = null;
             using (var db = LexDb.GetDbInstance())
                 fmt = db.LoadAll<IOStockFormat>().Random();
@@ -660,9 +661,9 @@ namespace R54IN0.Test.New
         /// 라디오버튼에서 입고와 출고를 번읍해 선택할 경우의 이벤트를 체크한다.
         /// </summary>
         [TestMethod]
-        public async Task CheckStackTypePropertyAction()
+        public void CheckStackTypePropertyAction()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             //입고시 제품과 규격을 설정한다.
             viewmodel.StockType = IOStockType.INCOMING;
@@ -695,7 +696,7 @@ namespace R54IN0.Test.New
         [TestMethod]
         public async Task LogicPatten00()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
 
             var product = viewmodel.Product = ObservableFieldDirector.GetInstance().Copy<Product>().Random();
@@ -712,9 +713,9 @@ namespace R54IN0.Test.New
         /// 기존의 규격을 선택하였을 떄 규격과 관련된 (제조사, 단위, 규격의 메모 등) 프로퍼티가 셋팅되어야 한다.
         /// </summary>
         [TestMethod]
-        public async Task WhenSelectSpecificationThenInventoryPropertiesInitialize()
+        public void WhenSelectSpecificationThenInventoryPropertiesInitialize()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
 
             var product = viewmodel.Product = ObservableFieldDirector.GetInstance().Copy<Product>().Random();
@@ -732,9 +733,9 @@ namespace R54IN0.Test.New
         /// 이 테스는 입고일 때만 가능하다. (출고는 기존의 제품과 규격만을 사용해야 하니까)
         /// </summary>
         [TestMethod]
-        public async Task WhenCreateNewProductThenPropertiesOfInventoryBecomeNull()
+        public void WhenCreateNewProductThenPropertiesOfInventoryBecomeNull()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             //기존의 제품과 규격을 선택
             viewmodel.StockType = IOStockType.INCOMING;
@@ -784,9 +785,9 @@ namespace R54IN0.Test.New
         /// InventoryList의 자식으로 Inventory에 할당할 때 복사생성이 발생하는 이슈
         /// </summary>
         [TestMethod]
-        public async Task WhenModifyThenInventoryIsChildOfInventoryList()
+        public void WhenModifyThenInventoryIsChildOfInventoryList()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockFormat fmt = null;
             using (var db = LexDb.GetDbInstance())
                 fmt = db.LoadAll<IOStockFormat>().Random();
@@ -806,9 +807,9 @@ namespace R54IN0.Test.New
         /// 입출고 데이터를 수정할 경우 프로퍼티가 정상적으로 대입되었는지 확인한다.
         /// </summary>
         [TestMethod]
-        public async Task CheckInitializedProperties()
+        public void CheckInitializedProperties()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             IOStockFormat fmt = null;
             using (var db = LexDb.GetDbInstance())
                 fmt = db.LoadAll<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).Random();

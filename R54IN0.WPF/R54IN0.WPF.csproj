@@ -183,6 +183,9 @@
     <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderWindow.xaml.cs">
       <DependentUpon>IOStockDataAmenderWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window2.xaml.cs">
+      <DependentUpon>Window2.xaml</DependentUpon>
+    </Compile>
     <Page Include="DailyInventory\Controls\IOStock\IOStockDatePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -223,8 +226,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Window2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DailyInventory\Windows\AppThemeMenuData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -257,6 +265,10 @@
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
       <Project>{04608184-27B9-42A2-9E5E-69A6CB21ECFE}</Project>
       <Name>Lex.Db.Net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MahApps.Metro\MahApps.Metro.Resources\MahApps.Metro.Resources.csproj">
+      <Project>{e708ac99-605b-42a0-8d20-abca8fe42dd2}</Project>
+      <Name>MahApps.Metro.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\MahApps.Metro\MahApps.Metro\MahApps.Metro.NET45.csproj">
       <Project>{942d11c4-29f5-46c4-8c14-4b976d56c637}</Project>

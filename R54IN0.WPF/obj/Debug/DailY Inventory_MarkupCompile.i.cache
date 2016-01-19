@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Debug\
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\
 R54IN0.WPF
 none
 false
 DEBUG;TRACE
-C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\App.xaml
-9-183966120
+C:\Users\Child\Github\R54IN0\R54IN0.WPF\App.xaml
+10-731822695
 
-72-1979554719
-73-1198728415
-DailyInventory\Controls\IOStock\IOStockDatePicker.xaml;DailyInventory\Controls\IOStock\IOStockProjectListBox.xaml;DailyInventory\Controls\IOStock\IOStockStatus.xaml;DailyInventory\Controls\Inventory\InventoryStatus.xaml;DailyInventory\Controls\IOStock\IOStockDataGrid.xaml;DailyInventory\Controls\Inventory\InventoryDataGrid.xaml;DailyInventory\Controls\TreeView\MultiSelectTreeView.xaml;DailyInventory\Windows\MainWindow.xaml;DailyInventory\Controls\Amend\IOStockDataAmenderWindow.xaml;
+741576272565
+74-394515427
+DailyInventory\Controls\IOStock\IOStockDatePicker.xaml;DailyInventory\Controls\IOStock\IOStockProjectListBox.xaml;DailyInventory\Controls\IOStock\IOStockStatus.xaml;DailyInventory\Controls\Inventory\InventoryStatus.xaml;DailyInventory\Controls\IOStock\IOStockDataGrid.xaml;DailyInventory\Controls\Inventory\InventoryDataGrid.xaml;DailyInventory\Controls\TreeView\MultiSelectTreeView.xaml;DailyInventory\Windows\MainWindow.xaml;DailyInventory\Controls\Amend\IOStockDataAmenderWindow.xaml;Window2.xaml;
 
 False
 

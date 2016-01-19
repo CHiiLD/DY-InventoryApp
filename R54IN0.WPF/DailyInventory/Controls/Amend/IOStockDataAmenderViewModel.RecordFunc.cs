@@ -162,11 +162,11 @@ namespace R54IN0.WPF
         {
             if (_ioStockStatusViewModel != null && _ioStockStatusViewModel.BackupSource != null)
             {
-                SortedDictionary<string, IOStockDataGridItem> backupSource = _ioStockStatusViewModel.BackupSource;
+                var backupSource = _ioStockStatusViewModel.BackupSource;
                 foreach (var src in backupSource)
                 {
-                    if (src.Value.Inventory.ID == Inventory.ID && src.Value.Date > Date)
-                        await src.Value.SyncDataFromServer();
+                    if (src.Inventory.ID == Inventory.ID && src.Date > Date)
+                        await src.SyncDataFromServer();
                 }
             }
         }

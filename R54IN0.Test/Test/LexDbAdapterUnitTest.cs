@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Threading.Tasks;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace R54IN0.Test
 {
@@ -21,7 +21,7 @@ namespace R54IN0.Test
         [TestMethod]
         public async Task DeleteAsync()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
 
             string stockID = null;
             string inventoryID = null;
@@ -99,7 +99,7 @@ namespace R54IN0.Test
         [TestMethod]
         public async Task SelectAllAsync()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             Product[] products = null;
             Product[] products2 = null;
             products = LexDb.GetDbInstance().LoadAll<Product>();

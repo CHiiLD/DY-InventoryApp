@@ -150,19 +150,10 @@ namespace R54IN0.WPF
         {
             if (e.PropertyName == "SelectedNodes" && sender == TreeViewViewModel)
             {
-                var proNodes = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
+                var nodes = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
                 var oid = ObservableInventoryDirector.GetInstance();
-                var invenList = oid.Copy();
-
-                List<ObservableInventory> temp = new List<ObservableInventory>();
-                foreach (var node in proNodes)
-                {
-                    var invens = invenList.Where(inven => inven.Product.ID == node.ProductID).OrderBy(inven => inven.Specification);
-                    temp.AddRange(invens);
-                }
-                PushDataGridItems(temp, true);
-                DataGridViewModel1.SelectedItem = null;
-                DataGridViewModel2.SelectedItem = null;
+                var list = oid.Copy().Where(x => nodes.Any(n => n.ProductID == x.Product.ID));
+                PushDataGridItems(list, true);
             }
         }
 
@@ -203,36 +194,24 @@ namespace R54IN0.WPF
         {
             if (items == null)
                 return;
-            //프로젝트 이름순으로 정렬하기
-            MultiSortedDictionary<string, ObservableInventory> multiSortedDic = new MultiSortedDictionary<string, ObservableInventory>();
-            foreach (var item in items)
-                multiSortedDic.Add(item.Product.Name, item);
-            ObservableCollection<ObservableInventory> collection = null;
-            int half = items.Count() / 2;
-            if (doClear) //기존 데이터 삭제
+            if (doClear)
             {
                 DataGridViewModel1.Items.Clear();
                 DataGridViewModel2.Items.Clear();
                 DataGridViewModel1.SelectedItem = null;
                 DataGridViewModel2.SelectedItem = null;
             }
-            foreach (string key in multiSortedDic.keys)
+            var loopup = items.ToLookup(x => x.Product);
+            var orderedItems = loopup.OrderBy(x => x.Key.Name);
+            var dataGridItems1 = DataGridViewModel1.Items;
+            var dataGridItems2 = DataGridViewModel2.Items;
+            foreach (var key in orderedItems)
             {
-                if (doClear)
-                {
-                    collection = DataGridViewModel1.Items.Count() < half ? DataGridViewModel1.Items : DataGridViewModel2.Items;
-                }
+                var orderedInvens = key.OrderBy(x => x.Specification);
+                if (dataGridItems1.Count() == 0 || dataGridItems1.Count() <= dataGridItems2.Count())
+                    orderedInvens.ToList().ForEach(x => dataGridItems1.Add(x));
                 else
-                {
-                    if (DataGridViewModel1.Items.Any(item => item.Product.Name == key)) //왼쪽 데이터그리드에 동일한 제품 이름을 가진 경우
-                        collection = DataGridViewModel1.Items;
-                    else if (DataGridViewModel2.Items.Any(item => item.Product.Name == key)) //오른쪽 데이터그리드에 동일한 제품 이름을 가진 경우
-                        collection = DataGridViewModel2.Items;
-                    else //동일한 제품이 없는 경우 균형을 맞추기 위해 데이터가 적은 데이터그리드부터 채운다.
-                        collection = DataGridViewModel1.Items.Count() <= DataGridViewModel2.Items.Count() ? DataGridViewModel1.Items : DataGridViewModel2.Items;
-                }
-                foreach (ObservableInventory inventory in multiSortedDic[key].OrderBy(item => item.Specification))
-                    collection.Add(inventory);
+                    orderedInvens.ToList().ForEach(x => dataGridItems2.Add(x));
             }
         }
 

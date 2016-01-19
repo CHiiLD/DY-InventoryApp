@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace R54IN0.Test
 {
     [TestClass]
-    public class InventorySearchTextBoxViewModelTest
+    public class InventorySearchTextBoxViewModelUnitTest
     {
         [TestMethod]
         public void CanCreate()
@@ -19,9 +19,9 @@ namespace R54IN0.Test
         /// 재고 현황의 재고 검색 테스트
         /// </summary>
         [TestMethod]
-        public async Task Search()
+        public void Search()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             string product = "     스위치 ";
             string dummyName = "23094832098432";
             string somethingName = "버튼\t 단자부\n버섯\r 213o4u12oi\t";

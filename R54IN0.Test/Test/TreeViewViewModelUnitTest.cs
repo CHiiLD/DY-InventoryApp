@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using R54IN0.WPF;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Collections.Generic;
 
 namespace R54IN0.Test
 {
@@ -25,9 +25,9 @@ namespace R54IN0.Test
         /// 트리뷰에서 제품 노드를 삭제하고 트리뷰에서 삭제됨을 확인함
         /// </summary>
         [TestMethod]
-        public async Task DeleteProductNodeThenSyncTreeView()
+        public void DeleteProductNodeThenSyncTreeView()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             var treeview = new MultiSelectTreeViewModelView();
             var node = GetProductNode(treeview);
             treeview.SelectedNodes.Add(node);
@@ -41,9 +41,9 @@ namespace R54IN0.Test
         /// 트리뷰에서 제품 노드를 삭제하고 재고, 입출고 현황 뷰모델의 데이터그리드 또한 동기화한다.
         /// </summary>
         [TestMethod]
-        public async Task DeleteProductNodeThenSyncDataGrid()
+        public void DeleteProductNodeThenSyncDataGrid()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             var treeview = new MultiSelectTreeViewModelView();
             var ivm = new InventoryStatusViewModel();
             var iovm = new IOStockStatusViewModel();
@@ -66,9 +66,9 @@ namespace R54IN0.Test
         /// 트리뷰에서 제품 노드를 삭제하고 디렉터에서 관련 컬렉션 또한 동기화한다.
         /// </summary>
         [TestMethod]
-        public async Task DeleteProductNodeThenSyncDirector()
+        public void DeleteProductNodeThenSyncDirector()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             var treeview = new MultiSelectTreeViewModelView();
             var node = GetProductNode(treeview);
             treeview.SelectedNodes.Add(node);
@@ -85,7 +85,7 @@ namespace R54IN0.Test
         [TestMethod]
         public async Task DeleteProductNodeThenSyncDb()
         {
-            await new Dummy().Create();
+            new Dummy().Create();
             var treeview = new MultiSelectTreeViewModelView();
             var node = GetProductNode(treeview);
             treeview.SelectedNodes.Add(node);
@@ -98,7 +98,7 @@ namespace R54IN0.Test
 
             treeview.SelectedNodeDeletionCommand.Execute(null);
 
-            foreach(var inven in invens)
+            foreach (var inven in invens)
             {
                 var iosfmts = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.WHERE, "InventoryID", inven.ID);
                 Assert.AreEqual(0, iosfmts.Count());
