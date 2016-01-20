@@ -170,6 +170,7 @@ namespace R54IN0.WPF
             DataGridRow row = e.Row;
             TextBox textBox = e.EditingElement as TextBox;
             string sortMemberPath = column.SortMemberPath;
+            string text = textBox.Text;
             IOStockDataGridItem item = row.Item as IOStockDataGridItem;
             IOStockType iosType = item.StockType;
 
@@ -186,33 +187,40 @@ namespace R54IN0.WPF
             if (property == null)
             {
                 string propertyName = paths.Last();
+                var ofd = ObservableFieldDirector.GetInstance();
                 switch (propertyName)
                 {
                     case "Maker":
-                        item.Inventory.Maker = new Observable<Maker>() { Name = textBox.Text };
+                        item.Inventory.Maker = new Observable<Maker>(text);
+                        ofd.Add<Maker>(item.Inventory.Maker);
                         break;
                     case "Measure":
-                        item.Inventory.Measure = new Observable<Measure>() { Name = textBox.Text };
+                        item.Inventory.Measure = new Observable<Measure>(text);
+                        ofd.Add<Measure>(item.Inventory.Measure);
                         break;
                     case "Warehouse":
-                        item.Warehouse = new Observable<Warehouse>() { Name = textBox.Text };
+                        item.Warehouse = new Observable<Warehouse>(text);
+                        ofd.Add<Warehouse>(item.Warehouse);
                         break;
                     case "Project":
-                        item.Project = new Observable<Project>() { Name = textBox.Text };
+                        item.Project = new Observable<Project>(text);
+                        ofd.Add<Project>(item.Project);
                         break;
                     case "Customer":
-                        item.Customer = new Observable<Customer>() { Name = textBox.Text };
+                        item.Customer = new Observable<Customer>(text);
+                        ofd.Add<Customer>(item.Customer);
                         break;
                     case "Supplier":
-                        item.Supplier = new Observable<Supplier>() { Name = textBox.Text };
+                        item.Supplier = new Observable<Supplier>(text);
+                        ofd.Add<Supplier>(item.Supplier);
                         break;
                     case "Employee":
-                        item.Employee = new Observable<Employee>() { Name = textBox.Text };
+                        item.Employee = new Observable<Employee>(text);
+                        ofd.Add<Employee>(item.Employee);
                         break;
                 }
             }
         }
-
         private void ExecuteContextMenuOpeningEventCommand()
         {
             SearchAsIOStockRecordCommand.RaiseCanExecuteChanged();

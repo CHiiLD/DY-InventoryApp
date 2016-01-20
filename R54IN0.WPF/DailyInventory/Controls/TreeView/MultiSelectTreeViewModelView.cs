@@ -50,6 +50,12 @@ namespace R54IN0.WPF
 
             CollectionViewModelObserverSubject.GetInstance().Attach(this);
         }
+
+        ~MultiSelectTreeViewModelView()
+        {
+            CollectionViewModelObserverSubject.GetInstance().Detach(this);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
@@ -128,6 +134,7 @@ namespace R54IN0.WPF
 
         public RelayCommand<DragParameters> DragCommand { get; set; }
         public RelayCommand<DropParameters> DropCommand { get; set; }
+
         /// <summary>
         /// 드랍 기능을 실행한다.
         /// </summary>

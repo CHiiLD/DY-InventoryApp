@@ -792,13 +792,13 @@ namespace R54IN0.Test.New
             using (var db = LexDb.GetDbInstance())
                 fmt = db.LoadAll<IOStockFormat>().Random();
             IOStockType type = fmt.StockType;
-            var obIOStock = new ObservableIOStock(fmt);
+            var iso = new ObservableIOStock(fmt);
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
 
-            Assert.AreEqual(obIOStock.Inventory.Product, viewmodel.Product);
+            Assert.AreEqual(iso.Inventory.Product, viewmodel.Product);
             Assert.IsNotNull(viewmodel.Inventory);
             Assert.IsNotNull(viewmodel.InventoryList);
-            Assert.IsTrue(viewmodel.Inventory.ID == obIOStock.Inventory.ID);
+            Assert.IsTrue(viewmodel.Inventory.ID == iso.Inventory.ID);
             Assert.IsTrue(viewmodel.InventoryList.Any(x => x.ID == viewmodel.Inventory.ID));
             Assert.IsTrue(viewmodel.InventoryList.Contains(viewmodel.Inventory)); //여기서 문제남
         }

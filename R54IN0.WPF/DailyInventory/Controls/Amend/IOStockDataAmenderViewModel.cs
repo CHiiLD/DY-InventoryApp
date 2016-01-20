@@ -41,6 +41,9 @@ namespace R54IN0.WPF
         private bool _isEnabledDatePicker;
         private string _accountTypeText;
 
+        public const string TITLE_TEXT_ADD = "새로운 입출고 기록 추가하기";
+        public const string TITLE_TEXT_MODIFY = "입출고 기록 수정하기";
+
         /// <summary>
         /// TEST용 생성자
         /// </summary> 
@@ -56,6 +59,8 @@ namespace R54IN0.WPF
             IsEnabledOutGoingRadioButton = true;
             IsEnabledInComingRadioButton = true;
             IsEnabledDatePicker = true;
+            TitleText = TITLE_TEXT_ADD;
+            LoadLastRecordVisibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -75,6 +80,8 @@ namespace R54IN0.WPF
             IsEnabledOutGoingRadioButton = false;
             IsEnabledInComingRadioButton = false;
             IsEnabledDatePicker = false;
+            TitleText = TITLE_TEXT_MODIFY;
+            LoadLastRecordVisibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -113,7 +120,7 @@ namespace R54IN0.WPF
 
             Product = oid.Search(iosFmt.InventoryID).Product;
             Inventory = InventoryList.Where(x => x.ID == iosFmt.InventoryID).SingleOrDefault();
-            InventoryQuantity = Inventory.Quantity;
+            CalcInventoryQuantityProperty(Quantity);
         }
 
         /// <summary>
@@ -172,7 +179,7 @@ namespace R54IN0.WPF
             }
         }
 
-        private void UpdateQuantityProperties(int value)
+        private void CalcInventoryQuantityProperty(int iosQty)
         {
             switch (_mode)
             {
@@ -180,18 +187,18 @@ namespace R54IN0.WPF
                     switch (StockType)
                     {
                         case IOStockType.INCOMING:
-                            InventoryQuantity = (Inventory == null) ? value : Inventory.Quantity + value; break;
+                            InventoryQuantity = (Inventory == null) ? iosQty : Inventory.Quantity + iosQty; break;
                         case IOStockType.OUTGOING:
-                            InventoryQuantity = (Inventory == null) ? -value : Inventory.Quantity - value; break;
+                            InventoryQuantity = (Inventory == null) ? -iosQty : Inventory.Quantity - iosQty; break;
                     }
                     break;
                 case Mode.MODIFY:
                     switch (StockType)
                     {
                         case IOStockType.INCOMING:
-                            InventoryQuantity = _originSource.Inventory.Quantity + value - _originSource.Quantity; break;
+                            InventoryQuantity = _originSource.Inventory.Quantity + iosQty - _originSource.Quantity; break;
                         case IOStockType.OUTGOING:
-                            InventoryQuantity = _originSource.Inventory.Quantity + _originSource.Quantity - value; break;
+                            InventoryQuantity = _originSource.Inventory.Quantity + _originSource.Quantity - iosQty; break;
                     }
                     break;
             }

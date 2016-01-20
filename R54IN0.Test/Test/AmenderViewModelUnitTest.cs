@@ -60,7 +60,7 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task SyncProjectListViewModel()
+        public async Task CreateNewProjectThenAddedProjectListViewModelItems()
         {
             new Dummy().Create();
             IOStockStatusViewModel iosViewModel = new IOStockStatusViewModel();
@@ -176,6 +176,42 @@ namespace R54IN0.Test
 
             Assert.AreEqual(client, record.Supplier.Name);
             Assert.IsNotNull(ObservableFieldDirector.GetInstance().Search<Supplier>(record.Supplier.ID));
+        }
+
+        [TestMethod]
+        public async Task RecordNewInventoryThenAddedInventoryDirector()
+        {
+            new Dummy().Create();
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
+            viewmodel.StockType = IOStockType.OUTGOING;
+            viewmodel.Product = ObservableFieldDirector.GetInstance().Copy<Product>().Random();
+            viewmodel.Inventory = null;
+            var text = viewmodel.SpecificationText = "new inventory";
+
+            var record = await viewmodel.RecordAsync();
+
+            Assert.AreEqual(text, record.Inventory.Specification);
+            Assert.IsNotNull(record.Inventory.ID);
+            Assert.IsNotNull(ObservableInventoryDirector.GetInstance().Search(record.Inventory.ID));
+        }
+
+        [TestMethod]
+        public async Task AddedNewProductAndInventory()
+        {
+            new Dummy().Create();
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
+            viewmodel.StockType = IOStockType.OUTGOING;
+            string productText = viewmodel.ProductText = "some product";
+            string specText = viewmodel.SpecificationText = "some spec";
+
+            var record = await viewmodel.RecordAsync();
+
+            Assert.IsNotNull(record.Inventory);
+            Assert.IsNotNull(record.Inventory.Product);
+            Assert.AreEqual(productText, record.Inventory.Product.Name);
+            Assert.AreEqual(specText, record.Inventory.Specification);
+            Assert.IsNotNull(ObservableFieldDirector.GetInstance().Search<Product>(record.Inventory.Product.ID));
+            Assert.IsNotNull(ObservableInventoryDirector.GetInstance().Search(record.Inventory.ID));
         }
     }
 }

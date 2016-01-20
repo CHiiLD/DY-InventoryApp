@@ -30,10 +30,30 @@ namespace R54IN0
             _fmt = new InventoryFormat();
         }
 
-        public ObservableInventory(InventoryFormat inventoryFormat)
+        public ObservableInventory(Observable<Product> product, string specification, int quantity, string memo,
+            Observable<Maker> maker = null, Observable<Measure> measure = null) : this()
         {
-            _fmt = inventoryFormat;
-            InitializeProperties(inventoryFormat);
+            this.product = product;
+            _fmt.ProductID = product.ID;
+            _fmt.Specification = specification;
+            _fmt.Quantity = quantity;
+            _fmt.Memo = memo;
+            if (maker != null)
+            {
+                _fmt.MakerID = maker.ID;
+                this.maker = maker;
+            }
+            if (measure != null)
+            {
+                _fmt.MeasureID = measure.ID;
+                this.measure = measure;
+            }
+        }
+
+        public ObservableInventory(InventoryFormat fmt)
+        {
+            _fmt = fmt;
+            InitializeProperties(fmt);
         }
         public virtual InventoryFormat Format
         {
@@ -174,14 +194,9 @@ namespace R54IN0
                 propertyChanged(this, new PropertyChangedEventArgs(name));
 
             if (ID == null)
-            {
                 await DbAdapter.GetInstance().InsertAsync(Format);
-                ObservableInventoryDirector.GetInstance().Add(this);
-            }
             else
-            {
                 await DbAdapter.GetInstance().UpdateAsync(Format, name);
-            }
         }
 
         public async Task SyncDataFromServer()

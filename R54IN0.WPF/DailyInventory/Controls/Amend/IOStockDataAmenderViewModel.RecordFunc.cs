@@ -21,17 +21,15 @@ namespace R54IN0.WPF
             {
                 case Mode.ADD:
                     CreateIOStockNewProperies();
-                    ApplyModifiedInventoryProperties();
+                    await ApplyModifiedInventoryProperties();
                     await DbAdapter.GetInstance().InsertAsync(Format);
-                    await Inventory.SyncDataFromServer();
                     result = new ObservableIOStock(Format);
                     CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(result);
                     break;
                 case Mode.MODIFY:
                     ApplyModifiedIOStockProperties();
-                    ApplyModifiedInventoryProperties();
+                    await ApplyModifiedInventoryProperties();
                     await DbAdapter.GetInstance().UpdateAsync(Format);
-                    await Inventory.SyncDataFromServer();
                     _originSource.Format = Format;
                     result = _originSource;
                     break;
@@ -45,30 +43,50 @@ namespace R54IN0.WPF
         /// </summary>
         private void CreateIOStockNewProperies()
         {
+            var ofd = ObservableFieldDirector.GetInstance();
             switch (StockType)
             {
                 case IOStockType.INCOMING:
                     if (Client == null && !string.IsNullOrEmpty(ClientText))
-                        Supplier = new Observable<Supplier>() { Name = ClientText };
+                    {
+                        Supplier = new Observable<Supplier>(ClientText);
+                        ofd.Add<Supplier>(Supplier);
+                    }
                     if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
-                        Warehouse = new Observable<Warehouse>() { Name = WarehouseText };
+                    {
+                        Warehouse = new Observable<Warehouse>(WarehouseText);
+                        ofd.Add<Warehouse>(Warehouse);
+                    }
                     break;
                 case IOStockType.OUTGOING:
                     if (Client == null && !string.IsNullOrEmpty(ClientText))
-                        Customer = new Observable<Customer>() { Name = ClientText };
+                    {
+                        Customer = new Observable<Customer>(ClientText);
+                        ofd.Add<Customer>(Customer);
+                    }
                     if (Project == null && !string.IsNullOrEmpty(ProjectText))
                     {
-                        Project = new Observable<Project>() { Name = ProjectText };
+                        Project = new Observable<Project>(ProjectText);
+                        ofd.Add<Project>(Project);
                         CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(Project);
                     }
                     break;
             }
             if (Employee == null && !string.IsNullOrEmpty(EmployeeText))
-                Employee = new Observable<Employee>() { Name = EmployeeText };
+            {
+                Employee = new Observable<Employee>(EmployeeText);
+                ofd.Add<Employee>(Employee);
+            }
             if (Maker == null && !string.IsNullOrEmpty(MakerText))
-                Maker = new Observable<Maker>() { Name = MakerText };
+            {
+                Maker = new Observable<Maker>(MakerText);
+                ofd.Add<Maker>(Maker);
+            }
             if (Measure == null && !string.IsNullOrEmpty(MeasureText))
-                Measure = new Observable<Measure>() { Name = MeasureText };
+            {
+                Measure = new Observable<Measure>(MeasureText);
+                ofd.Add<Measure>(Measure);
+            }
         }
 
         /// <summary>
@@ -124,31 +142,28 @@ namespace R54IN0.WPF
         /// <summary>
         /// 수정 또는 새로운 재고 데이터를 생성하여 데이터베이스에 이를 저장한다.
         /// </summary>
-        private void ApplyModifiedInventoryProperties()
+        private async Task ApplyModifiedInventoryProperties()
         {
             ObservableInventory inventory = null;
             if (Inventory == null)
             {
-                Observable<Product> product = Product;
-                if (product == null)
+                if (Product == null)
                 {
-                    product = new Observable<Product>() { Name = ProductText };
+                    Observable<Product> product = new Observable<Product>(ProductText);
+                    ObservableFieldDirector.GetInstance().Add<Product>(product);
                     CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(product);
+                    Product = product;
                 }
-                inventory = new ObservableInventory()
-                {
-                    Specification = SpecificationText,
-                    Memo = SpecificationMemo,
-                    Maker = Maker,
-                    Measure = Measure,
-                    Product = product,
-                };
+                inventory = new ObservableInventory(Product, SpecificationText, InventoryQuantity, SpecificationMemo, Maker, Measure);
+                await DbAdapter.GetInstance().InsertAsync(inventory.Format);
+                ObservableInventoryDirector.GetInstance().Add(inventory);
                 CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(inventory);
             }
             else
             {
                 inventory = ObservableInventoryDirector.GetInstance().Search(Inventory.ID);
                 inventory.Format = Inventory.Format;
+                inventory.Quantity = InventoryQuantity;
             }
             Inventory = inventory;
         }

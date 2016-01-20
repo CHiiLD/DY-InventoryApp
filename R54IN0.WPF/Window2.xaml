@@ -8,23 +8,44 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Title="Window2" Height="300" Width="300">
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-
-        <Grid.Resources>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
                     <ResourceDictionary Source="pack://application:,,,/MahApps.Metro.Resources;component/Icons.xaml" />
+                    <ResourceDictionary Source="/DailyInventory/Controls/MetroButtonStyles.xaml" />
                 </ResourceDictionary.MergedDictionaries>
-                </ResourceDictionary>
-            </Grid.Resources>
-        <Button Width="36" Height="36" Style="{DynamicResource MetroCircleButtonStyle}" BorderThickness="1" >
-            <Rectangle Width="18" Height="18"
+            </ResourceDictionary>
+        </StackPanel.Resources>
+
+        <Button Width="50" Height="50" Style="{DynamicResource MetroRectButtonStyle}">
+            <Rectangle Width="20"
+                               Height="20"
                                Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                 <Rectangle.OpacityMask>
-                    <VisualBrush Stretch="Fill"
-                                         Visual="{DynamicResource appbar_3d_x}" />
+                    <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_city}" />
                 </Rectangle.OpacityMask>
             </Rectangle>
         </Button>
-    </Grid>
+
+        <Button Width="50" Height="50">
+            <Rectangle Width="20"
+                               Height="20"
+                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_city}" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+        <!--<Path x:Name="Blackout"
+                              Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z"
+                              HorizontalAlignment="Stretch"
+                              Margin="3"
+                              Opacity="0"
+                              RenderTransformOrigin="0.5,0.5"
+                              Stretch="Fill"
+                              VerticalAlignment="Stretch"
+                              Fill="{DynamicResource AccentColorBrush3}" Stroke="#FFC52B2B" />-->
+    </StackPanel>
 </Window>

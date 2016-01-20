@@ -9,7 +9,7 @@ namespace R54IN0.WPF
 {
     public partial class IOStockDataAmenderViewModel
     {
-        public const string SUPPLIER = "입고처";
+        public const string SUPPLIER = "구입처";
         public const string CUSTOMER = "출고처";
         public const string PROJECT_PREPIX = "DY";
 
@@ -60,7 +60,7 @@ namespace R54IN0.WPF
                         }
                         break;
                 }
-                UpdateQuantityProperties(Quantity);
+                CalcInventoryQuantityProperty(Quantity);
             }
         }
 
@@ -73,7 +73,7 @@ namespace R54IN0.WPF
             set
             {
                 base.Quantity = value;
-                UpdateQuantityProperties(value);
+                CalcInventoryQuantityProperty(value);
             }
         }
 
@@ -169,8 +169,8 @@ namespace R54IN0.WPF
                 if (_product != null)
                 {
                     ProductText = _product.Name;
-                    var searchList = ObservableInventoryDirector.GetInstance().SearchAsProductID(_product.ID);
-                    InventoryList = searchList.Select(x => new NonSaveObservableInventory(new InventoryFormat(x.Format))).ToList();
+                    var inventoryList = ObservableInventoryDirector.GetInstance().SearchAsProductID(_product.ID);
+                    InventoryList = inventoryList.Select(x => new NonSaveObservableInventory(new InventoryFormat(x.Format))).ToList();
                     if (InventoryList.Count() == 1)
                         Inventory = InventoryList.Single();
                 }
@@ -203,7 +203,7 @@ namespace R54IN0.WPF
                 if (LoadLastRecordCommand != null)
                     LoadLastRecordCommand.RaiseCanExecuteChanged();
 
-                UpdateQuantityProperties(Quantity);
+                CalcInventoryQuantityProperty(Quantity);
 
                 NotifyPropertyChanged("Maker");
                 NotifyPropertyChanged("Measure");

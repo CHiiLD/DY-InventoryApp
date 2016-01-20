@@ -608,28 +608,22 @@ namespace R54IN0.WPF
                     UpdateDataGridItems();
                 }
             }
-            else if (item is Observable<Project>)
-            {
-                var project = item as Observable<Project>;
-                if (!ProjectListBoxViewModel.Items.Contains(project))
-                    ProjectListBoxViewModel.Items.Add(project);
-            }
         }
 
         public void UpdateDelItem(object item)
         {
             IEnumerable<IOStockDataGridItem> items = null;
-            if (item is IObservableInventoryProperties)
-            {
-                IObservableInventoryProperties obInven = item as IObservableInventoryProperties;
-                if (BackupSource != null)
-                    items = BackupSource.Where(x => x.Inventory.ID == obInven.ID);
-            }
-            else if (item is Observable<Product>)
+            if (item is Observable<Product>)
             {
                 Observable<Product> product = item as Observable<Product>;
                 if (BackupSource != null)
                     items = BackupSource.Where(x => x.Inventory.Product.ID == product.ID);
+            }
+            else if (item is IObservableInventoryProperties)
+            {
+                IObservableInventoryProperties obInven = item as IObservableInventoryProperties;
+                if (BackupSource != null)
+                    items = BackupSource.Where(x => x.Inventory.ID == obInven.ID);
             }
             else if (item is IObservableIOStockProperties)
             {

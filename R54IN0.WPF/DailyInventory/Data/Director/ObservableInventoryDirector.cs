@@ -37,16 +37,12 @@ namespace R54IN0
 
         public IEnumerable<ObservableInventory> SearchAsProductID(string id)
         {
-            foreach(var item in _idKey)
-            {
-                if (item.Value.Product.ID == id)
-                    yield return item.Value;
-            }
+            return _idKey.Values.Where(x => x.Product.ID == id).ToList();
         }
 
         public List<ObservableInventory> Copy()
-        { 
-            return new List<ObservableInventory>(_idKey.Values);
+        {
+            return _idKey.Values.ToList();
         }
 
         public static void Destory()

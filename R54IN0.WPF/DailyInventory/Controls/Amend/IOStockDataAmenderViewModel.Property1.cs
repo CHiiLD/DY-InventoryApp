@@ -79,6 +79,7 @@ namespace R54IN0.WPF
 
         /// <summary>
         /// 재고 수량
+        /// Inventory.Quantity는 입출고 수량에 의한 변동된 재고수량을 계산하기 위해 가만히 둔다.
         /// </summary>
         public int InventoryQuantity
         {
@@ -106,6 +107,16 @@ namespace R54IN0.WPF
             }
         }
 
+        public string TitleText
+        {
+            get; set;
+        }
+
+        public Visibility LoadLastRecordVisibility
+        {
+            get;
+            set;
+        }
 
         #region IsEnabled Property
 

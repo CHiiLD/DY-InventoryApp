@@ -28,6 +28,11 @@ namespace R54IN0
             _t = new FieldT();
         }
 
+        public Observable(string name) : this()
+        {
+            Name = name;
+        }
+
         public Observable(FieldT field)
         {
             _t = field;
@@ -102,14 +107,9 @@ namespace R54IN0
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
 
             if (ID == null)
-            {
                 await DbAdapter.GetInstance().InsertAsync(Field);
-                ObservableFieldDirector.GetInstance().Add<FieldT>(this);
-            }
             else
-            {
                 await DbAdapter.GetInstance().UpdateAsync(Field, name);
-            }
         }
 
         public async Task SyncDataFromServer()
