@@ -3,6 +3,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -72,17 +73,19 @@ namespace R54IN0.WPF
         /// <summary>
         /// 새로운 제품 노드를 추가한다.
         /// </summary>
-        private void ExecuteNewProductNodeAddCommand()
+        private async void ExecuteNewProductNodeAddCommand()
         {
-            Observable<Product> newProduct = new Observable<Product>() { Name = "새로운 제품" };
+            Observable<Product> newProduct = new Observable<Product>("새로운 제품");
+            ObservableFieldDirector.GetInstance().AddObservableField(newProduct);
+            CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(newProduct);
+            await DbAdapter.GetInstance().InsertAsync(newProduct.Field);
+
             IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FORDER);
             TreeViewNode newTreeViewNode = new TreeViewNode(NodeType.PRODUCT, newProduct.ID);
             if (folderNodes.Count() != 0)
                 _director.Add(folderNodes.First(), newTreeViewNode);
             else
                 _director.Add(newTreeViewNode);
-
-            CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(newProduct);
         }
 
         /// <summary>

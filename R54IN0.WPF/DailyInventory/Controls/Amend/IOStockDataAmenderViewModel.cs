@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Windows.Controls;
 
 namespace R54IN0.WPF
 {
-    public partial class IOStockDataAmenderViewModel : ObservableIOStock
+    public partial class IOStockDataAmenderViewModel : ObservableIOStock, ICollectionViewModelObserver
     {
         private IOStockStatusViewModel _ioStockStatusViewModel;
         private IObservableIOStockProperties _originSource;
@@ -18,7 +19,7 @@ namespace R54IN0.WPF
         private bool _isOpenFlyout;
         private bool _isReadOnlyProductTextBox;
         private IEnumerable<IObservableInventoryProperties> _inventoryList;
-        private IEnumerable<IObservableField> _clientList;
+
         private Observable<Product> _product;
         private string _specificationMemo;
         private Observable<Measure> _measure;
@@ -41,8 +42,18 @@ namespace R54IN0.WPF
         private bool _isEnabledDatePicker;
         private string _accountTypeText;
 
+        private ObservableCollection<IObservableField> _clientList;
+        private ObservableCollection<Observable<Maker>> _makerList;
+        private ObservableCollection<Observable<Project>> _projectList;
+        private ObservableCollection<Observable<Employee>> _employeeList;
+        private ObservableCollection<Observable<Warehouse>> _warehouseList;
+        private ObservableCollection<Observable<Measure>> _measureList;
+
         public const string TITLE_TEXT_ADD = "새로운 입출고 기록 추가하기";
         public const string TITLE_TEXT_MODIFY = "입출고 기록 수정하기";
+        public const string SUPPLIER = "구입처";
+        public const string CUSTOMER = "출고처";
+        public const string PROJECT_PREPIX = "DY";
 
         /// <summary>
         /// TEST용 생성자
@@ -61,6 +72,8 @@ namespace R54IN0.WPF
             IsEnabledDatePicker = true;
             TitleText = TITLE_TEXT_ADD;
             LoadLastRecordVisibility = Visibility.Visible;
+
+            CollectionViewModelObserverSubject.GetInstance().Attach(this);
         }
 
         /// <summary>
@@ -82,6 +95,8 @@ namespace R54IN0.WPF
             IsEnabledDatePicker = false;
             TitleText = TITLE_TEXT_MODIFY;
             LoadLastRecordVisibility = Visibility.Hidden;
+
+            CollectionViewModelObserverSubject.GetInstance().Attach(this);
         }
 
         /// <summary>
@@ -102,6 +117,11 @@ namespace R54IN0.WPF
             this(ioStock)
         {
             _ioStockStatusViewModel = ioStockStatusViewModel;
+        }
+
+        ~IOStockDataAmenderViewModel()
+        {
+            CollectionViewModelObserverSubject.GetInstance().Detach(this);
         }
 
         /// <summary>
@@ -138,6 +158,13 @@ namespace R54IN0.WPF
             ProjectComboBoxGotFocusEventCommand = new RelayCommand<RoutedEventArgs>(ExecuteProjectComboBoxGotFocusEventCommand);
             LoadLastRecordCommand = new RelayCommand(ExecuteLoadLastRecordCommand, CanLoadLastRecord);
             ComboBoxItemDeleteCommand = new RelayCommand<object>(ExecuteComboBoxItemDeleteCommand);
+
+            var ofd = ObservableFieldDirector.GetInstance();
+            _makerList = new ObservableCollection<Observable<Maker>>(ofd.CopyObservableFields<Maker>());
+            _measureList = new ObservableCollection<Observable<Measure>>(ofd.CopyObservableFields<Measure>());
+            _projectList = new ObservableCollection<Observable<Project>>(ofd.CopyObservableFields<Project>());
+            _employeeList = new ObservableCollection<Observable<Employee>>(ofd.CopyObservableFields<Employee>());
+            _warehouseList = new ObservableCollection<Observable<Warehouse>>(ofd.CopyObservableFields<Warehouse>());
         }
 
         private async void ExecuteComboBoxItemDeleteCommand(object obj)
@@ -145,55 +172,36 @@ namespace R54IN0.WPF
             IObservableField observableField = obj as IObservableField;
             var field = observableField.Field;
             Type type = field.GetType();
-
+            ObservableFieldDirector.GetInstance().RemoveObservableField(observableField);
             CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(observableField);
-            if (type == typeof(Customer))
+            if (type == typeof(Maker))
             {
-                await DbAdapter.GetInstance().DeleteAsync(field as Customer);
-                ObservableFieldDirector.GetInstance().RemoveObservableField<Customer>(observableField);
-            }
-            else if (type == typeof(Supplier))
-            {
-                await DbAdapter.GetInstance().DeleteAsync(field as Supplier);
-                ObservableFieldDirector.GetInstance().RemoveObservableField<Supplier>(observableField);
-            }
-            else if (type == typeof(Maker))
-            {
-                await DbAdapter.GetInstance().DeleteAsync<Maker>(field.ID);
-                ObservableFieldDirector.GetInstance().RemoveObservableField<Maker>(observableField);
-                ObservableInventoryDirector.GetInstance().CopyObservableInventories().ForEach(x => 
+                ObservableInventoryDirector.GetInstance().CopyObservableInventories().ForEach(x =>
                 {
-                    if (x.Maker.ID == field.ID)
+                    if (x.Maker != null && x.Maker.ID == field.ID)
                         x.Maker = null;
                 });
+                await DbAdapter.GetInstance().DeleteAsync(field as Maker);
             }
             else if (type == typeof(Measure))
             {
-                await DbAdapter.GetInstance().DeleteAsync(field as Measure);
-                ObservableFieldDirector.GetInstance().RemoveObservableField<Measure>(observableField);
                 ObservableInventoryDirector.GetInstance().CopyObservableInventories().ForEach(x =>
                 {
-                    if (x.Measure.ID == field.ID)
+                    if (x.Measure != null && x.Measure.ID == field.ID)
                         x.Measure = null;
                 });
+                await DbAdapter.GetInstance().DeleteAsync(field as Measure);
             }
+            else if (type == typeof(Customer))
+                await DbAdapter.GetInstance().DeleteAsync(field as Customer);
+            else if (type == typeof(Supplier))
+                await DbAdapter.GetInstance().DeleteAsync(field as Supplier);
             else if (type == typeof(Project))
-            {
                 await DbAdapter.GetInstance().DeleteAsync(field as Project);
-                ObservableFieldDirector.GetInstance().RemoveObservableField<Project>(observableField);
-            }
             else if (type == typeof(Warehouse))
-            {
                 await DbAdapter.GetInstance().DeleteAsync(field as Warehouse);
-                ObservableFieldDirector.GetInstance().RemoveObservableField<Warehouse>(observableField);
-            }
             else if (type == typeof(Employee))
-            {
                 await DbAdapter.GetInstance().DeleteAsync(field as Employee);
-                ObservableFieldDirector.GetInstance().RemoveObservableField<Employee>(observableField);
-            }
-            if(_ioStockStatusViewModel != null && _ioStockStatusViewModel.BackupSource != null)
-                _ioStockStatusViewModel.BackupSource.ForEach(async x => await x.SyncDataFromServer());
         }
 
         private async void ExecuteLoadLastRecordCommand()
@@ -225,7 +233,7 @@ namespace R54IN0.WPF
 
         private void ExecuteProjectComboBoxGotFocusEventCommand(RoutedEventArgs e)
         {
-            if(e.OriginalSource is TextBox)
+            if (e.OriginalSource is TextBox)
             {
                 TextBox tb = e.OriginalSource as TextBox;
                 if (string.IsNullOrEmpty(tb.Text))
@@ -345,6 +353,42 @@ namespace R54IN0.WPF
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));
             if (propertyName == "Quantity" || propertyName == "UnitPrice")
                 NotifyPropertyChanged("Amount");
+        }
+
+        public void UpdateNewItem(object item)
+        {
+            if (item is Observable<Measure>)
+                MeasureList.Add(item as Observable<Measure>);
+            else if (item is Observable<Maker>)
+                MakerList.Add(item as Observable<Maker>);
+            else if (item is Observable<Customer>)
+                ClientList.Add(item as Observable<Customer>);
+            else if (item is Observable<Supplier>)
+                ClientList.Add(item as Observable<Supplier>);
+            else if (item is Observable<Project>)
+                ProjectList.Add(item as Observable<Project>);
+            else if (item is Observable<Warehouse>)
+                WarehouseList.Add(item as Observable<Warehouse>);
+            else if (item is Observable<Employee>)
+                EmployeeList.Add(item as Observable<Employee>);
+        }
+
+        public void UpdateDelItem(object item)
+        {
+            if (item is Observable<Measure>)
+                MeasureList.Remove(item as Observable<Measure>);
+            else if (item is Observable<Maker>)
+                MakerList.Remove(item as Observable<Maker>);
+            else if (item is Observable<Customer>)
+                ClientList.Remove(item as Observable<Customer>);
+            else if (item is Observable<Supplier>)
+                ClientList.Remove(item as Observable<Supplier>);
+            else if (item is Observable<Project>)
+                ProjectList.Remove(item as Observable<Project>);
+            else if (item is Observable<Warehouse>)
+                WarehouseList.Remove(item as Observable<Warehouse>);
+            else if (item is Observable<Employee>)
+                EmployeeList.Remove(item as Observable<Employee>);
         }
     }
 }

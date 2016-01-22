@@ -612,25 +612,27 @@ namespace R54IN0.WPF
 
         public void UpdateDelItem(object item)
         {
+            if (BackupSource == null)
+                return;
+
             IEnumerable<IOStockDataGridItem> items = null;
+
             if (item is Observable<Product>)
-            {
-                Observable<Product> product = item as Observable<Product>;
-                if (BackupSource != null)
-                    items = BackupSource.Where(x => x.Inventory.Product.ID == product.ID);
-            }
+                items = BackupSource.Where(x => x.Inventory.Product.ID == ((Observable<Product>)item).ID);
             else if (item is IObservableInventoryProperties)
-            {
-                IObservableInventoryProperties obInven = item as IObservableInventoryProperties;
-                if (BackupSource != null)
-                    items = BackupSource.Where(x => x.Inventory.ID == obInven.ID);
-            }
+                items = BackupSource.Where(x => x.Inventory.ID == ((IObservableInventoryProperties)item).ID);
             else if (item is IObservableIOStockProperties)
-            {
-                IObservableIOStockProperties iostock = item as IObservableIOStockProperties;
-                if (BackupSource != null)
-                    items = BackupSource.Where(x => x.ID == iostock.ID);
-            }
+                items = BackupSource.Where(x => x.ID == ((IObservableIOStockProperties)item).ID);
+            else if (item is Observable<Customer>)
+                BackupSource.ForEach(x => { if (x.Customer == item) x.Customer = null; });
+            else if (item is Observable<Supplier>)
+                BackupSource.ForEach(x => { if (x.Supplier == item) x.Supplier = null; });
+            else if (item is Observable<Project>)
+                BackupSource.ForEach(x => { if (x.Project == item) x.Project = null; });
+            else if (item is Observable<Warehouse>)
+                BackupSource.ForEach(x => { if (x.Warehouse == item) x.Warehouse = null; });
+            else if (item is Observable<Employee>)
+                BackupSource.ForEach(x => { if (x.Employee == item) x.Employee = null; });
 
             if (items != null)
             {

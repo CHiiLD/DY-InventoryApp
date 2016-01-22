@@ -69,18 +69,30 @@ namespace R54IN0
 
         public void AddObservableField<T>(IObservableField observableField) where T : class, IField, new()
         {
-            if (observableField is IObservableField)
-            {
-                Type type = typeof(T);
-                IObservableField obserableField = observableField as IObservableField;
-                if (!_dictionary[type].ContainsKey(obserableField.ID))
-                    _dictionary[type].Add(obserableField.ID, obserableField);
-            }
+            Type type = typeof(T);
+            IObservableField obserableField = observableField as IObservableField;
+            if (!_dictionary[type].ContainsKey(obserableField.ID))
+                _dictionary[type].Add(obserableField.ID, obserableField);
+        }
+
+        public void AddObservableField(IObservableField observableField)
+        {
+            Type type = observableField.Field.GetType();
+            IObservableField obserableField = observableField as IObservableField;
+            if (!_dictionary[type].ContainsKey(obserableField.ID))
+                _dictionary[type].Add(obserableField.ID, obserableField);
         }
 
         public void RemoveObservableField<T>(IObservableField observableField) where T : class, IField, new()
         {
             Type type = typeof(T);
+            if (_dictionary[type].ContainsKey(observableField.ID))
+                _dictionary[type].Remove(observableField.ID);
+        }
+
+        public void RemoveObservableField(IObservableField observableField)
+        {
+            Type type = observableField.Field.GetType();
             if (_dictionary[type].ContainsKey(observableField.ID))
                 _dictionary[type].Remove(observableField.ID);
         }

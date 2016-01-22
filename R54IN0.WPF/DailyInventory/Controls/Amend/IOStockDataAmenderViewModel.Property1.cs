@@ -9,7 +9,6 @@ namespace R54IN0.WPF
 {
     public partial class IOStockDataAmenderViewModel
     {
-       
         /// <summary>
         /// 제품 탐색기 뷰모델
         /// </summary>

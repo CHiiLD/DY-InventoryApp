@@ -249,37 +249,7 @@ namespace R54IN0.Test
         /// Director 삭제 확인
         /// </summary>
         [TestMethod]
-        public void DeleteFieldThenSyncComboBoxItems()
-        {
-            new Dummy().Create();
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
-            var maker = viewmodel.MakerList.Random();
-            viewmodel.ComboBoxItemDeleteCommand.Execute(maker);
-            var measure = viewmodel.MeasureList.Random();
-            viewmodel.ComboBoxItemDeleteCommand.Execute(measure);
-            var client = viewmodel.ClientList.Random();
-            viewmodel.ComboBoxItemDeleteCommand.Execute(client);
-            var employee = viewmodel.EmployeeList.Random();
-            viewmodel.ComboBoxItemDeleteCommand.Execute(employee);
-            var warehouse = viewmodel.WarehouseList.Random();
-            viewmodel.ComboBoxItemDeleteCommand.Execute(warehouse);
-            var project = viewmodel.ProjectList.Random();
-            viewmodel.ComboBoxItemDeleteCommand.Execute(project);
-
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Maker>(maker.ID));
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Measure>(measure.ID));
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Supplier>(client.ID));
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Employee>(employee.ID));
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Warehouse>(warehouse.ID));
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Project>(project.ID));
-        }
-
-        /// <summary>
-        /// 필드 삭제 체크
-        /// Director 삭제 확인
-        /// </summary>
-        [TestMethod]
-        public void DeleteFieldThenSyncDirector()
+        public void DeleteFieldThenSyncFieldDirector()
         {
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
@@ -336,6 +306,36 @@ namespace R54IN0.Test
 
         /// <summary>
         /// 필드 삭제 체크
+        /// Db 삭제 확인
+        /// </summary>
+        [TestMethod]
+        public void DeleteFieldThenSyncComboBoxItems()
+        {
+            new Dummy().Create();
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
+            var maker = viewmodel.MakerList.Random();
+            viewmodel.ComboBoxItemDeleteCommand.Execute(maker);
+            var measure = viewmodel.MeasureList.Random();
+            viewmodel.ComboBoxItemDeleteCommand.Execute(measure);
+            var client = viewmodel.ClientList.Random();
+            viewmodel.ComboBoxItemDeleteCommand.Execute(client);
+            var employee = viewmodel.EmployeeList.Random();
+            viewmodel.ComboBoxItemDeleteCommand.Execute(employee);
+            var warehouse = viewmodel.WarehouseList.Random();
+            viewmodel.ComboBoxItemDeleteCommand.Execute(warehouse);
+            var project = viewmodel.ProjectList.Random();
+            viewmodel.ComboBoxItemDeleteCommand.Execute(project);
+
+            Assert.IsTrue(viewmodel.MakerList.All(x => x != maker));
+            Assert.IsTrue(viewmodel.MeasureList.All(x => x != measure));
+            Assert.IsTrue(viewmodel.ClientList.All(x => x != client));
+            Assert.IsTrue(viewmodel.EmployeeList.All(x => x != employee));
+            Assert.IsTrue(viewmodel.WarehouseList.All(x => x != warehouse));
+            Assert.IsTrue(viewmodel.ProjectList.All(x => x != project));
+        }
+
+        /// <summary>
+        /// 필드 삭제 체크
         /// Inventory Format 체크
         /// </summary>
         [TestMethod]
@@ -351,8 +351,8 @@ namespace R54IN0.Test
             var inventories = ObservableInventoryDirector.GetInstance().CopyObservableInventories();
             foreach (var inventory in inventories)
             {
-                Assert.IsTrue(inventory.Maker.ID != maker.ID);
-                Assert.IsTrue(inventory.Measure.ID != measure.ID);
+                Assert.IsTrue(inventory.Maker == null || inventory.Maker.ID != maker.ID);
+                Assert.IsTrue(inventory.Measure == null || inventory.Measure.ID != measure.ID);
             }
         }
 
@@ -379,6 +379,7 @@ namespace R54IN0.Test
         /// 필드 삭제 체크
         /// Db 삭제 확인
         /// </summary>
+        [Ignore]
         [TestMethod]
         public async Task DeleteFieldThenSyncDbIOStockFormat()
         {
@@ -406,7 +407,7 @@ namespace R54IN0.Test
         /// Db 삭제 확인
         /// </summary>
         [TestMethod]
-        public void DeleteFieldThenSyncIOStockStatus()
+        public void DeleteFieldThenSyncIOStockStatusViewModel()
         {
             new Dummy().Create();
             IOStockStatusViewModel status = new IOStockStatusViewModel();
@@ -430,6 +431,22 @@ namespace R54IN0.Test
                 Assert.IsTrue(item.Warehouse == null || item.Warehouse.ID != warehouse.ID);
                 Assert.IsTrue(item.Project == null || item.Project.ID != project.ID);
             }
+        }
+
+        [TestMethod]
+        public void DeleteFieldThenSyncInventoryStatusViewModel()
+        {
+            new Dummy().Create();
+            InventoryStatusViewModel isvm = new InventoryStatusViewModel();
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
+            var maker = viewmodel.MakerList.Random();
+            viewmodel.ComboBoxItemDeleteCommand.Execute(maker);
+            var measure = viewmodel.MeasureList.Random();
+            viewmodel.ComboBoxItemDeleteCommand.Execute(measure);
+
+            var items = isvm.GetDataGridItems();
+            Assert.IsTrue(items.All(x => maker != x.Maker));
+            Assert.IsTrue(items.All(x => measure != x.Measure));
         }
 
         public async Task CheckDeletePerfectly<T>(T field) where T : class, IField, new()

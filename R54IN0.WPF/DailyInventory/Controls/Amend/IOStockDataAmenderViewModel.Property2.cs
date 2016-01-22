@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -9,9 +10,7 @@ namespace R54IN0.WPF
 {
     public partial class IOStockDataAmenderViewModel
     {
-        public const string SUPPLIER = "구입처";
-        public const string CUSTOMER = "출고처";
-        public const string PROJECT_PREPIX = "DY";
+        
 
         public override IOStockType StockType
         {
@@ -29,7 +28,7 @@ namespace R54IN0.WPF
                     case IOStockType.INCOMING:
                         Project = null;
                         ProjectText = null;
-                        ClientList = ofd.CopyObservableFields<Supplier>();
+                        ClientList = new ObservableCollection<IObservableField>(ofd.CopyObservableFields<Supplier>());
                         IsEditableSpecification = true;
                         IsReadOnlyProductTextBox = false;
                         IsEnabledWarehouseComboBox = true;
@@ -40,7 +39,7 @@ namespace R54IN0.WPF
                     case IOStockType.OUTGOING:
                         Warehouse = null;
                         WarehouseText = null;
-                        ClientList = ofd.CopyObservableFields<Customer>();
+                        ClientList = new ObservableCollection<IObservableField>(ofd.CopyObservableFields<Customer>());
                         IsEditableSpecification = false;
                         IsReadOnlyProductTextBox = true;
                         IsEnabledWarehouseComboBox = false;
@@ -92,25 +91,33 @@ namespace R54IN0.WPF
             }
         }
 
-        public IEnumerable<Observable<Maker>> MakerList
+        public ObservableCollection<Observable<Maker>> MakerList
         {
             get
             {
-                var ofd = ObservableFieldDirector.GetInstance();
-                return ofd.CopyObservableFields<Maker>();
+                return _makerList;
+            }
+            set
+            {
+                _makerList = value;
+                NotifyPropertyChanged("MakerList");
             }
         }
 
-        public IEnumerable<Observable<Measure>> MeasureList
+        public ObservableCollection<Observable<Measure>> MeasureList
         {
             get
             {
-                var ofd = ObservableFieldDirector.GetInstance();
-                return ofd.CopyObservableFields<Measure>();
+                return _measureList;
+            }
+            set
+            {
+                _measureList = value;
+                NotifyPropertyChanged("MeasureList");
             }
         }
 
-        public IEnumerable<IObservableField> ClientList
+        public ObservableCollection<IObservableField> ClientList
         {
             get
             {
@@ -123,30 +130,42 @@ namespace R54IN0.WPF
             }
         }
 
-        public IEnumerable<Observable<Warehouse>> WarehouseList
+        public ObservableCollection<Observable<Warehouse>> WarehouseList
         {
             get
             {
-                var ofd = ObservableFieldDirector.GetInstance();
-                return ofd.CopyObservableFields<Warehouse>();
+                return _warehouseList;
+            }
+            set
+            {
+                _warehouseList = value;
+                NotifyPropertyChanged("WarehouseList");
             }
         }
 
-        public IEnumerable<Observable<Employee>> EmployeeList
+        public ObservableCollection<Observable<Employee>> EmployeeList
         {
             get
             {
-                var ofd = ObservableFieldDirector.GetInstance();
-                return ofd.CopyObservableFields<Employee>();
+                return _employeeList;
+            }
+            set
+            {
+                _employeeList = value;
+                NotifyPropertyChanged("EmployeeList");
             }
         }
 
-        public IEnumerable<Observable<Project>> ProjectList
+        public ObservableCollection<Observable<Project>> ProjectList
         {
             get
             {
-                var ofd = ObservableFieldDirector.GetInstance();
-                return ofd.CopyObservableFields<Project>();
+                return _projectList;
+            }
+            set
+            {
+                _projectList = value;
+                NotifyPropertyChanged("ProjectList");
             }
         }
 
