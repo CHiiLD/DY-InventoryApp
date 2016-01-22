@@ -183,9 +183,9 @@ namespace R54IN0
         protected void InitializeProperties(InventoryFormat fmt)
         {
             var ofd = ObservableFieldDirector.GetInstance();
-            product = ofd.Search<Product>(fmt.ProductID);
-            measure = ofd.Search<Measure>(fmt.MeasureID);
-            maker = ofd.Search<Maker>(fmt.MakerID);
+            product = ofd.SearchObservableField<Product>(fmt.ProductID);
+            measure = ofd.SearchObservableField<Measure>(fmt.MeasureID);
+            maker = ofd.SearchObservableField<Maker>(fmt.MakerID);
         }
 
         public virtual async void NotifyPropertyChanged(string name)

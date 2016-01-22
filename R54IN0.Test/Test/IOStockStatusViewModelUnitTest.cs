@@ -266,7 +266,7 @@ namespace R54IN0.Test
             string iosID = item.ID;
 
             viewmodel.DataGridViewModel.IOStockFormatDeletionCommand.Execute(null);
-            int inQty2 = ObservableInventoryDirector.GetInstance().Search(item.Inventory.ID).Quantity;
+            int inQty2 = ObservableInventoryDirector.GetInstance().SearchObservableInventory(item.Inventory.ID).Quantity;
 
             Assert.AreNotEqual(inQty, inQty2);
         }
@@ -331,7 +331,7 @@ namespace R54IN0.Test
             string iosID = item.ID;
 
             viewmodel.DataGridViewModel.ChekcedIOStockFormatsDeletionCommand.Execute(null);
-            int inQty2 = ObservableInventoryDirector.GetInstance().Search(item.Inventory.ID).Quantity;
+            int inQty2 = ObservableInventoryDirector.GetInstance().SearchObservableInventory(item.Inventory.ID).Quantity;
 
             Assert.AreNotEqual(inQty, inQty2);
         }
@@ -401,7 +401,7 @@ namespace R54IN0.Test
             new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             var oid = ObservableInventoryDirector.GetInstance();
-            var text = viewmodel.SearchViewModel.Text = oid.Copy().Select(x => x.Product).Distinct().Random().Name;
+            var text = viewmodel.SearchViewModel.Text = oid.CopyObservableInventories().Select(x => x.Product).Distinct().Random().Name;
 
             viewmodel.SearchViewModel.SearchCommand.Execute(null);
 
@@ -418,7 +418,7 @@ namespace R54IN0.Test
             new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             var oid = ObservableInventoryDirector.GetInstance();
-            var text = viewmodel.SearchViewModel.Text = oid.Copy().Random().Specification;
+            var text = viewmodel.SearchViewModel.Text = oid.CopyObservableInventories().Random().Specification;
 
             viewmodel.SearchViewModel.SearchCommand.Execute(null);
 
@@ -435,8 +435,8 @@ namespace R54IN0.Test
             new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             var oid = ObservableInventoryDirector.GetInstance();
-            var text1 = oid.Copy().Random().Specification;
-            var text2 = oid.Copy().Select(x => x.Product).Distinct().Random().Name;
+            var text1 = oid.CopyObservableInventories().Random().Specification;
+            var text2 = oid.CopyObservableInventories().Select(x => x.Product).Distinct().Random().Name;
 
             viewmodel.SearchViewModel.Text = text1 + " " + text2;
             viewmodel.SearchViewModel.SearchCommand.Execute(null);

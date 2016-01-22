@@ -200,7 +200,7 @@ namespace R54IN0.WPF
             if (!string.IsNullOrEmpty(id) && Type == NodeType.PRODUCT)
             {
                 var ofd = ObservableFieldDirector.GetInstance();
-                Observable<Product> product = ofd.Search<Product>(id);
+                Observable<Product> product = ofd.SearchObservableField<Product>(id);
                 return product;
             }
             return null;

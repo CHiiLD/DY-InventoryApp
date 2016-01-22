@@ -129,12 +129,12 @@ namespace R54IN0.WPF
             IEnumerable<TreeViewNode> productNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT);
             foreach (TreeViewNode node in new List<TreeViewNode>(productNodes)) //없는 Item은 삭제
             {
-                if (ofd.Search<Product>(node.ProductID) == null)
+                if (ofd.SearchObservableField<Product>(node.ProductID) == null)
                     Remove(node);
             }
 
             productNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT);
-            foreach (var product in ofd.Copy<Product>()) //Item 목록에는 존재하지만 Finder에는 없는 경우
+            foreach (var product in ofd.CopyObservableFields<Product>()) //Item 목록에는 존재하지만 Finder에는 없는 경우
             {
                 if (!productNodes.Any(x => x.ProductID == product.ID))
                     Add(new TreeViewNode(NodeType.PRODUCT, product.ID));

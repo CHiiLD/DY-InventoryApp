@@ -27,21 +27,21 @@
         <Setter Property="BorderThickness"
                 Value="1" />
         <Setter Property="Padding"
-                Value="1" />
+                Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
                         <Rectangle Fill="{TemplateBinding Background}"
-                                 Margin="4"
+                                 Margin="0"
                                  StrokeThickness="0" />
                         <Rectangle x:Name="ellipsebg"
                                  Fill="{DynamicResource BlackBrush}"
                                  Opacity="0"
-                                 Margin="4"
+                                 Margin="0"
                                  StrokeThickness="0" />
                         <Rectangle x:Name="ellipse"
-                                 Margin="4"
+                                 Margin="0"
                                  Stroke="{TemplateBinding BorderBrush}"
                                  StrokeThickness="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=BorderThickness.Left}" />
                         <ContentPresenter x:Name="content"

@@ -471,7 +471,7 @@ namespace R54IN0.WPF
                 List<IOStockFormat> iosFmtList = new List<IOStockFormat>();
                 foreach (var node in nodes)
                 {
-                    var searchResult = oid.SearchAsProductID(node.ProductID);
+                    var searchResult = oid.SearchObservableInventoryAsProductID(node.ProductID);
                     if (searchResult != null)
                         obInvenList.AddRange(searchResult);
                 }

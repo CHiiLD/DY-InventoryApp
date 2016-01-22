@@ -186,7 +186,7 @@ namespace R54IN0.WPF
                 if (result != MessageDialogResult.Affirmative)
                     return;
 
-                ObservableInventoryDirector.GetInstance().Remove(item);
+                ObservableInventoryDirector.GetInstance().RemoveObservableInventory(item);
                 CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(item);
                 await DbAdapter.GetInstance().DeleteAsync(item.Format);
                 SelectedItem = null;

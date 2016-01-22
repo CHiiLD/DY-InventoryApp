@@ -29,7 +29,7 @@ namespace R54IN0.WPF
                     case IOStockType.INCOMING:
                         Project = null;
                         ProjectText = null;
-                        ClientList = ofd.Copy<Supplier>();
+                        ClientList = ofd.CopyObservableFields<Supplier>();
                         IsEditableSpecification = true;
                         IsReadOnlyProductTextBox = false;
                         IsEnabledWarehouseComboBox = true;
@@ -40,7 +40,7 @@ namespace R54IN0.WPF
                     case IOStockType.OUTGOING:
                         Warehouse = null;
                         WarehouseText = null;
-                        ClientList = ofd.Copy<Customer>();
+                        ClientList = ofd.CopyObservableFields<Customer>();
                         IsEditableSpecification = false;
                         IsReadOnlyProductTextBox = true;
                         IsEnabledWarehouseComboBox = false;
@@ -97,7 +97,7 @@ namespace R54IN0.WPF
             get
             {
                 var ofd = ObservableFieldDirector.GetInstance();
-                return ofd.Copy<Maker>();
+                return ofd.CopyObservableFields<Maker>();
             }
         }
 
@@ -106,7 +106,7 @@ namespace R54IN0.WPF
             get
             {
                 var ofd = ObservableFieldDirector.GetInstance();
-                return ofd.Copy<Measure>();
+                return ofd.CopyObservableFields<Measure>();
             }
         }
 
@@ -128,7 +128,7 @@ namespace R54IN0.WPF
             get
             {
                 var ofd = ObservableFieldDirector.GetInstance();
-                return ofd.Copy<Warehouse>();
+                return ofd.CopyObservableFields<Warehouse>();
             }
         }
 
@@ -137,7 +137,7 @@ namespace R54IN0.WPF
             get
             {
                 var ofd = ObservableFieldDirector.GetInstance();
-                return ofd.Copy<Employee>();
+                return ofd.CopyObservableFields<Employee>();
             }
         }
 
@@ -146,7 +146,7 @@ namespace R54IN0.WPF
             get
             {
                 var ofd = ObservableFieldDirector.GetInstance();
-                return ofd.Copy<Project>();
+                return ofd.CopyObservableFields<Project>();
             }
         }
 
@@ -169,7 +169,7 @@ namespace R54IN0.WPF
                 if (_product != null)
                 {
                     ProductText = _product.Name;
-                    var inventoryList = ObservableInventoryDirector.GetInstance().SearchAsProductID(_product.ID);
+                    var inventoryList = ObservableInventoryDirector.GetInstance().SearchObservableInventoryAsProductID(_product.ID);
                     InventoryList = inventoryList.Select(x => new NonSaveObservableInventory(new InventoryFormat(x.Format))).ToList();
                     if (InventoryList.Count() == 1)
                         Inventory = InventoryList.Single();

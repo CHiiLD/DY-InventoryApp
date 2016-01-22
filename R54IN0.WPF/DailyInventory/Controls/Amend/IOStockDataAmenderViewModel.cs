@@ -112,13 +112,13 @@ namespace R54IN0.WPF
         {
             var ofd = ObservableFieldDirector.GetInstance();
             var oid = ObservableInventoryDirector.GetInstance();
-            customer = ofd.Search<Customer>(iosFmt.CustomerID);
-            supplier = ofd.Search<Supplier>(iosFmt.SupplierID);
-            project = ofd.Search<Project>(iosFmt.ProjectID);
-            employee = ofd.Search<Employee>(iosFmt.EmployeeID);
-            warehouse = ofd.Search<Warehouse>(iosFmt.WarehouseID);
+            customer = ofd.SearchObservableField<Customer>(iosFmt.CustomerID);
+            supplier = ofd.SearchObservableField<Supplier>(iosFmt.SupplierID);
+            project = ofd.SearchObservableField<Project>(iosFmt.ProjectID);
+            employee = ofd.SearchObservableField<Employee>(iosFmt.EmployeeID);
+            warehouse = ofd.SearchObservableField<Warehouse>(iosFmt.WarehouseID);
 
-            Product = oid.Search(iosFmt.InventoryID).Product;
+            Product = oid.SearchObservableInventory(iosFmt.InventoryID).Product;
             Inventory = InventoryList.Where(x => x.ID == iosFmt.InventoryID).SingleOrDefault();
             CalcInventoryQuantityProperty(Quantity);
         }
@@ -137,6 +137,63 @@ namespace R54IN0.WPF
             ProductSelectCommand = new RelayCommand(ExecuteProductSelectCommand, CanSelectProduct);
             ProjectComboBoxGotFocusEventCommand = new RelayCommand<RoutedEventArgs>(ExecuteProjectComboBoxGotFocusEventCommand);
             LoadLastRecordCommand = new RelayCommand(ExecuteLoadLastRecordCommand, CanLoadLastRecord);
+            ComboBoxItemDeleteCommand = new RelayCommand<object>(ExecuteComboBoxItemDeleteCommand);
+        }
+
+        private async void ExecuteComboBoxItemDeleteCommand(object obj)
+        {
+            IObservableField observableField = obj as IObservableField;
+            var field = observableField.Field;
+            Type type = field.GetType();
+
+            CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(observableField);
+            if (type == typeof(Customer))
+            {
+                await DbAdapter.GetInstance().DeleteAsync(field as Customer);
+                ObservableFieldDirector.GetInstance().RemoveObservableField<Customer>(observableField);
+            }
+            else if (type == typeof(Supplier))
+            {
+                await DbAdapter.GetInstance().DeleteAsync(field as Supplier);
+                ObservableFieldDirector.GetInstance().RemoveObservableField<Supplier>(observableField);
+            }
+            else if (type == typeof(Maker))
+            {
+                await DbAdapter.GetInstance().DeleteAsync<Maker>(field.ID);
+                ObservableFieldDirector.GetInstance().RemoveObservableField<Maker>(observableField);
+                ObservableInventoryDirector.GetInstance().CopyObservableInventories().ForEach(x => 
+                {
+                    if (x.Maker.ID == field.ID)
+                        x.Maker = null;
+                });
+            }
+            else if (type == typeof(Measure))
+            {
+                await DbAdapter.GetInstance().DeleteAsync(field as Measure);
+                ObservableFieldDirector.GetInstance().RemoveObservableField<Measure>(observableField);
+                ObservableInventoryDirector.GetInstance().CopyObservableInventories().ForEach(x =>
+                {
+                    if (x.Measure.ID == field.ID)
+                        x.Measure = null;
+                });
+            }
+            else if (type == typeof(Project))
+            {
+                await DbAdapter.GetInstance().DeleteAsync(field as Project);
+                ObservableFieldDirector.GetInstance().RemoveObservableField<Project>(observableField);
+            }
+            else if (type == typeof(Warehouse))
+            {
+                await DbAdapter.GetInstance().DeleteAsync(field as Warehouse);
+                ObservableFieldDirector.GetInstance().RemoveObservableField<Warehouse>(observableField);
+            }
+            else if (type == typeof(Employee))
+            {
+                await DbAdapter.GetInstance().DeleteAsync(field as Employee);
+                ObservableFieldDirector.GetInstance().RemoveObservableField<Employee>(observableField);
+            }
+            if(_ioStockStatusViewModel != null && _ioStockStatusViewModel.BackupSource != null)
+                _ioStockStatusViewModel.BackupSource.ForEach(async x => await x.SyncDataFromServer());
         }
 
         private async void ExecuteLoadLastRecordCommand()
@@ -153,16 +210,16 @@ namespace R54IN0.WPF
             var item = query.Single();
             Quantity = item.Quantity;
             UnitPrice = item.UnitPrice;
-            Employee = ObservableFieldDirector.GetInstance().Search<Employee>(item.EmployeeID);
+            Employee = ObservableFieldDirector.GetInstance().SearchObservableField<Employee>(item.EmployeeID);
             if (StockType == IOStockType.INCOMING)
             {
-                Client = ObservableFieldDirector.GetInstance().Search<Supplier>(item.SupplierID);
-                Warehouse = ObservableFieldDirector.GetInstance().Search<Warehouse>(item.WarehouseID);
+                Client = ObservableFieldDirector.GetInstance().SearchObservableField<Supplier>(item.SupplierID);
+                Warehouse = ObservableFieldDirector.GetInstance().SearchObservableField<Warehouse>(item.WarehouseID);
             }
             else if (StockType == IOStockType.OUTGOING)
             {
-                Client = ObservableFieldDirector.GetInstance().Search<Customer>(item.CustomerID);
-                Project = ObservableFieldDirector.GetInstance().Search<Project>(item.ProjectID);
+                Client = ObservableFieldDirector.GetInstance().SearchObservableField<Customer>(item.CustomerID);
+                Project = ObservableFieldDirector.GetInstance().SearchObservableField<Project>(item.ProjectID);
             }
         }
 
@@ -222,7 +279,7 @@ namespace R54IN0.WPF
             if (node != null)
             {
                 var ofd = ObservableFieldDirector.GetInstance();
-                var product = ofd.Search<Product>(node.ProductID);
+                var product = ofd.SearchObservableField<Product>(node.ProductID);
                 if (product != null)
                     Product = product;
             }

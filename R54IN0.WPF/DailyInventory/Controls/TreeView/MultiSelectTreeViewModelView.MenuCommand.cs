@@ -217,13 +217,13 @@ namespace R54IN0.WPF
                         return;
 
                     _director.Remove(selectedNode);
-                    var product = ObservableFieldDirector.GetInstance().Search<Product>(selectedNode.ProductID);
+                    var product = ObservableFieldDirector.GetInstance().SearchObservableField<Product>(selectedNode.ProductID);
                     if (product != null)
                         CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(product);
                     var oid = ObservableInventoryDirector.GetInstance();
-                    var invens = oid.SearchAsProductID(product.ID).ToList();
-                    invens.ForEach(x => oid.Remove(x));
-                    ObservableFieldDirector.GetInstance().Remove<Product>(product.ID);
+                    var invens = oid.SearchObservableInventoryAsProductID(product.ID).ToList();
+                    invens.ForEach(x => oid.RemoveObservableInventory(x));
+                    ObservableFieldDirector.GetInstance().RemoveObservableField<Product>(product);
                     await DbAdapter.GetInstance().DeleteAsync(product.Field);
                     break;
             }

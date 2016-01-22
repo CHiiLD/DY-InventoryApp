@@ -50,24 +50,24 @@ namespace R54IN0.WPF
                     if (Client == null && !string.IsNullOrEmpty(ClientText))
                     {
                         Supplier = new Observable<Supplier>(ClientText);
-                        ofd.Add<Supplier>(Supplier);
+                        ofd.AddObservableField<Supplier>(Supplier);
                     }
                     if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
                     {
                         Warehouse = new Observable<Warehouse>(WarehouseText);
-                        ofd.Add<Warehouse>(Warehouse);
+                        ofd.AddObservableField<Warehouse>(Warehouse);
                     }
                     break;
                 case IOStockType.OUTGOING:
                     if (Client == null && !string.IsNullOrEmpty(ClientText))
                     {
                         Customer = new Observable<Customer>(ClientText);
-                        ofd.Add<Customer>(Customer);
+                        ofd.AddObservableField<Customer>(Customer);
                     }
                     if (Project == null && !string.IsNullOrEmpty(ProjectText))
                     {
                         Project = new Observable<Project>(ProjectText);
-                        ofd.Add<Project>(Project);
+                        ofd.AddObservableField<Project>(Project);
                         CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(Project);
                     }
                     break;
@@ -75,17 +75,17 @@ namespace R54IN0.WPF
             if (Employee == null && !string.IsNullOrEmpty(EmployeeText))
             {
                 Employee = new Observable<Employee>(EmployeeText);
-                ofd.Add<Employee>(Employee);
+                ofd.AddObservableField<Employee>(Employee);
             }
             if (Maker == null && !string.IsNullOrEmpty(MakerText))
             {
                 Maker = new Observable<Maker>(MakerText);
-                ofd.Add<Maker>(Maker);
+                ofd.AddObservableField<Maker>(Maker);
             }
             if (Measure == null && !string.IsNullOrEmpty(MeasureText))
             {
                 Measure = new Observable<Measure>(MeasureText);
-                ofd.Add<Measure>(Measure);
+                ofd.AddObservableField<Measure>(Measure);
             }
         }
 
@@ -150,18 +150,18 @@ namespace R54IN0.WPF
                 if (Product == null)
                 {
                     Observable<Product> product = new Observable<Product>(ProductText);
-                    ObservableFieldDirector.GetInstance().Add<Product>(product);
+                    ObservableFieldDirector.GetInstance().AddObservableField<Product>(product);
                     CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(product);
                     Product = product;
                 }
                 inventory = new ObservableInventory(Product, SpecificationText, InventoryQuantity, SpecificationMemo, Maker, Measure);
                 await DbAdapter.GetInstance().InsertAsync(inventory.Format);
-                ObservableInventoryDirector.GetInstance().Add(inventory);
+                ObservableInventoryDirector.GetInstance().AddObservableInventory(inventory);
                 CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(inventory);
             }
             else
             {
-                inventory = ObservableInventoryDirector.GetInstance().Search(Inventory.ID);
+                inventory = ObservableInventoryDirector.GetInstance().SearchObservableInventory(Inventory.ID);
                 inventory.Format = Inventory.Format;
                 inventory.Quantity = InventoryQuantity;
             }

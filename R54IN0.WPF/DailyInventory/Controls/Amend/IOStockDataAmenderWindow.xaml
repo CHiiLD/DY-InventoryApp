@@ -12,6 +12,49 @@
         BorderThickness="1"
         Title="{Binding TitleText}" SizeToContent="Manual" Width="770" Height="416" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
 
+    <Window.Resources>
+        <ResourceDictionary>
+            <local:BindingProxy x:Key="DataContextProxy" DataContext="{Binding}" />
+            <Style x:Key="CanDeleteItemComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource MetroComboBox}">
+                <Setter Property="TextSearch.TextPath" Value="Name"/>
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                                <Button Grid.Column="1" Style="{DynamicResource MetroRectButtonStyle}" BorderThickness="0" 
+                                            DataContext="{Binding}">
+                                    <Rectangle Width="20" Height="15" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_clear_reflect_horizontal}"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <mvvmlight:EventToCommand Command="{Binding DataContext.ComboBoxItemDeleteCommand, Source={StaticResource DataContextProxy}}" 
+                                                                      CommandParameter="{Binding}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ItemContainerStyle">
+                    <Setter.Value>
+                        <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource MetroComboBoxItem}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <mah:MetroWindow.Flyouts>
         <mah:FlyoutsControl>
             <mah:Flyout x:Name="ProductSelecterFlyout" Position="Right" AreAnimationsEnabled="True"
@@ -167,58 +210,16 @@
             </Grid>
 
             <Grid Grid.Row="4" Grid.Column="1">
-                <!--<Grid.Resources>
-                    <ResourceDictionary>
-                        <ResourceDictionary.MergedDictionaries>
-                            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro.Resources;component/Icons.xaml" />
-                        </ResourceDictionary.MergedDictionaries>
-
-                        <Style TargetType="ComboBox" BasedOn="{StaticResource MetroComboBox}">
-                            <Setter Property="ItemTemplate">
-                                <Setter.Value>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Grid.Column="0" Text="{Binding Name}" />
-                                            <Button Grid.Column="1" Style="{DynamicResource MetroCircleButtonStyle}">
-                                                <Path Width="20" Height="20"
-                                                      Data="{DynamicResource appbar_3d_x}"/>
-                                                --><!--<Rectangle 
-                                                    Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                    <Rectangle.OpacityMask>
-                                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_3d_x}"/>
-                                                    </Rectangle.OpacityMask>
-                                                </Rectangle>--><!--
-                                            </Button>
-                                        </Grid>
-                                    </DataTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="ItemContainerStyle">
-                                <Setter.Value>
-                                    <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource MetroComboBoxItem}">
-                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                    </Style>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ResourceDictionary>
-                </Grid.Resources>-->
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="43*" />
                 </Grid.ColumnDefinitions>
                 <Label>제조사</Label>
-                <ComboBox
+                <ComboBox Style="{StaticResource CanDeleteItemComboBoxStyle}"
                           Text="{Binding MakerText}"
                           SelectedItem="{Binding Maker}"
                           ItemsSource="{Binding MakerList}"
                           IsEditable="True"
-                          DisplayMemberPath="Name"
                           Grid.Column="1" Width="200" HorizontalAlignment="Left" />
             </Grid>
 
@@ -241,11 +242,11 @@
                 </Grid.ColumnDefinitions>
                 <Label>단위</Label>
                 <ComboBox
+                    Style="{StaticResource CanDeleteItemComboBoxStyle}"
                     Text="{Binding MeasureText}"
                     SelectedItem="{Binding Measure}"
                     ItemsSource="{Binding MeasureList}"
                     IsEditable="True"
-                    DisplayMemberPath="Name"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left" />
             </Grid>
 
@@ -281,11 +282,11 @@
                 </Grid.ColumnDefinitions>
                 <Label Content="{Binding AccountTypeText}"/>
                 <ComboBox
+                          Style="{StaticResource CanDeleteItemComboBoxStyle}"
                           Text="{Binding ClientText}"
                           SelectedItem="{Binding Client}"
                           ItemsSource="{Binding ClientList}"
                           IsEditable="True"
-                          DisplayMemberPath="Name"
                           Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
             </Grid>
 
@@ -296,12 +297,12 @@
                 </Grid.ColumnDefinitions>
                 <Label>보관장소</Label>
                 <ComboBox
+                    Style="{StaticResource CanDeleteItemComboBoxStyle}"
                     Text="{Binding WarehouseText}"
                     SelectedItem="{Binding Warehouse}"
                     ItemsSource="{Binding WarehouseList}"
                     IsEditable="True"
                     IsEnabled="{Binding IsEnabledWarehouseComboBox}"
-                    DisplayMemberPath="Name"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
             </Grid>
 
@@ -312,12 +313,12 @@
                 </Grid.ColumnDefinitions>
                 <Label>프로젝트</Label>
                 <ComboBox
+                    Style="{StaticResource CanDeleteItemComboBoxStyle}"
                     Text="{Binding ProjectText}"
                     SelectedItem="{Binding Project}"
                     ItemsSource="{Binding ProjectList}"
                     IsEditable="True"
                     IsEnabled="{Binding IsEnabledProjectComboBox}"
-                    DisplayMemberPath="Name"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="GotFocus">
@@ -334,10 +335,10 @@
                 </Grid.ColumnDefinitions>
                 <Label>담당자</Label>
                 <ComboBox
+                    Style="{StaticResource CanDeleteItemComboBoxStyle}"
                     Text="{Binding EmployeeText}"
                     SelectedItem="{Binding Employee}"
                     ItemsSource="{Binding EmployeeList}"
-                    DisplayMemberPath="Name"
                     IsEditable="True"
                     Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
             </Grid>

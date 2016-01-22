@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public class ObservableInventoryDirector
+    public class ObservableInventoryDirector : IObservableInventoryDirector
     {
         private static ObservableInventoryDirector _thiz;
         private IDictionary<string, ObservableInventory> _idKey;
@@ -28,19 +28,19 @@ namespace R54IN0
             return _thiz;
         }
 
-        public ObservableInventory Search(string id)
+        public ObservableInventory SearchObservableInventory(string id)
         {
             if (string.IsNullOrEmpty(id))
                 return null;
             return _idKey.ContainsKey(id) ? _idKey[id] as ObservableInventory : null;
         }
 
-        public IEnumerable<ObservableInventory> SearchAsProductID(string id)
+        public IEnumerable<ObservableInventory> SearchObservableInventoryAsProductID(string id)
         {
             return _idKey.Values.Where(x => x.Product.ID == id).ToList();
         }
 
-        public List<ObservableInventory> Copy()
+        public List<ObservableInventory> CopyObservableInventories()
         {
             return _idKey.Values.ToList();
         }
@@ -52,18 +52,18 @@ namespace R54IN0
             _thiz = null;
         }
 
-        public void Add(ObservableInventory inventory)
+        public void AddObservableInventory(ObservableInventory observableInventory)
         {
-            if (_idKey.ContainsKey(inventory.ID))
+            if (_idKey.ContainsKey(observableInventory.ID))
                 return;
-            _idKey.Add(inventory.ID, inventory);
+            _idKey.Add(observableInventory.ID, observableInventory);
         }
 
-        public bool Remove(ObservableInventory inventory)
+        public bool RemoveObservableInventory(ObservableInventory observableInventory)
         {
-            if (!_idKey.ContainsKey(inventory.ID))
+            if (!_idKey.ContainsKey(observableInventory.ID))
                 return false;
-            return _idKey.Remove(inventory.ID);
+            return _idKey.Remove(observableInventory.ID);
         }
     }
 }

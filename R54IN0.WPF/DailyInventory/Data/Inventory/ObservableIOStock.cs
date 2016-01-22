@@ -252,14 +252,14 @@ namespace R54IN0
         protected virtual void InitializeProperties(IOStockFormat iosfmt)
         {
             var ofd = ObservableFieldDirector.GetInstance();
-            customer = ofd.Search<Customer>(iosfmt.CustomerID);
-            supplier = ofd.Search<Supplier>(iosfmt.SupplierID);
-            project = ofd.Search<Project>(iosfmt.ProjectID);
-            employee = ofd.Search<Employee>(iosfmt.EmployeeID);
-            warehouse = ofd.Search<Warehouse>(iosfmt.WarehouseID);
+            customer = ofd.SearchObservableField<Customer>(iosfmt.CustomerID);
+            supplier = ofd.SearchObservableField<Supplier>(iosfmt.SupplierID);
+            project = ofd.SearchObservableField<Project>(iosfmt.ProjectID);
+            employee = ofd.SearchObservableField<Employee>(iosfmt.EmployeeID);
+            warehouse = ofd.SearchObservableField<Warehouse>(iosfmt.WarehouseID);
 
             var oid = ObservableInventoryDirector.GetInstance();
-            _inventory = oid.Search(iosfmt.InventoryID);
+            _inventory = oid.SearchObservableInventory(iosfmt.InventoryID);
         }
 
         public virtual async void NotifyPropertyChanged(string name)

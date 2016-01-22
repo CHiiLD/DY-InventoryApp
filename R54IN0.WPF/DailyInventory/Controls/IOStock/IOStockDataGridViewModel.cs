@@ -192,35 +192,36 @@ namespace R54IN0.WPF
                 {
                     case "Maker":
                         item.Inventory.Maker = new Observable<Maker>(text);
-                        ofd.Add<Maker>(item.Inventory.Maker);
+                        ofd.AddObservableField<Maker>(item.Inventory.Maker);
                         break;
                     case "Measure":
                         item.Inventory.Measure = new Observable<Measure>(text);
-                        ofd.Add<Measure>(item.Inventory.Measure);
+                        ofd.AddObservableField<Measure>(item.Inventory.Measure);
                         break;
                     case "Warehouse":
                         item.Warehouse = new Observable<Warehouse>(text);
-                        ofd.Add<Warehouse>(item.Warehouse);
+                        ofd.AddObservableField<Warehouse>(item.Warehouse);
                         break;
                     case "Project":
                         item.Project = new Observable<Project>(text);
-                        ofd.Add<Project>(item.Project);
+                        ofd.AddObservableField<Project>(item.Project);
                         break;
                     case "Customer":
                         item.Customer = new Observable<Customer>(text);
-                        ofd.Add<Customer>(item.Customer);
+                        ofd.AddObservableField<Customer>(item.Customer);
                         break;
                     case "Supplier":
                         item.Supplier = new Observable<Supplier>(text);
-                        ofd.Add<Supplier>(item.Supplier);
+                        ofd.AddObservableField<Supplier>(item.Supplier);
                         break;
                     case "Employee":
                         item.Employee = new Observable<Employee>(text);
-                        ofd.Add<Employee>(item.Employee);
+                        ofd.AddObservableField<Employee>(item.Employee);
                         break;
                 }
             }
         }
+
         private void ExecuteContextMenuOpeningEventCommand()
         {
             SearchAsIOStockRecordCommand.RaiseCanExecuteChanged();

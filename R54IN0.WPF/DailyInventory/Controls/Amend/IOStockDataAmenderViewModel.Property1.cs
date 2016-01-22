@@ -37,6 +37,11 @@ namespace R54IN0.WPF
 
         public RelayCommand<RoutedEventArgs> ProjectComboBoxGotFocusEventCommand { get; set; }
 
+        /// <summary>
+        /// 콤보박스의 아이템들을 삭제
+        /// </summary>
+        public RelayCommand<object> ComboBoxItemDeleteCommand { get; set; }
+
         public bool IsEditableSpecification
         {
             get

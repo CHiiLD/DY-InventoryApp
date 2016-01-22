@@ -66,12 +66,12 @@ namespace R54IN0
                 }
                 lexdb.Table<InventoryFormat>().Delete(infmts);
             }
-            if (item is InventoryFormat)
+            else if (item is InventoryFormat)
             {
                 var fmts = lexdb.Table<IOStockFormat>().IndexQueryByKey("InventoryID", item.ID);
                 lexdb.Table<IOStockFormat>().Delete(fmts.ToList());
             }
-            if (item is IOStockFormat)
+            else if (item is IOStockFormat)
             {
                 await CalculateDeledtedIOSFmtQuantity(item as IOStockFormat);
             }

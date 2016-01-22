@@ -68,8 +68,7 @@
                          mah:TextBoxHelper.UseFloatingWatermark="False"
                          mah:TextBoxHelper.ClearTextButton="False" Width="200" VerticalAlignment="Center">
                         <TextBox.Style>
-                            <Style TargetType="{x:Type TextBox}"
-                               BasedOn="{StaticResource SearchMetroTextBox}">
+                            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource SearchMetroTextBox}">
                             </Style>
                         </TextBox.Style>
                     </TextBox>
