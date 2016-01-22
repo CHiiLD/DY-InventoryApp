@@ -41,22 +41,22 @@ namespace R54IN0
         public void InitializeIndex()
         {
             CustomLexDb me = this;
-            
+
             me.Map<Employee>().Automap(i => i.ID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsDeleted", i => i.IsDeleted);
             me.Map<Maker>().Automap(i => i.ID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsDeleted", i => i.IsDeleted);
-            
+
             me.Map<Measure>().Automap(i => i.ID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsDeleted", i => i.IsDeleted);
-            
+
             me.Map<Warehouse>().Automap(i => i.ID).
             WithIndex("Name", i => i.Name).
             WithIndex("IsDeleted", i => i.IsDeleted);
-          
+
             me.Map<TreeViewNodeJsonFormat>().Automap(i => i.ID).
             WithIndex("Data", i => i.Data);
             me.Map<Project>().Automap(i => i.ID).

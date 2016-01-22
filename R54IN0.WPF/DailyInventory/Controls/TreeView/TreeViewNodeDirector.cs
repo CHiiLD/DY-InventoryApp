@@ -124,7 +124,7 @@ namespace R54IN0.WPF
             //var fwd = FieldWrapperDirector.GetInstance();
             //var itemws = fwd.CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted);
 
-            ObservableFieldDirector ofd = ObservableFieldDirector.GetInstance();
+            InventoryDataCommander ofd = InventoryDataCommander.GetInstance();
 
             IEnumerable<TreeViewNode> productNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT);
             foreach (TreeViewNode node in new List<TreeViewNode>(productNodes)) //없는 Item은 삭제

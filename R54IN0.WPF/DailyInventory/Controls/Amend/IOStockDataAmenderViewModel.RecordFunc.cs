@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace R54IN0.WPF
@@ -20,14 +17,15 @@ namespace R54IN0.WPF
             switch (_mode)
             {
                 case Mode.ADD:
-                    CreateIOStockNewProperies();
+                    await CreateIOStockNewProperies();
                     await ApplyModifiedInventoryProperties();
                     await DbAdapter.GetInstance().InsertAsync(Format);
                     result = new ObservableIOStock(Format);
                     CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(result);
                     break;
+
                 case Mode.MODIFY:
-                    ApplyModifiedIOStockProperties();
+                    await ApplyModifiedIOStockProperties();
                     await ApplyModifiedInventoryProperties();
                     await DbAdapter.GetInstance().UpdateAsync(Format);
                     _originSource.Format = Format;
@@ -40,59 +38,65 @@ namespace R54IN0.WPF
 
         /// <summary>
         /// 새로 추가할 텍스트 필드들을 Observable<T>객체로 초기화하여 생성
-        /// </summary>
-        private void CreateIOStockNewProperies()
+        /// </sumary>
+        private async Task CreateIOStockNewProperies()
         {
-            var ofd = ObservableFieldDirector.GetInstance();
             switch (StockType)
             {
                 case IOStockType.INCOMING:
                     if (Client == null && !string.IsNullOrEmpty(ClientText))
                     {
-                        Supplier = new Observable<Supplier>(ClientText);
-                        ofd.AddObservableField<Supplier>(Supplier);
+                        var supplier = new Observable<Supplier>(ClientText);
+                        await InventoryDataCommander.GetInstance().AddObservableField(supplier);
+                        Supplier = supplier;
                     }
                     if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
                     {
-                        Warehouse = new Observable<Warehouse>(WarehouseText);
-                        ofd.AddObservableField<Warehouse>(Warehouse);
+                        warehouse = new Observable<Warehouse>(WarehouseText);
+                        await InventoryDataCommander.GetInstance().AddObservableField(warehouse);
+                        Warehouse = warehouse;
                     }
                     break;
+
                 case IOStockType.OUTGOING:
                     if (Client == null && !string.IsNullOrEmpty(ClientText))
                     {
-                        Customer = new Observable<Customer>(ClientText);
-                        ofd.AddObservableField<Customer>(Customer);
+                        var customer = new Observable<Customer>(ClientText);
+                        await InventoryDataCommander.GetInstance().AddObservableField(customer);
+                        Customer = customer;
                     }
                     if (Project == null && !string.IsNullOrEmpty(ProjectText))
                     {
-                        Project = new Observable<Project>(ProjectText);
-                        ofd.AddObservableField<Project>(Project);
-                        CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(Project);
+                        var project = new Observable<Project>(ProjectText);
+                        await InventoryDataCommander.GetInstance().AddObservableField(project);
+                        Project = project;
                     }
                     break;
             }
             if (Employee == null && !string.IsNullOrEmpty(EmployeeText))
             {
-                Employee = new Observable<Employee>(EmployeeText);
-                ofd.AddObservableField<Employee>(Employee);
+                var employee = new Observable<Employee>(EmployeeText);
+                await InventoryDataCommander.GetInstance().AddObservableField(employee);
+                Employee = employee;
             }
             if (Maker == null && !string.IsNullOrEmpty(MakerText))
             {
-                Maker = new Observable<Maker>(MakerText);
-                ofd.AddObservableField<Maker>(Maker);
+                var maker = new Observable<Maker>(MakerText);
+                await InventoryDataCommander.GetInstance().AddObservableField(maker);
+                Maker = maker;
             }
             if (Measure == null && !string.IsNullOrEmpty(MeasureText))
             {
-                Measure = new Observable<Measure>(MeasureText);
-                ofd.AddObservableField<Measure>(Measure);
+                var measure = new Observable<Measure>(MeasureText);
+                await InventoryDataCommander.GetInstance().AddObservableField(measure);
+                Measure = measure;
             }
         }
 
         /// <summary>
         /// 이름이 변경된 객체를 수정
         /// </summary>
-        private void ApplyModifiedIOStockProperties()
+        private async Task ApplyModifiedIOStockProperties()
         {
             switch (StockType)
             {
@@ -108,6 +112,7 @@ namespace R54IN0.WPF
                         Warehouse = _originSource.Warehouse;
                     }
                     break;
+
                 case IOStockType.OUTGOING:
                     if (_originSource.Customer != null && Client == null)
                     {
@@ -136,7 +141,7 @@ namespace R54IN0.WPF
                 _originSource.Inventory.Measure.Name = MeasureText;
                 Measure = _originSource.Inventory.Measure;
             }
-            CreateIOStockNewProperies();
+            await CreateIOStockNewProperies();
         }
 
         /// <summary>
@@ -150,18 +155,15 @@ namespace R54IN0.WPF
                 if (Product == null)
                 {
                     Observable<Product> product = new Observable<Product>(ProductText);
-                    ObservableFieldDirector.GetInstance().AddObservableField<Product>(product);
-                    CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(product);
+                    await InventoryDataCommander.GetInstance().AddObservableField(product);
                     Product = product;
                 }
                 inventory = new ObservableInventory(Product, SpecificationText, InventoryQuantity, SpecificationMemo, Maker, Measure);
-                await DbAdapter.GetInstance().InsertAsync(inventory.Format);
-                ObservableInventoryDirector.GetInstance().AddObservableInventory(inventory);
-                CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(inventory);
+                await InventoryDataCommander.GetInstance().AddObservableInventory(inventory);
             }
             else
             {
-                inventory = ObservableInventoryDirector.GetInstance().SearchObservableInventory(Inventory.ID);
+                inventory = InventoryDataCommander.GetInstance().SearchObservableInventory(Inventory.ID);
                 inventory.Format = Inventory.Format;
                 inventory.Quantity = InventoryQuantity;
             }

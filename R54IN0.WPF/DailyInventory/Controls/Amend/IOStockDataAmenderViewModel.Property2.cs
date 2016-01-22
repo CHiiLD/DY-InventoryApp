@@ -1,17 +1,11 @@
-﻿using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Windows;
 
 namespace R54IN0.WPF
 {
     public partial class IOStockDataAmenderViewModel
     {
-        
-
         public override IOStockType StockType
         {
             get
@@ -21,7 +15,7 @@ namespace R54IN0.WPF
             set
             {
                 base.StockType = value;
-                var ofd = ObservableFieldDirector.GetInstance();
+                var ofd = InventoryDataCommander.GetInstance();
 
                 switch (value)
                 {
@@ -188,7 +182,7 @@ namespace R54IN0.WPF
                 if (_product != null)
                 {
                     ProductText = _product.Name;
-                    var inventoryList = ObservableInventoryDirector.GetInstance().SearchObservableInventoryAsProductID(_product.ID);
+                    var inventoryList = InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(_product.ID);
                     InventoryList = inventoryList.Select(x => new NonSaveObservableInventory(new InventoryFormat(x.Format))).ToList();
                     if (InventoryList.Count() == 1)
                         Inventory = InventoryList.Single();

@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -131,7 +130,7 @@ namespace R54IN0.WPF
             SearchViewModel = new InventorySearchTextBoxViewModel();
             SearchViewModel.SearchCommand = new RelayCommand<object>(ExecuteSearchCommand, (object obj) => { return true; });
 
-            List<ObservableInventory> list = ObservableInventoryDirector.GetInstance().CopyObservableInventories();
+            List<ObservableInventory> list = InventoryDataCommander.GetInstance().CopyObservableInventories();
             PushDataGridItems(list, true);
 
             CanModify = false;
@@ -151,7 +150,7 @@ namespace R54IN0.WPF
             if (e.PropertyName == "SelectedNodes" && sender == TreeViewViewModel)
             {
                 var nodes = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
-                var oid = ObservableInventoryDirector.GetInstance();
+                var oid = InventoryDataCommander.GetInstance();
                 var list = oid.CopyObservableInventories().Where(x => nodes.Any(n => n.ProductID == x.Product.ID));
                 PushDataGridItems(list, true);
             }

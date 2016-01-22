@@ -6,19 +6,23 @@ namespace R54IN0
     public enum DbCommand
     {
         #region option
+
         /// <summary>
         /// 쿼리시, OR연산(<=, >=)을 추가합니다.
         /// </summary>
         OR_EQUAL = 1 << 0,
-        #endregion
+
+        #endregion option
 
         #region compare
+
         /// <summary>
         /// 최소값과 최대값 사이의 의미를 가짐 OR_EQUAL와 함께 쓰임
         /// </summary>
         BETWEEN = 1 << 10,
+
         /// <summary>
-        /// 미만 
+        /// 미만
         /// OR_EQUAL와 함께 쓰일 경우 작거나 같다 의 의미를 가짐
         /// </summary>
         IS_LESS_THEN = 1 << 11,
@@ -28,11 +32,13 @@ namespace R54IN0
         /// OR_EQUAL와 함께 쓰일 경우 크거나 같다 의 의미를 가짐
         /// </summary>
         IS_GRETER_THEN = 1 << 12,
-        #endregion
+
+        #endregion compare
 
         #region order
+
         /// <summary>
-        /// 내림차순으로 정렬 
+        /// 내림차순으로 정렬
         /// </summary>
         ASCENDING = 1 << 13,
 
@@ -40,7 +46,8 @@ namespace R54IN0
         /// 오름차순으로 정렬
         /// </summary>
         DESCENDING = 1 << 14,
-        #endregion
+
+        #endregion order
 
         /// <summary>
         /// 가져올 레코드의 개수를 설정합니다.

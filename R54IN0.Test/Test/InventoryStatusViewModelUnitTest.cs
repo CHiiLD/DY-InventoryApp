@@ -188,7 +188,7 @@ namespace R54IN0.Test.New
 
             viewmodel.DataGridViewModel1.InventoryDataDeletionCommand.Execute(null);
 
-            var result = ObservableInventoryDirector.GetInstance().SearchObservableInventory(inventoryID);
+            var result = InventoryDataCommander.GetInstance().SearchObservableInventory(inventoryID);
             Assert.IsNull(result);
         }
     }

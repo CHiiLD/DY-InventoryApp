@@ -11,7 +11,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.InputBindings>
-        <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding IOStockAmenderWindowCallCommand}"/>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding IOStockAmenderWindowCallCommand}" />
     </UserControl.InputBindings>
 
     <UserControl.Resources>
@@ -22,7 +22,7 @@
         <DataGrid x:Name="DataGridControl" AutoGenerateColumns="False" CanUserAddRows="False" GridLinesVisibility="All"
               Style="{DynamicResource AzureDataGrid}"
               ItemsSource="{Binding Items}"
-              SelectedItem="{Binding SelectedItem}" 
+              SelectedItem="{Binding SelectedItem}"
               CanUserDeleteRows="False">
 
             <i:Interaction.Triggers>

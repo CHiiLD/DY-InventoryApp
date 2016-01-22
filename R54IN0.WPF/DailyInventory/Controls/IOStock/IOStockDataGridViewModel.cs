@@ -35,6 +35,7 @@ namespace R54IN0.WPF
             SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, IsSelected);
             ContextMenuOpeningEventCommand = new RelayCommand(ExecuteContextMenuOpeningEventCommand);
         }
+
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
@@ -164,7 +165,7 @@ namespace R54IN0.WPF
             }
         }
 
-        private void ExecuteCellEditEndingEventCommand(DataGridCellEditEndingEventArgs e)
+        private async void ExecuteCellEditEndingEventCommand(DataGridCellEditEndingEventArgs e)
         {
             DataGridColumn column = e.Column;
             DataGridRow row = e.Row;
@@ -179,7 +180,7 @@ namespace R54IN0.WPF
             if (iosType == IOStockType.INCOMING && (sortMemberPath.Contains("Customer") || sortMemberPath.Contains("Project")) ||
                 iosType == IOStockType.OUTGOING && (sortMemberPath.Contains("Supplier") || sortMemberPath.Contains("Warehouse")))
                 return;
-            
+
             string[] paths = column.SortMemberPath.Replace(".Name", "").Split('.');
             object property = item;
             foreach (var path in paths)
@@ -187,36 +188,41 @@ namespace R54IN0.WPF
             if (property == null)
             {
                 string propertyName = paths.Last();
-                var ofd = ObservableFieldDirector.GetInstance();
                 switch (propertyName)
                 {
                     case "Maker":
                         item.Inventory.Maker = new Observable<Maker>(text);
-                        ofd.AddObservableField<Maker>(item.Inventory.Maker);
+                        await InventoryDataCommander.GetInstance().AddObservableField(item.Inventory.Maker);
                         break;
+
                     case "Measure":
                         item.Inventory.Measure = new Observable<Measure>(text);
-                        ofd.AddObservableField<Measure>(item.Inventory.Measure);
+                        await InventoryDataCommander.GetInstance().AddObservableField(item.Inventory.Measure);
                         break;
+
                     case "Warehouse":
                         item.Warehouse = new Observable<Warehouse>(text);
-                        ofd.AddObservableField<Warehouse>(item.Warehouse);
+                        await InventoryDataCommander.GetInstance().AddObservableField(item.Warehouse);
                         break;
+
                     case "Project":
                         item.Project = new Observable<Project>(text);
-                        ofd.AddObservableField<Project>(item.Project);
+                        await InventoryDataCommander.GetInstance().AddObservableField(item.Project);
                         break;
+
                     case "Customer":
                         item.Customer = new Observable<Customer>(text);
-                        ofd.AddObservableField<Customer>(item.Customer);
+                        await InventoryDataCommander.GetInstance().AddObservableField(item.Customer);
                         break;
+
                     case "Supplier":
                         item.Supplier = new Observable<Supplier>(text);
-                        ofd.AddObservableField<Supplier>(item.Supplier);
+                        await InventoryDataCommander.GetInstance().AddObservableField(item.Supplier);
                         break;
+
                     case "Employee":
                         item.Employee = new Observable<Employee>(text);
-                        ofd.AddObservableField<Employee>(item.Employee);
+                        await InventoryDataCommander.GetInstance().AddObservableField(item.Employee);
                         break;
                 }
             }

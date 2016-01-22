@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -57,7 +55,7 @@ namespace R54IN0.WPF
 
         /// <summary>
         /// TEST용 생성자
-        /// </summary> 
+        /// </summary>
         public IOStockDataAmenderViewModel() : base()
         {
             Initialize();
@@ -80,8 +78,7 @@ namespace R54IN0.WPF
         /// TEST용 생성자
         /// </summary>
         /// <param name="ioStock"></param>
-        public IOStockDataAmenderViewModel(IObservableIOStockProperties ioStock) : base(
-            new IOStockFormat(ioStock.Format))
+        public IOStockDataAmenderViewModel(IObservableIOStockProperties ioStock) : base(new IOStockFormat(ioStock.Format))
         {
             Initialize();
             _mode = Mode.MODIFY;
@@ -130,8 +127,8 @@ namespace R54IN0.WPF
         /// <param name="iosFmt"></param>
         protected override void InitializeProperties(IOStockFormat iosFmt)
         {
-            var ofd = ObservableFieldDirector.GetInstance();
-            var oid = ObservableInventoryDirector.GetInstance();
+            var ofd = InventoryDataCommander.GetInstance();
+            var oid = InventoryDataCommander.GetInstance();
             customer = ofd.SearchObservableField<Customer>(iosFmt.CustomerID);
             supplier = ofd.SearchObservableField<Supplier>(iosFmt.SupplierID);
             project = ofd.SearchObservableField<Project>(iosFmt.ProjectID);
@@ -159,7 +156,7 @@ namespace R54IN0.WPF
             LoadLastRecordCommand = new RelayCommand(ExecuteLoadLastRecordCommand, CanLoadLastRecord);
             ComboBoxItemDeleteCommand = new RelayCommand<object>(ExecuteComboBoxItemDeleteCommand);
 
-            var ofd = ObservableFieldDirector.GetInstance();
+            var ofd = InventoryDataCommander.GetInstance();
             _makerList = new ObservableCollection<Observable<Maker>>(ofd.CopyObservableFields<Maker>());
             _measureList = new ObservableCollection<Observable<Measure>>(ofd.CopyObservableFields<Measure>());
             _projectList = new ObservableCollection<Observable<Project>>(ofd.CopyObservableFields<Project>());
@@ -170,38 +167,7 @@ namespace R54IN0.WPF
         private async void ExecuteComboBoxItemDeleteCommand(object obj)
         {
             IObservableField observableField = obj as IObservableField;
-            var field = observableField.Field;
-            Type type = field.GetType();
-            ObservableFieldDirector.GetInstance().RemoveObservableField(observableField);
-            CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(observableField);
-            if (type == typeof(Maker))
-            {
-                ObservableInventoryDirector.GetInstance().CopyObservableInventories().ForEach(x =>
-                {
-                    if (x.Maker != null && x.Maker.ID == field.ID)
-                        x.Maker = null;
-                });
-                await DbAdapter.GetInstance().DeleteAsync(field as Maker);
-            }
-            else if (type == typeof(Measure))
-            {
-                ObservableInventoryDirector.GetInstance().CopyObservableInventories().ForEach(x =>
-                {
-                    if (x.Measure != null && x.Measure.ID == field.ID)
-                        x.Measure = null;
-                });
-                await DbAdapter.GetInstance().DeleteAsync(field as Measure);
-            }
-            else if (type == typeof(Customer))
-                await DbAdapter.GetInstance().DeleteAsync(field as Customer);
-            else if (type == typeof(Supplier))
-                await DbAdapter.GetInstance().DeleteAsync(field as Supplier);
-            else if (type == typeof(Project))
-                await DbAdapter.GetInstance().DeleteAsync(field as Project);
-            else if (type == typeof(Warehouse))
-                await DbAdapter.GetInstance().DeleteAsync(field as Warehouse);
-            else if (type == typeof(Employee))
-                await DbAdapter.GetInstance().DeleteAsync(field as Employee);
+            await InventoryDataCommander.GetInstance().RemoveObservableField(observableField);
         }
 
         private async void ExecuteLoadLastRecordCommand()
@@ -218,16 +184,16 @@ namespace R54IN0.WPF
             var item = query.Single();
             Quantity = item.Quantity;
             UnitPrice = item.UnitPrice;
-            Employee = ObservableFieldDirector.GetInstance().SearchObservableField<Employee>(item.EmployeeID);
+            Employee = InventoryDataCommander.GetInstance().SearchObservableField<Employee>(item.EmployeeID);
             if (StockType == IOStockType.INCOMING)
             {
-                Client = ObservableFieldDirector.GetInstance().SearchObservableField<Supplier>(item.SupplierID);
-                Warehouse = ObservableFieldDirector.GetInstance().SearchObservableField<Warehouse>(item.WarehouseID);
+                Client = InventoryDataCommander.GetInstance().SearchObservableField<Supplier>(item.SupplierID);
+                Warehouse = InventoryDataCommander.GetInstance().SearchObservableField<Warehouse>(item.WarehouseID);
             }
             else if (StockType == IOStockType.OUTGOING)
             {
-                Client = ObservableFieldDirector.GetInstance().SearchObservableField<Customer>(item.CustomerID);
-                Project = ObservableFieldDirector.GetInstance().SearchObservableField<Project>(item.ProjectID);
+                Client = InventoryDataCommander.GetInstance().SearchObservableField<Customer>(item.CustomerID);
+                Project = InventoryDataCommander.GetInstance().SearchObservableField<Project>(item.ProjectID);
             }
         }
 
@@ -257,6 +223,7 @@ namespace R54IN0.WPF
                             InventoryQuantity = (Inventory == null) ? -iosQty : Inventory.Quantity - iosQty; break;
                     }
                     break;
+
                 case Mode.MODIFY:
                     switch (StockType)
                     {
@@ -286,7 +253,7 @@ namespace R54IN0.WPF
             var node = nodes.FirstOrDefault();
             if (node != null)
             {
-                var ofd = ObservableFieldDirector.GetInstance();
+                var ofd = InventoryDataCommander.GetInstance();
                 var product = ofd.SearchObservableField<Product>(node.ProductID);
                 if (product != null)
                     Product = product;

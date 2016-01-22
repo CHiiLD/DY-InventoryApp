@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public class ObservableFieldDirector : IObservableFieldDirector
+    internal class ObservableFieldDirector
     {
         private static ObservableFieldDirector _thiz;
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace R54IN0.WPF
@@ -26,7 +25,7 @@ namespace R54IN0.WPF
 
         public IOStockProjectListBoxViewModel()
         {
-            var ofd = ObservableFieldDirector.GetInstance();
+            var ofd = InventoryDataCommander.GetInstance();
             var list = ofd.CopyObservableFields<Project>();
             Items = new ObservableCollection<Observable<Project>>(list);
             CollectionViewModelObserverSubject.GetInstance().Attach(this);

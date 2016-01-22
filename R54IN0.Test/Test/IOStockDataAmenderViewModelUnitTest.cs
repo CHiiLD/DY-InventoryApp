@@ -69,7 +69,7 @@ namespace R54IN0.Test.New
             //재고 데이터그리드에 추가되었는지 확인
             Assert.IsTrue(inventoryStatusViewModel.GetDataGridItems().Any(x => x.ID == iostock.Inventory.ID));
             var inventory = inventoryStatusViewModel.GetDataGridItems().Where(x => x.ID == iostock.Inventory.ID).Single();
-            var oid = ObservableInventoryDirector.GetInstance();
+            var oid = InventoryDataCommander.GetInstance();
             //검사
             Assert.IsNotNull(oid.SearchObservableInventory(iostock.Inventory.ID)); //inventory director에 추가되었는지 확인한다.
             Assert.AreEqual(spec, iostock.Inventory.Specification);
@@ -84,7 +84,7 @@ namespace R54IN0.Test.New
             Assert.AreEqual(price, iostock.UnitPrice);
             Assert.AreEqual(qty, iostock.RemainingQuantity);
             Assert.AreEqual((int)qty, iostock.Inventory.Quantity);
-            var ofd = ObservableFieldDirector.GetInstance();
+            var ofd = InventoryDataCommander.GetInstance();
             Assert.IsNotNull(ofd.SearchObservableField<Maker>(iostock.Inventory.Maker.ID));
             Assert.IsNotNull(ofd.SearchObservableField<Measure>(iostock.Inventory.Measure.ID));
         }
@@ -99,7 +99,7 @@ namespace R54IN0.Test.New
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             //설정
             viewmodel.StockType = IOStockType.INCOMING;
-            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             var inven = viewmodel.Inventory = viewmodel.InventoryList.Random();
             var specMemo = viewmodel.SpecificationMemo = "some memo";
             var maker = viewmodel.Maker = viewmodel.MakerList.Random();
@@ -130,7 +130,7 @@ namespace R54IN0.Test.New
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             //설정
-            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             viewmodel.Inventory = null;
             var specificationName = viewmodel.SpecificationText = "some specification";
             var specMemo = viewmodel.SpecificationMemo = "some specification memo";
@@ -208,7 +208,7 @@ namespace R54IN0.Test.New
             Assert.AreEqual(measureText, stock.Inventory.Measure.Name);
             Assert.AreEqual(type, stock.StockType);
 
-            var ofd = ObservableFieldDirector.GetInstance();
+            var ofd = InventoryDataCommander.GetInstance();
             Assert.IsNotNull(ofd.SearchObservableField<Maker>(stock.Inventory.Maker.ID));
             Assert.IsNotNull(ofd.SearchObservableField<Measure>(stock.Inventory.Measure.ID));
         }
@@ -250,7 +250,7 @@ namespace R54IN0.Test.New
                 fmt = db.LoadAll<IOStockFormat>().Random();
             var viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
 
-            var inven = ObservableInventoryDirector.GetInstance().SearchObservableInventory(fmt.InventoryID);
+            var inven = InventoryDataCommander.GetInstance().SearchObservableInventory(fmt.InventoryID);
             string makerId = inven.Maker.ID;
             string measureId = inven.Measure.ID;
 
@@ -330,7 +330,7 @@ namespace R54IN0.Test.New
             Assert.IsNotNull(newRecord.Employee);
             Assert.AreEqual(newRecord.Employee.Name, "Jojo");
 
-            Assert.IsNotNull(ObservableFieldDirector.GetInstance().SearchObservableField<Employee>(newRecord.Employee.ID));
+            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchObservableField<Employee>(newRecord.Employee.ID));
 
             newRecord = iosViewModel.DataGridViewModel.Items.Where(x => x.ID == newRecord.ID).Single();
             viewmodel = new IOStockDataAmenderViewModel(newRecord); //편집모드로 열기
@@ -379,7 +379,7 @@ namespace R54IN0.Test.New
             Assert.IsNotNull(newRecord.Inventory);
             Assert.AreEqual(newRecord.Inventory.Maker.Name, "maKeR");
 
-            Assert.IsNotNull(ObservableFieldDirector.GetInstance().SearchObservableField<Maker>(newRecord.Inventory.Maker.ID));
+            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchObservableField<Maker>(newRecord.Inventory.Maker.ID));
 
             newRecord = iosViewModel.DataGridViewModel.Items.Where(x => x.ID == newRecord.ID).Single();
             viewmodel = new IOStockDataAmenderViewModel(newRecord); //편집모드로 열기
@@ -402,7 +402,7 @@ namespace R54IN0.Test.New
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
 
             viewmodel.StockType = IOStockType.OUTGOING;
-            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             var specificationName = viewmodel.Inventory = viewmodel.InventoryList.Random();
             var inventoryQty = viewmodel.Inventory.Quantity;
             if (inventoryQty <= 1)
@@ -482,7 +482,7 @@ namespace R54IN0.Test.New
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel);
             //설정
             viewmodel.StockType = new Random().NextDouble() > 0.5 ? IOStockType.INCOMING : IOStockType.OUTGOING;
-            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             var inven = viewmodel.Inventory = viewmodel.InventoryList.Random();
             var beforeInvenQty = inven.Quantity;
             var date = viewmodel.Date = DateTime.Now.AddDays(-600.0 * new Random().NextDouble()); //과거로 저장
@@ -503,7 +503,7 @@ namespace R54IN0.Test.New
             new Dummy().Create();
             IOStockFormat fmt = null;
             IEnumerable<IOStockFormat> formats;
-            var inventory = ObservableInventoryDirector.GetInstance().CopyObservableInventories().Random();
+            var inventory = InventoryDataCommander.GetInstance().CopyObservableInventories().Random();
             using (var db = LexDb.GetDbInstance())
             {
                 formats = db.LoadAll<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
@@ -533,7 +533,7 @@ namespace R54IN0.Test.New
             new Dummy().Create();
             IOStockFormat fmt = null;
             IEnumerable<IOStockFormat> formats;
-            var inventory = ObservableInventoryDirector.GetInstance().CopyObservableInventories().Random();
+            var inventory = InventoryDataCommander.GetInstance().CopyObservableInventories().Random();
             using (var db = LexDb.GetDbInstance())
             {
                 formats = db.LoadAll<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
@@ -586,7 +586,7 @@ namespace R54IN0.Test.New
             new Dummy().Create();
             IOStockFormat fmt = null;
             IEnumerable<IOStockFormat> formats;
-            var inventory = ObservableInventoryDirector.GetInstance().CopyObservableInventories().Random();
+            var inventory = InventoryDataCommander.GetInstance().CopyObservableInventories().Random();
             formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
                 DbCommand.WHERE, "InventoryID", inventory.ID, DbCommand.ASCENDING, "Date");
             fmt = formats.First();
@@ -677,7 +677,7 @@ namespace R54IN0.Test.New
             Assert.IsNull(viewmodel.Product);
             Assert.IsNull(viewmodel.Inventory);
             //출고에서 제품과 규격을 선택한 후
-            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             var inven = viewmodel.Inventory = viewmodel.InventoryList.Random();
             //입고로 전환해도 제품과 규격 프로퍼티는 그대로 있고
             viewmodel.StockType = IOStockType.INCOMING;
@@ -699,7 +699,7 @@ namespace R54IN0.Test.New
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
 
-            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             var specificationName = viewmodel.Inventory = viewmodel.InventoryList.Random();
             var productText = viewmodel.ProductText = "new product text";
             var specificationText = viewmodel.SpecificationText = "new specification text";
@@ -718,7 +718,7 @@ namespace R54IN0.Test.New
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
 
-            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             var inventory = viewmodel.Inventory = viewmodel.InventoryList.Random();
 
             Assert.AreEqual(viewmodel.Inventory.Memo, viewmodel.SpecificationMemo);
@@ -739,7 +739,7 @@ namespace R54IN0.Test.New
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             //기존의 제품과 규격을 선택
             viewmodel.StockType = IOStockType.INCOMING;
-            var product = viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             var inventory = viewmodel.Inventory = viewmodel.InventoryList.Random();
             inventory.Memo = "some specification memo";
             viewmodel.MeasureText = "some measure";
@@ -829,5 +829,7 @@ namespace R54IN0.Test.New
             Assert.AreEqual(obIOStock.RemainingQuantity, viewmodel.RemainingQuantity);
             Assert.AreEqual(obIOStock.UnitPrice, viewmodel.UnitPrice);
         }
+
+    
     }
 }

@@ -16,26 +16,26 @@
         <ResourceDictionary>
             <local:BindingProxy x:Key="DataContextProxy" DataContext="{Binding}" />
             <Style x:Key="CanDeleteItemComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource MetroComboBox}">
-                <Setter Property="TextSearch.TextPath" Value="Name"/>
+                <Setter Property="TextSearch.TextPath" Value="Name" />
                 <Setter Property="ItemTemplate">
                     <Setter.Value>
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="{Binding Name}" />
-                                <Button Grid.Column="1" Style="{DynamicResource MetroRectButtonStyle}" BorderThickness="0" 
+                                <Button Grid.Column="1" Style="{DynamicResource MetroRectButtonStyle}" BorderThickness="0"
                                             DataContext="{Binding}">
                                     <Rectangle Width="20" Height="15" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                                         <Rectangle.OpacityMask>
-                                            <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_clear_reflect_horizontal}"/>
+                                            <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_clear_reflect_horizontal}" />
                                         </Rectangle.OpacityMask>
                                     </Rectangle>
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
-                                            <mvvmlight:EventToCommand Command="{Binding DataContext.ComboBoxItemDeleteCommand, Source={StaticResource DataContextProxy}}" 
+                                            <mvvmlight:EventToCommand Command="{Binding DataContext.ComboBoxItemDeleteCommand, Source={StaticResource DataContextProxy}}"
                                                                       CommandParameter="{Binding}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
@@ -47,7 +47,7 @@
                 <Setter Property="ItemContainerStyle">
                     <Setter.Value>
                         <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource MetroComboBoxItem}">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </Setter.Value>
                 </Setter>
@@ -267,9 +267,9 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="43*" />
                 </Grid.ColumnDefinitions>
-                <Button Command="{Binding LoadLastRecordCommand }" 
+                <Button Command="{Binding LoadLastRecordCommand }"
                         Visibility="{Binding LoadLastRecordVisibility}"
-                        Style="{DynamicResource AccentedSquareButtonStyle}" Grid.Column="1" VerticalAlignment="Center" 
+                        Style="{DynamicResource AccentedSquareButtonStyle}" Grid.Column="1" VerticalAlignment="Center"
                         HorizontalAlignment="Left" ToolTip="가장 최근에 저장된 제품과 규격에 해당되는 입출고 기록의 수량, 단가, 보관장소, 프로젝트, 담당자 설정을 덮어씌웁니다.">
                     최근에 저장한 기록 불러오기
                 </Button>
@@ -280,7 +280,7 @@
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="43*" />
                 </Grid.ColumnDefinitions>
-                <Label Content="{Binding AccountTypeText}"/>
+                <Label Content="{Binding AccountTypeText}" />
                 <ComboBox
                           Style="{StaticResource CanDeleteItemComboBoxStyle}"
                           Text="{Binding ClientText}"

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using R54IN0.WPF;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -28,9 +28,13 @@ namespace R54IN0
             _t = new FieldT();
         }
 
+        /// <summary>
+        /// 이름 할당 및 자동 디비 저장
+        /// </summary>
+        /// <param name="name"></param>
         public Observable(string name) : this()
         {
-            Name = name;
+            _t.Name = name;
         }
 
         public Observable(FieldT field)
@@ -107,7 +111,7 @@ namespace R54IN0
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
 
             if (ID == null)
-                await DbAdapter.GetInstance().InsertAsync(Field);
+                await InventoryDataCommander.GetInstance().AddObservableField(this);
             else
                 await DbAdapter.GetInstance().UpdateAsync(Field, name);
         }

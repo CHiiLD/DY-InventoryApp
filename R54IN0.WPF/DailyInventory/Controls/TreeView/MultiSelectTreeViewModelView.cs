@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.DragNDrop;
 using System.Windows.Input;
-using System;
 
 namespace R54IN0.WPF
 {

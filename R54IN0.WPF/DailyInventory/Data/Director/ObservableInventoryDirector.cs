@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public class ObservableInventoryDirector : IObservableInventoryDirector
+    internal class ObservableInventoryDirector
     {
         private static ObservableInventoryDirector _thiz;
         private IDictionary<string, ObservableInventory> _idKey;

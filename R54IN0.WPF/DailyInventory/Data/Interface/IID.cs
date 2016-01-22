@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace R54IN0
+﻿namespace R54IN0
 {
     public interface IID
     {

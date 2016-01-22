@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace R54IN0.WPF
+﻿namespace R54IN0.WPF
 {
     public class IOStockDataGridItem : ObservableIOStock
     {

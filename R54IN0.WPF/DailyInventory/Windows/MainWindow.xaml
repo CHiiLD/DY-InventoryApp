@@ -12,7 +12,7 @@
 
     <Window.Resources>
         <ResourceDictionary>
-            <Ellipse x:Key="AppThemeMenuIcon" x:Shared="False" Width="16" Height="16" StrokeThickness="1" 
+            <Ellipse x:Key="AppThemeMenuIcon" x:Shared="False" Width="16" Height="16" StrokeThickness="1"
                  Stroke="{Binding BorderColorBrush, Mode=OneWay}" Fill="{Binding ColorBrush, Mode=OneWay}" />
 
             <Ellipse x:Key="AccentMenuIcon" x:Shared="False" Width="16" Height="16" Fill="{Binding ColorBrush, Mode=OneWay}" />
@@ -34,10 +34,10 @@
     </Window.Resources>
 
     <Window.InputBindings>
-        <KeyBinding Key="F1" Command="{Binding ChangeInventoryViewCommand}"/>
-        <KeyBinding Key="F2" Command="{Binding ChangeIOStockViewByProductCommand}"/>
-        <KeyBinding Key="F3" Command="{Binding ChangeIOStockByDateCommand}"/>
-        <KeyBinding Key="F4" Command="{Binding ChangeIOStockByProjectCommand}"/>
+        <KeyBinding Key="F1" Command="{Binding ChangeInventoryViewCommand}" />
+        <KeyBinding Key="F2" Command="{Binding ChangeIOStockViewByProductCommand}" />
+        <KeyBinding Key="F3" Command="{Binding ChangeIOStockByDateCommand}" />
+        <KeyBinding Key="F4" Command="{Binding ChangeIOStockByProjectCommand}" />
     </Window.InputBindings>
 
     <Grid>
@@ -58,9 +58,9 @@
             </MenuItem>
 
             <MenuItem Header="입출고 현황">
-                <MenuItem Header="제품별로 보기" Command="{Binding ChangeIOStockViewByProductCommand}" InputGestureText="F2"/>
-                <MenuItem Header="날짜별로 보기" Command="{Binding ChangeIOStockByDateCommand}" InputGestureText="F3"/>
-                <MenuItem Header="프로젝트별로 보기" Command="{Binding ChangeIOStockByProjectCommand}" InputGestureText="F4"/>
+                <MenuItem Header="제품별로 보기" Command="{Binding ChangeIOStockViewByProductCommand}" InputGestureText="F2" />
+                <MenuItem Header="날짜별로 보기" Command="{Binding ChangeIOStockByDateCommand}" InputGestureText="F3" />
+                <MenuItem Header="프로젝트별로 보기" Command="{Binding ChangeIOStockByProjectCommand}" InputGestureText="F4" />
             </MenuItem>
 
             <MenuItem Header="인터페이스">
@@ -71,7 +71,7 @@
                           ItemsSource="{Binding AccentColors, Mode=OneWay}"
                           ItemContainerStyle="{StaticResource AccentColorMenuItemStyle}" />
             </MenuItem>
-            
+
             <MenuItem Visibility="Collapsed" Header="정보 수정">
                 <MenuItem Header="제품과 규격" />
                 <MenuItem Header="구입처" />

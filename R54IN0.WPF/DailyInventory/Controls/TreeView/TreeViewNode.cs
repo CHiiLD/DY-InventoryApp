@@ -199,7 +199,7 @@ namespace R54IN0.WPF
         {
             if (!string.IsNullOrEmpty(id) && Type == NodeType.PRODUCT)
             {
-                var ofd = ObservableFieldDirector.GetInstance();
+                var ofd = InventoryDataCommander.GetInstance();
                 Observable<Product> product = ofd.SearchObservableField<Product>(id);
                 return product;
             }

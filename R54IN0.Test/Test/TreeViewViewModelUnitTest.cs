@@ -75,8 +75,8 @@ namespace R54IN0.Test
 
             treeview.SelectedNodeDeletionCommand.Execute(null);
 
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Product>(node.ProductID));
-            Assert.AreEqual(0, ObservableInventoryDirector.GetInstance().SearchObservableInventoryAsProductID(node.ProductID).Count());
+            Assert.IsNull(InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ProductID));
+            Assert.AreEqual(0, InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(node.ProductID).Count());
         }
 
         /// <summary>
@@ -90,10 +90,10 @@ namespace R54IN0.Test
             var node = GetProductNode(treeview);
             treeview.SelectedNodes.Add(node);
 
-            var product = ObservableFieldDirector.GetInstance().SearchObservableField<Product>(node.ProductID);
+            var product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ProductID);
             if (product != null)
                 CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(product);
-            var oid = ObservableInventoryDirector.GetInstance();
+            var oid = InventoryDataCommander.GetInstance();
             var invens = oid.SearchObservableInventoryAsProductID(product.ID).ToList();
 
             treeview.SelectedNodeDeletionCommand.Execute(null);

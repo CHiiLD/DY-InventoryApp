@@ -1,8 +1,6 @@
-﻿using R54IN0;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace R54IN0.WPF
@@ -13,23 +11,21 @@ namespace R54IN0.WPF
     public class InventoryDataCommander
     {
         private static InventoryDataCommander _me;
-        private ObservableFieldDirector _fieldDir;
-        private ObservableInventoryDirector _inventoryDir;
+        private ObservableFieldDirector _field;
+        private ObservableInventoryDirector _inventory;
         private CollectionViewModelObserverSubject _subject;
         private DbAdapter _db;
 
         private InventoryDataCommander()
         {
-            _fieldDir = ObservableFieldDirector.GetInstance();
-            _inventoryDir = ObservableInventoryDirector.GetInstance();
+            _field = ObservableFieldDirector.GetInstance();
+            _inventory = ObservableInventoryDirector.GetInstance();
             _subject = CollectionViewModelObserverSubject.GetInstance();
             _db = DbAdapter.GetInstance();
         }
 
         ~InventoryDataCommander()
         {
-            ObservableFieldDirector.Destory();
-            ObservableInventoryDirector.Destory();
         }
 
         public static InventoryDataCommander GetInstance()
@@ -39,54 +35,79 @@ namespace R54IN0.WPF
             return _me;
         }
 
+        public static void Destroy()
+        {
+            if (_me != null)
+                _me = null;
+        }
+
         #region inventory director
 
-        public void AddObservableInventory(ObservableInventory observableInventory)
+        /// <summary>
+        /// 새로운 인벤토리 포멧 데이터를 등록한다.
+        /// </summary>
+        /// <param name="observableInventory"></param>
+        /// <returns></returns>
+        public async Task AddObservableInventory(ObservableInventory observableInventory)
         {
+            await _db.InsertAsync(observableInventory.Format);
+            _inventory.AddObservableInventory(observableInventory);
             _subject.NotifyNewItemAdded(observableInventory);
-            _inventoryDir.AddObservableInventory(observableInventory);
         }
 
         public List<ObservableInventory> CopyObservableInventories()
         {
-            return _inventoryDir.CopyObservableInventories();
+            return _inventory.CopyObservableInventories();
         }
 
-        public bool RemoveObservableInventory(ObservableInventory observableInventory)
+        /// <summary>
+        /// 기존의 인벤토리 포맷 데이터를 삭제한다.
+        /// </summary>
+        /// <param name="observableInventory"></param>
+        /// <returns></returns>
+        public async Task<bool> RemoveObservableInventory(ObservableInventory observableInventory)
         {
+            await _db.DeleteAsync(observableInventory.Format);
             _subject.NotifyItemDeleted(observableInventory);
-            return _inventoryDir.RemoveObservableInventory(observableInventory);
+            return _inventory.RemoveObservableInventory(observableInventory);
         }
 
         public ObservableInventory SearchObservableInventory(string id)
         {
-            return _inventoryDir.SearchObservableInventory(id);
+            return _inventory.SearchObservableInventory(id);
         }
 
         public IEnumerable<ObservableInventory> SearchObservableInventoryAsProductID(string id)
         {
-            return _inventoryDir.SearchObservableInventoryAsProductID(id);
+            return _inventory.SearchObservableInventoryAsProductID(id);
         }
-        #endregion
 
-        #region field director 
+        #endregion inventory director
+
+        #region field director
 
         public IEnumerable<Observable<T>> CopyObservableFields<T>() where T : class, IField, new()
         {
-            return _fieldDir.CopyObservableFields<T>();
+            return _field.CopyObservableFields<T>();
         }
 
         public Observable<T> SearchObservableField<T>(string id) where T : class, IField, new()
         {
-            return _fieldDir.SearchObservableField<T>(id);
+            return _field.SearchObservableField<T>(id);
         }
 
+        /// <summary>
+        /// 새로운 필드 데이터를 등록한다.
+        /// </summary>
+        /// <param name="observableField"></param>
+        /// <returns></returns>
         public async Task AddObservableField(IObservableField observableField)
         {
             IField field = observableField.Field;
             Type type = field.GetType();
-
-            if (type == typeof(Maker))
+            if (type == typeof(Product))
+                await _db.InsertAsync<Product>(field as Product);
+            else if (type == typeof(Maker))
                 await _db.InsertAsync<Maker>(field as Maker);
             else if (type == typeof(Measure))
                 await _db.InsertAsync<Measure>(field as Measure);
@@ -101,19 +122,30 @@ namespace R54IN0.WPF
             else if (type == typeof(Employee))
                 await _db.InsertAsync<Employee>(field as Employee);
 
-            _fieldDir.AddObservableField(observableField);
+            _field.AddObservableField(observableField);
             _subject.NotifyNewItemAdded(observableField);
         }
 
+        /// <summary>
+        /// 기존의 필드 데이터를 삭제한다.
+        /// </summary>
+        /// <param name="observableField"></param>
+        /// <returns></returns>
         public async Task RemoveObservableField(IObservableField observableField)
         {
             var field = observableField.Field;
             Type type = field.GetType();
-
-            if (type == typeof(Maker))
+            if (type == typeof(Product))
+            {
+                List<ObservableInventory> inventories = SearchObservableInventoryAsProductID(observableField.ID).ToList();
+                inventories.ForEach(x => _inventory.RemoveObservableInventory(x));
+                _field.RemoveObservableField(observableField);
+                await DbAdapter.GetInstance().DeleteAsync(observableField.Field as Product);
+            }
+            else if (type == typeof(Maker))
             {
                 await _db.DeleteAsync(field as Maker);
-                _inventoryDir.CopyObservableInventories().ForEach(x =>
+                CopyObservableInventories().ForEach(x =>
                 {
                     if (x.Maker != null && x.Maker.ID == field.ID)
                         x.Maker = null;
@@ -122,7 +154,7 @@ namespace R54IN0.WPF
             else if (type == typeof(Measure))
             {
                 await _db.DeleteAsync(field as Measure);
-                _inventoryDir.CopyObservableInventories().ForEach(x =>
+                CopyObservableInventories().ForEach(x =>
                 {
                     if (x.Measure != null && x.Measure.ID == field.ID)
                         x.Measure = null;
@@ -139,9 +171,10 @@ namespace R54IN0.WPF
             else if (type == typeof(Employee))
                 await _db.DeleteAsync(field as Employee);
 
-            _fieldDir.RemoveObservableField(observableField);
+            _field.RemoveObservableField(observableField);
             _subject.NotifyItemDeleted(observableField);
         }
-        #endregion
+
+        #endregion field director
     }
 }

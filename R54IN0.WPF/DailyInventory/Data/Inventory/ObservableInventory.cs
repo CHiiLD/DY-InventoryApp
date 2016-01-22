@@ -1,4 +1,4 @@
-﻿using System;
+﻿using R54IN0.WPF;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -55,6 +55,7 @@ namespace R54IN0
             _fmt = fmt;
             InitializeProperties(fmt);
         }
+
         public virtual InventoryFormat Format
         {
             get
@@ -182,7 +183,7 @@ namespace R54IN0
 
         protected void InitializeProperties(InventoryFormat fmt)
         {
-            var ofd = ObservableFieldDirector.GetInstance();
+            var ofd = InventoryDataCommander.GetInstance();
             product = ofd.SearchObservableField<Product>(fmt.ProductID);
             measure = ofd.SearchObservableField<Measure>(fmt.MeasureID);
             maker = ofd.SearchObservableField<Maker>(fmt.MakerID);
@@ -194,7 +195,7 @@ namespace R54IN0
                 propertyChanged(this, new PropertyChangedEventArgs(name));
 
             if (ID == null)
-                await DbAdapter.GetInstance().InsertAsync(Format);
+                await InventoryDataCommander.GetInstance().AddObservableInventory(this);
             else
                 await DbAdapter.GetInstance().UpdateAsync(Format, name);
         }

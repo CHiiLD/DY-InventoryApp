@@ -79,6 +79,7 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Right">
+                        <ComboBox ItemsSource="{Binding SearchViewModel.Items}" SelectedItem="{Binding SearchViewModel.SelectedItem}" Margin="5" />
                         <TextBox x:Name="SearchTextBox"
                          Text="{Binding SearchViewModel.Text}"
                          ToolTip="검색어를 기준으로 제품과 규격의 이름이 포함된 입출고 기록을 검색합니다. 검색어가 여러개인 경우 OR연산으로 처리됩니다."
@@ -106,9 +107,11 @@
                         </StackPanel.Resources>
                         <Button Visibility="Visible" Command="{Binding NewInoutStockAddCommand}" HorizontalAlignment="Center" VerticalAlignment="Center">새로운 입출고 기록을 추가하기</Button>
                         <Button Visibility="Visible" Command="{Binding SelectedItemModifyCommand}">선택된 기록을 수정하기</Button>
-                        --><!--<Button>체크된 기록을 삭제하기</Button>
+                        -->
+                    <!--<Button>체크된 기록을 삭제하기</Button>
                         <Button>체크된 기록을 오늘 날짜로 복사하여 추가하기</Button>
-                        <Button  Visibility="Collapsed">선택된 기록을 재고현황 기록으로 보기</Button>--><!--
+                        <Button  Visibility="Collapsed">선택된 기록을 재고현황 기록으로 보기</Button>-->
+                    <!--
                     </StackPanel>-->
                 </Grid>
                 <local:IOStockDataGrid DataContext="{Binding DataGridViewModel}" x:Name="DataGrid" Grid.Row="1" />

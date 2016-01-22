@@ -19,7 +19,7 @@ namespace R54IN0.Test
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             viewmodel.StockType = IOStockType.INCOMING;
-            viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             var selectedInven = viewmodel.Inventory = viewmodel.InventoryList.Random();
             int inQty = selectedInven.Quantity;
             int icQty = viewmodel.Quantity = 10;
@@ -44,7 +44,7 @@ namespace R54IN0.Test
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             viewmodel.StockType = IOStockType.INCOMING;
-            viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             viewmodel.Inventory = viewmodel.InventoryList.Random();
 
             viewmodel.LoadLastRecordCommand.Execute(null);
@@ -66,7 +66,7 @@ namespace R54IN0.Test
             IOStockStatusViewModel iosViewModel = new IOStockStatusViewModel();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iosViewModel);
             viewmodel.StockType = IOStockType.OUTGOING;
-            viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             viewmodel.Inventory = viewmodel.InventoryList.Random();
             var name = viewmodel.ProjectText = "DY=NEW=FACE";
 
@@ -81,7 +81,7 @@ namespace R54IN0.Test
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             viewmodel.StockType = IOStockType.OUTGOING;
-            viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             viewmodel.Inventory = viewmodel.InventoryList.Random();
 
             viewmodel.LoadLastRecordCommand.Execute(null);
@@ -104,7 +104,7 @@ namespace R54IN0.Test
             var amender = RecordNewIOStock(status);
             var node = status.TreeViewViewModel.SelectedNodes.Single();
             amender.StockType = IOStockType.OUTGOING;
-            amender.Product = ObservableFieldDirector.GetInstance().SearchObservableField<Product>(node.ProductID);
+            amender.Product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ProductID);
             amender.Inventory = amender.InventoryList.Random();
             var record = await amender.RecordAsync();
             var item = status.DataGridViewModel.Items.Where(x => x.ID == record.ID).Single();
@@ -128,7 +128,7 @@ namespace R54IN0.Test
             var amender = RecordNewIOStock(status);
             var node = status.TreeViewViewModel.SelectedNodes.Single();
             amender.StockType = IOStockType.INCOMING;
-            amender.Product = ObservableFieldDirector.GetInstance().SearchObservableField<Product>(node.ProductID);
+            amender.Product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ProductID);
             amender.Inventory = amender.InventoryList.Random();
             var record = await amender.RecordAsync();
             var item = status.DataGridViewModel.Items.Where(x => x.ID == record.ID).Single();
@@ -160,7 +160,7 @@ namespace R54IN0.Test
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             viewmodel.StockType = IOStockType.INCOMING;
-            viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             viewmodel.Inventory = viewmodel.InventoryList.Random();
             string client = viewmodel.ClientText = "some client";
             string warehouse = viewmodel.WarehouseText = "some warehouse";
@@ -169,13 +169,13 @@ namespace R54IN0.Test
             var record = await viewmodel.RecordAsync();
 
             Assert.AreEqual(employee, record.Employee.Name);
-            Assert.IsNotNull(ObservableFieldDirector.GetInstance().SearchObservableField<Employee>(record.Employee.ID));
+            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchObservableField<Employee>(record.Employee.ID));
 
             Assert.AreEqual(warehouse, record.Warehouse.Name);
-            Assert.IsNotNull(ObservableFieldDirector.GetInstance().SearchObservableField<Warehouse>(record.Warehouse.ID));
+            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchObservableField<Warehouse>(record.Warehouse.ID));
 
             Assert.AreEqual(client, record.Supplier.Name);
-            Assert.IsNotNull(ObservableFieldDirector.GetInstance().SearchObservableField<Supplier>(record.Supplier.ID));
+            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchObservableField<Supplier>(record.Supplier.ID));
         }
 
         [TestMethod]
@@ -184,7 +184,7 @@ namespace R54IN0.Test
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             viewmodel.StockType = IOStockType.OUTGOING;
-            viewmodel.Product = ObservableFieldDirector.GetInstance().CopyObservableFields<Product>().Random();
+            viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
             viewmodel.Inventory = null;
             var text = viewmodel.SpecificationText = "new inventory";
 
@@ -192,7 +192,7 @@ namespace R54IN0.Test
 
             Assert.AreEqual(text, record.Inventory.Specification);
             Assert.IsNotNull(record.Inventory.ID);
-            Assert.IsNotNull(ObservableInventoryDirector.GetInstance().SearchObservableInventory(record.Inventory.ID));
+            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchObservableInventory(record.Inventory.ID));
         }
 
         [TestMethod]
@@ -210,8 +210,8 @@ namespace R54IN0.Test
             Assert.IsNotNull(record.Inventory.Product);
             Assert.AreEqual(productText, record.Inventory.Product.Name);
             Assert.AreEqual(specText, record.Inventory.Specification);
-            Assert.IsNotNull(ObservableFieldDirector.GetInstance().SearchObservableField<Product>(record.Inventory.Product.ID));
-            Assert.IsNotNull(ObservableInventoryDirector.GetInstance().SearchObservableInventory(record.Inventory.ID));
+            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchObservableField<Product>(record.Inventory.Product.ID));
+            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchObservableInventory(record.Inventory.ID));
         }
 
         /// <summary>
@@ -266,12 +266,12 @@ namespace R54IN0.Test
             var project = viewmodel.ProjectList.Random();
             viewmodel.ComboBoxItemDeleteCommand.Execute(project);
 
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Maker>(maker.ID));
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Measure>(measure.ID));
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Supplier>(client.ID));
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Employee>(employee.ID));
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Warehouse>(warehouse.ID));
-            Assert.IsNull(ObservableFieldDirector.GetInstance().SearchObservableField<Project>(project.ID));
+            Assert.IsNull(InventoryDataCommander.GetInstance().SearchObservableField<Maker>(maker.ID));
+            Assert.IsNull(InventoryDataCommander.GetInstance().SearchObservableField<Measure>(measure.ID));
+            Assert.IsNull(InventoryDataCommander.GetInstance().SearchObservableField<Supplier>(client.ID));
+            Assert.IsNull(InventoryDataCommander.GetInstance().SearchObservableField<Employee>(employee.ID));
+            Assert.IsNull(InventoryDataCommander.GetInstance().SearchObservableField<Warehouse>(warehouse.ID));
+            Assert.IsNull(InventoryDataCommander.GetInstance().SearchObservableField<Project>(project.ID));
         }
 
         /// <summary>
@@ -348,7 +348,7 @@ namespace R54IN0.Test
             var measure = viewmodel.MeasureList.Random();
             viewmodel.ComboBoxItemDeleteCommand.Execute(measure);
 
-            var inventories = ObservableInventoryDirector.GetInstance().CopyObservableInventories();
+            var inventories = InventoryDataCommander.GetInstance().CopyObservableInventories();
             foreach (var inventory in inventories)
             {
                 Assert.IsTrue(inventory.Maker == null || inventory.Maker.ID != maker.ID);
@@ -451,7 +451,7 @@ namespace R54IN0.Test
 
         public async Task CheckDeletePerfectly<T>(T field) where T : class, IField, new()
         {
-            var find = ObservableFieldDirector.GetInstance().SearchObservableField<T>(field.ID);
+            var find = InventoryDataCommander.GetInstance().SearchObservableField<T>(field.ID);
             Assert.IsNull(find);
             var select = await DbAdapter.GetInstance().SelectAsync<T>(field.ID);
             Assert.IsNull(select);

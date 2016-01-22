@@ -150,7 +150,7 @@ namespace R54IN0.WPF
         /// <param name="productID"></param>
         public void ShowIOStockDataAmenderWindow(string productID)
         {
-            var ofd = ObservableFieldDirector.GetInstance();
+            var ofd = InventoryDataCommander.GetInstance();
             var product = ofd.SearchObservableField<Product>(productID);
             if (product != null)
                 IOStockViewModel.OpenIOStockDataAmenderWindow(product);

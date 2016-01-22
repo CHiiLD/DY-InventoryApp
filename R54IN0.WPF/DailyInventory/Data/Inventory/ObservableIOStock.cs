@@ -1,4 +1,5 @@
-﻿using System;
+﻿using R54IN0.WPF;
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -251,14 +252,14 @@ namespace R54IN0
 
         protected virtual void InitializeProperties(IOStockFormat iosfmt)
         {
-            var ofd = ObservableFieldDirector.GetInstance();
+            var ofd = InventoryDataCommander.GetInstance();
             customer = ofd.SearchObservableField<Customer>(iosfmt.CustomerID);
             supplier = ofd.SearchObservableField<Supplier>(iosfmt.SupplierID);
             project = ofd.SearchObservableField<Project>(iosfmt.ProjectID);
             employee = ofd.SearchObservableField<Employee>(iosfmt.EmployeeID);
             warehouse = ofd.SearchObservableField<Warehouse>(iosfmt.WarehouseID);
 
-            var oid = ObservableInventoryDirector.GetInstance();
+            var oid = InventoryDataCommander.GetInstance();
             _inventory = oid.SearchObservableInventory(iosfmt.InventoryID);
         }
 

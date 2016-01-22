@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using Lex.Db;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -342,7 +341,7 @@ namespace R54IN0.WPF
             }
         }
 
-        public InventorySearchTextBoxViewModel SearchViewModel { get; set; }
+        public FilterSearchTextBoxViewModel SearchViewModel { get; set; }
 
         public void NotifyPropertyChanged(string name)
         {
@@ -359,7 +358,7 @@ namespace R54IN0.WPF
             ProjectListBoxViewModel = new IOStockProjectListBoxViewModel();
             TreeViewViewModel = new MultiSelectTreeViewModelView();
             DatePickerViewModel = new IOStockDatePickerViewModel();
-            SearchViewModel = new InventorySearchTextBoxViewModel();
+            SearchViewModel = new FilterSearchTextBoxViewModel();
             SearchViewModel.SearchCommand = new RelayCommand(ExecuteSearchCommand, CanSearch);
 
             IsCheckedInComing = true;
@@ -381,6 +380,7 @@ namespace R54IN0.WPF
 
             SelectedGroupItem = GroupItems.First();
         }
+
         private bool CanModifySelectedItem(object arg)
         {
             return DataGridViewModel.SelectedItem != null ? true : false;
@@ -466,7 +466,7 @@ namespace R54IN0.WPF
             {
                 DataGridViewModel.Items.Clear();
                 var nodes = TreeViewViewModel.SelectedNodes.SelectMany(c => c.Descendants().Where(node => node.Type == NodeType.PRODUCT));
-                var oid = ObservableInventoryDirector.GetInstance();
+                var oid = InventoryDataCommander.GetInstance();
                 List<ObservableInventory> obInvenList = new List<ObservableInventory>();
                 List<IOStockFormat> iosFmtList = new List<IOStockFormat>();
                 foreach (var node in nodes)
@@ -561,15 +561,8 @@ namespace R54IN0.WPF
         {
             TreeViewViewModel.SelectedNodes.Clear();
             DataGridViewModel.Items.Clear();
-            BackupSource = new List<IOStockDataGridItem>();
-
-            var searchResult = SearchViewModel.Search();
-            foreach (var inven in searchResult)
-            {
-                var formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
-                    DbCommand.WHERE, "InventoryID", inven.ID);
-                BackupSource.AddRange(formats.Select(x => new IOStockDataGridItem(x)));
-            }
+            IEnumerable<IOStockFormat> fmts = await SearchViewModel.SearchAsFilter();
+            BackupSource = fmts.Select(x => new IOStockDataGridItem(x)).ToList();
             UpdateDataGridItems();
         }
 

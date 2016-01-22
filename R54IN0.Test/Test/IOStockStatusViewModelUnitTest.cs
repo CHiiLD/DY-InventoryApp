@@ -266,7 +266,7 @@ namespace R54IN0.Test
             string iosID = item.ID;
 
             viewmodel.DataGridViewModel.IOStockFormatDeletionCommand.Execute(null);
-            int inQty2 = ObservableInventoryDirector.GetInstance().SearchObservableInventory(item.Inventory.ID).Quantity;
+            int inQty2 = InventoryDataCommander.GetInstance().SearchObservableInventory(item.Inventory.ID).Quantity;
 
             Assert.AreNotEqual(inQty, inQty2);
         }
@@ -331,7 +331,7 @@ namespace R54IN0.Test
             string iosID = item.ID;
 
             viewmodel.DataGridViewModel.ChekcedIOStockFormatsDeletionCommand.Execute(null);
-            int inQty2 = ObservableInventoryDirector.GetInstance().SearchObservableInventory(item.Inventory.ID).Quantity;
+            int inQty2 = InventoryDataCommander.GetInstance().SearchObservableInventory(item.Inventory.ID).Quantity;
 
             Assert.AreNotEqual(inQty, inQty2);
         }
@@ -396,11 +396,12 @@ namespace R54IN0.Test
         /// 제품을 검색하기
         /// </summary>
         [TestMethod]
+        [Ignore]
         public void SearchProductName()
         {
             new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
-            var oid = ObservableInventoryDirector.GetInstance();
+            var oid = InventoryDataCommander.GetInstance();
             var text = viewmodel.SearchViewModel.Text = oid.CopyObservableInventories().Select(x => x.Product).Distinct().Random().Name;
 
             viewmodel.SearchViewModel.SearchCommand.Execute(null);
@@ -412,12 +413,13 @@ namespace R54IN0.Test
         /// <summary>
         /// 규격을 검색하기
         /// </summary>
+        [Ignore]
         [TestMethod]
         public void SearchSpecificationName()
         {
             new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
-            var oid = ObservableInventoryDirector.GetInstance();
+            var oid = InventoryDataCommander.GetInstance();
             var text = viewmodel.SearchViewModel.Text = oid.CopyObservableInventories().Random().Specification;
 
             viewmodel.SearchViewModel.SearchCommand.Execute(null);
@@ -429,12 +431,13 @@ namespace R54IN0.Test
         /// <summary>
         /// 제품과 규격 검색하기
         /// </summary>
+        [Ignore]
         [TestMethod]
         public void SearchCommand()
         {
             new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
-            var oid = ObservableInventoryDirector.GetInstance();
+            var oid = InventoryDataCommander.GetInstance();
             var text1 = oid.CopyObservableInventories().Random().Specification;
             var text2 = oid.CopyObservableInventories().Select(x => x.Product).Distinct().Random().Name;
 
@@ -478,6 +481,104 @@ namespace R54IN0.Test
             TreeViewNode node = viewmodel.TreeViewViewModel.Root.SelectMany(root => root.Descendants().Where(x => x.Type == NodeType.PRODUCT)).Random();
             viewmodel.TreeViewViewModel.ExecuteNodesSelectedEventCommand(new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, null));
             return viewmodel;
+        }
+
+        [TestMethod]
+        public void TestProductSearch()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var searchvm = viewmodel.SearchViewModel;
+            searchvm.SelectedItem = FilterSearchTextBoxViewModel.FILTER_PRODUCT;
+            searchvm.Text = "PBL";
+
+            searchvm.SearchCommand.Execute(null);
+
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Product.Name.Contains(searchvm.Text)));
+        }
+
+        [TestMethod]
+        public void TestSpecificationSearch()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var searchvm = viewmodel.SearchViewModel;
+            searchvm.SelectedItem = FilterSearchTextBoxViewModel.FILTER_SPECIFICATION;
+            searchvm.Text = "AW";
+
+            searchvm.SearchCommand.Execute(null);
+
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Specification.Contains(searchvm.Text)));
+        }
+
+        [TestMethod]
+        public void TestMakerSearch()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var searchvm = viewmodel.SearchViewModel;
+            searchvm.SelectedItem = FilterSearchTextBoxViewModel.FILTER_MAKER;
+            searchvm.Text = "LG";
+
+            searchvm.SearchCommand.Execute(null);
+
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Maker.Name.Contains(searchvm.Text)));
+        }
+
+        [TestMethod]
+        public void TestSuppilerSearch()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var searchvm = viewmodel.SearchViewModel;
+            searchvm.SelectedItem = FilterSearchTextBoxViewModel.FILTER_SUPPLIER;
+            searchvm.Text = "테크";
+
+            searchvm.SearchCommand.Execute(null);
+
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Supplier.Name.Contains(searchvm.Text)));
+        }
+
+        [TestMethod]
+        public void TestWarehouseSearch()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var searchvm = viewmodel.SearchViewModel;
+            searchvm.SelectedItem = FilterSearchTextBoxViewModel.FILTER_WAREHOUSE;
+            searchvm.Text = "연구";
+
+            searchvm.SearchCommand.Execute(null);
+
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Warehouse.Name.Contains(searchvm.Text)));
+        }
+
+        [TestMethod]
+        public void TestCustomerSearch()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var searchvm = viewmodel.SearchViewModel;
+            searchvm.SelectedItem = FilterSearchTextBoxViewModel.FILTER_CUSTOMER;
+            searchvm.Text = "테크";
+
+            searchvm.SearchCommand.Execute(null);
+
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Customer.Name.Contains(searchvm.Text)));
+        }
+
+        [TestMethod]
+        public async Task TestEmployeeSearch()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var searchvm = viewmodel.SearchViewModel;
+            searchvm.SelectedItem = FilterSearchTextBoxViewModel.FILTER_EMPLOYEE;
+            searchvm.Text = "h";
+
+            searchvm.SearchCommand.Execute(null);
+
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Employee.Name.Contains(searchvm.Text)));
         }
     }
 }

@@ -3,7 +3,6 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -76,9 +75,7 @@ namespace R54IN0.WPF
         private async void ExecuteNewProductNodeAddCommand()
         {
             Observable<Product> newProduct = new Observable<Product>("새로운 제품");
-            ObservableFieldDirector.GetInstance().AddObservableField(newProduct);
-            CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(newProduct);
-            await DbAdapter.GetInstance().InsertAsync(newProduct.Field);
+            await InventoryDataCommander.GetInstance().AddObservableField(newProduct);
 
             IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FORDER);
             TreeViewNode newTreeViewNode = new TreeViewNode(NodeType.PRODUCT, newProduct.ID);
@@ -196,38 +193,43 @@ namespace R54IN0.WPF
         {
             if (SelectedNodes.Count() != 1)
                 return;
-
             var selectedNode = SelectedNodes.Single();
+            MessageDialogResult result = MessageDialogResult.Affirmative;
             switch (selectedNode.Type)
             {
                 case NodeType.FORDER:
+                    //if (Application.Current != null)
+                    //{
+                    //    var metro = Application.Current.MainWindow as MetroWindow;
+                    //    string title = "주의!";
+                    //    string msg = string.Format("{0} 폴더와 그 하위 폴더 및 제품의 기록을 모두 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name);
+                    //    result = await metro.ShowMessageAsync(
+                    //        title, msg, MessageDialogStyle.AffirmativeAndNegative,
+                    //        new MetroDialogSettings() { AffirmativeButtonText = "네", NegativeButtonText = "아니오", ColorScheme = MetroDialogColorScheme.Accented });
+                    //}
+                    //if (result != MessageDialogResult.Affirmative)
+                    //    return;
                     var productNodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).ToList();
                     _director.Remove(selectedNode);
                     productNodes.ForEach(x => _director.Add(x));
                     break;
+
                 case NodeType.PRODUCT:
-                    MessageDialogResult result = MessageDialogResult.Affirmative;
                     if (Application.Current != null)
                     {
                         var metro = Application.Current.MainWindow as MetroWindow;
                         string title = "주의!";
-                        string msg = string.Format("{0} 제품과 관련된 모든 재고기록과 입출고기록을 삭제합니다.\n정말로 삭제하시겠습니까?" ,selectedNode.Name);
+                        string msg = string.Format("{0} 제품과 관련된 모든 재고기록과 입출고기록을 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name);
                         result = await metro.ShowMessageAsync(
                             title, msg, MessageDialogStyle.AffirmativeAndNegative,
                             new MetroDialogSettings() { AffirmativeButtonText = "네", NegativeButtonText = "아니오", ColorScheme = MetroDialogColorScheme.Accented });
                     }
                     if (result != MessageDialogResult.Affirmative)
                         return;
-
                     _director.Remove(selectedNode);
-                    var product = ObservableFieldDirector.GetInstance().SearchObservableField<Product>(selectedNode.ProductID);
-                    if (product != null)
-                        CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(product);
-                    var oid = ObservableInventoryDirector.GetInstance();
-                    var invens = oid.SearchObservableInventoryAsProductID(product.ID).ToList();
-                    invens.ForEach(x => oid.RemoveObservableInventory(x));
-                    ObservableFieldDirector.GetInstance().RemoveObservableField<Product>(product);
-                    await DbAdapter.GetInstance().DeleteAsync(product.Field);
+
+                    var product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(selectedNode.ProductID);
+                    await InventoryDataCommander.GetInstance().RemoveObservableField(product);
                     break;
             }
             SelectedNodes.Clear();

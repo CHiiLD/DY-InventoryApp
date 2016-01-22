@@ -147,12 +147,10 @@
     </Compile>
     <Compile Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewModelView.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNode.cs" />
-    <Compile Include="DailyInventory\Data\Director\DataCommander.cs" />
-    <Compile Include="DailyInventory\Data\Director\IObservableFieldDirector.cs" />
-    <Compile Include="DailyInventory\Data\Director\IObservableInventoryDirector.cs" />
+    <Compile Include="DailyInventory\Data\Director\InventoryDataCommander.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ISync.cs" />
     <Compile Include="DailyInventory\Data\LexDb.cs" />
-    <Compile Include="DailyInventory\Controls\CollectionViewModelObserverSubject.cs" />
+    <Compile Include="DailyInventory\Data\Director\CollectionViewModelObserverSubject.cs" />
     <Compile Include="DailyInventory\Data\Director\MultiSortedDictionary.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableFieldDirector.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableInventoryDirector.cs" />

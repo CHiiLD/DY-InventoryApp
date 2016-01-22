@@ -251,10 +251,9 @@ namespace R54IN0.Test
             LexDb.Destroy();
             DbAdapter.Destroy();
             CollectionViewModelObserverSubject.Destory();
-            ObservableInventoryDirector.Destory();
-            ObservableFieldDirector.Destory();
             MainWindowViewModel.Destory();
             TreeViewNodeDirector.Destroy();
+            InventoryDataCommander.Destroy();
 
             using (var db = LexDb.GetDbInstance())
                 db.Purge();
