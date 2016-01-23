@@ -1,4 +1,6 @@
 ﻿using MahApps.Metro.Controls;
+using System;
+using System.Diagnostics;
 
 namespace R54IN0.WPF
 {

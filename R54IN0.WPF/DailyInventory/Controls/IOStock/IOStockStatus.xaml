@@ -82,7 +82,7 @@
                         <ComboBox ItemsSource="{Binding SearchViewModel.Items}" SelectedItem="{Binding SearchViewModel.SelectedItem}" Margin="5" />
                         <TextBox x:Name="SearchTextBox"
                          Text="{Binding SearchViewModel.Text, UpdateSourceTrigger=PropertyChanged}"
-                         ToolTip="검색어를 기준으로 제품과 규격의 이름이 포함된 입출고 기록을 검색합니다. 검색어가 여러개인 경우 OR연산으로 처리됩니다."
+                         ToolTip="필터를 기준으로 이름이 포함된 입출고 기록을 검색합니다. 검색어가 여러개인 경우 OR연산으로 처리됩니다."
                          mah:TextBoxHelper.ButtonCommand="{Binding SearchViewModel.SearchCommand}"
                          mah:TextBoxHelper.Watermark="검색어를 입력해주세요"
                          mah:TextBoxHelper.UseFloatingWatermark="False"

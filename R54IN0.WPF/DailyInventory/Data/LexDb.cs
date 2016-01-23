@@ -21,7 +21,7 @@ namespace R54IN0
             if (_customLexDb == null)
             {
 #if DEBUG
-                _customLexDb = new CustomLexDb("test.db");
+                _customLexDb = new CustomLexDb("daily inventory", "./");
 #else
                _customLexDb = new CustomLexDb("daily inventory", "./");
 #endif

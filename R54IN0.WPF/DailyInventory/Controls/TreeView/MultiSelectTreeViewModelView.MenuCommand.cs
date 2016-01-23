@@ -198,17 +198,17 @@ namespace R54IN0.WPF
             switch (selectedNode.Type)
             {
                 case NodeType.FORDER:
-                    //if (Application.Current != null)
-                    //{
-                    //    var metro = Application.Current.MainWindow as MetroWindow;
-                    //    string title = "주의!";
-                    //    string msg = string.Format("{0} 폴더와 그 하위 폴더 및 제품의 기록을 모두 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name);
-                    //    result = await metro.ShowMessageAsync(
-                    //        title, msg, MessageDialogStyle.AffirmativeAndNegative,
-                    //        new MetroDialogSettings() { AffirmativeButtonText = "네", NegativeButtonText = "아니오", ColorScheme = MetroDialogColorScheme.Accented });
-                    //}
-                    //if (result != MessageDialogResult.Affirmative)
-                    //    return;
+                    if (Application.Current != null)
+                    {
+                        var metro = Application.Current.MainWindow as MetroWindow;
+                        string title = "주의!";
+                        string msg = string.Format("{0} 폴더를 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name);
+                        result = await metro.ShowMessageAsync(
+                            title, msg, MessageDialogStyle.AffirmativeAndNegative,
+                            new MetroDialogSettings() { AffirmativeButtonText = "네", NegativeButtonText = "아니오", ColorScheme = MetroDialogColorScheme.Accented });
+                    }
+                    if (result != MessageDialogResult.Affirmative)
+                        return;
                     var productNodes = SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).ToList();
                     _director.Remove(selectedNode);
                     productNodes.ForEach(x => _director.Add(x));

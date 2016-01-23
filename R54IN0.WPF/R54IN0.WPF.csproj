@@ -110,6 +110,7 @@
     <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.RecordFunc.cs" />
     <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.cs" />
     <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.Property1.cs" />
+    <Compile Include="DailyInventory\Controls\IOStock\FilterSearchTextBoxViewModel.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridItem.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridViewModel.MenuCommand.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridViewModel.cs" />

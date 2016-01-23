@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 
@@ -26,8 +27,12 @@ namespace R54IN0.WPF
                 Application.Current.Shutdown();
                 return;
             }
+            AttachConsole(-1);
             base.OnStartup(e);
             await DbAdapter.GetInstance().ConnectAsync();
         }
+
+        [DllImport("Kernel32.dll")]
+        public static extern bool AttachConsole(int processId);
     }
 }

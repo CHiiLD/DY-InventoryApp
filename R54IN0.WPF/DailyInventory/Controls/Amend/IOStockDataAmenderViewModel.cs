@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace R54IN0.WPF
 {
@@ -53,7 +54,7 @@ namespace R54IN0.WPF
         public const string CUSTOMER = "출고처";
         public const string PROJECT_PREPIX = "DY";
 
-        public RelayCommand WindowCloseCommand { get; private set; }
+        
 
         /// <summary>
         /// TEST용 생성자
@@ -158,6 +159,7 @@ namespace R54IN0.WPF
             LoadLastRecordCommand = new RelayCommand(ExecuteLoadLastRecordCommand, CanLoadLastRecord);
             ComboBoxItemDeleteCommand = new RelayCommand<object>(ExecuteComboBoxItemDeleteCommand);
             WindowCloseCommand = new RelayCommand(ExecuteWindowCloseCommand);
+            ComboBoxKeyUpEventCommand = new RelayCommand<KeyEventArgs>(ExecuteComboBoxKeyUpEventCommand);
 
             var ofd = InventoryDataCommander.GetInstance();
             _makerList = new ObservableCollection<Observable<Maker>>(ofd.CopyObservableFields<Maker>());
@@ -165,6 +167,12 @@ namespace R54IN0.WPF
             _projectList = new ObservableCollection<Observable<Project>>(ofd.CopyObservableFields<Project>());
             _employeeList = new ObservableCollection<Observable<Employee>>(ofd.CopyObservableFields<Employee>());
             _warehouseList = new ObservableCollection<Observable<Warehouse>>(ofd.CopyObservableFields<Warehouse>());
+        }
+
+        private void ExecuteComboBoxKeyUpEventCommand(KeyEventArgs e)
+        {
+
+
         }
 
         private void ExecuteWindowCloseCommand()

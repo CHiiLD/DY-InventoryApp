@@ -172,13 +172,13 @@
                 </Grid.ColumnDefinitions>
                 <Label>규격</Label>
                 <ComboBox
-                          Text="{Binding SpecificationText}"
+                          Text="{Binding SpecificationText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding Inventory}"
                           ItemsSource="{Binding InventoryList}"
                           DisplayMemberPath="Specification"
                           IsEnabled="{Binding IsEnabledSpecificationComboBox}"
                           IsEditable="{Binding IsEditableSpecification}"
-                          Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
+                          Grid.Column="1" Width="200" HorizontalAlignment="Left" ></ComboBox>
             </Grid>
 
             <Grid Grid.Row="3" Grid.Column="1">
@@ -220,7 +220,7 @@
                 </Grid.ColumnDefinitions>
                 <Label>제조사</Label>
                 <ComboBox Style="{StaticResource CanDeleteItemComboBoxStyle}"
-                          Text="{Binding MakerText}"
+                          Text="{Binding MakerText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding Maker}"
                           ItemsSource="{Binding MakerList}"
                           IsEditable="True"
@@ -247,7 +247,7 @@
                 <Label>단위</Label>
                 <ComboBox
                     Style="{StaticResource CanDeleteItemComboBoxStyle}"
-                    Text="{Binding MeasureText}"
+                    Text="{Binding MeasureText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     SelectedItem="{Binding Measure}"
                     ItemsSource="{Binding MeasureList}"
                     IsEditable="True"
@@ -287,11 +287,19 @@
                 <Label Content="{Binding AccountTypeText}" />
                 <ComboBox
                           Style="{StaticResource CanDeleteItemComboBoxStyle}"
-                          Text="{Binding ClientText}"
+                          Text="{Binding ClientText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding Client}"
                           ItemsSource="{Binding ClientList}"
                           IsEditable="True"
-                          Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
+                          Grid.Column="1" Width="200" HorizontalAlignment="Left">
+                    <!--<i:Interaction.Triggers>
+                        <i:EventTrigger EventName="KeyUp">
+                            <mvvmlight:EventToCommand 
+                                Command="{Binding ComboBoxKeyUpEventCommand}"
+                                PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>-->
+                </ComboBox>
             </Grid>
 
             <Grid Grid.Row="8" Grid.Column="1">
@@ -302,7 +310,7 @@
                 <Label>보관장소</Label>
                 <ComboBox
                     Style="{StaticResource CanDeleteItemComboBoxStyle}"
-                    Text="{Binding WarehouseText}"
+                    Text="{Binding WarehouseText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     SelectedItem="{Binding Warehouse}"
                     ItemsSource="{Binding WarehouseList}"
                     IsEditable="True"
@@ -318,7 +326,7 @@
                 <Label>프로젝트</Label>
                 <ComboBox
                     Style="{StaticResource CanDeleteItemComboBoxStyle}"
-                    Text="{Binding ProjectText}"
+                    Text="{Binding ProjectText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     SelectedItem="{Binding Project}"
                     ItemsSource="{Binding ProjectList}"
                     IsEditable="True"
@@ -340,7 +348,7 @@
                 <Label>담당자</Label>
                 <ComboBox
                     Style="{StaticResource CanDeleteItemComboBoxStyle}"
-                    Text="{Binding EmployeeText}"
+                    Text="{Binding EmployeeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     SelectedItem="{Binding Employee}"
                     ItemsSource="{Binding EmployeeList}"
                     IsEditable="True"

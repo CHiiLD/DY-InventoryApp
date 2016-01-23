@@ -11,7 +11,6 @@
 
 using Custom.Controls;
 using GalaSoft.MvvmLight.Command;
-using MahApps.Metro.Controls;
 using R54IN0.WPF;
 using System;
 using System.Diagnostics;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -370,6 +371,8 @@ namespace R54IN0.WPF
             {
                 _clientText = value;
                 NotifyPropertyChanged("ClientText");
+
+                Console.WriteLine("setted clinet text property: {0}", value);
             }
         }
 

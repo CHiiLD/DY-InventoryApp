@@ -64,3 +64,8 @@ C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\bin\Release\DailY Inventory.application
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Release\DailY Inventory.TrustInfo.xml
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Release\DailY Inventory.exe.manifest
 C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Release\DailY Inventory.application
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\bin\Release\MahApps.Metro.Resources.dll
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\bin\Release\MahApps.Metro.Resources.pdb
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Release\Window2.g.cs
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Release\DailyInventory\Controls\MetroButtonStyles.baml
+C:\Users\CHILD\GitHub\R54IN0\R54IN0.WPF\obj\Release\Window2.baml

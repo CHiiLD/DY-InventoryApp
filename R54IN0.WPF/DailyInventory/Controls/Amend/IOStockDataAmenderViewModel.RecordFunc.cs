@@ -49,6 +49,7 @@ namespace R54IN0.WPF
                         var supplier = new Observable<Supplier>(ClientText);
                         await InventoryDataCommander.GetInstance().AddObservableField(supplier);
                         Supplier = supplier;
+                        Console.WriteLine("recorded Supplier.Name property: {0}", Supplier.Name);
                     }
                     if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
                     {

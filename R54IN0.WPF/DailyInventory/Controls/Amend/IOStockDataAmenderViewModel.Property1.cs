@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System.Windows;
+using System.Windows.Input;
 
 namespace R54IN0.WPF
 {
@@ -31,6 +32,10 @@ namespace R54IN0.WPF
         public RelayCommand LoadLastRecordCommand { get; set; }
 
         public RelayCommand<RoutedEventArgs> ProjectComboBoxGotFocusEventCommand { get; set; }
+
+        public RelayCommand WindowCloseCommand { get; set; }
+
+        public RelayCommand<KeyEventArgs> ComboBoxKeyUpEventCommand { get; set; }
 
         /// <summary>
         /// 콤보박스의 아이템들을 삭제
