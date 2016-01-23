@@ -33,12 +33,12 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Window.InputBindings>
+    <!--<Window.InputBindings>
         <KeyBinding Key="F1" Command="{Binding ChangeInventoryViewCommand}" />
         <KeyBinding Key="F2" Command="{Binding ChangeIOStockViewByProductCommand}" />
         <KeyBinding Key="F3" Command="{Binding ChangeIOStockByDateCommand}" />
         <KeyBinding Key="F4" Command="{Binding ChangeIOStockByProjectCommand}" />
-    </Window.InputBindings>
+    </Window.InputBindings>-->
 
     <Grid>
         <Grid.RowDefinitions>
@@ -54,13 +54,13 @@
                 <MenuItem Header="종료" Command="{Binding AppExitCommand}" />
             </MenuItem>
 
-            <MenuItem Header="재고 현황" Command="{Binding ChangeInventoryViewCommand}" InputGestureText="F1">
+            <MenuItem Header="재고 현황" Command="{Binding ChangeInventoryViewCommand}">
             </MenuItem>
 
             <MenuItem Header="입출고 현황">
-                <MenuItem Header="제품별로 보기" Command="{Binding ChangeIOStockViewByProductCommand}" InputGestureText="F2" />
-                <MenuItem Header="날짜별로 보기" Command="{Binding ChangeIOStockByDateCommand}" InputGestureText="F3" />
-                <MenuItem Header="프로젝트별로 보기" Command="{Binding ChangeIOStockByProjectCommand}" InputGestureText="F4" />
+                <MenuItem Header="제품별로 보기" Command="{Binding ChangeIOStockViewByProductCommand}"/>
+                <MenuItem Header="날짜별로 보기" Command="{Binding ChangeIOStockByDateCommand}"/>
+                <MenuItem Header="프로젝트별로 보기" Command="{Binding ChangeIOStockByProjectCommand}"/>
             </MenuItem>
 
             <MenuItem Header="인터페이스">

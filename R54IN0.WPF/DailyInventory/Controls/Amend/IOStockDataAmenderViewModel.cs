@@ -53,6 +53,8 @@ namespace R54IN0.WPF
         public const string CUSTOMER = "출고처";
         public const string PROJECT_PREPIX = "DY";
 
+        public RelayCommand WindowCloseCommand { get; private set; }
+
         /// <summary>
         /// TEST용 생성자
         /// </summary>
@@ -155,6 +157,7 @@ namespace R54IN0.WPF
             ProjectComboBoxGotFocusEventCommand = new RelayCommand<RoutedEventArgs>(ExecuteProjectComboBoxGotFocusEventCommand);
             LoadLastRecordCommand = new RelayCommand(ExecuteLoadLastRecordCommand, CanLoadLastRecord);
             ComboBoxItemDeleteCommand = new RelayCommand<object>(ExecuteComboBoxItemDeleteCommand);
+            WindowCloseCommand = new RelayCommand(ExecuteWindowCloseCommand);
 
             var ofd = InventoryDataCommander.GetInstance();
             _makerList = new ObservableCollection<Observable<Maker>>(ofd.CopyObservableFields<Maker>());
@@ -162,6 +165,13 @@ namespace R54IN0.WPF
             _projectList = new ObservableCollection<Observable<Project>>(ofd.CopyObservableFields<Project>());
             _employeeList = new ObservableCollection<Observable<Employee>>(ofd.CopyObservableFields<Employee>());
             _warehouseList = new ObservableCollection<Observable<Warehouse>>(ofd.CopyObservableFields<Warehouse>());
+        }
+
+        private void ExecuteWindowCloseCommand()
+        {
+            var window = Application.Current.Windows.OfType<Window>().Where(x => x.IsActive).FirstOrDefault();
+            if (window != null)
+                window.Close();
         }
 
         private async void ExecuteComboBoxItemDeleteCommand(object obj)
@@ -278,9 +288,7 @@ namespace R54IN0.WPF
         private async void ExecuteRecordCommand()
         {
             await RecordAsync();
-            var window = Application.Current.Windows.OfType<Window>().Where(x => x.IsActive).FirstOrDefault();
-            if (window != null)
-                window.Close();
+            ExecuteWindowCloseCommand();
         }
 
         /// <summary>

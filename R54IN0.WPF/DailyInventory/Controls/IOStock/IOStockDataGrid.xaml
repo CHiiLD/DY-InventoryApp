@@ -23,7 +23,7 @@
     <Grid>
         <DataGrid x:Name="DataGridControl" AutoGenerateColumns="False"
                   ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"
-                  CanUserAddRows="False" GridLinesVisibility="All"
+                  CanUserAddRows="False" GridLinesVisibility="All" HeadersVisibility="All"
                   CanUserDeleteRows="False">
 
             <i:Interaction.Triggers>
@@ -104,7 +104,19 @@
                     ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                     EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                     Header="체크" Binding="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                </DataGridCheckBoxColumn>
+                </DataGridCheckBoxColumn> 
+
+                <!--<DataGridTemplateColumn Header="체크"> 
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <CheckBox 
+                                      IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Style="{DynamicResource MetroCheckBox}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>-->
 
                 <DataGridTextColumn Header="종류" IsReadOnly="True" Width="Auto" Binding="{Binding StockType, Converter={StaticResource StockTypeConverter}}">
                     <DataGridTextColumn.ElementStyle>

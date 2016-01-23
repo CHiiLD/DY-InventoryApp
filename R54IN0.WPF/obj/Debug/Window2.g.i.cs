@@ -9,6 +9,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Custom.Controls;
+using GalaSoft.MvvmLight.Command;
 using MahApps.Metro.Controls;
 using R54IN0.WPF;
 using System;
@@ -21,6 +23,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Ink;
 using System.Windows.Input;
+using System.Windows.Interactivity;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
