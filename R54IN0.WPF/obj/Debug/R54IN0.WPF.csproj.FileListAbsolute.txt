@@ -1,0 +1,71 @@
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\DailY Inventory.exe.config
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\DailY Inventory.exe.manifest
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\DailY Inventory.application
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\DailY Inventory.exe
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\DailY Inventory.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Custom.Controls.EditableTextBlock.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\GalaSoft.MvvmLight.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Lex.Db.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\System.Windows.Interactivity.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\TreeViewEx.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Lex.Db.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.xml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\GalaSoft.MvvmLight.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\GalaSoft.MvvmLight.xml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Newtonsoft.Json.xml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\TreeViewEx.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\Custom.Controls.EditableTextBlock.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\de\System.Windows.Interactivity.resources.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\en\System.Windows.Interactivity.resources.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\es\System.Windows.Interactivity.resources.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\it\System.Windows.Interactivity.resources.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.csprojResolveAssemblyReference.cache
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\IOStock\IOStockDatePicker.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\IOStock\IOStockProjectListBox.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\IOStock\IOStockStatus.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\Inventory\InventoryStatus.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\IOStock\IOStockDataGrid.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\Inventory\InventoryDataGrid.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\TreeView\MultiSelectTreeView.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Windows\MainWindow.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\Amend\IOStockDataAmenderWindow.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\App.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailY Inventory_MarkupCompile.cache
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailY Inventory_MarkupCompile.lref
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\App.baml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\IOStock\IOStockDatePicker.baml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\IOStock\IOStockProjectListBox.baml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\IOStock\IOStockStatus.baml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\Inventory\InventoryStatus.baml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\IOStock\IOStockDataGrid.baml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\Inventory\InventoryDataGrid.baml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\TreeView\MultiSelectTreeView.baml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Windows\MainWindow.baml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\Amend\IOStockDataAmenderWindow.baml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailY Inventory.g.resources
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.Properties.Resources.resources
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\R54IN0.WPF.csproj.GenerateResource.Cache
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailY Inventory.TrustInfo.xml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailY Inventory.exe.manifest
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailY Inventory.application
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailY Inventory.exe
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailY Inventory.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.Resources.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.Resources.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\Window2.g.cs
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\MetroButtonStyles.baml
+Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\Window2.baml

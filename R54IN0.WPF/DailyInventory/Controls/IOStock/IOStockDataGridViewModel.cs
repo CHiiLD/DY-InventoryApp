@@ -11,7 +11,6 @@ namespace R54IN0.WPF
     public partial class IOStockDataGridViewModel : ICollectionViewModel<IOStockDataGridItem>, INotifyPropertyChanged
     {
         private event PropertyChangedEventHandler _propertyChanged;
-
         private ObservableCollection<IOStockDataGridItem> _items;
         private IOStockDataGridItem _selectedItem;
         private Visibility _specificationMemoColumnVisibility;

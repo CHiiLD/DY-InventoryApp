@@ -9,7 +9,11 @@
         mc:Ignorable="d"
         Title="Window2" Height="300" Width="300">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <StackPanel.Resources>
+
+        <TextBox AutoWordSelection="True">
+        </TextBox>
+        
+        <!--<StackPanel.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
                     <ResourceDictionary Source="/DailyInventory/Controls/MetroButtonStyles.xaml" />
@@ -24,6 +28,6 @@
                     <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_clear_reflect_horizontal}"/>
                 </Rectangle.OpacityMask>
             </Rectangle>
-        </Button>
+        </Button>-->
     </StackPanel>
 </Window>

@@ -105,11 +105,8 @@
     <Compile Include="DailyInventory\Controls\ICollectionViewModel.cs" />
     <Compile Include="DailyInventory\Controls\ICollectionViewModelObserver.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\EnumBooleanConverter.cs" />
-    <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.Property2.cs" />
     <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.Inner.cs" />
-    <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.RecordFunc.cs" />
     <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.Property1.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\FilterSearchTextBoxViewModel.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridItem.cs" />
     <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridViewModel.MenuCommand.cs" />

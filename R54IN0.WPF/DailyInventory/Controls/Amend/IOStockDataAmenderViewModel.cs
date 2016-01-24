@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -53,8 +54,6 @@ namespace R54IN0.WPF
         public const string SUPPLIER = "구입처";
         public const string CUSTOMER = "출고처";
         public const string PROJECT_PREPIX = "DY";
-
-        
 
         /// <summary>
         /// TEST용 생성자
@@ -125,6 +124,639 @@ namespace R54IN0.WPF
         }
 
         /// <summary>
+        /// 제품 탐색기 뷰모델
+        /// </summary>
+        public MultiSelectTreeViewModelView TreeViewViewModel { get; set; }
+
+        #region Command
+
+        /// <summary>
+        /// 제품 탐색기 열기 버튼의 명령어
+        /// </summary>
+        public RelayCommand ProductSearchCommand { get; set; }
+
+        /// <summary>
+        /// 저장 버튼 명령어
+        /// </summary>
+        public RelayCommand RecordCommand { get; set; }
+
+        /// <summary>
+        /// 제품 탐색기에서 제품을 선택한 뒤, 확인 버튼의 Command 객체
+        /// </summary>
+        public RelayCommand ProductSelectCommand { get; set; }
+
+        /// <summary>
+        /// 최근 저장된 데이터를 불러온다.
+        /// </summary>
+        public RelayCommand LoadLastRecordCommand { get; set; }
+
+        public RelayCommand<RoutedEventArgs> ProjectComboBoxGotFocusEventCommand { get; set; }
+
+        public RelayCommand WindowCloseCommand { get; set; }
+
+        public RelayCommand<KeyEventArgs> ComboBoxKeyUpEventCommand { get; set; }
+
+        /// <summary>
+        /// 콤보박스의 아이템들을 삭제
+        /// </summary>
+        public RelayCommand<object> ComboBoxItemDeleteCommand { get; set; }
+
+        #endregion Command
+
+        public bool IsEditableSpecification
+        {
+            get
+            {
+                return _isEditableSpecification;
+            }
+            set
+            {
+                _isEditableSpecification = value;
+                NotifyPropertyChanged("IsEditableSpecification");
+            }
+        }
+
+        /// <summary>
+        /// 제품 탐색기 플라이아웃의 가시 여부 바인딩 프로퍼티
+        /// </summary>
+        public bool IsOpenFlyout
+        {
+            get
+            {
+                return _isOpenFlyout;
+            }
+            set
+            {
+                _isOpenFlyout = value;
+                NotifyPropertyChanged("IsOpenFlyout");
+            }
+        }
+
+        /// <summary>
+        /// 단가의 합계 (입출된 개수 * 가격)
+        /// </summary>
+        public decimal Amount
+        {
+            get
+            {
+                return Quantity * UnitPrice;
+            }
+        }
+
+        /// <summary>
+        /// 재고 수량
+        /// Inventory.Quantity는 입출고 수량에 의한 변동된 재고수량을 계산하기 위해 가만히 둔다.
+        /// </summary>
+        public int InventoryQuantity
+        {
+            get
+            {
+                return _inventoryQuantity;
+            }
+            private set
+            {
+                _inventoryQuantity = value;
+                NotifyPropertyChanged("InventoryQuantity");
+            }
+        }
+
+        public string AccountTypeText
+        {
+            get
+            {
+                return _accountTypeText;
+            }
+            set
+            {
+                _accountTypeText = value;
+                NotifyPropertyChanged("AccountTypeText");
+            }
+        }
+
+        public string TitleText
+        {
+            get; set;
+        }
+
+        public Visibility LoadLastRecordVisibility
+        {
+            get;
+            set;
+        }
+
+        public override IOStockType StockType
+        {
+            get
+            {
+                return base.StockType;
+            }
+            set
+            {
+                base.StockType = value;
+                var ofd = InventoryDataCommander.GetInstance();
+
+                switch (value)
+                {
+                    case IOStockType.INCOMING:
+                        Project = null;
+                        ProjectText = null;
+                        ClientList = new ObservableCollection<IObservableField>(ofd.CopyObservableFields<Supplier>());
+                        IsEditableSpecification = true;
+                        IsReadOnlyProductTextBox = false;
+                        IsEnabledWarehouseComboBox = true;
+                        IsEnabledProjectComboBox = false;
+                        AccountTypeText = SUPPLIER;
+                        break;
+
+                    case IOStockType.OUTGOING:
+                        Warehouse = null;
+                        WarehouseText = null;
+                        ClientList = new ObservableCollection<IObservableField>(ofd.CopyObservableFields<Customer>());
+                        IsEditableSpecification = false;
+                        IsReadOnlyProductTextBox = true;
+                        IsEnabledWarehouseComboBox = false;
+                        IsEnabledProjectComboBox = true;
+                        AccountTypeText = CUSTOMER;
+
+                        if (Product == null)
+                            ProductText = null;
+                        if (Inventory == null)
+                        {
+                            SpecificationText = null;
+                            SpecificationMemo = null;
+                            MakerText = null;
+                            MeasureText = null;
+                            Maker = null;
+                            Measure = null;
+                        }
+                        break;
+                }
+                CalcInventoryQuantityProperty(Quantity);
+            }
+        }
+
+        public override int Quantity
+        {
+            get
+            {
+                return base.Quantity;
+            }
+            set
+            {
+                base.Quantity = value;
+                CalcInventoryQuantityProperty(value);
+            }
+        }
+
+        #region IsEnabled Property
+
+        public bool IsEnabledDatePicker
+        {
+            get
+            {
+                return _isEnabledDatePicker;
+            }
+            set
+            {
+                _isEnabledDatePicker = value;
+                NotifyPropertyChanged("IsEnabledDatePicker");
+            }
+        }
+
+        public bool IsEnabledWarehouseComboBox
+        {
+            get
+            {
+                return _isEnabledWarehouseComboBox;
+            }
+            set
+            {
+                _isEnabledWarehouseComboBox = value;
+                NotifyPropertyChanged("IsEnabledWarehouseComboBox");
+            }
+        }
+
+        public bool IsEnabledProjectComboBox
+        {
+            get
+            {
+                return _isEnabledProjectComboBox;
+            }
+            set
+            {
+                _isEnabledProjectComboBox = value;
+                NotifyPropertyChanged("IsEnabledProjectComboBox");
+            }
+        }
+
+        public bool IsEnabledInComingRadioButton
+        {
+            get
+            {
+                return _isEnabledInComingRadioButton;
+            }
+            set
+            {
+                _isEnabledInComingRadioButton = value;
+                NotifyPropertyChanged("IsEnabledInComingRadioButton");
+            }
+        }
+
+        public bool IsEnabledOutGoingRadioButton
+        {
+            get
+            {
+                return _isEnabledInOutGoingRadioButton;
+            }
+            set
+            {
+                _isEnabledInOutGoingRadioButton = value;
+                NotifyPropertyChanged("IsEnabledOutGoingRadioButton");
+            }
+        }
+
+        public bool IsEnabledSpecificationComboBox
+        {
+            get
+            {
+                return _isEnabledSpecificationComboBox;
+            }
+            set
+            {
+                _isEnabledSpecificationComboBox = value;
+                NotifyPropertyChanged("IsEnabledSpecificationComboBox");
+            }
+        }
+
+        #endregion IsEnabled Property
+
+        #region IsReadOnly Property
+
+        /// <summary>
+        /// 제품 텍스트 박스의 텍스트 바인딩 프로퍼티
+        /// </summary>
+        public bool IsReadOnlyProductTextBox
+        {
+            get
+            {
+                return _isReadOnlyProductTextBox;
+            }
+            set
+            {
+                _isReadOnlyProductTextBox = value;
+                NotifyPropertyChanged("IsReadOnlyProductTextBox");
+            }
+        }
+
+        #endregion IsReadOnly Property
+
+        #region ComboBox ItemsSource Property
+
+        public IEnumerable<IObservableInventoryProperties> InventoryList
+        {
+            get
+            {
+                return _inventoryList;
+            }
+            set
+            {
+                _inventoryList = value;
+                NotifyPropertyChanged("InventoryList");
+            }
+        }
+
+        public ObservableCollection<Observable<Maker>> MakerList
+        {
+            get
+            {
+                return _makerList;
+            }
+            set
+            {
+                _makerList = value;
+                NotifyPropertyChanged("MakerList");
+            }
+        }
+
+        public ObservableCollection<Observable<Measure>> MeasureList
+        {
+            get
+            {
+                return _measureList;
+            }
+            set
+            {
+                _measureList = value;
+                NotifyPropertyChanged("MeasureList");
+            }
+        }
+
+        public ObservableCollection<IObservableField> ClientList
+        {
+            get
+            {
+                return _clientList;
+            }
+            set
+            {
+                _clientList = value;
+                NotifyPropertyChanged("ClientList");
+            }
+        }
+
+        public ObservableCollection<Observable<Warehouse>> WarehouseList
+        {
+            get
+            {
+                return _warehouseList;
+            }
+            set
+            {
+                _warehouseList = value;
+                NotifyPropertyChanged("WarehouseList");
+            }
+        }
+
+        public ObservableCollection<Observable<Employee>> EmployeeList
+        {
+            get
+            {
+                return _employeeList;
+            }
+            set
+            {
+                _employeeList = value;
+                NotifyPropertyChanged("EmployeeList");
+            }
+        }
+
+        public ObservableCollection<Observable<Project>> ProjectList
+        {
+            get
+            {
+                return _projectList;
+            }
+            set
+            {
+                _projectList = value;
+                NotifyPropertyChanged("ProjectList");
+            }
+        }
+
+        #endregion ComboBox ItemsSource Property
+
+        #region ComboBox SelectedItem Property
+
+        /// <summary>
+        /// Product를 변경할 시, ProductText, InventoryList 프로퍼티를 업데이트
+        /// </summary>
+        public Observable<Product> Product
+        {
+            get
+            {
+                return _product;
+            }
+            set
+            {
+                _product = value;
+                if (_product != null)
+                {
+                    ProductText = _product.Name;
+                    var inventoryList = InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(_product.ID);
+                    InventoryList = inventoryList.Select(x => new NonSaveObservableInventory(new InventoryFormat(x.Format))).ToList();
+                    if (InventoryList.Count() == 1)
+                        Inventory = InventoryList.Single();
+                }
+                if (RecordCommand != null)
+                    RecordCommand.RaiseCanExecuteChanged();
+                NotifyPropertyChanged("Product");
+            }
+        }
+
+        public override IObservableInventoryProperties Inventory
+        {
+            get
+            {
+                return base.Inventory;
+            }
+            set
+            {
+                base.Inventory = value;
+                if (value == null)
+                {
+                    SpecificationText = null;
+                    SpecificationMemo = null;
+                    Maker = null;
+                    Measure = null;
+                    MakerText = null;
+                    MeasureText = null;
+                }
+                if (RecordCommand != null)
+                    RecordCommand.RaiseCanExecuteChanged();
+                if (LoadLastRecordCommand != null)
+                    LoadLastRecordCommand.RaiseCanExecuteChanged();
+
+                CalcInventoryQuantityProperty(Quantity);
+
+                NotifyPropertyChanged("Maker");
+                NotifyPropertyChanged("Measure");
+                NotifyPropertyChanged("SpecificationMemo");
+            }
+        }
+
+        public IObservableField Client
+        {
+            get
+            {
+                return StockType == IOStockType.INCOMING ? (IObservableField)Supplier : (IObservableField)Customer;
+            }
+            set
+            {
+                if (StockType == IOStockType.INCOMING)
+                    Supplier = value as Observable<Supplier>;
+                else if (StockType == IOStockType.OUTGOING)
+                    Customer = value as Observable<Customer>;
+                NotifyPropertyChanged("Client");
+            }
+        }
+
+        public Observable<Maker> Maker
+        {
+            get
+            {
+                return Inventory != null ? Inventory.Maker : _maker;
+            }
+            set
+            {
+                if (Inventory != null)
+                    Inventory.Maker = value;
+                else
+                    _maker = value;
+                NotifyPropertyChanged("Maker");
+            }
+        }
+
+        public Observable<Measure> Measure
+        {
+            get
+            {
+                return Inventory != null ? Inventory.Measure : _measure;
+            }
+            set
+            {
+                if (Inventory != null)
+                    Inventory.Measure = value;
+                else
+                    _measure = value;
+                NotifyPropertyChanged("Measure");
+            }
+        }
+
+        #endregion ComboBox SelectedItem Property
+
+        #region TextBox Property
+
+        /// <summary>
+        /// ProductText를 변경할 시, Product, Inventory, InventoryList 속성을 변경
+        /// </summary>
+        public string ProductText
+        {
+            get
+            {
+                return _productText;
+            }
+            set
+            {
+                _productText = value;
+                if (_productText != null)
+                {
+                    //제품을 선택하였지만, 이후 다른 제품명을 입력한 경우 저장된 제품 객체를 null로 대입
+                    if (Product != null && Product.Name != _productText)
+                        Product = null;
+                    if (Product == null && Inventory != null)
+                        Inventory = null;
+                    if (InventoryList != null)
+                        InventoryList = null;
+                }
+                NotifyPropertyChanged("ProductText");
+                if (RecordCommand != null)
+                    RecordCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public string SpecificationText
+        {
+            get
+            {
+                return _specificationText;
+            }
+            set
+            {
+                _specificationText = value;
+                NotifyPropertyChanged("SpecificationText");
+                RecordCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public string SpecificationMemo
+        {
+            get
+            {
+                return Inventory != null ? Inventory.Memo : _specificationMemo;
+            }
+            set
+            {
+                if (Inventory != null)
+                    Inventory.Memo = value;
+                else
+                    _specificationMemo = value;
+                NotifyPropertyChanged("SpecificationMemo");
+            }
+        }
+
+        public string MakerText
+        {
+            get
+            {
+                return _makerText;
+            }
+            set
+            {
+                _makerText = value;
+                NotifyPropertyChanged("MakerText");
+            }
+        }
+
+        public string MeasureText
+        {
+            get
+            {
+                return _measureText;
+            }
+            set
+            {
+                _measureText = value;
+                NotifyPropertyChanged("MeasureText");
+            }
+        }
+
+        public string ClientText
+        {
+            get
+            {
+                return _clientText;
+            }
+            set
+            {
+                _clientText = value;
+                NotifyPropertyChanged("ClientText");
+
+                Console.WriteLine("setted clinet text property: {0}", value);
+            }
+        }
+
+        public string WarehouseText
+        {
+            get
+            {
+                return _warehouseText;
+            }
+            set
+            {
+                _warehouseText = value;
+                NotifyPropertyChanged("WarehouseText");
+            }
+        }
+
+        public string ProjectText
+        {
+            get
+            {
+                return _projectText;
+            }
+            set
+            {
+                _projectText = value;
+                NotifyPropertyChanged("ProjectText");
+            }
+        }
+
+        public string EmployeeText
+        {
+            get
+            {
+                return _employeeText;
+            }
+            set
+            {
+                _employeeText = value;
+                NotifyPropertyChanged("EmployeeText");
+            }
+        }
+
+        #endregion TextBox Property
+
+        /// <summary>
         /// IOStockProperties 속성 초기화
         /// </summary>
         /// <param name="iosFmt"></param>
@@ -171,8 +803,6 @@ namespace R54IN0.WPF
 
         private void ExecuteComboBoxKeyUpEventCommand(KeyEventArgs e)
         {
-
-
         }
 
         private void ExecuteWindowCloseCommand()
@@ -372,6 +1002,190 @@ namespace R54IN0.WPF
                 WarehouseList.Remove(item as Observable<Warehouse>);
             else if (item is Observable<Employee>)
                 EmployeeList.Remove(item as Observable<Employee>);
+        }
+
+        public async Task<IObservableIOStockProperties> RecordAsync()
+        {
+            if (Product == null && string.IsNullOrEmpty(ProductText))
+                throw new Exception("제품의 이름을 입력해주세요.");
+            if (Inventory == null && string.IsNullOrEmpty(SpecificationText))
+                throw new Exception("규격의 이름을 입력해주세요.");
+
+            IObservableIOStockProperties result = null;
+
+            switch (_mode)
+            {
+                case Mode.ADD:
+                    await CreateIOStockNewProperies();
+                    await ApplyModifiedInventoryProperties();
+                    await DbAdapter.GetInstance().InsertAsync(Format);
+                    result = new ObservableIOStock(Format);
+                    CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(result);
+                    break;
+
+                case Mode.MODIFY:
+                    await ApplyModifiedIOStockProperties();
+                    await ApplyModifiedInventoryProperties();
+                    await DbAdapter.GetInstance().UpdateAsync(Format);
+                    _originSource.Format = Format;
+                    result = _originSource;
+                    break;
+            }
+            await RefreshDataGridItems();
+            return result;
+        }
+
+        /// <summary>
+        /// 새로 추가할 텍스트 필드들을 Observable<T>객체로 초기화하여 생성
+        /// </sumary>
+        private async Task CreateIOStockNewProperies()
+        {
+            switch (StockType)
+            {
+                case IOStockType.INCOMING:
+                    if (Client == null && !string.IsNullOrEmpty(ClientText))
+                    {
+                        var supplier = new Observable<Supplier>(ClientText);
+                        await InventoryDataCommander.GetInstance().AddObservableField(supplier);
+                        Supplier = supplier;
+                        Console.WriteLine("recorded Supplier.Name property: {0}", Supplier.Name);
+                    }
+                    if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
+                    {
+                        warehouse = new Observable<Warehouse>(WarehouseText);
+                        await InventoryDataCommander.GetInstance().AddObservableField(warehouse);
+                        Warehouse = warehouse;
+                    }
+                    break;
+
+                case IOStockType.OUTGOING:
+                    if (Client == null && !string.IsNullOrEmpty(ClientText))
+                    {
+                        var customer = new Observable<Customer>(ClientText);
+                        await InventoryDataCommander.GetInstance().AddObservableField(customer);
+                        Customer = customer;
+                    }
+                    if (Project == null && !string.IsNullOrEmpty(ProjectText))
+                    {
+                        var project = new Observable<Project>(ProjectText);
+                        await InventoryDataCommander.GetInstance().AddObservableField(project);
+                        Project = project;
+                    }
+                    break;
+            }
+            if (Employee == null && !string.IsNullOrEmpty(EmployeeText))
+            {
+                var employee = new Observable<Employee>(EmployeeText);
+                await InventoryDataCommander.GetInstance().AddObservableField(employee);
+                Employee = employee;
+            }
+            if (Maker == null && !string.IsNullOrEmpty(MakerText))
+            {
+                var maker = new Observable<Maker>(MakerText);
+                await InventoryDataCommander.GetInstance().AddObservableField(maker);
+                Maker = maker;
+            }
+            if (Measure == null && !string.IsNullOrEmpty(MeasureText))
+            {
+                var measure = new Observable<Measure>(MeasureText);
+                await InventoryDataCommander.GetInstance().AddObservableField(measure);
+                Measure = measure;
+            }
+        }
+
+        /// <summary>
+        /// 이름이 변경된 객체를 수정
+        /// </summary>
+        private async Task ApplyModifiedIOStockProperties()
+        {
+            switch (StockType)
+            {
+                case IOStockType.INCOMING:
+                    if (_originSource.Supplier != null && Client == null)
+                    {
+                        _originSource.Supplier.Name = ClientText;
+                        Client = _originSource.Supplier;
+                    }
+                    if (_originSource.Warehouse != null && Warehouse == null)
+                    {
+                        _originSource.Warehouse.Name = WarehouseText;
+                        Warehouse = _originSource.Warehouse;
+                    }
+                    break;
+
+                case IOStockType.OUTGOING:
+                    if (_originSource.Customer != null && Client == null)
+                    {
+                        _originSource.Customer.Name = ClientText;
+                        Client = _originSource.Customer;
+                    }
+                    if (_originSource.Project != null && Project == null)
+                    {
+                        _originSource.Project.Name = ProjectText;
+                        Project = _originSource.Project;
+                    }
+                    break;
+            }
+            if (_originSource.Employee != null && Employee == null)
+            {
+                _originSource.Employee.Name = EmployeeText;
+                Employee = _originSource.Employee;
+            }
+            if (_originSource.Inventory.Maker != null && Maker == null)
+            {
+                _originSource.Inventory.Maker.Name = MakerText;
+                Maker = _originSource.Inventory.Maker;
+            }
+            if (_originSource.Inventory.Measure != null && Measure == null)
+            {
+                _originSource.Inventory.Measure.Name = MeasureText;
+                Measure = _originSource.Inventory.Measure;
+            }
+            await CreateIOStockNewProperies();
+        }
+
+        /// <summary>
+        /// 수정 또는 새로운 재고 데이터를 생성하여 데이터베이스에 이를 저장한다.
+        /// </summary>
+        private async Task ApplyModifiedInventoryProperties()
+        {
+            ObservableInventory inventory = null;
+            if (Inventory == null)
+            {
+                if (Product == null)
+                {
+                    Observable<Product> product = new Observable<Product>(ProductText);
+                    await InventoryDataCommander.GetInstance().AddObservableField(product);
+                    Product = product;
+                }
+                inventory = new ObservableInventory(Product, SpecificationText, InventoryQuantity, SpecificationMemo, Maker, Measure);
+                await InventoryDataCommander.GetInstance().AddObservableInventory(inventory);
+            }
+            else
+            {
+                inventory = InventoryDataCommander.GetInstance().SearchObservableInventory(Inventory.ID);
+                inventory.Format = Inventory.Format;
+                inventory.Quantity = InventoryQuantity;
+            }
+            Inventory = inventory;
+        }
+
+        /// <summary>
+        /// 입출고 데이터를 새로 추가하는 경우 또는 과거의 데이터를 수정할 경우 입출고 수량에 변화가 있다면
+        /// 관련 IOStock 데이터들의 잔여수량 및 재고수량을 다시 계산하여 전부 업데이트하고 Owner의 DataGridItems 역시 변화된 값들을 반영하게 한다.
+        /// TODO
+        /// </summary>
+        private async Task RefreshDataGridItems()
+        {
+            if (_ioStockStatusViewModel != null && _ioStockStatusViewModel.BackupSource != null)
+            {
+                var backupSource = _ioStockStatusViewModel.BackupSource;
+                foreach (var src in backupSource)
+                {
+                    if (src.Inventory.ID == Inventory.ID && src.Date > Date)
+                        await src.SyncDataFromServer();
+                }
+            }
         }
     }
 }

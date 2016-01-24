@@ -87,3 +87,24 @@ Y:\Github\R54IN0\R54IN0.Test\bin\Debug\System.Windows.Interactivity.dll
 Y:\Github\R54IN0\R54IN0.Test\bin\Debug\MahApps.Metro.pdb
 Y:\Github\R54IN0\R54IN0.Test\bin\Debug\MahApps.Metro.xml
 Y:\Github\R54IN0\R54IN0.Test\bin\Debug\R54IN0.WPF.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\R54IN0.Test.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\R54IN0.Test.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\DailY Inventory.exe
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\GalaSoft.MvvmLight.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Lex.Db.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\MahApps.Metro.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Newtonsoft.Json.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\TreeViewEx.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\System.Windows.Interactivity.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Lex.Db.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\MahApps.Metro.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\MahApps.Metro.xml
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\GalaSoft.MvvmLight.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\GalaSoft.MvvmLight.xml
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Newtonsoft.Json.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\Newtonsoft.Json.xml
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\DailY Inventory.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\bin\Debug\TreeViewEx.pdb
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\obj\Debug\R54IN0.Test.csprojResolveAssemblyReference.cache
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\obj\Debug\R54IN0.Test.dll
+Z:\Users\Child\Github\R54IN0\R54IN0.Test\obj\Debug\R54IN0.Test.pdb
