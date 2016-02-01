@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace R54IN0.WPF
@@ -801,8 +802,24 @@ namespace R54IN0.WPF
             _warehouseList = new ObservableCollection<Observable<Warehouse>>(ofd.CopyObservableFields<Warehouse>());
         }
 
+        /// <summary>
+        /// windows7에서 한글 ime 사용 시, update 되지 아니한 버그 현상 회피
+        /// </summary>
+        /// <param name="e"></param>
         private void ExecuteComboBoxKeyUpEventCommand(KeyEventArgs e)
         {
+            TextBox textbox = e.OriginalSource as TextBox;
+            ComboBox combobox = e.Source as ComboBox;
+            if (textbox != null && combobox != null)
+            {
+                string text = textbox.Text;
+
+                BindingExpression be = BindingOperations.GetBindingExpression(combobox, ComboBox.TextProperty);
+                string Name = be.ParentBinding.Path.Path;
+
+                Binding bi = BindingOperations.GetBinding(combobox, ComboBox.TextProperty);
+                GetType().GetProperty(bi.Path.Path).SetValue(this, text);
+            }
         }
 
         private void ExecuteWindowCloseCommand()
@@ -822,6 +839,18 @@ namespace R54IN0.WPF
         {
             if (Inventory == null)
                 return;
+
+            if (StockType == IOStockType.OUTGOING)
+            {
+                var qresult = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
+                DbCommand.WHERE, "InventoryID", Inventory.ID,
+                DbCommand.WHERE, "StockType", IOStockType.INCOMING,
+                DbCommand.DESCENDING, "Date",
+                DbCommand.LIMIT, 1);
+                if (qresult.Count() == 1)
+                    UnitPrice = qresult.Single().UnitPrice;
+            }
+
             var query = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
                 DbCommand.WHERE, "InventoryID", Inventory.ID,
                 DbCommand.WHERE, "StockType", StockType,
@@ -831,12 +860,12 @@ namespace R54IN0.WPF
                 return;
             var item = query.Single();
             Quantity = item.Quantity;
-            UnitPrice = item.UnitPrice;
             Employee = InventoryDataCommander.GetInstance().SearchObservableField<Employee>(item.EmployeeID);
             if (StockType == IOStockType.INCOMING)
             {
                 Client = InventoryDataCommander.GetInstance().SearchObservableField<Supplier>(item.SupplierID);
                 Warehouse = InventoryDataCommander.GetInstance().SearchObservableField<Warehouse>(item.WarehouseID);
+                UnitPrice = item.UnitPrice;
             }
             else if (StockType == IOStockType.OUTGOING)
             {

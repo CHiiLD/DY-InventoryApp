@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace R54IN0.WPF
@@ -59,9 +57,11 @@ namespace R54IN0.WPF
                     case FILTER_PRODUCT:
                         match = lowerKeywords.SelectMany(word => inventories.Where(inven => inven.Product.Name.ToLower().Contains(word)));
                         break;
+
                     case FILTER_SPECIFICATION:
                         match = lowerKeywords.SelectMany(word => inventories.Where(inven => inven.Specification.ToLower().Contains(word)));
                         break;
+
                     case FILTER_MAKER:
                         match = lowerKeywords.SelectMany(word => inventories.Where(inven => inven.Maker != null && inven.Maker.Name.ToLower().Contains(word)));
                         break;
@@ -78,14 +78,17 @@ namespace R54IN0.WPF
                         fields = await DbAdapter.GetInstance().SelectAllAsync<Supplier>();
                         column = "SupplierID";
                         break;
+
                     case FILTER_WAREHOUSE:
                         fields = await DbAdapter.GetInstance().SelectAllAsync<Warehouse>();
                         column = "WarehouseID";
                         break;
+
                     case FILTER_CUSTOMER:
                         fields = await DbAdapter.GetInstance().SelectAllAsync<Customer>();
                         column = "CustomerID";
                         break;
+
                     case FILTER_EMPLOYEE:
                         fields = await DbAdapter.GetInstance().SelectAllAsync<Employee>();
                         column = "EmployeeID";

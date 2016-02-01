@@ -33,12 +33,13 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <!--<Window.InputBindings>
-        <KeyBinding Key="F1" Command="{Binding ChangeInventoryViewCommand}" />
+    <Window.InputBindings>
+        <!--<KeyBinding Key="F1" Command="{Binding ChangeInventoryViewCommand}" />
         <KeyBinding Key="F2" Command="{Binding ChangeIOStockViewByProductCommand}" />
         <KeyBinding Key="F3" Command="{Binding ChangeIOStockByDateCommand}" />
-        <KeyBinding Key="F4" Command="{Binding ChangeIOStockByProjectCommand}" />
-    </Window.InputBindings>-->
+        <KeyBinding Key="F4" Command="{Binding ChangeIOStockByProjectCommand}" />-->
+        <KeyBinding Key="S" Modifiers="Shift+Ctrl" Command="{Binding AddNewIOStockCommand}" />
+    </Window.InputBindings>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -58,9 +59,10 @@
             </MenuItem>
 
             <MenuItem Header="입출고 현황">
-                <MenuItem Header="제품별로 보기" Command="{Binding ChangeIOStockViewByProductCommand}"/>
-                <MenuItem Header="날짜별로 보기" Command="{Binding ChangeIOStockByDateCommand}"/>
-                <MenuItem Header="프로젝트별로 보기" Command="{Binding ChangeIOStockByProjectCommand}"/>
+                <MenuItem Header="제품별로 보기" Command="{Binding ChangeIOStockViewByProductCommand}" />
+                <MenuItem Header="날짜별로 보기" Command="{Binding ChangeIOStockByDateCommand}" />
+                <MenuItem Header="프로젝트별로 보기" Command="{Binding ChangeIOStockByProjectCommand}" />
+                <MenuItem Header="새로운 입출고 기록 추가하기" Command="{Binding AddNewIOStockCommand}" InputGestureText="Ctrl+Shift+S" />
             </MenuItem>
 
             <MenuItem Header="인터페이스">

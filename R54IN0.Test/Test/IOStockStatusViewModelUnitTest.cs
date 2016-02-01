@@ -568,17 +568,31 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public async Task TestEmployeeSearch()
+        public async Task ProjectListItemDeleteTest()
         {
             new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
-            var searchvm = viewmodel.SearchViewModel;
-            searchvm.SelectedItem = FilterSearchTextBoxViewModel.FILTER_EMPLOYEE;
-            searchvm.Text = "h";
+            var items = viewmodel.ProjectListBoxViewModel.Items;
+            var project = viewmodel.ProjectListBoxViewModel.SelectedItem = items.Random();
 
-            searchvm.SearchCommand.Execute(null);
+            Observable<Project> proejct = viewmodel.ProjectListBoxViewModel.SelectedItem;
+            if (proejct != null)
+            {
+                IEnumerable<IOStockFormat> formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.WHERE, "ProjectID", proejct.ID);
+                if (formats != null)
+                { 
+                    foreach(var x in formats.Select(x => new IOStockDataGridItem(x)))
+                    viewmodel.DataGridViewModel.Items.Add(x);
+                }
+            }
 
-            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Employee.Name.Contains(searchvm.Text)));
+            viewmodel.ProjectListBoxViewModel.ProjectDeletionCommand.Execute(null);
+
+            var result = InventoryDataCommander.GetInstance().SearchObservableField<Project>(project.ID);
+            Assert.IsNull(result);
+            Assert.IsFalse(viewmodel.ProjectListBoxViewModel.Items.Contains(project));
+            Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count());
+            Assert.IsNull(viewmodel.DataGridViewModel.SelectedItem);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using GalaSoft.MvvmLight.Command;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace R54IN0.WPF
@@ -29,6 +30,21 @@ namespace R54IN0.WPF
             var list = ofd.CopyObservableFields<Project>();
             Items = new ObservableCollection<Observable<Project>>(list);
             CollectionViewModelObserverSubject.GetInstance().Attach(this);
+            ProjectDeletionCommand = new RelayCommand(ExecuteProjectDeletionCommand, IsSelected);
+        }
+
+        private bool IsSelected()
+        {
+            return SelectedItem != null;
+        }
+
+        private async void ExecuteProjectDeletionCommand()
+        {
+            if (SelectedItem != null)
+            {
+                await InventoryDataCommander.GetInstance().RemoveObservableField(SelectedItem);
+                SelectedItem = null;
+            }
         }
 
         ~IOStockProjectListBoxViewModel()
@@ -61,6 +77,8 @@ namespace R54IN0.WPF
                 NotifyPropertyChanged("SelectedItem");
             }
         }
+
+        public RelayCommand ProjectDeletionCommand { get; set; }
 
         public void NotifyPropertyChanged(string name)
         {

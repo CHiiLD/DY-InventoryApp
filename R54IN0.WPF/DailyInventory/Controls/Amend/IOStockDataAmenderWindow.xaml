@@ -15,10 +15,11 @@
     <Window.InputBindings>
         <KeyBinding Key="Esc" Command="{Binding WindowCloseCommand}" />
     </Window.InputBindings>
-    
+
     <Window.Resources>
         <ResourceDictionary>
             <local:BindingProxy x:Key="DataContextProxy" DataContext="{Binding}" />
+
             <Style x:Key="CanDeleteItemComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource MetroComboBox}">
                 <Setter Property="TextSearch.TextPath" Value="Name" />
                 <Setter Property="ItemTemplate">
@@ -178,7 +179,16 @@
                           DisplayMemberPath="Specification"
                           IsEnabled="{Binding IsEnabledSpecificationComboBox}"
                           IsEditable="{Binding IsEditableSpecification}"
-                          Grid.Column="1" Width="200" HorizontalAlignment="Left" ></ComboBox>
+                          Grid.Column="1" Width="200" HorizontalAlignment="Left">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="KeyUp">
+                            <mvvmlight:EventToCommand
+                                Command="{Binding ComboBoxKeyUpEventCommand}"
+                                PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
             </Grid>
 
             <Grid Grid.Row="3" Grid.Column="1">
@@ -224,7 +234,15 @@
                           SelectedItem="{Binding Maker}"
                           ItemsSource="{Binding MakerList}"
                           IsEditable="True"
-                          Grid.Column="1" Width="200" HorizontalAlignment="Left" />
+                          Grid.Column="1" Width="200" HorizontalAlignment="Left">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="KeyUp">
+                            <mvvmlight:EventToCommand
+                                Command="{Binding ComboBoxKeyUpEventCommand}"
+                                PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
             </Grid>
 
             <Grid Grid.Row="5" Grid.Column="0">
@@ -251,7 +269,15 @@
                     SelectedItem="{Binding Measure}"
                     ItemsSource="{Binding MeasureList}"
                     IsEditable="True"
-                    Grid.Column="1" Width="200" HorizontalAlignment="Left" />
+                    Grid.Column="1" Width="200" HorizontalAlignment="Left">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="KeyUp">
+                            <mvvmlight:EventToCommand
+                                Command="{Binding ComboBoxKeyUpEventCommand}"
+                                PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
             </Grid>
 
             <Grid Grid.Row="6" Grid.Column="0">
@@ -287,18 +313,19 @@
                 <Label Content="{Binding AccountTypeText}" />
                 <ComboBox
                           Style="{StaticResource CanDeleteItemComboBoxStyle}"
-                          Text="{Binding ClientText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Text="{Binding ClientText}"
                           SelectedItem="{Binding Client}"
                           ItemsSource="{Binding ClientList}"
                           IsEditable="True"
                           Grid.Column="1" Width="200" HorizontalAlignment="Left">
-                    <!--<i:Interaction.Triggers>
+
+                    <i:Interaction.Triggers>
                         <i:EventTrigger EventName="KeyUp">
-                            <mvvmlight:EventToCommand 
+                            <mvvmlight:EventToCommand
                                 Command="{Binding ComboBoxKeyUpEventCommand}"
                                 PassEventArgsToCommand="True" />
                         </i:EventTrigger>
-                    </i:Interaction.Triggers>-->
+                    </i:Interaction.Triggers>
                 </ComboBox>
             </Grid>
 
@@ -315,7 +342,16 @@
                     ItemsSource="{Binding WarehouseList}"
                     IsEditable="True"
                     IsEnabled="{Binding IsEnabledWarehouseComboBox}"
-                    Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
+                    Grid.Column="1" Width="200" HorizontalAlignment="Left">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="KeyUp">
+                            <mvvmlight:EventToCommand
+                                Command="{Binding ComboBoxKeyUpEventCommand}"
+                                PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
             </Grid>
 
             <Grid Grid.Row="9" Grid.Column="1">
@@ -336,6 +372,11 @@
                         <i:EventTrigger EventName="GotFocus">
                             <mvvmlight:EventToCommand Command="{Binding ProjectComboBoxGotFocusEventCommand}" PassEventArgsToCommand="True" />
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="KeyUp">
+                            <mvvmlight:EventToCommand
+                                Command="{Binding ComboBoxKeyUpEventCommand}"
+                                PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ComboBox>
             </Grid>
@@ -352,7 +393,16 @@
                     SelectedItem="{Binding Employee}"
                     ItemsSource="{Binding EmployeeList}"
                     IsEditable="True"
-                    Grid.Column="1" Width="200" HorizontalAlignment="Left"></ComboBox>
+                    Grid.Column="1" Width="200" HorizontalAlignment="Left">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="KeyUp">
+                            <mvvmlight:EventToCommand
+                                Command="{Binding ComboBoxKeyUpEventCommand}"
+                                PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
             </Grid>
 
             <Grid Grid.Row="11" Grid.Column="1">

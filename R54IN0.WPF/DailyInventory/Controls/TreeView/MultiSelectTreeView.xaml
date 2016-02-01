@@ -14,7 +14,7 @@
         <local:BindingProxy x:Key="DataContextProxy" DataContext="{Binding}" />
 
         <ContextMenu x:Key="CellContextMenu" Visibility="{Binding DataContext.ContextMenuVisibility, Source={StaticResource DataContextProxy}}">
-            <MenuItem Header="이름 바꾸기" 
+            <MenuItem Header="이름 바꾸기"
                       InputGestureText="F2"
                       Command="{Binding DataContext.SelectedNodeRenameCommand, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="추가">
@@ -25,7 +25,7 @@
             <Separator />
             <MenuItem Header="재고현황으로 보기" Command="{Binding DataContext.SearchAsInventoryRecordCommand, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="제품별 입출고 현황으로 보기" Command="{Binding DataContext.SearchAsIOStockRecordCommand, Source={StaticResource DataContextProxy}}" />
-            <MenuItem Header="새로운 입출고 기록 추가하기" 
+            <MenuItem Header="새로운 입출고 기록 추가하기"
                       InputGestureText="Ctrl+S"
                       Command="{Binding DataContext.IOStockAmenderWindowCallCommand, Source={StaticResource DataContextProxy}}" />
         </ContextMenu>
@@ -88,6 +88,5 @@
             <KeyBinding Key="F2" Command="{Binding DataContext.SelectedNodeRenameCommand, Source={StaticResource DataContextProxy}}" />
             <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding DataContext.IOStockAmenderWindowCallCommand, Source={StaticResource DataContextProxy}}" />
         </tree:TreeViewEx.InputBindings>
-        
     </tree:TreeViewEx>
 </UserControl>

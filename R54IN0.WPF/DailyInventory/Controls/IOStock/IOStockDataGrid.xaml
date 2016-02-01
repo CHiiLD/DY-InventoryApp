@@ -104,15 +104,15 @@
                     ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                     EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                     Header="체크" Binding="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                </DataGridCheckBoxColumn>--> 
+                </DataGridCheckBoxColumn>-->
 
-                <!--<DataGridTemplateColumn Header="체크"> 
+                <!--<DataGridTemplateColumn Header="체크">
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
                             <Grid>
-                                <CheckBox 
+                                <CheckBox
                                       IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      Style="{DynamicResource MetroCheckBox}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                                      Style="{DynamicResource MetroCheckBox}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>

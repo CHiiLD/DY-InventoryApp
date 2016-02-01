@@ -39,6 +39,7 @@ namespace R54IN0.WPF
             ChangeIOStockViewByProductCommand = new RelayCommand(ExecuteChangeIOStockViewByProductCommand);
             ChangeIOStockByDateCommand = new RelayCommand(ExecuteChangeIOStockByDateCommand);
             ChangeIOStockByProjectCommand = new RelayCommand(ExecuteChangeIOStockByProjectCommand);
+            AddNewIOStockCommand = new RelayCommand(ExecuteAddNewIOStockCommand);
 
             AccentColors = ThemeManager.Accents.Select(a => new AccentColorMenuData()
             {
@@ -52,6 +53,11 @@ namespace R54IN0.WPF
                 BorderColorBrush = a.Resources["BlackColorBrush"] as Brush,
                 ColorBrush = a.Resources["WhiteColorBrush"] as Brush
             });
+        }
+
+        private void ExecuteAddNewIOStockCommand()
+        {
+            IOStockViewModel.OpenIOStockDataAmenderWindow();
         }
 
         public IEnumerable<AccentColorMenuData> AccentColors { get; set; }
@@ -101,6 +107,7 @@ namespace R54IN0.WPF
         public RelayCommand ChangeIOStockViewByProductCommand { get; set; }
         public RelayCommand ChangeIOStockByDateCommand { get; set; }
         public RelayCommand ChangeIOStockByProjectCommand { get; set; }
+        public RelayCommand AddNewIOStockCommand { get; set; }
 
         public ObservableCollection<TabItem> Items
         {

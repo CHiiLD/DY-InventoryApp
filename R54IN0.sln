@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (PCL)", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Metro.Resources", "MahApps.Metro\MahApps.Metro.Resources\MahApps.Metro.Resources.csproj", "{E708AC99-605B-42A0-8D20-ABCA8FE42DD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "overlap", "overlap\overlap.csproj", "{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		lex.db\lib\Lex.Db.Shared\Lex.Db.Shared.projitems*{04608184-27b9-42a2-9e5e-69a6cb21ecfe}*SharedItemsImports = 4
@@ -158,6 +160,18 @@ Global
 		{E708AC99-605B-42A0-8D20-ABCA8FE42DD2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E708AC99-605B-42A0-8D20-ABCA8FE42DD2}.Release|x86.ActiveCfg = Release|Any CPU
 		{E708AC99-605B-42A0-8D20-ABCA8FE42DD2}.Release|x86.Build.0 = Release|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.AppVeyor|x86.ActiveCfg = Release|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.AppVeyor|x86.Build.0 = Release|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Debug|x86.Build.0 = Debug|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Release|x86.ActiveCfg = Release|Any CPU
+		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

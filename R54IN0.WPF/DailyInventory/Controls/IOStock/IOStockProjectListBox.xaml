@@ -7,5 +7,11 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"
-             DisplayMemberPath="Name" />
+             DisplayMemberPath="Name">
+        <ListBox.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="프로젝트 삭제하기" Command="{Binding ProjectDeletionCommand}" />
+            </ContextMenu>
+        </ListBox.ContextMenu>
+    </ListBox>
 </UserControl>

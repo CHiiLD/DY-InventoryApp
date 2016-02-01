@@ -456,5 +456,32 @@ namespace R54IN0.Test
             var select = await DbAdapter.GetInstance().SelectAsync<T>(field.ID);
             Assert.IsNull(select);
         }
+
+        //[TestMethod]
+        //public async Task TotalPriceTest()
+        //{
+        //    new Dummy().Create();
+        //    int unitPrice = 1000;
+        //    int quantity = 2;
+
+        //    IOStockStatusViewModel stViewModel = new IOStockStatusViewModel();
+        //    stViewModel.DatePickerViewModel.TodayCommand.Execute(null);
+
+        //    var items = stViewModel.DataGridViewModel.Items;
+
+        //    IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(stViewModel);
+        //    viewmodel.ProductText = "new product";
+        //    viewmodel.SpecificationText = "new specification";
+        //    viewmodel.UnitPrice = unitPrice;
+        //    viewmodel.Quantity = quantity;
+
+        //    await viewmodel.RecordAsync();
+
+        //    var item = items[0];
+        //    Assert.AreEqual(item.UnitPrice, unitPrice);
+        //    Assert.AreEqual(item.Inventory.Quantity, quantity);
+        //    Assert.AreEqual(item.TotalPrice, item.UnitPrice * item.Inventory.Quantity);
+
+        //}
     }
 }

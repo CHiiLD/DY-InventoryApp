@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace R54IN0.WPF
@@ -31,10 +28,9 @@ namespace R54IN0.WPF
                 return inventories;
             string[] keywords = Text.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             var lowerKeywords = keywords.Select(x => x.ToLower());
-            var result = lowerKeywords.SelectMany(word => 
+            var result = lowerKeywords.SelectMany(word =>
             inventories.Where(inven => inven.Specification.ToLower().Contains(word) || inven.Product.Name.ToLower().Contains(word)));
             return result;
         }
     }
-
 }
