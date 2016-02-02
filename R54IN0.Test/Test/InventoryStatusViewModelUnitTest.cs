@@ -191,5 +191,53 @@ namespace R54IN0.Test.New
             var result = InventoryDataCommander.GetInstance().SearchObservableInventory(inventoryID);
             Assert.IsNull(result);
         }
+
+        [TestMethod]
+        public async Task WhenDeleteMakerSyncMakers()
+        {
+            new Dummy().Create();
+            var viewmodel = new InventoryStatusViewModel();
+
+            var someMaker = InventoryDataCommander.GetInstance().CopyObservableFields<Maker>().Random();
+            Assert.IsTrue(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
+            await InventoryDataCommander.GetInstance().RemoveObservableField(someMaker);
+            Assert.IsFalse(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
+        }
+
+        [TestMethod]
+        public async Task WhenDeleteMeasureSyncMeasures()
+        {
+            new Dummy().Create();
+            var viewmodel = new InventoryStatusViewModel();
+
+            var someMeasure = InventoryDataCommander.GetInstance().CopyObservableFields<Measure>().Random();
+            Assert.IsTrue(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
+            await InventoryDataCommander.GetInstance().RemoveObservableField(someMeasure);
+            Assert.IsFalse(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
+        }
+
+        [TestMethod]
+        public async Task WhenAddNewMakerSyncMakers()
+        {
+            new Dummy().Create();
+            var viewmodel = new InventoryStatusViewModel();
+
+            var someMaker = new Observable<Maker>("some maker");
+            Assert.IsFalse(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
+            await InventoryDataCommander.GetInstance().AddObservableField(someMaker);
+            Assert.IsTrue(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
+        }
+
+        [TestMethod]
+        public async Task WhenAddNewMeasureSyncMeasures()
+        {
+            new Dummy().Create();
+            var viewmodel = new InventoryStatusViewModel();
+
+            var someMeasure = new Observable<Measure>("some measure");
+            Assert.IsFalse(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
+            await InventoryDataCommander.GetInstance().AddObservableField(someMeasure);
+            Assert.IsTrue(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
+        }
     }
 }

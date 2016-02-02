@@ -25,11 +25,11 @@
               SelectedItem="{Binding SelectedItem}"
               CanUserDeleteRows="False">
 
-            <i:Interaction.Triggers>
+            <!--<i:Interaction.Triggers>
                 <i:EventTrigger EventName="CellEditEnding">
                     <mvvmlight:EventToCommand Command="{Binding CellEditEndingEventCommand}" PassEventArgsToCommand="True" />
                 </i:EventTrigger>
-            </i:Interaction.Triggers>
+            </i:Interaction.Triggers>-->
 
             <DataGrid.Resources>
                 <ContextMenu  x:Key="InventoryDataGridContextMenu">
@@ -60,13 +60,39 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="단위" Width="Auto" Binding="{Binding Measure.Name}"
+                
+                <!--<DataGridTextColumn Header="단위" Width="Auto" Binding="{Binding Measure.Name}"
                                     IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
                                     Visibility="{Binding DataContext.MeasureColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}">
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="제조사" Width="Auto" Binding="{Binding Maker.Name}"
+                </DataGridTextColumn>-->
+
+                <DataGridComboBoxColumn Header="단위" Width="Auto"
+                                        IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                        Visibility="{Binding DataContext.MeasureColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                        ItemsSource="{Binding DataContext.Measures, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                        SelectedItemBinding="{Binding Measure}"
+                                        DisplayMemberPath="Name">
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}" />
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
+
+                <!--<DataGridTextColumn Header="제조사" Width="Auto" Binding="{Binding Maker.Name}"
                                     IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
-                                    Visibility="{Binding DataContext.MakerColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
+                                    Visibility="{Binding DataContext.MakerColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />-->
+
+                <DataGridComboBoxColumn Header="제조사" Width="Auto"
+                                        IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                        Visibility="{Binding DataContext.MakerColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                        ItemsSource="{Binding DataContext.Makers, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                        SelectedItemBinding="{Binding Maker}"
+                                        DisplayMemberPath="Name">
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}" />
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
+
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -5,10 +5,11 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System;
 
 namespace R54IN0.WPF
 {
-    public partial class IOStockDataGridViewModel : ICollectionViewModel<IOStockDataGridItem>, INotifyPropertyChanged
+    public partial class IOStockDataGridViewModel : ICollectionViewModel<IOStockDataGridItem>, INotifyPropertyChanged, ICollectionViewModelObserver
     {
         private event PropertyChangedEventHandler _propertyChanged;
 
@@ -23,8 +24,8 @@ namespace R54IN0.WPF
         public IOStockDataGridViewModel()
         {
             Items = new ObservableCollection<IOStockDataGridItem>();
-            PreviewTextInputEventCommand = new RelayCommand<TextCompositionEventArgs>(ExecutePreviewTextInputEventCommand);
-            CellEditEndingEventCommand = new RelayCommand<DataGridCellEditEndingEventArgs>(ExecuteCellEditEndingEventCommand);
+            //PreviewTextInputEventCommand = new RelayCommand<TextCompositionEventArgs>(ExecutePreviewTextInputEventCommand);
+            //CellEditEndingEventCommand = new RelayCommand<DataGridCellEditEndingEventArgs>(ExecuteCellEditEndingEventCommand);
 
             SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, IsSelected);
             NewIOStockFormatAdditionCommand = new RelayCommand(ExecuteNewIOStockFormatAdditionCommand);
@@ -34,6 +35,47 @@ namespace R54IN0.WPF
             CheckedIOStockFormatsCopyCommand = new RelayCommand(ExecuteCheckedIOStockFormatsCopyCommand);
             SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, IsSelected);
             ContextMenuOpeningEventCommand = new RelayCommand(ExecuteContextMenuOpeningEventCommand);
+
+            BeginningEditEventCommand = new RelayCommand<DataGridBeginningEditEventArgs>(CancelCellEditEvent, CanCancelCellEdit);
+
+            var makers = InventoryDataCommander.GetInstance().CopyObservableFields<Maker>();
+            Makers = new ObservableCollection<Observable<Maker>>(makers);
+            var measures = InventoryDataCommander.GetInstance().CopyObservableFields<Measure>();
+            Measures = new ObservableCollection<Observable<Measure>>(measures);
+            var warehouses = InventoryDataCommander.GetInstance().CopyObservableFields<Warehouse>();
+            Warehouses = new ObservableCollection<Observable<Warehouse>>(warehouses);
+
+            var projects = InventoryDataCommander.GetInstance().CopyObservableFields<Project>();
+            Projects = new ObservableCollection<Observable<Project>>(projects);
+            var employees = InventoryDataCommander.GetInstance().CopyObservableFields<Employee>();
+            Employees = new ObservableCollection<Observable<Employee>>(employees);
+            var suppliers = InventoryDataCommander.GetInstance().CopyObservableFields<Supplier>();
+            Suppliers = new ObservableCollection<Observable<Supplier>>(suppliers);
+            var customers = InventoryDataCommander.GetInstance().CopyObservableFields<Customer>();
+            Customers = new ObservableCollection<Observable<Customer>>(customers);
+
+            CollectionViewModelObserverSubject.GetInstance().Attach(this);
+        }
+
+        ~IOStockDataGridViewModel()
+        {
+            CollectionViewModelObserverSubject.GetInstance().Detach(this);
+        }
+
+        private bool CanCancelCellEdit(DataGridBeginningEditEventArgs arg)
+        {
+            string path = arg.Column.SortMemberPath;
+            IOStockDataGridItem item = arg.Row.Item as IOStockDataGridItem;
+            if (item.StockType == IOStockType.OUTGOING && (path.Contains("Warehouse") || path.Contains("Supplier")))
+                return true;
+            else if (item.StockType == IOStockType.INCOMING && (path.Contains("Project") || path.Contains("Customer")))
+                return true;
+            return false;
+        }
+
+        private void CancelCellEditEvent(DataGridBeginningEditEventArgs obj)
+        {
+            obj.Cancel = true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged
@@ -143,90 +185,103 @@ namespace R54IN0.WPF
             }
         }
 
-        public RelayCommand<TextCompositionEventArgs> PreviewTextInputEventCommand { get; set; }
+        public RelayCommand<DataGridBeginningEditEventArgs> BeginningEditEventCommand
+        {
+            get;
+            private set;
+        }
 
-        public RelayCommand<DataGridCellEditEndingEventArgs> CellEditEndingEventCommand { get; set; }
+        public ObservableCollection<Observable<Warehouse>> Warehouses { get; private set; }
+        public ObservableCollection<Observable<Maker>> Makers { get; private set; }
+        public ObservableCollection<Observable<Measure>> Measures { get; private set; }
+        public ObservableCollection<Observable<Project>> Projects { get; private set; }
+        public ObservableCollection<Observable<Supplier>> Suppliers { get; private set; }
+        public ObservableCollection<Observable<Customer>> Customers { get; private set; }
+        public ObservableCollection<Observable<Employee>> Employees { get; private set; }
 
         public RelayCommand ContextMenuOpeningEventCommand { get; set; }
 
-        private void ExecutePreviewTextInputEventCommand(TextCompositionEventArgs e)
-        {
-            var datagrid = e.Source as DataGrid;
-            if (datagrid != null)
-            {
-                IOStockDataGridItem item = datagrid.CurrentItem as IOStockDataGridItem;
-                DataGridColumn column = datagrid.CurrentColumn;
-                string sortMemberPath = column.SortMemberPath;
-                IOStockType iosType = item.StockType;
+        //public RelayCommand<TextCompositionEventArgs> PreviewTextInputEventCommand { get; set; }
+        //public RelayCommand<DataGridCellEditEndingEventArgs> CellEditEndingEventCommand { get; set; }
 
-                if (iosType == IOStockType.INCOMING && (sortMemberPath.Contains("Customer") || sortMemberPath.Contains("Project")) ||
-                iosType == IOStockType.OUTGOING && (sortMemberPath.Contains("Supplier") || sortMemberPath.Contains("Warehouse")))
-                    e.Handled = true;
-            }
-        }
+        //private void ExecutePreviewTextInputEventCommand(TextCompositionEventArgs e)
+        //{
+        //    var datagrid = e.Source as DataGrid;
+        //    if (datagrid != null)
+        //    {
+        //        IOStockDataGridItem item = datagrid.CurrentItem as IOStockDataGridItem;
+        //        DataGridColumn column = datagrid.CurrentColumn;
+        //        string sortMemberPath = column.SortMemberPath;
+        //        IOStockType iosType = item.StockType;
 
-        private async void ExecuteCellEditEndingEventCommand(DataGridCellEditEndingEventArgs e)
-        {
-            DataGridColumn column = e.Column;
-            DataGridRow row = e.Row;
-            TextBox textBox = e.EditingElement as TextBox;
-            string sortMemberPath = column.SortMemberPath;
-            string text = textBox.Text;
-            IOStockDataGridItem item = row.Item as IOStockDataGridItem;
-            IOStockType iosType = item.StockType;
+        //        if (iosType == IOStockType.INCOMING && (sortMemberPath.Contains("Customer") || sortMemberPath.Contains("Project")) ||
+        //        iosType == IOStockType.OUTGOING && (sortMemberPath.Contains("Supplier") || sortMemberPath.Contains("Warehouse")))
+        //            e.Handled = true;
+        //    }
+        //}
 
-            if (!sortMemberPath.Contains("Name") || item == null || textBox == null)
-                return;
-            if (iosType == IOStockType.INCOMING && (sortMemberPath.Contains("Customer") || sortMemberPath.Contains("Project")) ||
-                iosType == IOStockType.OUTGOING && (sortMemberPath.Contains("Supplier") || sortMemberPath.Contains("Warehouse")))
-                return;
+        //private async void ExecuteCellEditEndingEventCommand(DataGridCellEditEndingEventArgs e)
+        //{
+        //    DataGridColumn column = e.Column;
+        //    DataGridRow row = e.Row;
+        //    TextBox textBox = e.EditingElement as TextBox;
+        //    string sortMemberPath = column.SortMemberPath;
+        //    string text = textBox.Text;
+        //    IOStockDataGridItem item = row.Item as IOStockDataGridItem;
+        //    IOStockType iosType = item.StockType;
 
-            string[] paths = column.SortMemberPath.Replace(".Name", "").Split('.');
-            object property = item;
-            foreach (var path in paths)
-                property = property.GetType().GetProperty(path).GetValue(property, null);
-            if (property == null)
-            {
-                string propertyName = paths.Last();
-                switch (propertyName)
-                {
-                    case "Maker":
-                        item.Inventory.Maker = new Observable<Maker>(text);
-                        await InventoryDataCommander.GetInstance().AddObservableField(item.Inventory.Maker);
-                        break;
+        //    if (!sortMemberPath.Contains("Name") || item == null || textBox == null)
+        //        return;
+        //    if (iosType == IOStockType.INCOMING && (sortMemberPath.Contains("Customer") || sortMemberPath.Contains("Project")) ||
+        //        iosType == IOStockType.OUTGOING && (sortMemberPath.Contains("Supplier") || sortMemberPath.Contains("Warehouse")))
+        //        return;
 
-                    case "Measure":
-                        item.Inventory.Measure = new Observable<Measure>(text);
-                        await InventoryDataCommander.GetInstance().AddObservableField(item.Inventory.Measure);
-                        break;
+        //    string[] paths = column.SortMemberPath.Replace(".Name", "").Split('.');
+        //    object property = item;
+        //    foreach (var path in paths)
+        //        property = property.GetType().GetProperty(path).GetValue(property, null);
+        //    if (property == null)
+        //    {
+        //        string propertyName = paths.Last();
+        //        switch (propertyName)
+        //        {
+        //            case "Maker":
+        //                item.Inventory.Maker = new Observable<Maker>(text);
+        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Inventory.Maker);
+        //                break;
 
-                    case "Warehouse":
-                        item.Warehouse = new Observable<Warehouse>(text);
-                        await InventoryDataCommander.GetInstance().AddObservableField(item.Warehouse);
-                        break;
+        //            case "Measure":
+        //                item.Inventory.Measure = new Observable<Measure>(text);
+        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Inventory.Measure);
+        //                break;
 
-                    case "Project":
-                        item.Project = new Observable<Project>(text);
-                        await InventoryDataCommander.GetInstance().AddObservableField(item.Project);
-                        break;
+        //            case "Warehouse":
+        //                item.Warehouse = new Observable<Warehouse>(text);
+        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Warehouse);
+        //                break;
 
-                    case "Customer":
-                        item.Customer = new Observable<Customer>(text);
-                        await InventoryDataCommander.GetInstance().AddObservableField(item.Customer);
-                        break;
+        //            case "Project":
+        //                item.Project = new Observable<Project>(text);
+        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Project);
+        //                break;
 
-                    case "Supplier":
-                        item.Supplier = new Observable<Supplier>(text);
-                        await InventoryDataCommander.GetInstance().AddObservableField(item.Supplier);
-                        break;
+        //            case "Customer":
+        //                item.Customer = new Observable<Customer>(text);
+        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Customer);
+        //                break;
 
-                    case "Employee":
-                        item.Employee = new Observable<Employee>(text);
-                        await InventoryDataCommander.GetInstance().AddObservableField(item.Employee);
-                        break;
-                }
-            }
-        }
+        //            case "Supplier":
+        //                item.Supplier = new Observable<Supplier>(text);
+        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Supplier);
+        //                break;
+
+        //            case "Employee":
+        //                item.Employee = new Observable<Employee>(text);
+        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Employee);
+        //                break;
+        //        }
+        //    }
+        //}
 
         private void ExecuteContextMenuOpeningEventCommand()
         {
@@ -240,6 +295,42 @@ namespace R54IN0.WPF
         {
             if (_propertyChanged != null)
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
+        public void UpdateNewItem(object item)
+        {
+            if (item.GetType() == typeof(Observable<Maker>))
+                Makers.Add(item as Observable<Maker>);
+            else if (item.GetType() == typeof(Observable<Measure>))
+                Measures.Add(item as Observable<Measure>);
+            else if (item.GetType() == typeof(Observable<Warehouse>))
+                Warehouses.Add(item as Observable<Warehouse>);
+            else if (item.GetType() == typeof(Observable<Project>))
+                Projects.Add(item as Observable<Project>);
+            else if (item.GetType() == typeof(Observable<Supplier>))
+                Suppliers.Add(item as Observable<Supplier>);
+            else if (item.GetType() == typeof(Observable<Customer>))
+                Customers.Add(item as Observable<Customer>);
+            else if (item.GetType() == typeof(Observable<Employee>))
+                Employees.Add(item as Observable<Employee>);
+        }
+
+        public void UpdateDelItem(object item)
+        {
+            if (item.GetType() == typeof(Observable<Maker>))
+                Makers.Remove(item as Observable<Maker>);
+            else if (item.GetType() == typeof(Observable<Measure>))
+                Measures.Remove(item as Observable<Measure>);
+            else if (item.GetType() == typeof(Observable<Warehouse>))
+                Warehouses.Remove(item as Observable<Warehouse>);
+            else if (item.GetType() == typeof(Observable<Project>))
+                Projects.Remove(item as Observable<Project>);
+            else if (item.GetType() == typeof(Observable<Supplier>))
+                Suppliers.Remove(item as Observable<Supplier>);
+            else if (item.GetType() == typeof(Observable<Customer>))
+                Customers.Remove(item as Observable<Customer>);
+            else if (item.GetType() == typeof(Observable<Employee>))
+                Employees.Remove(item as Observable<Employee>);
         }
     }
 }

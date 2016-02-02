@@ -6,10 +6,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System;
 
 namespace R54IN0.WPF
 {
-    public class InventoryDataGridViewModel : ICollectionViewModel<ObservableInventory>, INotifyPropertyChanged
+    public class InventoryDataGridViewModel : ICollectionViewModel<ObservableInventory>, INotifyPropertyChanged, ICollectionViewModelObserver
     {
         private ObservableCollection<ObservableInventory> _items;
         private ObservableInventory _selectedItem;
@@ -42,11 +43,22 @@ namespace R54IN0.WPF
             SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, IsSelected);
             IOStockAmenderWindowCallCommand = new RelayCommand(ExecuteIOStockAmenderWindowCallCommand, IsSelected);
             InventoryDataDeletionCommand = new RelayCommand(ExecuteInventoryDataDeletionCommand, IsSelected);
+            //CellEditEndingEventCommand = new RelayCommand<DataGridCellEditEndingEventArgs>(ExecuteCellEditEndingEventCommand);
 
-            CellEditEndingEventCommand = new RelayCommand<DataGridCellEditEndingEventArgs>(ExecuteCellEditEndingEventCommand);
+            var makers = InventoryDataCommander.GetInstance().CopyObservableFields<Maker>();
+            Makers = new ObservableCollection<Observable<Maker>>(makers);
+            var measures = InventoryDataCommander.GetInstance().CopyObservableFields<Measure>();
+            Measures = new ObservableCollection<Observable<Measure>>(measures);
+
+            CollectionViewModelObserverSubject.GetInstance().Attach(this);
         }
 
-        public RelayCommand<DataGridCellEditEndingEventArgs> CellEditEndingEventCommand { get; set; }
+        ~InventoryDataGridViewModel()
+        {
+            CollectionViewModelObserverSubject.GetInstance().Detach(this);
+        }
+
+        //public RelayCommand<DataGridCellEditEndingEventArgs> CellEditEndingEventCommand { get; set; }
 
         #region ContextMenu MenuItem Binding Command
 
@@ -160,6 +172,18 @@ namespace R54IN0.WPF
             }
         }
 
+        public ObservableCollection<Observable<Maker>> Makers
+        {
+            get;
+            private set;
+        }
+
+        public ObservableCollection<Observable<Measure>> Measures
+        {
+            get;
+            private set;
+        }
+
         private bool IsSelected()
         {
             return SelectedItem != null;
@@ -208,39 +232,55 @@ namespace R54IN0.WPF
                 MainWindowViewModel.GetInstance().ShowIOStockStatusByProduct(SelectedItem.Product.ID);
         }
 
-        private void ExecuteCellEditEndingEventCommand(DataGridCellEditEndingEventArgs e)
-        {
-            DataGridColumn column = e.Column;
-            DataGridRow row = e.Row;
-            TextBox textBox = e.EditingElement as TextBox;
-            string sortMemberPath = column.SortMemberPath;
-            ObservableInventory item = row.Item as ObservableInventory;
-            if (!sortMemberPath.Contains("Name") || item == null || textBox == null)
-                return;
-            string[] paths = column.SortMemberPath.Replace(".Name", "").Split('.');
-            object property = item;
-            foreach (var path in paths)
-                property = property.GetType().GetProperty(path).GetValue(property, null);
-            if (property == null)
-            {
-                string propertyName = paths.Last();
-                switch (propertyName)
-                {
-                    case "Maker":
-                        item.Maker = new Observable<Maker>() { Name = textBox.Text };
-                        break;
+        //private void ExecuteCellEditEndingEventCommand(DataGridCellEditEndingEventArgs e)
+        //{
+        //    DataGridColumn column = e.Column;
+        //    DataGridRow row = e.Row;
+        //    TextBox textBox = e.EditingElement as TextBox;
+        //    string sortMemberPath = column.SortMemberPath;
+        //    ObservableInventory item = row.Item as ObservableInventory;
+        //    if (!sortMemberPath.Contains("Name") || item == null || textBox == null)
+        //        return;
+        //    string[] paths = column.SortMemberPath.Replace(".Name", "").Split('.');
+        //    object property = item;
+        //    foreach (var path in paths)
+        //        property = property.GetType().GetProperty(path).GetValue(property, null);
+        //    if (property == null)
+        //    {
+        //        string propertyName = paths.Last();
+        //        switch (propertyName)
+        //        {
+        //            case "Maker":
+        //                item.Maker = new Observable<Maker>() { Name = textBox.Text };
+        //                break;
 
-                    case "Measure":
-                        item.Measure = new Observable<Measure>() { Name = textBox.Text };
-                        break;
-                }
-            }
-        }
+        //            case "Measure":
+        //                item.Measure = new Observable<Measure>() { Name = textBox.Text };
+        //                break;
+        //        }
+        //    }
+        //}
 
         public void NotifyPropertyChanged(string name)
         {
             if (_propertyChanged != null)
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
+        public void UpdateNewItem(object item)
+        {
+            if (item.GetType() == typeof(Observable<Maker>))
+                Makers.Add(item as Observable<Maker>);
+            else if (item.GetType() == typeof(Observable<Measure>))
+                Measures.Add(item as Observable<Measure>);
+        }
+
+        public void UpdateDelItem(object item)
+        {
+            if (item.GetType() == typeof(Observable<Maker>))
+                Makers.Remove(item as Observable<Maker>);
+            else if (item.GetType() == typeof(Observable<Measure>))
+                Measures.Remove(item as Observable<Measure>);
         }
     }
 }

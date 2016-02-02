@@ -1,4 +1,6 @@
-﻿namespace R54IN0.WPF
+﻿using System.Collections.ObjectModel;
+
+namespace R54IN0.WPF
 {
     public class IOStockDataGridItem : ObservableIOStock
     {
@@ -45,6 +47,14 @@
                 return UnitPrice * Quantity;
             }
         }
+
+        //public ObservableCollection<Observable<Warehouse>> Warehouses
+        //{
+        //    get
+        //    {
+        //        return null;
+        //    }
+        //}
 
         public override void NotifyPropertyChanged(string name)
         {
