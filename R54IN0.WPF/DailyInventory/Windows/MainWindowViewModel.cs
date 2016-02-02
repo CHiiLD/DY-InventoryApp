@@ -2,10 +2,12 @@
 using MahApps.Metro;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -89,7 +91,9 @@ namespace R54IN0.WPF
         {
             get
             {
-                return "Version beta 0.1.0.15";
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                Version version = assembly.GetName().Version;
+                return "Version beta " + version.ToString();
             }
         }
 

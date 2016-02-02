@@ -4,18 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{54185BEA-D735-4A8E-808C-807F8B626463}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>overlap</RootNamespace>
-    <AssemblyName>overlap</AssemblyName>
+    <RootNamespace>R54IN0.Format</RootNamespace>
+    <AssemblyName>R54IN0.Format</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -44,26 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="Interface\IField.cs" />
+    <Compile Include="Interface\IID.cs" />
+    <Compile Include="Interface\IName.cs" />
+    <Compile Include="InventoryFormat.cs" />
+    <Compile Include="IOStockFormat.cs" />
+    <Compile Include="IOStockType.cs" />
+    <Compile Include="Maker.cs" />
+    <Compile Include="Measure.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="Supplier.cs" />
+    <Compile Include="Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
-      <Project>{04608184-27B9-42A2-9E5E-69A6CB21ECFE}</Project>
-      <Name>Lex.Db.Net45</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\R54IN0.Format\R54IN0.Format.csproj">
-      <Project>{54185bea-d735-4a8e-808c-807f8b626463}</Project>
-      <Name>R54IN0.Format</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\R54IN0.WPF\R54IN0.WPF.csproj">
-      <Project>{5a0c4ca1-b587-42a9-8df0-3151b1b33784}</Project>
-      <Name>R54IN0.WPF</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

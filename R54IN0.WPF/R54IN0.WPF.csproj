@@ -152,24 +152,10 @@
     <Compile Include="DailyInventory\Data\Director\MultiSortedDictionary.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableFieldDirector.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableInventoryDirector.cs" />
-    <Compile Include="DailyInventory\Data\Fields\Customer.cs" />
-    <Compile Include="DailyInventory\Data\Fields\Employee.cs" />
-    <Compile Include="DailyInventory\Data\Fields\Maker.cs" />
-    <Compile Include="DailyInventory\Data\Fields\Measure.cs" />
-    <Compile Include="DailyInventory\Data\Fields\Product.cs" />
-    <Compile Include="DailyInventory\Data\Fields\Project.cs" />
-    <Compile Include="DailyInventory\Data\Fields\Supplier.cs" />
-    <Compile Include="DailyInventory\Data\Fields\Warehouse.cs" />
-    <Compile Include="DailyInventory\Data\Interface\IField.cs" />
-    <Compile Include="DailyInventory\Data\Interface\IID.cs" />
-    <Compile Include="DailyInventory\Data\Interface\IName.cs" />
-    <Compile Include="DailyInventory\Data\Interface\IObservableField.cs" />
+    <Compile Include="DailyInventory\Data\Inventory\IObservableField.cs" />
     <Compile Include="DailyInventory\Data\Inventory\Observable.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\InventoryFormat.cs" />
     <Compile Include="DailyInventory\Data\Inventory\IObservableIOStockProperties.cs" />
     <Compile Include="DailyInventory\Data\Inventory\IObservableInventoryProperties.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\IOStockFormat.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\IOStockType.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableInventory.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableIOStock.cs" />
     <Compile Include="DailyInventory\Data\DbAdapter.cs" />
@@ -181,9 +167,6 @@
     </Compile>
     <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderWindow.xaml.cs">
       <DependentUpon>IOStockDataAmenderWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
     <Page Include="DailyInventory\Controls\IOStock\IOStockDatePicker.xaml">
       <SubType>Designer</SubType>
@@ -229,10 +212,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Window1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DailyInventory\Windows\AppThemeMenuData.cs" />
@@ -288,6 +267,10 @@
     <ProjectReference Include="..\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
       <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
       <Name>Newtonsoft.Json.Net40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\R54IN0.Format\R54IN0.Format.csproj">
+      <Project>{54185bea-d735-4a8e-808c-807f8b626463}</Project>
+      <Name>R54IN0.Format</Name>
     </ProjectReference>
     <ProjectReference Include="..\TreeViewEx\TreeViewEx\TreeViewEx.csproj">
       <Project>{2854814f-ea3c-41d4-aa94-460c4694f430}</Project>

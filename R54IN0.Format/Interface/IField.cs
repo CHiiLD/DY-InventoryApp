@@ -2,6 +2,5 @@
 {
     public interface IField : IID, IName
     {
-        bool IsDeleted { get; set; }
     }
 }

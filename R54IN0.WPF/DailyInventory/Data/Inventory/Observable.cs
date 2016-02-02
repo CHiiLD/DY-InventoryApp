@@ -67,19 +67,6 @@ namespace R54IN0
             }
         }
 
-        public bool IsDeleted
-        {
-            get
-            {
-                return _t.IsDeleted;
-            }
-            set
-            {
-                _t.IsDeleted = value;
-                NotifyPropertyChanged("IsDeleted");
-            }
-        }
-
         IField IObservableField.Field
         {
             get
@@ -123,8 +110,6 @@ namespace R54IN0
             {
                 if (Name != field.Name)
                     Name = field.Name;
-                if (IsDeleted != field.IsDeleted)
-                    IsDeleted = field.IsDeleted;
             }
         }
     }

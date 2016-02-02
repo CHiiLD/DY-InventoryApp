@@ -1,12 +1,11 @@
 ﻿namespace R54IN0
 {
     /// <summary>
-    /// 납품처, 공급회사
+    /// 프로젝트명
     /// </summary>
-    public class Supplier : IField
+    public class Project : IField
     {
         public string ID { get; set; }
-        public bool IsDeleted { get; set; }
         public string Name { get; set; }
     }
 }

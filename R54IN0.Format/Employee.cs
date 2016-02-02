@@ -1,9 +1,11 @@
 ﻿namespace R54IN0
 {
-    public class Customer : IField
+    /// <summary>
+    /// 자사원
+    /// </summary>
+    public class Employee : IField
     {
         public string ID { get; set; }
         public string Name { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

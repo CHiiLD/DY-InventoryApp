@@ -61,23 +61,6 @@ namespace R54IN0.WPF
         {
             CollectionViewModelObserverSubject.GetInstance().Detach(this);
         }
-
-        private bool CanCancelCellEdit(DataGridBeginningEditEventArgs arg)
-        {
-            string path = arg.Column.SortMemberPath;
-            IOStockDataGridItem item = arg.Row.Item as IOStockDataGridItem;
-            if (item.StockType == IOStockType.OUTGOING && (path.Contains("Warehouse") || path.Contains("Supplier")))
-                return true;
-            else if (item.StockType == IOStockType.INCOMING && (path.Contains("Project") || path.Contains("Customer")))
-                return true;
-            return false;
-        }
-
-        private void CancelCellEditEvent(DataGridBeginningEditEventArgs obj)
-        {
-            obj.Cancel = true;
-        }
-
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
@@ -185,12 +168,14 @@ namespace R54IN0.WPF
             }
         }
 
-        public RelayCommand<DataGridBeginningEditEventArgs> BeginningEditEventCommand
-        {
-            get;
-            private set;
-        }
+        /// <summary>
+        /// 유저가 데이터그리드의 셀을 수정하고자 할 경우
+        /// </summary>
+        public RelayCommand<DataGridBeginningEditEventArgs> BeginningEditEventCommand { get; private set; }
 
+        public RelayCommand ContextMenuOpeningEventCommand { get; set; }
+
+        #region DataGridComboBoxColumn ItemSources
         public ObservableCollection<Observable<Warehouse>> Warehouses { get; private set; }
         public ObservableCollection<Observable<Maker>> Makers { get; private set; }
         public ObservableCollection<Observable<Measure>> Measures { get; private set; }
@@ -198,91 +183,36 @@ namespace R54IN0.WPF
         public ObservableCollection<Observable<Supplier>> Suppliers { get; private set; }
         public ObservableCollection<Observable<Customer>> Customers { get; private set; }
         public ObservableCollection<Observable<Employee>> Employees { get; private set; }
+        #endregion
 
-        public RelayCommand ContextMenuOpeningEventCommand { get; set; }
+        /// <summary>
+        /// 데이터그리드 셀의 수정 이벤트를 취소할 지 질의하기
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns></returns>
+        private bool CanCancelCellEdit(DataGridBeginningEditEventArgs arg)
+        {
+            string path = arg.Column.SortMemberPath;
+            IOStockDataGridItem item = arg.Row.Item as IOStockDataGridItem;
+            if (item.StockType == IOStockType.OUTGOING && (path.Contains("Warehouse") || path.Contains("Supplier")))
+                return true;
+            else if (item.StockType == IOStockType.INCOMING && (path.Contains("Project") || path.Contains("Customer")))
+                return true;
+            return false;
+        }
 
-        //public RelayCommand<TextCompositionEventArgs> PreviewTextInputEventCommand { get; set; }
-        //public RelayCommand<DataGridCellEditEndingEventArgs> CellEditEndingEventCommand { get; set; }
+        /// <summary>
+        /// 데이터그리드 셀의 수정 이벤트를 캔슬하기
+        /// </summary>
+        /// <param name="obj"></param>
+        private void CancelCellEditEvent(DataGridBeginningEditEventArgs obj)
+        {
+            obj.Cancel = true;
+        }
 
-        //private void ExecutePreviewTextInputEventCommand(TextCompositionEventArgs e)
-        //{
-        //    var datagrid = e.Source as DataGrid;
-        //    if (datagrid != null)
-        //    {
-        //        IOStockDataGridItem item = datagrid.CurrentItem as IOStockDataGridItem;
-        //        DataGridColumn column = datagrid.CurrentColumn;
-        //        string sortMemberPath = column.SortMemberPath;
-        //        IOStockType iosType = item.StockType;
-
-        //        if (iosType == IOStockType.INCOMING && (sortMemberPath.Contains("Customer") || sortMemberPath.Contains("Project")) ||
-        //        iosType == IOStockType.OUTGOING && (sortMemberPath.Contains("Supplier") || sortMemberPath.Contains("Warehouse")))
-        //            e.Handled = true;
-        //    }
-        //}
-
-        //private async void ExecuteCellEditEndingEventCommand(DataGridCellEditEndingEventArgs e)
-        //{
-        //    DataGridColumn column = e.Column;
-        //    DataGridRow row = e.Row;
-        //    TextBox textBox = e.EditingElement as TextBox;
-        //    string sortMemberPath = column.SortMemberPath;
-        //    string text = textBox.Text;
-        //    IOStockDataGridItem item = row.Item as IOStockDataGridItem;
-        //    IOStockType iosType = item.StockType;
-
-        //    if (!sortMemberPath.Contains("Name") || item == null || textBox == null)
-        //        return;
-        //    if (iosType == IOStockType.INCOMING && (sortMemberPath.Contains("Customer") || sortMemberPath.Contains("Project")) ||
-        //        iosType == IOStockType.OUTGOING && (sortMemberPath.Contains("Supplier") || sortMemberPath.Contains("Warehouse")))
-        //        return;
-
-        //    string[] paths = column.SortMemberPath.Replace(".Name", "").Split('.');
-        //    object property = item;
-        //    foreach (var path in paths)
-        //        property = property.GetType().GetProperty(path).GetValue(property, null);
-        //    if (property == null)
-        //    {
-        //        string propertyName = paths.Last();
-        //        switch (propertyName)
-        //        {
-        //            case "Maker":
-        //                item.Inventory.Maker = new Observable<Maker>(text);
-        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Inventory.Maker);
-        //                break;
-
-        //            case "Measure":
-        //                item.Inventory.Measure = new Observable<Measure>(text);
-        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Inventory.Measure);
-        //                break;
-
-        //            case "Warehouse":
-        //                item.Warehouse = new Observable<Warehouse>(text);
-        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Warehouse);
-        //                break;
-
-        //            case "Project":
-        //                item.Project = new Observable<Project>(text);
-        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Project);
-        //                break;
-
-        //            case "Customer":
-        //                item.Customer = new Observable<Customer>(text);
-        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Customer);
-        //                break;
-
-        //            case "Supplier":
-        //                item.Supplier = new Observable<Supplier>(text);
-        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Supplier);
-        //                break;
-
-        //            case "Employee":
-        //                item.Employee = new Observable<Employee>(text);
-        //                await InventoryDataCommander.GetInstance().AddObservableField(item.Employee);
-        //                break;
-        //        }
-        //    }
-        //}
-
+        /// <summary>
+        /// 메뉴컨텍스트를 열었을 때 메뉴아이템 커맨드 실행상태 업데이트하기
+        /// </summary>
         private void ExecuteContextMenuOpeningEventCommand()
         {
             SearchAsIOStockRecordCommand.RaiseCanExecuteChanged();

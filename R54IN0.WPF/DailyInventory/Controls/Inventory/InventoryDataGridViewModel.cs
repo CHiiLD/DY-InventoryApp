@@ -43,7 +43,6 @@ namespace R54IN0.WPF
             SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, IsSelected);
             IOStockAmenderWindowCallCommand = new RelayCommand(ExecuteIOStockAmenderWindowCallCommand, IsSelected);
             InventoryDataDeletionCommand = new RelayCommand(ExecuteInventoryDataDeletionCommand, IsSelected);
-            //CellEditEndingEventCommand = new RelayCommand<DataGridCellEditEndingEventArgs>(ExecuteCellEditEndingEventCommand);
 
             var makers = InventoryDataCommander.GetInstance().CopyObservableFields<Maker>();
             Makers = new ObservableCollection<Observable<Maker>>(makers);
@@ -231,35 +230,6 @@ namespace R54IN0.WPF
             if (SelectedItem != null)
                 MainWindowViewModel.GetInstance().ShowIOStockStatusByProduct(SelectedItem.Product.ID);
         }
-
-        //private void ExecuteCellEditEndingEventCommand(DataGridCellEditEndingEventArgs e)
-        //{
-        //    DataGridColumn column = e.Column;
-        //    DataGridRow row = e.Row;
-        //    TextBox textBox = e.EditingElement as TextBox;
-        //    string sortMemberPath = column.SortMemberPath;
-        //    ObservableInventory item = row.Item as ObservableInventory;
-        //    if (!sortMemberPath.Contains("Name") || item == null || textBox == null)
-        //        return;
-        //    string[] paths = column.SortMemberPath.Replace(".Name", "").Split('.');
-        //    object property = item;
-        //    foreach (var path in paths)
-        //        property = property.GetType().GetProperty(path).GetValue(property, null);
-        //    if (property == null)
-        //    {
-        //        string propertyName = paths.Last();
-        //        switch (propertyName)
-        //        {
-        //            case "Maker":
-        //                item.Maker = new Observable<Maker>() { Name = textBox.Text };
-        //                break;
-
-        //            case "Measure":
-        //                item.Measure = new Observable<Measure>() { Name = textBox.Text };
-        //                break;
-        //        }
-        //    }
-        //}
 
         public void NotifyPropertyChanged(string name)
         {

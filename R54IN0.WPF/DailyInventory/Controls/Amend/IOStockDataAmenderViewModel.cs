@@ -711,8 +711,6 @@ namespace R54IN0.WPF
             {
                 _clientText = value;
                 NotifyPropertyChanged("ClientText");
-
-                Console.WriteLine("setted clinet text property: {0}", value);
             }
         }
 
@@ -1077,7 +1075,6 @@ namespace R54IN0.WPF
                         var supplier = new Observable<Supplier>(ClientText);
                         await InventoryDataCommander.GetInstance().AddObservableField(supplier);
                         Supplier = supplier;
-                        Console.WriteLine("recorded Supplier.Name property: {0}", Supplier.Name);
                     }
                     if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
                     {
@@ -1206,9 +1203,9 @@ namespace R54IN0.WPF
         /// </summary>
         private async Task RefreshDataGridItems()
         {
-            if (_ioStockStatusViewModel != null && _ioStockStatusViewModel.BackupSource != null)
+            if (_ioStockStatusViewModel != null && _ioStockStatusViewModel.DataGridItemSources != null)
             {
-                var backupSource = _ioStockStatusViewModel.BackupSource;
+                var backupSource = _ioStockStatusViewModel.DataGridItemSources;
                 foreach (var src in backupSource)
                 {
                     if (src.Inventory.ID == Inventory.ID && src.Date > Date)

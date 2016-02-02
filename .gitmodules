@@ -22,3 +22,6 @@
 [submodule "AsyncMvvm"]
 	path = AsyncMvvm
 	url = https://github.com/CHiiLD/AsyncMvvm.git
+[submodule "NLog"]
+	path = NLog
+	url = https://github.com/NLog/NLog.git

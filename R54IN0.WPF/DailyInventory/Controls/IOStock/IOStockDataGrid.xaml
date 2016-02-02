@@ -27,14 +27,6 @@
                   CanUserDeleteRows="False">
 
             <i:Interaction.Triggers>
-                <!--<i:EventTrigger EventName="PreviewTextInput">
-                    <mvvmlight:EventToCommand Command="{Binding PreviewTextInputEventCommand}" PassEventArgsToCommand="True" />
-                </i:EventTrigger>
-
-                <i:EventTrigger EventName="CellEditEnding">
-                    <mvvmlight:EventToCommand Command="{Binding CellEditEndingEventCommand}" PassEventArgsToCommand="True" />
-                </i:EventTrigger>-->
-
                 <i:EventTrigger EventName="ContextMenuOpening">
                     <mvvmlight:EventToCommand Command="{Binding ContextMenuOpeningEventCommand}" />
                 </i:EventTrigger>
@@ -42,7 +34,6 @@
                 <i:EventTrigger EventName="BeginningEdit">
                     <mvvmlight:EventToCommand Command="{Binding BeginningEditEventCommand}" PassEventArgsToCommand="True" />
                 </i:EventTrigger>
-
             </i:Interaction.Triggers>
 
             <DataGrid.Resources>
@@ -146,16 +137,13 @@
                 <DataGridTextColumn Header="규격의 설명" Width="1*" Binding="{Binding Inventory.Memo}"
                                 IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
                                 Visibility="{Binding DataContext.SpecificationMemoColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />
-                
-                <!--<DataGridTextColumn Header="제조사" Width="Auto"  Binding="{Binding Inventory.Maker.Name}"
-                                IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
-                                Visibility="{Binding DataContext.MakerColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />-->
 
                 <DataGridComboBoxColumn Header="제조사"
-                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
-                                    ItemsSource="{Binding DataContext.Makers, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
-                                    SelectedItemBinding="{Binding Inventory.Maker}"
-                                    DisplayMemberPath="Name">
+                                        Visibility="{Binding DataContext.MakerColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                        IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                        ItemsSource="{Binding DataContext.Makers, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
+                                        SelectedItemBinding="{Binding Inventory.Maker}"
+                                        DisplayMemberPath="Name">
                     <DataGridComboBoxColumn.EditingElementStyle>
                         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}" />
                     </DataGridComboBoxColumn.EditingElementStyle>
@@ -186,9 +174,6 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <!--<DataGridTextColumn Header="단위" Binding="{Binding Inventory.Measure.Name}"
-                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />-->
-
                 <DataGridComboBoxColumn Header="단위"
                                     IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
                                     ItemsSource="{Binding DataContext.Measures, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
@@ -198,9 +183,6 @@
                         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}" />
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
-                
-                <!--<DataGridTextColumn Header="보관장소" Binding="{Binding Warehouse.Name}"
-                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />-->
 
                 <DataGridComboBoxColumn Header="보관장소"
                                     IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
@@ -211,9 +193,6 @@
                         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}" />
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
-
-                <!--<DataGridTextColumn Header="프로젝트명" Binding="{Binding Project.Name}"
-                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />-->
 
                 <DataGridComboBoxColumn Header="프로젝트명"
                                     IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
@@ -257,9 +236,6 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <!--<DataGridTextColumn Header="구입처" Binding="{Binding Supplier.Name}"
-                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />-->
-
                 <DataGridComboBoxColumn Header="구입처"
                                     IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
                                     ItemsSource="{Binding DataContext.Suppliers, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
@@ -270,9 +246,6 @@
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
 
-                <!--<DataGridTextColumn Header="판매처" Binding="{Binding Customer.Name}"
-                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />-->
-
                 <DataGridComboBoxColumn Header="판매처"
                                     IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
                                     ItemsSource="{Binding DataContext.Customers, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
@@ -282,9 +255,6 @@
                         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}" />
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
-
-                <!--<DataGridTextColumn Header="담당자" Binding="{Binding Employee.Name}"
-                                    IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}" />-->
 
                 <DataGridComboBoxColumn Header="담당자"
                                     IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"

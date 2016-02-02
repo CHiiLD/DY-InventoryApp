@@ -4,7 +4,6 @@
     {
         string ID { get; set; }
         string Name { get; set; }
-        bool IsDeleted { get; set; }
         IField Field { get; set; }
     }
 }

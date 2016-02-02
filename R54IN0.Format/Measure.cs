@@ -1,12 +1,11 @@
 ﻿namespace R54IN0
 {
     /// <summary>
-    /// 프로젝트명
+    /// 단위
     /// </summary>
-    public class Project : IField
+    public class Measure : IField
     {
         public string ID { get; set; }
         public string Name { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }
