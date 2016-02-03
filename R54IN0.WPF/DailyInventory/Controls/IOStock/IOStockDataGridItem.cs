@@ -48,14 +48,6 @@ namespace R54IN0.WPF
             }
         }
 
-        //public ObservableCollection<Observable<Warehouse>> Warehouses
-        //{
-        //    get
-        //    {
-        //        return null;
-        //    }
-        //}
-
         public override void NotifyPropertyChanged(string name)
         {
             if (name != "IsChecked")

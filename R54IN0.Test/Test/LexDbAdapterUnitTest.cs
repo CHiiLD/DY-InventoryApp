@@ -23,26 +23,22 @@ namespace R54IN0.Test
         {
             new Dummy().Create();
 
-            string stockID = null;
-            string inventoryID = null;
-            string prodoctID = null;
-
-            stockID = LexDb.GetDbInstance().LoadAll<IOStockFormat>().Random().ID;
-            inventoryID = LexDb.GetDbInstance().LoadAll<InventoryFormat>().Random().ID;
-            prodoctID = LexDb.GetDbInstance().LoadAll<Product>().Random().ID;
+            var stock = LexDb.GetDbInstance().LoadAll<IOStockFormat>().Random();
+            var inventory = LexDb.GetDbInstance().LoadAll<InventoryFormat>().Random();
+            var prodoct = LexDb.GetDbInstance().LoadAll<Product>().Random();
 
             DbAdapter adapter = new DbAdapter();
             bool isConnected = await adapter.ConnectAsync();
             if (isConnected)
             {
-                await adapter.DeleteAsync<IOStockFormat>(stockID);
-                await adapter.DeleteAsync<InventoryFormat>(inventoryID);
-                await adapter.DeleteAsync<Product>(prodoctID);
+                await adapter.DeleteAsync<IOStockFormat>(stock);
+                await adapter.DeleteAsync<InventoryFormat>(inventory);
+                await adapter.DeleteAsync<Product>(prodoct);
             }
 
-            Assert.IsNull(LexDb.GetDbInstance().LoadByKey<IOStockFormat>(stockID));
-            Assert.IsNull(LexDb.GetDbInstance().LoadByKey<InventoryFormat>(inventoryID));
-            Assert.IsNull(LexDb.GetDbInstance().LoadByKey<Product>(prodoctID));
+            Assert.IsNull(LexDb.GetDbInstance().LoadByKey<IOStockFormat>(stock.ID));
+            Assert.IsNull(LexDb.GetDbInstance().LoadByKey<InventoryFormat>(inventory.ID));
+            Assert.IsNull(LexDb.GetDbInstance().LoadByKey<Product>(prodoct.ID));
         }
 
         /// <summary>

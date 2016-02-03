@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public class DbAdapter
+    public class DbAdapter : IDbAdapter
     {
         private static DbAdapter _thiz;
 
@@ -38,15 +38,6 @@ namespace R54IN0
         public async Task DisconnectAsync()
         {
             LexDb.Destroy();
-        }
-
-        public async Task<bool> DeleteAsync<TableT>(string id) where TableT : class, IID
-        {
-            if (string.IsNullOrEmpty(id))
-                throw new ArgumentNullException();
-            var lexdb = LexDb.GetDbInstance();
-            TableT item = lexdb.Table<TableT>().LoadByKey(id);
-            return await DeleteAsync(item);
         }
 
         public async Task<bool> DeleteAsync<TableT>(TableT item) where TableT : class, IID

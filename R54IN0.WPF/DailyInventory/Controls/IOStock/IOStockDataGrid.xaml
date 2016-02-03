@@ -87,7 +87,7 @@
                         Value="{DynamicResource AccentColorBrush4}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Column.DisplayIndex}"
-                         Value="13">
+                         Value="12">
                             <Setter Property="Background"
                         Value="{DynamicResource AccentColorBrush4}" />
                         </DataTrigger>
