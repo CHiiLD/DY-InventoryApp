@@ -39,6 +39,7 @@ namespace R54IN0.WPF
             CollectionViewModelObserverSubject.GetInstance().Detach(this);
         }
 
+        #region ViewModel
         public InventoryDataGridViewModel DataGridViewModel1 { get; set; }
 
         public InventoryDataGridViewModel DataGridViewModel2 { get; set; }
@@ -46,6 +47,7 @@ namespace R54IN0.WPF
         public InventorySearchTextBoxViewModel SearchViewModel { get; set; }
 
         public MultiSelectTreeViewModelView TreeViewViewModel { get; set; }
+        #endregion
 
         /// <summary>
         /// ToggleSwitch 데이터그리드의 IsReadOnly프로퍼티와 연결

@@ -3,7 +3,6 @@
     public interface ICollectionViewModelObserver
     {
         void UpdateNewItem(object item);
-
         void UpdateDelItem(object item);
     }
 }

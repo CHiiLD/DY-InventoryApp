@@ -24,8 +24,6 @@ namespace R54IN0.WPF
         public IOStockDataGridViewModel()
         {
             Items = new ObservableCollection<IOStockDataGridItem>();
-            //PreviewTextInputEventCommand = new RelayCommand<TextCompositionEventArgs>(ExecutePreviewTextInputEventCommand);
-            //CellEditEndingEventCommand = new RelayCommand<DataGridCellEditEndingEventArgs>(ExecuteCellEditEndingEventCommand);
 
             SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, IsSelected);
             NewIOStockFormatAdditionCommand = new RelayCommand(ExecuteNewIOStockFormatAdditionCommand);
@@ -35,7 +33,6 @@ namespace R54IN0.WPF
             CheckedIOStockFormatsCopyCommand = new RelayCommand(ExecuteCheckedIOStockFormatsCopyCommand);
             SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, IsSelected);
             ContextMenuOpeningEventCommand = new RelayCommand(ExecuteContextMenuOpeningEventCommand);
-
             BeginningEditEventCommand = new RelayCommand<DataGridBeginningEditEventArgs>(CancelCellEditEvent, CanCancelCellEdit);
 
             var makers = InventoryDataCommander.GetInstance().CopyObservableFields<Maker>();
@@ -173,6 +170,9 @@ namespace R54IN0.WPF
         /// </summary>
         public RelayCommand<DataGridBeginningEditEventArgs> BeginningEditEventCommand { get; private set; }
 
+        /// <summary>
+        /// 데이터그리드 셀에 컨덱스트 메뉴를 오픈할 경우
+        /// </summary>
         public RelayCommand ContextMenuOpeningEventCommand { get; set; }
 
         #region DataGridComboBoxColumn ItemSources

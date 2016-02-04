@@ -44,7 +44,7 @@ namespace R54IN0.WPF
         public TreeViewNode(NodeType type, string str) : this()
         {
             Type = type;
-            if (Type == NodeType.FORDER)
+            if (Type == NodeType.FOLDER)
                 Name = str;
             else if (Type == NodeType.PRODUCT)
                 ProductID = str;
@@ -113,7 +113,7 @@ namespace R54IN0.WPF
             {
                 switch (Type)
                 {
-                    case NodeType.FORDER:
+                    case NodeType.FOLDER:
                         return !IsNameEditable;
 
                     case NodeType.PRODUCT:
@@ -131,7 +131,7 @@ namespace R54IN0.WPF
             {
                 switch (Type)
                 {
-                    case NodeType.FORDER:
+                    case NodeType.FOLDER:
                         return true;
 
                     case NodeType.PRODUCT:
@@ -149,7 +149,7 @@ namespace R54IN0.WPF
             {
                 switch (Type)
                 {
-                    case NodeType.FORDER:
+                    case NodeType.FOLDER:
                         return true;
 
                     case NodeType.PRODUCT:
@@ -167,7 +167,7 @@ namespace R54IN0.WPF
             {
                 switch (Type)
                 {
-                    case NodeType.FORDER:
+                    case NodeType.FOLDER:
                         return Brushes.Tan;
 
                     case NodeType.PRODUCT:

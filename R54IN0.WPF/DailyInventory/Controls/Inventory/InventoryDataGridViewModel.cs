@@ -171,12 +171,18 @@ namespace R54IN0.WPF
             }
         }
 
+        /// <summary>
+        /// 동기화되는 제조사 리스트
+        /// </summary>
         public ObservableCollection<Observable<Maker>> Makers
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// 동기화되는 단위 리스트
+        /// </summary>
         public ObservableCollection<Observable<Measure>> Measures
         {
             get;

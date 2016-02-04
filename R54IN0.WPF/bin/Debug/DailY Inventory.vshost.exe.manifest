@@ -4,7 +4,7 @@
   <description asmv2:iconFile="InventoryIcon152.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="DailY Inventory" version="1.0.5877.15515" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="DailY Inventory" version="1.0.5878.25920" language="neutral" processorArchitecture="msil" />
     <commandLine file="DailY Inventory.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -43,50 +43,50 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Custom.Controls.EditableTextBlock.dll" size="23552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Custom.Controls.EditableTextBlock.dll" size="24064">
       <assemblyIdentity name="Custom.Controls.EditableTextBlock" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0hG7iQQf1511nnBzWG7o4//SXK3Ra839nRQq0FBnCFI=</dsig:DigestValue>
+        <dsig:DigestValue>/cM8+c7zSwljxJNSbjqK/CAvoBnaAt1jdv/VZdU/lT4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DailY Inventory.exe" size="447488">
-      <assemblyIdentity name="DailY Inventory" version="1.0.5877.15515" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DailY Inventory.exe" size="448000">
+      <assemblyIdentity name="DailY Inventory" version="1.0.5878.25920" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>011LlUGI+zKZMm6tda5gPCS9c99vRYXY6Odja7ieVMo=</dsig:DigestValue>
+        <dsig:DigestValue>7fApS4oUjHBVOB7XOb4XqXxiYdYu0gV+ObVBcu58MlQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GalaSoft.MvvmLight.dll" size="31232">
-      <assemblyIdentity name="GalaSoft.MvvmLight" version="5.2.1.10077" publicKeyToken="E7570AB207BCB616" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GalaSoft.MvvmLight.dll" size="31744">
+      <assemblyIdentity name="GalaSoft.MvvmLight" version="5.2.1.23066" publicKeyToken="E7570AB207BCB616" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MaM9qj9+RBSTNKP5XA4dbiGvtxBiUtWYB++NfEPnkMw=</dsig:DigestValue>
+        <dsig:DigestValue>wJoVL21zP++r43Feu/6q0boyhTNDA+ogEj6x9ZoyLcs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GalaSoft.MvvmLight.Platform.dll" size="14336">
-      <assemblyIdentity name="GalaSoft.MvvmLight.Platform" version="5.2.1.10078" publicKeyToken="5F873C45E98AF8A1" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GalaSoft.MvvmLight.Platform.dll" size="14848">
+      <assemblyIdentity name="GalaSoft.MvvmLight.Platform" version="5.2.1.23068" publicKeyToken="5F873C45E98AF8A1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>RVZ1saY3SiKgisog6HTsyIDsgm0mjRg5iItbycZZadw=</dsig:DigestValue>
+        <dsig:DigestValue>BMmJ2Cx4CUTNjJnaisHMSlrrzJjndNVLczRW6JWO7bo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,31 +98,31 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JlpWrTFKDfSn0PuMGcz52u9KzYJEHqqU3ze9oG7zo88=</dsig:DigestValue>
+        <dsig:DigestValue>Em7LLvu+L6A2nTNYU3OtYkylhnYdWRwDxB9m/UvJgzQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MahApps.Metro.dll" size="1137152">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MahApps.Metro.dll" size="1136640">
       <assemblyIdentity name="MahApps.Metro" version="1.1.3.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/i+qOaxO0lCNjtzWXvocfBggRlgxmDGlep44rSsbp9k=</dsig:DigestValue>
+        <dsig:DigestValue>7J3l1FcvP1C5LEnHXp/vndI8ZmD+i//Xw64lHzQdbGE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MahApps.Metro.Resources.dll" size="1155072">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MahApps.Metro.Resources.dll" size="1155584">
       <assemblyIdentity name="MahApps.Metro.Resources" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Cq5Ynv+e7BfGcnwNIdFOs8RgkwnB5ZnHZhewIs/3p2g=</dsig:DigestValue>
+        <dsig:DigestValue>f7HSR62aik0VnAcXDN0wvpSGcCoJMJTJlznK9oFZzr4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -139,14 +139,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="531456">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="530432">
       <assemblyIdentity name="Newtonsoft.Json" version="7.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>i5vo2P529lOvLifZ26Ywn2HZpRreZsCgynf1mYT27DI=</dsig:DigestValue>
+        <dsig:DigestValue>gFxktnjM2wbiVkLRqEyXwcD/pP5Ww1suzthd4TcPkSs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -158,7 +158,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MIiq0oUZq8y+yCnHC44OPPsKoVkbpQZl2aYEdmpBI1o=</dsig:DigestValue>
+        <dsig:DigestValue>3c5oPoY+hKDPZ8kXi1Fz7TF1QnNI9r7owst+3LERFBk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -302,7 +302,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>p/LIS+C4NoUunIIF0Z3fkXlRIlxdiNNO17/OAcRELtE=</dsig:DigestValue>
+        <dsig:DigestValue>tZmbmsXPLiBdfsM2W8akx2qJYeQh5+6y0YE+ZEh6dk8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

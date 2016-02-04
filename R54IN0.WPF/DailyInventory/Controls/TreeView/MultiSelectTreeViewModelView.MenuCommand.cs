@@ -77,7 +77,7 @@ namespace R54IN0.WPF
             Observable<Product> newProduct = new Observable<Product>("새로운 제품");
             await InventoryDataCommander.GetInstance().AddObservableField(newProduct);
 
-            IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FORDER);
+            IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FOLDER);
             TreeViewNode newTreeViewNode = new TreeViewNode(NodeType.PRODUCT, newProduct.ID);
             if (folderNodes.Count() != 0)
                 _director.Add(folderNodes.First(), newTreeViewNode);
@@ -90,8 +90,8 @@ namespace R54IN0.WPF
         /// </summary>
         private void ExecuteNewFolderNodeAddCommand()
         {
-            IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FORDER);
-            TreeViewNode newTreeViewNode = new TreeViewNode(NodeType.FORDER, "새로운 폴더");
+            IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FOLDER);
+            TreeViewNode newTreeViewNode = new TreeViewNode(NodeType.FOLDER, "새로운 폴더");
             if (folderNodes.Count() != 0)
                 _director.Add(folderNodes.First(), newTreeViewNode);
             else
@@ -197,7 +197,7 @@ namespace R54IN0.WPF
             MessageDialogResult result = MessageDialogResult.Affirmative;
             switch (selectedNode.Type)
             {
-                case NodeType.FORDER:
+                case NodeType.FOLDER:
                     if (Application.Current != null)
                     {
                         var metro = Application.Current.MainWindow as MetroWindow;

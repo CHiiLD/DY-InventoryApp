@@ -13,7 +13,7 @@ namespace R54IN0
 
         public async Task<bool> ConnectAsync()
         {
-            _conn = new MySqlConnection(@"Data Source=localhost;Database=inventory;User ID=child;Password=f54645464");
+            _conn = new MySqlConnection(@"Data Source=localhost;Database=inventory;User ID=root;Password=213");
             await _conn.OpenAsync();
             return true;
         }

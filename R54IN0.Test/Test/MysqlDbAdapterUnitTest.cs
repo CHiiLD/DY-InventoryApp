@@ -8,17 +8,16 @@ namespace R54IN0.Test
     public class MysqlDbAdapterUnitTest
     {
         [TestMethod]
-        public async Task CanCreate()
+        public void CanCreate()
         {
             var mysql = new MysqlDbAdapter();
         }
 
         [TestMethod]
-        public async Task TestInsert()
+        public async Task CanConnect()
         {
             var mysql = new MysqlDbAdapter();
             await mysql.ConnectAsync();
-            await mysql.InsertAsync(new Product() { Name = "new product" });
             await mysql.DisconnectAsync();
         }
     }
