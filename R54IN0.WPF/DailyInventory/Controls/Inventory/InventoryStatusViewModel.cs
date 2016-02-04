@@ -40,6 +40,7 @@ namespace R54IN0.WPF
         }
 
         #region ViewModel
+
         public InventoryDataGridViewModel DataGridViewModel1 { get; set; }
 
         public InventoryDataGridViewModel DataGridViewModel2 { get; set; }
@@ -47,7 +48,8 @@ namespace R54IN0.WPF
         public InventorySearchTextBoxViewModel SearchViewModel { get; set; }
 
         public MultiSelectTreeViewModelView TreeViewViewModel { get; set; }
-        #endregion
+
+        #endregion ViewModel
 
         /// <summary>
         /// ToggleSwitch 데이터그리드의 IsReadOnly프로퍼티와 연결
@@ -149,12 +151,18 @@ namespace R54IN0.WPF
         /// <param name="e"></param>
         private void OnTreeViewPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "SelectedNodes" && sender == TreeViewViewModel)
+            if (e.PropertyName != "SelectedNodes" || sender != TreeViewViewModel)
+                return;
+
+            var inode = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.INVENTORY));
+            var pnode = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
+            pnode = pnode.SelectMany(x => x.Root.Select(y => y));
+            var unionnode = inode.Union(pnode);
+
+            if (unionnode.Count() != 0)
             {
-                var nodes = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
-                var oid = InventoryDataCommander.GetInstance();
-                var list = oid.CopyObservableInventories().Where(x => nodes.Any(n => n.ProductID == x.Product.ID));
-                PushDataGridItems(list, true);
+                var inventories = InventoryDataCommander.GetInstance().CopyObservableInventories().Where(inven => unionnode.Any(n => n.ObservableObjectID == inven.ID));
+                PushDataGridItems(inventories, true);
             }
         }
 
@@ -240,7 +248,7 @@ namespace R54IN0.WPF
             {
                 var obInven = item as ObservableInventory;
                 var nodes = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
-                if (TreeViewViewModel.SelectedNodes.Count == 0 || nodes.Any(x => x.ProductID == obInven.Product.ID))
+                if (TreeViewViewModel.SelectedNodes.Count == 0 || nodes.Any(x => x.ObservableObjectID == obInven.Product.ID))
                     PushDataGridItems(new ObservableInventory[] { obInven });
             }
         }

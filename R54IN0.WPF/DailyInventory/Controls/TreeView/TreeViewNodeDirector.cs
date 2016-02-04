@@ -43,32 +43,39 @@ namespace R54IN0.WPF
             }
         }
 
-        public void Add(TreeViewNode node)
+        public void AddToRoot(TreeViewNode node)
         {
             if (!Contains(node))
                 _nodes.Add(node);
         }
 
-        public void Add(TreeViewNode parent, TreeViewNode child)
+        public void AddToParent(TreeViewNode parent, TreeViewNode child)
         {
+            if (parent.Type == NodeType.INVENTORY)
+                throw new NotSupportedException();
+            if (parent.Type == NodeType.FOLDER && child.Type == NodeType.INVENTORY)
+                throw new NotSupportedException();
+
             if (!Contains(child) && Contains(parent))
                 parent.Root.Add(child);
         }
 
         public bool Contains(TreeViewNode node)
         {
-            if (node.Type == NodeType.PRODUCT && string.IsNullOrEmpty(node.ProductID))
+            if (node.Type == NodeType.PRODUCT && string.IsNullOrEmpty(node.ObservableObjectID))
+                throw new ArgumentException();
+            if (node.Type == NodeType.INVENTORY && string.IsNullOrEmpty(node.ObservableObjectID))
                 throw new ArgumentException();
 
             return
                 _nodes.Any(x => x.Descendants().Contains(node)) || //이미 자식루트에서 가지고 있는 경우
                 _nodes.Contains(node) || //ROOT에서 가지고 있을 경우
-               _nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Any(x => x.ProductID == node.ProductID); //동일한 item 유니크키를 가지고 있는 경우
+                _nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT || y.Type == NodeType.INVENTORY)).Any(x => x.ObservableObjectID == node.ObservableObjectID); //동일한 유니크키를 가지고 있는 경우
         }
 
         public TreeViewNode SearchProductNode(string id)
         {
-            var nodes = Collection.SelectMany(x => x.Descendants().Where(y => y.ProductID == id));
+            var nodes = Collection.SelectMany(x => x.Descendants().Where(y => y.ObservableObjectID == id));
             if (nodes.Count() == 1)
                 return nodes.Single();
             return null;
@@ -93,18 +100,6 @@ namespace R54IN0.WPF
         }
 
         /// <summary>
-        /// Node삭제
-        /// </summary>
-        /// <param name="itemID"></param>
-        /// <returns></returns>
-        public bool Remove(string itemID)
-        {
-            ObservableCollection<TreeViewNode> copy = new ObservableCollection<TreeViewNode>(_nodes);
-            TreeViewNode node = copy.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT && x.ProductID == itemID).SingleOrDefault();
-            return Remove(node);
-        }
-
-        /// <summary>
         /// 데이터 저장
         /// </summary>
         public void SaveTree()
@@ -121,23 +116,20 @@ namespace R54IN0.WPF
         /// </summary>
         public void Refresh()
         {
-            //var fwd = FieldWrapperDirector.GetInstance();
-            //var itemws = fwd.CreateCollection<Item, ItemWrapper>().Where(x => !x.IsDeleted);
-
-            InventoryDataCommander ofd = InventoryDataCommander.GetInstance();
+            InventoryDataCommander idc = InventoryDataCommander.GetInstance();
 
             IEnumerable<TreeViewNode> productNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT);
             foreach (TreeViewNode node in new List<TreeViewNode>(productNodes)) //없는 Item은 삭제
             {
-                if (ofd.SearchObservableField<Product>(node.ProductID) == null)
+                if (idc.SearchObservableField<Product>(node.ObservableObjectID) == null)
                     Remove(node);
             }
 
             productNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT);
-            foreach (var product in ofd.CopyObservableFields<Product>()) //Item 목록에는 존재하지만 Finder에는 없는 경우
+            foreach (var product in idc.CopyObservableFields<Product>()) //Item 목록에는 존재하지만 Finder에는 없는 경우
             {
-                if (!productNodes.Any(x => x.ProductID == product.ID))
-                    Add(new TreeViewNode(NodeType.PRODUCT, product.ID));
+                if (!productNodes.Any(x => x.ObservableObjectID == product.ID))
+                    AddToRoot(new TreeViewNode(product));
             }
         }
 

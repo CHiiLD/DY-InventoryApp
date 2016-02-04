@@ -929,7 +929,7 @@ namespace R54IN0.WPF
             if (node != null)
             {
                 var ofd = InventoryDataCommander.GetInstance();
-                var product = ofd.SearchObservableField<Product>(node.ProductID);
+                var product = ofd.SearchObservableField<Product>(node.ObservableObjectID);
                 if (product != null)
                     Product = product;
             }

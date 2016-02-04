@@ -1,11 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System;
 
 namespace R54IN0.WPF
 {
@@ -58,6 +55,7 @@ namespace R54IN0.WPF
         {
             CollectionViewModelObserverSubject.GetInstance().Detach(this);
         }
+
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
@@ -176,6 +174,7 @@ namespace R54IN0.WPF
         public RelayCommand ContextMenuOpeningEventCommand { get; set; }
 
         #region DataGridComboBoxColumn ItemSources
+
         public ObservableCollection<Observable<Warehouse>> Warehouses { get; private set; }
         public ObservableCollection<Observable<Maker>> Makers { get; private set; }
         public ObservableCollection<Observable<Measure>> Measures { get; private set; }
@@ -183,7 +182,8 @@ namespace R54IN0.WPF
         public ObservableCollection<Observable<Supplier>> Suppliers { get; private set; }
         public ObservableCollection<Observable<Customer>> Customers { get; private set; }
         public ObservableCollection<Observable<Employee>> Employees { get; private set; }
-        #endregion
+
+        #endregion DataGridComboBoxColumn ItemSources
 
         /// <summary>
         /// 데이터그리드 셀의 수정 이벤트를 취소할 지 질의하기

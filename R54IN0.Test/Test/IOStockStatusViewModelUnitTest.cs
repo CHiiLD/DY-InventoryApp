@@ -76,7 +76,7 @@ namespace R54IN0.Test
             Assert.AreNotEqual(0, viewmodel.DataGridViewModel.Items.Count);
             foreach (var item in viewmodel.DataGridViewModel.Items)
             {
-                Assert.IsTrue(item.Inventory.Product.ID == node.ProductID);
+                Assert.IsTrue(item.Inventory.Product.ID == node.ObservableObjectID);
             }
         }
 
@@ -593,6 +593,55 @@ namespace R54IN0.Test
             Assert.IsFalse(viewmodel.ProjectListBoxViewModel.Items.Contains(project));
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count());
             Assert.IsNull(viewmodel.DataGridViewModel.SelectedItem);
+        }
+
+        /// <summary>
+        /// 인벤토리 노드 하나를 클릭할 경우 관련 데이터를 데이터그리드에 업데이트
+        /// </summary>
+        [TestMethod]
+        public void TestTreeViewSelect()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var node = viewmodel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.INVENTORY)).Random();
+            viewmodel.TreeViewViewModel.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { node }, null));
+
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.ID == node.ObservableObjectID));
+        }
+
+        /// <summary>
+        /// 제품 노드를 하나 클릭한 경우 관련 데이터를 데이터그리드에 업데이트
+        /// </summary>
+        [TestMethod]
+        public void TestTreeViewSelect2()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var node = viewmodel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
+            viewmodel.TreeViewViewModel.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { node }, null));
+
+            var inventories = InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(node.ObservableObjectID);
+            var inventoryIds = inventories.Select(x => x.ID);
+
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Product.ID == node.ObservableObjectID));
+        }
+
+        /// <summary>
+        /// 제품노드와 그 하위 노드를 클릭한 경우 제품노드와 관련된 데이터를 데이터그리드에 업데이트
+        /// </summary>
+        [TestMethod]
+        public void TestTreeViewSelect3()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var productNode = viewmodel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
+            var inventoryNode = productNode.Root.Random();
+            viewmodel.TreeViewViewModel.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { productNode, inventoryNode }, null));
+
+            var inventories = InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(productNode.ObservableObjectID);
+            var inventoryIds = inventories.Select(x => x.ID);
+
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Product.ID == productNode.ObservableObjectID));
         }
     }
 }

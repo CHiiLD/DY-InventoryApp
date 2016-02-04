@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.DragNDrop;
 using System.Windows.Input;
+using System;
 
 namespace R54IN0.WPF
 {
@@ -39,16 +40,19 @@ namespace R54IN0.WPF
             NodesSelectedEventCommand = new RelayCommand<SelectionChangedCancelEventArgs>(ExecuteNodesSelectedEventCommand);
             MouseRightButtonDownEventCommand = new RelayCommand<MouseButtonEventArgs>(ExecuteMouseRightButtonDownEventCommand);
             //Context Menu
-            SelectedNodeRenameCommand = new RelayCommand(ExecuteSelectedNodeRenameCommand, HasOneNode);
-            NewFolderNodeAddCommand = new RelayCommand(ExecuteNewFolderNodeAddCommand);
-            NewProductNodeAddCommand = new RelayCommand(ExecuteNewProductNodeAddCommand);
-            SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, HasOneNode);
-            SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, HasOneNode);
+            SelectedNodeRenameCommand = new RelayCommand(ExecuteSelectedNodeRenameCommand, IsOnlyOne);
+            NewFolderNodeAddCommand = new RelayCommand(ExecuteNewFolderNodeAddCommand, CanAddFolderNode);
+            NewProductNodeAddCommand = new RelayCommand(ExecuteNewProductNodeAddCommand, CanAddProductNode);
+            NewInventoryNodeAddCommand = new RelayCommand(ExecuteNewInventoryNodeAddCommand, CanAddInventoryNode);
+            SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, IsOnlyOne);
+            SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, IsOnlyOne);
             IOStockAmenderWindowCallCommand = new RelayCommand(ExecuteIOStockAmenderWindowCallCommand, IsProductNode);
             SelectedNodeDeletionCommand = new RelayCommand(ExecuteSelectedNodeDeletionCommand, CanDeleteNode);
 
             CollectionViewModelObserverSubject.GetInstance().Attach(this);
         }
+
+        
 
         ~MultiSelectTreeViewModelView()
         {
@@ -133,41 +137,6 @@ namespace R54IN0.WPF
 
         public RelayCommand<DragParameters> DragCommand { get; set; }
         public RelayCommand<DropParameters> DropCommand { get; set; }
-
-        /// <summary>
-        /// 드랍 기능을 실행한다.
-        /// </summary>
-        /// <param name="args"></param>
-        private void ExecuteDrop(DropParameters dropParameters)
-        {
-            TreeViewExItem treeviewExItem = dropParameters.DropToItem;
-            IDataObject dataObject = dropParameters.DropData as IDataObject;
-            int index = dropParameters.Index;
-            TreeViewNode des = (treeviewExItem == null) ? null : treeviewExItem.DataContext as TreeViewNode;
-
-            var fmt = dataObject.GetFormats().SingleOrDefault(); //fmt 데이터는 항상 하나가 있기를 기대함
-            if (fmt == null)
-                return;
-            DragContent dragContent = dataObject.GetData(fmt) as DragContent;
-            IEnumerable<TreeViewNode> nodes = dragContent.Items.OfType<TreeViewNode>();
-
-            foreach (TreeViewNode src in nodes.Reverse())
-            {
-                _director.Remove(src);
-                AddNode(des, index, src);
-            }
-        }
-
-        /// <summary>
-        /// 드래그 기능을 실행한다.
-        /// </summary>
-        /// <param name="dragParameters"></param>
-        private void ExecuteDrag(DragParameters dragParameters)
-        {
-            TreeViewExItem treeviewExItem = dragParameters.DragItem;
-            dragParameters.DraggedObject = treeviewExItem.DataContext;
-        }
-
         /// <summary>
         /// 드래그 허용 여부
         /// </summary>
@@ -182,6 +151,15 @@ namespace R54IN0.WPF
             return false;
         }
 
+        /// <summary>
+        /// 드래그 기능을 실행한다.
+        /// </summary>
+        /// <param name="dragParameters"></param>
+        private void ExecuteDrag(DragParameters dragParameters)
+        {
+            TreeViewExItem treeviewExItem = dragParameters.DragItem;
+            dragParameters.DraggedObject = treeviewExItem.DataContext;
+        }
         /// <summary>
         /// 드랍 허용
         /// </summary>
@@ -225,6 +203,30 @@ namespace R54IN0.WPF
                 return destnode.AllowInsert;
         }
 
+        /// <summary>
+        /// 드랍 기능을 실행한다.
+        /// </summary>
+        /// <param name="args"></param>
+        private void ExecuteDrop(DropParameters dropParameters)
+        {
+            TreeViewExItem treeviewExItem = dropParameters.DropToItem;
+            IDataObject dataObject = dropParameters.DropData as IDataObject;
+            int index = dropParameters.Index;
+            TreeViewNode des = (treeviewExItem == null) ? null : treeviewExItem.DataContext as TreeViewNode;
+
+            var fmt = dataObject.GetFormats().SingleOrDefault(); //fmt 데이터는 항상 하나가 있기를 기대함
+            if (fmt == null)
+                return;
+            DragContent dragContent = dataObject.GetData(fmt) as DragContent;
+            IEnumerable<TreeViewNode> nodes = dragContent.Items.OfType<TreeViewNode>();
+
+            foreach (TreeViewNode src in nodes.Reverse())
+            {
+                _director.Remove(src);
+                AddNode(des, index, src);
+            }
+        }
+
         private void AddNode(TreeViewNode node, int index, TreeViewNode newNode)
         {
             ObservableCollection<TreeViewNode> children = (node == null) ? Root : node.Root;
@@ -252,9 +254,9 @@ namespace R54IN0.WPF
             if (item is Observable<Product>)
             {
                 var product = item as Observable<Product>;
-                var result = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ProductID == product.ID));
+                var result = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ObservableObjectID == product.ID));
                 if (result.Count() == 0)
-                    Root.Add(new TreeViewNode(NodeType.PRODUCT, product.ID));
+                    Root.Add(new TreeViewNode(product));
             }
         }
 
@@ -263,7 +265,7 @@ namespace R54IN0.WPF
             if (item is Observable<Product>)
             {
                 var product = item as Observable<Product>;
-                var result = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ProductID == product.ID));
+                var result = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ObservableObjectID == product.ID));
                 if (result.Count() == 1)
                     _director.Remove(result.Single());
             }

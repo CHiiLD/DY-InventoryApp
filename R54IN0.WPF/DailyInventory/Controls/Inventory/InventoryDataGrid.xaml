@@ -60,7 +60,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                
+
                 <!--<DataGridTextColumn Header="단위" Width="Auto" Binding="{Binding Measure.Name}"
                                     IsReadOnly="{Binding DataContext.IsReadOnly, Mode=TwoWay, Source={StaticResource DataContextProxy}}"
                                     Visibility="{Binding DataContext.MeasureColumnVisibility, Mode=TwoWay, Source={StaticResource DataContextProxy}}">
@@ -91,8 +91,6 @@
                         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}" />
                     </DataGridComboBoxColumn.EditingElementStyle>
                 </DataGridComboBoxColumn>
-
-
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

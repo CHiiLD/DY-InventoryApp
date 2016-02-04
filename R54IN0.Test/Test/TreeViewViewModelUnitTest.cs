@@ -51,13 +51,13 @@ namespace R54IN0.Test
             treeview.SelectedNodes.Add(node);
             iovm.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
             iovm.TreeViewViewModel.ExecuteNodesSelectedEventCommand(new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, null));
-            Console.WriteLine("IOStock Status View Model 데이터 그리드 아이템들의 제품 범위식별자 리스트, 삭제할 ID: " + node.ProductID);
+            Console.WriteLine("IOStock Status View Model 데이터 그리드 아이템들의 제품 범위식별자 리스트, 삭제할 ID: " + node.ObservableObjectID);
             iovm.DataGridViewModel.Items.ToList().ForEach(x => Console.WriteLine(x.Inventory.Product.ID));
 
             treeview.SelectedNodeDeletionCommand.Execute(null);
 
-            Assert.IsTrue(ivm.GetDataGridItems().Any(x => x.Product.ID != node.ProductID));
-            Assert.IsTrue(iovm.DataGridViewModel.Items.Count() == 0 || iovm.DataGridViewModel.Items.Any(x => x.Inventory.Product.ID != node.ProductID));
+            Assert.IsTrue(ivm.GetDataGridItems().Any(x => x.Product.ID != node.ObservableObjectID));
+            Assert.IsTrue(iovm.DataGridViewModel.Items.Count() == 0 || iovm.DataGridViewModel.Items.Any(x => x.Inventory.Product.ID != node.ObservableObjectID));
             Console.WriteLine("삭제 후 업데이트 된 데이터 그리드 리스트");
             iovm.DataGridViewModel.Items.ToList().ForEach(x => Console.WriteLine(x.Inventory.Product.ID));
         }
@@ -75,8 +75,8 @@ namespace R54IN0.Test
 
             treeview.SelectedNodeDeletionCommand.Execute(null);
 
-            Assert.IsNull(InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ProductID));
-            Assert.AreEqual(0, InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(node.ProductID).Count());
+            Assert.IsNull(InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ObservableObjectID));
+            Assert.AreEqual(0, InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(node.ObservableObjectID).Count());
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace R54IN0.Test
             var node = GetProductNode(treeview);
             treeview.SelectedNodes.Add(node);
 
-            var product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ProductID);
+            var product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ObservableObjectID);
             if (product != null)
                 CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(product);
             var oid = InventoryDataCommander.GetInstance();
@@ -106,6 +106,16 @@ namespace R54IN0.Test
             var infmts = await DbAdapter.GetInstance().QueryAsync<InventoryFormat>(DbCommand.WHERE, "ProductID", product.ID);
             Assert.AreEqual(0, infmts.Count());
             Assert.IsNull(await DbAdapter.GetInstance().SelectAsync<Product>(product.ID));
+        }
+
+        [TestMethod]
+        public void WhenCreateNewProjectTypeTreeViewNodeThenNameInitializedAsProductName()
+        {
+            new Dummy().Create();
+            var someProduct = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
+            var treeview = new TreeViewNode(someProduct);
+
+            Assert.AreEqual(treeview.Name, someProduct.Name);
         }
     }
 }

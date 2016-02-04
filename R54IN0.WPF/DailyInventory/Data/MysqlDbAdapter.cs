@@ -1,15 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace R54IN0
 {
     public class MysqlDbAdapter : IDbAdapter
     {
-        MySqlConnection _conn;
+        private MySqlConnection _conn;
 
         public async Task<bool> ConnectAsync()
         {

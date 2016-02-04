@@ -2,8 +2,9 @@
 {
     public enum NodeType
     {
-        NONE,
-        FOLDER,
-        PRODUCT,
+        NONE,     //NULL
+        FOLDER,   //폴더 
+        PRODUCT,  //제품
+        INVENTORY //규격
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Media;
 
 namespace R54IN0.WPF
@@ -10,7 +11,7 @@ namespace R54IN0.WPF
         private NodeType _type;
         private string _name;
         private bool _isNameEditable;
-        private string _prodcutID;
+        private string _observableObjectID;
 
         private event PropertyChangedEventHandler _propertyChanged;
 
@@ -32,22 +33,51 @@ namespace R54IN0.WPF
         /// </summary>
         public TreeViewNode()
         {
-            //ID = Guid.NewGuid().ToString();
             Root = new ObservableCollection<TreeViewNode>();
         }
 
         /// <summary>
-        /// 생성자
+        /// 폴더 속성의 트리뷰노드를 생성합니다.
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="str">폴더인 경우 폴더이름을, 아이템인 경우 아이템 ID를 넣는다.</param>
-        public TreeViewNode(NodeType type, string str) : this()
+        /// <param name="folderName"></param>
+        public TreeViewNode(string folderName) : this()
         {
-            Type = type;
-            if (Type == NodeType.FOLDER)
-                Name = str;
-            else if (Type == NodeType.PRODUCT)
-                ProductID = str;
+            Type = NodeType.FOLDER;
+            Name = folderName;
+        }
+
+        /// <summary>
+        /// 제품 속성의 트리뷰노드를 생성합니다.
+        /// </summary>
+        /// <param name="product"></param>
+        public TreeViewNode(Observable<Product> product) : this()
+        {
+            if (product == null && string.IsNullOrEmpty(product.ID))
+                throw new NotSupportedException();
+
+            Type = NodeType.PRODUCT;
+            ObservableObjectID = product.ID;
+
+            var invnetories = InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(ObservableObjectID);
+            foreach (var inventory in invnetories)
+            {
+                if (Root.All(x => x.ObservableObjectID != inventory.ID))
+                    Root.Add(new TreeViewNode(inventory));
+            }
+            Root.OrderBy(x => x.Name);
+        }
+
+        /// <summary>
+        /// 인벤토리 속성의 트리뷰노드를 생성합니다.
+        /// </summary>
+        /// <param name="inventory"></param>
+        public TreeViewNode(ObservableInventory inventory) : this()
+        {
+            if (inventory == null && string.IsNullOrEmpty(inventory.ID))
+                throw new NotSupportedException();
+
+            Type = NodeType.INVENTORY;
+            ObservableObjectID = inventory.ID;
         }
 
         public ObservableCollection<TreeViewNode> Root { get; set; }
@@ -66,20 +96,35 @@ namespace R54IN0.WPF
             }
         }
 
-        public string ProductID
+        public string ObservableObjectID
         {
             get
             {
-                return _prodcutID;
+                return _observableObjectID;
             }
             set
             {
-                _prodcutID = value;
-                Observable<Product> product = GetObservableProduct(value);
-                if (product != null)
+                _observableObjectID = value;
+                switch (Type)
                 {
-                    Name = product.Name; //이름 적용
-                    product.PropertyChanged += OnProductPropertyChanged; //이벤트 적용
+                    case NodeType.PRODUCT:
+                        Observable<Product> product = GetObservableProduct(value);
+                        if (product != null)
+                        {
+                            Name = product.Name; //이름 적용
+                            product.PropertyChanged += OnProductPropertyChanged; //이벤트 적용
+                        }
+                        break;
+                    case NodeType.INVENTORY:
+                        ObservableInventory inventory = GetObservableInventory(value);
+                        if (inventory != null)
+                        {
+                            Name = inventory.Specification; //이름 적용
+                            inventory.PropertyChanged += OnInventoryPropertyChanged; //이벤트 적용
+                        }
+                        break;
+                    default:
+                        throw new NotSupportedException();
                 }
             }
         }
@@ -93,17 +138,30 @@ namespace R54IN0.WPF
             set
             {
                 _name = value;
-                if (Type == NodeType.PRODUCT && IsNameEditable) //사용자가 입력을 끝냈을 때
-                {
-                    Observable<Product> product = GetObservableProduct(ProductID);
-                    if (product != null)
-                    {
-                        product.PropertyChanged -= OnProductPropertyChanged;
-                        product.Name = value;
-                        product.PropertyChanged += OnProductPropertyChanged;
-                    }
-                }
                 NotifyPropertyChanged("Name");
+                if (!IsNameEditable)
+                    return;
+                switch (Type)
+                {
+                    case NodeType.PRODUCT:
+                        Observable<Product> product = GetObservableProduct(ObservableObjectID);
+                        if (product != null)
+                        {
+                            product.PropertyChanged -= OnProductPropertyChanged;
+                            product.Name = value;
+                            product.PropertyChanged += OnProductPropertyChanged;
+                        }
+                        break;
+                    case NodeType.INVENTORY:
+                        ObservableInventory inventory = GetObservableInventory(ObservableObjectID);
+                        if (inventory != null)
+                        {
+                            inventory.PropertyChanged -= OnInventoryPropertyChanged;
+                            inventory.Specification = value;
+                            inventory.PropertyChanged += OnInventoryPropertyChanged;
+                        }
+                        break;
+                }
             }
         }
 
@@ -118,6 +176,9 @@ namespace R54IN0.WPF
 
                     case NodeType.PRODUCT:
                         return true;
+
+                    case NodeType.INVENTORY:
+                        return false;
 
                     default:
                         throw new NotSupportedException();
@@ -135,6 +196,9 @@ namespace R54IN0.WPF
                         return true;
 
                     case NodeType.PRODUCT:
+                        return false;
+
+                    case NodeType.INVENTORY:
                         return false;
 
                     default:
@@ -155,6 +219,9 @@ namespace R54IN0.WPF
                     case NodeType.PRODUCT:
                         return false;
 
+                    case NodeType.INVENTORY:
+                        return false;
+
                     default:
                         throw new NotSupportedException();
                 }
@@ -172,6 +239,9 @@ namespace R54IN0.WPF
 
                     case NodeType.PRODUCT:
                         return Brushes.DeepPink;
+
+                    case NodeType.INVENTORY:
+                        return Brushes.DarkGray;
 
                     default:
                         throw new NotSupportedException();
@@ -195,13 +265,24 @@ namespace R54IN0.WPF
             }
         }
 
-        private Observable<Product> GetObservableProduct(string id)
+        private Observable<Product> GetObservableProduct(string productID)
         {
-            if (!string.IsNullOrEmpty(id) && Type == NodeType.PRODUCT)
+            if (!string.IsNullOrEmpty(productID) && Type == NodeType.PRODUCT)
             {
                 var ofd = InventoryDataCommander.GetInstance();
-                Observable<Product> product = ofd.SearchObservableField<Product>(id);
+                Observable<Product> product = ofd.SearchObservableField<Product>(productID);
                 return product;
+            }
+            return null;
+        }
+
+        private ObservableInventory GetObservableInventory(string inventoryFormatID)
+        {
+            if (!string.IsNullOrEmpty(inventoryFormatID) && Type == NodeType.INVENTORY)
+            {
+                var ofd = InventoryDataCommander.GetInstance();
+                ObservableInventory inventory = ofd.SearchObservableInventory(inventoryFormatID);
+                return inventory;
             }
             return null;
         }
@@ -212,6 +293,15 @@ namespace R54IN0.WPF
             {
                 Observable<Product> project = sender as Observable<Product>;
                 Name = project.Name; //반드시 _name에 대입해야한다. Name에 대입할 경우 무한루프에 빠짐
+            }
+        }
+
+        private void OnInventoryPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Specification" && Type == NodeType.INVENTORY)
+            {
+                ObservableInventory inventory = sender as ObservableInventory;
+                Name = inventory.Specification; //반드시 _name에 대입해야한다. Name에 대입할 경우 무한루프에 빠짐
             }
         }
 

@@ -67,6 +67,7 @@ namespace R54IN0.WPF
         }
 
         #region ViewModel
+
         /// <summary>
         /// 데이터 그리드 뷰모델
         /// </summary>
@@ -91,7 +92,8 @@ namespace R54IN0.WPF
         /// 검색기능 뷰모델
         /// </summary>
         public FilterSearchTextBoxViewModel SearchViewModel { get; set; }
-        #endregion
+
+        #endregion ViewModel
 
         public List<IOStockDataGridItem> DataGridItemSources
         {
@@ -203,6 +205,7 @@ namespace R54IN0.WPF
         }
 
         #region ViewModel Visibility
+
         /// <summary>
         /// 제품 탐색기 가시 여부
         /// </summary>
@@ -250,7 +253,8 @@ namespace R54IN0.WPF
                 NotifyPropertyChanged("ProjectListBoxViewModelVisibility");
             }
         }
-        #endregion
+
+        #endregion ViewModel Visibility
 
         /// <summary>
         /// 새로운 입출고 기록을 추가하는 명령어
@@ -348,8 +352,11 @@ namespace R54IN0.WPF
                 NotifyPropertyChanged("ShowSecondStockTypeColumn");
             }
         }
-        #endregion 
+
+        #endregion Column Visibility
+
         public void NotifyPropertyChanged(string name)
+
         {
             if (_propertyChanged != null)
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
@@ -472,22 +479,21 @@ namespace R54IN0.WPF
             {
                 DataGridViewModel.Items.Clear();
                 var nodes = TreeViewViewModel.SelectedNodes.SelectMany(c => c.Descendants().Where(node => node.Type == NodeType.PRODUCT));
-                var oid = InventoryDataCommander.GetInstance();
-                List<ObservableInventory> obInvenList = new List<ObservableInventory>();
-                List<IOStockFormat> iosFmtList = new List<IOStockFormat>();
-                foreach (var node in nodes)
+
+                var inode = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.INVENTORY));
+                var pnode = TreeViewViewModel.SelectedNodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT));
+                pnode = pnode.SelectMany(x => x.Root.Select(y => y));
+                var unionnode = inode.Union(pnode);
+
+                List<IOStockFormat> iostocks = new List<IOStockFormat>();
+                var inventories = unionnode.Select(x => InventoryDataCommander.GetInstance().SearchObservableInventory(x.ObservableObjectID));
+                foreach(var inventory in inventories)
                 {
-                    var searchResult = oid.SearchObservableInventoryAsProductID(node.ProductID);
-                    if (searchResult != null)
-                        obInvenList.AddRange(searchResult);
-                }
-                foreach (var inven in obInvenList)
-                {
-                    IEnumerable<IOStockFormat> formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.WHERE, "InventoryID", inven.ID);
+                    IEnumerable<IOStockFormat> formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.WHERE, "InventoryID", inventory.ID);
                     if (formats != null)
-                        iosFmtList.AddRange(formats);
+                        iostocks.AddRange(formats);
                 }
-                DataGridItemSources = iosFmtList.Select(x => new IOStockDataGridItem(x)).ToList();
+                DataGridItemSources = iostocks.Select(x => new IOStockDataGridItem(x)).ToList();
                 UpdateDataGridItems();
             }
         }
@@ -596,7 +602,7 @@ namespace R54IN0.WPF
 
                     case GROUPITEM_PRODUCT:
                         var nodes = TreeViewViewModel.SelectedNodes.SelectMany(c => c.Descendants().Where(node => node.Type == NodeType.PRODUCT));
-                        if (nodes.Any(node => node.ProductID == obIOStock.Inventory.Product.ID))
+                        if (nodes.Any(node => node.ObservableObjectID == obIOStock.Inventory.Product.ID))
                             can = true;
                         break;
                 }

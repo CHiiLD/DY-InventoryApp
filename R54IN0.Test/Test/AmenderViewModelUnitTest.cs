@@ -104,7 +104,7 @@ namespace R54IN0.Test
             var amender = RecordNewIOStock(status);
             var node = status.TreeViewViewModel.SelectedNodes.Single();
             amender.StockType = IOStockType.OUTGOING;
-            amender.Product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ProductID);
+            amender.Product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ObservableObjectID);
             amender.Inventory = amender.InventoryList.Random();
             var record = await amender.RecordAsync();
             var item = status.DataGridViewModel.Items.Where(x => x.ID == record.ID).Single();
@@ -128,7 +128,7 @@ namespace R54IN0.Test
             var amender = RecordNewIOStock(status);
             var node = status.TreeViewViewModel.SelectedNodes.Single();
             amender.StockType = IOStockType.INCOMING;
-            amender.Product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ProductID);
+            amender.Product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ObservableObjectID);
             amender.Inventory = amender.InventoryList.Random();
             var record = await amender.RecordAsync();
             var item = status.DataGridViewModel.Items.Where(x => x.ID == record.ID).Single();
