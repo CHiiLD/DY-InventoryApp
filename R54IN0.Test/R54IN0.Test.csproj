@@ -59,6 +59,7 @@
     <Compile Include="Test\AmenderViewModelUnitTest.cs" />
     <Compile Include="Test\MysqlDbAdapterUnitTest.cs" />
     <Compile Include="Test\TreeViewViewModelUnitTest.cs" />
+    <Compile Include="Test\NewInventoryAddDialogViewModelUnitTest.cs" />
     <Compile Include="Tool\IIDExtension.cs" />
     <Compile Include="Test\LexDbAdapterUnitTest.cs" />
     <Compile Include="Test\IOStockDataAmenderViewModelUnitTest.cs" />

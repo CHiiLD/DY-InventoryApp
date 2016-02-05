@@ -44,15 +44,13 @@ namespace R54IN0.WPF
             NewFolderNodeAddCommand = new RelayCommand(ExecuteNewFolderNodeAddCommand, CanAddFolderNode);
             NewProductNodeAddCommand = new RelayCommand(ExecuteNewProductNodeAddCommand, CanAddProductNode);
             NewInventoryNodeAddCommand = new RelayCommand(ExecuteNewInventoryNodeAddCommand, CanAddInventoryNode);
-            SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, IsOnlyOne);
-            SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, IsOnlyOne);
-            IOStockAmenderWindowCallCommand = new RelayCommand(ExecuteIOStockAmenderWindowCallCommand, IsProductNode);
+            SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, CanExecuteSearchAsIOStockRecordCommand);
+            SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, CanExecuteSearchAsInventoryRecordCommand);
+            IOStockAmenderWindowCallCommand = new RelayCommand(ExecuteIOStockAmenderWindowCallCommand, CanCallIOStockAmenderWindow);
             SelectedNodeDeletionCommand = new RelayCommand(ExecuteSelectedNodeDeletionCommand, CanDeleteNode);
 
             CollectionViewModelObserverSubject.GetInstance().Attach(this);
         }
-
-        
 
         ~MultiSelectTreeViewModelView()
         {
@@ -137,6 +135,7 @@ namespace R54IN0.WPF
 
         public RelayCommand<DragParameters> DragCommand { get; set; }
         public RelayCommand<DropParameters> DropCommand { get; set; }
+
         /// <summary>
         /// 드래그 허용 여부
         /// </summary>
@@ -160,6 +159,7 @@ namespace R54IN0.WPF
             TreeViewExItem treeviewExItem = dragParameters.DragItem;
             dragParameters.DraggedObject = treeviewExItem.DataContext;
         }
+
         /// <summary>
         /// 드랍 허용
         /// </summary>
@@ -188,8 +188,8 @@ namespace R54IN0.WPF
                 if (destnode == selectedNode)
                     return false;
                 //자신의 부모에 이미 자식으로 있음에도 다시 그 부모에 자기 자신을 추가하는 경우를 차단
-                if (destnode.Root.Any(x => x == selectedNode))
-                    return false;
+                //if (destnode.Root.Any(x => x == selectedNode))
+                //    return false;
                 //부모의 하위 자식에게 부모를 추가하는 경우를 차단
                 if (selectedNode.Descendants().Any(x => x == destnode))
                     return false;
@@ -258,6 +258,13 @@ namespace R54IN0.WPF
                 if (result.Count() == 0)
                     Root.Add(new TreeViewNode(product));
             }
+            else if (item is ObservableInventory)
+            {
+                var inventory = item as ObservableInventory;
+                var parentNode = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ObservableObjectID == inventory.Product.ID)).Single();
+                if (parentNode.Root.All(x => x.ObservableObjectID != inventory.ID))
+                    parentNode.Root.Add(new TreeViewNode(inventory));
+            }
         }
 
         public void UpdateDelItem(object item)
@@ -266,6 +273,13 @@ namespace R54IN0.WPF
             {
                 var product = item as Observable<Product>;
                 var result = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ObservableObjectID == product.ID));
+                if (result.Count() == 1)
+                    _director.Remove(result.Single());
+            }
+            else if (item is ObservableInventory)
+            {
+                var inventory = item as ObservableInventory;
+                var result = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.INVENTORY && y.ObservableObjectID == inventory.ID));
                 if (result.Count() == 1)
                     _director.Remove(result.Single());
             }

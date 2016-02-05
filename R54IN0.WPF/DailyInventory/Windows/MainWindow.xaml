@@ -38,7 +38,8 @@
         <KeyBinding Key="F2" Command="{Binding ChangeIOStockViewByProductCommand}" />
         <KeyBinding Key="F3" Command="{Binding ChangeIOStockByDateCommand}" />
         <KeyBinding Key="F4" Command="{Binding ChangeIOStockByProjectCommand}" />-->
-        <KeyBinding Key="S" Modifiers="Shift+Ctrl" Command="{Binding AddNewIOStockCommand}" />
+        
+        <!--<KeyBinding Key="S" Modifiers="Shift+Ctrl" Command="{Binding AddNewIOStockCommand}" />-->
     </Window.InputBindings>
 
     <Grid>
@@ -62,7 +63,7 @@
                 <MenuItem Header="제품별로 보기" Command="{Binding ChangeIOStockViewByProductCommand}" />
                 <MenuItem Header="날짜별로 보기" Command="{Binding ChangeIOStockByDateCommand}" />
                 <MenuItem Header="프로젝트별로 보기" Command="{Binding ChangeIOStockByProjectCommand}" />
-                <MenuItem Header="새로운 입출고 기록 추가하기" Command="{Binding AddNewIOStockCommand}" InputGestureText="Ctrl+Shift+S" />
+                <!--<MenuItem Header="새로운 입출고 기록 추가하기" Command="{Binding AddNewIOStockCommand}" InputGestureText="Ctrl+Shift+S" />-->
             </MenuItem>
 
             <MenuItem Header="인터페이스">

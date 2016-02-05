@@ -91,8 +91,7 @@ namespace R54IN0.WPF
             if (!Contains(node))
                 return false;
 
-            ObservableCollection<TreeViewNode> copy = new ObservableCollection<TreeViewNode>(_nodes);
-            TreeViewNode parent = copy.SelectMany(x => x.Descendants()).Where(x => x.Root.Contains(node)).SingleOrDefault();
+            TreeViewNode parent = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Root.Contains(node)).SingleOrDefault();
             if (parent != null)
                 return parent.Root.Remove(node);
             else
@@ -119,7 +118,7 @@ namespace R54IN0.WPF
             InventoryDataCommander idc = InventoryDataCommander.GetInstance();
 
             IEnumerable<TreeViewNode> productNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT);
-            foreach (TreeViewNode node in new List<TreeViewNode>(productNodes)) //없는 Item은 삭제
+            foreach (TreeViewNode node in productNodes.ToList()) //없는 Item은 삭제
             {
                 if (idc.SearchObservableField<Product>(node.ObservableObjectID) == null)
                     Remove(node);

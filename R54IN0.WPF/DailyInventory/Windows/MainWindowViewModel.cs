@@ -139,9 +139,22 @@ namespace R54IN0.WPF
             }
         }
 
+        #region ViewModel
+
         public InventoryStatusViewModel InventoryViewModel { get; set; }
 
         public IOStockStatusViewModel IOStockViewModel { get; set; }
+
+        #endregion
+
+        public object CurrentViewModel
+        {
+            get
+            {
+                var viewmodel = SelectedItem.Content as UserControl;
+                return viewmodel.DataContext;
+            }
+        }
 
         public static MainWindowViewModel GetInstance()
         {
@@ -159,12 +172,24 @@ namespace R54IN0.WPF
         /// 입출고 데이터 등록창을 띄운다.
         /// </summary>
         /// <param name="productID"></param>
-        public void ShowIOStockDataAmenderWindow(string productID)
+        public void ShowAmenderWindowAsProductID(string productID)
         {
             var ofd = InventoryDataCommander.GetInstance();
             var product = ofd.SearchObservableField<Product>(productID);
             if (product != null)
                 IOStockViewModel.OpenIOStockDataAmenderWindow(product);
+        }
+        
+        /// <summary>
+        /// 입출고 데이터 등록창을 띄운다.
+        /// </summary>
+        /// <param name="inventoryID"></param>
+        public void ShowAmenderWindowAsInventoryID(string inventoryID)
+        {
+            var ofd = InventoryDataCommander.GetInstance();
+            var inventory = ofd.SearchObservableInventory(inventoryID);
+            if (inventory != null)
+                IOStockViewModel.OpenIOStockDataAmenderWindow(inventory);
         }
 
         /// <summary>
@@ -173,8 +198,7 @@ namespace R54IN0.WPF
         /// <param name="node"></param>
         public void ShowInventoryStatus(string productID)
         {
-            var viewmodel = SelectedItem.Content as UserControl;
-            if (viewmodel.DataContext != InventoryViewModel)
+            if (CurrentViewModel != InventoryViewModel)
                 ExecuteSelectInventoryStatusViewCommand();
 
             TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchProductNode(productID);
@@ -192,8 +216,7 @@ namespace R54IN0.WPF
         /// <param name="node"></param>
         public void ShowIOStockStatusByProduct(string productID)
         {
-            var viewmodel = SelectedItem.Content as UserControl;
-            if (viewmodel.DataContext != IOStockViewModel)
+            if (CurrentViewModel != IOStockViewModel)
                 ExecuteChangeIOStockViewByProductCommand();
 
             TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchProductNode(productID);

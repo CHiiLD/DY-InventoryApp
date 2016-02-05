@@ -643,5 +643,28 @@ namespace R54IN0.Test
 
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Product.ID == productNode.ObservableObjectID));
         }
+
+        [TestMethod]
+        public void DeleteInventoryNodeThenSyncTreeView()
+        {
+            new Dummy().Create();
+            var viewmodel = new IOStockStatusViewModel();
+            var productNode = viewmodel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
+            var inventoryNode = productNode.Root.Random();
+            var treeview = viewmodel.TreeViewViewModel;
+            treeview.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { inventoryNode }, null));
+            Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.ID == inventoryNode.ObservableObjectID));
+            //삭제가 가능함
+            Assert.IsTrue(treeview.CanDeleteNode());
+            //삭제 명령
+            treeview.SelectedNodeDeletionCommand.Execute(null);
+            //inventory 리스트에서도 삭제 확인
+            var inven = InventoryDataCommander.GetInstance().SearchObservableInventory(inventoryNode.ObservableObjectID);
+            Assert.IsNull(inven);
+            //treeview에서도 삭제 확인
+            Assert.IsFalse(TreeViewNodeDirector.GetInstance().Contains(inventoryNode));
+            //datagrid에서 삭제 확인
+            Assert.IsFalse(viewmodel.DataGridViewModel.Items.Any(x => x.Inventory.ID == inventoryNode.ObservableObjectID));
+        }
     }
 }

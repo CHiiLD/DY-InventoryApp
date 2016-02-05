@@ -123,6 +123,8 @@ namespace R54IN0.WPF
                             inventory.PropertyChanged += OnInventoryPropertyChanged; //이벤트 적용
                         }
                         break;
+                    case NodeType.FOLDER:
+                        break;
                     default:
                         throw new NotSupportedException();
                 }

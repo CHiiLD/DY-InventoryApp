@@ -68,8 +68,6 @@ namespace R54IN0.WPF
         /// </summary>
         public RelayCommand SelectedNodeDeletionCommand { get; private set; }
 
-        
-
         /// <summary>
         /// 선택된 노드의 이름을 변경한다.
         /// </summary>
@@ -80,6 +78,20 @@ namespace R54IN0.WPF
         }
 
         /// <summary>
+        /// 새로운 폴더 노드를 추가한다.
+        /// </summary>
+        private void ExecuteNewFolderNodeAddCommand()
+        {
+            var node = SelectedNodes.SingleOrDefault();
+            Debug.Assert(node == null || node.Type == NodeType.FOLDER, "폴더 추가시 선택된 노드는 null이거나 folder타입이어야 함");
+            TreeViewNode newTreeViewNode = new TreeViewNode("새로운 폴더");
+            if (node != null)
+                _director.AddToParent(node, newTreeViewNode);
+            else
+                _director.AddToRoot(newTreeViewNode);
+        }
+
+        /// <summary>
         /// 새로운 제품 노드를 추가한다.
         /// </summary>
         private async void ExecuteNewProductNodeAddCommand()
@@ -87,25 +99,31 @@ namespace R54IN0.WPF
             Observable<Product> newProduct = new Observable<Product>("새로운 제품");
             await InventoryDataCommander.GetInstance().AddObservableField(newProduct);
 
-            IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FOLDER);
+            var node = SelectedNodes.SingleOrDefault();
+            Debug.Assert(node == null || node.Type == NodeType.FOLDER, "제품 추가시 선택된 노드는 null이거나 folder타입이어야 함");
             TreeViewNode newTreeViewNode = new TreeViewNode(newProduct);
-            if (folderNodes.Count() != 0)
-                _director.AddToParent(folderNodes.First(), newTreeViewNode);
-            else
-                _director.AddToRoot(newTreeViewNode);
+            if (node != null)
+            {
+                var remove = Root.SelectMany(x => x.Descendants().Where(y => y.ObservableObjectID == newTreeViewNode.ObservableObjectID)).Single();
+                _director.Remove(remove);
+                _director.AddToParent(node, newTreeViewNode);
+            }
+            //else //어차피 자동으로 들어감 Subject
+            //{
+            //    _director.AddToRoot(newTreeViewNode);
+            //}
         }
-
-        /// <summary>
-        /// 새로운 폴더 노드를 추가한다.
-        /// </summary>
-        private void ExecuteNewFolderNodeAddCommand()
+        private async void ExecuteNewInventoryNodeAddCommand()
         {
-            IEnumerable<TreeViewNode> folderNodes = SelectedNodes.Where(x => x.Type == NodeType.FOLDER);
-            TreeViewNode newTreeViewNode = new TreeViewNode("새로운 폴더");
-            if (folderNodes.Count() != 0)
-                _director.AddToParent(folderNodes.First(), newTreeViewNode);
-            else
-                _director.AddToRoot(newTreeViewNode);
+            if(Application.Current != null)
+            {
+                TreeViewNode node = SelectedNodes.Single();
+                Observable<Product> product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ObservableObjectID);
+                MetroWindow metro = Application.Current.MainWindow as MetroWindow;
+                NewInventoryAddDialog dialog = new NewInventoryAddDialog(metro);
+                dialog.DataContext = new NewInventoryAddDialogViewModel(dialog, product);
+                await metro.ShowMetroDialogAsync(dialog, null);
+            }
         }
 
         /// <summary>
@@ -113,8 +131,21 @@ namespace R54IN0.WPF
         /// </summary>
         private void ExecuteIOStockAmenderWindowCallCommand()
         {
-            if (SelectedNodes.Count() == 1 && SelectedNodes.Single().Type == NodeType.PRODUCT)
-                MainWindowViewModel.GetInstance().ShowIOStockDataAmenderWindow(SelectedNodes.Single().ObservableObjectID);
+            if (IsOnlyOne())
+            {
+                var node = SelectedNodes.Single();
+                var type = node.Type;
+                var mvm = MainWindowViewModel.GetInstance();
+                switch (type)
+                {
+                    case NodeType.PRODUCT:
+                        mvm.ShowAmenderWindowAsProductID(node.ObservableObjectID);
+                        break;
+                    case NodeType.INVENTORY:
+                        mvm.ShowAmenderWindowAsInventoryID(node.ObservableObjectID);
+                        break;
+                }
+            }
         }
 
         /// <summary>
@@ -122,7 +153,7 @@ namespace R54IN0.WPF
         /// </summary>
         private void ExecuteSearchAsIOStockRecordCommand()
         {
-            if (SelectedNodes.Count() == 1)
+            if (IsOnlyOne())
                 MainWindowViewModel.GetInstance().ShowIOStockStatusByProduct(SelectedNodes.Single().ObservableObjectID);
         }
 
@@ -131,7 +162,7 @@ namespace R54IN0.WPF
         /// </summary>
         private void ExecuteSearchAsInventoryRecordCommand()
         {
-            if (SelectedNodes.Count() == 1)
+            if (IsOnlyOne())
                 MainWindowViewModel.GetInstance().ShowInventoryStatus(SelectedNodes.Single().ObservableObjectID);
         }
 
@@ -141,7 +172,6 @@ namespace R54IN0.WPF
         /// <param name="e"></param>
         private void ExecuteMouseRightButtonDownEventCommand(MouseButtonEventArgs e)
         {
-            Debug.WriteLine("ExecuteMouseRightButtonDownEventCommand");
             Point pt = e.GetPosition((UIElement)e.Source);
             TreeViewEx treeViewEx = e.Source as TreeViewEx;
             HitTestResult hitTestResult = VisualTreeHelper.HitTest(treeViewEx, pt);
@@ -183,7 +213,6 @@ namespace R54IN0.WPF
         /// <param name="e"></param>
         public void ExecuteNodesSelectedEventCommand(SelectionChangedCancelEventArgs e)
         {
-            Debug.WriteLine("ExecuteNodesSelectedEventCommand");
             e.Cancel = true;
             if (e.ItemsToUnSelect != null)
             {
@@ -231,15 +260,19 @@ namespace R54IN0.WPF
             switch (selectedNode.Type)
             {
                 case NodeType.FOLDER:
-                    result = await ShowAttentionMessage(string.Format("{0} 폴더를 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name));
+                    result = await ShowAttentionMessage(string.Format("\"{0}\" 폴더를 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name));
                     break;
                 case NodeType.PRODUCT:
-                    result = await ShowAttentionMessage(string.Format("{0} 제품과 관련된 모든 재고기록과 입출고기록을 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name));
+                    result = await ShowAttentionMessage(string.Format("\"{0}\" 제품과 관련된 모든 재고기록과 입출고기록을 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name));
+                    break;
+                case NodeType.INVENTORY:
+                    result = await ShowAttentionMessage(string.Format("\"{0}\" 규격과 관련된 모든 재고기록과 입출고기록을 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name));
                     break;
             }
             if (result != MessageDialogResult.Affirmative)
                 return;
 
+            var idc = InventoryDataCommander.GetInstance();
             switch (selectedNode.Type)
             {
                 case NodeType.FOLDER:
@@ -249,21 +282,22 @@ namespace R54IN0.WPF
                     break;
                 case NodeType.PRODUCT:
                     _director.Remove(selectedNode);
-                    var product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(selectedNode.ObservableObjectID);
-                    await InventoryDataCommander.GetInstance().RemoveObservableField(product);
+                    var product = idc.SearchObservableField<Product>(selectedNode.ObservableObjectID);
+                    await idc.RemoveObservableField(product);
+                    break;
+                case NodeType.INVENTORY:
+                    _director.Remove(selectedNode);
+                    var inventory = idc.SearchObservableInventory(selectedNode.ObservableObjectID);
+                    await idc.RemoveObservableInventory(inventory);
                     break;
             }
             SelectedNodes.Clear();
         }
-
-        private void ExecuteNewInventoryNodeAddCommand()
-        {
-        }
-
         private bool CanAddFolderNode()
         {
-            if (!IsOnlyOne())
+            if (SelectedNodes.Count() == 0)
                 return true;
+
             var node = SelectedNodes.Single();
             switch (node.Type)
             {
@@ -279,7 +313,7 @@ namespace R54IN0.WPF
 
         private bool CanAddProductNode()
         {
-            if (!IsOnlyOne())
+            if (SelectedNodes.Count() == 0)
                 return true;
             var node = SelectedNodes.Single();
             switch (node.Type)
@@ -296,8 +330,9 @@ namespace R54IN0.WPF
 
         private bool CanAddInventoryNode()
         {
-            if (!IsOnlyOne())
+            if (SelectedNodes.Count() == 0)
                 return false;
+
             var node = SelectedNodes.Single();
             switch (node.Type)
             {
@@ -316,14 +351,13 @@ namespace R54IN0.WPF
         /// 선택된 노드가 제품 노드인지 파악
         /// </summary>
         /// <returns></returns>
-        private bool IsProductNode()
+        private bool CanCallIOStockAmenderWindow()
         {
-            if (IsOnlyOne())
-            {
-                var node = SelectedNodes.Single();
-                return node.Type == NodeType.PRODUCT;
-            }
-            return false;
+            var node = SelectedNodes.SingleOrDefault();
+            if (node == null)
+                return false;
+
+            return node.Type == NodeType.PRODUCT || node.Type == NodeType.INVENTORY;
         }
 
         /// <summary>
@@ -332,13 +366,32 @@ namespace R54IN0.WPF
         /// <returns></returns>
         private bool IsOnlyOne()
         {
-            Debug.WriteLine("IsOnlyOne cnt: " + SelectedNodes.Count());
             return SelectedNodes.Count() == 1;
         }
 
         public bool CanDeleteNode()
         {
-            return SelectedNodes.Count() == 1;
+            return IsOnlyOne();
+        }
+
+        /// <summary>
+        /// 재고현황으로 보기 질의
+        /// </summary>
+        /// <returns></returns>
+        private bool CanExecuteSearchAsInventoryRecordCommand()
+        {
+            var viewmodel = MainWindowViewModel.GetInstance();
+            return viewmodel.CurrentViewModel == viewmodel.IOStockViewModel && IsOnlyOne();
+        }
+
+        /// <summary>
+        /// 제품별 입출고 현황으로 보기 질의
+        /// </summary>
+        /// <returns></returns>
+        private bool CanExecuteSearchAsIOStockRecordCommand()
+        {
+            var viewmodel = MainWindowViewModel.GetInstance();
+            return viewmodel.CurrentViewModel == viewmodel.InventoryViewModel && IsOnlyOne();
         }
     }
 }
