@@ -302,7 +302,7 @@ namespace R54IN0.Test.New
             ObservableIOStock ios = new ObservableIOStock(fmt);
             //DataGrid 업데이트
             IOStockStatusViewModel iosViewModel = new IOStockStatusViewModel();
-            TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchProductNode(ios.Inventory.Product.ID);
+            TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchObservableObjectNode(ios.Inventory.Product.ID);
             if (node != null)
             {
                 MultiSelectTreeViewModelView treeView = iosViewModel.TreeViewViewModel;
@@ -351,7 +351,7 @@ namespace R54IN0.Test.New
             ObservableIOStock ios = new ObservableIOStock(fmt);
             //DataGrid 업데이트
             IOStockStatusViewModel iosViewModel = new IOStockStatusViewModel();
-            TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchProductNode(ios.Inventory.Product.ID);
+            TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchObservableObjectNode(ios.Inventory.Product.ID);
             if (node != null)
             {
                 MultiSelectTreeViewModelView treeView = iosViewModel.TreeViewViewModel;

@@ -25,8 +25,8 @@ namespace R54IN0.WPF
 
         public MainWindowViewModel()
         {
-            InventoryStatus inventoryStatus = new InventoryStatus();
-            IOStockStatus ioStockStatus = new IOStockStatus();
+            InventoryStatusControl inventoryStatus = new InventoryStatusControl();
+            IOStockStatusControl ioStockStatus = new IOStockStatusControl();
 
             _items = new ObservableCollection<TabItem>();
             _items.Add(new TabItem() { Content = inventoryStatus, Header = "재고 현황" });
@@ -196,12 +196,12 @@ namespace R54IN0.WPF
         /// 재고현황 탭아이템으로 이동한 후 제품 데이터를 데이터그리드에 출력한다.
         /// </summary>
         /// <param name="node"></param>
-        public void ShowInventoryStatus(string productID)
+        public void ShowInventoryStatus(string observableObjectID)
         {
             if (CurrentViewModel != InventoryViewModel)
                 ExecuteSelectInventoryStatusViewCommand();
 
-            TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchProductNode(productID);
+            TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchObservableObjectNode(observableObjectID);
             if (node != null)
             {
                 MultiSelectTreeViewModelView treeView = InventoryViewModel.TreeViewViewModel;
@@ -214,12 +214,12 @@ namespace R54IN0.WPF
         /// 제품별 입출고 현황 탭아이템으로 이동 후 제품의 입출고 데이터를 데이터그리드에 출력한다.
         /// </summary>
         /// <param name="node"></param>
-        public void ShowIOStockStatusByProduct(string productID)
+        public void ShowIOStockStatus(string observableObjectID)
         {
             if (CurrentViewModel != IOStockViewModel)
                 ExecuteChangeIOStockViewByProductCommand();
 
-            TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchProductNode(productID);
+            TreeViewNode node = TreeViewNodeDirector.GetInstance().SearchObservableObjectNode(observableObjectID);
             if (node != null)
             {
                 MultiSelectTreeViewModelView treeView = IOStockViewModel.TreeViewViewModel;

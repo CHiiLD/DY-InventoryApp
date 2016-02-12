@@ -73,7 +73,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <local:MultiSelectTreeView DataContext="{Binding TreeViewViewModel}" x:Name="MultiSelectTreeView" Height="300" />
+                    <local:MultiSelectTreeViewControl DataContext="{Binding TreeViewViewModel}" x:Name="MultiSelectTreeView" Height="300" />
                     <Grid Grid.Row="1" Margin="0,5,0,5">
                         <Button Command="{Binding ProductSelectCommand}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource AccentedSquareButtonStyle}" Width="60">선택</Button>
                     </Grid>

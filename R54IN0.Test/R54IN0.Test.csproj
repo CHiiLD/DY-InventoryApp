@@ -88,10 +88,6 @@
       <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
       <Name>Newtonsoft.Json.Net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\overlap\overlap.csproj">
-      <Project>{a72b2f7c-9b42-4f9b-bb4b-a1b9fa00dd23}</Project>
-      <Name>overlap</Name>
-    </ProjectReference>
     <ProjectReference Include="..\R54IN0.Format\R54IN0.Format.csproj">
       <Project>{54185bea-d735-4a8e-808c-807f8b626463}</Project>
       <Name>R54IN0.Format</Name>

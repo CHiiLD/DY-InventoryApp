@@ -73,14 +73,14 @@ namespace R54IN0.WPF
                 _nodes.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT || y.Type == NodeType.INVENTORY)).Any(x => x.ObservableObjectID == node.ObservableObjectID); //동일한 유니크키를 가지고 있는 경우
         }
 
-        public TreeViewNode SearchProductNode(string id)
+        public TreeViewNode SearchObservableObjectNode(string observableObjectID)
         {
-            var nodes = Collection.SelectMany(x => x.Descendants().Where(y => y.ObservableObjectID == id));
+            var nodes = Collection.SelectMany(x => x.Descendants().Where(y => y.ObservableObjectID == observableObjectID));
             if (nodes.Count() == 1)
                 return nodes.Single();
             return null;
         }
-
+        
         /// <summary>
         /// Node삭제
         /// </summary>

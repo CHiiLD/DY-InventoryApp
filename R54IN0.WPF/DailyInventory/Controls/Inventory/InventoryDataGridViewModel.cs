@@ -231,7 +231,7 @@ namespace R54IN0.WPF
         private void ExecuteSearchAsIOStockRecordCommand()
         {
             if (SelectedItem != null)
-                MainWindowViewModel.GetInstance().ShowIOStockStatusByProduct(SelectedItem.Product.ID);
+                MainWindowViewModel.GetInstance().ShowIOStockStatus(SelectedItem.ID);
         }
 
         public void NotifyPropertyChanged(string name)

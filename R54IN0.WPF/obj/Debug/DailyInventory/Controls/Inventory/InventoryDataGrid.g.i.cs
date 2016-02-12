@@ -10,7 +10,6 @@
 //------------------------------------------------------------------------------
 
 using GalaSoft.MvvmLight.Command;
-using MahApps.Metro.Controls;
 using R54IN0.WPF;
 using System;
 using System.Diagnostics;
@@ -41,12 +40,12 @@ namespace R54IN0.WPF {
     /// <summary>
     /// InventoryDataGrid
     /// </summary>
-    public partial class InventoryDataGrid : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
+    public partial class InventoryDataGridControl : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
         #line 10 "..\..\..\..\..\DailyInventory\Controls\Inventory\InventoryDataGrid.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal R54IN0.WPF.InventoryDataGrid @this;
+        internal R54IN0.WPF.InventoryDataGridControl @this;
         
         #line default
         #line hidden
@@ -114,7 +113,7 @@ namespace R54IN0.WPF {
             switch (connectionId)
             {
             case 1:
-            this.@this = ((R54IN0.WPF.InventoryDataGrid)(target));
+            this.@this = ((R54IN0.WPF.InventoryDataGridControl)(target));
             return;
             case 2:
             this.DataGridControl = ((System.Windows.Controls.DataGrid)(target));

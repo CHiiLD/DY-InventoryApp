@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
-    public class NewInventoryAddDialogViewModel : INotifyPropertyChanged
+    public class InventoryManagerViewModel : INotifyPropertyChanged
     {
         Observable<Product> _product;
         private string _specification;
@@ -20,7 +20,7 @@ namespace R54IN0.WPF
         private string _measureText;
         private Observable<Maker> _maker;
         private Observable<Measure> _measure;
-        NewInventoryAddDialog _control;
+        InventoryManagerDialog _control;
 
         private event PropertyChangedEventHandler _propertyChanged;
 
@@ -37,7 +37,7 @@ namespace R54IN0.WPF
             }
         }
 
-        public NewInventoryAddDialogViewModel(Observable<Product> product)
+        public InventoryManagerViewModel(Observable<Product> product)
         {
             if (product == null)
                 throw new NotSupportedException();
@@ -52,7 +52,7 @@ namespace R54IN0.WPF
             _measureList = new ObservableCollection<Observable<Measure>>(idc.CopyObservableFields<Measure>());
         }
 
-        public NewInventoryAddDialogViewModel(NewInventoryAddDialog dialog, Observable<Product> product) : this(product)
+        public InventoryManagerViewModel(InventoryManagerDialog dialog, Observable<Product> product) : this(product)
         {
             _control = dialog;
         }

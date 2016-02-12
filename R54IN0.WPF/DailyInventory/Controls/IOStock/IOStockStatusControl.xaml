@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="R54IN0.WPF.IOStockStatus"
+﻿<UserControl x:Class="R54IN0.WPF.IOStockStatusControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -38,13 +38,13 @@
             <GroupBox Header="{Binding DataGridHelperHeader}" Grid.Row="2">
                 <Grid x:Name="DataGridHelperGrid">
                     <Grid Visibility="{Binding DatePickerViewModelVisibility}">
-                        <local:IOStockDatePicker DataContext="{Binding DatePickerViewModel}" x:Name="DatePicker" />
+                        <local:IOStockDatePickerControl DataContext="{Binding DatePickerViewModel}" x:Name="DatePicker" />
                     </Grid>
                     <Grid Visibility="{Binding ProjectListBoxViewModelVisibility}">
-                        <local:IOStockProjectListBox DataContext="{Binding ProjectListBoxViewModel}" x:Name="ProjectListBox" />
+                        <local:IOStockProjectListBoxControl DataContext="{Binding ProjectListBoxViewModel}" x:Name="ProjectListBox" />
                     </Grid>
                     <Grid Visibility="{Binding TreeViewViewModelVisibility}">
-                        <local:MultiSelectTreeView DataContext="{Binding TreeViewViewModel}" x:Name="MSTreeView" />
+                        <local:MultiSelectTreeViewControl DataContext="{Binding TreeViewViewModel}" x:Name="MSTreeView" />
                     </Grid>
                 </Grid>
             </GroupBox>
@@ -117,7 +117,7 @@
                     <!--
                     </StackPanel>-->
                 </Grid>
-                <local:IOStockDataGrid DataContext="{Binding DataGridViewModel}" x:Name="DataGrid" Grid.Row="1" />
+                <local:IOStockDataGridControl DataContext="{Binding DataGridViewModel}" x:Name="DataGrid" Grid.Row="1" />
             </Grid>
         </GroupBox>
     </Grid>

@@ -52,7 +52,7 @@ namespace R54IN0.WPF
         private void ExecuteSearchAsInventoryRecordCommand()
         {
             if (SelectedItem != null)
-                MainWindowViewModel.GetInstance().ShowInventoryStatus(SelectedItem.Inventory.Product.ID);
+                MainWindowViewModel.GetInstance().ShowInventoryStatus(SelectedItem.Inventory.ID);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace R54IN0.WPF
         private void ExecuteSearchAsIOStockRecordCommand()
         {
             if (SelectedItem != null)
-                MainWindowViewModel.GetInstance().ShowIOStockStatusByProduct(SelectedItem.Inventory.Product.ID);
+                MainWindowViewModel.GetInstance().ShowIOStockStatus(SelectedItem.Inventory.ID);
         }
 
         /// <summary>

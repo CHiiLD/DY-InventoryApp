@@ -120,8 +120,8 @@ namespace R54IN0.WPF
                 TreeViewNode node = SelectedNodes.Single();
                 Observable<Product> product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ObservableObjectID);
                 MetroWindow metro = Application.Current.MainWindow as MetroWindow;
-                NewInventoryAddDialog dialog = new NewInventoryAddDialog(metro);
-                dialog.DataContext = new NewInventoryAddDialogViewModel(dialog, product);
+                InventoryManagerDialog dialog = new InventoryManagerDialog(metro);
+                dialog.DataContext = new InventoryManagerViewModel(dialog, product);
                 await metro.ShowMetroDialogAsync(dialog, null);
             }
         }
@@ -154,7 +154,7 @@ namespace R54IN0.WPF
         private void ExecuteSearchAsIOStockRecordCommand()
         {
             if (IsOnlyOne())
-                MainWindowViewModel.GetInstance().ShowIOStockStatusByProduct(SelectedNodes.Single().ObservableObjectID);
+                MainWindowViewModel.GetInstance().ShowIOStockStatus(SelectedNodes.Single().ObservableObjectID);
         }
 
         /// <summary>

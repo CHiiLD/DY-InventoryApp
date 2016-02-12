@@ -13,7 +13,7 @@ namespace R54IN0.Test
         public void CanCreate()
         {
             var product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
-            new NewInventoryAddDialogViewModel(product);
+            new InventoryManagerViewModel(product);
         }
 
         [TestMethod]
@@ -21,7 +21,7 @@ namespace R54IN0.Test
         {
             new Dummy().Create();
             var product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
-            var viewmodel = new NewInventoryAddDialogViewModel(product);
+            var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
             var memo = viewmodel.Memo = "spec";
             var maker = viewmodel.Maker = viewmodel.MakerList.Random();
@@ -42,7 +42,7 @@ namespace R54IN0.Test
         {
             new Dummy().Create();
             var product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
-            var viewmodel = new NewInventoryAddDialogViewModel(product);
+            var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
             var memo = viewmodel.Memo = "spec";
             var maker = viewmodel.MakerText = "some maker";
@@ -67,7 +67,7 @@ namespace R54IN0.Test
             var inventoryStatusViewModel = new InventoryStatusViewModel();
             var node = inventoryStatusViewModel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
             var product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ObservableObjectID);
-            var viewmodel = new NewInventoryAddDialogViewModel(product);
+            var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
 
             var inventory = await viewmodel.Register();
@@ -83,7 +83,7 @@ namespace R54IN0.Test
             var inventoryStatusViewModel = new InventoryStatusViewModel();
             var node = inventoryStatusViewModel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
             var product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ObservableObjectID);
-            var viewmodel = new NewInventoryAddDialogViewModel(product);
+            var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
 
             var inventory = await viewmodel.Register();

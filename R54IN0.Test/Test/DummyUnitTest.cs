@@ -22,7 +22,7 @@ namespace R54IN0.Test.New
             db.Save<Customer>(new Customer() { Name = customer, ID = Guid.NewGuid().ToString() });
             db.Save<Customer>(new Customer() { Name = customer, ID = Guid.NewGuid().ToString() });
 
-            overlap.Program.Do1<Customer>();
+            //overlap.Program.Do1<Customer>();
 
             var customers = db.LoadAll<Customer>();
             int cnt = 0;
