@@ -35,6 +35,8 @@
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -78,9 +80,29 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.99.0\lib\net45\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.99.0\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.99.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -108,38 +130,39 @@
     <Compile Include="DailyInventory\Controls\IOStockManager\IOStockManagerControl.xaml.cs">
       <DependentUpon>IOStockManagerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\IOStock\EnumBooleanConverter.cs" />
+    <Compile Include="DailyInventory\Controls\IOStockManager\IOStockManagerViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\EnumBooleanConverter.cs" />
     <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.Inner.cs" />
     <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\FilterSearchTextBoxViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridItem.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridViewModel.MenuCommand.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockDatePickerControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\FilterSearchTextBoxViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridItem.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridViewModel.MenuCommand.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDatePickerControl.xaml.cs">
       <DependentUpon>IOStockDatePickerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockDatePickerViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockProjectListBoxViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockProjectListBoxControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDatePickerViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockProjectListBoxViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockProjectListBoxControl.xaml.cs">
       <DependentUpon>IOStockProjectListBoxControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockStatusControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockStatusControl.xaml.cs">
       <DependentUpon>IOStockStatusControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockStatusViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\Inventory\InventoryDataGridViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\Inventory\InventorySearchTextBoxViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\Inventory\InventoryStatusControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockStatusViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\Inventory\InventoryDataGridViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\Inventory\InventorySearchTextBoxViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\Inventory\InventoryStatusControl.xaml.cs">
       <DependentUpon>InventoryStatusControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\IOStock\IOStockDataGridControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridControl.xaml.cs">
       <DependentUpon>IOStockDataGridControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\Inventory\InventoryStatusViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\Inventory\InventoryDataGridControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\TabItems\Inventory\InventoryStatusViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\Inventory\InventoryDataGridControl.xaml.cs">
       <DependentUpon>InventoryDataGridControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\IOStock\StockTypeToStringConverter.cs" />
+    <Compile Include="DailyInventory\Controls\TabItems\IOStock\StockTypeToStringConverter.cs" />
     <Compile Include="DailyInventory\Controls\InventoryManagerDialog.xaml.cs">
       <DependentUpon>InventoryManagerDialog.xaml</DependentUpon>
     </Compile>
@@ -154,7 +177,6 @@
     <Compile Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewModelView.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNode.cs" />
     <Compile Include="DailyInventory\Data\Director\InventoryDataCommander.cs" />
-    <Compile Include="DailyInventory\Data\IDbAdapter.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ISync.cs" />
     <Compile Include="DailyInventory\Data\LexDb.cs" />
     <Compile Include="DailyInventory\Data\Director\CollectionViewModelObserverSubject.cs" />
@@ -167,10 +189,8 @@
     <Compile Include="DailyInventory\Data\Inventory\IObservableInventoryProperties.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableInventory.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableIOStock.cs" />
-    <Compile Include="DailyInventory\Data\DbAdapter.cs" />
-    <Compile Include="DailyInventory\Data\MysqlDbAdapter.cs" />
+    <Compile Include="DailyInventory\Data\SQLiteServer.cs" />
     <Compile Include="DailyInventory\Data\TreeViewNodeJsonFormat.cs" />
-    <Compile Include="DailyInventory\Data\DbCommand.cs" />
     <Compile Include="DailyInventory\Windows\IOStockManagerWindow.xaml.cs">
       <DependentUpon>IOStockManagerWindow.xaml</DependentUpon>
     </Compile>
@@ -185,27 +205,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\IOStock\IOStockDatePickerControl.xaml">
+    <Page Include="DailyInventory\Controls\TabItems\IOStock\IOStockDatePickerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\IOStock\IOStockProjectListBoxControl.xaml">
+    <Page Include="DailyInventory\Controls\TabItems\IOStock\IOStockProjectListBoxControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\IOStock\IOStockStatusControl.xaml">
+    <Page Include="DailyInventory\Controls\TabItems\IOStock\IOStockStatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\Inventory\InventoryStatusControl.xaml">
+    <Page Include="DailyInventory\Controls\TabItems\Inventory\InventoryStatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\IOStock\IOStockDataGridControl.xaml">
+    <Page Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\Inventory\InventoryDataGridControl.xaml">
+    <Page Include="DailyInventory\Controls\TabItems\Inventory\InventoryDataGridControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,6 +277,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -322,6 +343,13 @@
     <Resource Include="InventoryIcon152.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net45\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net45\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.99.0\build\net45\System.Data.SQLite.Core.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

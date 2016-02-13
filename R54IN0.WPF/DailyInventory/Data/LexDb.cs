@@ -3,7 +3,7 @@ using System;
 
 namespace R54IN0
 {
-    public static class LexDb
+    internal static class LexDb
     {
         private static CustomLexDb _customLexDb;
 
@@ -42,6 +42,7 @@ namespace R54IN0
         {
             CustomLexDb me = this;
 
+#if false
             me.Map<Employee>().Automap(i => i.ID).
             WithIndex("Name", i => i.Name);
             me.Map<Maker>().Automap(i => i.ID).
@@ -58,9 +59,6 @@ namespace R54IN0
             WithIndex("Name", i => i.Name);
             me.Map<Supplier>().Automap(i => i.ID).
             WithIndex("Name", i => i.Name);
-
-            me.Map<TreeViewNodeJsonFormat>().Automap(i => i.ID).
-            WithIndex("Data", i => i.Data);
 
             me.Map<InventoryFormat>().Automap(i => i.ID).
             WithIndex("MeasureID", i => i.MeasureID).
@@ -83,6 +81,10 @@ namespace R54IN0
             WithIndex("StockType", i => i.StockType).
             WithIndex("RemainingQuantity", i => i.RemainingQuantity).
             WithIndex("UnitPrice", i => i.UnitPrice);
+#endif
+
+            me.Map<TreeViewNodeJsonFormat>().Automap(i => i.ID).
+            WithIndex("Data", i => i.Data);
 
             me.Initialize();
         }

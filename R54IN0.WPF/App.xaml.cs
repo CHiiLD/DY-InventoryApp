@@ -11,14 +11,14 @@ namespace R54IN0.WPF
     /// </summary>
     public partial class App : Application
     {
-        protected async override void OnExit(ExitEventArgs e)
+        protected override void OnExit(ExitEventArgs e)
         {
             TreeViewNodeDirector.Destroy();
-            await DbAdapter.GetInstance().DisconnectAsync();
+            InventoryDataCommander.Destroy();
             base.OnExit(e);
         }
 
-        protected async override void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
             Process thisProc = Process.GetCurrentProcess();
             if (Process.GetProcessesByName(thisProc.ProcessName).Length > 1)
@@ -29,7 +29,6 @@ namespace R54IN0.WPF
             }
             AttachConsole(-1);
             base.OnStartup(e);
-            await DbAdapter.GetInstance().ConnectAsync();
         }
 
         [DllImport("Kernel32.dll")]

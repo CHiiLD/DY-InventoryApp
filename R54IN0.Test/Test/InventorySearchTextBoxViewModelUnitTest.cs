@@ -2,7 +2,6 @@
 using R54IN0.WPF;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace R54IN0.Test
 {

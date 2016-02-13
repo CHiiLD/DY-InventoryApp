@@ -75,44 +75,48 @@ namespace R54IN0.Test
 
             treeview.SelectedNodeDeletionCommand.Execute(null);
 
-            Assert.IsNull(InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ObservableObjectID));
-            Assert.AreEqual(0, InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(node.ObservableObjectID).Count());
+            Assert.IsNull(InventoryDataCommander.GetInstance().SearchField<Product>(node.ObservableObjectID));
+            Assert.AreEqual(0, InventoryDataCommander.GetInstance().SearchInventoryAsProductID(node.ObservableObjectID).Count());
         }
 
         /// <summary>
         /// 트리뷰에서 제품 노드를 삭제하고 데이터베이스에서도 관련 자료를 삭제한다.
         /// </summary>
         [TestMethod]
-        public async Task DeleteProductNodeThenSyncDb()
+        public void DeleteProductNodeThenSyncDb()
         {
             new Dummy().Create();
             var treeview = new MultiSelectTreeViewModelView();
             var node = GetProductNode(treeview);
             treeview.SelectedNodes.Add(node);
 
-            var product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ObservableObjectID);
+            var product = InventoryDataCommander.GetInstance().SearchField<Product>(node.ObservableObjectID);
             if (product != null)
                 CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(product);
             var oid = InventoryDataCommander.GetInstance();
-            var invens = oid.SearchObservableInventoryAsProductID(product.ID).ToList();
+            var invens = oid.SearchInventoryAsProductID(product.ID).ToList();
 
             treeview.SelectedNodeDeletionCommand.Execute(null);
 
             foreach (var inven in invens)
             {
-                var iosfmts = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.WHERE, "InventoryID", inven.ID);
+                var iosfmts = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>(
+                    "select * from IOStockFormat where {0} = '{1}';",
+                    "InventoryID", inven.ID);
                 Assert.AreEqual(0, iosfmts.Count());
             }
-            var infmts = await DbAdapter.GetInstance().QueryAsync<InventoryFormat>(DbCommand.WHERE, "ProductID", product.ID);
+            var infmts = InventoryDataCommander.GetInstance().DB.Query<InventoryFormat>(
+                "select * from InventoryFormat where {0} = '{1}';",
+                "ProductID", product.ID);
             Assert.AreEqual(0, infmts.Count());
-            Assert.IsNull(await DbAdapter.GetInstance().SelectAsync<Product>(product.ID));
+            Assert.IsNull(InventoryDataCommander.GetInstance().DB.Select<Product>("ID", product.ID));
         }
 
         [TestMethod]
         public void WhenCreateNewProjectTypeTreeViewNodeThenNameInitializedAsProductName()
         {
             new Dummy().Create();
-            var someProduct = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
+            var someProduct = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
             var treeview = new TreeViewNode(someProduct);
 
             Assert.AreEqual(treeview.Name, someProduct.Name);

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0
 {
-    public class Observable<FieldT> : IObservableField, ISync, INotifyPropertyChanged where FieldT : class, IField, new()
+    public class Observable<FieldT> : IObservableField, INotifyPropertyChanged where FieldT : class, IField, new()
     {
         private FieldT _t;
 
@@ -92,20 +92,20 @@ namespace R54IN0
             }
         }
 
-        protected async void NotifyPropertyChanged(string name)
+        protected void NotifyPropertyChanged(string name)
         {
             if (_propertyChanged != null)
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
 
             if (ID == null)
-                await InventoryDataCommander.GetInstance().AddObservableField(this);
+                InventoryDataCommander.GetInstance().AddObservableField(this);
             else
-                await DbAdapter.GetInstance().UpdateAsync(Field, name);
+                InventoryDataCommander.GetInstance().DB.Update(Field, name);
         }
 
-        public async Task SyncDataFromServer()
+        public void Refresh()
         {
-            FieldT field = await DbAdapter.GetInstance().SelectAsync<FieldT>(ID);
+            FieldT field = InventoryDataCommander.GetInstance().DB.Select<FieldT>(nameof(ID), ID);
             if (field != null)
             {
                 if (Name != field.Name)

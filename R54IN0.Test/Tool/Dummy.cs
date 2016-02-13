@@ -1,7 +1,6 @@
 ﻿using R54IN0.WPF;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace R54IN0.Test
 {
@@ -171,92 +170,83 @@ namespace R54IN0.Test
 
         private void CreateData()
         {
-            using (var db = LexDb.GetDbInstance())
+            var makers = InventoryDataCommander.GetInstance().DB.Select<Maker>();
+            var measures = InventoryDataCommander.GetInstance().DB.Select<Measure>();
+            var customer = InventoryDataCommander.GetInstance().DB.Select<Customer>();
+            var suppliers = InventoryDataCommander.GetInstance().DB.Select<Supplier>();
+            var proejcts = InventoryDataCommander.GetInstance().DB.Select<Project>();
+            var employees = InventoryDataCommander.GetInstance().DB.Select<Employee>();
+            var warehouse = InventoryDataCommander.GetInstance().DB.Select<Warehouse>();
+
+            foreach (var item in _itemNames)
             {
-                Maker[] makers = db.LoadAll<Maker>();
-                Measure[] measures = db.LoadAll<Measure>();
-                Customer[] customer = db.LoadAll<Customer>();
-                Supplier[] suppliers = db.LoadAll<Supplier>();
-                Project[] proejcts = db.LoadAll<Project>();
-                Employee[] employees = db.LoadAll<Employee>();
-                Warehouse[] warehouse = db.LoadAll<Warehouse>();
-
-                foreach (var item in _itemNames)
+                var p = new Product()
                 {
-                    var p = new Product()
+                    Name = item.Key
+                }.Save<Product>();
+                foreach (var item2 in item.Value)
+                {
+                    InventoryFormat ifmt = new InventoryFormat()
                     {
-                        Name = item.Key
-                    }.Save<Product>();
-                    foreach (var item2 in item.Value)
+                        ProductID = p.ID,
+                        Specification = item2,
+                        Quantity = 0,
+                        MeasureID = measures.Random().ID,
+                        MakerID = makers.Random().ID
+                    }.Save<InventoryFormat>();
+
+                    int qty = 0;
+                    int cnt = _random.Next(2, 5);
+
+                    for (int i = 0; i < cnt; i++)
                     {
-                        InventoryFormat ifmt = new InventoryFormat()
+                        var date1 = DateTime.Now.AddDays(-600.0 / cnt * (cnt - i)).AddMilliseconds(-1000);
+                        var date2 = date1.AddMilliseconds(500);
+                        var price1 = ((int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000))) / 1000 * 1000;
+                        var price2 = ((int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000))) / 1000 * 1000;
+
+                        var incoming = _random.Next(10, 100);
+                        var isfmt = new IOStockFormat()
                         {
-                            ProductID = p.ID,
-                            Specification = item2,
-                            Quantity = 0,
-                            MeasureID = measures.Random().ID,
-                            MakerID = makers.Random().ID
-                        }.Save<InventoryFormat>();
+                            SupplierID = suppliers.Random().ID,
+                            Date = date1,
+                            InventoryID = ifmt.ID,
+                            WarehouseID = warehouse.Random().ID,
+                            Quantity = incoming,
+                            RemainingQuantity = qty + incoming,
+                            StockType = IOStockType.INCOMING,
+                            EmployeeID = employees.Random().ID,
+                            UnitPrice = price1,
+                        }.Save<IOStockFormat>();
+                        qty += isfmt.Quantity;
 
-                        int qty = 0;
-                        int cnt = _random.Next(2, 5);
+                        var outgoing = _random.Next(1, qty);
 
-                        for (int i = 0; i < cnt; i++)
+                        isfmt = new IOStockFormat()
                         {
-                            var date1 = DateTime.Now.AddDays(-600.0 / cnt * (cnt - i)).AddMilliseconds(-1000);
-                            var date2 = date1.AddMilliseconds(500);
-                            var price1 = ((int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000))) / 1000 * 1000;
-                            var price2 = ((int)((_random.NextDouble() + 0.5) * _random.Next(1000, 100000))) / 1000 * 1000;
-
-                            var incoming = _random.Next(10, 100);
-                            var isfmt = new IOStockFormat()
-                            {
-                                SupplierID = suppliers.Random().ID,
-                                Date = date1,
-                                InventoryID = ifmt.ID,
-                                WarehouseID = warehouse.Random().ID,
-                                Quantity = incoming,
-                                RemainingQuantity = qty + incoming,
-                                StockType = IOStockType.INCOMING,
-                                EmployeeID = employees.Random().ID,
-                                UnitPrice = price1,
-                            }.Save<IOStockFormat>();
-                            qty += isfmt.Quantity;
-
-                            var outgoing = _random.Next(1, qty);
-
-                            isfmt = new IOStockFormat()
-                            {
-                                CustomerID = customer.Random().ID,
-                                Date = date2,
-                                InventoryID = ifmt.ID,
-                                ProjectID = proejcts.Random().ID,
-                                Quantity = outgoing,
-                                RemainingQuantity = qty - outgoing,
-                                StockType = IOStockType.OUTGOING,
-                                EmployeeID = employees.Random().ID,
-                                UnitPrice = price2,
-                            }.Save<IOStockFormat>();
-                            qty -= isfmt.Quantity;
-                        }
-                        ifmt.Quantity = qty;
-                        ifmt.Save<InventoryFormat>();
+                            CustomerID = customer.Random().ID,
+                            Date = date2,
+                            InventoryID = ifmt.ID,
+                            ProjectID = proejcts.Random().ID,
+                            Quantity = outgoing,
+                            RemainingQuantity = qty - outgoing,
+                            StockType = IOStockType.OUTGOING,
+                            EmployeeID = employees.Random().ID,
+                            UnitPrice = price2,
+                        }.Save<IOStockFormat>();
+                        qty -= isfmt.Quantity;
                     }
+                    ifmt.Quantity = qty;
+                    ifmt.Save<InventoryFormat>();
                 }
             }
         }
 
-        public async void Create()
+        public void Create()
         {
-            LexDb.Destroy();
-            DbAdapter.Destroy();
             CollectionViewModelObserverSubject.Destory();
             MainWindowViewModel.Destory();
             TreeViewNodeDirector.Destroy();
-            InventoryDataCommander.Destroy();
-
-            using (var db = LexDb.GetDbInstance())
-                db.Purge();
 
             CreateClient();
             CreateMaker();
@@ -265,8 +255,6 @@ namespace R54IN0.Test
             CreateProject();
             CreateEmployee();
             CreateData();
-
-            await DbAdapter.GetInstance().ConnectAsync();
         }
     }
 }

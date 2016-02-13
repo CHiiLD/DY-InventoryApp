@@ -225,7 +225,7 @@ namespace R54IN0.Test
         /// 삭제 후 데이터베이스에서 관련 자료가 모두 삭제되어야 한다.
         /// </summary>
         [TestMethod]
-        public async Task DeleteItemThenSyncDb()
+        public void DeleteItemThenSyncDb()
         {
             var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
@@ -233,7 +233,7 @@ namespace R54IN0.Test
 
             viewmodel.DataGridViewModel.IOStockFormatDeletionCommand.Execute(null);
 
-            var iofmts = await DbAdapter.GetInstance().SelectAsync<IOStockFormat>(iosID);
+            var iofmts = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>("ID", iosID);
             Assert.IsNull(iofmts);
         }
 
@@ -266,7 +266,7 @@ namespace R54IN0.Test
             string iosID = item.ID;
 
             viewmodel.DataGridViewModel.IOStockFormatDeletionCommand.Execute(null);
-            int inQty2 = InventoryDataCommander.GetInstance().SearchObservableInventory(item.Inventory.ID).Quantity;
+            int inQty2 = InventoryDataCommander.GetInstance().SearchInventory(item.Inventory.ID).Quantity;
 
             Assert.AreNotEqual(inQty, inQty2);
         }
@@ -287,7 +287,7 @@ namespace R54IN0.Test
         /// 삭제 후 데이터베이스에서 관련 자료가 모두 삭제되어야 한다.
         /// </summary>
         [TestMethod]
-        public async Task DeleteCheckedItemThenSyncDb()
+        public void DeleteCheckedItemThenSyncDb()
         {
             var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
@@ -296,7 +296,7 @@ namespace R54IN0.Test
 
             viewmodel.DataGridViewModel.ChekcedIOStockFormatsDeletionCommand.Execute(null);
 
-            var iofmts = await DbAdapter.GetInstance().SelectAsync<IOStockFormat>(iosID);
+            var iofmts = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>("ID", iosID);
             Assert.IsNull(iofmts);
         }
 
@@ -331,7 +331,7 @@ namespace R54IN0.Test
             string iosID = item.ID;
 
             viewmodel.DataGridViewModel.ChekcedIOStockFormatsDeletionCommand.Execute(null);
-            int inQty2 = InventoryDataCommander.GetInstance().SearchObservableInventory(item.Inventory.ID).Quantity;
+            int inQty2 = InventoryDataCommander.GetInstance().SearchInventory(item.Inventory.ID).Quantity;
 
             Assert.AreNotEqual(inQty, inQty2);
         }
@@ -354,7 +354,7 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public async Task DeleteCheckedItemsThenSyncDb()
+        public void DeleteCheckedItemsThenSyncDb()
         {
             var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
             for (int i = 0; i < 10; i++)
@@ -370,7 +370,7 @@ namespace R54IN0.Test
 
             foreach (var item in checkedItems)
             {
-                var iofmts = await DbAdapter.GetInstance().SelectAsync<IOStockFormat>(item.ID);
+                var iofmts = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>("ID", item.ID);
                 Assert.IsNull(iofmts);
             }
         }
@@ -402,7 +402,7 @@ namespace R54IN0.Test
             new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             var oid = InventoryDataCommander.GetInstance();
-            var text = viewmodel.SearchViewModel.Text = oid.CopyObservableInventories().Select(x => x.Product).Distinct().Random().Name;
+            var text = viewmodel.SearchViewModel.Text = oid.CopyInventories().Select(x => x.Product).Distinct().Random().Name;
 
             viewmodel.SearchViewModel.SearchCommand.Execute(null);
 
@@ -420,7 +420,7 @@ namespace R54IN0.Test
             new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             var oid = InventoryDataCommander.GetInstance();
-            var text = viewmodel.SearchViewModel.Text = oid.CopyObservableInventories().Random().Specification;
+            var text = viewmodel.SearchViewModel.Text = oid.CopyInventories().Random().Specification;
 
             viewmodel.SearchViewModel.SearchCommand.Execute(null);
 
@@ -438,8 +438,8 @@ namespace R54IN0.Test
             new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
             var oid = InventoryDataCommander.GetInstance();
-            var text1 = oid.CopyObservableInventories().Random().Specification;
-            var text2 = oid.CopyObservableInventories().Select(x => x.Product).Distinct().Random().Name;
+            var text1 = oid.CopyInventories().Random().Specification;
+            var text2 = oid.CopyInventories().Select(x => x.Product).Distinct().Random().Name;
 
             viewmodel.SearchViewModel.Text = text1 + " " + text2;
             viewmodel.SearchViewModel.SearchCommand.Execute(null);
@@ -568,7 +568,7 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public async Task ProjectListItemDeleteTest()
+        public void ProjectListItemDeleteTest()
         {
             new Dummy().Create();
             var viewmodel = new IOStockStatusViewModel();
@@ -578,7 +578,9 @@ namespace R54IN0.Test
             Observable<Project> proejct = viewmodel.ProjectListBoxViewModel.SelectedItem;
             if (proejct != null)
             {
-                IEnumerable<IOStockFormat> formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.WHERE, "ProjectID", proejct.ID);
+                IEnumerable<IOStockFormat> formats = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>(
+                    "select * from IOStockFormat where {0} = '{1}';", 
+                    "ProjectID", proejct.ID);
                 if (formats != null)
                 { 
                     foreach(var x in formats.Select(x => new IOStockDataGridItem(x)))
@@ -588,7 +590,7 @@ namespace R54IN0.Test
 
             viewmodel.ProjectListBoxViewModel.ProjectDeletionCommand.Execute(null);
 
-            var result = InventoryDataCommander.GetInstance().SearchObservableField<Project>(project.ID);
+            var result = InventoryDataCommander.GetInstance().SearchField<Project>(project.ID);
             Assert.IsNull(result);
             Assert.IsFalse(viewmodel.ProjectListBoxViewModel.Items.Contains(project));
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count());
@@ -620,7 +622,7 @@ namespace R54IN0.Test
             var node = viewmodel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
             viewmodel.TreeViewViewModel.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { node }, null));
 
-            var inventories = InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(node.ObservableObjectID);
+            var inventories = InventoryDataCommander.GetInstance().SearchInventoryAsProductID(node.ObservableObjectID);
             var inventoryIds = inventories.Select(x => x.ID);
 
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Product.ID == node.ObservableObjectID));
@@ -638,7 +640,7 @@ namespace R54IN0.Test
             var inventoryNode = productNode.Root.Random();
             viewmodel.TreeViewViewModel.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { productNode, inventoryNode }, null));
 
-            var inventories = InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(productNode.ObservableObjectID);
+            var inventories = InventoryDataCommander.GetInstance().SearchInventoryAsProductID(productNode.ObservableObjectID);
             var inventoryIds = inventories.Select(x => x.ID);
 
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Product.ID == productNode.ObservableObjectID));
@@ -659,7 +661,7 @@ namespace R54IN0.Test
             //삭제 명령
             treeview.SelectedNodeDeletionCommand.Execute(null);
             //inventory 리스트에서도 삭제 확인
-            var inven = InventoryDataCommander.GetInstance().SearchObservableInventory(inventoryNode.ObservableObjectID);
+            var inven = InventoryDataCommander.GetInstance().SearchInventory(inventoryNode.ObservableObjectID);
             Assert.IsNull(inven);
             //treeview에서도 삭제 확인
             Assert.IsFalse(TreeViewNodeDirector.GetInstance().Contains(inventoryNode));

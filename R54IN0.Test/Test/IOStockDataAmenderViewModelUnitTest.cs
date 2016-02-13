@@ -19,18 +19,13 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             new IOStockDataAmenderViewModel();
-            using (var db = LexDb.GetDbInstance())
-            {
-                var fmt = db.LoadAll<IOStockFormat>().Random();
-                new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
-            }
         }
 
         /// <summary>
         /// 새로운 제품과 새로운 규격을 설정하여 추가한다.
         /// </summary>
         [TestMethod]
-        public async Task Add()
+        public void Add()
         {
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
@@ -59,7 +54,7 @@ namespace R54IN0.Test.New
             var remain = viewmodel.RemainingQuantity;
 
             //저장
-            var iostock = await viewmodel.RecordAsync();
+            var iostock = viewmodel.Record();
             Assert.IsTrue(iostock.StockType == IOStockType.INCOMING);
             Assert.IsTrue(iostock.Supplier != null);
             Assert.IsTrue(iostock.Customer == null);
@@ -71,7 +66,7 @@ namespace R54IN0.Test.New
             var inventory = inventoryStatusViewModel.GetDataGridItems().Where(x => x.ID == iostock.Inventory.ID).Single();
             var oid = InventoryDataCommander.GetInstance();
             //검사
-            Assert.IsNotNull(oid.SearchObservableInventory(iostock.Inventory.ID)); //inventory director에 추가되었는지 확인한다.
+            Assert.IsNotNull(oid.SearchInventory(iostock.Inventory.ID)); //inventory director에 추가되었는지 확인한다.
             Assert.AreEqual(spec, iostock.Inventory.Specification);
             Assert.AreEqual(specMemo, iostock.Inventory.Memo);
             Assert.AreEqual(maker, iostock.Inventory.Maker.Name);
@@ -85,21 +80,21 @@ namespace R54IN0.Test.New
             Assert.AreEqual(qty, iostock.RemainingQuantity);
             Assert.AreEqual((int)qty, iostock.Inventory.Quantity);
             var ofd = InventoryDataCommander.GetInstance();
-            Assert.IsNotNull(ofd.SearchObservableField<Maker>(iostock.Inventory.Maker.ID));
-            Assert.IsNotNull(ofd.SearchObservableField<Measure>(iostock.Inventory.Measure.ID));
+            Assert.IsNotNull(ofd.SearchField<Maker>(iostock.Inventory.Maker.ID));
+            Assert.IsNotNull(ofd.SearchField<Measure>(iostock.Inventory.Measure.ID));
         }
 
         /// <summary>
         /// 기존의 제품의 새로운 규격을 사용하여 입고 기록을 만든다.
         /// </summary>
         [TestMethod]
-        public async Task Add2()
+        public void Add2()
         {
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             //설정
             viewmodel.StockType = IOStockType.INCOMING;
-            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
             var inven = viewmodel.Inventory = viewmodel.InventoryList.Random();
             var specMemo = viewmodel.SpecificationMemo = "some memo";
             var maker = viewmodel.Maker = viewmodel.MakerList.Random();
@@ -109,7 +104,7 @@ namespace R54IN0.Test.New
             var employee = viewmodel.Employee = viewmodel.EmployeeList.Random();
             var memo = viewmodel.Memo = "some memo";
             viewmodel.UnitPrice = 6666;
-            var stock = await viewmodel.RecordAsync();
+            var stock = viewmodel.Record();
             //검사
             Assert.AreEqual(product, stock.Inventory.Product);
             Assert.AreEqual(inven.ID, stock.Inventory.ID);
@@ -125,12 +120,12 @@ namespace R54IN0.Test.New
         /// 기존의 제품을 사용하되, 새로운 규격을 사용하여 새로운 입고 기록을 만든다.
         /// </summary>
         [TestMethod]
-        public async Task Add3()
+        public void Add3()
         {
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             //설정
-            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
             viewmodel.Inventory = null;
             var specificationName = viewmodel.SpecificationText = "some specification";
             var specMemo = viewmodel.SpecificationMemo = "some specification memo";
@@ -141,7 +136,7 @@ namespace R54IN0.Test.New
             var employee = viewmodel.Employee = viewmodel.EmployeeList.Random();
             var memo = viewmodel.Memo = "some memo";
             viewmodel.UnitPrice = 6666;
-            var obIOStock = await viewmodel.RecordAsync();
+            var obIOStock = viewmodel.Record();
             //검사
             Assert.AreEqual(product, obIOStock.Inventory.Product);
             Assert.AreEqual(specificationName, obIOStock.Inventory.Specification);
@@ -157,12 +152,11 @@ namespace R54IN0.Test.New
         /// 추가가 아닌 기존의 IOStockFormat을 수정하고자 할 때
         /// </summary>
         [TestMethod]
-        public async Task Modify()
+        public void Modify()
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Random();
+            fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random(); InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
             IOStockType type = fmt.StockType;
             IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel, new ObservableIOStock(fmt));
@@ -186,10 +180,9 @@ namespace R54IN0.Test.New
             var qty = viewmodel.Quantity = 1111;
             var price = viewmodel.UnitPrice = 30302;
 
-            await viewmodel.RecordAsync();
+            viewmodel.Record();
 
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadByKey<IOStockFormat>(fmt.ID);
+                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>("ID", fmt.ID);
             ObservableIOStock stock = new ObservableIOStock(fmt);
 
             if (stock.StockType == IOStockType.INCOMING)
@@ -209,17 +202,16 @@ namespace R54IN0.Test.New
             Assert.AreEqual(type, stock.StockType);
 
             var ofd = InventoryDataCommander.GetInstance();
-            Assert.IsNotNull(ofd.SearchObservableField<Maker>(stock.Inventory.Maker.ID));
-            Assert.IsNotNull(ofd.SearchObservableField<Measure>(stock.Inventory.Measure.ID));
+            Assert.IsNotNull(ofd.SearchField<Maker>(stock.Inventory.Maker.ID));
+            Assert.IsNotNull(ofd.SearchField<Measure>(stock.Inventory.Measure.ID));
         }
 
         [TestMethod]
-        public async Task Modify2()
+        public void Modify2()
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Random();
+                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
             var viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
 
             var specMemo = viewmodel.SpecificationMemo = "SOME SPECIFICATION MEMO";
@@ -230,7 +222,7 @@ namespace R54IN0.Test.New
             var employee = viewmodel.Employee = viewmodel.EmployeeList.Random();
             var memo = viewmodel.Memo = "MEMO";
             var price = viewmodel.UnitPrice = 7777;
-            var stock = await viewmodel.RecordAsync();
+            var stock = viewmodel.Record();
 
             Assert.AreEqual(specMemo, stock.Inventory.Memo);
             Assert.AreEqual(maker, stock.Inventory.Maker);
@@ -242,15 +234,14 @@ namespace R54IN0.Test.New
         }
 
         [TestMethod]
-        public async Task Modify3()
+        public void Modify3()
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Random();
+                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
             var viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
 
-            var inven = InventoryDataCommander.GetInstance().SearchObservableInventory(fmt.InventoryID);
+            var inven = InventoryDataCommander.GetInstance().SearchInventory(fmt.InventoryID);
             string makerId = inven.Maker.ID;
             string measureId = inven.Measure.ID;
 
@@ -266,7 +257,7 @@ namespace R54IN0.Test.New
             string ware = viewmodel.WarehouseText = "some warehouse";
             string employee = viewmodel.EmployeeText = "some employee";
 
-            var stock = await viewmodel.RecordAsync();
+            var stock = viewmodel.Record();
 
             switch (stock.StockType)
             {
@@ -294,10 +285,10 @@ namespace R54IN0.Test.New
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task Modify4()
+        public void Modify4()
         {
             new Dummy().Create();
-            var formats = await DbAdapter.GetInstance().SelectAllAsync<IOStockFormat>();
+            var formats = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>();
             var fmt = formats.Random();
             ObservableIOStock ios = new ObservableIOStock(fmt);
             //DataGrid 업데이트
@@ -317,36 +308,36 @@ namespace R54IN0.Test.New
             viewmodel.Employee = null; //null 할당
             viewmodel.EmployeeText = null;
 
-            var newRecord = await viewmodel.RecordAsync();
+            var newRecord = viewmodel.Record();
             newRecord = iosViewModel.DataGridViewModel.Items.Where(x => x.ID == newRecord.ID).Single();
             Assert.IsNull(newRecord.Employee);
 
             viewmodel = new IOStockDataAmenderViewModel(newRecord); //편집모드로 열기
             Assert.IsNull(viewmodel.Employee);
             viewmodel.EmployeeText = "Jojo";
-            newRecord = await viewmodel.RecordAsync();
+            newRecord = viewmodel.Record();
 
             var jojoEmp = newRecord.Employee;
             Assert.IsNotNull(newRecord.Employee);
             Assert.AreEqual(newRecord.Employee.Name, "Jojo");
 
-            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchObservableField<Employee>(newRecord.Employee.ID));
+            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchField<Employee>(newRecord.Employee.ID));
 
             newRecord = iosViewModel.DataGridViewModel.Items.Where(x => x.ID == newRecord.ID).Single();
             viewmodel = new IOStockDataAmenderViewModel(newRecord); //편집모드로 열기
             viewmodel.Employee = null;
             viewmodel.EmployeeText = "Jojo2";
-            var newnewRecord = await viewmodel.RecordAsync();
+            var newnewRecord = viewmodel.Record();
 
             Assert.AreEqual(newnewRecord.Employee.Name, "Jojo2");
             Assert.AreEqual(jojoEmp.ID, newRecord.Employee.ID);
         }
 
         [TestMethod]
-        public async Task Modify5()
+        public void Modify5()
         {
             new Dummy().Create();
-            var formats = await DbAdapter.GetInstance().SelectAllAsync<IOStockFormat>();
+            var formats = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>();
             var fmt = formats.Random();
             ObservableIOStock ios = new ObservableIOStock(fmt);
             //DataGrid 업데이트
@@ -366,26 +357,26 @@ namespace R54IN0.Test.New
             viewmodel.Maker = null; //null 할당
             viewmodel.Maker = null;
 
-            var newRecord = await viewmodel.RecordAsync();
+            var newRecord = viewmodel.Record();
             newRecord = iosViewModel.DataGridViewModel.Items.Where(x => x.ID == newRecord.ID).Single();
             Assert.IsNull(newRecord.Inventory.Maker);
 
             viewmodel = new IOStockDataAmenderViewModel(newRecord); //편집모드로 열기
             Assert.IsNull(viewmodel.Maker);
             viewmodel.MakerText = "maKeR";
-            newRecord = await viewmodel.RecordAsync();
+            newRecord = viewmodel.Record();
 
             var jojoEmp = newRecord.Inventory.Maker;
             Assert.IsNotNull(newRecord.Inventory);
             Assert.AreEqual(newRecord.Inventory.Maker.Name, "maKeR");
 
-            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchObservableField<Maker>(newRecord.Inventory.Maker.ID));
+            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchField<Maker>(newRecord.Inventory.Maker.ID));
 
             newRecord = iosViewModel.DataGridViewModel.Items.Where(x => x.ID == newRecord.ID).Single();
             viewmodel = new IOStockDataAmenderViewModel(newRecord); //편집모드로 열기
             viewmodel.Maker = null;
             viewmodel.MakerText = "maKeR2";
-            var newnewRecord = await viewmodel.RecordAsync();
+            var newnewRecord = viewmodel.Record();
 
             Assert.AreEqual(newnewRecord.Inventory.Maker.Name, "maKeR2");
             Assert.AreEqual(jojoEmp.ID, newRecord.Inventory.Maker.ID);
@@ -402,7 +393,7 @@ namespace R54IN0.Test.New
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
 
             viewmodel.StockType = IOStockType.OUTGOING;
-            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
             var specificationName = viewmodel.Inventory = viewmodel.InventoryList.Random();
             var inventoryQty = viewmodel.Inventory.Quantity;
             if (inventoryQty <= 1)
@@ -420,8 +411,7 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).OrderBy(x => x.Date).Last();
+                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).OrderBy(x => x.Date).Last();
 
             ///////////////////////////////////////////입고
             fmt.Quantity = 100; //입고 수량
@@ -436,8 +426,7 @@ namespace R54IN0.Test.New
             Assert.AreEqual(501, viewmodel.InventoryQuantity);
 
             ///////////////////////////////////////////출고
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Where(x => x.StockType == IOStockType.OUTGOING).OrderBy(x => x.Date).Last();
+                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.StockType == IOStockType.OUTGOING).OrderBy(x => x.Date).Last();
             fmt.Quantity = 100; //들어간 양
             fmt.RemainingQuantity = 200; //잔여 재고
             obIOStock = new ObservableIOStock(fmt);
@@ -455,19 +444,18 @@ namespace R54IN0.Test.New
         /// 그에 맞게 과거부터 현재까지의 모든 잔여 수량과 재고수량을 수정한다.
         /// </summary>
         [TestMethod]
-        public async Task Quantity3()
+        public void Quantity3()
         {
             new Dummy().Create();
             IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
             IOStockFormat fmt = null;
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Random();
+                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
             IObservableIOStockProperties obIOStock = new ObservableIOStock(fmt);
             var inventoryQty = obIOStock.Inventory.Quantity;
             var viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel, obIOStock);
             viewmodel.Quantity = 12;
-            obIOStock = await viewmodel.RecordAsync();
-            await CheckQuantity(obIOStock.Inventory.ID);
+            obIOStock = viewmodel.Record();
+            CheckQuantity(obIOStock.Inventory as ObservableInventory);
         }
 
         /// <summary>
@@ -475,22 +463,22 @@ namespace R54IN0.Test.New
         /// 입출고 데이터의 잔여 수량과 재고수량이 동기화되어야 한다.
         /// </summary>
         [TestMethod]
-        public async Task Quantity4()
+        public void Quantity4()
         {
             new Dummy().Create();
             IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel);
             //설정
             viewmodel.StockType = new Random().NextDouble() > 0.5 ? IOStockType.INCOMING : IOStockType.OUTGOING;
-            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
             var inven = viewmodel.Inventory = viewmodel.InventoryList.Random();
             var beforeInvenQty = inven.Quantity;
             var date = viewmodel.Date = DateTime.Now.AddDays(-600.0 * new Random().NextDouble()); //과거로 저장
             int qty = new Random().Next(1, 10);
             viewmodel.Quantity = qty;
             //저장
-            IObservableIOStockProperties obIOStock = await viewmodel.RecordAsync();
-            await CheckQuantity(obIOStock.Inventory.ID);
+            IObservableIOStockProperties obIOStock = viewmodel.Record();
+            CheckQuantity(obIOStock.Inventory as ObservableInventory);
         }
 
         /// <summary>
@@ -503,13 +491,10 @@ namespace R54IN0.Test.New
             new Dummy().Create();
             IOStockFormat fmt = null;
             IEnumerable<IOStockFormat> formats;
-            var inventory = InventoryDataCommander.GetInstance().CopyObservableInventories().Random();
-            using (var db = LexDb.GetDbInstance())
-            {
-                formats = db.LoadAll<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
+            var inventory = InventoryDataCommander.GetInstance().CopyInventories().Random();
+                formats = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
                     .ToList();
                 fmt = formats.ElementAt(new Random().Next(0, formats.Count() - 2)); //최신 데이터는 넣지 말도록
-            }
             var obIOStock = new ObservableIOStock(fmt);
             int inventoryQty = obIOStock.Inventory.Quantity; //오리진 재고 수량
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(obIOStock);
@@ -533,12 +518,9 @@ namespace R54IN0.Test.New
             new Dummy().Create();
             IOStockFormat fmt = null;
             IEnumerable<IOStockFormat> formats;
-            var inventory = InventoryDataCommander.GetInstance().CopyObservableInventories().Random();
-            using (var db = LexDb.GetDbInstance())
-            {
-                formats = db.LoadAll<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
+            var inventory = InventoryDataCommander.GetInstance().CopyInventories().Random();
+                formats = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
                     .ToList();
-            }
             fmt = formats.ElementAt(new Random().Next(0, formats.Count() - 2));
 
             var iostock = new ObservableIOStock(fmt);
@@ -581,14 +563,14 @@ namespace R54IN0.Test.New
         /// 잔여수량이 꼬이는 이슈를 해결
         /// </summary>
         [TestMethod]
-        public async Task Quantity7()
+        public void Quantity7()
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
             IEnumerable<IOStockFormat> formats;
-            var inventory = InventoryDataCommander.GetInstance().CopyObservableInventories().Random();
-            formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
-                DbCommand.WHERE, "InventoryID", inventory.ID, DbCommand.ASCENDING, "Date");
+            var inventory = InventoryDataCommander.GetInstance().CopyInventories().Random();
+            formats = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where {0} = '{1}' order by Date;",
+             "InventoryID", inventory.ID);
             fmt = formats.First();
             var iostock = new ObservableIOStock(fmt);
             int inventoryQty = iostock.Inventory.Quantity;
@@ -598,14 +580,14 @@ namespace R54IN0.Test.New
             viewmodel.Inventory = viewmodel.InventoryList.Where(x => x.ID == iostock.Inventory.ID).Single();
             viewmodel.Date = fmt.Date.AddDays(-10000);
             viewmodel.Quantity = 1;
-            await viewmodel.RecordAsync();
-            await CheckQuantity(inventory.ID);
+            viewmodel.Record();
+            CheckQuantity(inventory);
         }
 
-        public async Task CheckQuantity(string inventoryID)
+        public void CheckQuantity(ObservableInventory inventory)
         {
-            var formats = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
-                DbCommand.WHERE, "InventoryID", inventoryID, DbCommand.ASCENDING, "Date");
+            string sql = string.Format("select * from {0} where = {1} order by {2}", typeof(IOStockFormat).Name, nameof(inventory.ID), "Date");
+            var formats = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>(sql);
             IOStockFormat near = null;
             foreach (var fmt in formats)
             {
@@ -632,8 +614,7 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Random();
+                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
             var id = fmt.ID;
             var viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
 
@@ -645,8 +626,7 @@ namespace R54IN0.Test.New
             var memo = viewmodel.Memo = "MEMO";
             var price = viewmodel.UnitPrice = 7777;
 
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadByKey<IOStockFormat>(id);
+            fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>("ID", id);
 
             var obIOStock = new ObservableIOStock(fmt);
             Assert.AreNotEqual(specMemo, obIOStock.Inventory.Memo);
@@ -677,7 +657,7 @@ namespace R54IN0.Test.New
             Assert.IsNull(viewmodel.Product);
             Assert.IsNull(viewmodel.Inventory);
             //출고에서 제품과 규격을 선택한 후
-            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
             var inven = viewmodel.Inventory = viewmodel.InventoryList.Random();
             //입고로 전환해도 제품과 규격 프로퍼티는 그대로 있고
             viewmodel.StockType = IOStockType.INCOMING;
@@ -694,17 +674,17 @@ namespace R54IN0.Test.New
         /// 그 상태에서 그대로 저장하고 그 후 제대로 저장되었는지 확인
         /// </summary>
         [TestMethod]
-        public async Task LogicPatten00()
+        public void LogicPatten00()
         {
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
 
-            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
             var specificationName = viewmodel.Inventory = viewmodel.InventoryList.Random();
             var productText = viewmodel.ProductText = "new product text";
             var specificationText = viewmodel.SpecificationText = "new specification text";
             Assert.IsNull(viewmodel.InventoryList);
-            var stock = await viewmodel.RecordAsync();
+            var stock = viewmodel.Record();
             Assert.AreEqual(productText, stock.Inventory.Product.Name);
             Assert.AreEqual(specificationText, stock.Inventory.Specification);
         }
@@ -718,7 +698,7 @@ namespace R54IN0.Test.New
             new Dummy().Create();
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
 
-            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
             var inventory = viewmodel.Inventory = viewmodel.InventoryList.Random();
 
             Assert.AreEqual(viewmodel.Inventory.Memo, viewmodel.SpecificationMemo);
@@ -739,7 +719,7 @@ namespace R54IN0.Test.New
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             //기존의 제품과 규격을 선택
             viewmodel.StockType = IOStockType.INCOMING;
-            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyObservableFields<Product>().Random();
+            var product = viewmodel.Product = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
             var inventory = viewmodel.Inventory = viewmodel.InventoryList.Random();
             inventory.Memo = "some specification memo";
             viewmodel.MeasureText = "some measure";
@@ -789,8 +769,7 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Random();
+                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
             IOStockType type = fmt.StockType;
             var iso = new ObservableIOStock(fmt);
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
@@ -811,8 +790,7 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-            using (var db = LexDb.GetDbInstance())
-                fmt = db.LoadAll<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).Random();
+                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).Random();
             ObservableIOStock obIOStock = new ObservableIOStock(fmt);
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(obIOStock);
 

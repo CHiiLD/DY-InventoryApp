@@ -94,10 +94,10 @@ namespace R54IN0.WPF
         /// <summary>
         /// 새로운 제품 노드를 추가한다.
         /// </summary>
-        private async void ExecuteNewProductNodeAddCommand()
+        private void ExecuteNewProductNodeAddCommand()
         {
             Observable<Product> newProduct = new Observable<Product>("새로운 제품");
-            await InventoryDataCommander.GetInstance().AddObservableField(newProduct);
+            InventoryDataCommander.GetInstance().AddObservableField(newProduct);
 
             var node = SelectedNodes.SingleOrDefault();
             Debug.Assert(node == null || node.Type == NodeType.FOLDER, "제품 추가시 선택된 노드는 null이거나 folder타입이어야 함");
@@ -113,16 +113,16 @@ namespace R54IN0.WPF
             //    _director.AddToRoot(newTreeViewNode);
             //}
         }
-        private async void ExecuteNewInventoryNodeAddCommand()
+        private void ExecuteNewInventoryNodeAddCommand()
         {
             if(Application.Current != null)
             {
                 TreeViewNode node = SelectedNodes.Single();
-                Observable<Product> product = InventoryDataCommander.GetInstance().SearchObservableField<Product>(node.ObservableObjectID);
+                Observable<Product> product = InventoryDataCommander.GetInstance().SearchField<Product>(node.ObservableObjectID);
                 MetroWindow metro = Application.Current.MainWindow as MetroWindow;
                 InventoryManagerDialog dialog = new InventoryManagerDialog(metro);
                 dialog.DataContext = new InventoryManagerViewModel(dialog, product);
-                await metro.ShowMetroDialogAsync(dialog, null);
+                metro.ShowMetroDialogAsync(dialog, null);
             }
         }
 
@@ -282,13 +282,13 @@ namespace R54IN0.WPF
                     break;
                 case NodeType.PRODUCT:
                     _director.Remove(selectedNode);
-                    var product = idc.SearchObservableField<Product>(selectedNode.ObservableObjectID);
-                    await idc.RemoveObservableField(product);
+                    var product = idc.SearchField<Product>(selectedNode.ObservableObjectID);
+                    idc.RemoveObservableField(product);
                     break;
                 case NodeType.INVENTORY:
                     _director.Remove(selectedNode);
-                    var inventory = idc.SearchObservableInventory(selectedNode.ObservableObjectID);
-                    await idc.RemoveObservableInventory(inventory);
+                    var inventory = idc.SearchInventory(selectedNode.ObservableObjectID);
+                    idc.RemoveInventory(inventory);
                     break;
             }
             SelectedNodes.Clear();

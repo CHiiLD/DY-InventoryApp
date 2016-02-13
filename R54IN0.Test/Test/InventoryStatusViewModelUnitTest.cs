@@ -158,7 +158,7 @@ namespace R54IN0.Test.New
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public async Task DeleteItemThenSyncDb()
+        public void DeleteItemThenSyncDb()
         {
             new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
@@ -167,10 +167,10 @@ namespace R54IN0.Test.New
 
             viewmodel.DataGridViewModel1.InventoryDataDeletionCommand.Execute(null);
 
-            var infmt = await DbAdapter.GetInstance().SelectAsync<InventoryFormat>(inventoryID);
+            var infmt = InventoryDataCommander.GetInstance().DB.Select<InventoryFormat>("ID", inventoryID);
             Assert.IsNull(infmt);
 
-            var iofmts = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(DbCommand.WHERE, "InventoryID", inventoryID);
+            var iofmts = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}'", typeof(IOStockFormat), "InventoryID", inventoryID);
             Assert.AreEqual(0, iofmts.Count());
         }
 
@@ -188,55 +188,55 @@ namespace R54IN0.Test.New
 
             viewmodel.DataGridViewModel1.InventoryDataDeletionCommand.Execute(null);
 
-            var result = InventoryDataCommander.GetInstance().SearchObservableInventory(inventoryID);
+            var result = InventoryDataCommander.GetInstance().SearchInventory(inventoryID);
             Assert.IsNull(result);
         }
 
         [TestMethod]
-        public async Task WhenDeleteMakerSyncMakers()
+        public void WhenDeleteMakerSyncMakers()
         {
             new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
 
-            var someMaker = InventoryDataCommander.GetInstance().CopyObservableFields<Maker>().Random();
+            var someMaker = InventoryDataCommander.GetInstance().CopyFields<Maker>().Random();
             Assert.IsTrue(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
-            await InventoryDataCommander.GetInstance().RemoveObservableField(someMaker);
+            InventoryDataCommander.GetInstance().RemoveObservableField(someMaker);
             Assert.IsFalse(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
         }
 
         [TestMethod]
-        public async Task WhenDeleteMeasureSyncMeasures()
+        public void WhenDeleteMeasureSyncMeasures()
         {
             new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
 
-            var someMeasure = InventoryDataCommander.GetInstance().CopyObservableFields<Measure>().Random();
+            var someMeasure = InventoryDataCommander.GetInstance().CopyFields<Measure>().Random();
             Assert.IsTrue(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
-            await InventoryDataCommander.GetInstance().RemoveObservableField(someMeasure);
+            InventoryDataCommander.GetInstance().RemoveObservableField(someMeasure);
             Assert.IsFalse(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
         }
 
         [TestMethod]
-        public async Task WhenAddNewMakerSyncMakers()
+        public void WhenAddNewMakerSyncMakers()
         {
             new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
 
             var someMaker = new Observable<Maker>("some maker");
             Assert.IsFalse(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
-            await InventoryDataCommander.GetInstance().AddObservableField(someMaker);
+            InventoryDataCommander.GetInstance().AddObservableField(someMaker);
             Assert.IsTrue(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
         }
 
         [TestMethod]
-        public async Task WhenAddNewMeasureSyncMeasures()
+        public void WhenAddNewMeasureSyncMeasures()
         {
             new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
 
             var someMeasure = new Observable<Measure>("some measure");
             Assert.IsFalse(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
-            await InventoryDataCommander.GetInstance().AddObservableField(someMeasure);
+            InventoryDataCommander.GetInstance().AddObservableField(someMeasure);
             Assert.IsTrue(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
         }
 
@@ -265,7 +265,7 @@ namespace R54IN0.Test.New
             var node = viewmodel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
             viewmodel.TreeViewViewModel.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { node }, null));
 
-            var inventories = InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(node.ObservableObjectID);
+            var inventories = InventoryDataCommander.GetInstance().SearchInventoryAsProductID(node.ObservableObjectID);
             var inventoryIds = inventories.Select(x => x.ID);
             Assert.IsTrue(viewmodel.GetDataGridItems().All(x => inventoryIds.Contains(x.ID)));
         }
@@ -282,7 +282,7 @@ namespace R54IN0.Test.New
             var inventoryNode = productNode.Root.Random();
             viewmodel.TreeViewViewModel.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { productNode, inventoryNode }, null));
 
-            var inventories = InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(productNode.ObservableObjectID);
+            var inventories = InventoryDataCommander.GetInstance().SearchInventoryAsProductID(productNode.ObservableObjectID);
             var inventoryIds = inventories.Select(x => x.ID);
             Assert.IsTrue(viewmodel.GetDataGridItems().All(x => inventoryIds.Contains(x.ID)));
         }
@@ -302,7 +302,7 @@ namespace R54IN0.Test.New
             //삭제 명령
             treeview.SelectedNodeDeletionCommand.Execute(null);
             //inventory 리스트에서도 삭제 확인
-            var inven = InventoryDataCommander.GetInstance().SearchObservableInventory(inventoryNode.ObservableObjectID);
+            var inven = InventoryDataCommander.GetInstance().SearchInventory(inventoryNode.ObservableObjectID);
             Assert.IsNull(inven);
             //treeview에서도 삭제 확인
             Assert.IsFalse(TreeViewNodeDirector.GetInstance().Contains(inventoryNode));

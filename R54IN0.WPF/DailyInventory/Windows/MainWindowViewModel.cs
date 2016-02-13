@@ -175,7 +175,7 @@ namespace R54IN0.WPF
         public void ShowAmenderWindowAsProductID(string productID)
         {
             var ofd = InventoryDataCommander.GetInstance();
-            var product = ofd.SearchObservableField<Product>(productID);
+            var product = ofd.SearchField<Product>(productID);
             if (product != null)
                 IOStockViewModel.OpenIOStockDataAmenderWindow(product);
         }
@@ -187,7 +187,7 @@ namespace R54IN0.WPF
         public void ShowAmenderWindowAsInventoryID(string inventoryID)
         {
             var ofd = InventoryDataCommander.GetInstance();
-            var inventory = ofd.SearchObservableInventory(inventoryID);
+            var inventory = ofd.SearchInventory(inventoryID);
             if (inventory != null)
                 IOStockViewModel.OpenIOStockDataAmenderWindow(inventory);
         }
@@ -251,13 +251,13 @@ namespace R54IN0.WPF
             SelectedItem = Items.Where(x => ((UserControl)x.Content).DataContext == InventoryViewModel).Single();
         }
 
-        private async void ExecuteAboutAppCommand()
+        private void ExecuteAboutAppCommand()
         {
             Window window = Application.Current.MainWindow;
             if (window != null && window is MetroWindow)
             {
                 MetroWindow metroWindow = window as MetroWindow;
-                await metroWindow.ShowMessageAsync(
+                metroWindow.ShowMessageAsync(
                     AppName,
                     AppVersion + "\n\n\n\n\n\n\n" + Copyright,
                     MessageDialogStyle.Affirmative,

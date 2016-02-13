@@ -184,25 +184,25 @@ namespace R54IN0
         protected void InitializeProperties(InventoryFormat fmt)
         {
             var ofd = InventoryDataCommander.GetInstance();
-            product = ofd.SearchObservableField<Product>(fmt.ProductID);
-            measure = ofd.SearchObservableField<Measure>(fmt.MeasureID);
-            maker = ofd.SearchObservableField<Maker>(fmt.MakerID);
+            product = ofd.SearchField<Product>(fmt.ProductID);
+            measure = ofd.SearchField<Measure>(fmt.MeasureID);
+            maker = ofd.SearchField<Maker>(fmt.MakerID);
         }
 
-        public virtual async void NotifyPropertyChanged(string name)
+        public virtual void NotifyPropertyChanged(string name)
         {
             if (propertyChanged != null)
                 propertyChanged(this, new PropertyChangedEventArgs(name));
 
             if (ID == null)
-                await InventoryDataCommander.GetInstance().AddObservableInventory(this);
+                InventoryDataCommander.GetInstance().AddInventory(this);
             else
-                await DbAdapter.GetInstance().UpdateAsync(Format, name);
+                InventoryDataCommander.GetInstance().DB.Update(Format, name);
         }
 
-        public async Task SyncDataFromServer()
+        public void Refresh()
         {
-            InventoryFormat fmt = await DbAdapter.GetInstance().SelectAsync<InventoryFormat>(ID);
+            InventoryFormat fmt = InventoryDataCommander.GetInstance().DB.Select<InventoryFormat>(nameof(ID), ID);
             if (fmt != null)
                 Format = fmt;
         }

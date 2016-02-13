@@ -261,7 +261,7 @@ namespace R54IN0.WPF
                     case IOStockType.INCOMING:
                         Project = null;
                         ProjectText = null;
-                        ClientList = new ObservableCollection<IObservableField>(ofd.CopyObservableFields<Supplier>());
+                        ClientList = new ObservableCollection<IObservableField>(ofd.CopyFields<Supplier>());
                         IsEditableSpecification = true;
                         IsReadOnlyProductTextBox = false;
                         IsEnabledWarehouseComboBox = true;
@@ -272,7 +272,7 @@ namespace R54IN0.WPF
                     case IOStockType.OUTGOING:
                         Warehouse = null;
                         WarehouseText = null;
-                        ClientList = new ObservableCollection<IObservableField>(ofd.CopyObservableFields<Customer>());
+                        ClientList = new ObservableCollection<IObservableField>(ofd.CopyFields<Customer>());
                         IsEditableSpecification = false;
                         IsReadOnlyProductTextBox = true;
                         IsEnabledWarehouseComboBox = false;
@@ -523,7 +523,7 @@ namespace R54IN0.WPF
                 if (_product != null)
                 {
                     ProductText = _product.Name;
-                    var inventoryList = InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(_product.ID);
+                    var inventoryList = InventoryDataCommander.GetInstance().SearchInventoryAsProductID(_product.ID);
                     InventoryList = inventoryList.Select(x => new NonSaveObservableInventory(new InventoryFormat(x.Format))).ToList();
                     if (InventoryList.Count() == 1)
                         Inventory = InventoryList.Single();
@@ -763,13 +763,13 @@ namespace R54IN0.WPF
         {
             var ofd = InventoryDataCommander.GetInstance();
             var oid = InventoryDataCommander.GetInstance();
-            customer = ofd.SearchObservableField<Customer>(iosFmt.CustomerID);
-            supplier = ofd.SearchObservableField<Supplier>(iosFmt.SupplierID);
-            project = ofd.SearchObservableField<Project>(iosFmt.ProjectID);
-            employee = ofd.SearchObservableField<Employee>(iosFmt.EmployeeID);
-            warehouse = ofd.SearchObservableField<Warehouse>(iosFmt.WarehouseID);
+            customer = ofd.SearchField<Customer>(iosFmt.CustomerID);
+            supplier = ofd.SearchField<Supplier>(iosFmt.SupplierID);
+            project = ofd.SearchField<Project>(iosFmt.ProjectID);
+            employee = ofd.SearchField<Employee>(iosFmt.EmployeeID);
+            warehouse = ofd.SearchField<Warehouse>(iosFmt.WarehouseID);
 
-            Product = oid.SearchObservableInventory(iosFmt.InventoryID).Product;
+            Product = oid.SearchInventory(iosFmt.InventoryID).Product;
             Inventory = InventoryList.Where(x => x.ID == iosFmt.InventoryID).SingleOrDefault();
             CalcInventoryQuantityProperty(Quantity);
         }
@@ -793,11 +793,11 @@ namespace R54IN0.WPF
             ComboBoxKeyUpEventCommand = new RelayCommand<KeyEventArgs>(ExecuteComboBoxKeyUpEventCommand);
 
             var ofd = InventoryDataCommander.GetInstance();
-            _makerList = new ObservableCollection<Observable<Maker>>(ofd.CopyObservableFields<Maker>());
-            _measureList = new ObservableCollection<Observable<Measure>>(ofd.CopyObservableFields<Measure>());
-            _projectList = new ObservableCollection<Observable<Project>>(ofd.CopyObservableFields<Project>());
-            _employeeList = new ObservableCollection<Observable<Employee>>(ofd.CopyObservableFields<Employee>());
-            _warehouseList = new ObservableCollection<Observable<Warehouse>>(ofd.CopyObservableFields<Warehouse>());
+            _makerList = new ObservableCollection<Observable<Maker>>(ofd.CopyFields<Maker>());
+            _measureList = new ObservableCollection<Observable<Measure>>(ofd.CopyFields<Measure>());
+            _projectList = new ObservableCollection<Observable<Project>>(ofd.CopyFields<Project>());
+            _employeeList = new ObservableCollection<Observable<Employee>>(ofd.CopyFields<Employee>());
+            _warehouseList = new ObservableCollection<Observable<Warehouse>>(ofd.CopyFields<Warehouse>());
         }
 
         /// <summary>
@@ -827,48 +827,43 @@ namespace R54IN0.WPF
                 window.Close();
         }
 
-        private async void ExecuteComboBoxItemDeleteCommand(object obj)
+        private void ExecuteComboBoxItemDeleteCommand(object obj)
         {
             IObservableField observableField = obj as IObservableField;
-            await InventoryDataCommander.GetInstance().RemoveObservableField(observableField);
+            InventoryDataCommander.GetInstance().RemoveObservableField(observableField);
         }
 
-        private async void ExecuteLoadLastRecordCommand()
+        private void ExecuteLoadLastRecordCommand()
         {
             if (Inventory == null)
                 return;
 
             if (StockType == IOStockType.OUTGOING)
             {
-                var qresult = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
-                DbCommand.WHERE, "InventoryID", Inventory.ID,
-                DbCommand.WHERE, "StockType", IOStockType.INCOMING,
-                DbCommand.DESCENDING, "Date",
-                DbCommand.LIMIT, 1);
+                var qresult = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}' AND {3} = '{4}' order by desc {5} limit 1",
+                    typeof(IOStockFormat).Name, nameof(Inventory.ID), Inventory.ID, "StockType", (int)IOStockType.INCOMING, "Date");
                 if (qresult.Count() == 1)
                     UnitPrice = qresult.Single().UnitPrice;
             }
 
-            var query = await DbAdapter.GetInstance().QueryAsync<IOStockFormat>(
-                DbCommand.WHERE, "InventoryID", Inventory.ID,
-                DbCommand.WHERE, "StockType", StockType,
-                DbCommand.DESCENDING, "Date",
-                DbCommand.LIMIT, 1);
+            var query = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}' AND {3} = '{4}' order by desc {5} limit 1",
+                    typeof(IOStockFormat).Name, nameof(Inventory.ID), Inventory.ID, "StockType", (int)IOStockType.INCOMING, "Date");
+
             if (query.Count() != 1)
                 return;
             var item = query.Single();
             Quantity = item.Quantity;
-            Employee = InventoryDataCommander.GetInstance().SearchObservableField<Employee>(item.EmployeeID);
+            Employee = InventoryDataCommander.GetInstance().SearchField<Employee>(item.EmployeeID);
             if (StockType == IOStockType.INCOMING)
             {
-                Client = InventoryDataCommander.GetInstance().SearchObservableField<Supplier>(item.SupplierID);
-                Warehouse = InventoryDataCommander.GetInstance().SearchObservableField<Warehouse>(item.WarehouseID);
+                Client = InventoryDataCommander.GetInstance().SearchField<Supplier>(item.SupplierID);
+                Warehouse = InventoryDataCommander.GetInstance().SearchField<Warehouse>(item.WarehouseID);
                 UnitPrice = item.UnitPrice;
             }
             else if (StockType == IOStockType.OUTGOING)
             {
-                Client = InventoryDataCommander.GetInstance().SearchObservableField<Customer>(item.CustomerID);
-                Project = InventoryDataCommander.GetInstance().SearchObservableField<Project>(item.ProjectID);
+                Client = InventoryDataCommander.GetInstance().SearchField<Customer>(item.CustomerID);
+                Project = InventoryDataCommander.GetInstance().SearchField<Project>(item.ProjectID);
             }
         }
 
@@ -929,7 +924,7 @@ namespace R54IN0.WPF
             if (node != null)
             {
                 var ofd = InventoryDataCommander.GetInstance();
-                var product = ofd.SearchObservableField<Product>(node.ObservableObjectID);
+                var product = ofd.SearchField<Product>(node.ObservableObjectID);
                 if (product != null)
                     Product = product;
             }
@@ -950,9 +945,9 @@ namespace R54IN0.WPF
             return Product != null && Inventory != null;
         }
 
-        private async void ExecuteRecordCommand()
+        private void ExecuteRecordCommand()
         {
-            await RecordAsync();
+            Record();
             ExecuteWindowCloseCommand();
         }
 
@@ -1031,7 +1026,7 @@ namespace R54IN0.WPF
                 EmployeeList.Remove(item as Observable<Employee>);
         }
 
-        public async Task<IObservableIOStockProperties> RecordAsync()
+        public IObservableIOStockProperties Record()
         {
             if (Product == null && string.IsNullOrEmpty(ProductText))
                 throw new Exception("제품의 이름을 입력해주세요.");
@@ -1043,29 +1038,29 @@ namespace R54IN0.WPF
             switch (_mode)
             {
                 case Mode.ADD:
-                    await CreateIOStockNewProperies();
-                    await ApplyModifiedInventoryProperties();
-                    await DbAdapter.GetInstance().InsertAsync(Format);
+                    CreateIOStockNewProperies();
+                    ApplyModifiedInventoryProperties();
+                    InventoryDataCommander.GetInstance().DB.Insert(Format);
                     result = new ObservableIOStock(Format);
                     CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(result);
                     break;
 
                 case Mode.MODIFY:
-                    await ApplyModifiedIOStockProperties();
-                    await ApplyModifiedInventoryProperties();
-                    await DbAdapter.GetInstance().UpdateAsync(Format);
+                    ApplyModifiedIOStockProperties();
+                    ApplyModifiedInventoryProperties();
+                    InventoryDataCommander.GetInstance().DB.Update(Format);
                     _originSource.Format = Format;
                     result = _originSource;
                     break;
             }
-            await RefreshDataGridItems();
+            RefreshDataGridItems();
             return result;
         }
 
         /// <summary>
         /// 새로 추가할 텍스트 필드들을 Observable<T>객체로 초기화하여 생성
         /// </sumary>
-        private async Task CreateIOStockNewProperies()
+        private void CreateIOStockNewProperies()
         {
             switch (StockType)
             {
@@ -1073,13 +1068,13 @@ namespace R54IN0.WPF
                     if (Client == null && !string.IsNullOrEmpty(ClientText))
                     {
                         var supplier = new Observable<Supplier>(ClientText);
-                        await InventoryDataCommander.GetInstance().AddObservableField(supplier);
+                        InventoryDataCommander.GetInstance().AddObservableField(supplier);
                         Supplier = supplier;
                     }
                     if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
                     {
                         warehouse = new Observable<Warehouse>(WarehouseText);
-                        await InventoryDataCommander.GetInstance().AddObservableField(warehouse);
+                        InventoryDataCommander.GetInstance().AddObservableField(warehouse);
                         Warehouse = warehouse;
                     }
                     break;
@@ -1088,13 +1083,13 @@ namespace R54IN0.WPF
                     if (Client == null && !string.IsNullOrEmpty(ClientText))
                     {
                         var customer = new Observable<Customer>(ClientText);
-                        await InventoryDataCommander.GetInstance().AddObservableField(customer);
+                        InventoryDataCommander.GetInstance().AddObservableField(customer);
                         Customer = customer;
                     }
                     if (Project == null && !string.IsNullOrEmpty(ProjectText))
                     {
                         var project = new Observable<Project>(ProjectText);
-                        await InventoryDataCommander.GetInstance().AddObservableField(project);
+                        InventoryDataCommander.GetInstance().AddObservableField(project);
                         Project = project;
                     }
                     break;
@@ -1102,19 +1097,19 @@ namespace R54IN0.WPF
             if (Employee == null && !string.IsNullOrEmpty(EmployeeText))
             {
                 var employee = new Observable<Employee>(EmployeeText);
-                await InventoryDataCommander.GetInstance().AddObservableField(employee);
+                InventoryDataCommander.GetInstance().AddObservableField(employee);
                 Employee = employee;
             }
             if (Maker == null && !string.IsNullOrEmpty(MakerText))
             {
                 var maker = new Observable<Maker>(MakerText);
-                await InventoryDataCommander.GetInstance().AddObservableField(maker);
+                InventoryDataCommander.GetInstance().AddObservableField(maker);
                 Maker = maker;
             }
             if (Measure == null && !string.IsNullOrEmpty(MeasureText))
             {
                 var measure = new Observable<Measure>(MeasureText);
-                await InventoryDataCommander.GetInstance().AddObservableField(measure);
+                InventoryDataCommander.GetInstance().AddObservableField(measure);
                 Measure = measure;
             }
         }
@@ -1122,7 +1117,7 @@ namespace R54IN0.WPF
         /// <summary>
         /// 이름이 변경된 객체를 수정
         /// </summary>
-        private async Task ApplyModifiedIOStockProperties()
+        private void ApplyModifiedIOStockProperties()
         {
             switch (StockType)
             {
@@ -1167,13 +1162,13 @@ namespace R54IN0.WPF
                 _originSource.Inventory.Measure.Name = MeasureText;
                 Measure = _originSource.Inventory.Measure;
             }
-            await CreateIOStockNewProperies();
+            CreateIOStockNewProperies();
         }
 
         /// <summary>
         /// 수정 또는 새로운 재고 데이터를 생성하여 데이터베이스에 이를 저장한다.
         /// </summary>
-        private async Task ApplyModifiedInventoryProperties()
+        private void ApplyModifiedInventoryProperties()
         {
             ObservableInventory inventory = null;
             if (Inventory == null)
@@ -1181,15 +1176,15 @@ namespace R54IN0.WPF
                 if (Product == null)
                 {
                     Observable<Product> product = new Observable<Product>(ProductText);
-                    await InventoryDataCommander.GetInstance().AddObservableField(product);
+                    InventoryDataCommander.GetInstance().AddObservableField(product);
                     Product = product;
                 }
                 inventory = new ObservableInventory(Product, SpecificationText, InventoryQuantity, SpecificationMemo, Maker, Measure);
-                await InventoryDataCommander.GetInstance().AddObservableInventory(inventory);
+                InventoryDataCommander.GetInstance().AddInventory(inventory);
             }
             else
             {
-                inventory = InventoryDataCommander.GetInstance().SearchObservableInventory(Inventory.ID);
+                inventory = InventoryDataCommander.GetInstance().SearchInventory(Inventory.ID);
                 inventory.Format = Inventory.Format;
                 inventory.Quantity = InventoryQuantity;
             }
@@ -1201,7 +1196,7 @@ namespace R54IN0.WPF
         /// 관련 IOStock 데이터들의 잔여수량 및 재고수량을 다시 계산하여 전부 업데이트하고 Owner의 DataGridItems 역시 변화된 값들을 반영하게 한다.
         /// TODO
         /// </summary>
-        private async Task RefreshDataGridItems()
+        private void RefreshDataGridItems()
         {
             if (_ioStockStatusViewModel != null && _ioStockStatusViewModel.DataGridItemSources != null)
             {
@@ -1209,7 +1204,7 @@ namespace R54IN0.WPF
                 foreach (var src in backupSource)
                 {
                     if (src.Inventory.ID == Inventory.ID && src.Date > Date)
-                        await src.SyncDataFromServer();
+                        src.Refresh();
                 }
             }
         }

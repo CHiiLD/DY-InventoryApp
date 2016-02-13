@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel.Resources>
-                <Style TargetType="Label" BasedOn="{StaticResource MetroLabel}" >
+                <Style x:Key="LabelStyle" TargetType="Label" BasedOn="{StaticResource MetroLabel}" >
                     <Setter Property="Width" Value="80" />
                 </Style>
                 <Style TargetType="DockPanel">
@@ -22,23 +22,30 @@
             <GroupBox Header="필수 정보">
                 <StackPanel>
                     <DockPanel>
-                        <Label DockPanel.Dock="Left" Content="종류" />
+                        <Label DockPanel.Dock="Left" Content="종류" Style="{DynamicResource LabelStyle}" />
                         <UniformGrid Width="135" HorizontalAlignment="Left" Rows="1" Columns="2">
-                            <RadioButton Content="입고"/>
-                            <RadioButton Content="출고"/>
+                            <UniformGrid.Resources>
+                                <local:EnumBooleanConverter x:Key="enumBooleanConverter" />
+                            </UniformGrid.Resources>
+                            <RadioButton x:Name="IncomingStockRadioButton" Content="입고" IsChecked="{Binding StockType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=INCOMING}"/>
+                            <RadioButton x:Name="OutgoingStockRadioButton" Content="출고" IsChecked="{Binding StockType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=OUTGOING}"/>
                         </UniformGrid>
                     </DockPanel>
                     <DockPanel>
-                        <Label DockPanel.Dock="Left" Content="규격" />
-                        <ComboBox DockPanel.Dock="Left" />
+                        <Label DockPanel.Dock="Left" Content="날짜"  Style="{DynamicResource LabelStyle}"/>
+                        <DatePicker SelectedDate="{Binding SelectedDate}" />
                     </DockPanel>
                     <DockPanel>
-                        <Label DockPanel.Dock="Left" Content="개수" />
-                        <mah:NumericUpDown />
+                        <Label DockPanel.Dock="Left" Content="규격"  Style="{DynamicResource LabelStyle}"/>
+                        <ComboBox DockPanel.Dock="Left" ItemsSource="{Binding Inventories}" SelectedItem="{Binding SelectedInventory}" DisplayMemberPath="Specification" IsEnabled="{Binding IsEnabledInventoryComboBox}" />
                     </DockPanel>
                     <DockPanel>
-                        <Label DockPanel.Dock="Left" Content="단가" />
-                        <mah:NumericUpDown />
+                        <Label DockPanel.Dock="Left" Content="개수" Style="{DynamicResource LabelStyle}" />
+                        <mah:NumericUpDown Minimum="1" Value="{Binding Quantity}"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label DockPanel.Dock="Left" Content="단가" Style="{DynamicResource LabelStyle}" />
+                        <mah:NumericUpDown Minimum="0" Value="{Binding UnitPrice}" />
                     </DockPanel>
                 </StackPanel>
             </GroupBox>
@@ -46,19 +53,45 @@
             <GroupBox Header="부가 정보">
                 <StackPanel>
                     <DockPanel>
-                        <Label DockPanel.Dock="Left" Content="입고처" />
-                        <ComboBox DockPanel.Dock="Left" />
+                        <Label DockPanel.Dock="Left">
+                            <Label.Style>
+                                <Style TargetType="{x:Type Label}" BasedOn="{StaticResource LabelStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=IncomingStockRadioButton}" Value="True">
+                                            <Setter Property="Content" Value="입고처"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=OutgoingStockRadioButton}" Value="True">
+                                            <Setter Property="Content" Value="출고처"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding AccountText}" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" DisplayMemberPath="Name"/>
                     </DockPanel>
                     <DockPanel>
-                        <Label DockPanel.Dock="Left" Content="보관장소"/>
-                        <ComboBox DockPanel.Dock="Left" />
+                        <Label DockPanel.Dock="Left">
+                            <Label.Style>
+                                <Style TargetType="{x:Type Label}" BasedOn="{StaticResource LabelStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=IncomingStockRadioButton}" Value="True">
+                                            <Setter Property="Content" Value="보관장소"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=OutgoingStockRadioButton}" Value="True">
+                                            <Setter Property="Content" Value="프로젝트"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding SecondComboboxText}" ItemsSource="{Binding SecondComboboxItemsSource}" SelectedItem="{Binding SelectedSecondComboboxItem}" DisplayMemberPath="Name"/>
                     </DockPanel>
                     <DockPanel>
-                        <Label DockPanel.Dock="Left" Content="담당자"/>
-                        <ComboBox DockPanel.Dock="Left" />
+                        <Label DockPanel.Dock="Left" Content="담당자" Style="{DynamicResource LabelStyle}"/>
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding EmployeeText}" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" DisplayMemberPath="Name"/>
                     </DockPanel>
                     <DockPanel>
-                        <TextBox Grid.Column="1" Text="{Binding SpecificationMemo}">
+                        <TextBox Grid.Column="1" Text="{Binding Memo}">
                             <TextBox.Style>
                                 <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MetroTextBox}">
                                     <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True"/>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Metro.NET45", "MahApps.Metro\MahApps.Metro\MahApps.Metro.NET45.csproj", "{942D11C4-29F5-46C4-8C14-4B976D56C637}"
 EndProject
@@ -24,8 +24,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (PCL)", "mvvmlight\GalaSoft.MvvmLight\GalaSoft.MvvmLight (PCL)\GalaSoft.MvvmLight (PCL).csproj", "{6A912701-3BA1-4975-ADBF-160CAF66B640}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Metro.Resources", "MahApps.Metro\MahApps.Metro.Resources\MahApps.Metro.Resources.csproj", "{E708AC99-605B-42A0-8D20-ABCA8FE42DD2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "overlap", "overlap\overlap.csproj", "{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.Format", "R54IN0.Format\R54IN0.Format.csproj", "{54185BEA-D735-4A8E-808C-807F8B626463}"
 EndProject
@@ -162,18 +160,6 @@ Global
 		{E708AC99-605B-42A0-8D20-ABCA8FE42DD2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E708AC99-605B-42A0-8D20-ABCA8FE42DD2}.Release|x86.ActiveCfg = Release|Any CPU
 		{E708AC99-605B-42A0-8D20-ABCA8FE42DD2}.Release|x86.Build.0 = Release|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.AppVeyor|x86.ActiveCfg = Release|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.AppVeyor|x86.Build.0 = Release|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Debug|x86.Build.0 = Debug|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Release|x86.ActiveCfg = Release|Any CPU
-		{A72B2F7C-9B42-4F9B-BB4B-A1B9FA00DD23}.Release|x86.Build.0 = Release|Any CPU
 		{54185BEA-D735-4A8E-808C-807F8B626463}.AppVeyor|Any CPU.ActiveCfg = Release|Any CPU
 		{54185BEA-D735-4A8E-808C-807F8B626463}.AppVeyor|Any CPU.Build.0 = Release|Any CPU
 		{54185BEA-D735-4A8E-808C-807F8B626463}.AppVeyor|x86.ActiveCfg = Release|Any CPU

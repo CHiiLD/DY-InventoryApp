@@ -7,26 +7,27 @@ namespace R54IN0
 {
     internal class ObservableFieldDirector
     {
-        private static ObservableFieldDirector _thiz;
-
         private IDictionary<Type, Dictionary<string, IObservableField>> _dictionary;
+        private SQLiteServer _db;
 
-        private ObservableFieldDirector()
+        internal ObservableFieldDirector(SQLiteServer _db)
         {
+            this._db = _db;
+            Load();
         }
 
-        internal async Task LoadDataFromServerAsync()
+        internal void Load()
         {
             _dictionary = new Dictionary<Type, Dictionary<string, IObservableField>>();
 
-            var customer = await DbAdapter.GetInstance().SelectAllAsync<Customer>();
-            var employee = await DbAdapter.GetInstance().SelectAllAsync<Employee>();
-            var maker = await DbAdapter.GetInstance().SelectAllAsync<Maker>();
-            var measure = await DbAdapter.GetInstance().SelectAllAsync<Measure>();
-            var product = await DbAdapter.GetInstance().SelectAllAsync<Product>();
-            var project = await DbAdapter.GetInstance().SelectAllAsync<Project>();
-            var supplier = await DbAdapter.GetInstance().SelectAllAsync<Supplier>();
-            var warehouse = await DbAdapter.GetInstance().SelectAllAsync<Warehouse>();
+            var customer = _db.Select<Customer>();
+            var employee = _db.Select<Employee>();
+            var maker = _db.Select<Maker>();
+            var measure = _db.Select<Measure>();
+            var product = _db.Select<Product>();
+            var project = _db.Select<Project>();
+            var supplier = _db.Select<Supplier>();
+            var warehouse = _db.Select<Warehouse>();
 
             _dictionary[typeof(Customer)] = customer.ToDictionary<Customer, string, IObservableField>(x => x.ID, x => new Observable<Customer>(x));
             _dictionary[typeof(Employee)] = employee.ToDictionary<Employee, string, IObservableField>(x => x.ID, x => new Observable<Employee>(x));
@@ -36,20 +37,6 @@ namespace R54IN0
             _dictionary[typeof(Project)] = project.ToDictionary<Project, string, IObservableField>(x => x.ID, x => new Observable<Project>(x));
             _dictionary[typeof(Supplier)] = supplier.ToDictionary<Supplier, string, IObservableField>(x => x.ID, x => new Observable<Supplier>(x));
             _dictionary[typeof(Warehouse)] = warehouse.ToDictionary<Warehouse, string, IObservableField>(x => x.ID, x => new Observable<Warehouse>(x));
-        }
-
-        public static ObservableFieldDirector GetInstance()
-        {
-            if (_thiz == null)
-                _thiz = new ObservableFieldDirector();
-            return _thiz;
-        }
-
-        public static void Destory()
-        {
-            if (_thiz != null)
-                _thiz._dictionary = null;
-            _thiz = null;
         }
 
         public Observable<T> SearchObservableField<T>(string id) where T : class, IField, new()

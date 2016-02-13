@@ -253,30 +253,30 @@ namespace R54IN0
         protected virtual void InitializeProperties(IOStockFormat iosfmt)
         {
             var ofd = InventoryDataCommander.GetInstance();
-            customer = ofd.SearchObservableField<Customer>(iosfmt.CustomerID);
-            supplier = ofd.SearchObservableField<Supplier>(iosfmt.SupplierID);
-            project = ofd.SearchObservableField<Project>(iosfmt.ProjectID);
-            employee = ofd.SearchObservableField<Employee>(iosfmt.EmployeeID);
-            warehouse = ofd.SearchObservableField<Warehouse>(iosfmt.WarehouseID);
+            customer = ofd.SearchField<Customer>(iosfmt.CustomerID);
+            supplier = ofd.SearchField<Supplier>(iosfmt.SupplierID);
+            project = ofd.SearchField<Project>(iosfmt.ProjectID);
+            employee = ofd.SearchField<Employee>(iosfmt.EmployeeID);
+            warehouse = ofd.SearchField<Warehouse>(iosfmt.WarehouseID);
 
             var oid = InventoryDataCommander.GetInstance();
-            _inventory = oid.SearchObservableInventory(iosfmt.InventoryID);
+            _inventory = oid.SearchInventory(iosfmt.InventoryID);
         }
 
-        public virtual async void NotifyPropertyChanged(string name)
+        public virtual void NotifyPropertyChanged(string name)
         {
             if (propertyChanged != null)
                 propertyChanged(this, new PropertyChangedEventArgs(name));
 
             if (ID == null)
-                await DbAdapter.GetInstance().InsertAsync(Format);
+                InventoryDataCommander.GetInstance().DB.Insert(Format);
             else
-                await DbAdapter.GetInstance().UpdateAsync(Format, name);
+                InventoryDataCommander.GetInstance().DB.Update(Format, name);
         }
 
-        public async Task SyncDataFromServer()
+        public void Refresh()
         {
-            IOStockFormat fmt = await DbAdapter.GetInstance().SelectAsync<IOStockFormat>(ID);
+            IOStockFormat fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>(nameof(ID), ID);
             if (fmt != null)
                 Format = fmt;
         }

@@ -58,7 +58,7 @@ namespace R54IN0.WPF
             Type = NodeType.PRODUCT;
             ObservableObjectID = product.ID;
 
-            var invnetories = InventoryDataCommander.GetInstance().SearchObservableInventoryAsProductID(ObservableObjectID);
+            var invnetories = InventoryDataCommander.GetInstance().SearchInventoryAsProductID(ObservableObjectID);
             foreach (var inventory in invnetories)
             {
                 if (Root.All(x => x.ObservableObjectID != inventory.ID))
@@ -115,6 +115,7 @@ namespace R54IN0.WPF
                             product.PropertyChanged += OnProductPropertyChanged; //이벤트 적용
                         }
                         break;
+
                     case NodeType.INVENTORY:
                         ObservableInventory inventory = GetObservableInventory(value);
                         if (inventory != null)
@@ -123,8 +124,10 @@ namespace R54IN0.WPF
                             inventory.PropertyChanged += OnInventoryPropertyChanged; //이벤트 적용
                         }
                         break;
+
                     case NodeType.FOLDER:
                         break;
+
                     default:
                         throw new NotSupportedException();
                 }
@@ -154,6 +157,7 @@ namespace R54IN0.WPF
                             product.PropertyChanged += OnProductPropertyChanged;
                         }
                         break;
+
                     case NodeType.INVENTORY:
                         ObservableInventory inventory = GetObservableInventory(ObservableObjectID);
                         if (inventory != null)
@@ -272,7 +276,7 @@ namespace R54IN0.WPF
             if (!string.IsNullOrEmpty(productID) && Type == NodeType.PRODUCT)
             {
                 var ofd = InventoryDataCommander.GetInstance();
-                Observable<Product> product = ofd.SearchObservableField<Product>(productID);
+                Observable<Product> product = ofd.SearchField<Product>(productID);
                 return product;
             }
             return null;
@@ -283,7 +287,7 @@ namespace R54IN0.WPF
             if (!string.IsNullOrEmpty(inventoryFormatID) && Type == NodeType.INVENTORY)
             {
                 var ofd = InventoryDataCommander.GetInstance();
-                ObservableInventory inventory = ofd.SearchObservableInventory(inventoryFormatID);
+                ObservableInventory inventory = ofd.SearchInventory(inventoryFormatID);
                 return inventory;
             }
             return null;

@@ -6,25 +6,19 @@ namespace R54IN0
 {
     internal class ObservableInventoryDirector
     {
-        private static ObservableInventoryDirector _thiz;
         private IDictionary<string, ObservableInventory> _idKey;
+        private SQLiteServer _db;
 
-        private ObservableInventoryDirector()
+        internal ObservableInventoryDirector(SQLiteServer _db)
         {
+            this._db = _db;
         }
 
-        internal async Task LoadDataFromServerAsync()
+        public void Load()
         {
             _idKey = new Dictionary<string, ObservableInventory>();
-            var formats = await DbAdapter.GetInstance().SelectAllAsync<InventoryFormat>();
+            var formats = _db.Select<InventoryFormat>();
             _idKey = formats.Select(x => new ObservableInventory(x)).ToDictionary(x => x.ID);
-        }
-
-        public static ObservableInventoryDirector GetInstance()
-        {
-            if (_thiz == null)
-                _thiz = new ObservableInventoryDirector();
-            return _thiz;
         }
 
         public ObservableInventory SearchObservableInventory(string id)
@@ -42,13 +36,6 @@ namespace R54IN0
         public List<ObservableInventory> CopyObservableInventories()
         {
             return _idKey.Values.ToList();
-        }
-
-        public static void Destory()
-        {
-            if (_thiz != null)
-                _thiz._idKey = null;
-            _thiz = null;
         }
 
         public void AddObservableInventory(ObservableInventory observableInventory)

@@ -48,8 +48,8 @@ namespace R54IN0.WPF
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
 
             var idc = InventoryDataCommander.GetInstance();
-            _makerList = new ObservableCollection<Observable<Maker>>(idc.CopyObservableFields<Maker>());
-            _measureList = new ObservableCollection<Observable<Measure>>(idc.CopyObservableFields<Measure>());
+            _makerList = new ObservableCollection<Observable<Maker>>(idc.CopyFields<Maker>());
+            _measureList = new ObservableCollection<Observable<Measure>>(idc.CopyFields<Measure>());
         }
 
         public InventoryManagerViewModel(InventoryManagerDialog dialog, Observable<Product> product) : this(product)
@@ -175,7 +175,7 @@ namespace R54IN0.WPF
 
         private async void ExecuteAddCommand()
         {
-            await Register();
+            Register();
             await _control.RequestCloseAsync();
         }
 
@@ -190,7 +190,7 @@ namespace R54IN0.WPF
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
-        public async Task<ObservableInventory> Register()
+        public ObservableInventory Register()
         {
             var maker = Maker;
             var measure = Measure;
@@ -198,16 +198,16 @@ namespace R54IN0.WPF
             if (maker == null && MakerText != null)
             {
                 maker = new Observable<Maker>(MakerText);
-                await InventoryDataCommander.GetInstance().AddObservableField(maker);
+                InventoryDataCommander.GetInstance().AddObservableField(maker);
             }
             if (measure == null && MeasureText != null)
             {
                 measure = new Observable<Measure>(MeasureText);
-                await InventoryDataCommander.GetInstance().AddObservableField(measure);
+                InventoryDataCommander.GetInstance().AddObservableField(measure);
             }
 
             ObservableInventory inventory = new ObservableInventory(_product, Specification, 0, Memo, maker, measure);
-            await InventoryDataCommander.GetInstance().AddObservableInventory(inventory);
+            InventoryDataCommander.GetInstance().AddInventory(inventory);
 
             return inventory;
         }
