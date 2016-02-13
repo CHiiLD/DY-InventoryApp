@@ -1,6 +1,5 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using R54IN0;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace R54IN0.Test
 {

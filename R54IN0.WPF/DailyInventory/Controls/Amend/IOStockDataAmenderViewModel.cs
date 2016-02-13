@@ -840,14 +840,14 @@ namespace R54IN0.WPF
 
             if (StockType == IOStockType.OUTGOING)
             {
-                var qresult = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}' AND {3} = '{4}' order by desc {5} limit 1",
-                    typeof(IOStockFormat).Name, nameof(Inventory.ID), Inventory.ID, "StockType", (int)IOStockType.INCOMING, "Date");
+                var qresult = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}' and {3} = '{4}' order by {5} desc limit 1;",
+                    typeof(IOStockFormat).Name, "InventoryID", Inventory.ID, "StockType", (int)IOStockType.INCOMING, "Date");
                 if (qresult.Count() == 1)
                     UnitPrice = qresult.Single().UnitPrice;
             }
 
-            var query = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}' AND {3} = '{4}' order by desc {5} limit 1",
-                    typeof(IOStockFormat).Name, nameof(Inventory.ID), Inventory.ID, "StockType", (int)IOStockType.INCOMING, "Date");
+            var query = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}' and {3} = '{4}' order by {5} desc limit 1;",
+                    typeof(IOStockFormat).Name, "InventoryID", Inventory.ID, "StockType", (int)StockType, "Date");
 
             if (query.Count() != 1)
                 return;

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace R54IN0.Test
@@ -579,12 +578,12 @@ namespace R54IN0.Test
             if (proejct != null)
             {
                 IEnumerable<IOStockFormat> formats = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>(
-                    "select * from IOStockFormat where {0} = '{1}';", 
+                    "select * from IOStockFormat where {0} = '{1}';",
                     "ProjectID", proejct.ID);
                 if (formats != null)
-                { 
-                    foreach(var x in formats.Select(x => new IOStockDataGridItem(x)))
-                    viewmodel.DataGridViewModel.Items.Add(x);
+                {
+                    foreach (var x in formats.Select(x => new IOStockDataGridItem(x)))
+                        viewmodel.DataGridViewModel.Items.Add(x);
                 }
             }
 

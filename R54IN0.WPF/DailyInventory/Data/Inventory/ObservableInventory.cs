@@ -197,7 +197,7 @@ namespace R54IN0
             if (ID == null)
                 InventoryDataCommander.GetInstance().AddInventory(this);
             else
-                InventoryDataCommander.GetInstance().DB.Update(Format, name);
+                InventoryDataCommander.GetInstance().DB.Update(Format);
         }
 
         public void Refresh()

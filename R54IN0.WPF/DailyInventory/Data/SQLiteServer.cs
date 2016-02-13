@@ -9,6 +9,7 @@ namespace R54IN0
     public class SQLiteServer
     {
         public const string DATASOURCE = "inventory.db";
+        public const string DATETIME = "yyyy-MM-dd HH:mm:ss.fff";
         private SQLiteConnection _conn;
 
         public void Close()
@@ -82,6 +83,9 @@ namespace R54IN0
 
         public void Insert<TableT>(TableT item) where TableT : class, IID
         {
+            if (string.IsNullOrEmpty(item.ID))
+                item.ID = Guid.NewGuid().ToString();
+
             string sql = string.Format("insert into {0} (", typeof(TableT).Name);
             StringBuilder sb = new StringBuilder(sql);
             StringBuilder valueSb = new StringBuilder(") values (");
@@ -97,7 +101,7 @@ namespace R54IN0
                 object value = property.GetValue(item);
                 valueSb.Append('\'');
                 if (value is DateTime)
-                    valueSb.Append(((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                    valueSb.Append(((DateTime)value).ToString(DATETIME));
                 else if (value is Enum)
                     valueSb.Append((int)value);
                 else
@@ -119,6 +123,7 @@ namespace R54IN0
         {
             string sql = string.Format("select * from {0};", typeof(TableT).Name);
             Console.WriteLine(sql);
+            List<TableT> result = new List<TableT>();
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
             using (SQLiteDataReader rdr = cmd.ExecuteReader())
             {
@@ -134,9 +139,10 @@ namespace R54IN0
                         object value = rdr[fieldName];
                         property.SetValue(table, value);
                     }
-                    yield return table;
+                    result.Add(table);
                 }
             }
+            return result;
         }
 
         public TableT Select<TableT>(string idColName, string id) where TableT : class, IID, new()
@@ -172,6 +178,7 @@ namespace R54IN0
         public IEnumerable<TableT> Query<TableT>(string sql) where TableT : class, IID, new()
         {
             Console.WriteLine(sql);
+            List<TableT> result = new List<TableT>();
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
             using (SQLiteDataReader rdr = cmd.ExecuteReader())
             {
@@ -187,10 +194,12 @@ namespace R54IN0
                         object value = rdr[fieldName];
                         property.SetValue(table, value);
                     }
-                    yield return table;
+                    result.Add(table);
                 }
             }
+            return result;
         }
+
         public void Update<TableT>(TableT item) where TableT : class, IID
         {
             string sql = string.Format("update {0} set ", typeof(TableT).Name);
@@ -202,10 +211,17 @@ namespace R54IN0
                     continue;
                 string fieldName = property.Name;
                 object value = property.GetValue(item);
+
+                if (value != null && value.GetType().IsEnum)
+                    value = (int)value;
+                else if (value != null && value.GetType() == typeof(DateTime))
+                    value = ((DateTime)value).ToString(DATETIME);
+
                 sb.Append(string.Format("{0} = '{1}', ", fieldName, value));
             }
             sb.Remove(sb.Length - 2, 2);
             sb.Append(string.Format(" where {0} = '{1}';", nameof(item.ID), item.ID));
+            sql = sb.ToString();
             Console.WriteLine(sql);
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
                 cmd.ExecuteNonQuery();
@@ -214,6 +230,11 @@ namespace R54IN0
         public void Update<TableT>(TableT item, string propertyName) where TableT : class, IID
         {
             object value = typeof(TableT).GetProperty(propertyName).GetValue(item);
+            if (value.GetType().IsEnum)
+                value = (int)value;
+            else if (value.GetType() == typeof(DateTime))
+                value = ((DateTime)value).ToString(DATETIME);
+
             string sql = string.Format("update {0} set {1} = '{2}' where {3} = '{4}';", typeof(TableT).Name, propertyName, value, nameof(item.ID), item.ID);
             Console.WriteLine(sql);
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))

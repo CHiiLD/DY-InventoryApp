@@ -81,6 +81,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Test\AmenderViewModelUnitTest.cs" />
+    <Compile Include="Test\DummyUnitTest.cs" />
     <Compile Include="Test\IOStockManagerViewModelUnitTest.cs" />
     <Compile Include="Test\SQLiteServerUnitTest.cs" />
     <Compile Include="Test\TreeViewViewModelUnitTest.cs" />

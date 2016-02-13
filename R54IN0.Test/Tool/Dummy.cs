@@ -1,6 +1,7 @@
 ﻿using R54IN0.WPF;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace R54IN0.Test
 {
@@ -237,16 +238,41 @@ namespace R54IN0.Test
                         qty -= isfmt.Quantity;
                     }
                     ifmt.Quantity = qty;
-                    ifmt.Save<InventoryFormat>();
+                    InventoryDataCommander.GetInstance().DB.Update(ifmt, "Quantity");
                 }
             }
         }
 
         public void Create()
         {
+            InventoryDataCommander.Destroy();
             CollectionViewModelObserverSubject.Destory();
             MainWindowViewModel.Destory();
             TreeViewNodeDirector.Destroy();
+
+            string connstr = string.Format("Data Source={0}", SQLiteServer.DATASOURCE);
+            var conn = new SQLiteConnection(connstr);
+            conn.Open();
+            string sql = "select name from sqlite_master;";
+            Console.WriteLine(sql);
+            List<string> tablenames = new List<string>();
+            using (SQLiteCommand cmd = new SQLiteCommand(sql, conn))
+            using (SQLiteDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    string name = rdr["name"] as string;
+                    tablenames.Add(name);
+                }
+            }
+            foreach (var name in tablenames)
+            {
+                sql = string.Format("drop table {0};", name);
+                Console.WriteLine(sql);
+                using (SQLiteCommand cmd = new SQLiteCommand(sql, conn))
+                    cmd.ExecuteNonQuery();
+            }
+            conn.Close();
 
             CreateClient();
             CreateMaker();
@@ -255,6 +281,8 @@ namespace R54IN0.Test
             CreateProject();
             CreateEmployee();
             CreateData();
+
+            InventoryDataCommander.Destroy();
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using R54IN0.WPF;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace R54IN0.Test
 {
@@ -24,7 +22,7 @@ namespace R54IN0.Test
             int inQty = selectedInven.Quantity;
             int icQty = viewmodel.Quantity = 10;
 
-            var record =  viewmodel.Record();
+            var record = viewmodel.Record();
 
             Assert.AreEqual(record.Inventory.Quantity, inQty + icQty);
         }
@@ -216,7 +214,7 @@ namespace R54IN0.Test
 
         /// <summary>
         /// 필드 삭제 체크
-        /// ComboBox Item 삭제 확인 
+        /// ComboBox Item 삭제 확인
         /// </summary>
         [TestMethod]
         public void DeleteMakerField()

@@ -18,10 +18,7 @@ namespace R54IN0.WPF
 
         private InventoryDataCommander()
         {
-            _db = new SQLiteServer();
-            _field = new ObservableFieldDirector(_db);
-            _inventory = new ObservableInventoryDirector(_db);
-            _subject = CollectionViewModelObserverSubject.GetInstance();
+            
         }
 
         ~InventoryDataCommander()
@@ -39,16 +36,21 @@ namespace R54IN0.WPF
         public static InventoryDataCommander GetInstance()
         {
             if (_me == null)
+            {
                 _me = new InventoryDataCommander();
+                _me.Initialze();
+            }
             return _me;
         }
 
         public static void Destroy()
         {
             if (_me != null)
+            {
+                _me.DB.Close();
                 _me = null;
+            }
         }
-
         #region inventory director
 
         /// <summary>
@@ -184,5 +186,16 @@ namespace R54IN0.WPF
         }
 
         #endregion field director
+
+        private void Initialze()
+        {
+            _db = new SQLiteServer();
+            if (_db.Open())
+            {
+                _field = new ObservableFieldDirector(_db);
+                _inventory = new ObservableInventoryDirector(_db);
+                _subject = CollectionViewModelObserverSubject.GetInstance();
+            }
+        }
     }
 }

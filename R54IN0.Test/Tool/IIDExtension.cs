@@ -11,7 +11,7 @@ namespace R54IN0.Test
             if (string.IsNullOrEmpty(iid.ID))
                 iid.ID = Guid.NewGuid().ToString();
 
-            InventoryDataCommander.GetInstance().DB.Insert(iid);
+            InventoryDataCommander.GetInstance().DB.Insert(iid as T);
 
             return iid as T;
         }
@@ -21,7 +21,7 @@ namespace R54IN0.Test
             if (string.IsNullOrEmpty(iid.ID))
                 Debug.Assert(false);
 
-            InventoryDataCommander.GetInstance().DB.Delete(iid);
+            InventoryDataCommander.GetInstance().DB.Delete(iid as T);
         }
     }
 }

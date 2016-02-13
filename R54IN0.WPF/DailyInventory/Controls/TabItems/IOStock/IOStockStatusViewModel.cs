@@ -513,6 +513,7 @@ namespace R54IN0.WPF
                 if (proejct != null)
                 {
                     IEnumerable<IOStockFormat> formats = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>(
+                        "select * from {0} where {1} = '{2}';",
                         typeof(IOStockFormat).Name, "ProjectID", proejct.ID);
                     if (formats != null)
                     {
@@ -535,8 +536,9 @@ namespace R54IN0.WPF
                 DataGridViewModel.Items.Clear();
                 var fromDate = DatePickerViewModel.FromDate;
                 var toDate = DatePickerViewModel.ToDate;
+                string datetimeFmt = SQLiteServer.DATETIME;
                 var formats = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>(
-                    "select * from {0} {1} between {2} and {3};", typeof(IOStockFormat), "Date", fromDate, toDate);
+                    "select * from {0} where {1} between '{2}' and '{3}';", typeof(IOStockFormat).Name, "Date", fromDate.ToString(datetimeFmt), toDate.ToString(datetimeFmt));
                 if (formats != null)
                 {
                     DataGridItemSources = formats.Select(x => new IOStockDataGridItem(x)).ToList();

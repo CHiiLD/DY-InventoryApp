@@ -12,6 +12,7 @@ namespace R54IN0
         internal ObservableInventoryDirector(SQLiteServer _db)
         {
             this._db = _db;
+            Load();
         }
 
         public void Load()

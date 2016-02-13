@@ -3,7 +3,6 @@ using R54IN0.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace R54IN0.Test.New
@@ -182,7 +181,7 @@ namespace R54IN0.Test.New
 
             viewmodel.Record();
 
-                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>("ID", fmt.ID);
+            fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>("ID", fmt.ID);
             ObservableIOStock stock = new ObservableIOStock(fmt);
 
             if (stock.StockType == IOStockType.INCOMING)
@@ -211,7 +210,7 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
+            fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
             var viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
 
             var specMemo = viewmodel.SpecificationMemo = "SOME SPECIFICATION MEMO";
@@ -238,7 +237,7 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
+            fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
             var viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
 
             var inven = InventoryDataCommander.GetInstance().SearchInventory(fmt.InventoryID);
@@ -411,7 +410,7 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).OrderBy(x => x.Date).Last();
+            fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).OrderBy(x => x.Date).Last();
 
             ///////////////////////////////////////////입고
             fmt.Quantity = 100; //입고 수량
@@ -426,7 +425,7 @@ namespace R54IN0.Test.New
             Assert.AreEqual(501, viewmodel.InventoryQuantity);
 
             ///////////////////////////////////////////출고
-                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.StockType == IOStockType.OUTGOING).OrderBy(x => x.Date).Last();
+            fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.StockType == IOStockType.OUTGOING).OrderBy(x => x.Date).Last();
             fmt.Quantity = 100; //들어간 양
             fmt.RemainingQuantity = 200; //잔여 재고
             obIOStock = new ObservableIOStock(fmt);
@@ -449,7 +448,7 @@ namespace R54IN0.Test.New
             new Dummy().Create();
             IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
             IOStockFormat fmt = null;
-                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
+            fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
             IObservableIOStockProperties obIOStock = new ObservableIOStock(fmt);
             var inventoryQty = obIOStock.Inventory.Quantity;
             var viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel, obIOStock);
@@ -492,9 +491,9 @@ namespace R54IN0.Test.New
             IOStockFormat fmt = null;
             IEnumerable<IOStockFormat> formats;
             var inventory = InventoryDataCommander.GetInstance().CopyInventories().Random();
-                formats = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
-                    .ToList();
-                fmt = formats.ElementAt(new Random().Next(0, formats.Count() - 2)); //최신 데이터는 넣지 말도록
+            formats = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
+                .ToList();
+            fmt = formats.ElementAt(new Random().Next(0, formats.Count() - 2)); //최신 데이터는 넣지 말도록
             var obIOStock = new ObservableIOStock(fmt);
             int inventoryQty = obIOStock.Inventory.Quantity; //오리진 재고 수량
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(obIOStock);
@@ -519,8 +518,8 @@ namespace R54IN0.Test.New
             IOStockFormat fmt = null;
             IEnumerable<IOStockFormat> formats;
             var inventory = InventoryDataCommander.GetInstance().CopyInventories().Random();
-                formats = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
-                    .ToList();
+            formats = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.InventoryID == inventory.ID).OrderBy(x => x.Date)
+                .ToList();
             fmt = formats.ElementAt(new Random().Next(0, formats.Count() - 2));
 
             var iostock = new ObservableIOStock(fmt);
@@ -586,7 +585,7 @@ namespace R54IN0.Test.New
 
         public void CheckQuantity(ObservableInventory inventory)
         {
-            string sql = string.Format("select * from {0} where = {1} order by {2}", typeof(IOStockFormat).Name, nameof(inventory.ID), "Date");
+            string sql = string.Format("select * from {0} where {1} = {2} order by {3}", typeof(IOStockFormat).Name, "InventoryID", nameof(inventory.ID), "Date");
             var formats = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>(sql);
             IOStockFormat near = null;
             foreach (var fmt in formats)
@@ -614,7 +613,7 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
+            fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
             var id = fmt.ID;
             var viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
 
@@ -769,7 +768,7 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
+            fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Random();
             IOStockType type = fmt.StockType;
             var iso = new ObservableIOStock(fmt);
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
@@ -790,7 +789,7 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             IOStockFormat fmt = null;
-                fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).Random();
+            fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>().Where(x => x.StockType == IOStockType.INCOMING).Random();
             ObservableIOStock obIOStock = new ObservableIOStock(fmt);
             IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(obIOStock);
 
@@ -807,7 +806,5 @@ namespace R54IN0.Test.New
             Assert.AreEqual(obIOStock.RemainingQuantity, viewmodel.RemainingQuantity);
             Assert.AreEqual(obIOStock.UnitPrice, viewmodel.UnitPrice);
         }
-
-    
     }
 }

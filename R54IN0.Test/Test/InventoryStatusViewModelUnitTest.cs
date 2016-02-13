@@ -3,7 +3,6 @@ using R54IN0.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -170,7 +169,7 @@ namespace R54IN0.Test.New
             var infmt = InventoryDataCommander.GetInstance().DB.Select<InventoryFormat>("ID", inventoryID);
             Assert.IsNull(infmt);
 
-            var iofmts = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}'", typeof(IOStockFormat), "InventoryID", inventoryID);
+            var iofmts = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}';", typeof(IOStockFormat).Name, "InventoryID", inventoryID);
             Assert.AreEqual(0, iofmts.Count());
         }
 
