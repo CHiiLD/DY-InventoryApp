@@ -58,7 +58,7 @@ namespace R54IN0.WPF
             Type = NodeType.PRODUCT;
             ObservableObjectID = product.ID;
 
-            var invnetories = InventoryDataCommander.GetInstance().SearchInventoryAsProductID(ObservableObjectID);
+            var invnetories = DataDirector.GetInstance().SearchInventories(ObservableObjectID);
             foreach (var inventory in invnetories)
             {
                 if (Root.All(x => x.ObservableObjectID != inventory.ID))
@@ -275,7 +275,7 @@ namespace R54IN0.WPF
         {
             if (!string.IsNullOrEmpty(productID) && Type == NodeType.PRODUCT)
             {
-                var ofd = InventoryDataCommander.GetInstance();
+                var ofd = DataDirector.GetInstance();
                 Observable<Product> product = ofd.SearchField<Product>(productID);
                 return product;
             }
@@ -286,7 +286,7 @@ namespace R54IN0.WPF
         {
             if (!string.IsNullOrEmpty(inventoryFormatID) && Type == NodeType.INVENTORY)
             {
-                var ofd = InventoryDataCommander.GetInstance();
+                var ofd = DataDirector.GetInstance();
                 ObservableInventory inventory = ofd.SearchInventory(inventoryFormatID);
                 return inventory;
             }

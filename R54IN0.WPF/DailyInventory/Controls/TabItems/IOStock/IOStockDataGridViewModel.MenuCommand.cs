@@ -97,7 +97,7 @@ namespace R54IN0.WPF
             {
                 var item = SelectedItem;
                 CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(item);
-                InventoryDataCommander.GetInstance().DB.Delete(item.Format);
+                DataDirector.GetInstance().DB.Delete(item.Format);
                 item.Inventory.Refresh();
                 foreach (var i in Items.Where(x => x.Inventory.ID == item.Inventory.ID))
                     i.Refresh();
@@ -114,7 +114,7 @@ namespace R54IN0.WPF
             foreach (var item in items)
             {
                 CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(item);
-                InventoryDataCommander.GetInstance().DB.Delete(item.Format);
+                DataDirector.GetInstance().DB.Delete(item.Format);
             }
             foreach (var i in items.Select(x => x.Inventory).Distinct().ToList())
                 i.Refresh();

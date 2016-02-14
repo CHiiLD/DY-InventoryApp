@@ -92,20 +92,23 @@ namespace R54IN0
             }
         }
 
-        protected void NotifyPropertyChanged(string name)
+        public void NotifyPropertyChanged(string name)
         {
             if (_propertyChanged != null)
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
 
+            if (string.IsNullOrEmpty(name))
+                return;
+
             if (ID == null)
-                InventoryDataCommander.GetInstance().AddObservableField(this);
+                DataDirector.GetInstance().AddField(this);
             else
-                InventoryDataCommander.GetInstance().DB.Update(Field, name);
+                DataDirector.GetInstance().DB.Update(Field, name);
         }
 
         public void Refresh()
         {
-            FieldT field = InventoryDataCommander.GetInstance().DB.Select<FieldT>(nameof(ID), ID);
+            FieldT field = DataDirector.GetInstance().DB.Select<FieldT>(nameof(ID), ID);
             if (field != null)
             {
                 if (Name != field.Name)

@@ -2,7 +2,7 @@
 
 namespace R54IN0
 {
-    public interface IObservableInventoryProperties : INotifyPropertyChanged, ISync
+    public interface IObservableInventoryProperties : INotifyPropertyChanged, ISync, IPropertyChanged
     {
         string ID { get; set; }
         string Memo { get; set; }

@@ -41,7 +41,6 @@ namespace R54IN0
         public void InitializeIndex()
         {
             CustomLexDb me = this;
-
 #if false
             me.Map<Employee>().Automap(i => i.ID).
             WithIndex("Name", i => i.Name);

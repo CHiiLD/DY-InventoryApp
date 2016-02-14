@@ -32,20 +32,20 @@ namespace R54IN0.WPF
             ContextMenuOpeningEventCommand = new RelayCommand(ExecuteContextMenuOpeningEventCommand);
             BeginningEditEventCommand = new RelayCommand<DataGridBeginningEditEventArgs>(CancelCellEditEvent, CanCancelCellEdit);
 
-            var makers = InventoryDataCommander.GetInstance().CopyFields<Maker>();
+            var makers = DataDirector.GetInstance().CopyFields<Maker>();
             Makers = new ObservableCollection<Observable<Maker>>(makers);
-            var measures = InventoryDataCommander.GetInstance().CopyFields<Measure>();
+            var measures = DataDirector.GetInstance().CopyFields<Measure>();
             Measures = new ObservableCollection<Observable<Measure>>(measures);
-            var warehouses = InventoryDataCommander.GetInstance().CopyFields<Warehouse>();
+            var warehouses = DataDirector.GetInstance().CopyFields<Warehouse>();
             Warehouses = new ObservableCollection<Observable<Warehouse>>(warehouses);
 
-            var projects = InventoryDataCommander.GetInstance().CopyFields<Project>();
+            var projects = DataDirector.GetInstance().CopyFields<Project>();
             Projects = new ObservableCollection<Observable<Project>>(projects);
-            var employees = InventoryDataCommander.GetInstance().CopyFields<Employee>();
+            var employees = DataDirector.GetInstance().CopyFields<Employee>();
             Employees = new ObservableCollection<Observable<Employee>>(employees);
-            var suppliers = InventoryDataCommander.GetInstance().CopyFields<Supplier>();
+            var suppliers = DataDirector.GetInstance().CopyFields<Supplier>();
             Suppliers = new ObservableCollection<Observable<Supplier>>(suppliers);
-            var customers = InventoryDataCommander.GetInstance().CopyFields<Customer>();
+            var customers = DataDirector.GetInstance().CopyFields<Customer>();
             Customers = new ObservableCollection<Observable<Customer>>(customers);
 
             CollectionViewModelObserverSubject.GetInstance().Attach(this);

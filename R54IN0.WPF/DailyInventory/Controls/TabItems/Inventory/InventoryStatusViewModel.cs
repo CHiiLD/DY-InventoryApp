@@ -134,7 +134,7 @@ namespace R54IN0.WPF
             SearchViewModel = new InventorySearchTextBoxViewModel();
             SearchViewModel.SearchCommand = new RelayCommand<object>(ExecuteSearchCommand, (object obj) => { return true; });
 
-            List<ObservableInventory> list = InventoryDataCommander.GetInstance().CopyInventories();
+            List<ObservableInventory> list = DataDirector.GetInstance().CopyInventories();
             PushDataGridItems(list, true);
 
             CanModify = false;
@@ -161,7 +161,7 @@ namespace R54IN0.WPF
 
             if (unionnode.Count() != 0)
             {
-                var inventories = InventoryDataCommander.GetInstance().CopyInventories().Where(inven => unionnode.Any(n => n.ObservableObjectID == inven.ID));
+                var inventories = DataDirector.GetInstance().CopyInventories().Where(inven => unionnode.Any(n => n.ObservableObjectID == inven.ID));
                 PushDataGridItems(inventories, true);
             }
         }

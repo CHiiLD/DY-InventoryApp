@@ -14,7 +14,7 @@ namespace R54IN0.WPF
         protected override void OnExit(ExitEventArgs e)
         {
             TreeViewNodeDirector.Destroy();
-            InventoryDataCommander.Destroy();
+            DataDirector.Destroy();
             base.OnExit(e);
         }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using R54IN0.WPF;
 using System;
 
 namespace R54IN0.Test
@@ -9,7 +10,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void TestField()
         {
-            SQLiteServer server = new SQLiteServer();
+            SQLiteClient server = new SQLiteClient();
             server.Open();
             server.DropAllTableThenReCreateTable();
             //insert
@@ -40,7 +41,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void TestInventoryFormat()
         {
-            SQLiteServer server = new SQLiteServer();
+            SQLiteClient server = new SQLiteClient();
             server.Open();
             server.DropAllTableThenReCreateTable();
 
@@ -61,7 +62,7 @@ namespace R54IN0.Test
         [TestMethod]
         public void TestIOStockFormat()
         {
-            SQLiteServer server = new SQLiteServer();
+            SQLiteClient server = new SQLiteClient();
             server.Open();
             server.DropAllTableThenReCreateTable();
 
@@ -77,10 +78,34 @@ namespace R54IN0.Test
             IOStockFormat result = server.Select<IOStockFormat>(nameof(fmt.ID), id);
             Assert.AreEqual(id, result.ID);
             Assert.AreEqual(price, result.UnitPrice);
-            Assert.AreEqual(date, result.Date);
+            Assert.IsTrue(date.CompareTo(result.Date) == 0);
             Assert.AreEqual(type, result.StockType);
 
             server.Close();
+        }
+
+        [TestMethod]
+        public void TestUpdate()
+        {
+            var server = DataDirector.GetInstance().DB;
+
+            //insert
+            Customer customer = new Customer();
+            string id = customer.ID = Guid.NewGuid().ToString();
+            string name = customer.Name = "some customer";
+            server.Insert(customer);
+
+            var result = DataDirector.GetInstance().SearchField<Customer>(id);
+            Assert.IsNotNull(result);
+
+            var customer2 = new Customer();
+            customer2.ID = id;
+            customer2.Name = "asdf";
+
+            //udpate
+            server.Update(customer2, nameof(customer2.Name));
+
+            Assert.AreEqual(result.Name, customer.Name);
         }
     }
 }

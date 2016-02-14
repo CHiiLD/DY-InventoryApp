@@ -26,7 +26,7 @@ namespace R54IN0.WPF
 
         public IOStockProjectListBoxViewModel()
         {
-            var ofd = InventoryDataCommander.GetInstance();
+            var ofd = DataDirector.GetInstance();
             var list = ofd.CopyFields<Project>();
             Items = new ObservableCollection<Observable<Project>>(list);
             CollectionViewModelObserverSubject.GetInstance().Attach(this);
@@ -42,7 +42,7 @@ namespace R54IN0.WPF
         {
             if (SelectedItem != null)
             {
-                InventoryDataCommander.GetInstance().RemoveObservableField(SelectedItem);
+                DataDirector.GetInstance().RemoveField(SelectedItem);
                 SelectedItem = null;
             }
         }

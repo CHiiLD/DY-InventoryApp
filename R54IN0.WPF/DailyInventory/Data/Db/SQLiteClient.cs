@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace R54IN0
 {
-    public class SQLiteServer
+    public partial class SQLiteClient
     {
         public const string DATASOURCE = "inventory.db";
         public const string DATETIME = "yyyy-MM-dd HH:mm:ss.fff";
@@ -33,7 +34,7 @@ namespace R54IN0
             return _conn != null;
         }
 
-        void CreateTables()
+        private void CreateTables()
         {
             CreateTable<InventoryFormat>();
             CreateTable<IOStockFormat>();
@@ -83,9 +84,6 @@ namespace R54IN0
 
         public void Insert<TableT>(TableT item) where TableT : class, IID
         {
-            if (string.IsNullOrEmpty(item.ID))
-                item.ID = Guid.NewGuid().ToString();
-
             string sql = string.Format("insert into {0} (", typeof(TableT).Name);
             StringBuilder sb = new StringBuilder(sql);
             StringBuilder valueSb = new StringBuilder(") values (");
@@ -117,6 +115,9 @@ namespace R54IN0
 
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
                 cmd.ExecuteNonQuery();
+
+            if (DataInsertEventHandler != null)
+                DataInsertEventHandler(this, new SQLInsDelEventArgs(item));
         }
 
         public IEnumerable<TableT> Select<TableT>() where TableT : class, IID, new()
@@ -177,6 +178,9 @@ namespace R54IN0
 
         public IEnumerable<TableT> Query<TableT>(string sql) where TableT : class, IID, new()
         {
+            if (!sql.Contains("where"))
+                throw new ArgumentException();
+
             Console.WriteLine(sql);
             List<TableT> result = new List<TableT>();
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
@@ -205,6 +209,7 @@ namespace R54IN0
             string sql = string.Format("update {0} set ", typeof(TableT).Name);
             StringBuilder sb = new StringBuilder(sql);
             var properties = typeof(TableT).GetProperties();
+            Dictionary<string, object> update = new Dictionary<string, object>();
             foreach (var property in properties)
             {
                 if (property.PropertyType.IsNotPublic)
@@ -218,6 +223,7 @@ namespace R54IN0
                     value = ((DateTime)value).ToString(DATETIME);
 
                 sb.Append(string.Format("{0} = '{1}', ", fieldName, value));
+                update.Add(fieldName, value);
             }
             sb.Remove(sb.Length - 2, 2);
             sb.Append(string.Format(" where {0} = '{1}';", nameof(item.ID), item.ID));
@@ -225,20 +231,32 @@ namespace R54IN0
             Console.WriteLine(sql);
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
                 cmd.ExecuteNonQuery();
+
+            if (DataUpdateEventHandler != null)
+                DataUpdateEventHandler(this, new SQLUpdateEventArgs(item, update));
+        }
+
+        public void Update<TableT>(TableT item, string propertyName, object setValue) where TableT : class, IID
+        {
+            item.GetType().GetProperty(propertyName).SetValue(item, setValue);
+            Update<TableT>(item, propertyName);
         }
 
         public void Update<TableT>(TableT item, string propertyName) where TableT : class, IID
         {
             object value = typeof(TableT).GetProperty(propertyName).GetValue(item);
-            if (value.GetType().IsEnum)
+            if (value != null && value.GetType().IsEnum)
                 value = (int)value;
-            else if (value.GetType() == typeof(DateTime))
+            else if (value != null && value.GetType() == typeof(DateTime))
                 value = ((DateTime)value).ToString(DATETIME);
 
             string sql = string.Format("update {0} set {1} = '{2}' where {3} = '{4}';", typeof(TableT).Name, propertyName, value, nameof(item.ID), item.ID);
             Console.WriteLine(sql);
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
                 cmd.ExecuteNonQuery();
+
+            if (DataUpdateEventHandler != null)
+                DataUpdateEventHandler(this, new SQLUpdateEventArgs(item, propertyName, value));
         }
 
         public void Delete<TableT>(object item) where TableT : class, IID
@@ -252,6 +270,32 @@ namespace R54IN0
             Console.WriteLine(sql);
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
                 cmd.ExecuteNonQuery();
+
+            if (DataDeleteEventHandler != null)
+                DataDeleteEventHandler(this, new SQLInsDelEventArgs(item));
+
+            if (item is Product) //제품을 삭제하고자 한다면 관련 인벤토리 데이터를 삭제해야 할 터이고
+            {
+                Product product = item as Product;
+                var inventories = Query<InventoryFormat>("select * from {0} where ProductID = '{1}';", typeof(InventoryFormat).Name, product.ID);
+                inventories.ToList().ForEach(x => Delete<InventoryFormat>(x));
+            }
+            else if (item is InventoryFormat) //이어서 인벤토리 데이터를 삭제하고자 할 경우 이와 관련된 입춮고 데이터를 삭제해야함
+            {
+                InventoryFormat inventoryFmt = item as InventoryFormat;
+                var iostocks = Query<IOStockFormat>("select * from {0} where InventoryID = '{1}';", typeof(IOStockFormat).Name, inventoryFmt.ID);
+                iostocks.ToList().ForEach(x => Delete<IOStockFormat>(x));
+            }
+            else if (item is Maker)
+            {
+                var inventories = Query<InventoryFormat>("select * from {0} where MakerID = '{1}'", typeof(InventoryFormat).Name, item.ID);
+                inventories.ToList().ForEach(x => Update<InventoryFormat>(x, nameof(x.MakerID), null));
+            }
+            else if (item is Measure)
+            {
+                var inventories = Query<InventoryFormat>("select * from {0} where MeasureID = '{1}'", typeof(InventoryFormat).Name, item.ID);
+                inventories.ToList().ForEach(x => Update<InventoryFormat>(x, nameof(x.MeasureID), null));
+            }
         }
 
         private void CreateTable<TableT>()

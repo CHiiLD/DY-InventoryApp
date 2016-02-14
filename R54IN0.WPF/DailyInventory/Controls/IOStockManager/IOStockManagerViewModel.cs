@@ -28,7 +28,7 @@ namespace R54IN0.WPF
             set
             {
                 _stockType = value;
-                InventoryDataCommander idc = InventoryDataCommander.GetInstance();
+                DataDirector idc = DataDirector.GetInstance();
                 switch (_stockType)
                 {
                     case IOStockType.INCOMING: //suppier, warehouse list set
@@ -175,8 +175,8 @@ namespace R54IN0.WPF
         /// <param name="product"></param>
         public void InitComboboxItemsSources(Observable<Product> product)
         {
-            InventoryDataCommander idc = InventoryDataCommander.GetInstance();
-            IEnumerable<ObservableInventory> inventories = idc.SearchInventoryAsProductID(product.ID);
+            DataDirector idc = DataDirector.GetInstance();
+            IEnumerable<ObservableInventory> inventories = idc.SearchInventories(product.ID);
             Inventories = new ObservableCollection<ObservableInventory>(inventories);
 
             IEnumerable<Observable<Employee>> employees = idc.CopyFields<Employee>();

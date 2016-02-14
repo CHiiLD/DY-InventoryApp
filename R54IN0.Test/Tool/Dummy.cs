@@ -171,13 +171,13 @@ namespace R54IN0.Test
 
         private void CreateData()
         {
-            var makers = InventoryDataCommander.GetInstance().DB.Select<Maker>();
-            var measures = InventoryDataCommander.GetInstance().DB.Select<Measure>();
-            var customer = InventoryDataCommander.GetInstance().DB.Select<Customer>();
-            var suppliers = InventoryDataCommander.GetInstance().DB.Select<Supplier>();
-            var proejcts = InventoryDataCommander.GetInstance().DB.Select<Project>();
-            var employees = InventoryDataCommander.GetInstance().DB.Select<Employee>();
-            var warehouse = InventoryDataCommander.GetInstance().DB.Select<Warehouse>();
+            var makers = DataDirector.GetInstance().DB.Select<Maker>();
+            var measures = DataDirector.GetInstance().DB.Select<Measure>();
+            var customer = DataDirector.GetInstance().DB.Select<Customer>();
+            var suppliers = DataDirector.GetInstance().DB.Select<Supplier>();
+            var proejcts = DataDirector.GetInstance().DB.Select<Project>();
+            var employees = DataDirector.GetInstance().DB.Select<Employee>();
+            var warehouse = DataDirector.GetInstance().DB.Select<Warehouse>();
 
             foreach (var item in _itemNames)
             {
@@ -238,19 +238,19 @@ namespace R54IN0.Test
                         qty -= isfmt.Quantity;
                     }
                     ifmt.Quantity = qty;
-                    InventoryDataCommander.GetInstance().DB.Update(ifmt, "Quantity");
+                    DataDirector.GetInstance().DB.Update(ifmt, "Quantity");
                 }
             }
         }
 
         public void Create()
         {
-            InventoryDataCommander.Destroy();
+            DataDirector.Destroy();
             CollectionViewModelObserverSubject.Destory();
             MainWindowViewModel.Destory();
             TreeViewNodeDirector.Destroy();
 
-            string connstr = string.Format("Data Source={0}", SQLiteServer.DATASOURCE);
+            string connstr = string.Format("Data Source={0}", SQLiteClient.DATASOURCE);
             var conn = new SQLiteConnection(connstr);
             conn.Open();
             string sql = "select name from sqlite_master;";
@@ -282,7 +282,7 @@ namespace R54IN0.Test
             CreateEmployee();
             CreateData();
 
-            InventoryDataCommander.Destroy();
+            DataDirector.Destroy();
         }
     }
 }

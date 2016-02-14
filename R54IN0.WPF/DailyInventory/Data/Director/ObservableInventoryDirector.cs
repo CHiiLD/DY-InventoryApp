@@ -7,9 +7,9 @@ namespace R54IN0
     internal class ObservableInventoryDirector
     {
         private IDictionary<string, ObservableInventory> _idKey;
-        private SQLiteServer _db;
+        private SQLiteClient _db;
 
-        internal ObservableInventoryDirector(SQLiteServer _db)
+        internal ObservableInventoryDirector(SQLiteClient _db)
         {
             this._db = _db;
             Load();
@@ -46,11 +46,11 @@ namespace R54IN0
             _idKey.Add(observableInventory.ID, observableInventory);
         }
 
-        public bool RemoveObservableInventory(ObservableInventory observableInventory)
+        public bool RemoveObservableInventory(string id)
         {
-            if (!_idKey.ContainsKey(observableInventory.ID))
+            if (!_idKey.ContainsKey(id))
                 return false;
-            return _idKey.Remove(observableInventory.ID);
+            return _idKey.Remove(id);
         }
     }
 }

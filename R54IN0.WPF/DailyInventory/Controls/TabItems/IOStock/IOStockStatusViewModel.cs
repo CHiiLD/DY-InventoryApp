@@ -486,10 +486,10 @@ namespace R54IN0.WPF
                 var unionnode = inode.Union(pnode);
 
                 List<IOStockFormat> iostocks = new List<IOStockFormat>();
-                var inventories = unionnode.Select(x => InventoryDataCommander.GetInstance().SearchInventory(x.ObservableObjectID));
+                var inventories = unionnode.Select(x => DataDirector.GetInstance().SearchInventory(x.ObservableObjectID));
                 foreach(var inventory in inventories)
                 {
-                    IEnumerable<IOStockFormat> formats = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>(
+                    IEnumerable<IOStockFormat> formats = DataDirector.GetInstance().DB.Query<IOStockFormat>(
                         "select * from {0} where {1} = '{2}';", typeof(IOStockFormat).Name, "InventoryID", inventory.ID);
                     if (formats != null)
                         iostocks.AddRange(formats);
@@ -512,7 +512,7 @@ namespace R54IN0.WPF
                 Observable<Project> proejct = ProjectListBoxViewModel.SelectedItem;
                 if (proejct != null)
                 {
-                    IEnumerable<IOStockFormat> formats = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>(
+                    IEnumerable<IOStockFormat> formats = DataDirector.GetInstance().DB.Query<IOStockFormat>(
                         "select * from {0} where {1} = '{2}';",
                         typeof(IOStockFormat).Name, "ProjectID", proejct.ID);
                     if (formats != null)
@@ -536,8 +536,8 @@ namespace R54IN0.WPF
                 DataGridViewModel.Items.Clear();
                 var fromDate = DatePickerViewModel.FromDate;
                 var toDate = DatePickerViewModel.ToDate;
-                string datetimeFmt = SQLiteServer.DATETIME;
-                var formats = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>(
+                string datetimeFmt = SQLiteClient.DATETIME;
+                var formats = DataDirector.GetInstance().DB.Query<IOStockFormat>(
                     "select * from {0} where {1} between '{2}' and '{3}';", typeof(IOStockFormat).Name, "Date", fromDate.ToString(datetimeFmt), toDate.ToString(datetimeFmt));
                 if (formats != null)
                 {

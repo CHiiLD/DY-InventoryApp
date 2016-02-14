@@ -23,7 +23,7 @@ namespace R54IN0.WPF
         /// <returns></returns>
         public IEnumerable<ObservableInventory> Search()
         {
-            var inventories = InventoryDataCommander.GetInstance().CopyInventories();
+            var inventories = DataDirector.GetInstance().CopyInventories();
             if (string.IsNullOrEmpty(Text))
                 return inventories;
             string[] keywords = Text.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);

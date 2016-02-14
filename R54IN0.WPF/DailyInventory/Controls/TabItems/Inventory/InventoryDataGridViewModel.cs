@@ -41,9 +41,9 @@ namespace R54IN0.WPF
             IOStockAmenderWindowCallCommand = new RelayCommand(ExecuteIOStockAmenderWindowCallCommand, IsSelected);
             InventoryDataDeletionCommand = new RelayCommand(ExecuteInventoryDataDeletionCommand, IsSelected);
 
-            var makers = InventoryDataCommander.GetInstance().CopyFields<Maker>();
+            var makers = DataDirector.GetInstance().CopyFields<Maker>();
             Makers = new ObservableCollection<Observable<Maker>>(makers);
-            var measures = InventoryDataCommander.GetInstance().CopyFields<Measure>();
+            var measures = DataDirector.GetInstance().CopyFields<Measure>();
             Measures = new ObservableCollection<Observable<Measure>>(measures);
 
             CollectionViewModelObserverSubject.GetInstance().Attach(this);
@@ -209,7 +209,7 @@ namespace R54IN0.WPF
                 if (result != MessageDialogResult.Affirmative)
                     return;
 
-                InventoryDataCommander.GetInstance().RemoveInventory(item);
+                DataDirector.GetInstance().RemoveInventory(item);
                 SelectedItem = null;
             }
         }

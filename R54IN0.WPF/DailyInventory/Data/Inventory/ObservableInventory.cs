@@ -183,7 +183,7 @@ namespace R54IN0
 
         protected void InitializeProperties(InventoryFormat fmt)
         {
-            var ofd = InventoryDataCommander.GetInstance();
+            var ofd = DataDirector.GetInstance();
             product = ofd.SearchField<Product>(fmt.ProductID);
             measure = ofd.SearchField<Measure>(fmt.MeasureID);
             maker = ofd.SearchField<Maker>(fmt.MakerID);
@@ -194,15 +194,18 @@ namespace R54IN0
             if (propertyChanged != null)
                 propertyChanged(this, new PropertyChangedEventArgs(name));
 
+            if (string.IsNullOrEmpty(name))
+                return;
+
             if (ID == null)
-                InventoryDataCommander.GetInstance().AddInventory(this);
+                DataDirector.GetInstance().AddInventory(this);
             else
-                InventoryDataCommander.GetInstance().DB.Update(Format);
+                DataDirector.GetInstance().DB.Update(Format);
         }
 
         public void Refresh()
         {
-            InventoryFormat fmt = InventoryDataCommander.GetInstance().DB.Select<InventoryFormat>(nameof(ID), ID);
+            InventoryFormat fmt = DataDirector.GetInstance().DB.Select<InventoryFormat>(nameof(ID), ID);
             if (fmt != null)
                 Format = fmt;
         }

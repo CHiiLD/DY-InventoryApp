@@ -115,7 +115,7 @@ namespace R54IN0.WPF
         /// </summary>
         public void Refresh()
         {
-            InventoryDataCommander idc = InventoryDataCommander.GetInstance();
+            DataDirector idc = DataDirector.GetInstance();
 
             IEnumerable<TreeViewNode> productNodes = _nodes.SelectMany(x => x.Descendants()).Where(x => x.Type == NodeType.PRODUCT);
             foreach (TreeViewNode node in productNodes.ToList()) //없는 Item은 삭제

@@ -8,9 +8,9 @@ namespace R54IN0
     internal class ObservableFieldDirector
     {
         private IDictionary<Type, Dictionary<string, IObservableField>> _dictionary;
-        private SQLiteServer _db;
+        private SQLiteClient _db;
 
-        internal ObservableFieldDirector(SQLiteServer _db)
+        internal ObservableFieldDirector(SQLiteClient _db)
         {
             this._db = _db;
             Load();
@@ -69,11 +69,11 @@ namespace R54IN0
                 _dictionary[type].Add(obserableField.ID, obserableField);
         }
 
-        public void RemoveObservableField<T>(IObservableField observableField) where T : class, IField, new()
+        public void RemoveObservableField<T>(string id) where T : class, IField, new()
         {
             Type type = typeof(T);
-            if (_dictionary[type].ContainsKey(observableField.ID))
-                _dictionary[type].Remove(observableField.ID);
+            if (_dictionary[type].ContainsKey(id))
+                _dictionary[type].Remove(id);
         }
 
         public void RemoveObservableField(IObservableField observableField)

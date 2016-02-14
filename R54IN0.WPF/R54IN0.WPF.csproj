@@ -176,9 +176,11 @@
     </Compile>
     <Compile Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewModelView.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNode.cs" />
-    <Compile Include="DailyInventory\Data\Director\InventoryDataCommander.cs" />
+    <Compile Include="DailyInventory\Data\Db\Event\SQLUpdateEventArgs.cs" />
+    <Compile Include="DailyInventory\Data\Director\DataDirector.cs" />
+    <Compile Include="DailyInventory\Data\Director\INotifyPropertyChanged.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ISync.cs" />
-    <Compile Include="DailyInventory\Data\LexDb.cs" />
+    <Compile Include="DailyInventory\Data\Db\LexDb.cs" />
     <Compile Include="DailyInventory\Data\Director\CollectionViewModelObserverSubject.cs" />
     <Compile Include="DailyInventory\Data\Director\MultiSortedDictionary.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableFieldDirector.cs" />
@@ -189,7 +191,9 @@
     <Compile Include="DailyInventory\Data\Inventory\IObservableInventoryProperties.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableInventory.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableIOStock.cs" />
-    <Compile Include="DailyInventory\Data\SQLiteServer.cs" />
+    <Compile Include="DailyInventory\Data\Db\Event\SQLInsDelEventArgs.cs" />
+    <Compile Include="DailyInventory\Data\Db\SQLiteClient.Event.cs" />
+    <Compile Include="DailyInventory\Data\Db\SQLiteClient.cs" />
     <Compile Include="DailyInventory\Data\TreeViewNodeJsonFormat.cs" />
     <Compile Include="DailyInventory\Windows\IOStockManagerWindow.xaml.cs">
       <DependentUpon>IOStockManagerWindow.xaml</DependentUpon>

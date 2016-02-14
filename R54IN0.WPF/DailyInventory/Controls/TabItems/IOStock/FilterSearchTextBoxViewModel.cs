@@ -50,7 +50,7 @@ namespace R54IN0.WPF
             string column = string.Empty;
             if (SelectedItem == FILTER_PRODUCT || SelectedItem == FILTER_SPECIFICATION || SelectedItem == FILTER_MAKER)
             {
-                IEnumerable<ObservableInventory> inventories = InventoryDataCommander.GetInstance().CopyInventories();
+                IEnumerable<ObservableInventory> inventories = DataDirector.GetInstance().CopyInventories();
                 IEnumerable<ObservableInventory> match = null;
                 switch (SelectedItem)
                 {
@@ -67,7 +67,7 @@ namespace R54IN0.WPF
                         break;
                 }
                 foreach (var inventory in match.Distinct())
-                    result.AddRange(InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}';", typeof(IOStockFormat).Name, "InventoryID", inventory.ID));
+                    result.AddRange(DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}';", typeof(IOStockFormat).Name, "InventoryID", inventory.ID));
             }
             else if (SelectedItem == FILTER_SUPPLIER || SelectedItem == FILTER_WAREHOUSE || SelectedItem == FILTER_CUSTOMER || SelectedItem == FILTER_EMPLOYEE)
             {
@@ -75,29 +75,29 @@ namespace R54IN0.WPF
                 switch (SelectedItem)
                 {
                     case FILTER_SUPPLIER:
-                        fields = InventoryDataCommander.GetInstance().DB.Select<Supplier>();
+                        fields = DataDirector.GetInstance().DB.Select<Supplier>();
                         column = "SupplierID";
                         break;
 
                     case FILTER_WAREHOUSE:
-                        fields = InventoryDataCommander.GetInstance().DB.Select<Warehouse>();
+                        fields = DataDirector.GetInstance().DB.Select<Warehouse>();
                         column = "WarehouseID";
                         break;
 
                     case FILTER_CUSTOMER:
-                        fields = InventoryDataCommander.GetInstance().DB.Select<Customer>();
+                        fields = DataDirector.GetInstance().DB.Select<Customer>();
                         column = "CustomerID";
                         break;
 
                     case FILTER_EMPLOYEE:
-                        fields = InventoryDataCommander.GetInstance().DB.Select<Employee>();
+                        fields = DataDirector.GetInstance().DB.Select<Employee>();
                         column = "EmployeeID";
                         break;
                 }
                 IEnumerable<IField> match = lowerKeywords.SelectMany(word => fields.Where(x => x.Name != null && x.Name.ToLower().Contains(word)));
                 foreach (var field in match.Distinct())
                 {
-                    var fmts = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}';",
+                    var fmts = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}';",
                         typeof(IOStockFormat).Name, column, field.ID);
                     result.AddRange(fmts);
                 }

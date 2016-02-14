@@ -252,14 +252,14 @@ namespace R54IN0
 
         protected virtual void InitializeProperties(IOStockFormat iosfmt)
         {
-            var ofd = InventoryDataCommander.GetInstance();
+            var ofd = DataDirector.GetInstance();
             customer = ofd.SearchField<Customer>(iosfmt.CustomerID);
             supplier = ofd.SearchField<Supplier>(iosfmt.SupplierID);
             project = ofd.SearchField<Project>(iosfmt.ProjectID);
             employee = ofd.SearchField<Employee>(iosfmt.EmployeeID);
             warehouse = ofd.SearchField<Warehouse>(iosfmt.WarehouseID);
 
-            var oid = InventoryDataCommander.GetInstance();
+            var oid = DataDirector.GetInstance();
             _inventory = oid.SearchInventory(iosfmt.InventoryID);
         }
 
@@ -268,15 +268,18 @@ namespace R54IN0
             if (propertyChanged != null)
                 propertyChanged(this, new PropertyChangedEventArgs(name));
 
+            if (string.IsNullOrEmpty(name))
+                return;
+
             if (ID == null)
-                InventoryDataCommander.GetInstance().DB.Insert(Format);
+                DataDirector.GetInstance().DB.Insert(Format);
             else
-                InventoryDataCommander.GetInstance().DB.Update(Format);
+                DataDirector.GetInstance().DB.Update(Format);
         }
 
         public void Refresh()
         {
-            IOStockFormat fmt = InventoryDataCommander.GetInstance().DB.Select<IOStockFormat>(nameof(ID), ID);
+            IOStockFormat fmt = DataDirector.GetInstance().DB.Select<IOStockFormat>(nameof(ID), ID);
             if (fmt != null)
                 Format = fmt;
         }

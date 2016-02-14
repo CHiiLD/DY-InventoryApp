@@ -74,8 +74,8 @@ namespace R54IN0.Test
 
             treeview.SelectedNodeDeletionCommand.Execute(null);
 
-            Assert.IsNull(InventoryDataCommander.GetInstance().SearchField<Product>(node.ObservableObjectID));
-            Assert.AreEqual(0, InventoryDataCommander.GetInstance().SearchInventoryAsProductID(node.ObservableObjectID).Count());
+            Assert.IsNull(DataDirector.GetInstance().SearchField<Product>(node.ObservableObjectID));
+            Assert.AreEqual(0, DataDirector.GetInstance().SearchInventories(node.ObservableObjectID).Count());
         }
 
         /// <summary>
@@ -89,33 +89,33 @@ namespace R54IN0.Test
             var node = GetProductNode(treeview);
             treeview.SelectedNodes.Add(node);
 
-            var product = InventoryDataCommander.GetInstance().SearchField<Product>(node.ObservableObjectID);
+            var product = DataDirector.GetInstance().SearchField<Product>(node.ObservableObjectID);
             if (product != null)
                 CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(product);
-            var oid = InventoryDataCommander.GetInstance();
-            var invens = oid.SearchInventoryAsProductID(product.ID).ToList();
+            var oid = DataDirector.GetInstance();
+            var invens = oid.SearchInventories(product.ID).ToList();
 
             treeview.SelectedNodeDeletionCommand.Execute(null);
 
             foreach (var inven in invens)
             {
-                var iosfmts = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>(
+                var iosfmts = DataDirector.GetInstance().DB.Query<IOStockFormat>(
                     "select * from IOStockFormat where {0} = '{1}';",
                     "InventoryID", inven.ID);
                 Assert.AreEqual(0, iosfmts.Count());
             }
-            var infmts = InventoryDataCommander.GetInstance().DB.Query<InventoryFormat>(
+            var infmts = DataDirector.GetInstance().DB.Query<InventoryFormat>(
                 "select * from InventoryFormat where {0} = '{1}';",
                 "ProductID", product.ID);
             Assert.AreEqual(0, infmts.Count());
-            Assert.IsNull(InventoryDataCommander.GetInstance().DB.Select<Product>("ID", product.ID));
+            Assert.IsNull(DataDirector.GetInstance().DB.Select<Product>("ID", product.ID));
         }
 
         [TestMethod]
         public void WhenCreateNewProjectTypeTreeViewNodeThenNameInitializedAsProductName()
         {
             new Dummy().Create();
-            var someProduct = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
+            var someProduct = DataDirector.GetInstance().CopyFields<Product>().Random();
             var treeview = new TreeViewNode(someProduct);
 
             Assert.AreEqual(treeview.Name, someProduct.Name);

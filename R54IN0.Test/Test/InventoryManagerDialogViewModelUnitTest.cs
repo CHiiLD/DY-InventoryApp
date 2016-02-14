@@ -11,7 +11,7 @@ namespace R54IN0.Test
         public void CanCreate()
         {
             new Dummy().Create();
-            var product = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
+            var product = DataDirector.GetInstance().CopyFields<Product>().Random();
             new InventoryManagerViewModel(product);
         }
 
@@ -19,7 +19,7 @@ namespace R54IN0.Test
         public void TestRegister()
         {
             new Dummy().Create();
-            var product = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
+            var product = DataDirector.GetInstance().CopyFields<Product>().Random();
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
             var memo = viewmodel.Memo = "spec";
@@ -40,7 +40,7 @@ namespace R54IN0.Test
         public void TestRegister2()
         {
             new Dummy().Create();
-            var product = InventoryDataCommander.GetInstance().CopyFields<Product>().Random();
+            var product = DataDirector.GetInstance().CopyFields<Product>().Random();
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
             var memo = viewmodel.Memo = "spec";
@@ -55,8 +55,8 @@ namespace R54IN0.Test
             Assert.AreEqual(inventory.Memo, memo);
             Assert.AreEqual(inventory.Maker.Name, maker);
             Assert.AreEqual(inventory.Measure.Name, measure);
-            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchField<Maker>(inventory.Maker.ID));
-            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchField<Measure>(inventory.Measure.ID));
+            Assert.IsNotNull(DataDirector.GetInstance().SearchField<Maker>(inventory.Maker.ID));
+            Assert.IsNotNull(DataDirector.GetInstance().SearchField<Measure>(inventory.Measure.ID));
         }
 
         [TestMethod]
@@ -65,13 +65,13 @@ namespace R54IN0.Test
             new Dummy().Create();
             var inventoryStatusViewModel = new InventoryStatusViewModel();
             var node = inventoryStatusViewModel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
-            var product = InventoryDataCommander.GetInstance().SearchField<Product>(node.ObservableObjectID);
+            var product = DataDirector.GetInstance().SearchField<Product>(node.ObservableObjectID);
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
 
             var inventory = viewmodel.Register();
 
-            Assert.IsNotNull(InventoryDataCommander.GetInstance().SearchInventory(inventory.ID));
+            Assert.IsNotNull(DataDirector.GetInstance().SearchInventory(inventory.ID));
             Assert.IsTrue(node.Root.Any(x => x.ObservableObjectID == inventory.ID));
         }
 
@@ -81,7 +81,7 @@ namespace R54IN0.Test
             new Dummy().Create();
             var inventoryStatusViewModel = new InventoryStatusViewModel();
             var node = inventoryStatusViewModel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
-            var product = InventoryDataCommander.GetInstance().SearchField<Product>(node.ObservableObjectID);
+            var product = DataDirector.GetInstance().SearchField<Product>(node.ObservableObjectID);
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
 

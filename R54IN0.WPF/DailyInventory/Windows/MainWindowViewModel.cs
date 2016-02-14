@@ -174,7 +174,7 @@ namespace R54IN0.WPF
         /// <param name="productID"></param>
         public void ShowAmenderWindowAsProductID(string productID)
         {
-            var ofd = InventoryDataCommander.GetInstance();
+            var ofd = DataDirector.GetInstance();
             var product = ofd.SearchField<Product>(productID);
             if (product != null)
                 IOStockViewModel.OpenIOStockDataAmenderWindow(product);
@@ -186,7 +186,7 @@ namespace R54IN0.WPF
         /// <param name="inventoryID"></param>
         public void ShowAmenderWindowAsInventoryID(string inventoryID)
         {
-            var ofd = InventoryDataCommander.GetInstance();
+            var ofd = DataDirector.GetInstance();
             var inventory = ofd.SearchInventory(inventoryID);
             if (inventory != null)
                 IOStockViewModel.OpenIOStockDataAmenderWindow(inventory);

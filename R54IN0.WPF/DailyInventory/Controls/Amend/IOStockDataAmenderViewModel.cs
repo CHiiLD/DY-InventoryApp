@@ -254,7 +254,7 @@ namespace R54IN0.WPF
             set
             {
                 base.StockType = value;
-                var ofd = InventoryDataCommander.GetInstance();
+                var ofd = DataDirector.GetInstance();
 
                 switch (value)
                 {
@@ -523,7 +523,7 @@ namespace R54IN0.WPF
                 if (_product != null)
                 {
                     ProductText = _product.Name;
-                    var inventoryList = InventoryDataCommander.GetInstance().SearchInventoryAsProductID(_product.ID);
+                    var inventoryList = DataDirector.GetInstance().SearchInventories(_product.ID);
                     InventoryList = inventoryList.Select(x => new NonSaveObservableInventory(new InventoryFormat(x.Format))).ToList();
                     if (InventoryList.Count() == 1)
                         Inventory = InventoryList.Single();
@@ -761,8 +761,8 @@ namespace R54IN0.WPF
         /// <param name="iosFmt"></param>
         protected override void InitializeProperties(IOStockFormat iosFmt)
         {
-            var ofd = InventoryDataCommander.GetInstance();
-            var oid = InventoryDataCommander.GetInstance();
+            var ofd = DataDirector.GetInstance();
+            var oid = DataDirector.GetInstance();
             customer = ofd.SearchField<Customer>(iosFmt.CustomerID);
             supplier = ofd.SearchField<Supplier>(iosFmt.SupplierID);
             project = ofd.SearchField<Project>(iosFmt.ProjectID);
@@ -792,7 +792,7 @@ namespace R54IN0.WPF
             WindowCloseCommand = new RelayCommand(ExecuteWindowCloseCommand);
             ComboBoxKeyUpEventCommand = new RelayCommand<KeyEventArgs>(ExecuteComboBoxKeyUpEventCommand);
 
-            var ofd = InventoryDataCommander.GetInstance();
+            var ofd = DataDirector.GetInstance();
             _makerList = new ObservableCollection<Observable<Maker>>(ofd.CopyFields<Maker>());
             _measureList = new ObservableCollection<Observable<Measure>>(ofd.CopyFields<Measure>());
             _projectList = new ObservableCollection<Observable<Project>>(ofd.CopyFields<Project>());
@@ -830,7 +830,7 @@ namespace R54IN0.WPF
         private void ExecuteComboBoxItemDeleteCommand(object obj)
         {
             IObservableField observableField = obj as IObservableField;
-            InventoryDataCommander.GetInstance().RemoveObservableField(observableField);
+            DataDirector.GetInstance().RemoveField(observableField);
         }
 
         private void ExecuteLoadLastRecordCommand()
@@ -840,30 +840,30 @@ namespace R54IN0.WPF
 
             if (StockType == IOStockType.OUTGOING)
             {
-                var qresult = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}' and {3} = '{4}' order by {5} desc limit 1;",
+                var qresult = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}' and {3} = '{4}' order by {5} desc limit 1;",
                     typeof(IOStockFormat).Name, "InventoryID", Inventory.ID, "StockType", (int)IOStockType.INCOMING, "Date");
                 if (qresult.Count() == 1)
                     UnitPrice = qresult.Single().UnitPrice;
             }
 
-            var query = InventoryDataCommander.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}' and {3} = '{4}' order by {5} desc limit 1;",
+            var query = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}' and {3} = '{4}' order by {5} desc limit 1;",
                     typeof(IOStockFormat).Name, "InventoryID", Inventory.ID, "StockType", (int)StockType, "Date");
 
             if (query.Count() != 1)
                 return;
             var item = query.Single();
             Quantity = item.Quantity;
-            Employee = InventoryDataCommander.GetInstance().SearchField<Employee>(item.EmployeeID);
+            Employee = DataDirector.GetInstance().SearchField<Employee>(item.EmployeeID);
             if (StockType == IOStockType.INCOMING)
             {
-                Client = InventoryDataCommander.GetInstance().SearchField<Supplier>(item.SupplierID);
-                Warehouse = InventoryDataCommander.GetInstance().SearchField<Warehouse>(item.WarehouseID);
+                Client = DataDirector.GetInstance().SearchField<Supplier>(item.SupplierID);
+                Warehouse = DataDirector.GetInstance().SearchField<Warehouse>(item.WarehouseID);
                 UnitPrice = item.UnitPrice;
             }
             else if (StockType == IOStockType.OUTGOING)
             {
-                Client = InventoryDataCommander.GetInstance().SearchField<Customer>(item.CustomerID);
-                Project = InventoryDataCommander.GetInstance().SearchField<Project>(item.ProjectID);
+                Client = DataDirector.GetInstance().SearchField<Customer>(item.CustomerID);
+                Project = DataDirector.GetInstance().SearchField<Project>(item.ProjectID);
             }
         }
 
@@ -923,7 +923,7 @@ namespace R54IN0.WPF
             var node = nodes.FirstOrDefault();
             if (node != null)
             {
-                var ofd = InventoryDataCommander.GetInstance();
+                var ofd = DataDirector.GetInstance();
                 var product = ofd.SearchField<Product>(node.ObservableObjectID);
                 if (product != null)
                     Product = product;
@@ -1040,7 +1040,7 @@ namespace R54IN0.WPF
                 case Mode.ADD:
                     CreateIOStockNewProperies();
                     ApplyModifiedInventoryProperties();
-                    InventoryDataCommander.GetInstance().DB.Insert(Format);
+                    DataDirector.GetInstance().DB.Insert(Format);
                     result = new ObservableIOStock(Format);
                     CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(result);
                     break;
@@ -1048,7 +1048,7 @@ namespace R54IN0.WPF
                 case Mode.MODIFY:
                     ApplyModifiedIOStockProperties();
                     ApplyModifiedInventoryProperties();
-                    InventoryDataCommander.GetInstance().DB.Update(Format);
+                    DataDirector.GetInstance().DB.Update(Format);
                     _originSource.Format = Format;
                     result = _originSource;
                     break;
@@ -1068,13 +1068,13 @@ namespace R54IN0.WPF
                     if (Client == null && !string.IsNullOrEmpty(ClientText))
                     {
                         var supplier = new Observable<Supplier>(ClientText);
-                        InventoryDataCommander.GetInstance().AddObservableField(supplier);
+                        DataDirector.GetInstance().AddField(supplier);
                         Supplier = supplier;
                     }
                     if (Warehouse == null && !string.IsNullOrEmpty(WarehouseText))
                     {
                         warehouse = new Observable<Warehouse>(WarehouseText);
-                        InventoryDataCommander.GetInstance().AddObservableField(warehouse);
+                        DataDirector.GetInstance().AddField(warehouse);
                         Warehouse = warehouse;
                     }
                     break;
@@ -1083,13 +1083,13 @@ namespace R54IN0.WPF
                     if (Client == null && !string.IsNullOrEmpty(ClientText))
                     {
                         var customer = new Observable<Customer>(ClientText);
-                        InventoryDataCommander.GetInstance().AddObservableField(customer);
+                        DataDirector.GetInstance().AddField(customer);
                         Customer = customer;
                     }
                     if (Project == null && !string.IsNullOrEmpty(ProjectText))
                     {
                         var project = new Observable<Project>(ProjectText);
-                        InventoryDataCommander.GetInstance().AddObservableField(project);
+                        DataDirector.GetInstance().AddField(project);
                         Project = project;
                     }
                     break;
@@ -1097,19 +1097,19 @@ namespace R54IN0.WPF
             if (Employee == null && !string.IsNullOrEmpty(EmployeeText))
             {
                 var employee = new Observable<Employee>(EmployeeText);
-                InventoryDataCommander.GetInstance().AddObservableField(employee);
+                DataDirector.GetInstance().AddField(employee);
                 Employee = employee;
             }
             if (Maker == null && !string.IsNullOrEmpty(MakerText))
             {
                 var maker = new Observable<Maker>(MakerText);
-                InventoryDataCommander.GetInstance().AddObservableField(maker);
+                DataDirector.GetInstance().AddField(maker);
                 Maker = maker;
             }
             if (Measure == null && !string.IsNullOrEmpty(MeasureText))
             {
                 var measure = new Observable<Measure>(MeasureText);
-                InventoryDataCommander.GetInstance().AddObservableField(measure);
+                DataDirector.GetInstance().AddField(measure);
                 Measure = measure;
             }
         }
@@ -1176,15 +1176,15 @@ namespace R54IN0.WPF
                 if (Product == null)
                 {
                     Observable<Product> product = new Observable<Product>(ProductText);
-                    InventoryDataCommander.GetInstance().AddObservableField(product);
+                    DataDirector.GetInstance().AddField(product);
                     Product = product;
                 }
                 inventory = new ObservableInventory(Product, SpecificationText, InventoryQuantity, SpecificationMemo, Maker, Measure);
-                InventoryDataCommander.GetInstance().AddInventory(inventory);
+                DataDirector.GetInstance().AddInventory(inventory);
             }
             else
             {
-                inventory = InventoryDataCommander.GetInstance().SearchInventory(Inventory.ID);
+                inventory = DataDirector.GetInstance().SearchInventory(Inventory.ID);
                 inventory.Format = Inventory.Format;
                 inventory.Quantity = InventoryQuantity;
             }

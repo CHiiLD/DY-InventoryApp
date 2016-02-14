@@ -47,7 +47,7 @@ namespace R54IN0.WPF
             AddCommand = new RelayCommand(ExecuteAddCommand);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
 
-            var idc = InventoryDataCommander.GetInstance();
+            var idc = DataDirector.GetInstance();
             _makerList = new ObservableCollection<Observable<Maker>>(idc.CopyFields<Maker>());
             _measureList = new ObservableCollection<Observable<Measure>>(idc.CopyFields<Measure>());
         }
@@ -198,16 +198,16 @@ namespace R54IN0.WPF
             if (maker == null && MakerText != null)
             {
                 maker = new Observable<Maker>(MakerText);
-                InventoryDataCommander.GetInstance().AddObservableField(maker);
+                DataDirector.GetInstance().AddField(maker);
             }
             if (measure == null && MeasureText != null)
             {
                 measure = new Observable<Measure>(MeasureText);
-                InventoryDataCommander.GetInstance().AddObservableField(measure);
+                DataDirector.GetInstance().AddField(measure);
             }
 
             ObservableInventory inventory = new ObservableInventory(_product, Specification, 0, Memo, maker, measure);
-            InventoryDataCommander.GetInstance().AddInventory(inventory);
+            DataDirector.GetInstance().AddInventory(inventory);
 
             return inventory;
         }
