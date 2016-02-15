@@ -109,7 +109,8 @@ namespace R54IN0.WPF
                 _director.AddToParent(node, newTreeViewNode);
             }
         }
-        private void ExecuteNewInventoryNodeAddCommand()
+
+        private async void ExecuteNewInventoryNodeAddCommand()
         {
             if(Application.Current != null)
             {
@@ -118,7 +119,7 @@ namespace R54IN0.WPF
                 MetroWindow metro = Application.Current.MainWindow as MetroWindow;
                 InventoryManagerDialog dialog = new InventoryManagerDialog(metro);
                 dialog.DataContext = new InventoryManagerViewModel(dialog, product);
-                metro.ShowMetroDialogAsync(dialog, null);
+                await metro.ShowMetroDialogAsync(dialog, null);
             }
         }
 

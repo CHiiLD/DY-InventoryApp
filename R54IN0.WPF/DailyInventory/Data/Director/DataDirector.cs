@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace R54IN0.WPF
 {
@@ -9,8 +10,8 @@ namespace R54IN0.WPF
     public class DataDirector
     {
         private static DataDirector _me;
-        private ObservableFieldDirector _field;
-        private ObservableInventoryDirector _inventory;
+        private ObservableFieldManager _field;
+        private ObservableInventoryManager _inventory;
         private CollectionViewModelObserverSubject _subject;
         private SQLiteClient _db;
 
@@ -28,15 +29,6 @@ namespace R54IN0.WPF
             {
                 return _db;
             }
-        }
-
-        /// <summary>
-        /// sqlite에서 가져온 IOStockFormat데이터를 여기 객체에서 관리한다.
-        /// </summary>
-        public Dictionary<string, ObservableIOStock> ObservableIOStockDictionary
-        {
-            get;
-            set;
         }
 
         public static DataDirector GetInstance()
@@ -70,9 +62,6 @@ namespace R54IN0.WPF
             if (oInventory.ID == null)
                 oInventory.ID = Guid.NewGuid().ToString();
 
-            _inventory.AddObservableInventory(oInventory);
-            _subject.NotifyNewItemAdded(oInventory);
-
             _db.Insert(oInventory.Format);
         }
 
@@ -93,12 +82,12 @@ namespace R54IN0.WPF
 
         public ObservableInventory SearchInventory(string inventoryID)
         {
-            return _inventory.SearchObservableInventory(inventoryID);
+            return _inventory.Search(inventoryID);
         }
 
         public IEnumerable<ObservableInventory> SearchInventories(string productID)
         {
-            return _inventory.SearchObservableInventoryAsProductID(productID);
+            return _inventory.SearchAsProductID(productID);
         }
 
         #endregion inventory director
@@ -114,9 +103,6 @@ namespace R54IN0.WPF
         {
             if (oField.Field.ID == null)
                 oField.Field.ID = Guid.NewGuid().ToString();
-
-            _field.AddObservableField(oField);
-            _subject.NotifyNewItemAdded(oField);
 
             IField iField = oField.Field;
 
@@ -136,16 +122,18 @@ namespace R54IN0.WPF
                 _db.Insert<Warehouse>(iField);
             else if (iField is Employee)
                 _db.Insert<Employee>(iField);
+            else
+                throw new NotSupportedException();
         }
 
         public IEnumerable<Observable<T>> CopyFields<T>() where T : class, IField, new()
         {
-            return _field.CopyObservableFields<T>();
+            return _field.Copy<T>();
         }
 
         public Observable<T> SearchField<T>(string id) where T : class, IField, new()
         {
-            return _field.SearchObservableField<T>(id);
+            return _field.Search<T>(id);
         }
 
         /// <summary>
@@ -173,6 +161,8 @@ namespace R54IN0.WPF
                 _db.Delete<Warehouse>(iField);
             else if (iField is Employee)
                 _db.Delete<Employee>(iField);
+            else
+                throw new NotSupportedException();
         }
 
         #endregion field director
@@ -186,25 +176,19 @@ namespace R54IN0.WPF
             {
                 InventoryFormat fmt = data as InventoryFormat;
                 ObservableInventory oInventory = new ObservableInventory(fmt);
-                if (_inventory.SearchObservableInventory(fmt.ID) == null)
+                if (_inventory.Search(fmt.ID) == null)
                 {
-                    _inventory.AddObservableInventory(oInventory);
+                    _inventory.Add(oInventory);
                     _subject.NotifyNewItemAdded(oInventory);
                 }
-            }
-            else if (data is IOStockFormat)
-            {
-                IOStockFormat fmt = data as IOStockFormat;
-                ObservableIOStock oIOStock = new ObservableIOStock(fmt);
-                _subject.NotifyNewItemAdded(oIOStock);
             }
             else if (data is Product)
             {
                 Product field = data as Product;
                 Observable<Product> oField = new Observable<Product>(field);
-                if (_field.SearchObservableField<Product>(field.ID) == null)
+                if (_field.Search<Product>(field.ID) == null)
                 {
-                    _field.AddObservableField<Product>(oField);
+                    _field.Add<Product>(oField);
                     _subject.NotifyNewItemAdded(oField);
                 }
             }
@@ -212,9 +196,9 @@ namespace R54IN0.WPF
             {
                 Maker field = data as Maker;
                 Observable<Maker> oField = new Observable<Maker>(field);
-                if (_field.SearchObservableField<Maker>(field.ID) == null)
+                if (_field.Search<Maker>(field.ID) == null)
                 {
-                    _field.AddObservableField<Maker>(oField);
+                    _field.Add<Maker>(oField);
                     _subject.NotifyNewItemAdded(oField);
                 }
             }
@@ -222,9 +206,9 @@ namespace R54IN0.WPF
             {
                 Measure field = data as Measure;
                 Observable<Measure> oField = new Observable<Measure>(field);
-                if (_field.SearchObservableField<Measure>(field.ID) == null)
+                if (_field.Search<Measure>(field.ID) == null)
                 {
-                    _field.AddObservableField<Measure>(oField);
+                    _field.Add<Measure>(oField);
                     _subject.NotifyNewItemAdded(oField);
                 }
             }
@@ -232,9 +216,9 @@ namespace R54IN0.WPF
             {
                 Customer field = data as Customer;
                 Observable<Customer> oField = new Observable<Customer>(field);
-                if (_field.SearchObservableField<Customer>(field.ID) == null)
+                if (_field.Search<Customer>(field.ID) == null)
                 {
-                    _field.AddObservableField<Customer>(oField);
+                    _field.Add<Customer>(oField);
                     _subject.NotifyNewItemAdded(oField);
                 }
             }
@@ -242,9 +226,9 @@ namespace R54IN0.WPF
             {
                 Supplier field = data as Supplier;
                 Observable<Supplier> oField = new Observable<Supplier>(field);
-                if (_field.SearchObservableField<Supplier>(field.ID) == null)
+                if (_field.Search<Supplier>(field.ID) == null)
                 {
-                    _field.AddObservableField<Supplier>(oField);
+                    _field.Add<Supplier>(oField);
                     _subject.NotifyNewItemAdded(oField);
                 }
             }
@@ -252,9 +236,9 @@ namespace R54IN0.WPF
             {
                 Project field = data as Project;
                 Observable<Project> oField = new Observable<Project>(field);
-                if (_field.SearchObservableField<Project>(field.ID) == null)
+                if (_field.Search<Project>(field.ID) == null)
                 {
-                    _field.AddObservableField<Project>(oField);
+                    _field.Add<Project>(oField);
                     _subject.NotifyNewItemAdded(oField);
                 }
             }
@@ -262,9 +246,9 @@ namespace R54IN0.WPF
             {
                 Warehouse field = data as Warehouse;
                 Observable<Warehouse> oField = new Observable<Warehouse>(field);
-                if (_field.SearchObservableField<Warehouse>(field.ID) == null)
+                if (_field.Search<Warehouse>(field.ID) == null)
                 {
-                    _field.AddObservableField<Warehouse>(oField);
+                    _field.Add<Warehouse>(oField);
                     _subject.NotifyNewItemAdded(oField);
                 }
             }
@@ -272,9 +256,9 @@ namespace R54IN0.WPF
             {
                 Employee field = data as Employee;
                 Observable<Employee> oField = new Observable<Employee>(field);
-                if (_field.SearchObservableField<Employee>(field.ID) == null)
+                if (_field.Search<Employee>(field.ID) == null)
                 {
-                    _field.AddObservableField<Employee>(oField);
+                    _field.Add<Employee>(oField);
                     _subject.NotifyNewItemAdded(oField);
                 }
             }
@@ -290,15 +274,6 @@ namespace R54IN0.WPF
                 ObservableInventory oInventory = SearchInventory(fmt.ID);
                 if (oInventory != null)
                     oInventory.Format = fmt;
-            }
-            else if (data is IOStockFormat)
-            {
-                IOStockFormat fmt = data as IOStockFormat;
-                if (ObservableIOStockDictionary.ContainsKey(fmt.ID))
-                {
-                    ObservableIOStock oIOStock = ObservableIOStockDictionary[fmt.ID];
-                    oIOStock.Format = fmt;
-                }
             }
             else if (data is IField)
             {
@@ -334,16 +309,7 @@ namespace R54IN0.WPF
                 if (oInventory != null)
                 {
                     _subject.NotifyItemDeleted(oInventory);
-                    _inventory.RemoveObservableInventory(oInventory.ID);
-                }
-            }
-            else if (data is IOStockFormat)
-            {
-                IOStockFormat fmt = data as IOStockFormat;
-                if (ObservableIOStockDictionary.ContainsKey(fmt.ID))
-                {
-                    _subject.NotifyItemDeleted(ObservableIOStockDictionary[fmt.ID]);
-                    ObservableIOStockDictionary.Remove(fmt.ID);
+                    _inventory.Remove(oInventory.ID);
                 }
             }
             else if (data is Product)
@@ -353,7 +319,7 @@ namespace R54IN0.WPF
                 if (oField != null)
                 {
                     _subject.NotifyItemDeleted(oField);
-                    _field.RemoveObservableField<Product>(oField.ID);
+                    _field.Delete<Product>(oField.ID);
                 }
             }
             else if (data is Maker)
@@ -363,7 +329,7 @@ namespace R54IN0.WPF
                 if (oField != null)
                 {
                     _subject.NotifyItemDeleted(oField);
-                    _field.RemoveObservableField<Maker>(oField.ID);
+                    _field.Delete<Maker>(oField.ID);
                 }
             }
             else if (data is Measure)
@@ -373,7 +339,7 @@ namespace R54IN0.WPF
                 if (oField != null)
                 {
                     _subject.NotifyItemDeleted(oField);
-                    _field.RemoveObservableField<Measure>(oField.ID);
+                    _field.Delete<Measure>(oField.ID);
                 }
             }
             else if (data is Customer)
@@ -383,7 +349,7 @@ namespace R54IN0.WPF
                 if (oField != null)
                 {
                     _subject.NotifyItemDeleted(oField);
-                    _field.RemoveObservableField<Customer>(oField.ID);
+                    _field.Delete<Customer>(oField.ID);
                 }
             }
             else if (data is Supplier)
@@ -393,7 +359,7 @@ namespace R54IN0.WPF
                 if (oField != null)
                 {
                     _subject.NotifyItemDeleted(oField);
-                    _field.RemoveObservableField<Supplier>(oField.ID);
+                    _field.Delete<Supplier>(oField.ID);
                 }
             }
             else if (data is Project)
@@ -403,7 +369,7 @@ namespace R54IN0.WPF
                 if (oField != null)
                 {
                     _subject.NotifyItemDeleted(oField);
-                    _field.RemoveObservableField<Project>(oField.ID);
+                    _field.Delete<Project>(oField.ID);
                 }
             }
             else if (data is Warehouse)
@@ -413,7 +379,7 @@ namespace R54IN0.WPF
                 if (oField != null)
                 {
                     _subject.NotifyItemDeleted(oField);
-                    _field.RemoveObservableField<Warehouse>(oField.ID);
+                    _field.Delete<Warehouse>(oField.ID);
                 }
             }
             else if (data is Employee)
@@ -423,11 +389,10 @@ namespace R54IN0.WPF
                 if (oField != null)
                 {
                     _subject.NotifyItemDeleted(oField);
-                    _field.RemoveObservableField<Employee>(oField.ID);
+                    _field.Delete<Employee>(oField.ID);
                 }
             }
         }
-
         #endregion event callback
 
         private void Initialze()
@@ -435,12 +400,10 @@ namespace R54IN0.WPF
             _db = new SQLiteClient();
             if (_db.Open())
             {
-                _field = new ObservableFieldDirector(_db);
-                _inventory = new ObservableInventoryDirector(_db);
+                _field = new ObservableFieldManager(_db);
+                _inventory = new ObservableInventoryManager(_db);
                 _subject = CollectionViewModelObserverSubject.GetInstance();
-#if false
                 _db.DataInsertEventHandler += DataInserted;
-#endif
                 _db.DataUpdateEventHandler += DataUpdated;
                 _db.DataDeleteEventHandler += DataDeleted;
             }

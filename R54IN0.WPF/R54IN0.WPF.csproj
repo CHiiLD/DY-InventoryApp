@@ -182,9 +182,8 @@
     <Compile Include="DailyInventory\Data\Inventory\ISync.cs" />
     <Compile Include="DailyInventory\Data\Db\LexDb.cs" />
     <Compile Include="DailyInventory\Data\Director\CollectionViewModelObserverSubject.cs" />
-    <Compile Include="DailyInventory\Data\Director\MultiSortedDictionary.cs" />
-    <Compile Include="DailyInventory\Data\Director\ObservableFieldDirector.cs" />
-    <Compile Include="DailyInventory\Data\Director\ObservableInventoryDirector.cs" />
+    <Compile Include="DailyInventory\Data\Director\ObservableFieldManager.cs" />
+    <Compile Include="DailyInventory\Data\Director\ObservableInventoryManager.cs" />
     <Compile Include="DailyInventory\Data\Inventory\IObservableField.cs" />
     <Compile Include="DailyInventory\Data\Inventory\Observable.cs" />
     <Compile Include="DailyInventory\Data\Inventory\IObservableIOStockProperties.cs" />

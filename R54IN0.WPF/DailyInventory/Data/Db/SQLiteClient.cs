@@ -178,7 +178,7 @@ namespace R54IN0
 
         public IEnumerable<TableT> Query<TableT>(string sql) where TableT : class, IID, new()
         {
-            if (!sql.Contains("where"))
+            if (!sql.Contains("where") || !sql.Contains("*"))
                 throw new ArgumentException();
 
             Console.WriteLine(sql);
@@ -204,7 +204,7 @@ namespace R54IN0
             return result;
         }
 
-        public void Update<TableT>(TableT item) where TableT : class, IID
+        public void Update<TableT>(TableT item, bool handled = false) where TableT : class, IID
         {
             string sql = string.Format("update {0} set ", typeof(TableT).Name);
             StringBuilder sb = new StringBuilder(sql);
@@ -232,17 +232,17 @@ namespace R54IN0
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
                 cmd.ExecuteNonQuery();
 
-            if (DataUpdateEventHandler != null)
+            if (DataUpdateEventHandler != null && handled)
                 DataUpdateEventHandler(this, new SQLUpdateEventArgs(item, update));
         }
 
-        public void Update<TableT>(TableT item, string propertyName, object setValue) where TableT : class, IID
+        public void Update<TableT>(TableT item, string propertyName, object setValue, bool handled = false) where TableT : class, IID
         {
             item.GetType().GetProperty(propertyName).SetValue(item, setValue);
-            Update<TableT>(item, propertyName);
+            Update<TableT>(item, propertyName, handled);
         }
 
-        public void Update<TableT>(TableT item, string propertyName) where TableT : class, IID
+        public void Update<TableT>(TableT item, string propertyName, bool handled = false) where TableT : class, IID
         {
             object value = typeof(TableT).GetProperty(propertyName).GetValue(item);
             if (value != null && value.GetType().IsEnum)
@@ -255,7 +255,7 @@ namespace R54IN0
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
                 cmd.ExecuteNonQuery();
 
-            if (DataUpdateEventHandler != null)
+            if (DataUpdateEventHandler != null && handled)
                 DataUpdateEventHandler(this, new SQLUpdateEventArgs(item, propertyName, value));
         }
 
@@ -289,12 +289,12 @@ namespace R54IN0
             else if (item is Maker)
             {
                 var inventories = Query<InventoryFormat>("select * from {0} where MakerID = '{1}'", typeof(InventoryFormat).Name, item.ID);
-                inventories.ToList().ForEach(x => Update<InventoryFormat>(x, nameof(x.MakerID), null));
+                inventories.ToList().ForEach(x => Update<InventoryFormat>(x, nameof(x.MakerID), null, true));
             }
             else if (item is Measure)
             {
                 var inventories = Query<InventoryFormat>("select * from {0} where MeasureID = '{1}'", typeof(InventoryFormat).Name, item.ID);
-                inventories.ToList().ForEach(x => Update<InventoryFormat>(x, nameof(x.MeasureID), null));
+                inventories.ToList().ForEach(x => Update<InventoryFormat>(x, nameof(x.MeasureID), null, true));
             }
         }
 

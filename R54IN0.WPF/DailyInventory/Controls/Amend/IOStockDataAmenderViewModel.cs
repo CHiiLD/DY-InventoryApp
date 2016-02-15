@@ -99,6 +99,7 @@ namespace R54IN0.WPF
             CollectionViewModelObserverSubject.GetInstance().Attach(this);
         }
 
+#if false
         /// <summary>
         /// 새로운 IOStockFormat을 추가하고자 할 경우
         /// </summary>
@@ -118,6 +119,7 @@ namespace R54IN0.WPF
         {
             _ioStockStatusViewModel = ioStockStatusViewModel;
         }
+#endif
 
         ~IOStockDataAmenderViewModel()
         {
@@ -129,7 +131,7 @@ namespace R54IN0.WPF
         /// </summary>
         public MultiSelectTreeViewModelView TreeViewViewModel { get; set; }
 
-        #region Command
+#region Command
 
         /// <summary>
         /// 제품 탐색기 열기 버튼의 명령어
@@ -162,7 +164,7 @@ namespace R54IN0.WPF
         /// </summary>
         public RelayCommand<object> ComboBoxItemDeleteCommand { get; set; }
 
-        #endregion Command
+#endregion Command
 
         public bool IsEditableSpecification
         {
@@ -309,7 +311,7 @@ namespace R54IN0.WPF
             }
         }
 
-        #region IsEnabled Property
+#region IsEnabled Property
 
         public bool IsEnabledDatePicker
         {
@@ -389,9 +391,9 @@ namespace R54IN0.WPF
             }
         }
 
-        #endregion IsEnabled Property
+#endregion IsEnabled Property
 
-        #region IsReadOnly Property
+#region IsReadOnly Property
 
         /// <summary>
         /// 제품 텍스트 박스의 텍스트 바인딩 프로퍼티
@@ -409,9 +411,9 @@ namespace R54IN0.WPF
             }
         }
 
-        #endregion IsReadOnly Property
+#endregion IsReadOnly Property
 
-        #region ComboBox ItemsSource Property
+#region ComboBox ItemsSource Property
 
         public IEnumerable<IObservableInventoryProperties> InventoryList
         {
@@ -504,9 +506,9 @@ namespace R54IN0.WPF
             }
         }
 
-        #endregion ComboBox ItemsSource Property
+#endregion ComboBox ItemsSource Property
 
-        #region ComboBox SelectedItem Property
+#region ComboBox SelectedItem Property
 
         /// <summary>
         /// Product를 변경할 시, ProductText, InventoryList 프로퍼티를 업데이트
@@ -613,9 +615,9 @@ namespace R54IN0.WPF
             }
         }
 
-        #endregion ComboBox SelectedItem Property
+#endregion ComboBox SelectedItem Property
 
-        #region TextBox Property
+#region TextBox Property
 
         /// <summary>
         /// ProductText를 변경할 시, Product, Inventory, InventoryList 속성을 변경
@@ -753,7 +755,7 @@ namespace R54IN0.WPF
             }
         }
 
-        #endregion TextBox Property
+#endregion TextBox Property
 
         /// <summary>
         /// IOStockProperties 속성 초기화
@@ -1053,7 +1055,7 @@ namespace R54IN0.WPF
                     result = _originSource;
                     break;
             }
-            RefreshDataGridItems();
+            //RefreshDataGridItems();
             return result;
         }
 
@@ -1191,6 +1193,7 @@ namespace R54IN0.WPF
             Inventory = inventory;
         }
 
+#if false
         /// <summary>
         /// 입출고 데이터를 새로 추가하는 경우 또는 과거의 데이터를 수정할 경우 입출고 수량에 변화가 있다면
         /// 관련 IOStock 데이터들의 잔여수량 및 재고수량을 다시 계산하여 전부 업데이트하고 Owner의 DataGridItems 역시 변화된 값들을 반영하게 한다.
@@ -1208,5 +1211,6 @@ namespace R54IN0.WPF
                 }
             }
         }
+#endif
     }
 }

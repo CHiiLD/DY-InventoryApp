@@ -158,7 +158,7 @@ namespace R54IN0.Test.New
             fmt = DataDirector.GetInstance().DB.Select<IOStockFormat>().Random(); DataDirector.GetInstance().DB.Select<IOStockFormat>().Random();
             IOStockType type = fmt.StockType;
             IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel, new ObservableIOStock(fmt));
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(new ObservableIOStock(fmt));
 
             Assert.AreEqual(type, viewmodel.StockType);
             string id = fmt.ID;
@@ -451,7 +451,7 @@ namespace R54IN0.Test.New
             fmt = DataDirector.GetInstance().DB.Select<IOStockFormat>().Random();
             IObservableIOStockProperties obIOStock = new ObservableIOStock(fmt);
             var inventoryQty = obIOStock.Inventory.Quantity;
-            var viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel, obIOStock);
+            var viewmodel = new IOStockDataAmenderViewModel(obIOStock);
             viewmodel.Quantity = 12;
             obIOStock = viewmodel.Record();
             CheckQuantity(obIOStock.Inventory as ObservableInventory);
@@ -466,7 +466,7 @@ namespace R54IN0.Test.New
         {
             new Dummy().Create();
             IOStockStatusViewModel iostockStatusViewModel = new IOStockStatusViewModel();
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iostockStatusViewModel);
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             //설정
             viewmodel.StockType = new Random().NextDouble() > 0.5 ? IOStockType.INCOMING : IOStockType.OUTGOING;
             var product = viewmodel.Product = DataDirector.GetInstance().CopyFields<Product>().Random();
@@ -573,7 +573,7 @@ namespace R54IN0.Test.New
             fmt = formats.First();
             var iostock = new ObservableIOStock(fmt);
             int inventoryQty = iostock.Inventory.Quantity;
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(new IOStockStatusViewModel());
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             viewmodel.StockType = IOStockType.OUTGOING;
             viewmodel.Product = iostock.Inventory.Product;
             viewmodel.Inventory = viewmodel.InventoryList.Where(x => x.ID == iostock.Inventory.ID).Single();

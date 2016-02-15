@@ -62,7 +62,7 @@ namespace R54IN0.Test
         {
             new Dummy().Create();
             IOStockStatusViewModel iosViewModel = new IOStockStatusViewModel();
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(iosViewModel);
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             viewmodel.StockType = IOStockType.OUTGOING;
             viewmodel.Product = DataDirector.GetInstance().CopyFields<Product>().Random();
             viewmodel.Inventory = viewmodel.InventoryList.Random();
@@ -144,7 +144,7 @@ namespace R54IN0.Test
             var node = status.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
             status.TreeViewViewModel.SelectedNodes.Add(node);
             status.OnTreeViewNodesSelected(status.TreeViewViewModel, new PropertyChangedEventArgs("SelectedNodes"));
-            IOStockDataAmenderViewModel amender = new IOStockDataAmenderViewModel(status);
+            IOStockDataAmenderViewModel amender = new IOStockDataAmenderViewModel();
             return amender;
         }
 
@@ -411,7 +411,7 @@ namespace R54IN0.Test
             IOStockStatusViewModel status = new IOStockStatusViewModel();
             status.DatePickerViewModel.LastYearCommand.Execute(null);
 
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel(status);
+            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
             var client = viewmodel.ClientList.Random();
             viewmodel.ComboBoxItemDeleteCommand.Execute(client);
             var employee = viewmodel.EmployeeList.Random();
