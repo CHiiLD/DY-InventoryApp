@@ -1,12 +1,15 @@
 ﻿using R54IN0.WPF;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System;
+using System.Linq;
 
-namespace R54IN0
+namespace R54IN0.WPF
 {
-    public class ObservableInventory : IObservableInventoryProperties
+    public class ObservableInventory : IInventoryFormat, IObservableInventoryProperties, ICanUpdate
     {
         private InventoryFormat _fmt;
+        private bool _canUpdate = true;
         protected Observable<Product> product;
         protected Observable<Maker> maker;
         protected Observable<Measure> measure;
@@ -81,8 +84,11 @@ namespace R54IN0
             }
             set
             {
-                _fmt.Specification = value;
-                NotifyPropertyChanged("Specification");
+                if (_fmt.Specification != value)
+                {
+                    _fmt.Specification = value;
+                    NotifyPropertyChanged("Specification");
+                }
             }
         }
 
@@ -97,8 +103,11 @@ namespace R54IN0
             }
             set
             {
-                _fmt.Quantity = value;
-                NotifyPropertyChanged("Quantity");
+                if (_fmt.Quantity != value)
+                {
+                    _fmt.Quantity = value;
+                    NotifyPropertyChanged("Quantity");
+                }
             }
         }
 
@@ -113,8 +122,11 @@ namespace R54IN0
             }
             set
             {
-                _fmt.Memo = value;
-                NotifyPropertyChanged("Memo");
+                if (_fmt.Memo != value)
+                {
+                    _fmt.Memo = value;
+                    NotifyPropertyChanged("Memo");
+                }
             }
         }
 
@@ -129,9 +141,12 @@ namespace R54IN0
             }
             set
             {
-                _fmt.ProductID = value != null ? value.ID : null;
-                product = value;
-                NotifyPropertyChanged("Product");
+                if (product != value)
+                {
+                    _fmt.ProductID = value != null ? value.ID : null;
+                    product = value;
+                    NotifyPropertyChanged("Product");
+                }
             }
         }
 
@@ -146,9 +161,12 @@ namespace R54IN0
             }
             set
             {
-                _fmt.MeasureID = value != null ? value.ID : null;
-                measure = value;
-                NotifyPropertyChanged("Measure");
+                if (measure != value)
+                {
+                    _fmt.MeasureID = value != null ? value.ID : null;
+                    measure = value;
+                    NotifyPropertyChanged("Measure");
+                }
             }
         }
 
@@ -163,9 +181,12 @@ namespace R54IN0
             }
             set
             {
-                _fmt.MakerID = value != null ? value.ID : null;
-                maker = value;
-                NotifyPropertyChanged("Maker");
+                if (maker != value)
+                {
+                    _fmt.MakerID = value != null ? value.ID : null;
+                    maker = value;
+                    NotifyPropertyChanged("Maker");
+                }
             }
         }
 
@@ -178,6 +199,57 @@ namespace R54IN0
             set
             {
                 _fmt.ID = value;
+            }
+        }
+
+        public string MakerID
+        {
+            get
+            {
+                return _fmt.MakerID;
+            }
+            set
+            {
+                if (_fmt.MakerID != value)
+                    Maker = DataDirector.GetInstance().SearchField<Maker>(value);
+            }
+        }
+
+        public string MeasureID
+        {
+            get
+            {
+                return _fmt.MeasureID;
+            }
+            set
+            {
+                if (_fmt.MeasureID != value)
+                    Measure = DataDirector.GetInstance().SearchField<Measure>(value);
+            }
+        }
+
+        public string ProductID
+        {
+            get
+            {
+                return _fmt.ProductID;
+            }
+            set
+            {
+                if (_fmt.MeasureID != value)
+                    Product = DataDirector.GetInstance().SearchField<Product>(value);
+            }
+        }
+
+        public bool CanUpdate
+        {
+            get
+            {
+                return _canUpdate;
+            }
+            set
+            {
+                _canUpdate = value;
             }
         }
 
@@ -197,15 +269,19 @@ namespace R54IN0
             if (string.IsNullOrEmpty(name))
                 return;
 
+            string[] s = new string[] { nameof(this.Product), nameof(this.Maker), nameof(this.Measure) };
+            if (s.Any(x => x == name))
+                name = name.Insert(name.Length, "ID");
+
             if (ID == null)
                 DataDirector.GetInstance().AddInventory(this);
-            else
-                DataDirector.GetInstance().DB.Update(Format);
+            else if (CanUpdate)
+                DataDirector.GetInstance().DB.Update(Format, name);
         }
 
-        public void Refresh()
+        public void Sync()
         {
-            InventoryFormat fmt = DataDirector.GetInstance().DB.Select<InventoryFormat>(nameof(ID), ID);
+            InventoryFormat fmt = DataDirector.GetInstance().DB.Select<InventoryFormat>(ID);
             if (fmt != null)
                 Format = fmt;
         }

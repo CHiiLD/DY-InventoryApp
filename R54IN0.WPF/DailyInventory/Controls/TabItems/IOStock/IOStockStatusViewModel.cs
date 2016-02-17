@@ -248,7 +248,7 @@ namespace R54IN0.WPF
         /// <summary>
         /// 새로운 입출고 기록을 추가하는 명령어
         /// </summary>
-        public ICommand NewInoutStockAddCommand { get; set; }
+        ///public ICommand NewInoutStockAddCommand { get; set; }
 
         /// <summary>
         /// 선택된 셀을 수정하는 명령어
@@ -370,7 +370,7 @@ namespace R54IN0.WPF
             ProjectListBoxViewModel.PropertyChanged += OnProjectListPropertyChanged;
             TreeViewViewModel.PropertyChanged += OnTreeViewNodesSelected;
 
-            NewInoutStockAddCommand = new RelayCommand<object>(ExecuteNewInoutStockAddCommand, (object obj) => { return true; });
+            //NewInoutStockAddCommand = new RelayCommand<object>(ExecuteNewInoutStockAddCommand, (object obj) => { return true; });
             DataGridViewModel.PropertyChanged += OnDataGridViewModelPropertyChanged;
             SelectedItemModifyCommand = new RelayCommand<object>(ExecuteSelectedItemModifyCommand, CanModifySelectedItem);
 
@@ -382,55 +382,48 @@ namespace R54IN0.WPF
 
             SelectedGroupItem = GroupItems.First();
 
-            DataDirector.GetInstance().DB.DataInsertEventHandler += DataInserted;
+            DataDirector.GetInstance().DB.DataInsertEventHandler += DateInserted;
             DataDirector.GetInstance().DB.DataDeleteEventHandler += DataDeleted;
+            DataDirector.GetInstance().DB.DataUpdateEventHandler += DataUpdated;
         }
+
         private bool CanModifySelectedItem(object arg)
         {
             return DataGridViewModel.SelectedItem != null ? true : false;
         }
 
+        /// <summary>
+        /// IOStockFormat을 수정하기 위해 
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecuteSelectedItemModifyCommand(object obj)
         {
-            OpenIOStockDataAmenderWindow(DataGridViewModel.SelectedItem);
-        }
-
-        public void OpenIOStockDataAmenderWindow(IObservableIOStockProperties selectedItem = null)
-        {
-            IOStockDataAmenderViewModel viewmodel = null;
-            if (selectedItem != null)
-                viewmodel = new IOStockDataAmenderViewModel(selectedItem);
-            else
-                viewmodel = new IOStockDataAmenderViewModel();
-            viewmodel.TreeViewViewModel.DragCommand = null;
-            viewmodel.TreeViewViewModel.DropCommand = null;
-            IOStockDataAmenderWindow window = new IOStockDataAmenderWindow();
-            window.DataContext = viewmodel;
-            window.Owner = Application.Current.MainWindow;
-            window.ShowDialog();
+            var item = DataGridViewModel.SelectedItem;
+            OpenIOStockDataAmenderWindow(item);
         }
 
         public void OpenIOStockDataAmenderWindow(Observable<Product> product)
         {
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
-            viewmodel.TreeViewViewModel.DragCommand = null;
-            viewmodel.TreeViewViewModel.DropCommand = null;
-            viewmodel.Product = product;
-            IOStockDataAmenderWindow window = new IOStockDataAmenderWindow();
+            IOStockManagerViewModel viewmodel = new IOStockManagerViewModel(product);
+            IOStockManagerWindow window = new IOStockManagerWindow();
             window.DataContext = viewmodel;
             window.Owner = Application.Current.MainWindow;
             window.ShowDialog();
         }
 
-        public void OpenIOStockDataAmenderWindow(IObservableInventoryProperties inventory)
+        public void OpenIOStockDataAmenderWindow(ObservableInventory inventory)
         {
-            IOStockDataAmenderViewModel viewmodel = new IOStockDataAmenderViewModel();
-            viewmodel.TreeViewViewModel.DragCommand = null;
-            viewmodel.TreeViewViewModel.DropCommand = null;
-            viewmodel.Product = inventory.Product;
-            if (inventory != null)
-                viewmodel.Inventory = viewmodel.InventoryList.Where(x => x.ID == inventory.ID).SingleOrDefault();
-            IOStockDataAmenderWindow window = new IOStockDataAmenderWindow();
+            IOStockManagerViewModel viewmodel = new IOStockManagerViewModel(inventory);
+            IOStockManagerWindow window = new IOStockManagerWindow();
+            window.DataContext = viewmodel;
+            window.Owner = Application.Current.MainWindow;
+            window.ShowDialog();
+        }
+
+        public void OpenIOStockDataAmenderWindow(ObservableIOStock iostock)
+        {
+            IOStockManagerViewModel viewmodel = new IOStockManagerViewModel(iostock);
+            IOStockManagerWindow window = new IOStockManagerWindow();
             window.DataContext = viewmodel;
             window.Owner = Application.Current.MainWindow;
             window.ShowDialog();
@@ -450,14 +443,14 @@ namespace R54IN0.WPF
             }
         }
 
-        /// <summary>
-        /// 새로운 입출고 데이터를 생성하기 위해서 InoutStockRegisterWindow를 다이얼로그로 호출한다.
-        /// </summary>
-        /// <param name="obj"></param>
-        private void ExecuteNewInoutStockAddCommand(object obj)
-        {
-            OpenIOStockDataAmenderWindow();
-        }
+        ///// <summary>
+        ///// 새로운 입출고 데이터를 생성하기 위해서 InoutStockRegisterWindow를 다이얼로그로 호출한다.
+        ///// </summary>
+        ///// <param name="obj"></param>
+        //private void ExecuteNewInoutStockAddCommand(object obj)
+        //{
+        //    OpenIOStockDataAmenderWindow();
+        //}
 
         /// <summary>
         /// 트리뷰에서 제품들을 선택했을 경우, 이와 관련된 입출고 데이터를 보여준다.
@@ -543,6 +536,9 @@ namespace R54IN0.WPF
         /// </summary>
         private void UpdateDataGridItems()
         {
+            if (DataGridItemsSource == null)
+                return;
+
             IOStockType type = IOStockType.NONE;
             if (IsCheckedInComing == true)
                 type = type | IOStockType.INCOMING;
@@ -578,6 +574,7 @@ namespace R54IN0.WPF
 
         public void UpdateDelItem(object item)
         {
+#if false
             if (item is Observable<Customer>)
                 DataGridItemsSource.ForEach(x => { if (x.Customer == item) x.Customer = null; });
             else if (item is Observable<Supplier>)
@@ -588,10 +585,13 @@ namespace R54IN0.WPF
                 DataGridItemsSource.ForEach(x => { if (x.Warehouse == item) x.Warehouse = null; });
             else if (item is Observable<Employee>)
                 DataGridItemsSource.ForEach(x => { if (x.Employee == item) x.Employee = null; });
+#endif
         }
 
-        private void DataInserted(object sender, SQLInsDelEventArgs e)
+        private void DateInserted(object sender, SQLInsertEventArgs e)
         {
+            if (DataGridItemsSource == null)
+                return;
             var data = e.Data;
             if (data is IOStockFormat)
             {
@@ -624,17 +624,38 @@ namespace R54IN0.WPF
             }
         }
 
-        private void DataDeleted(object sender, SQLInsDelEventArgs e)
+        private void DataUpdated(object sender, SQLUpdateEventArgs e)
+        {
+            var data = e.Data;
+            if (data is IOStockFormat && DataGridItemsSource != null)
+            {
+                var fmt = data as IOStockFormat;
+                var content = e.UpdateContent;
+                var item = DataGridItemsSource.Where(x => x.ID == fmt.ID).SingleOrDefault();
+                if (item != null)
+                {
+                    foreach (var c in content)
+                        item.GetType().GetProperty(c.Key).SetValue(item, c.Value);
+                }
+            }
+        }
+
+        private void DataDeleted(object sender, SQLDeleteEventArgs e)
         {
             if (DataGridItemsSource == null)
                 return;
-            var data = e.Data;
-            if (data is IOStockFormat)
+            if (e.Type == typeof(IOStockFormat))
             {
-                var fmt = data as IOStockFormat;
-                var i = DataGridItemsSource.Where(x => x.ID == fmt.ID).SingleOrDefault();
-                if(i != null)
-                    DataGridItemsSource.Remove(i);
+                var ids = e.IDList;
+                foreach (var id in ids)
+                {
+                    var i = DataGridItemsSource.Where(x => x.ID == id).SingleOrDefault();
+                    if (i != null)
+                    {
+                        DataGridItemsSource.Remove(i);
+                        DataGridViewModel.Items.Remove(i);
+                    }
+                }
             }
         }
     }

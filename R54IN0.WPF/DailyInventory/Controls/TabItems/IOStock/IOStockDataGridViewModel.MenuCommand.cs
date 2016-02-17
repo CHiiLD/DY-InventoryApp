@@ -26,14 +26,14 @@ namespace R54IN0.WPF
         /// </summary>
         public RelayCommand IOStockFormatDeletionCommand { get; set; }
 
-        /// <summary>
-        /// 체크된 모든 입출고데이터를 오늘날짜로 복사하기
-        /// </summary>
+        ///// <summary>
+        ///// 체크된 모든 입출고데이터를 오늘날짜로 복사하기
+        ///// </summary>
         public RelayCommand CheckedIOStockFormatsCopyCommand { get; set; }
 
-        /// <summary>
-        /// 체크된 모든 입출고 데이터를 삭제하기
-        /// </summary>
+        ///// <summary>
+        ///// 체크된 모든 입출고 데이터를 삭제하기
+        ///// </summary>
         public RelayCommand ChekcedIOStockFormatsDeletionCommand { get; set; }
 
         /// <summary>
@@ -71,9 +71,7 @@ namespace R54IN0.WPF
         {
             MainWindowViewModel main = MainWindowViewModel.GetInstance();
             if (SelectedItem != null)
-                main.IOStockViewModel.OpenIOStockDataAmenderWindow(SelectedItem.Inventory);
-            else
-                main.IOStockViewModel.OpenIOStockDataAmenderWindow();
+                main.IOStockViewModel.OpenIOStockDataAmenderWindow(SelectedItem.Inventory as ObservableInventory);
         }
 
         /// <summary>
@@ -98,7 +96,7 @@ namespace R54IN0.WPF
                 var item = SelectedItem;
                 CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(item);
                 DataDirector.GetInstance().DB.Delete(item.Format);
-                item.Inventory.Refresh();
+                item.Inventory.Sync();
                 foreach (var i in Items.Where(x => x.Inventory.ID == item.Inventory.ID))
                     i.Refresh();
                 SelectedItem = null;
@@ -117,7 +115,7 @@ namespace R54IN0.WPF
                 DataDirector.GetInstance().DB.Delete(item.Format);
             }
             foreach (var i in items.Select(x => x.Inventory).Distinct().ToList())
-                i.Refresh();
+                i.Sync();
             foreach (var i in Items)
                 i.Refresh();
         }
@@ -137,7 +135,7 @@ namespace R54IN0.WPF
             }
             var invens = items.Select(x => x.Inventory).Distinct();
             foreach (var item in invens)
-                item.Refresh();
+                item.Sync();
             foreach (var item in items)
                 item.Refresh();
         }

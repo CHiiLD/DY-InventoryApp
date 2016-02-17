@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace R54IN0
+namespace R54IN0.WPF
 {
     internal class ObservableInventoryManager
     {

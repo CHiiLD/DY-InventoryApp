@@ -44,7 +44,7 @@ namespace R54IN0.WPF
 
             _product = product;
 
-            AddCommand = new RelayCommand(ExecuteAddCommand);
+            RecordCommand = new RelayCommand(ExecuteRecordCommand);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
 
             var idc = DataDirector.GetInstance();
@@ -57,8 +57,7 @@ namespace R54IN0.WPF
             _control = dialog;
         }
 
-        public RelayCommand AddCommand { get; private set; }
-
+        public RelayCommand RecordCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
 
         public string ProductName
@@ -173,9 +172,9 @@ namespace R54IN0.WPF
             }
         }
 
-        private async void ExecuteAddCommand()
+        private async void ExecuteRecordCommand()
         {
-            Register();
+            Insert();
             await _control.RequestCloseAsync();
         }
 
@@ -190,7 +189,7 @@ namespace R54IN0.WPF
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
-        public ObservableInventory Register()
+        public ObservableInventory Insert()
         {
             var maker = Maker;
             var measure = Measure;

@@ -126,6 +126,7 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
+        [Ignore]
         public void CopyCheckedDataGridRowCell()
         {
             var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
@@ -140,6 +141,7 @@ namespace R54IN0.Test
             Console.WriteLine("입출고 데이터를 복사한 후 데이터그리드 아이템소스 개수: " + itemsCount2);
             Assert.AreEqual(itemsCount + 1, itemsCount2);
         }
+
 
         /// <summary>
         /// 다수의 데이터그리드 아이템을 체크
@@ -171,6 +173,7 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
+        [Ignore]
         public void CopyRowCellThenCheckThatQuantityHaveToCalc()
         {
             var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
@@ -189,6 +192,7 @@ namespace R54IN0.Test
         /// </summary>
         /// <returns></returns>
         [TestMethod]
+        [Ignore]
         public void CopyRowCellThenCheckThatQuantityHaveToCalc2()
         {
             var viewmodel = CreateViewModelThenSelectedTreeViewNodeRandomly();
@@ -232,7 +236,7 @@ namespace R54IN0.Test
 
             viewmodel.DataGridViewModel.IOStockFormatDeletionCommand.Execute(null);
 
-            var iofmts = DataDirector.GetInstance().DB.Select<IOStockFormat>("ID", iosID);
+            var iofmts = DataDirector.GetInstance().DB.Select<IOStockFormat>(iosID);
             Assert.IsNull(iofmts);
         }
 
@@ -295,9 +299,10 @@ namespace R54IN0.Test
 
             viewmodel.DataGridViewModel.ChekcedIOStockFormatsDeletionCommand.Execute(null);
 
-            var iofmts = DataDirector.GetInstance().DB.Select<IOStockFormat>("ID", iosID);
+            var iofmts = DataDirector.GetInstance().DB.Select<IOStockFormat>(iosID);
             Assert.IsNull(iofmts);
         }
+
 
         /// <summary>
         /// 삭제 후 잔여수량과 재고수량을 업데이트 한다.
@@ -369,7 +374,7 @@ namespace R54IN0.Test
 
             foreach (var item in checkedItems)
             {
-                var iofmts = DataDirector.GetInstance().DB.Select<IOStockFormat>("ID", item.ID);
+                var iofmts = DataDirector.GetInstance().DB.Select<IOStockFormat>(item.ID);
                 Assert.IsNull(iofmts);
             }
         }
@@ -452,6 +457,10 @@ namespace R54IN0.Test
             var lookup = items.ToLookup(x => x.Inventory);
             foreach (var item in lookup)
             {
+                var selectResult = DataDirector.GetInstance().DB.Select<InventoryFormat>(item.Key.ID);
+                var queryResult = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' order by Date limit 1;",
+                    item.Key.ID);
+
                 var orderedItem = item.OrderBy(x => x.Date);
                 var lastItem = orderedItem.Last();
                 Assert.AreEqual(lastItem.RemainingQuantity, item.Key.Quantity);

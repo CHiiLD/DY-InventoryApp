@@ -1,12 +1,14 @@
 ﻿using R54IN0.WPF;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System;
 
-namespace R54IN0
+namespace R54IN0.WPF
 {
-    public class Observable<FieldT> : IObservableField, INotifyPropertyChanged where FieldT : class, IField, new()
+    public class Observable<FieldT> : IObservableField, INotifyPropertyChanged, ICanUpdate where FieldT : class, IField, new()
     {
         private FieldT _t;
+        private bool _canUpdate = true;
 
         private event PropertyChangedEventHandler _propertyChanged;
 
@@ -51,6 +53,7 @@ namespace R54IN0
             set
             {
                 _t.ID = value;
+                throw new NotSupportedException();
             }
         }
 
@@ -62,8 +65,11 @@ namespace R54IN0
             }
             set
             {
-                _t.Name = value;
-                NotifyPropertyChanged("Name");
+                if (_t.Name != value)
+                {
+                    _t.Name = value;
+                    NotifyPropertyChanged("Name");
+                }
             }
         }
 
@@ -92,6 +98,18 @@ namespace R54IN0
             }
         }
 
+        public bool CanUpdate
+        {
+            get
+            {
+                return _canUpdate;
+            }
+            set
+            {
+                _canUpdate = value;
+            }
+        }
+
         public void NotifyPropertyChanged(string name)
         {
             if (_propertyChanged != null)
@@ -102,13 +120,13 @@ namespace R54IN0
 
             if (ID == null)
                 DataDirector.GetInstance().AddField(this);
-            else
+            else if (CanUpdate)
                 DataDirector.GetInstance().DB.Update(Field, name);
         }
 
         public void Refresh()
         {
-            FieldT field = DataDirector.GetInstance().DB.Select<FieldT>(nameof(ID), ID);
+            FieldT field = DataDirector.GetInstance().DB.Select<FieldT>(ID);
             if (field != null)
             {
                 if (Name != field.Name)

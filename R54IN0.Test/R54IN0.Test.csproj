@@ -80,14 +80,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Test\AmenderViewModelUnitTest.cs" />
     <Compile Include="Test\DummyUnitTest.cs" />
     <Compile Include="Test\IOStockManagerViewModelUnitTest.cs" />
-    <Compile Include="Test\SQLiteServerUnitTest.cs" />
+    <Compile Include="Test\SQLiteClientUnitTest.cs" />
     <Compile Include="Test\TreeViewViewModelUnitTest.cs" />
     <Compile Include="Test\InventoryManagerDialogViewModelUnitTest.cs" />
     <Compile Include="Tool\IIDExtension.cs" />
-    <Compile Include="Test\IOStockDataAmenderViewModelUnitTest.cs" />
     <Compile Include="Test\IOStockStatusViewModelUnitTest.cs" />
     <Compile Include="Test\InventorySearchTextBoxViewModelUnitTest.cs" />
     <Compile Include="Test\InventoryStatusViewModelUnitTest.cs" />

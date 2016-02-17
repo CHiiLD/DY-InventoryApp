@@ -1,10 +1,10 @@
-﻿namespace R54IN0
+﻿namespace R54IN0.WPF
 {
-    public class SQLInsDelEventArgs
+    public class SQLInsertEventArgs
     {
         private object _obj;
 
-        public SQLInsDelEventArgs(object obj)
+        public SQLInsertEventArgs(object obj)
         {
             _obj = obj;
         }

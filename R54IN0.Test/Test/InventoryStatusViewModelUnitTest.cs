@@ -166,7 +166,7 @@ namespace R54IN0.Test.New
 
             viewmodel.DataGridViewModel1.InventoryDataDeletionCommand.Execute(null);
 
-            var infmt = DataDirector.GetInstance().DB.Select<InventoryFormat>("ID", inventoryID);
+            var infmt = DataDirector.GetInstance().DB.Select<InventoryFormat>(inventoryID);
             Assert.IsNull(infmt);
 
             var iofmts = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}';", typeof(IOStockFormat).Name, "InventoryID", inventoryID);
@@ -224,7 +224,7 @@ namespace R54IN0.Test.New
             var someMaker = new Observable<Maker>("some maker");
             Assert.IsFalse(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
             DataDirector.GetInstance().AddField(someMaker);
-            Assert.IsTrue(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
+            Assert.IsTrue(viewmodel.DataGridViewModel1.Makers.Any(x=> x.ID == someMaker.ID));
         }
 
         [TestMethod]
@@ -236,7 +236,7 @@ namespace R54IN0.Test.New
             var someMeasure = new Observable<Measure>("some measure");
             Assert.IsFalse(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
             DataDirector.GetInstance().AddField(someMeasure);
-            Assert.IsTrue(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
+            Assert.IsTrue(viewmodel.DataGridViewModel1.Measures.Any(x=> x.ID == someMeasure.ID));
         }
 
         /// <summary>

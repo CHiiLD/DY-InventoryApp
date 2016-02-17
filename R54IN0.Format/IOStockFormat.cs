@@ -2,10 +2,9 @@
 
 namespace R54IN0
 {
-    public class IOStockFormat : IID
+    public class IOStockFormat : IID, IIOStockFormat
     {
         public string ID { get; set; }
-
         /// <summary>
         /// 입출고 종류
         /// </summary>

@@ -26,7 +26,7 @@ namespace R54IN0.Test
             var maker = viewmodel.Maker = viewmodel.MakerList.Random();
             var measure = viewmodel.Measure = viewmodel.MeasureList.Random();
 
-            var inventory = viewmodel.Register();
+            var inventory = viewmodel.Insert();
 
             Assert.IsNotNull(inventory);
             Assert.AreEqual(inventory.Product, product);
@@ -37,7 +37,7 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void TestRegister2()
+        public void TestInsert2()
         {
             new Dummy().Create();
             var product = DataDirector.GetInstance().CopyFields<Product>().Random();
@@ -47,7 +47,7 @@ namespace R54IN0.Test
             var maker = viewmodel.MakerText = "some maker";
             var measure = viewmodel.MeasureText = "some measure";
 
-            var inventory = viewmodel.Register();
+            var inventory = viewmodel.Insert();
 
             Assert.IsNotNull(inventory);
             Assert.AreEqual(inventory.Product, product);
@@ -60,7 +60,7 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void SyncTreeView()
+        public void WhenNewInventoryDataInsertThenSyncTreeView()
         {
             new Dummy().Create();
             var inventoryStatusViewModel = new InventoryStatusViewModel();
@@ -69,14 +69,14 @@ namespace R54IN0.Test
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
 
-            var inventory = viewmodel.Register();
+            var inventory = viewmodel.Insert();
 
             Assert.IsNotNull(DataDirector.GetInstance().SearchInventory(inventory.ID));
             Assert.IsTrue(node.Root.Any(x => x.ObservableObjectID == inventory.ID));
         }
 
         [TestMethod]
-        public void SyncInventoryStatusViewModelDataGrid()
+        public void WhenNewInventoryDataInsertThenSyncDataGridViewMdoel()
         {
             new Dummy().Create();
             var inventoryStatusViewModel = new InventoryStatusViewModel();
@@ -85,7 +85,7 @@ namespace R54IN0.Test
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
 
-            var inventory = viewmodel.Register();
+            var inventory = viewmodel.Insert();
 
             Assert.IsTrue(inventoryStatusViewModel.GetDataGridItems().Any(x => x.ID == inventory.ID));
         }

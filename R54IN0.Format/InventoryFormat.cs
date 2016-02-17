@@ -1,6 +1,6 @@
 ﻿namespace R54IN0
 {
-    public class InventoryFormat : IID
+    public class InventoryFormat : IID, IInventoryFormat
     {
         /// <summary>
         /// 범용식별자

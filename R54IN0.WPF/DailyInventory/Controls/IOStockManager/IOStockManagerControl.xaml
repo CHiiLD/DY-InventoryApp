@@ -27,8 +27,8 @@
                             <UniformGrid.Resources>
                                 <local:EnumBooleanConverter x:Key="enumBooleanConverter" />
                             </UniformGrid.Resources>
-                            <RadioButton x:Name="IncomingStockRadioButton" Content="입고" IsChecked="{Binding StockType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=INCOMING}"/>
-                            <RadioButton x:Name="OutgoingStockRadioButton" Content="출고" IsChecked="{Binding StockType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=OUTGOING}"/>
+                            <RadioButton x:Name="IncomingStockRadioButton" Content="입고" IsChecked="{Binding StockType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=INCOMING}" IsEnabled="{Binding IsEnabledRadioButton}"/>
+                            <RadioButton x:Name="OutgoingStockRadioButton" Content="출고" IsChecked="{Binding StockType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=OUTGOING}" IsEnabled="{Binding IsEnabledRadioButton}"/>
                         </UniformGrid>
                     </DockPanel>
                     <DockPanel>
@@ -67,7 +67,7 @@
                                 </Style>
                             </Label.Style>
                         </Label>
-                        <ComboBox DockPanel.Dock="Left" Text="{Binding AccountText}" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" DisplayMemberPath="Name"/>
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding AccountText}" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" DisplayMemberPath="Name" IsEditable="True"/>
                     </DockPanel>
                     <DockPanel>
                         <Label DockPanel.Dock="Left">
@@ -84,11 +84,11 @@
                                 </Style>
                             </Label.Style>
                         </Label>
-                        <ComboBox DockPanel.Dock="Left" Text="{Binding SecondComboboxText}" ItemsSource="{Binding SecondComboboxItemsSource}" SelectedItem="{Binding SelectedSecondComboboxItem}" DisplayMemberPath="Name"/>
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding ProjectText}" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" DisplayMemberPath="Name"  IsEditable="True"/>
                     </DockPanel>
                     <DockPanel>
                         <Label DockPanel.Dock="Left" Content="담당자" Style="{DynamicResource LabelStyle}"/>
-                        <ComboBox DockPanel.Dock="Left" Text="{Binding EmployeeText}" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" DisplayMemberPath="Name"/>
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding EmployeeText}" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" DisplayMemberPath="Name"  IsEditable="True"/>
                     </DockPanel>
                     <DockPanel>
                         <TextBox Grid.Column="1" Text="{Binding Memo}">
@@ -112,8 +112,8 @@
             </GroupBox>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Height="70" Margin="0,0,0,0">
-                <Button Content="저장" Height="35" MinWidth="80" Style="{DynamicResource AccentedSquareButtonStyle}" Margin="0,0,5,0" />
-                <Button Content="취소" Height="35" MinWidth="80" Margin="5,0,5,0" Style="{DynamicResource SquareButtonStyle}" />
+                <Button Content="저장" Command="{Binding RecordCommand}" Height="35" MinWidth="80" Style="{DynamicResource AccentedSquareButtonStyle}" Margin="0,0,5,0" />
+                <Button Content="취소" Command="{Binding CancelCommand}" Height="35" MinWidth="80" Margin="5,0,5,0" Style="{DynamicResource SquareButtonStyle}" />
             </StackPanel>
         </StackPanel>
     </Grid>

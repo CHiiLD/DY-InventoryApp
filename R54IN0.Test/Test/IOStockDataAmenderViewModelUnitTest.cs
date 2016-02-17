@@ -181,7 +181,7 @@ namespace R54IN0.Test.New
 
             viewmodel.Record();
 
-            fmt = DataDirector.GetInstance().DB.Select<IOStockFormat>("ID", fmt.ID);
+            fmt = DataDirector.GetInstance().DB.Select<IOStockFormat>(fmt.ID);
             ObservableIOStock stock = new ObservableIOStock(fmt);
 
             if (stock.StockType == IOStockType.INCOMING)
@@ -625,7 +625,7 @@ namespace R54IN0.Test.New
             var memo = viewmodel.Memo = "MEMO";
             var price = viewmodel.UnitPrice = 7777;
 
-            fmt = DataDirector.GetInstance().DB.Select<IOStockFormat>("ID", id);
+            fmt = DataDirector.GetInstance().DB.Select<IOStockFormat>(id);
 
             var obIOStock = new ObservableIOStock(fmt);
             Assert.AreNotEqual(specMemo, obIOStock.Inventory.Memo);

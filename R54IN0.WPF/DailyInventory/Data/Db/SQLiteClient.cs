@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace R54IN0
+namespace R54IN0.WPF
 {
     public partial class SQLiteClient
     {
@@ -84,6 +84,9 @@ namespace R54IN0
 
         public void Insert<TableT>(TableT item) where TableT : class, IID
         {
+            if (item.ID == null)
+                throw new NotSupportedException();
+
             string sql = string.Format("insert into {0} (", typeof(TableT).Name);
             StringBuilder sb = new StringBuilder(sql);
             StringBuilder valueSb = new StringBuilder(") values (");
@@ -117,7 +120,10 @@ namespace R54IN0
                 cmd.ExecuteNonQuery();
 
             if (DataInsertEventHandler != null)
-                DataInsertEventHandler(this, new SQLInsDelEventArgs(item));
+                DataInsertEventHandler(this, new SQLInsertEventArgs(item));
+
+            if (item is IOStockFormat)
+                CalAddedFormatQty(item as IOStockFormat);
         }
 
         public IEnumerable<TableT> Select<TableT>() where TableT : class, IID, new()
@@ -146,9 +152,9 @@ namespace R54IN0
             return result;
         }
 
-        public TableT Select<TableT>(string idColName, string id) where TableT : class, IID, new()
+        public TableT Select<TableT>(string id) where TableT : class, IID, new()
         {
-            string sql = string.Format("select * from {0} where {1} = '{2}';", typeof(TableT).Name, idColName, id);
+            string sql = string.Format("select * from {0} where {1} = '{2}';", typeof(TableT).Name, "ID", id);
             Console.WriteLine(sql);
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
             using (SQLiteDataReader rdr = cmd.ExecuteReader())
@@ -228,12 +234,8 @@ namespace R54IN0
             sb.Remove(sb.Length - 2, 2);
             sb.Append(string.Format(" where {0} = '{1}';", nameof(item.ID), item.ID));
             sql = sb.ToString();
-            Console.WriteLine(sql);
-            using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
-                cmd.ExecuteNonQuery();
 
-            if (DataUpdateEventHandler != null && handled)
-                DataUpdateEventHandler(this, new SQLUpdateEventArgs(item, update));
+            ExecuteUpdate((object)item, sql, update, handled);
         }
 
         public void Update<TableT>(TableT item, string propertyName, object setValue, bool handled = false) where TableT : class, IID
@@ -251,12 +253,20 @@ namespace R54IN0
                 value = ((DateTime)value).ToString(DATETIME);
 
             string sql = string.Format("update {0} set {1} = '{2}' where {3} = '{4}';", typeof(TableT).Name, propertyName, value, nameof(item.ID), item.ID);
+            ExecuteUpdate((object)item, sql, new Dictionary<string, object>() { { propertyName, value } }, handled);
+        }
+
+        private void ExecuteUpdate(object item, string sql, Dictionary<string, object> update, bool handled)
+        {
+            if (item is IOStockFormat && update.Keys.Any(x => x == "Quantity"))
+                CalModifiedFormatQty(item as IOStockFormat);
+
             Console.WriteLine(sql);
             using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
                 cmd.ExecuteNonQuery();
 
             if (DataUpdateEventHandler != null && handled)
-                DataUpdateEventHandler(this, new SQLUpdateEventArgs(item, propertyName, value));
+                DataUpdateEventHandler(this, new SQLUpdateEventArgs(item, update));
         }
 
         public void Delete<TableT>(object item) where TableT : class, IID
@@ -272,7 +282,7 @@ namespace R54IN0
                 cmd.ExecuteNonQuery();
 
             if (DataDeleteEventHandler != null)
-                DataDeleteEventHandler(this, new SQLInsDelEventArgs(item));
+                DataDeleteEventHandler(this, new SQLDeleteEventArgs(typeof(TableT), item.ID));
 
             if (item is Product) //제품을 삭제하고자 한다면 관련 인벤토리 데이터를 삭제해야 할 터이고
             {
@@ -282,9 +292,16 @@ namespace R54IN0
             }
             else if (item is InventoryFormat) //이어서 인벤토리 데이터를 삭제하고자 할 경우 이와 관련된 입춮고 데이터를 삭제해야함
             {
-                InventoryFormat inventoryFmt = item as InventoryFormat;
-                var iostocks = Query<IOStockFormat>("select * from {0} where InventoryID = '{1}';", typeof(IOStockFormat).Name, inventoryFmt.ID);
-                iostocks.ToList().ForEach(x => Delete<IOStockFormat>(x));
+                InventoryFormat inv = item as InventoryFormat;
+                var ioss = Query<IOStockFormat>("select * from {0} where InventoryID = '{1}';", typeof(IOStockFormat).Name, inv.ID);
+                sql = string.Format("delete from {0} where InventoryID = '{1}'", typeof(IOStockFormat).Name, inv.ID);
+
+                using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
+                    cmd.ExecuteNonQuery();
+
+                var ids = ioss.Select(x => x.ID).ToList(); //iostock id list
+                if (DataDeleteEventHandler != null)
+                    DataDeleteEventHandler(this, new SQLDeleteEventArgs(typeof(IOStockFormat), ids));
             }
             else if (item is Maker)
             {
@@ -296,6 +313,103 @@ namespace R54IN0
                 var inventories = Query<InventoryFormat>("select * from {0} where MeasureID = '{1}'", typeof(InventoryFormat).Name, item.ID);
                 inventories.ToList().ForEach(x => Update<InventoryFormat>(x, nameof(x.MeasureID), null, true));
             }
+            else if (item is IOStockFormat)
+            {
+                CalDeletedFormatQty(item as IOStockFormat);
+            }
+        }
+
+        /// <summary>
+        /// 새로운 IOStockFormat을 추가한 경우 잔여수량과 현재 재고량 다시 계산
+        /// </summary>
+        /// <param name="iosfmt"></param>
+        private void CalAddedFormatQty(IOStockFormat iosfmt)
+        {
+            InventoryFormat infmt = Select<InventoryFormat>(iosfmt.InventoryID);
+            if (infmt == null)
+                return;
+
+            int qty = iosfmt.Quantity;
+            IOStockFormat near = null;
+
+            IEnumerable<IOStockFormat> queryResult =
+                Query<IOStockFormat>("select * from {0} where {1} = '{2}' and {3} < '{4}' order by {5} desc limit 1;",
+                typeof(IOStockFormat).Name, nameof(iosfmt.InventoryID), iosfmt.InventoryID, nameof(iosfmt.Date), iosfmt.Date.ToString(DATETIME), nameof(iosfmt.Date));
+            if (queryResult.Count() == 1)
+                near = queryResult.Single();
+
+            qty = iosfmt.StockType == IOStockType.OUTGOING ? -qty : qty;
+            iosfmt.RemainingQuantity = (near == null) ? qty : near.RemainingQuantity + qty;
+
+            Update<InventoryFormat>(infmt, nameof(infmt.Quantity), infmt.Quantity + qty, true);
+            UpdateIOStockFormatRemainQty(iosfmt, iosfmt.RemainingQuantity);
+
+            IEnumerable<IOStockFormat> iofmts = Query<IOStockFormat>("select * from {0} where {1} = '{2}' and {3} > '{4}' order by {5};",
+                nameof(IOStockFormat), nameof(iosfmt.InventoryID), iosfmt.InventoryID, nameof(iosfmt.Date), iosfmt.Date.ToString(DATETIME), nameof(iosfmt.Date));
+
+            if (qty != 0 && iofmts.Count() != 0)
+            {
+                foreach (IOStockFormat f in iofmts)
+                    UpdateIOStockFormatRemainQty(f, f.RemainingQuantity + qty);
+            }
+        }
+
+        private void CalModifiedFormatQty(IOStockFormat iosfmt)
+        {
+            InventoryFormat infmt = Select<InventoryFormat>(iosfmt.InventoryID);
+            IOStockFormat origin = Select<IOStockFormat>(iosfmt.ID);
+
+            int oQty = origin.Quantity;
+            int fqty = iosfmt.Quantity;
+            fqty = iosfmt.StockType == IOStockType.OUTGOING ? -fqty : fqty;
+            oQty = iosfmt.StockType == IOStockType.OUTGOING ? oQty : -oQty;
+            iosfmt.RemainingQuantity = origin.RemainingQuantity + fqty + oQty;
+            Update<InventoryFormat>(infmt, nameof(infmt.Quantity), infmt.Quantity + fqty + oQty, true);
+            UpdateIOStockFormatRemainQty(iosfmt, iosfmt.RemainingQuantity);
+
+            IEnumerable<IOStockFormat> formats = Query<IOStockFormat>("select * from {0} where {1} = '{2}' and {3} > '{4}' order by {5};",
+                nameof(IOStockFormat), nameof(iosfmt.InventoryID), iosfmt.InventoryID, nameof(iosfmt.Date), iosfmt.Date.ToString(DATETIME), nameof(iosfmt.Date));
+
+            if (fqty != 0 && formats.Count() != 0)
+            {
+                foreach (IOStockFormat f in formats)
+                    UpdateIOStockFormatRemainQty(f, f.RemainingQuantity + fqty + oQty);
+            }
+        }
+
+        private void CalDeletedFormatQty(IOStockFormat iosfmt)
+        {
+            InventoryFormat infmt = Select<InventoryFormat>(iosfmt.InventoryID);
+            if (infmt == null)
+                return;
+
+            int qty = iosfmt.Quantity;
+            qty = iosfmt.StockType == IOStockType.OUTGOING ? qty : -qty;
+            Update<InventoryFormat>(infmt, nameof(infmt.Quantity), infmt.Quantity + qty, true);
+
+            ///잔여 수량 동기화 및 저장
+            IEnumerable<IOStockFormat> formats = Query<IOStockFormat>("select * from {0} where {1} = '{2}' and {3} > '{4}' order by {5};",
+                typeof(IOStockFormat).Name, nameof(iosfmt.InventoryID), iosfmt.InventoryID, nameof(iosfmt.Date), iosfmt.Date.ToString(DATETIME), nameof(iosfmt.Date));
+
+            if (qty != 0 && formats.Count() != 0)
+            {
+                foreach (IOStockFormat f in formats)
+                    UpdateIOStockFormatRemainQty(f, f.RemainingQuantity + qty);
+            }
+        }
+
+        private void UpdateIOStockFormatRemainQty(IOStockFormat iosfmt, int qty)
+        {
+            string sql = string.Format("update {0} set {1} = '{2}' where {3} = '{4}';",
+                nameof(IOStockFormat), nameof(iosfmt.RemainingQuantity), qty, nameof(iosfmt.ID), iosfmt.ID);
+
+            Console.WriteLine(sql);
+
+            using (SQLiteCommand cmd = new SQLiteCommand(sql, _conn))
+                cmd.ExecuteNonQuery();
+
+            if (DataUpdateEventHandler != null)
+                DataUpdateEventHandler(this, new SQLUpdateEventArgs(iosfmt, nameof(iosfmt.RemainingQuantity), qty));
         }
 
         private void CreateTable<TableT>()

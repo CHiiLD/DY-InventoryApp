@@ -1,14 +1,16 @@
 ﻿using R54IN0.WPF;
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 
-namespace R54IN0
+namespace R54IN0.WPF
 {
-    public class ObservableIOStock : IObservableIOStockProperties
+    public class ObservableIOStock : IIOStockFormat, IObservableIOStockProperties, ICanUpdate
     {
         private IOStockFormat _fmt;
         private IObservableInventoryProperties _inventory;
+        private bool _canUpdate = true;
 
         protected Observable<Customer> customer;
         protected Observable<Supplier> supplier;
@@ -16,6 +18,7 @@ namespace R54IN0
         protected Observable<Employee> employee;
         protected Observable<Warehouse> warehouse;
         protected PropertyChangedEventHandler propertyChanged;
+
 
         public ObservableIOStock()
         {
@@ -66,8 +69,11 @@ namespace R54IN0
             }
             set
             {
-                _fmt.StockType = value;
-                NotifyPropertyChanged("StockType");
+                if (_fmt.StockType != value)
+                {
+                    _fmt.StockType = value;
+                    NotifyPropertyChanged("StockType");
+                }
             }
         }
 
@@ -82,8 +88,11 @@ namespace R54IN0
             }
             set
             {
-                _fmt.Date = value;
-                NotifyPropertyChanged("Date");
+                if (_fmt.Date != value)
+                {
+                    _fmt.Date = value;
+                    NotifyPropertyChanged("Date");
+                }
             }
         }
 
@@ -98,8 +107,11 @@ namespace R54IN0
             }
             set
             {
-                _fmt.UnitPrice = value;
-                NotifyPropertyChanged("UnitPrice");
+                if (_fmt.UnitPrice != value)
+                {
+                    _fmt.UnitPrice = value;
+                    NotifyPropertyChanged("UnitPrice");
+                }
             }
         }
 
@@ -114,8 +126,11 @@ namespace R54IN0
             }
             set
             {
-                _fmt.Quantity = value;
-                NotifyPropertyChanged("Quantity");
+                if (_fmt.Quantity != value)
+                {
+                    _fmt.Quantity = value;
+                    NotifyPropertyChanged("Quantity");
+                }
             }
         }
 
@@ -130,8 +145,11 @@ namespace R54IN0
             }
             set
             {
-                _fmt.Memo = value;
-                NotifyPropertyChanged("Memo");
+                if (_fmt.Memo != value)
+                {
+                    _fmt.Memo = value;
+                    NotifyPropertyChanged("Memo");
+                }
             }
         }
 
@@ -146,9 +164,12 @@ namespace R54IN0
             }
             set
             {
-                _fmt.CustomerID = value != null ? value.ID : null;
-                customer = value;
-                NotifyPropertyChanged("Customer");
+                if (customer != value)
+                {
+                    _fmt.CustomerID = value != null ? value.ID : null;
+                    customer = value;
+                    NotifyPropertyChanged("Customer");
+                }
             }
         }
 
@@ -160,9 +181,12 @@ namespace R54IN0
             }
             set
             {
-                _fmt.SupplierID = value != null ? value.ID : null;
-                supplier = value;
-                NotifyPropertyChanged("Supplier");
+                if (supplier != value)
+                {
+                    _fmt.SupplierID = value != null ? value.ID : null;
+                    supplier = value;
+                    NotifyPropertyChanged("Supplier");
+                }
             }
         }
 
@@ -177,9 +201,12 @@ namespace R54IN0
             }
             set
             {
-                _fmt.ProjectID = value != null ? value.ID : null;
-                project = value;
-                NotifyPropertyChanged("Project");
+                if (project != value)
+                {
+                    _fmt.ProjectID = value != null ? value.ID : null;
+                    project = value;
+                    NotifyPropertyChanged("Project");
+                }
             }
         }
 
@@ -191,9 +218,12 @@ namespace R54IN0
             }
             set
             {
-                _fmt.InventoryID = value != null ? value.ID : null;
-                _inventory = value;
-                NotifyPropertyChanged("Inventory");
+                if (_inventory != value)
+                {
+                    _fmt.InventoryID = value != null ? value.ID : null;
+                    _inventory = value;
+                    NotifyPropertyChanged("InventoryID");
+                }
             }
         }
 
@@ -206,6 +236,7 @@ namespace R54IN0
             set
             {
                 _fmt.ID = value;
+                throw new NotSupportedException();
             }
         }
 
@@ -217,9 +248,12 @@ namespace R54IN0
             }
             set
             {
-                _fmt.EmployeeID = value != null ? value.ID : null;
-                employee = value;
-                NotifyPropertyChanged("Employee");
+                if (employee != value)
+                {
+                    _fmt.EmployeeID = value != null ? value.ID : null;
+                    employee = value;
+                    NotifyPropertyChanged("Employee");
+                }
             }
         }
 
@@ -231,9 +265,12 @@ namespace R54IN0
             }
             set
             {
-                _fmt.WarehouseID = value != null ? value.ID : null;
-                warehouse = value;
-                NotifyPropertyChanged("Warehouse");
+                if (warehouse != value)
+                {
+                    _fmt.WarehouseID = value != null ? value.ID : null;
+                    warehouse = value;
+                    NotifyPropertyChanged("Warehouse");
+                }
             }
         }
 
@@ -245,8 +282,101 @@ namespace R54IN0
             }
             set
             {
-                _fmt.RemainingQuantity = value;
-                NotifyPropertyChanged("RemainingQuantity");
+                if (_fmt.RemainingQuantity != value)
+                {
+                    _fmt.RemainingQuantity = value;
+                    NotifyPropertyChanged("RemainingQuantity");
+                }
+            }
+        }
+
+        public string CustomerID
+        {
+            get
+            {
+                return _fmt.CustomerID;
+            }
+            set
+            {
+                if (_fmt.CustomerID != value)
+                    Customer = DataDirector.GetInstance().SearchField<Customer>(value);
+            }
+        }
+
+        public string EmployeeID
+        {
+            get
+            {
+                return _fmt.EmployeeID;
+            }
+            set
+            {
+                if (_fmt.EmployeeID != value)
+                    Employee = DataDirector.GetInstance().SearchField<Employee>(value);
+            }
+        }
+
+        public string InventoryID
+        {
+            get
+            {
+                return _fmt.InventoryID;
+            }
+            set
+            {
+                if (_fmt.InventoryID != value)
+                    Inventory = DataDirector.GetInstance().SearchInventory(value);
+            }
+        }
+
+        public string ProjectID
+        {
+            get
+            {
+                return _fmt.ProjectID;
+            }
+            set
+            {
+                if (_fmt.ProjectID != value)
+                    Project = DataDirector.GetInstance().SearchField<Project>(value);
+            }
+        }
+
+        public string SupplierID
+        {
+            get
+            {
+                return _fmt.SupplierID;
+            }
+            set
+            {
+                if (_fmt.SupplierID != value)
+                    Supplier = DataDirector.GetInstance().SearchField<Supplier>(value);
+            }
+        }
+
+        public string WarehouseID
+        {
+            get
+            {
+                return _fmt.WarehouseID;
+            }
+            set
+            {
+                if (_fmt.WarehouseID != value)
+                    Warehouse = DataDirector.GetInstance().SearchField<Warehouse>(value);
+            }
+        }
+
+        public bool CanUpdate
+        {
+            get
+            {
+                return _canUpdate;
+            }
+            set
+            {
+                _canUpdate = value;
             }
         }
 
@@ -271,15 +401,20 @@ namespace R54IN0
             if (string.IsNullOrEmpty(name))
                 return;
 
+            string[] s = new string[] { nameof(Customer), nameof(Supplier), nameof(Project),
+                nameof(Inventory), nameof(Employee), nameof(Warehouse) };
+            if (s.Any(x => x == name))
+                name = name.Insert(name.Length, "ID");
+
             if (ID == null)
                 DataDirector.GetInstance().DB.Insert(Format);
-            else
-                DataDirector.GetInstance().DB.Update(Format);
+            else if (CanUpdate)
+                DataDirector.GetInstance().DB.Update(Format, name);
         }
 
         public void Refresh()
         {
-            IOStockFormat fmt = DataDirector.GetInstance().DB.Select<IOStockFormat>(nameof(ID), ID);
+            IOStockFormat fmt = DataDirector.GetInstance().DB.Select<IOStockFormat>(ID);
             if (fmt != null)
                 Format = fmt;
         }

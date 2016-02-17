@@ -108,7 +108,7 @@ namespace R54IN0.Test
                 "select * from InventoryFormat where {0} = '{1}';",
                 "ProductID", product.ID);
             Assert.AreEqual(0, infmts.Count());
-            Assert.IsNull(DataDirector.GetInstance().DB.Select<Product>("ID", product.ID));
+            Assert.IsNull(DataDirector.GetInstance().DB.Select<Product>(product.ID));
         }
 
         [TestMethod]

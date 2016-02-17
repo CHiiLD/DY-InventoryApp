@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace R54IN0
+namespace R54IN0.WPF
 {
     public interface IObservableInventoryProperties : INotifyPropertyChanged, ISync, IPropertyChanged
     {

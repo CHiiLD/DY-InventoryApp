@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Customer.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="IInventoryFormat.cs" />
+    <Compile Include="IIOStockFormat.cs" />
     <Compile Include="Interface\IField.cs" />
     <Compile Include="Interface\IID.cs" />
     <Compile Include="Interface\IName.cs" />

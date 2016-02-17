@@ -132,8 +132,6 @@
     </Compile>
     <Compile Include="DailyInventory\Controls\IOStockManager\IOStockManagerViewModel.cs" />
     <Compile Include="DailyInventory\Controls\TabItems\IOStock\EnumBooleanConverter.cs" />
-    <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.Inner.cs" />
-    <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderViewModel.cs" />
     <Compile Include="DailyInventory\Controls\TabItems\IOStock\FilterSearchTextBoxViewModel.cs" />
     <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridItem.cs" />
     <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridViewModel.MenuCommand.cs" />
@@ -177,8 +175,10 @@
     <Compile Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewModelView.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNode.cs" />
     <Compile Include="DailyInventory\Data\Db\Event\SQLUpdateEventArgs.cs" />
+    <Compile Include="DailyInventory\Data\Db\Event\SQLDeleteEventArgs.cs" />
     <Compile Include="DailyInventory\Data\Director\DataDirector.cs" />
     <Compile Include="DailyInventory\Data\Director\INotifyPropertyChanged.cs" />
+    <Compile Include="DailyInventory\Data\Inventory\ICanUpdate.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ISync.cs" />
     <Compile Include="DailyInventory\Data\Db\LexDb.cs" />
     <Compile Include="DailyInventory\Data\Director\CollectionViewModelObserverSubject.cs" />
@@ -190,7 +190,7 @@
     <Compile Include="DailyInventory\Data\Inventory\IObservableInventoryProperties.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableInventory.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableIOStock.cs" />
-    <Compile Include="DailyInventory\Data\Db\Event\SQLInsDelEventArgs.cs" />
+    <Compile Include="DailyInventory\Data\Db\Event\SQLInsertEventArgs.cs" />
     <Compile Include="DailyInventory\Data\Db\SQLiteClient.Event.cs" />
     <Compile Include="DailyInventory\Data\Db\SQLiteClient.cs" />
     <Compile Include="DailyInventory\Data\TreeViewNodeJsonFormat.cs" />
@@ -200,9 +200,6 @@
     <Compile Include="DailyInventory\Windows\MainWindowViewModel.cs" />
     <Compile Include="DailyInventory\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DailyInventory\Controls\Amend\IOStockDataAmenderWindow.xaml.cs">
-      <DependentUpon>IOStockDataAmenderWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="DailyInventory\Controls\IOStockManager\IOStockManagerControl.xaml">
       <SubType>Designer</SubType>
@@ -249,10 +246,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DailyInventory\Windows\MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DailyInventory\Controls\Amend\IOStockDataAmenderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

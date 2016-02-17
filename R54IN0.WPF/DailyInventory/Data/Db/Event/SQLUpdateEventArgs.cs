@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace R54IN0
+namespace R54IN0.WPF
 {
     public class SQLUpdateEventArgs
     {

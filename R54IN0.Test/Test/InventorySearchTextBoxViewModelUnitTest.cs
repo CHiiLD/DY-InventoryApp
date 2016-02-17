@@ -60,7 +60,7 @@ namespace R54IN0.Test
             vm.Text = specName;
             result = vm.Search();
 
-            Assert.AreNotEqual(0, result.Count());
+            Assert.AreEqual(0, result.Count());
             Assert.IsTrue(result.All(x => x.Product.Name.Contains("SWTICH")));
         }
     }

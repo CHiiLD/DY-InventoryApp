@@ -1,7 +1,7 @@
 ﻿using Lex.Db;
 using System;
 
-namespace R54IN0
+namespace R54IN0.WPF
 {
     internal static class LexDb
     {
@@ -64,7 +64,7 @@ namespace R54IN0
             WithIndex("ProductID", i => i.ProductID).
             WithIndex("Specification", i => i.Specification).
             WithIndex("Memo", i => i.Memo).
-            WithIndex("MakerID", i => i.MakerID).
+            WithIndex("Maker", i => i.MakerID).
             WithIndex("Quantity", i => i.Quantity);
 
             me.Map<IOStockFormat>().Automap(i => i.ID).

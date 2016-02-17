@@ -1042,6 +1042,7 @@ namespace R54IN0.WPF
                 case Mode.ADD:
                     CreateIOStockNewProperies();
                     ApplyModifiedInventoryProperties();
+                    Format.ID = Guid.NewGuid().ToString();
                     DataDirector.GetInstance().DB.Insert(Format);
                     result = new ObservableIOStock(Format);
                     CollectionViewModelObserverSubject.GetInstance().NotifyNewItemAdded(result);

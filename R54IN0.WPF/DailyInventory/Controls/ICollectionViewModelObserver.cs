@@ -1,4 +1,4 @@
-﻿namespace R54IN0
+﻿namespace R54IN0.WPF
 {
     public interface ICollectionViewModelObserver
     {

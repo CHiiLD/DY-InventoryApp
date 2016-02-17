@@ -23,8 +23,10 @@ namespace R54IN0.Test
             int icQty = viewmodel.Quantity = 10;
 
             var record = viewmodel.Record();
+            var iosfmt = DataDirector.GetInstance().DB.Select<IOStockFormat>(record.ID);
+            var oIOStock = new ObservableIOStock(iosfmt);
 
-            Assert.AreEqual(record.Inventory.Quantity, inQty + icQty);
+            Assert.AreEqual(oIOStock.Inventory.Quantity, inQty + icQty);
         }
 
         /// <summary>
@@ -294,12 +296,12 @@ namespace R54IN0.Test
             var project = viewmodel.ProjectList.Random();
             viewmodel.ComboBoxItemDeleteCommand.Execute(project);
 
-            Assert.IsNull(DataDirector.GetInstance().DB.Select<Maker>(nameof(maker.ID), maker.ID));
-            Assert.IsNull(DataDirector.GetInstance().DB.Select<Measure>(nameof(maker.ID), measure.ID));
-            Assert.IsNull(DataDirector.GetInstance().DB.Select<Supplier>(nameof(maker.ID), client.ID));
-            Assert.IsNull(DataDirector.GetInstance().DB.Select<Employee>(nameof(maker.ID), employee.ID));
-            Assert.IsNull(DataDirector.GetInstance().DB.Select<Warehouse>(nameof(maker.ID), warehouse.ID));
-            Assert.IsNull(DataDirector.GetInstance().DB.Select<Project>(nameof(maker.ID), project.ID));
+            Assert.IsNull(DataDirector.GetInstance().DB.Select<Maker>(maker.ID));
+            Assert.IsNull(DataDirector.GetInstance().DB.Select<Measure>(measure.ID));
+            Assert.IsNull(DataDirector.GetInstance().DB.Select<Supplier>(client.ID));
+            Assert.IsNull(DataDirector.GetInstance().DB.Select<Employee>(employee.ID));
+            Assert.IsNull(DataDirector.GetInstance().DB.Select<Warehouse>(warehouse.ID));
+            Assert.IsNull(DataDirector.GetInstance().DB.Select<Project>(project.ID));
         }
 
         /// <summary>
@@ -451,7 +453,7 @@ namespace R54IN0.Test
         {
             var find = DataDirector.GetInstance().SearchField<T>(field.ID);
             Assert.IsNull(find);
-            var select = DataDirector.GetInstance().DB.Select<T>(nameof(field.ID), field.ID);
+            var select = DataDirector.GetInstance().DB.Select<T>(field.ID);
             Assert.IsNull(select);
         }
 

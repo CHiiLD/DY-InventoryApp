@@ -93,7 +93,7 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Height="70" Margin="0,0,0,0">
-            <Button Content="새로운 등록" Command="{Binding AddCommand}" Height="35" MinWidth="80" Style="{DynamicResource AccentedDialogSquareButton}" Margin="0 0 5 0" />
+            <Button Content="새로운 등록" Command="{Binding RecordCommand}" Height="35" MinWidth="80" Style="{DynamicResource AccentedDialogSquareButton}" Margin="0 0 5 0" />
             <Button Content="취소" Command="{Binding CancelCommand}" Height="35" MinWidth="80" Margin="5 0 5 0" />
         </StackPanel>
     </Grid>
