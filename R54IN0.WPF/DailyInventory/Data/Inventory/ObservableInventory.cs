@@ -1,12 +1,10 @@
-﻿using R54IN0.WPF;
+﻿using System;
 using System.ComponentModel;
-using System.Threading.Tasks;
-using System;
 using System.Linq;
 
 namespace R54IN0.WPF
 {
-    public class ObservableInventory : IInventoryFormat, IObservableInventoryProperties, ICanUpdate
+    public class ObservableInventory : IInventoryFormat, IObservableInventoryProperties, IUpdateLock
     {
         private InventoryFormat _fmt;
         private bool _canUpdate = true;
@@ -241,7 +239,7 @@ namespace R54IN0.WPF
             }
         }
 
-        public bool CanUpdate
+        public bool UpdateLock
         {
             get
             {
@@ -269,21 +267,20 @@ namespace R54IN0.WPF
             if (string.IsNullOrEmpty(name))
                 return;
 
-            string[] s = new string[] { nameof(this.Product), nameof(this.Maker), nameof(this.Measure) };
-            if (s.Any(x => x == name))
+            if (name == nameof(ID))
+                throw new Exception();
+
+            string[] fieldNames = new string[] { nameof(this.Product), nameof(this.Maker), nameof(this.Measure) };
+            if (fieldNames.Any(x => x == name))
                 name = name.Insert(name.Length, "ID");
+
+            if (!typeof(InventoryFormat).GetProperties().Any(x => x.Name == name))
+                return;
 
             if (ID == null)
                 DataDirector.GetInstance().AddInventory(this);
-            else if (CanUpdate)
-                DataDirector.GetInstance().DB.Update(Format, name);
-        }
-
-        public void Sync()
-        {
-            InventoryFormat fmt = DataDirector.GetInstance().DB.Select<InventoryFormat>(ID);
-            if (fmt != null)
-                Format = fmt;
+            else if (UpdateLock)
+                DataDirector.GetInstance().DB.Update<InventoryFormat>(ID, name, GetType().GetProperty(name).GetValue(this));
         }
     }
 }

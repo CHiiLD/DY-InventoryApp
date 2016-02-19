@@ -1,26 +1,38 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace R54IN0.WPF
 {
     public class SQLUpdateEventArgs
     {
-        private Dictionary<string, object> _content;
-        private object _data;
+        private IDictionary<string, object> _content;
+        private string _id;
+        private Type _type;
 
-        public SQLUpdateEventArgs(object data, Dictionary<string, object> content)
+        public SQLUpdateEventArgs(Type type, string id, IDictionary<string, object> content)
         {
-            _data = data;
+            _type = type;
+            _id = id;
             _content = content;
         }
 
-        public SQLUpdateEventArgs(object data, string propertyName, object value)
+        public SQLUpdateEventArgs(Type type, string id, string propertyName, object value)
         {
-            _data = data;
+            _type = type;
+            _id = id;
             _content = new Dictionary<string, object>();
             _content.Add(propertyName, value);
         }
 
-        public Dictionary<string, object> UpdateContent
+        public Type Type
+        {
+            get
+            {
+                return _type;
+            }
+        }
+
+        public IDictionary<string, object> Content
         {
             get
             {
@@ -28,11 +40,11 @@ namespace R54IN0.WPF
             }
         }
 
-        public object Data
+        public string ID
         {
             get
             {
-                return _data;
+                return _id;
             }
         }
     }

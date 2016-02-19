@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MySql.Data.MySqlClient;
+using MySQL.Test;
 using R54IN0.WPF;
 using System;
 using System.Linq;
@@ -8,10 +10,34 @@ namespace R54IN0.Test
     [TestClass]
     public class InventorySearchTextBoxViewModelUnitTest
     {
+        private static MySqlConnection _conn;
+
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            Console.WriteLine(nameof(ClassInitialize));
+            Console.WriteLine(context.TestName);
+
+            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn.Open();
+
+            Dummy dummy = new Dummy(_conn);
+            dummy.Create();
+        }
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            Console.WriteLine(nameof(ClassCleanup));
+            _conn.Close();
+            _conn = null;
+        }
+
         [TestMethod]
         public void CanCreate()
         {
             new InventorySearchTextBoxViewModel();
+            TreeViewNodeDirector.Destroy();
         }
 
         /// <summary>
@@ -20,7 +46,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void Search()
         {
-            new Dummy().Create();
             string product = "     스위치 ";
             string dummyName = "23094832098432";
             string somethingName = "버튼\t 단자부\n버섯\r 213o4u12oi\t";
@@ -60,7 +85,7 @@ namespace R54IN0.Test
             vm.Text = specName;
             result = vm.Search();
 
-            Assert.AreEqual(0, result.Count());
+            Assert.AreNotEqual(0, result.Count());
             Assert.IsTrue(result.All(x => x.Product.Name.Contains("SWTICH")));
         }
     }

@@ -1,5 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MySql.Data.MySqlClient;
+using MySQL.Test;
 using R54IN0.WPF;
+using System;
 using System.Linq;
 
 namespace R54IN0.Test
@@ -7,10 +10,40 @@ namespace R54IN0.Test
     [TestClass]
     public class InventoryManagerDialogViewModelUnitTest
     {
+        private static MySqlConnection _conn;
+
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            Console.WriteLine(nameof(ClassInitialize));
+            Console.WriteLine(context.TestName);
+
+            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn.Open();
+
+            Dummy dummy = new Dummy(_conn);
+            dummy.Create();
+        }
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            Console.WriteLine(nameof(ClassCleanup));
+            _conn.Close();
+            _conn = null;
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            CollectionViewModelObserverSubject.Destory();
+            TreeViewNodeDirector.Destroy();
+            DataDirector.Destroy();
+        }
+
         [TestMethod]
         public void CanCreate()
         {
-            new Dummy().Create();
             var product = DataDirector.GetInstance().CopyFields<Product>().Random();
             new InventoryManagerViewModel(product);
         }
@@ -18,7 +51,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void TestRegister()
         {
-            new Dummy().Create();
             var product = DataDirector.GetInstance().CopyFields<Product>().Random();
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
@@ -39,7 +71,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void TestInsert2()
         {
-            new Dummy().Create();
             var product = DataDirector.GetInstance().CopyFields<Product>().Random();
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
@@ -62,9 +93,10 @@ namespace R54IN0.Test
         [TestMethod]
         public void WhenNewInventoryDataInsertThenSyncTreeView()
         {
-            new Dummy().Create();
             var inventoryStatusViewModel = new InventoryStatusViewModel();
-            var node = inventoryStatusViewModel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
+            var node = inventoryStatusViewModel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            inventoryStatusViewModel.TreeViewViewModel.AddSelectedNodes(node);
+
             var product = DataDirector.GetInstance().SearchField<Product>(node.ObservableObjectID);
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
@@ -78,9 +110,10 @@ namespace R54IN0.Test
         [TestMethod]
         public void WhenNewInventoryDataInsertThenSyncDataGridViewMdoel()
         {
-            new Dummy().Create();
             var inventoryStatusViewModel = new InventoryStatusViewModel();
-            var node = inventoryStatusViewModel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
+            var node = inventoryStatusViewModel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            inventoryStatusViewModel.TreeViewViewModel.AddSelectedNodes(node);
+
             var product = DataDirector.GetInstance().SearchField<Product>(node.ObservableObjectID);
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";

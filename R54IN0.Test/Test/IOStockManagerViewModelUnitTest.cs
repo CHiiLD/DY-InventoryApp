@@ -1,17 +1,50 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MySql.Data.MySqlClient;
+using MySQL.Test;
 using R54IN0.WPF;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Controls;
 
 namespace R54IN0.Test
 {
     [TestClass]
     public class IOStockManagerViewModelUnitTest
     {
+        private static MySqlConnection _conn;
+
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            Console.WriteLine(nameof(ClassInitialize));
+            Console.WriteLine(context.TestName);
+
+            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn.Open();
+
+            Dummy dummy = new Dummy(_conn);
+            dummy.Create();
+        }
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            Console.WriteLine(nameof(ClassCleanup));
+            _conn.Close();
+            _conn = null;
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            CollectionViewModelObserverSubject.Destory();
+            TreeViewNodeDirector.Destroy();
+        }
+
         [TestMethod]
         public void CanCreate0()
         {
-            new Dummy().Create();
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             new IOStockManagerViewModel(prod);
         }
@@ -19,7 +52,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreate1()
         {
-            new Dummy().Create();
             var inv = DataDirector.GetInstance().CopyInventories().Random();
             new IOStockManagerViewModel(inv);
         }
@@ -27,7 +59,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void CanCreate2()
         {
-            new Dummy().Create();
             var inv = DataDirector.GetInstance().CopyInventories().Random();
             var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' limit 1;", inv.ID);
             var ios = new ObservableIOStock(qret.Random());
@@ -37,7 +68,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void TestInit0()
         {
-            new Dummy().Create();
             var inv = DataDirector.GetInstance().CopyInventories().Random();
             var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
             var ios = new ObservableIOStock(qret.Random());
@@ -56,7 +86,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void TestInit1()
         {
-            new Dummy().Create();
             var inv = DataDirector.GetInstance().CopyInventories().Random();
             var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var ios = new ObservableIOStock(qret.Random());
@@ -80,7 +109,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void TestIOStockTypeChange0()
         {
-            new Dummy().Create();
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             var vm = new IOStockManagerViewModel(prod);
 
@@ -95,7 +123,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void TestIOStockTypeChange1()
         {
-            new Dummy().Create();
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             var vm = new IOStockManagerViewModel(prod);
 
@@ -111,7 +138,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void TestIOStockTypeChange2()
         {
-            new Dummy().Create();
             var inv = DataDirector.GetInstance().CopyInventories().Random();
             var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
             var iios = new ObservableIOStock(qret.Random());
@@ -129,7 +155,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void TestIOStockTypeChange3()
         {
-            new Dummy().Create();
             var inv = DataDirector.GetInstance().CopyInventories().Random();
             var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
@@ -147,7 +172,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void CreateNewIOStock0()
         {
-            new Dummy().Create();
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             var vm = new IOStockManagerViewModel(prod);
 
@@ -172,7 +196,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void CreateNewIOStock1()
         {
-            new Dummy().Create();
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             var vm = new IOStockManagerViewModel(prod);
 
@@ -189,14 +212,12 @@ namespace R54IN0.Test
             Assert.AreEqual(prj, oio.Warehouse.Name);
         }
 
-
         /// <summary>
         /// IOStockFormat 생성
         /// </summary>
         [TestMethod]
         public void CreateNewIOStock2()
         {
-            new Dummy().Create();
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             var vm = new IOStockManagerViewModel(prod);
 
@@ -222,7 +243,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void CreateNewIOStock3()
         {
-            new Dummy().Create();
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             var vm = new IOStockManagerViewModel(prod);
 
@@ -246,11 +266,10 @@ namespace R54IN0.Test
         [TestMethod]
         public void ModifyIOStockFormat0()
         {
-            new Dummy().Create();
-            var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
-            var oios = new ObservableIOStock(qret.Random());
-            var vm = new IOStockManagerViewModel(oios);
+            ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
+            List<IOStockFormat> qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
+            ObservableIOStock oios = new ObservableIOStock(qret.Random());
+            IOStockManagerViewModel vm = new IOStockManagerViewModel(oios);
 
             var qty = vm.Quantity = 10;
             var pri = vm.UnitPrice = 1000;
@@ -267,7 +286,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void ModifyIOStockFormat1()
         {
-            new Dummy().Create();
             var inv = DataDirector.GetInstance().CopyInventories().Random();
             var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
@@ -290,14 +308,13 @@ namespace R54IN0.Test
         [TestMethod]
         public void ModifyIOStockFormat2()
         {
-            new Dummy().Create();
             var inv = DataDirector.GetInstance().CopyInventories().Random();
             var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(oios);
 
             var acc = vm.SelectedAccount = vm.Accounts.Random();
-            var emp =  vm.SelectedEmployee = vm.Employees.Random();
+            var emp = vm.SelectedEmployee = vm.Employees.Random();
             var prj = vm.SelectedProject = vm.Projects.Random();
 
             ObservableIOStock oio = vm.Update();
@@ -313,7 +330,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void ModifyIOStockFormat3()
         {
-            new Dummy().Create();
             var inv = DataDirector.GetInstance().CopyInventories().Random();
             var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
@@ -332,6 +348,53 @@ namespace R54IN0.Test
             Assert.AreEqual(name, oio.Customer.Name);
             Assert.AreEqual(name, oio.Employee.Name);
             Assert.AreEqual(name, oio.Project.Name);
+        }
+
+        [TestMethod]
+        public void WhenModifyQtyThenSyncDataGridViewItems()
+        {
+            ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
+            IOStockFormat qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID).Single();
+
+            IOStockStatusViewModel svm = new IOStockStatusViewModel();
+
+            svm.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PRODUCT;
+            List<TreeViewNode> nodes = svm.TreeViewViewModel.SearchNodeInRoot(NodeType.INVENTORY);
+            TreeViewNode node = nodes.Where(x => x.ObservableObjectID == qret.InventoryID).Single();
+            svm.TreeViewViewModel.AddSelectedNodes(node);
+
+            IOStockDataGridItem stock = DataDirector.GetInstance().StockCollection.Where(x => x.ID == qret.ID).Single();
+
+            IOStockManagerViewModel vm = new IOStockManagerViewModel(stock);
+            int qty = vm.Quantity = 10;
+            vm.Update();
+
+            ObservableCollection<IOStockDataGridItem> items = svm.DataGridViewModel.Items;
+            IOStockDataGridItem result = items.Where(x => x.ID == stock.ID).Single();
+
+            Assert.AreEqual(result, stock);
+            Assert.AreEqual(qty, result.Quantity);
+        }
+
+        /// <summary>
+        /// bugfix sql quantity null query 문제
+        /// </summary>
+        [TestMethod]
+        public void CreateInventoryThenCreateStock()
+        {
+            var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
+            InventoryFormat inv = new InventoryFormat();
+            inv.ProductID = prod.ID;
+            inv.ID = Guid.NewGuid().ToString();
+
+            DataDirector.GetInstance().AddInventory(new ObservableInventory(inv));
+
+            var vm = new IOStockManagerViewModel(prod);
+            vm.SelectedInventory = vm.Inventories.Random();
+            vm.Quantity = 10;
+            vm.UnitPrice = 1000;
+
+            vm.Insert();
         }
     }
 }

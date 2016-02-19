@@ -2,7 +2,6 @@
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -112,7 +111,7 @@ namespace R54IN0.WPF
 
         private async void ExecuteNewInventoryNodeAddCommand()
         {
-            if(Application.Current != null)
+            if (Application.Current != null)
             {
                 TreeViewNode node = SelectedNodes.Single();
                 Observable<Product> product = DataDirector.GetInstance().SearchField<Product>(node.ObservableObjectID);
@@ -136,10 +135,11 @@ namespace R54IN0.WPF
                 switch (type)
                 {
                     case NodeType.PRODUCT:
-                        mvm.ShowAmenderWindowAsProductID(node.ObservableObjectID);
+                        mvm.OpenStockManagerAsProdID(node.ObservableObjectID);
                         break;
+
                     case NodeType.INVENTORY:
-                        mvm.ShowAmenderWindowAsInventoryID(node.ObservableObjectID);
+                        mvm.OpenStockManagerAsInvID(node.ObservableObjectID);
                         break;
                 }
             }
@@ -259,9 +259,11 @@ namespace R54IN0.WPF
                 case NodeType.FOLDER:
                     result = await ShowAttentionMessage(string.Format("\"{0}\" 폴더를 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name));
                     break;
+
                 case NodeType.PRODUCT:
                     result = await ShowAttentionMessage(string.Format("\"{0}\" 제품과 관련된 모든 재고기록과 입출고기록을 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name));
                     break;
+
                 case NodeType.INVENTORY:
                     result = await ShowAttentionMessage(string.Format("\"{0}\" 규격과 관련된 모든 재고기록과 입출고기록을 삭제합니다.\n정말로 삭제하시겠습니까?", selectedNode.Name));
                     break;
@@ -277,11 +279,13 @@ namespace R54IN0.WPF
                     _director.Remove(selectedNode);
                     productNodes.ForEach(x => _director.AddToRoot(x));
                     break;
+
                 case NodeType.PRODUCT:
                     _director.Remove(selectedNode);
                     var product = idc.SearchField<Product>(selectedNode.ObservableObjectID);
                     idc.RemoveField(product);
                     break;
+
                 case NodeType.INVENTORY:
                     _director.Remove(selectedNode);
                     var inventory = idc.SearchInventory(selectedNode.ObservableObjectID);
@@ -290,6 +294,7 @@ namespace R54IN0.WPF
             }
             SelectedNodes.Clear();
         }
+
         private bool CanAddFolderNode()
         {
             if (SelectedNodes.Count() == 0)
@@ -300,9 +305,11 @@ namespace R54IN0.WPF
             {
                 case NodeType.FOLDER:
                     return true;
+
                 case NodeType.PRODUCT:
                 case NodeType.INVENTORY:
                     return false;
+
                 default:
                     throw new NotSupportedException();
             }
@@ -317,9 +324,11 @@ namespace R54IN0.WPF
             {
                 case NodeType.FOLDER:
                     return true;
+
                 case NodeType.PRODUCT:
                 case NodeType.INVENTORY:
                     return false;
+
                 default:
                     throw new NotSupportedException();
             }
@@ -335,10 +344,13 @@ namespace R54IN0.WPF
             {
                 case NodeType.FOLDER:
                     return false;
+
                 case NodeType.PRODUCT:
                     return true;
+
                 case NodeType.INVENTORY:
                     return false;
+
                 default:
                     throw new NotSupportedException();
             }

@@ -1,24 +1,20 @@
-﻿using R54IN0.WPF;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
-    public class ObservableIOStock : IIOStockFormat, IObservableIOStockProperties, ICanUpdate
+    public class ObservableIOStock : IIOStockFormat, IObservableIOStockProperties, IUpdateLock
     {
         private IOStockFormat _fmt;
         private IObservableInventoryProperties _inventory;
         private bool _canUpdate = true;
-
         protected Observable<Customer> customer;
         protected Observable<Supplier> supplier;
         protected Observable<Project> project;
         protected Observable<Employee> employee;
         protected Observable<Warehouse> warehouse;
         protected PropertyChangedEventHandler propertyChanged;
-
 
         public ObservableIOStock()
         {
@@ -274,22 +270,6 @@ namespace R54IN0.WPF
             }
         }
 
-        public int RemainingQuantity
-        {
-            get
-            {
-                return _fmt.RemainingQuantity;
-            }
-            set
-            {
-                if (_fmt.RemainingQuantity != value)
-                {
-                    _fmt.RemainingQuantity = value;
-                    NotifyPropertyChanged("RemainingQuantity");
-                }
-            }
-        }
-
         public string CustomerID
         {
             get
@@ -368,7 +348,7 @@ namespace R54IN0.WPF
             }
         }
 
-        public bool CanUpdate
+        public bool UpdateLock
         {
             get
             {
@@ -401,22 +381,21 @@ namespace R54IN0.WPF
             if (string.IsNullOrEmpty(name))
                 return;
 
-            string[] s = new string[] { nameof(Customer), nameof(Supplier), nameof(Project),
+            if (name == nameof(ID))
+                throw new Exception();
+
+            string[] fieldNames = new string[] { nameof(Customer), nameof(Supplier), nameof(Project),
                 nameof(Inventory), nameof(Employee), nameof(Warehouse) };
-            if (s.Any(x => x == name))
+            if (fieldNames.Any(x => x == name))
                 name = name.Insert(name.Length, "ID");
+
+            if (!typeof(IOStockFormat).GetProperties().Any(x => x.Name == name))
+                return;
 
             if (ID == null)
                 DataDirector.GetInstance().DB.Insert(Format);
-            else if (CanUpdate)
-                DataDirector.GetInstance().DB.Update(Format, name);
-        }
-
-        public void Refresh()
-        {
-            IOStockFormat fmt = DataDirector.GetInstance().DB.Select<IOStockFormat>(ID);
-            if (fmt != null)
-                Format = fmt;
+            else if (UpdateLock)
+                DataDirector.GetInstance().DB.Update<IOStockFormat>(ID, name, GetType().GetProperty(name).GetValue(this));
         }
     }
 }

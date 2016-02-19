@@ -80,7 +80,7 @@ namespace R54IN0.WPF
                 return nodes.Single();
             return null;
         }
-        
+
         /// <summary>
         /// Node삭제
         /// </summary>

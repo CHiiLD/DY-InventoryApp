@@ -57,11 +57,6 @@ namespace R54IN0.WPF
             });
         }
 
-        //private void ExecuteAddNewIOStockCommand()
-        //{
-        //    IOStockViewModel.OpenIOStockDataAmenderWindow();
-        //}
-
         public IEnumerable<AccentColorMenuData> AccentColors { get; set; }
 
         public IEnumerable<AppThemeMenuData> AppThemes { get; set; }
@@ -145,7 +140,7 @@ namespace R54IN0.WPF
 
         public IOStockStatusViewModel IOStockViewModel { get; set; }
 
-        #endregion
+        #endregion ViewModel
 
         public object CurrentViewModel
         {
@@ -172,24 +167,24 @@ namespace R54IN0.WPF
         /// 입출고 데이터 등록창을 띄운다.
         /// </summary>
         /// <param name="productID"></param>
-        public void ShowAmenderWindowAsProductID(string productID)
+        public void OpenStockManagerAsProdID(string productID)
         {
             var ofd = DataDirector.GetInstance();
             var product = ofd.SearchField<Product>(productID);
             if (product != null)
-                IOStockViewModel.OpenIOStockDataAmenderWindow(product);
+                IOStockViewModel.OpenManager(product);
         }
-        
+
         /// <summary>
         /// 입출고 데이터 등록창을 띄운다.
         /// </summary>
         /// <param name="inventoryID"></param>
-        public void ShowAmenderWindowAsInventoryID(string inventoryID)
+        public void OpenStockManagerAsInvID(string inventoryID)
         {
             var ofd = DataDirector.GetInstance();
             var inventory = ofd.SearchInventory(inventoryID);
             if (inventory != null)
-                IOStockViewModel.OpenIOStockDataAmenderWindow(inventory);
+                IOStockViewModel.OpenManager(inventory);
         }
 
         /// <summary>
@@ -231,19 +226,19 @@ namespace R54IN0.WPF
         private void ExecuteChangeIOStockByProjectCommand()
         {
             SelectedItem = Items.Where(x => ((UserControl)x.Content).DataContext == IOStockViewModel).Single();
-            IOStockViewModel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PROJECT;
+            IOStockViewModel.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PROJECT;
         }
 
         private void ExecuteChangeIOStockByDateCommand()
         {
             SelectedItem = Items.Where(x => ((UserControl)x.Content).DataContext == IOStockViewModel).Single();
-            IOStockViewModel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_DATE;
+            IOStockViewModel.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_DATE;
         }
 
         private void ExecuteChangeIOStockViewByProductCommand()
         {
             SelectedItem = Items.Where(x => ((UserControl)x.Content).DataContext == IOStockViewModel).Single();
-            IOStockViewModel.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
+            IOStockViewModel.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PRODUCT;
         }
 
         private void ExecuteSelectInventoryStatusViewCommand()

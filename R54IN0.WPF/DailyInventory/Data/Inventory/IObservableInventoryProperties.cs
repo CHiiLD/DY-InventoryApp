@@ -2,7 +2,7 @@
 
 namespace R54IN0.WPF
 {
-    public interface IObservableInventoryProperties : INotifyPropertyChanged, ISync, IPropertyChanged
+    public interface IObservableInventoryProperties : INotifyPropertyChanged
     {
         string ID { get; set; }
         string Memo { get; set; }

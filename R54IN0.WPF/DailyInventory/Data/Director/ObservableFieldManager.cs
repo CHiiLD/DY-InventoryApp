@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
     internal class ObservableFieldManager
     {
         private IDictionary<Type, Dictionary<string, IObservableField>> _fields;
-        private SQLiteClient _db;
+        private MySQLClient _db;
 
-        internal ObservableFieldManager(SQLiteClient _db)
+        internal ObservableFieldManager(MySQLClient _db)
         {
             this._db = _db;
             Load();

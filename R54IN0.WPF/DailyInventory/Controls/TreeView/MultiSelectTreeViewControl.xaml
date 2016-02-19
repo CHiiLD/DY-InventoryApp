@@ -21,7 +21,7 @@
             <MenuItem Header="새로운 제품" Command="{Binding DataContext.NewProductNodeAddCommand, Source={StaticResource DataContextProxy}}" Visibility="{Binding DataContext.NewProductAddMenuVisibility, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="새로운 규격" Command="{Binding DataContext.NewInventoryNodeAddCommand, Source={StaticResource DataContextProxy}}" Visibility="{Binding DataContext.NewProductAddMenuVisibility, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="삭제하기" Command="{Binding DataContext.SelectedNodeDeletionCommand, Source={StaticResource DataContextProxy}}" />
-            <Separator/>
+            <Separator />
             <MenuItem Header="재고 현황으로 보기" Command="{Binding DataContext.SearchAsInventoryRecordCommand, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="제품별 입출고 현황으로 보기" Command="{Binding DataContext.SearchAsIOStockRecordCommand, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="새로운 입출고 기록 추가하기"
@@ -34,7 +34,7 @@
                 <Border CornerRadius="2" Width="15" Height="15" Background="{Binding Color}" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <edttxt:EditableTextBlock
                     Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    IsInEditMode="{Binding IsNameEditable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    IsInEditMode="{Binding IsNameEditable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </HierarchicalDataTemplate>
 

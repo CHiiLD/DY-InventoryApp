@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace R54IN0.WPF
 {
     /// <summary>
     /// 데이터 포맷 관리자
     /// </summary>
-    public class DataDirector
+    public partial class DataDirector
     {
         private static DataDirector _me;
         private ObservableFieldManager _field;
         private ObservableInventoryManager _inventory;
         private CollectionViewModelObserverSubject _subject;
-        private SQLiteClient _db;
+        private MySQLClient _db;
 
         private DataDirector()
         {
@@ -23,12 +22,18 @@ namespace R54IN0.WPF
         {
         }
 
-        public SQLiteClient DB
+        public MySQLClient DB
         {
             get
             {
                 return _db;
             }
+        }
+
+        public List<IOStockDataGridItem> StockCollection
+        {
+            get;
+            private set;
         }
 
         public static DataDirector GetInstance()
@@ -77,7 +82,7 @@ namespace R54IN0.WPF
         /// <returns></returns>
         public void RemoveInventory(ObservableInventory oInventory)
         {
-            _db.Delete(oInventory.Format);
+            _db.Delete<InventoryFormat>(oInventory.ID);
         }
 
         public ObservableInventory SearchInventory(string inventoryID)
@@ -93,6 +98,11 @@ namespace R54IN0.WPF
         #endregion inventory director
 
         #region field director
+
+        public void AddField<TableT>(IObservableField oField)
+        {
+            AddField(oField);
+        }
 
         /// <summary>
         /// 새로운 필드 데이터를 등록한다.
@@ -144,295 +154,42 @@ namespace R54IN0.WPF
         public void RemoveField(IObservableField oFIeld)
         {
             IField iField = oFIeld.Field;
+            string id = oFIeld.ID;
 
             if (iField is Product)
-                _db.Delete<Product>(oFIeld.Field);
+                _db.Delete<Product>(id);
             else if (iField is Maker)
-                _db.Delete<Maker>(iField);
+                _db.Delete<Maker>(id);
             else if (iField is Measure)
-                _db.Delete<Measure>(iField);
+                _db.Delete<Measure>(id);
             else if (iField is Customer)
-                _db.Delete<Customer>(iField);
+                _db.Delete<Customer>(id);
             else if (iField is Supplier)
-                _db.Delete<Supplier>(iField);
+                _db.Delete<Supplier>(id);
             else if (iField is Project)
-                _db.Delete<Project>(iField);
+                _db.Delete<Project>(id);
             else if (iField is Warehouse)
-                _db.Delete<Warehouse>(iField);
+                _db.Delete<Warehouse>(id);
             else if (iField is Employee)
-                _db.Delete<Employee>(iField);
+                _db.Delete<Employee>(id);
             else
                 throw new NotSupportedException();
         }
 
         #endregion field director
 
-        #region event callback
-
-        private void DataInserted(object obj, SQLInsertEventArgs e)
-        {
-            object data = e.Data;
-            if (data is InventoryFormat)
-            {
-                InventoryFormat fmt = data as InventoryFormat;
-                ObservableInventory oInventory = new ObservableInventory(fmt);
-                if (_inventory.Search(fmt.ID) == null)
-                {
-                    _inventory.Add(oInventory);
-                    _subject.NotifyNewItemAdded(oInventory);
-                }
-            }
-            else if (data is Product)
-            {
-                Product field = data as Product;
-                Observable<Product> oField = new Observable<Product>(field);
-                if (_field.Search<Product>(field.ID) == null)
-                {
-                    _field.Add<Product>(oField);
-                    _subject.NotifyNewItemAdded(oField);
-                }
-            }
-            else if (data is Maker)
-            {
-                Maker field = data as Maker;
-                Observable<Maker> oField = new Observable<Maker>(field);
-                if (_field.Search<Maker>(field.ID) == null)
-                {
-                    _field.Add<Maker>(oField);
-                    _subject.NotifyNewItemAdded(oField);
-                }
-            }
-            else if (data is Measure)
-            {
-                Measure field = data as Measure;
-                Observable<Measure> oField = new Observable<Measure>(field);
-                if (_field.Search<Measure>(field.ID) == null)
-                {
-                    _field.Add<Measure>(oField);
-                    _subject.NotifyNewItemAdded(oField);
-                }
-            }
-            else if (data is Customer)
-            {
-                Customer field = data as Customer;
-                Observable<Customer> oField = new Observable<Customer>(field);
-                if (_field.Search<Customer>(field.ID) == null)
-                {
-                    _field.Add<Customer>(oField);
-                    _subject.NotifyNewItemAdded(oField);
-                }
-            }
-            else if (data is Supplier)
-            {
-                Supplier field = data as Supplier;
-                Observable<Supplier> oField = new Observable<Supplier>(field);
-                if (_field.Search<Supplier>(field.ID) == null)
-                {
-                    _field.Add<Supplier>(oField);
-                    _subject.NotifyNewItemAdded(oField);
-                }
-            }
-            else if (data is Project)
-            {
-                Project field = data as Project;
-                Observable<Project> oField = new Observable<Project>(field);
-                if (_field.Search<Project>(field.ID) == null)
-                {
-                    _field.Add<Project>(oField);
-                    _subject.NotifyNewItemAdded(oField);
-                }
-            }
-            else if (data is Warehouse)
-            {
-                Warehouse field = data as Warehouse;
-                Observable<Warehouse> oField = new Observable<Warehouse>(field);
-                if (_field.Search<Warehouse>(field.ID) == null)
-                {
-                    _field.Add<Warehouse>(oField);
-                    _subject.NotifyNewItemAdded(oField);
-                }
-            }
-            else if (data is Employee)
-            {
-                Employee field = data as Employee;
-                Observable<Employee> oField = new Observable<Employee>(field);
-                if (_field.Search<Employee>(field.ID) == null)
-                {
-                    _field.Add<Employee>(oField);
-                    _subject.NotifyNewItemAdded(oField);
-                }
-            }
-        }
-
-        private void DataUpdated(object obj, SQLUpdateEventArgs e)
-        {
-            object data = e.Data;
-            var content = e.UpdateContent;
-            object obObj = null;
-
-            if (data is InventoryFormat)
-            {
-                InventoryFormat fmt = data as InventoryFormat;
-                obObj = SearchInventory(fmt.ID);
-            }
-            else if (data is IField)
-            {
-                IField field = data as IField;
-                if (data is Product)
-                    obObj = SearchField<Product>(field.ID);
-                else if (data is Maker)
-                    obObj = SearchField<Maker>(field.ID);
-                else if (data is Measure)
-                    obObj = SearchField<Measure>(field.ID);
-                else if (data is Customer)
-                    obObj = SearchField<Customer>(field.ID);
-                else if (data is Supplier)
-                    obObj = SearchField<Supplier>(field.ID);
-                else if (data is Project)
-                    obObj = SearchField<Project>(field.ID);
-                else if (data is Warehouse)
-                    obObj = SearchField<Warehouse>(field.ID);
-                else if (data is Employee)
-                    obObj = SearchField<Employee>(field.ID);
-            }
-
-            if (obObj != null && obObj is ICanUpdate)
-            {
-                ICanUpdate canUpdate = obObj as ICanUpdate;
-                canUpdate.CanUpdate = false;
-                foreach (var c in content)
-                    obObj.GetType().GetProperty(c.Key).SetValue(obObj, c.Value);
-                canUpdate.CanUpdate = true;
-            }
-        }
-
-        private void DataDeleted(object obj, SQLDeleteEventArgs e)
-        {
-            Type type = e.Type;
-            var ids = e.IDList;
-
-            if (type == typeof(InventoryFormat))
-            {
-                foreach (var id in ids)
-                {
-                    ObservableInventory oInventory = SearchInventory(id);
-                    if (oInventory != null)
-                    {
-                        _subject.NotifyItemDeleted(oInventory);
-                        _inventory.Remove(oInventory.ID);
-                    }
-                }
-            }
-            else if (type == typeof(Product))
-            {
-                foreach (var id in ids)
-                {
-                    Observable<Product> oField = SearchField<Product>(id);
-                    if (oField != null)
-                    {
-                        _subject.NotifyItemDeleted(oField);
-                        _field.Delete<Product>(oField.ID);
-                    }
-                }
-            }
-            else if (type == typeof(Maker))
-            {
-                foreach (var id in ids)
-                {
-                    Observable<Maker> oField = SearchField<Maker>(id);
-                    if (oField != null)
-                    {
-                        _subject.NotifyItemDeleted(oField);
-                        _field.Delete<Maker>(oField.ID);
-                    }
-                }
-            }
-            else if (type == typeof(Measure))
-            {
-                foreach (var id in ids)
-                {
-                    Observable<Measure> oField = SearchField<Measure>(id);
-                    if (oField != null)
-                    {
-                        _subject.NotifyItemDeleted(oField);
-                        _field.Delete<Measure>(oField.ID);
-                    }
-                }
-            }
-            else if (type == typeof(Customer))
-            {
-                foreach (var id in ids)
-                {
-                    Observable<Customer> oField = SearchField<Customer>(id);
-                    if (oField != null)
-                    {
-                        _subject.NotifyItemDeleted(oField);
-                        _field.Delete<Customer>(oField.ID);
-                    }
-                }
-            }
-            else if (type == typeof(Supplier))
-            {
-                foreach (var id in ids)
-                {
-                    Observable<Supplier> oField = SearchField<Supplier>(id);
-                    if (oField != null)
-                    {
-                        _subject.NotifyItemDeleted(oField);
-                        _field.Delete<Supplier>(oField.ID);
-                    }
-                }
-            }
-            else if (type == typeof(Project))
-            {
-                foreach (var id in ids)
-                {
-                    Observable<Project> oField = SearchField<Project>(id);
-                    if (oField != null)
-                    {
-                        _subject.NotifyItemDeleted(oField);
-                        _field.Delete<Project>(oField.ID);
-                    }
-                }
-            }
-            else if (type == typeof(Warehouse))
-            {
-                foreach (var id in ids)
-                {
-                    Observable<Warehouse> oField = SearchField<Warehouse>(id);
-                    if (oField != null)
-                    {
-                        _subject.NotifyItemDeleted(oField);
-                        _field.Delete<Warehouse>(oField.ID);
-                    }
-                }
-            }
-            else if (type == typeof(Employee))
-            {
-                foreach (var id in ids)
-                {
-                    Observable<Employee> oField = SearchField<Employee>(id);
-                    if (oField != null)
-                    {
-                        _subject.NotifyItemDeleted(oField);
-                        _field.Delete<Employee>(oField.ID);
-                    }
-                }
-            }
-        }
-        #endregion event callback
-
         private void Initialze()
         {
-            _db = new SQLiteClient();
+            _db = new MySQLClient();
             if (_db.Open())
             {
+                StockCollection = new List<IOStockDataGridItem>();
                 _field = new ObservableFieldManager(_db);
                 _inventory = new ObservableInventoryManager(_db);
                 _subject = CollectionViewModelObserverSubject.GetInstance();
-                _db.DataInsertEventHandler += DataInserted;
-                _db.DataUpdateEventHandler += DataUpdated;
-                _db.DataDeleteEventHandler += DataDeleted;
+                _db.DataInsertEventHandler += OnDataInserted;
+                _db.DataUpdateEventHandler += OnDataUpdated;
+                _db.DataDeleteEventHandler += OnDataDeleted;
             }
         }
     }

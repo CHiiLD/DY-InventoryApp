@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -240,6 +241,25 @@ namespace R54IN0.WPF
                 else
                     children.Add(newNode);
             }
+        }
+
+        public List<TreeViewNode> SearchNodeInSelectedNodes(NodeType type)
+        {
+            var children = SelectedNodes.SelectMany(x => x.Descendants());
+            return children.Where(x => type.HasFlag(x.Type)).ToList();
+        }
+
+        public List<TreeViewNode> SearchNodeInRoot(NodeType type)
+        {
+            var children = Root.SelectMany(x => x.Descendants());
+            return children.Where(x => type.HasFlag(x.Type)).ToList();
+        }
+
+        public void AddSelectedNodes(TreeViewNode node)
+        {
+            if (!_director.Contains(node))
+                throw new ArgumentException();
+            ExecuteNodesSelectedEventCommand(new SelectionChangedCancelEventArgs(new TreeViewNode[] { node }, null));
         }
 
         public void NotifyPropertyChanged(string name)

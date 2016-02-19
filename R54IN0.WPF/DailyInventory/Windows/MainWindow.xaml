@@ -38,7 +38,7 @@
         <KeyBinding Key="F2" Command="{Binding ChangeIOStockViewByProductCommand}" />
         <KeyBinding Key="F3" Command="{Binding ChangeIOStockByDateCommand}" />
         <KeyBinding Key="F4" Command="{Binding ChangeIOStockByProjectCommand}" />-->
-        
+
         <!--<KeyBinding Key="S" Modifiers="Shift+Ctrl" Command="{Binding AddNewIOStockCommand}" />-->
     </Window.InputBindings>
 

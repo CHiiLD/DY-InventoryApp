@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
     internal class ObservableInventoryManager
     {
         private IDictionary<string, ObservableInventory> _inventories;
-        private SQLiteClient _db;
+        private MySQLClient _db;
 
-        internal ObservableInventoryManager(SQLiteClient _db)
+        internal ObservableInventoryManager(MySQLClient _db)
         {
             this._db = _db;
             Load();

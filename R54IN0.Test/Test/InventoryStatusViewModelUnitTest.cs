@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MySql.Data.MySqlClient;
+using MySQL.Test;
 using R54IN0.WPF;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,40 @@ namespace R54IN0.Test.New
     [TestClass]
     public class InventoryStatusViewModelUnitTest
     {
+        private static MySqlConnection _conn;
+
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            Console.WriteLine(nameof(ClassInitialize));
+            Console.WriteLine(context.TestName);
+
+            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn.Open();
+
+            Dummy dummy = new Dummy(_conn);
+            dummy.Create();
+        }
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            Console.WriteLine(nameof(ClassCleanup));
+            _conn.Close();
+            _conn = null;
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            CollectionViewModelObserverSubject.Destory();
+            TreeViewNodeDirector.Destroy();
+            DataDirector.Destroy();
+        }
+
         [TestMethod]
         public void CanCreate()
         {
-            new Dummy().Create();
             new InventoryStatusViewModel();
         }
 
@@ -24,7 +56,6 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void DataGridInitializationTest()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
             Assert.IsNotNull(viewmodel.DataGridViewModel1.Items);
             Assert.IsNotNull(viewmodel.DataGridViewModel2.Items);
@@ -73,7 +104,6 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void ReNameTreeViewNode()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
             var node = viewmodel.TreeViewViewModel.Root.Where(x => x.Type == NodeType.PRODUCT).Random();
             node.IsNameEditable = false;
@@ -92,7 +122,6 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void WhenSelectNodesThenUpdateDataGrid()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
             //NODE 하나 선택
             var node = viewmodel.TreeViewViewModel.Root.Where(x => x.Type == NodeType.PRODUCT).Random();
@@ -116,7 +145,6 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void DeleteItemThenSyncDataGridItems()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
             var item = viewmodel.DataGridViewModel1.SelectedItem = viewmodel.DataGridViewModel1.Items.Random();
 
@@ -132,10 +160,9 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void DeleteItemThenSyncIOStockViewModel()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
             var iosvm = new IOStockStatusViewModel();
-            iosvm.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
+            iosvm.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PRODUCT;
             var item = viewmodel.DataGridViewModel1.SelectedItem = viewmodel.DataGridViewModel1.Items.Random();
             string inventoryID = item.ID;
             Console.WriteLine("삭제할 Inventory ID: " + inventoryID);
@@ -159,7 +186,6 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void DeleteItemThenSyncDb()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
             var item = viewmodel.DataGridViewModel1.SelectedItem = viewmodel.DataGridViewModel1.Items.Random();
             string inventoryID = item.ID;
@@ -180,7 +206,6 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void DeleteItemThenSyncDirector()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
             var item = viewmodel.DataGridViewModel1.SelectedItem = viewmodel.DataGridViewModel1.Items.Random();
             string inventoryID = item.ID;
@@ -194,7 +219,6 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void WhenDeleteMakerSyncMakers()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
 
             var someMaker = DataDirector.GetInstance().CopyFields<Maker>().Random();
@@ -206,7 +230,6 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void WhenDeleteMeasureSyncMeasures()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
 
             var someMeasure = DataDirector.GetInstance().CopyFields<Measure>().Random();
@@ -218,25 +241,23 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void WhenAddNewMakerSyncMakers()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
 
             var someMaker = new Observable<Maker>("some maker");
             Assert.IsFalse(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
             DataDirector.GetInstance().AddField(someMaker);
-            Assert.IsTrue(viewmodel.DataGridViewModel1.Makers.Any(x=> x.ID == someMaker.ID));
+            Assert.IsTrue(viewmodel.DataGridViewModel1.Makers.Any(x => x.ID == someMaker.ID));
         }
 
         [TestMethod]
         public void WhenAddNewMeasureSyncMeasures()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
 
             var someMeasure = new Observable<Measure>("some measure");
             Assert.IsFalse(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
             DataDirector.GetInstance().AddField(someMeasure);
-            Assert.IsTrue(viewmodel.DataGridViewModel1.Measures.Any(x=> x.ID == someMeasure.ID));
+            Assert.IsTrue(viewmodel.DataGridViewModel1.Measures.Any(x => x.ID == someMeasure.ID));
         }
 
         /// <summary>
@@ -245,9 +266,8 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void TestTreeViewSelect()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
-            var node = viewmodel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.INVENTORY)).Random();
+            var node = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.INVENTORY).Random();
             viewmodel.TreeViewViewModel.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { node }, null));
 
             Assert.AreEqual(viewmodel.GetDataGridItems().Single().ID, node.ObservableObjectID);
@@ -259,10 +279,9 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void TestTreeViewSelect2()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
-            var node = viewmodel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
-            viewmodel.TreeViewViewModel.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { node }, null));
+            var node = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            viewmodel.TreeViewViewModel.AddSelectedNodes(node);
 
             var inventories = DataDirector.GetInstance().SearchInventories(node.ObservableObjectID);
             var inventoryIds = inventories.Select(x => x.ID);
@@ -275,11 +294,11 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void TestTreeViewSelect3()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
-            var productNode = viewmodel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
+            var productNode = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
             var inventoryNode = productNode.Root.Random();
-            viewmodel.TreeViewViewModel.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { productNode, inventoryNode }, null));
+            viewmodel.TreeViewViewModel.AddSelectedNodes(productNode);
+            viewmodel.TreeViewViewModel.AddSelectedNodes(inventoryNode);
 
             var inventories = DataDirector.GetInstance().SearchInventories(productNode.ObservableObjectID);
             var inventoryIds = inventories.Select(x => x.ID);
@@ -289,12 +308,12 @@ namespace R54IN0.Test.New
         [TestMethod]
         public void DeleteInventoryNodeThenSyncTreeView()
         {
-            new Dummy().Create();
             var viewmodel = new InventoryStatusViewModel();
-            var productNode = viewmodel.TreeViewViewModel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
+            var productNode = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
             var inventoryNode = productNode.Root.Random();
             var treeview = viewmodel.TreeViewViewModel;
-            treeview.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { inventoryNode }, null));
+            treeview.AddSelectedNodes(inventoryNode);
+
             Assert.IsTrue(viewmodel.GetDataGridItems().All(x => x.ID == inventoryNode.ObservableObjectID));
             //삭제가 가능함
             Assert.IsTrue(treeview.CanDeleteNode());

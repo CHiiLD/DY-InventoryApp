@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 
 namespace R54IN0.WPF
@@ -19,7 +20,7 @@ namespace R54IN0.WPF
         private ObservableCollection<Observable<Project>> _projects;
         private IEnumerable<IObservableField> _accounts;
         private IEnumerable<IObservableField> _proejects;
-        private ObservableIOStock _obIOStock;
+        private ObservableIOStock _target;
         private DateTime _selectedDate;
         private ObservableInventory _selectedInventory;
         private int _quantity;
@@ -31,6 +32,8 @@ namespace R54IN0.WPF
         private Observable<Employee> _selectedEmployee;
         private string _employeeText;
         private string _memo;
+        private IOStockStatusViewModel _iOStockStatusViewModel;
+        private ObservableIOStock iostock;
 
         private event PropertyChangedEventHandler _propertyChanged;
 
@@ -39,31 +42,31 @@ namespace R54IN0.WPF
         /// <summary>
         /// 기존의 입출고 데이터를 수정합니다. 이 떄 규격은 변경되지 아니합니다.
         /// </summary>
-        /// <param name="ioStock"></param>
-        public IOStockManagerViewModel(ObservableIOStock ioStock) : this(ioStock.Inventory as ObservableInventory)
+        /// <param name="stock"></param>
+        public IOStockManagerViewModel(ObservableIOStock stock) : this(stock.Inventory as ObservableInventory)
         {
             IsEnabledRadioButton = true;
             IsEnabledInventoryComboBox = false;
-            Quantity = ioStock.Quantity;
-            UnitPrice = ioStock.UnitPrice;
-            SelectedEmployee = ioStock.Employee;
-            Memo = ioStock.Memo;
-            SelectedDate = ioStock.Date;
-            if (StockType != ioStock.StockType)
-                StockType = ioStock.StockType;
+            Quantity = stock.Quantity;
+            UnitPrice = stock.UnitPrice;
+            SelectedEmployee = stock.Employee;
+            Memo = stock.Memo;
+            SelectedDate = stock.Date;
+            if (StockType != stock.StockType)
+                StockType = stock.StockType;
             switch (StockType)
             {
                 case IOStockType.INCOMING:
-                    SelectedAccount = ioStock.Supplier;
-                    SelectedProject = ioStock.Warehouse;
+                    SelectedAccount = stock.Supplier;
+                    SelectedProject = stock.Warehouse;
                     break;
 
                 case IOStockType.OUTGOING:
-                    SelectedAccount = ioStock.Customer;
-                    SelectedProject = ioStock.Project;
+                    SelectedAccount = stock.Customer;
+                    SelectedProject = stock.Project;
                     break;
             }
-            _obIOStock = ioStock;
+            _target = stock;
         }
 
         /// <summary>
@@ -92,6 +95,12 @@ namespace R54IN0.WPF
 
             RecordCommand = new RelayCommand(ExecuteRecordCommand, CanRecord);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
+        }
+
+        public IOStockManagerViewModel(IOStockStatusViewModel iOStockStatusViewModel, ObservableIOStock stock)
+            : this(stock)
+        {
+            _iOStockStatusViewModel = iOStockStatusViewModel;
         }
 
         #region viewmodel binding properties
@@ -430,6 +439,46 @@ namespace R54IN0.WPF
             return new ObservableIOStock(fmt);
         }
 
+        public ObservableIOStock Update()
+        {
+            if (SelectedInventory == null)
+                throw new Exception();
+            ObservableIOStock origin = _target;
+            IOStockType bType = origin.StockType;
+            int bQty = origin.Quantity;
+            DateTime bDate = origin.Date;
+
+            ModifyInfoProperties();
+            CreateInfoProperties();
+            IOStockFormat modify = CreateIOStockFormat();
+            modify.ID = origin.ID;
+
+            PropertyInfo[] properties = modify.GetType().GetProperties();
+            foreach (PropertyInfo modifyProperty in properties)
+            {
+                if (modifyProperty.PropertyType.IsNotPublic)
+                    continue;
+                string pname = modifyProperty.Name;
+                PropertyInfo originProperty = origin.GetType().GetProperty(pname);
+                object v1 = originProperty.GetValue(origin);
+                object v2 = modifyProperty.GetValue(modify);
+                if (v1 != v2)
+                    originProperty.SetValue(origin, v2);
+            }
+            //for datagrid update
+            if (_iOStockStatusViewModel != null)
+            {
+                if (bType != origin.StockType || bDate != origin.Date)
+                {
+                    _iOStockStatusViewModel.SetDataGridItems();
+                    _iOStockStatusViewModel.CalcRemainQuantity();
+                }
+                else if (bQty != origin.Quantity)
+                    _iOStockStatusViewModel.CalcRemainQuantity();
+            }
+            return origin;
+        }
+
         private void CreateInfoProperties()
         {
             var account = SelectedAccount;
@@ -476,35 +525,6 @@ namespace R54IN0.WPF
             }
         }
 
-        public ObservableIOStock Update()
-        {
-            if (SelectedInventory == null)
-                throw new Exception();
-
-            ModifyInfoProperties();
-            CreateInfoProperties();
-
-            var origin = _obIOStock;
-            IOStockFormat modify = CreateIOStockFormat();
-            modify.ID = origin.ID;
-
-            var properties = modify.GetType().GetProperties();
-            foreach (var modifyProperty in properties)
-            {
-                if (modifyProperty.PropertyType.IsNotPublic)
-                    continue;
-                string pname = modifyProperty.Name;
-                var originProperty = origin.GetType().GetProperty(pname);
-
-                IComparable originValue = originProperty.GetValue(origin) as IComparable;
-                IComparable modifyValue = modifyProperty.GetValue(modify) as IComparable;
-
-                if (originValue.CompareTo(modifyValue) != 0)
-                    originProperty.SetValue(origin, modifyValue);
-            }
-            return origin;
-        }
-
         private IOStockFormat CreateIOStockFormat()
         {
             var account = SelectedAccount;
@@ -547,7 +567,7 @@ namespace R54IN0.WPF
             var account = SelectedAccount;
             var project = SelectedProject;
             var employee = SelectedEmployee;
-            ObservableIOStock origin = _obIOStock;
+            ObservableIOStock origin = _target;
 
             switch (StockType)
             {
@@ -598,7 +618,7 @@ namespace R54IN0.WPF
 
         private void ExecuteRecordCommand()
         {
-            if (_obIOStock == null)
+            if (_target == null)
                 Insert();
             else
                 Update();

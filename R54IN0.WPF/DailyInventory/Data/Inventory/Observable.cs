@@ -1,11 +1,9 @@
-﻿using R54IN0.WPF;
+﻿using System;
 using System.ComponentModel;
-using System.Threading.Tasks;
-using System;
 
 namespace R54IN0.WPF
 {
-    public class Observable<FieldT> : IObservableField, INotifyPropertyChanged, ICanUpdate where FieldT : class, IField, new()
+    public class Observable<FieldT> : IObservableField, INotifyPropertyChanged, IUpdateLock where FieldT : class, IField, new()
     {
         private FieldT _t;
         private bool _canUpdate = true;
@@ -98,7 +96,7 @@ namespace R54IN0.WPF
             }
         }
 
-        public bool CanUpdate
+        public bool UpdateLock
         {
             get
             {
@@ -118,20 +116,13 @@ namespace R54IN0.WPF
             if (string.IsNullOrEmpty(name))
                 return;
 
+            if (name == nameof(ID))
+                throw new Exception();
+
             if (ID == null)
                 DataDirector.GetInstance().AddField(this);
-            else if (CanUpdate)
-                DataDirector.GetInstance().DB.Update(Field, name);
-        }
-
-        public void Refresh()
-        {
-            FieldT field = DataDirector.GetInstance().DB.Select<FieldT>(ID);
-            if (field != null)
-            {
-                if (Name != field.Name)
-                    Name = field.Name;
-            }
+            else if (UpdateLock)
+                DataDirector.GetInstance().DB.Update<FieldT>(ID, nameof(Name), Name);
         }
     }
 }

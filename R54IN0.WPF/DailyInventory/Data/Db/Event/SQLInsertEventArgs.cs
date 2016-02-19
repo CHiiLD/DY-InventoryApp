@@ -2,18 +2,18 @@
 {
     public class SQLInsertEventArgs
     {
-        private object _obj;
+        private IID _iID;
 
-        public SQLInsertEventArgs(object obj)
+        public SQLInsertEventArgs(IID iID)
         {
-            _obj = obj;
+            _iID = iID;
         }
 
-        public object Data
+        public IID IID
         {
             get
             {
-                return _obj;
+                return _iID;
             }
         }
     }

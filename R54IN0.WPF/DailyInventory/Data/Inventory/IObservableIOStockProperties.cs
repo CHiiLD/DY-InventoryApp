@@ -3,12 +3,11 @@ using System.ComponentModel;
 
 namespace R54IN0.WPF
 {
-    public interface IObservableIOStockProperties : INotifyPropertyChanged, IPropertyChanged
+    public interface IObservableIOStockProperties : INotifyPropertyChanged
     {
         string ID { get; set; }
         string Memo { get; set; }
         int Quantity { get; set; }
-        int RemainingQuantity { get; set; }
         decimal UnitPrice { get; set; }
         IOStockType StockType { get; set; }
         IObservableInventoryProperties Inventory { get; set; }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MySql.Data.MySqlClient;
+using MySQL.Test;
 using R54IN0.WPF;
 using System;
 using System.Collections.Generic;
@@ -10,9 +12,40 @@ namespace R54IN0.Test
     [TestClass]
     public class TreeViewViewModelUnitTest
     {
+        private static MySqlConnection _conn;
+
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            Console.WriteLine(nameof(ClassInitialize));
+            Console.WriteLine(context.TestName);
+
+            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn.Open();
+
+            Dummy dummy = new Dummy(_conn);
+            dummy.Create();
+        }
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            Console.WriteLine(nameof(ClassCleanup));
+            _conn.Close();
+            _conn = null;
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            CollectionViewModelObserverSubject.Destory();
+            TreeViewNodeDirector.Destroy();
+            DataDirector.Destroy();
+        }
+
         public TreeViewNode GetProductNode(MultiSelectTreeViewModelView viewmodel)
         {
-            return viewmodel.Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT)).Random();
+            return viewmodel.SearchNodeInRoot(NodeType.PRODUCT).Random();
         }
 
         public bool Has(MultiSelectTreeViewModelView viewmodel, TreeViewNode node)
@@ -26,7 +59,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void DeleteProductNodeThenSyncTreeView()
         {
-            new Dummy().Create();
             var treeview = new MultiSelectTreeViewModelView();
             var node = GetProductNode(treeview);
             treeview.SelectedNodes.Add(node);
@@ -42,13 +74,12 @@ namespace R54IN0.Test
         [TestMethod]
         public void DeleteProductNodeThenSyncDataGrid()
         {
-            new Dummy().Create();
             var treeview = new MultiSelectTreeViewModelView();
             var ivm = new InventoryStatusViewModel();
             var iovm = new IOStockStatusViewModel();
             var node = GetProductNode(treeview);
             treeview.SelectedNodes.Add(node);
-            iovm.SelectedGroupItem = IOStockStatusViewModel.GROUPITEM_PRODUCT;
+            iovm.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PRODUCT;
             iovm.TreeViewViewModel.ExecuteNodesSelectedEventCommand(new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, null));
             Console.WriteLine("IOStock Status View Model 데이터 그리드 아이템들의 제품 범위식별자 리스트, 삭제할 ID: " + node.ObservableObjectID);
             iovm.DataGridViewModel.Items.ToList().ForEach(x => Console.WriteLine(x.Inventory.Product.ID));
@@ -67,7 +98,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void DeleteProductNodeThenSyncDirector()
         {
-            new Dummy().Create();
             var treeview = new MultiSelectTreeViewModelView();
             var node = GetProductNode(treeview);
             treeview.SelectedNodes.Add(node);
@@ -84,7 +114,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void DeleteProductNodeThenSyncDb()
         {
-            new Dummy().Create();
             var treeview = new MultiSelectTreeViewModelView();
             var node = GetProductNode(treeview);
             treeview.SelectedNodes.Add(node);
@@ -114,7 +143,6 @@ namespace R54IN0.Test
         [TestMethod]
         public void WhenCreateNewProjectTypeTreeViewNodeThenNameInitializedAsProductName()
         {
-            new Dummy().Create();
             var someProduct = DataDirector.GetInstance().CopyFields<Product>().Random();
             var treeview = new TreeViewNode(someProduct);
 

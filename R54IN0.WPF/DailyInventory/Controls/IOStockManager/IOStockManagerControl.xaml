@@ -1,9 +1,9 @@
 ﻿<UserControl x:Class="R54IN0.WPF.IOStockManagerControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
              xmlns:local="clr-namespace:R54IN0.WPF"
              xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel.Resources>
-                <Style x:Key="LabelStyle" TargetType="Label" BasedOn="{StaticResource MetroLabel}" >
+                <Style x:Key="LabelStyle" TargetType="Label" BasedOn="{StaticResource MetroLabel}">
                     <Setter Property="Width" Value="80" />
                 </Style>
                 <Style TargetType="DockPanel">
@@ -27,21 +27,21 @@
                             <UniformGrid.Resources>
                                 <local:EnumBooleanConverter x:Key="enumBooleanConverter" />
                             </UniformGrid.Resources>
-                            <RadioButton x:Name="IncomingStockRadioButton" Content="입고" IsChecked="{Binding StockType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=INCOMING}" IsEnabled="{Binding IsEnabledRadioButton}"/>
-                            <RadioButton x:Name="OutgoingStockRadioButton" Content="출고" IsChecked="{Binding StockType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=OUTGOING}" IsEnabled="{Binding IsEnabledRadioButton}"/>
+                            <RadioButton x:Name="IncomingStockRadioButton" Content="입고" IsChecked="{Binding StockType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=INCOMING}" IsEnabled="{Binding IsEnabledRadioButton}" />
+                            <RadioButton x:Name="OutgoingStockRadioButton" Content="출고" IsChecked="{Binding StockType, Converter={StaticResource enumBooleanConverter}, ConverterParameter=OUTGOING}" IsEnabled="{Binding IsEnabledRadioButton}" />
                         </UniformGrid>
                     </DockPanel>
                     <DockPanel>
-                        <Label DockPanel.Dock="Left" Content="날짜"  Style="{DynamicResource LabelStyle}"/>
+                        <Label DockPanel.Dock="Left" Content="날짜"  Style="{DynamicResource LabelStyle}" />
                         <DatePicker SelectedDate="{Binding SelectedDate}" />
                     </DockPanel>
                     <DockPanel>
-                        <Label DockPanel.Dock="Left" Content="규격"  Style="{DynamicResource LabelStyle}"/>
+                        <Label DockPanel.Dock="Left" Content="규격"  Style="{DynamicResource LabelStyle}" />
                         <ComboBox DockPanel.Dock="Left" ItemsSource="{Binding Inventories}" SelectedItem="{Binding SelectedInventory}" DisplayMemberPath="Specification" IsEnabled="{Binding IsEnabledInventoryComboBox}" />
                     </DockPanel>
                     <DockPanel>
                         <Label DockPanel.Dock="Left" Content="개수" Style="{DynamicResource LabelStyle}" />
-                        <mah:NumericUpDown Minimum="1" Value="{Binding Quantity}"/>
+                        <mah:NumericUpDown Minimum="1" Value="{Binding Quantity}" />
                     </DockPanel>
                     <DockPanel>
                         <Label DockPanel.Dock="Left" Content="단가" Style="{DynamicResource LabelStyle}" />
@@ -58,16 +58,16 @@
                                 <Style TargetType="{x:Type Label}" BasedOn="{StaticResource LabelStyle}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsChecked, ElementName=IncomingStockRadioButton}" Value="True">
-                                            <Setter Property="Content" Value="입고처"/>
+                                            <Setter Property="Content" Value="입고처" />
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding IsChecked, ElementName=OutgoingStockRadioButton}" Value="True">
-                                            <Setter Property="Content" Value="출고처"/>
+                                            <Setter Property="Content" Value="출고처" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </Label.Style>
                         </Label>
-                        <ComboBox DockPanel.Dock="Left" Text="{Binding AccountText}" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" DisplayMemberPath="Name" IsEditable="True"/>
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding AccountText}" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" DisplayMemberPath="Name" IsEditable="True" />
                     </DockPanel>
                     <DockPanel>
                         <Label DockPanel.Dock="Left">
@@ -75,26 +75,26 @@
                                 <Style TargetType="{x:Type Label}" BasedOn="{StaticResource LabelStyle}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsChecked, ElementName=IncomingStockRadioButton}" Value="True">
-                                            <Setter Property="Content" Value="보관장소"/>
+                                            <Setter Property="Content" Value="보관장소" />
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding IsChecked, ElementName=OutgoingStockRadioButton}" Value="True">
-                                            <Setter Property="Content" Value="프로젝트"/>
+                                            <Setter Property="Content" Value="프로젝트" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </Label.Style>
                         </Label>
-                        <ComboBox DockPanel.Dock="Left" Text="{Binding ProjectText}" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" DisplayMemberPath="Name"  IsEditable="True"/>
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding ProjectText}" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" DisplayMemberPath="Name"  IsEditable="True" />
                     </DockPanel>
                     <DockPanel>
-                        <Label DockPanel.Dock="Left" Content="담당자" Style="{DynamicResource LabelStyle}"/>
-                        <ComboBox DockPanel.Dock="Left" Text="{Binding EmployeeText}" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" DisplayMemberPath="Name"  IsEditable="True"/>
+                        <Label DockPanel.Dock="Left" Content="담당자" Style="{DynamicResource LabelStyle}" />
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding EmployeeText}" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" DisplayMemberPath="Name"  IsEditable="True" />
                     </DockPanel>
                     <DockPanel>
                         <TextBox Grid.Column="1" Text="{Binding Memo}">
                             <TextBox.Style>
                                 <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MetroTextBox}">
-                                    <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True"/>
+                                    <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True" />
                                     <Style.Triggers>
                                         <Trigger Property="mah:TextBoxHelper.HasText" Value="False">
                                             <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="False" />

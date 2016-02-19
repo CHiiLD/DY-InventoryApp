@@ -88,6 +88,7 @@
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -131,40 +132,40 @@
       <DependentUpon>IOStockManagerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DailyInventory\Controls\IOStockManager\IOStockManagerViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\EnumBooleanConverter.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\FilterSearchTextBoxViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridItem.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridViewModel.MenuCommand.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDatePickerControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\IOStockStatus\EnumBooleanConverter.cs" />
+    <Compile Include="DailyInventory\Controls\IOStockStatus\FilterSearchTextBoxViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\IOStockStatus\IOStockDataGridItem.cs" />
+    <Compile Include="DailyInventory\Controls\IOStockStatus\IOStockDataGridViewModel.MenuCommand.cs" />
+    <Compile Include="DailyInventory\Controls\IOStockStatus\IOStockDataGridViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\IOStockStatus\IOStockDatePickerControl.xaml.cs">
       <DependentUpon>IOStockDatePickerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDatePickerViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockProjectListBoxViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockProjectListBoxControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\IOStockStatus\IOStockDatePickerViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\IOStockStatus\IOStockProjectListBoxViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\IOStockStatus\IOStockProjectListBoxControl.xaml.cs">
       <DependentUpon>IOStockProjectListBoxControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockStatusControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\IOStockStatus\IOStockStatusControl.xaml.cs">
       <DependentUpon>IOStockStatusControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockStatusViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\Inventory\InventoryDataGridViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\Inventory\InventorySearchTextBoxViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\Inventory\InventoryStatusControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\InventoryStatus\InventoryDataGridViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\InventoryStatus\InventorySearchTextBoxViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\InventoryStatus\InventoryStatusControl.xaml.cs">
       <DependentUpon>InventoryStatusControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\IOStockStatus\IOStockDataGridControl.xaml.cs">
       <DependentUpon>IOStockDataGridControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\TabItems\Inventory\InventoryStatusViewModel.cs" />
-    <Compile Include="DailyInventory\Controls\TabItems\Inventory\InventoryDataGridControl.xaml.cs">
+    <Compile Include="DailyInventory\Controls\InventoryStatus\InventoryStatusViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\InventoryStatus\InventoryDataGridControl.xaml.cs">
       <DependentUpon>InventoryDataGridControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\TabItems\IOStock\StockTypeToStringConverter.cs" />
-    <Compile Include="DailyInventory\Controls\InventoryManagerDialog.xaml.cs">
+    <Compile Include="DailyInventory\Controls\IOStockStatus\StockTypeToStringConverter.cs" />
+    <Compile Include="DailyInventory\Controls\InventoryManagerDialog\InventoryManagerDialog.xaml.cs">
       <DependentUpon>InventoryManagerDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\InventoryManagerViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\InventoryManagerDialog\InventoryManagerViewModel.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewModelView.MenuCommand.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\NodeType.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNodeDirector.cs" />
@@ -176,23 +177,22 @@
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNode.cs" />
     <Compile Include="DailyInventory\Data\Db\Event\SQLUpdateEventArgs.cs" />
     <Compile Include="DailyInventory\Data\Db\Event\SQLDeleteEventArgs.cs" />
+    <Compile Include="DailyInventory\Data\Db\MySQLClient.cs" />
+    <Compile Include="DailyInventory\Data\Director\DataDirector.Callback.cs" />
     <Compile Include="DailyInventory\Data\Director\DataDirector.cs" />
-    <Compile Include="DailyInventory\Data\Director\INotifyPropertyChanged.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\ICanUpdate.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\ISync.cs" />
     <Compile Include="DailyInventory\Data\Db\LexDb.cs" />
     <Compile Include="DailyInventory\Data\Director\CollectionViewModelObserverSubject.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableFieldManager.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableInventoryManager.cs" />
     <Compile Include="DailyInventory\Data\Inventory\IObservableField.cs" />
+    <Compile Include="DailyInventory\Data\Inventory\IUpdateLock.cs" />
     <Compile Include="DailyInventory\Data\Inventory\Observable.cs" />
     <Compile Include="DailyInventory\Data\Inventory\IObservableIOStockProperties.cs" />
     <Compile Include="DailyInventory\Data\Inventory\IObservableInventoryProperties.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableInventory.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableIOStock.cs" />
     <Compile Include="DailyInventory\Data\Db\Event\SQLInsertEventArgs.cs" />
-    <Compile Include="DailyInventory\Data\Db\SQLiteClient.Event.cs" />
-    <Compile Include="DailyInventory\Data\Db\SQLiteClient.cs" />
+    <Compile Include="DailyInventory\Data\Inventory\UpdateLocker.cs" />
     <Compile Include="DailyInventory\Data\TreeViewNodeJsonFormat.cs" />
     <Compile Include="DailyInventory\Windows\IOStockManagerWindow.xaml.cs">
       <DependentUpon>IOStockManagerWindow.xaml</DependentUpon>
@@ -205,27 +205,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\TabItems\IOStock\IOStockDatePickerControl.xaml">
+    <Page Include="DailyInventory\Controls\IOStockStatus\IOStockDatePickerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\TabItems\IOStock\IOStockProjectListBoxControl.xaml">
+    <Page Include="DailyInventory\Controls\IOStockStatus\IOStockProjectListBoxControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\TabItems\IOStock\IOStockStatusControl.xaml">
+    <Page Include="DailyInventory\Controls\IOStockStatus\IOStockStatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\TabItems\Inventory\InventoryStatusControl.xaml">
+    <Page Include="DailyInventory\Controls\InventoryStatus\InventoryStatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\TabItems\IOStock\IOStockDataGridControl.xaml">
+    <Page Include="DailyInventory\Controls\IOStockStatus\IOStockDataGridControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\TabItems\Inventory\InventoryDataGridControl.xaml">
+    <Page Include="DailyInventory\Controls\InventoryStatus\InventoryDataGridControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,7 +233,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\InventoryManagerDialog.xaml">
+    <Page Include="DailyInventory\Controls\InventoryManagerDialog\InventoryManagerDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

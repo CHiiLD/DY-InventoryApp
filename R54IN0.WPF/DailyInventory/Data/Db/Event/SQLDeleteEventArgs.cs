@@ -8,10 +8,10 @@ namespace R54IN0.WPF
         private List<string> _ids;
         private Type _type;
 
-        public SQLDeleteEventArgs(Type type, List<string> idList)
+        public SQLDeleteEventArgs(Type type, List<string> ids)
         {
             _type = type;
-            _ids = idList;
+            _ids = ids;
         }
 
         public SQLDeleteEventArgs(Type type, string id)
