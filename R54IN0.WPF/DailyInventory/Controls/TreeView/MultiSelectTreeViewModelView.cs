@@ -24,39 +24,6 @@ namespace R54IN0.WPF
 
         private event PropertyChangedEventHandler _propertyChanged;
 
-        public MultiSelectTreeViewModelView()
-        {
-            _director = TreeViewNodeDirector.GetInstance();
-            Root = _director.Collection;
-            SelectedNodes = new ObservableCollection<TreeViewNode>();
-
-            NewFolderAddMenuVisibility = Visibility.Visible;
-            NewProductAddMenuVisibility = Visibility.Visible;
-            ContextMenuVisibility = Visibility.Visible;
-            //Drag & Drop
-            DragCommand = new RelayCommand<DragParameters>(ExecuteDrag, CanDrag);
-            DropCommand = new RelayCommand<DropParameters>(ExecuteDrop, CanDrop);
-            //mouse click
-            NodesSelectedEventCommand = new RelayCommand<SelectionChangedCancelEventArgs>(ExecuteNodesSelectedEventCommand);
-            MouseRightButtonDownEventCommand = new RelayCommand<MouseButtonEventArgs>(ExecuteMouseRightButtonDownEventCommand);
-            //Context Menu
-            SelectedNodeRenameCommand = new RelayCommand(ExecuteSelectedNodeRenameCommand, IsOnlyOne);
-            NewFolderNodeAddCommand = new RelayCommand(ExecuteNewFolderNodeAddCommand, CanAddFolderNode);
-            NewProductNodeAddCommand = new RelayCommand(ExecuteNewProductNodeAddCommand, CanAddProductNode);
-            NewInventoryNodeAddCommand = new RelayCommand(ExecuteNewInventoryNodeAddCommand, CanAddInventoryNode);
-            SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, CanExecuteSearchAsIOStockRecordCommand);
-            SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, CanExecuteSearchAsInventoryRecordCommand);
-            IOStockAmenderWindowCallCommand = new RelayCommand(ExecuteIOStockAmenderWindowCallCommand, CanCallIOStockAmenderWindow);
-            SelectedNodeDeletionCommand = new RelayCommand(ExecuteSelectedNodeDeletionCommand, CanDeleteNode);
-
-            CollectionViewModelObserverSubject.GetInstance().Attach(this);
-        }
-
-        ~MultiSelectTreeViewModelView()
-        {
-            CollectionViewModelObserverSubject.GetInstance().Detach(this);
-        }
-
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
@@ -70,6 +37,43 @@ namespace R54IN0.WPF
             }
         }
 
+        public MultiSelectTreeViewModelView()
+        {
+            _director = TreeViewNodeDirector.GetInstance();
+            Root = _director.Collection;
+            SelectedNodes = new ObservableCollection<TreeViewNode>();
+
+            NewFolderAddMenuVisibility = Visibility.Visible;
+            NewProductAddMenuVisibility = Visibility.Visible;
+            ContextMenuVisibility = Visibility.Visible;
+            
+            //Drag & Drop
+            DragCommand = new RelayCommand<DragParameters>(ExecuteDrag, CanDrag);
+            DropCommand = new RelayCommand<DropParameters>(ExecuteDrop, CanDrop);
+            
+            //mouse click
+            NodesSelectedEventCommand = new RelayCommand<SelectionChangedCancelEventArgs>(ExecuteNodesSelectedEventCommand);
+            MouseRightButtonDownEventCommand = new RelayCommand<MouseButtonEventArgs>(ExecuteMouseRightButtonDownEventCommand);
+
+            //Context Menu
+            SelectedNodeRenameCommand = new RelayCommand(ExecuteSelectedNodeRenameCommand, IsOnlyOne);
+            NewFolderNodeAddCommand = new RelayCommand(ExecuteNewFolderNodeAddCommand, CanAddFolderNode);
+            NewProductNodeAddCommand = new RelayCommand(ExecuteNewProductNodeAddCommand, CanAddProductNode);
+            NewInventoryNodeAddCommand = new RelayCommand(ExecuteNewInventoryNodeAddCommand, CanAddInventoryNode);
+            SearchAsIOStockRecordCommand = new RelayCommand(ExecuteSearchAsIOStockRecordCommand, CanExecuteSearchAsIOStockRecordCommand);
+            SearchAsInventoryRecordCommand = new RelayCommand(ExecuteSearchAsInventoryRecordCommand, CanExecuteSearchAsInventoryRecordCommand);
+            StockModifyCommand = new RelayCommand(ExecuteStockModifyCommand, CanExecuteStockModifyCommand);
+            SelectedNodeDeletionCommand = new RelayCommand(ExecuteSelectedNodeDeletionCommand, CanDeleteNode);
+            InventoryModifyCommand = new RelayCommand(ExecuteInventoryModifyCommand, CanExecuteInventoryModifyCommand); //inventory 수정하기
+
+            CollectionViewModelObserverSubject.GetInstance().Attach(this);
+        }
+
+     
+        ~MultiSelectTreeViewModelView()
+        {
+            CollectionViewModelObserverSubject.GetInstance().Detach(this);
+        }
         public ObservableCollection<TreeViewNode> Root { get; private set; }
 
         public ObservableCollection<TreeViewNode> SelectedNodes
@@ -134,6 +138,7 @@ namespace R54IN0.WPF
         }
 
         public RelayCommand<DragParameters> DragCommand { get; set; }
+
         public RelayCommand<DropParameters> DropCommand { get; set; }
 
         /// <summary>

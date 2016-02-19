@@ -55,7 +55,7 @@ namespace R54IN0.WPF
         /// <summary>
         /// 새로운 입출고 데이터 추가하기
         /// </summary>
-        public RelayCommand IOStockAmenderWindowCallCommand { get; private set; }
+        public RelayCommand StockModifyCommand { get; private set; }
 
         /// <summary>
         /// 재고 현황으로 보기
@@ -66,6 +66,11 @@ namespace R54IN0.WPF
         /// 선택된 노드 삭제하기
         /// </summary>
         public RelayCommand SelectedNodeDeletionCommand { get; private set; }
+
+        /// <summary>
+        /// 인벤토리 수정하기
+        /// </summary>
+        public RelayCommand InventoryModifyCommand { get; private set; }
 
         /// <summary>
         /// 선택된 노드의 이름을 변경한다.
@@ -125,7 +130,7 @@ namespace R54IN0.WPF
         /// <summary>
         /// IOStockDataAmenderWindow를 연다.
         /// </summary>
-        private void ExecuteIOStockAmenderWindowCallCommand()
+        private void ExecuteStockModifyCommand()
         {
             if (IsOnlyOne())
             {
@@ -195,13 +200,14 @@ namespace R54IN0.WPF
 
             SelectedNodeRenameCommand.RaiseCanExecuteChanged();
             SearchAsIOStockRecordCommand.RaiseCanExecuteChanged();
-            IOStockAmenderWindowCallCommand.RaiseCanExecuteChanged();
+            StockModifyCommand.RaiseCanExecuteChanged();
             SearchAsInventoryRecordCommand.RaiseCanExecuteChanged();
             SelectedNodeDeletionCommand.RaiseCanExecuteChanged();
 
             NewFolderNodeAddCommand.RaiseCanExecuteChanged();
             NewProductNodeAddCommand.RaiseCanExecuteChanged();
             NewInventoryNodeAddCommand.RaiseCanExecuteChanged();
+            InventoryModifyCommand.RaiseCanExecuteChanged();
         }
 
         /// <summary>
@@ -271,7 +277,7 @@ namespace R54IN0.WPF
             if (result != MessageDialogResult.Affirmative)
                 return;
 
-            var idc = DataDirector.GetInstance();
+            DataDirector ddr = DataDirector.GetInstance();
             switch (selectedNode.Type)
             {
                 case NodeType.FOLDER:
@@ -279,17 +285,15 @@ namespace R54IN0.WPF
                     _director.Remove(selectedNode);
                     productNodes.ForEach(x => _director.AddToRoot(x));
                     break;
-
                 case NodeType.PRODUCT:
                     _director.Remove(selectedNode);
-                    var product = idc.SearchField<Product>(selectedNode.ObservableObjectID);
-                    idc.RemoveField(product);
+                    var product = ddr.SearchField<Product>(selectedNode.ObservableObjectID);
+                    ddr.RemoveField(product);
                     break;
-
                 case NodeType.INVENTORY:
                     _director.Remove(selectedNode);
-                    var inventory = idc.SearchInventory(selectedNode.ObservableObjectID);
-                    idc.RemoveInventory(inventory);
+                    var inventory = ddr.SearchInventory(selectedNode.ObservableObjectID);
+                    ddr.RemoveInventory(inventory);
                     break;
             }
             SelectedNodes.Clear();
@@ -360,7 +364,7 @@ namespace R54IN0.WPF
         /// 선택된 노드가 제품 노드인지 파악
         /// </summary>
         /// <returns></returns>
-        private bool CanCallIOStockAmenderWindow()
+        private bool CanExecuteStockModifyCommand()
         {
             var node = SelectedNodes.SingleOrDefault();
             if (node == null)
@@ -389,7 +393,7 @@ namespace R54IN0.WPF
         /// <returns></returns>
         private bool CanExecuteSearchAsInventoryRecordCommand()
         {
-            var viewmodel = MainWindowViewModel.GetInstance();
+            MainWindowViewModel viewmodel = MainWindowViewModel.GetInstance();
             return viewmodel.CurrentViewModel == viewmodel.IOStockViewModel && IsOnlyOne();
         }
 
@@ -399,8 +403,36 @@ namespace R54IN0.WPF
         /// <returns></returns>
         private bool CanExecuteSearchAsIOStockRecordCommand()
         {
-            var viewmodel = MainWindowViewModel.GetInstance();
+            MainWindowViewModel viewmodel = MainWindowViewModel.GetInstance();
             return viewmodel.CurrentViewModel == viewmodel.InventoryViewModel && IsOnlyOne();
+        }
+
+        /// <summary>
+        /// 인벤토리를 수정할 수 있는 여건인지 확인
+        /// </summary>
+        /// <returns></returns>
+        private bool CanExecuteInventoryModifyCommand()
+        {
+            if (SelectedNodes.Count() != 1)
+                return false;
+            TreeViewNode node = SelectedNodes.Single();
+            return node.Type == NodeType.INVENTORY;
+        }
+
+        /// <summary>
+        /// 인벤토리 수정할 수 있는 InventoryManagerDialog 열기
+        /// </summary>
+        private async void ExecuteInventoryModifyCommand()
+        {
+            if (Application.Current != null)
+            {
+                TreeViewNode node = SelectedNodes.Single();
+                ObservableInventory inv = DataDirector.GetInstance().SearchInventory(node.ObservableObjectID);
+                MetroWindow metro = Application.Current.MainWindow as MetroWindow;
+                InventoryManagerDialog dialog = new InventoryManagerDialog(metro);
+                dialog.DataContext = new InventoryManagerViewModel(dialog, inv);
+                await metro.ShowMetroDialogAsync(dialog, null);
+            }
         }
     }
 }

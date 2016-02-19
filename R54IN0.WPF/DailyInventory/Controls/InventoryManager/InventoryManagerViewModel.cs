@@ -189,7 +189,10 @@ namespace R54IN0.WPF
 
         private async void ExecuteRecordCommand()
         {
-            Insert();
+            if (_target == null)
+                Insert();
+            else
+                Update();
             await _control.RequestCloseAsync();
         }
 

@@ -12,7 +12,6 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <local:BindingProxy x:Key="DataContextProxy" DataContext="{Binding}" />
-
         <ContextMenu x:Key="CellContextMenu" Visibility="{Binding DataContext.ContextMenuVisibility, Source={StaticResource DataContextProxy}}">
             <MenuItem Header="이름 바꾸기"
                       InputGestureText="F2"
@@ -22,11 +21,13 @@
             <MenuItem Header="새로운 규격" Command="{Binding DataContext.NewInventoryNodeAddCommand, Source={StaticResource DataContextProxy}}" Visibility="{Binding DataContext.NewProductAddMenuVisibility, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="삭제하기" Command="{Binding DataContext.SelectedNodeDeletionCommand, Source={StaticResource DataContextProxy}}" />
             <Separator />
+            <MenuItem Header="규격 수정하기"
+                      Command="{Binding DataContext.InventoryModifyCommand, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="재고 현황으로 보기" Command="{Binding DataContext.SearchAsInventoryRecordCommand, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="제품별 입출고 현황으로 보기" Command="{Binding DataContext.SearchAsIOStockRecordCommand, Source={StaticResource DataContextProxy}}" />
             <MenuItem Header="새로운 입출고 기록 추가하기"
                       InputGestureText="Ctrl+S"
-                      Command="{Binding DataContext.IOStockAmenderWindowCallCommand, Source={StaticResource DataContextProxy}}" />
+                      Command="{Binding DataContext.StockModifyCommand, Source={StaticResource DataContextProxy}}" />
         </ContextMenu>
 
         <HierarchicalDataTemplate DataType="{x:Type local:TreeViewNode}" ItemsSource="{Binding Root}">
