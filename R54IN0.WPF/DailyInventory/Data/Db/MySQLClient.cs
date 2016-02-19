@@ -16,6 +16,14 @@ namespace R54IN0.WPF
         public EventHandler<SQLUpdateEventArgs> DataUpdateEventHandler;
         public EventHandler<SQLDeleteEventArgs> DataDeleteEventHandler;
 
+        public MySqlConnection Connection
+        {
+            get
+            {
+                return _conn;
+            }
+        }
+
         public MySQLClient()
         {
             DataInsertEventHandler += OnDataInserted;
@@ -35,6 +43,18 @@ namespace R54IN0.WPF
         {
             _conn = new MySqlConnection("Server=localhost;Database=test_inventory;Uid=root;Pwd=f54645464");
             _conn.Open();
+
+            //Table 생성
+            CreateTable<InventoryFormat>();
+            CreateTable<IOStockFormat>();
+            CreateTable<Customer>();
+            CreateTable<Employee>();
+            CreateTable<Maker>();
+            CreateTable<Measure>();
+            CreateTable<Product>();
+            CreateTable<Project>();
+            CreateTable<Supplier>();
+            CreateTable<Warehouse>();
             return true;
         }
 
@@ -326,6 +346,43 @@ namespace R54IN0.WPF
                 result = (int)value;
 
             return result;
+        }
+
+        private void CreateTable<TableT>()
+        {
+            string sql = string.Format("create table if not exists {0} (", typeof(TableT).Name);
+            StringBuilder sb = new StringBuilder(sql);
+            var properties = typeof(TableT).GetProperties();
+            int guidLength = Guid.NewGuid().ToString().Length;
+            foreach (var property in properties)
+            {
+                if (property.PropertyType.IsNotPublic)
+                    continue;
+                string fieldName = property.Name;
+                string fieldType = null;
+                Type type = property.PropertyType;
+                if (fieldName == "ID")
+                    fieldType = string.Format("varchar({0}) not null unique", guidLength);
+                else if (fieldName.Contains("ID"))
+                    fieldType = string.Format("varchar({0})", guidLength);
+                else if (type == typeof(string))
+                    fieldType = "text";
+                else if (type == typeof(int))
+                    fieldType = "int not null default 0";
+                else if (type == typeof(decimal))
+                    fieldType = "numeric not null default 0";
+                else if (type == typeof(DateTime))
+                    fieldType = "datetime not null";
+                else if (type.IsEnum)
+                    fieldType = "int not null";
+                sb.Append(string.Format("{0} {1}, ", fieldName, fieldType));
+            }
+            sb.Append(" primary key (ID)");
+            sb.Append(");");
+            sql = sb.ToString();
+
+            using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
+                cmd.ExecuteNonQuery();
         }
 
         private void OnDataDeleted(object sender, SQLDeleteEventArgs e)

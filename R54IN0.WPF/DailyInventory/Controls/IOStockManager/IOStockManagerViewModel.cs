@@ -431,7 +431,7 @@ namespace R54IN0.WPF
             if (SelectedInventory == null)
                 throw new Exception();
 
-            CreateInfoProperties();
+            CreateBindingProperties();
 
             var fmt = CreateIOStockFormat();
             DataDirector.GetInstance().DB.Insert<IOStockFormat>(fmt);
@@ -448,8 +448,8 @@ namespace R54IN0.WPF
             int bQty = origin.Quantity;
             DateTime bDate = origin.Date;
 
-            ModifyInfoProperties();
-            CreateInfoProperties();
+            ModifyBindingProperties();
+            CreateBindingProperties();
             IOStockFormat modify = CreateIOStockFormat();
             modify.ID = origin.ID;
 
@@ -479,7 +479,7 @@ namespace R54IN0.WPF
             return origin;
         }
 
-        private void CreateInfoProperties()
+        private void CreateBindingProperties()
         {
             var account = SelectedAccount;
             var project = SelectedProject;
@@ -562,7 +562,7 @@ namespace R54IN0.WPF
             return fmt;
         }
 
-        private void ModifyInfoProperties()
+        private void ModifyBindingProperties()
         {
             var account = SelectedAccount;
             var project = SelectedProject;

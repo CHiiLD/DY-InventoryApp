@@ -37,7 +37,6 @@ namespace R54IN0.Test
         public void CanCreate()
         {
             new InventorySearchTextBoxViewModel();
-            TreeViewNodeDirector.Destroy();
         }
 
         /// <summary>

@@ -36,11 +36,23 @@ namespace R54IN0.Test
             _conn = null;
         }
 
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
+            using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
+                cmd.ExecuteNonQuery();
+        }
+
         [TestCleanup]
         public void TestCleanup()
         {
+            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
+            using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
+                cmd.ExecuteNonQuery();
+
             CollectionViewModelObserverSubject.Destory();
-            TreeViewNodeDirector.Destroy();
+            TreeViewNodeDirector.Destroy(true);
             DataDirector.Destroy();
         }
 
@@ -749,11 +761,11 @@ namespace R54IN0.Test
         {
             var viewmodel = SelectSomeTreeViewNode();
 
+            var inc = viewmodel.DataGridViewModel.Items.Where(x => x.StockType == IOStockType.INCOMING);
             var item = viewmodel.DataGridViewModel.Items.Where(x => x.StockType == IOStockType.INCOMING).Random();
             var mvm = new IOStockManagerViewModel(viewmodel, item);
             mvm.StockType = IOStockType.OUTGOING;
             mvm.Update();
-
             AssertQuantityChecking(viewmodel.DataGridViewModel.Items);
         }
 

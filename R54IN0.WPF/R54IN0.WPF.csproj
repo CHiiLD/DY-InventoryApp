@@ -162,10 +162,10 @@
       <DependentUpon>InventoryDataGridControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DailyInventory\Controls\IOStockStatus\StockTypeToStringConverter.cs" />
-    <Compile Include="DailyInventory\Controls\InventoryManagerDialog\InventoryManagerDialog.xaml.cs">
+    <Compile Include="DailyInventory\Controls\InventoryManager\InventoryManagerDialog.xaml.cs">
       <DependentUpon>InventoryManagerDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DailyInventory\Controls\InventoryManagerDialog\InventoryManagerViewModel.cs" />
+    <Compile Include="DailyInventory\Controls\InventoryManager\InventoryManagerViewModel.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewModelView.MenuCommand.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\NodeType.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNodeDirector.cs" />
@@ -233,7 +233,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DailyInventory\Controls\InventoryManagerDialog\InventoryManagerDialog.xaml">
+    <Page Include="DailyInventory\Controls\InventoryManager\InventoryManagerDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

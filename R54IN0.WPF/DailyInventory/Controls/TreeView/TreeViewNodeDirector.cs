@@ -43,6 +43,17 @@ namespace R54IN0.WPF
             }
         }
 
+        public static void Destroy(bool forDebug)
+        {
+            if (_thiz != null)
+            {
+                if (!forDebug)
+                    _thiz.SaveTree();
+                _thiz._nodes = null;
+                _thiz = null;
+            }
+        }
+
         public void AddToRoot(TreeViewNode node)
         {
             if (!Contains(node))

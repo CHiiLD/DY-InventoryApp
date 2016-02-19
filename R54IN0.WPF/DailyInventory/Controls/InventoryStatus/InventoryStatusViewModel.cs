@@ -257,11 +257,11 @@ namespace R54IN0.WPF
         {
             if (item is ObservableInventory)
             {
-                ObservableInventory obInven = item as ObservableInventory;
-                if (DataGridViewModel1.Items.Contains(obInven))
-                    DataGridViewModel1.Items.Remove(obInven);
-                else if (DataGridViewModel2.Items.Contains(obInven))
-                    DataGridViewModel2.Items.Remove(obInven);
+                ObservableInventory inv = item as ObservableInventory;
+                if (DataGridViewModel1.Items.Contains(inv))
+                    DataGridViewModel1.Items.Remove(inv);
+                else if (DataGridViewModel2.Items.Contains(inv))
+                    DataGridViewModel2.Items.Remove(inv);
             }
             else if (item is Observable<Product>)
             {

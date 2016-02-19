@@ -20,8 +20,9 @@
     </UserControl.Resources>
 
     <Grid>
-        <DataGrid x:Name="DataGridControl" AutoGenerateColumns="False"
-                  ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"
+        <DataGrid x:Name="DataGridControl" AutoGenerateColumns="False" 
+                  VirtualizingPanel.IsVirtualizing="True"
+                  ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" 
                   CanUserAddRows="False" GridLinesVisibility="All" HeadersVisibility="All"
                   CanUserDeleteRows="False">
 

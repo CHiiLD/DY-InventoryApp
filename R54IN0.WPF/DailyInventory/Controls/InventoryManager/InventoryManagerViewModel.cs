@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace R54IN0.WPF
 {
@@ -17,6 +18,7 @@ namespace R54IN0.WPF
         private Observable<Maker> _maker;
         private Observable<Measure> _measure;
         private InventoryManagerDialog _control;
+        private ObservableInventory _target;
 
         private event PropertyChangedEventHandler _propertyChanged;
 
@@ -49,6 +51,23 @@ namespace R54IN0.WPF
         }
 
         public InventoryManagerViewModel(InventoryManagerDialog dialog, Observable<Product> product) : this(product)
+        {
+            _control = dialog;
+        }
+
+        public InventoryManagerViewModel(ObservableInventory inventory)
+            : this(inventory.Product)
+        {
+            _target = inventory;
+
+            Specification = inventory.Specification;
+            Memo = inventory.Memo;
+            Maker = inventory.Maker;
+            Measure = inventory.Measure;
+        }
+
+        public InventoryManagerViewModel(InventoryManagerDialog dialog, ObservableInventory inventory)
+            : this(inventory)
         {
             _control = dialog;
         }
@@ -187,6 +206,44 @@ namespace R54IN0.WPF
 
         public ObservableInventory Insert()
         {
+            CreateBindingProperties();
+
+            InventoryFormat format = CreateInventoryFormat();
+            format.ID = Guid.NewGuid().ToString();
+            ObservableInventory inventory = new ObservableInventory(format);
+            DataDirector.GetInstance().AddInventory(inventory);
+
+            return inventory;
+        }
+
+        public ObservableInventory Update()
+        {
+            ObservableInventory origin = _target;
+
+            ModifyBindingProperties();
+            CreateBindingProperties();
+
+            InventoryFormat modify = CreateInventoryFormat();
+            modify.ID = origin.ID;
+            modify.Quantity = origin.Quantity;
+
+            PropertyInfo[] properties = modify.GetType().GetProperties();
+            foreach (PropertyInfo modifyProperty in properties)
+            {
+                if (modifyProperty.PropertyType.IsNotPublic)
+                    continue;
+                string pname = modifyProperty.Name;
+                PropertyInfo originProperty = origin.GetType().GetProperty(pname);
+                object v1 = originProperty.GetValue(origin);
+                object v2 = modifyProperty.GetValue(modify);
+                if (v1 != v2)
+                    originProperty.SetValue(origin, v2);
+            }
+            return origin;
+        }
+
+        private void CreateBindingProperties()
+        {
             var maker = Maker;
             var measure = Measure;
 
@@ -194,17 +251,46 @@ namespace R54IN0.WPF
             {
                 maker = new Observable<Maker>(MakerText);
                 DataDirector.GetInstance().AddField(maker);
+                Maker = maker;
             }
             if (measure == null && MeasureText != null)
             {
                 measure = new Observable<Measure>(MeasureText);
                 DataDirector.GetInstance().AddField(measure);
+                Measure = measure;
             }
+        }
 
-            ObservableInventory inventory = new ObservableInventory(_product, Specification, 0, Memo, maker, measure);
-            DataDirector.GetInstance().AddInventory(inventory);
+        private void ModifyBindingProperties()
+        {
+            var maker = Maker;
+            var measure = Measure;
+            ObservableInventory origin = _target;
 
-            return inventory;
+            if (origin.Maker != null && maker == null)
+            {
+                origin.Maker.Name = MakerText;
+                Maker = origin.Maker;
+            }
+            if (origin.Measure != null && Measure == null)
+            {
+                origin.Measure.Name = MeasureText;
+                Measure = origin.Measure;
+            }
+        }
+
+        private InventoryFormat CreateInventoryFormat()
+        {
+            InventoryFormat format = new InventoryFormat();
+            format.ProductID = _product.ID;
+            if (Maker != null)
+                format.MakerID = Maker.ID;
+            if (Measure != null)
+                format.MeasureID = Measure.ID;
+            format.Specification = Specification;
+            format.Memo = Memo;
+
+            return format;
         }
     }
 }

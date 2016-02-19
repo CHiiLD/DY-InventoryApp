@@ -33,11 +33,23 @@ namespace R54IN0.Test
             _conn = null;
         }
 
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
+            using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
+                cmd.ExecuteNonQuery();
+        }
+
         [TestCleanup]
         public void TestCleanup()
         {
+            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
+            using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
+                cmd.ExecuteNonQuery();
+
             CollectionViewModelObserverSubject.Destory();
-            TreeViewNodeDirector.Destroy();
+            TreeViewNodeDirector.Destroy(true);
             DataDirector.Destroy();
         }
 
@@ -121,6 +133,66 @@ namespace R54IN0.Test
             var inventory = viewmodel.Insert();
 
             Assert.IsTrue(inventoryStatusViewModel.GetDataGridItems().Any(x => x.ID == inventory.ID));
+        }
+
+        [TestMethod]
+        public void CanCreateForModify()
+        {
+            ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
+            InventoryManagerViewModel vm = new InventoryManagerViewModel(inv);
+        }
+
+        [TestMethod]
+        public void TestPropertyInitCheck()
+        {
+            ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
+            InventoryManagerViewModel vm = new InventoryManagerViewModel(inv);
+
+            Assert.AreEqual(inv.Product.Name, vm.ProductName);
+            Assert.AreEqual(inv.Specification, vm.Specification);
+            Assert.AreEqual(inv.Memo, vm.Memo);
+            Assert.AreEqual(inv.Maker, vm.Maker);
+            Assert.AreEqual(inv.Measure, vm.Measure);
+        }
+
+        [TestMethod]
+        public void PropertyChange()
+        {
+            ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
+            InventoryManagerViewModel vm = new InventoryManagerViewModel(inv);
+
+            string spec = vm.Specification = "some specification";
+            string memo = vm.Memo = "memo";
+            vm.Maker = null;
+            string maker = vm.MakerText = "new";
+            vm.Measure = null;
+            string measure = vm.MeasureText = "new";
+
+            inv = vm.Update();
+
+            Assert.AreEqual(spec, inv.Specification);
+            Assert.AreEqual(memo, inv.Memo);
+            Assert.AreEqual(maker, inv.Maker.Name);
+            Assert.AreEqual(measure, inv.Measure.Name);
+        }
+
+        [TestMethod]
+        public void PropertyChange2()
+        {
+            ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
+            InventoryManagerViewModel vm = new InventoryManagerViewModel(inv);
+
+            string spec = vm.Specification = "some specification";
+            string memo = vm.Memo = "memo";
+            var maker = vm.Maker = vm.MakerList.Random();
+            var measure = vm.Measure = vm.MeasureList.Random();
+
+            inv = vm.Update();
+
+            Assert.AreEqual(spec, inv.Specification);
+            Assert.AreEqual(memo, inv.Memo);
+            Assert.AreEqual(maker, inv.Maker);
+            Assert.AreEqual(measure, inv.Measure);
         }
     }
 }
