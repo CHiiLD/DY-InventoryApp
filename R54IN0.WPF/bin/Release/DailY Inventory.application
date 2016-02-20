@@ -8,20 +8,20 @@
         <beforeApplicationStartup />
       </update>
     </subscription>
-    <deploymentProvider codebase="http://child-pot/DailY%20Inventory/DailY%20Inventory.application" />
+    <deploymentProvider codebase="http://bootcamp/DailY%20Inventory/DailY%20Inventory.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="DailY Inventory.exe.manifest" size="18498">
+    <dependentAssembly dependencyType="install" codebase="DailY Inventory.exe.manifest" size="23305">
       <assemblyIdentity name="DailY Inventory.exe" version="0.1.0.15" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sJTKJtD5DL+iWvwI2giGx8S8/QOaadk6b/oceJt02jY=</dsig:DigestValue>
+        <dsig:DigestValue>4CMglVeZkn/djUx3epezxo1CC2JmUarg/vh4+Lj0Ivg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -89,6 +89,7 @@
     <Compile Include="Test\InventorySearchTextBoxViewModelUnitTest.cs" />
     <Compile Include="Test\InventoryStatusViewModelUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\ProjectUnitTest.cs" />
     <Compile Include="Tool\RandomLinq.cs" />
   </ItemGroup>
   <ItemGroup>

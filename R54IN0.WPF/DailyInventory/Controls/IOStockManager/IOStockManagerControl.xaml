@@ -46,7 +46,7 @@
                     </DockPanel>
                     <DockPanel>
                         <Label DockPanel.Dock="Left" Content="단가" Style="{DynamicResource LabelStyle}" />
-                        <mah:NumericUpDown Minimum="0" Value="{Binding UnitPrice}" />
+                        <mah:NumericUpDown Minimum="0" Value="{Binding UnitPrice}" Interval="1000" />
                     </DockPanel>
                 </StackPanel>
             </GroupBox>

@@ -214,6 +214,7 @@ namespace R54IN0.Test
             var vm = new IOStockManagerViewModel(prod);
 
             var inv = vm.SelectedInventory = vm.Inventories.Random();
+            vm.SelectedAccount = null;
             var acc = vm.AccountText = "new";
             var eep = vm.EmployeeText = "new";
             var prj = vm.ProjectText = "new";
@@ -236,6 +237,7 @@ namespace R54IN0.Test
             var vm = new IOStockManagerViewModel(prod);
 
             vm.StockType = IOStockType.OUTGOING;
+            vm.SelectedAccount = null;
             var inv = vm.SelectedInventory = vm.Inventories.Random();
             var acc = vm.SelectedAccount = vm.Accounts.Random();
             var eep = vm.SelectedEmployee = vm.Employees.Random();
@@ -262,6 +264,7 @@ namespace R54IN0.Test
 
             vm.StockType = IOStockType.OUTGOING;
             var inv = vm.SelectedInventory = vm.Inventories.Random();
+            vm.SelectedAccount = null;
             var acc = vm.AccountText = "new";
             var eep = vm.EmployeeText = "new";
             var prj = vm.ProjectText = "new";
@@ -409,6 +412,84 @@ namespace R54IN0.Test
             vm.UnitPrice = 1000;
 
             vm.Insert();
+        }
+
+        /// <summary>
+        /// 입출고 데이터가 하나도 없는 상태에서 UnitPrice를 쿼리 시 적절한 대처를 검사
+        /// </summary>
+        [TestMethod]
+        public void UnitPriceAndAccountQueryTest0()
+        {
+            DataDirector ddr = DataDirector.GetInstance();
+            Observable<Product> prod = ddr.CopyFields<Product>().Random();
+            ObservableInventory inv = new ObservableInventory(prod, "new spec", 0, "");
+            ddr.AddInventory(inv);
+
+            IOStockManagerViewModel vm = new IOStockManagerViewModel(inv);
+            Assert.AreEqual(0, vm.UnitPrice); //입고 출고에 아무런 데이터가 없어서 자동적으로 0으로 초기화
+
+            decimal price = vm.UnitPrice = 1500;
+            vm.Insert(); //입고 넣기
+
+            vm = new IOStockManagerViewModel(inv);
+            Assert.AreEqual(price, vm.UnitPrice); //입고에 있는 값 불러옴
+
+            vm.StockType = IOStockType.OUTGOING;
+            Assert.AreEqual(price, vm.UnitPrice); //출고지만 자료가 없어 입고 값으로 덮씌움
+            price = vm.UnitPrice = 1700;
+
+            vm.Insert(); //출고 넣기
+
+            vm = new IOStockManagerViewModel(inv);
+            vm.StockType = IOStockType.OUTGOING;
+            Assert.AreEqual(price, vm.UnitPrice); //출고의 UnitPrice 가져옴
+            Assert.IsNull(vm.SelectedAccount);
+        }
+
+        [TestMethod]
+        public void UnitPriceAndAccountQueryTest1()
+        {
+            DataDirector ddr = DataDirector.GetInstance();
+            Observable<Product> prod = ddr.CopyFields<Product>().Random();
+            IOStockManagerViewModel vm = new IOStockManagerViewModel(prod);
+
+            Assert.AreEqual(0, vm.UnitPrice);
+
+            vm.SelectedInventory = vm.Inventories.Random();
+
+            Assert.AreNotEqual(0, vm.UnitPrice);
+        }
+
+        [TestMethod]
+        public void UnitPriceAndAccountQueryTest2()
+        {
+            ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
+            IOStockManagerViewModel vm = new IOStockManagerViewModel(inv);
+            decimal price = vm.UnitPrice;
+            var supplier = vm.SelectedAccount = vm.Accounts.Random();
+            price = vm.UnitPrice = price + 1000;
+            vm.Insert();
+
+            vm = new IOStockManagerViewModel(inv);
+            Assert.AreEqual(price, vm.UnitPrice);
+            Assert.AreEqual(supplier, vm.SelectedAccount);
+        }
+
+        [TestMethod]
+        public void UnitPriceAndAccountQueryTest3()
+        {
+            ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
+            IOStockManagerViewModel vm = new IOStockManagerViewModel(inv);
+            decimal price = vm.UnitPrice;
+            vm.StockType = IOStockType.OUTGOING;
+            price = vm.UnitPrice = price + 1000;
+            var supplier = vm.SelectedAccount = vm.Accounts.Random();
+            vm.Insert();
+
+            vm = new IOStockManagerViewModel(inv);
+            vm.StockType = IOStockType.OUTGOING;
+            Assert.AreEqual(price, vm.UnitPrice);
+            Assert.AreEqual(supplier, vm.SelectedAccount);
         }
     }
 }

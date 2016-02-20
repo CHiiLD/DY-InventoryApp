@@ -43,31 +43,32 @@ namespace R54IN0.WPF
         /// 기존의 입출고 데이터를 수정합니다. 이 떄 규격은 변경되지 아니합니다.
         /// </summary>
         /// <param name="stock"></param>
-        public IOStockManagerViewModel(ObservableIOStock stock) : this(stock.Inventory as ObservableInventory)
+        public IOStockManagerViewModel(ObservableIOStock stock) : this(stock.Inventory.Product.ID)
         {
+            _target = stock;
             Title = string.Format("입출고 데이터 편집하기", stock.ID);
             IsEnabledRadioButton = true;
             IsEnabledInventoryComboBox = false;
+
             Quantity = stock.Quantity;
             UnitPrice = stock.UnitPrice;
             SelectedEmployee = stock.Employee;
             Memo = stock.Memo;
             SelectedDate = stock.Date;
-            if (StockType != stock.StockType)
-                StockType = stock.StockType;
+            SelectedInventory = stock.Inventory as ObservableInventory;
+            StockType = stock.StockType;
+
             switch (StockType)
             {
                 case IOStockType.INCOMING:
                     SelectedAccount = stock.Supplier;
                     SelectedProject = stock.Warehouse;
                     break;
-
                 case IOStockType.OUTGOING:
                     SelectedAccount = stock.Customer;
                     SelectedProject = stock.Project;
                     break;
             }
-            _target = stock;
         }
 
         /// <summary>
@@ -86,16 +87,20 @@ namespace R54IN0.WPF
         /// 새로운 입출고 데이터를 등록합니다. 이 때 규격은 선택되지 않은 상태입니다.
         /// </summary>
         /// <param name="inventory"></param>
-        public IOStockManagerViewModel(Observable<Product> product)
+        public IOStockManagerViewModel(Observable<Product> product) : this(product.ID)
         {
             Title = string.Format("새로운 입출고 데이터 등록하기");
+            UnitPrice = 0;
             Quantity = 1;
             IsEnabledRadioButton = false;
             IsEnabledInventoryComboBox = true;
-            InitComboboxItemsSources(product);
             StockType = IOStockType.INCOMING;
             SelectedDate = DateTime.Now;
+        }
 
+        private IOStockManagerViewModel(string productID)
+        {
+            InitComboboxItemsSources(productID);
             RecordCommand = new RelayCommand(ExecuteRecordCommand, CanRecord);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
         }
@@ -163,6 +168,7 @@ namespace R54IN0.WPF
                 SelectedAccount = null;
                 SelectedProject = null;
                 NotifyPropertyChanged(nameof(StockType));
+                SetUnitPriceAndAccount();
             }
         }
 
@@ -201,6 +207,7 @@ namespace R54IN0.WPF
                 _selectedInventory = value;
                 NotifyPropertyChanged(nameof(SelectedInventory));
                 RecordCommand.RaiseCanExecuteChanged();
+                SetUnitPriceAndAccount();
             }
         }
 
@@ -407,11 +414,11 @@ namespace R54IN0.WPF
         /// <summary>
         /// initialze combobox items sources
         /// </summary>
-        /// <param name="product"></param>
-        public void InitComboboxItemsSources(Observable<Product> product)
+        /// <param name="productID"></param>
+        public void InitComboboxItemsSources(string productID)
         {
             DataDirector idc = DataDirector.GetInstance();
-            IEnumerable<ObservableInventory> inventories = idc.SearchInventories(product.ID);
+            IEnumerable<ObservableInventory> inventories = idc.SearchInventories(productID);
             Inventories = new ObservableCollection<ObservableInventory>(inventories);
 
             IEnumerable<Observable<Employee>> employees = idc.CopyFields<Employee>();
@@ -633,6 +640,33 @@ namespace R54IN0.WPF
                 Update();
 
             ExecuteCancelCommand();
+        }
+
+        private void SetUnitPriceAndAccount()
+        {
+            if (_target != null || SelectedInventory == null)
+                return;
+            string sql = string.Format("select UnitPrice from {0} where InventoryID = '{1}' and StockType = '{2}' order by Date desc limit 1",
+                            nameof(IOStockFormat), SelectedInventory.ID, (int)IOStockType.INCOMING);
+            List<Tuple<decimal>> pTuples = null;
+            List<Tuple<string>> cTuples = null;
+            if (StockType == IOStockType.OUTGOING)
+            {
+                sql = string.Format(@"select ifnull((select UnitPrice from {0} where InventoryID = '{1}' and StockType = '{2}' order by Date desc limit 1), ({3}))",
+                        nameof(IOStockFormat), SelectedInventory.ID, (int)IOStockType.OUTGOING, sql);
+            }
+            pTuples = DataDirector.GetInstance().DB.QueryReturnTuple<decimal>(sql);
+            Tuple<decimal> pTuple = pTuples.SingleOrDefault();
+            if (pTuple != null)
+                UnitPrice = pTuple.Item1;
+
+            string idName = StockType == IOStockType.INCOMING ? "SupplierID" : "CustomerID";
+            sql = string.Format("select {0} from {1} where InventoryID = '{2}' and StockType = '{3}' order by Date desc limit 1",
+                idName, nameof(IOStockFormat), SelectedInventory.ID, (int)StockType);
+            cTuples = DataDirector.GetInstance().DB.QueryReturnTuple<string>(sql);
+            Tuple<string> cTuple = cTuples.SingleOrDefault();
+            if (cTuple != null)
+                SelectedAccount = Accounts.Where(x => x.ID == cTuple.Item1).SingleOrDefault();
         }
     }
 }

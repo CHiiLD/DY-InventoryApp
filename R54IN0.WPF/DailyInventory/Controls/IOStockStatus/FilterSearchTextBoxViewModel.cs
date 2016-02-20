@@ -96,9 +96,9 @@ namespace R54IN0.WPF
                 IEnumerable<IField> match = lowerKeywords.SelectMany(word => fields.Where(x => x.Name != null && x.Name.ToLower().Contains(word)));
                 foreach (var field in match.Distinct())
                 {
-                    var fmts = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}';",
+                    var formats = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}';",
                         typeof(IOStockFormat).Name, column, field.ID);
-                    result.AddRange(fmts);
+                    result.AddRange(formats);
                 }
             }
             return result;

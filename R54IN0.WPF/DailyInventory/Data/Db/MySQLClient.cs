@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -41,7 +42,11 @@ namespace R54IN0.WPF
 
         public bool Open()
         {
+#if DEBUG
             _conn = new MySqlConnection("Server=localhost;Database=test_inventory;Uid=root;Pwd=f54645464");
+#else
+            _conn = new MySqlConnection("Server=localhost;Database=inventory;Uid=root;Pwd=f54645464");
+#endif
             _conn.Open();
 
             //Table 생성
@@ -86,6 +91,43 @@ namespace R54IN0.WPF
             return ExecuteSelect0<TableT>(sql);
         }
 
+        public List<Tuple<T1>> QueryReturnTuple<T1>(string sql, params object[] args)
+        {
+            List<Tuple<T1>> result = new List<Tuple<T1>>();
+            sql = string.Format(sql, args);
+            Console.WriteLine(sql);
+            using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Tuple<T1> tuple = new Tuple<T1>(
+                        reader.IsDBNull(0) ? default(T1) : (T1)(dynamic)reader.GetValue(0));
+                    result.Add(tuple);
+                }
+            }
+            return result;
+        }
+
+        public List<Tuple<T1, T2>> QueryReturnTuple<T1, T2>(string sql, params object[] args)
+        {
+            List<Tuple<T1, T2>> result = new List<Tuple<T1, T2>>();
+            sql = string.Format(sql, args);
+            Console.WriteLine(sql);
+            using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    Tuple<T1, T2> tuple = new Tuple<T1, T2>(
+                        reader.IsDBNull(0) ? default(T1) : (T1)(dynamic)reader.GetValue(0),
+                        reader.IsDBNull(1) ? default(T2) : (T2)(dynamic)reader.GetValue(1));
+                    result.Add(tuple);
+                }
+            }
+            return result;
+        }
+
         public string Update<TableT>(string id, string property, object value) where TableT : class, IID, new()
         {
             Update<TableT>(id, new Dictionary<string, object>() { { property, value } });
@@ -113,7 +155,7 @@ namespace R54IN0.WPF
             if (typeof(TableT) == typeof(IOStockFormat))
             {
                 if (content.Keys.Contains("Quantity") || content.Keys.Contains("StockType"))
-                    CalcInvenQty<TableT>(id);
+                    CalcInventoryQty<TableT>(id);
             }
             return id;
         }
@@ -121,8 +163,17 @@ namespace R54IN0.WPF
         public void Delete<TableT>(string id) where TableT : class, IID, new()
         {
             string invID = null;
+            string projID = null;
             if (typeof(TableT) == typeof(IOStockFormat))
-                invID = QueryInvID(id);
+            {
+                List<Tuple<string, string>> tuples = QueryReturnTuple<string, string>("select InventoryID, ProjectID from {0} where ID = '{1}';", nameof(IOStockFormat), id);
+                Tuple<string, string> tuple = tuples.SingleOrDefault();
+                if (tuple != null)
+                {
+                    invID = tuple.Item1;
+                    projID = tuple.Item2;
+                }
+            }
 
             string sql = string.Format("delete from {0} where ID = '{1}';", typeof(TableT).Name, id);
             Console.WriteLine(sql);
@@ -131,7 +182,23 @@ namespace R54IN0.WPF
 
             SerialKiller<TableT>(id);
             DataDeleteEventHandler(this, new SQLDeleteEventArgs(typeof(TableT), id));
-            CalcInvenQty<TableT>(id, invID);
+            CalcInventoryQty<TableT>(id, invID);
+            KillProject(projID);
+        }
+
+        /// <summary>
+        /// projID를 가진 IOStockFormat이 하나도 없는 경우 해당 프로젝트는 삭제된다.
+        /// </summary>
+        /// <param name="projID"></param>
+        private void KillProject(string projID)
+        {
+            if (string.IsNullOrEmpty(projID))
+                return;
+            Tuple<int> tuple = QueryReturnTuple<int>("select count(*) from {0} where ProjectID = '{1}';", nameof(IOStockFormat), projID).SingleOrDefault();
+            if (tuple != null && tuple.Item1 == 0)
+            {
+                Delete<Project>(projID);
+            }
         }
 
         public string Insert<TableT>(object item) where TableT : class, IID, new()
@@ -150,20 +217,19 @@ namespace R54IN0.WPF
                 cmd.ExecuteNonQuery();
 
             DataInsertEventHandler(this, new SQLInsertEventArgs(item));
-            CalcInvenQty<TableT>(item.ID);
+            CalcInventoryQty<TableT>(item.ID);
             return item.ID;
         }
 
-        #region private method
+#region private method
 
-        private void CalcInvenQty<TableT>(string stockID, string invID = null)
+        private void CalcInventoryQty<TableT>(string stockID, string invID = null)
         {
             if (typeof(TableT) == typeof(IOStockFormat))
             {
                 string sql;
                 if (invID == null)
                     invID = QueryInvID(stockID);
-                int quantity = 0;
                 //Quantity 계산해서 삽입
                 sql = string.Format(@"update {0} set Quantity =
                     ifnull((select sum(Quantity) from {1} where InventoryID = '{2}' and StockType = '{3}'), 0) -
@@ -179,28 +245,17 @@ namespace R54IN0.WPF
                 //재고 수량 구해서 업데이트
 
                 sql = string.Format("select Quantity from {0} where ID = '{1}';", nameof(InventoryFormat), invID);
-                Console.WriteLine(sql);
-                using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
-                using (DbDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                        quantity = reader.GetInt32(0);
-                }
+                List<Tuple<int>> qtyTuples = QueryReturnTuple<int>(sql);
+                int quantity = qtyTuples.Single().Item1;
                 DataUpdateEventHandler(this, new SQLUpdateEventArgs(typeof(InventoryFormat), invID, "Quantity", quantity));
             }
         }
 
         private string QueryInvID(string stockID)
         {
-            string invID = null;
             string sql = string.Format("select InventoryID from {0} where ID = '{1}'", nameof(IOStockFormat), stockID);
-            Console.WriteLine(sql);
-            using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
-            using (DbDataReader reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                    invID = reader.GetString(0);
-            }
+            List<Tuple<string>> qtyTuples = QueryReturnTuple<string>(sql);
+            string invID = qtyTuples.Single().Item1;
             return invID;
         }
 
@@ -243,7 +298,7 @@ namespace R54IN0.WPF
                     {
                         string name = property.Name;
                         object value = reader[name];
-                        if (value.GetType() == typeof(DBNull))
+                        if (DBNull.Value == value)
                             value = null;
                         property.SetValue(table, value);
                     }
@@ -267,7 +322,7 @@ namespace R54IN0.WPF
                     {
                         string name = property.Name;
                         object value = reader[name];
-                        if (value.GetType() == typeof(DBNull))
+                        if (DBNull.Value == value)
                             value = null;
                         property.SetValue(table, value);
                     }
@@ -289,7 +344,7 @@ namespace R54IN0.WPF
                 KillFieldFormat<TableT>(id);
         }
 
-        private void KillFieldFormat<TableT>(string id)
+        private void KillFieldFormat<TableT>(string fieldID)
         {
             Console.WriteLine(nameof(KillFieldFormat));
             Type type = typeof(TableT);
@@ -300,7 +355,7 @@ namespace R54IN0.WPF
             else
                 pType = typeof(IOStockFormat);
             string pName = type.Name + "ID";
-            string sql = string.Format("update {0} set {1} = '{2}' where {1} = '{3}';", pType.Name, pName, null, id);
+            string sql = string.Format("update {0} set {1} = '{2}' where {1} = '{3}';", pType.Name, pName, null, fieldID);
 
             Console.WriteLine(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
@@ -397,6 +452,6 @@ namespace R54IN0.WPF
         {
         }
 
-        #endregion private method
+#endregion private method
     }
 }

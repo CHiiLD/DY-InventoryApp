@@ -158,7 +158,7 @@ namespace MySQL.Test
                         @"insert into {0} (ID, InventoryID, CustomerID, ProjectID, EmployeeID, Quantity, Date, StockType, UnitPrice)
                         values ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');",
                         nameof(IOStockFormat), Guid.NewGuid().ToString(), inven, customer.Random(), projects.Random(), employees.Random(),
-                        r.Next(1, 10), date2.ToString(DATETIME), (int)IOStockType.OUTGOING, 1000);
+                        r.Next(1, 10), date2.ToString(DATETIME), (int)IOStockType.OUTGOING, 1200);
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
                         cmd.ExecuteNonQuery();

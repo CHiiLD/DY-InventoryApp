@@ -149,6 +149,7 @@ namespace R54IN0.WPF
                     ProjectListBoxViewModelVisibility = Visibility.Collapsed;
                     TreeViewViewModelVisibility = Visibility.Visible;
                     DataGridViewModel.RemainQtyColumnVisibility = Visibility.Visible;
+                    TreeViewViewModel.SelectedNodes.Clear();
                 }
                 else if (_selectedGroupoption == DATAGRID_OPTION_PROJECT)
                 {
@@ -156,6 +157,7 @@ namespace R54IN0.WPF
                     TreeViewViewModelVisibility = Visibility.Collapsed;
                     ProjectListBoxViewModelVisibility = Visibility.Visible;
                     DataGridViewModel.RemainQtyColumnVisibility = Visibility.Collapsed;
+                    ProjectListBoxViewModel.SelectedItem = null;
                 }
                 else
                 {
@@ -164,10 +166,8 @@ namespace R54IN0.WPF
                     ProjectListBoxViewModelVisibility = Visibility.Collapsed;
                     DataGridViewModel.RemainQtyColumnVisibility = Visibility.Collapsed;
                 }
-
                 DataDirector.GetInstance().StockCollection.Clear();
                 DataGridViewModel.Items.Clear();
-
                 NotifyPropertyChanged("SelectedDataGridGroupOption");
             }
         }
@@ -462,7 +462,7 @@ namespace R54IN0.WPF
                 foreach (var inventory in inventories)
                 {
                     List<IOStockFormat> fmt = DataDirector.GetInstance().DB.Query<IOStockFormat>(
-                        "select * from {0} where {1} = '{2}';", typeof(IOStockFormat).Name, "InventoryID", inventory.ID);
+                        "select * from {0} where {1} = '{2}' order by Date desc;", typeof(IOStockFormat).Name, "InventoryID", inventory.ID);
                     if (fmt != null)
                         format.AddRange(fmt);
                 }
@@ -483,7 +483,7 @@ namespace R54IN0.WPF
                 if (proejct != null)
                 {
                     List<IOStockFormat> formats = DataDirector.GetInstance().DB.Query<IOStockFormat>(
-                        "select * from {0} where {1} = '{2}';",
+                        "select * from {0} where {1} = '{2}' order by Date desc;",
                         typeof(IOStockFormat).Name, "ProjectID", proejct.ID);
                     if (formats != null)
                         SetDataGridItems(formats);
@@ -504,7 +504,7 @@ namespace R54IN0.WPF
                 DateTime toDate = DatePickerViewModel.ToDate;
                 string fmt = MySQLClient.DATETIME;
                 var formats = DataDirector.GetInstance().DB.Query<IOStockFormat>(
-                    "select * from {0} where {1} between '{2}' and '{3}';", typeof(IOStockFormat).Name, "Date", fromDate.ToString(fmt), toDate.ToString(fmt));
+                    "select * from {0} where {1} between '{2}' and '{3}' order by Date desc;", typeof(IOStockFormat).Name, "Date", fromDate.ToString(fmt), toDate.ToString(fmt));
                 SetDataGridItems(formats);
             }
         }

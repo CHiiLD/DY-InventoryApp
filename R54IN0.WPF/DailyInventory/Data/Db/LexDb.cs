@@ -21,9 +21,9 @@ namespace R54IN0.WPF
             if (_customLexDb == null)
             {
 #if DEBUG
-                _customLexDb = new CustomLexDb("lexdb", "TesT.Db");
+                _customLexDb = new CustomLexDb("forDebug", "TesT.Db");
 #else
-               _customLexDb = new CustomLexDb("daily inventory", "./");
+               _customLexDb = new CustomLexDb("forRelease", "./");
 #endif
                 _customLexDb.InitializeIndex();
             }

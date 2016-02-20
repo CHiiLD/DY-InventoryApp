@@ -10,11 +10,11 @@ none
 false
 TRACE
 C:\Users\Child\Github\R54IN0\R54IN0.WPF\App.xaml
-11-84141470
+14-1392509560
 
-73477165630
-74-1761526247
-DailyInventory\Controls\IOStock\IOStockDatePicker.xaml;DailyInventory\Controls\IOStock\IOStockProjectListBox.xaml;DailyInventory\Controls\IOStock\IOStockStatus.xaml;DailyInventory\Controls\Inventory\InventoryStatus.xaml;DailyInventory\Controls\IOStock\IOStockDataGrid.xaml;DailyInventory\Controls\Inventory\InventoryDataGrid.xaml;DailyInventory\Controls\MetroButtonStyles.xaml;DailyInventory\Controls\TreeView\MultiSelectTreeView.xaml;DailyInventory\Windows\MainWindow.xaml;DailyInventory\Controls\Amend\IOStockDataAmenderWindow.xaml;Window1.xaml;
+66-1175494208
+82602177390
+DailyInventory\Controls\FieldManager\FieldManagerControl.xaml;DailyInventory\Controls\IOStockManager\IOStockManagerControl.xaml;DailyInventory\Controls\IOStockStatus\IOStockDatePickerControl.xaml;DailyInventory\Controls\IOStockStatus\IOStockProjectListBoxControl.xaml;DailyInventory\Controls\IOStockStatus\IOStockStatusControl.xaml;DailyInventory\Controls\InventoryStatus\InventoryStatusControl.xaml;DailyInventory\Controls\IOStockStatus\IOStockDataGridControl.xaml;DailyInventory\Controls\InventoryStatus\InventoryDataGridControl.xaml;DailyInventory\Controls\MetroButtonStyles.xaml;DailyInventory\Controls\InventoryManager\InventoryManagerDialog.xaml;DailyInventory\Controls\TreeView\MultiSelectTreeViewControl.xaml;DailyInventory\Windows\FieldManagerWindow.xaml;DailyInventory\Windows\IOStockManagerWindow.xaml;DailyInventory\Windows\MainWindow.xaml;
 
-True
+False
 
