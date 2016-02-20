@@ -45,6 +45,7 @@ namespace R54IN0.WPF
         /// <param name="stock"></param>
         public IOStockManagerViewModel(ObservableIOStock stock) : this(stock.Inventory as ObservableInventory)
         {
+            Title = string.Format("입출고 데이터 편집하기", stock.ID);
             IsEnabledRadioButton = true;
             IsEnabledInventoryComboBox = false;
             Quantity = stock.Quantity;
@@ -75,6 +76,7 @@ namespace R54IN0.WPF
         /// <param name="inventory"></param>
         public IOStockManagerViewModel(ObservableInventory inventory) : this(inventory.Product)
         {
+            Title = string.Format("새로운 입출고 데이터 등록하기");
             IsEnabledRadioButton = true;
             IsEnabledInventoryComboBox = false;
             SelectedInventory = inventory;
@@ -86,6 +88,7 @@ namespace R54IN0.WPF
         /// <param name="inventory"></param>
         public IOStockManagerViewModel(Observable<Product> product)
         {
+            Title = string.Format("새로운 입출고 데이터 등록하기");
             Quantity = 1;
             IsEnabledRadioButton = false;
             IsEnabledInventoryComboBox = true;
@@ -116,6 +119,12 @@ namespace R54IN0.WPF
             {
                 _propertyChanged -= value;
             }
+        }
+
+        public string Title
+        {
+            get;
+            private set;
         }
 
         public bool IsEnabledRadioButton
@@ -191,6 +200,7 @@ namespace R54IN0.WPF
             {
                 _selectedInventory = value;
                 NotifyPropertyChanged(nameof(SelectedInventory));
+                RecordCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -583,7 +593,6 @@ namespace R54IN0.WPF
                         SelectedProject = origin.Warehouse;
                     }
                     break;
-
                 case IOStockType.OUTGOING:
                     if (origin.Customer != null && account == null)
                     {

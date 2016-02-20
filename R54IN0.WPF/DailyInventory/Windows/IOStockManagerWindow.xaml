@@ -10,5 +10,8 @@
         GlowBrush="{DynamicResource AccentColorBrush}"
         Width="300"
         SizeToContent="Height" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
-    <local:IOStockManagerControl />
+    <Window.Title>
+        <Binding ElementName="StockManagerControl" Path="DataContext.Title"/>
+    </Window.Title>
+    <local:IOStockManagerControl x:Name="StockManagerControl"/>
 </mah:MetroWindow>

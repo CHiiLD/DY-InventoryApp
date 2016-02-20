@@ -1,2 +1,2 @@
-# R54IN0
-재고관리앱
+﻿#DailY Inventory
+developer: CHiiLD

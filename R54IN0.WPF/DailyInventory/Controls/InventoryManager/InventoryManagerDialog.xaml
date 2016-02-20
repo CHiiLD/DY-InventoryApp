@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:R54IN0.WPF"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:mvvmlight="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
-             Title="새로운 규격 등록하기"
+             Title="{Binding Title}"
              mc:Ignorable="d">
     <Grid Margin="0,5,0,0">
         <Grid.RowDefinitions>

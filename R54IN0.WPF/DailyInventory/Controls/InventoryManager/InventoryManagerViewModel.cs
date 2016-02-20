@@ -52,6 +52,7 @@ namespace R54IN0.WPF
 
         public InventoryManagerViewModel(InventoryManagerDialog dialog, Observable<Product> product) : this(product)
         {
+            Title = "새로운 규격 데이터를 등록합니다.";
             _control = dialog;
         }
 
@@ -69,7 +70,14 @@ namespace R54IN0.WPF
         public InventoryManagerViewModel(InventoryManagerDialog dialog, ObservableInventory inventory)
             : this(inventory)
         {
+            Title = "규격 데이터를 수정합니다.";
             _control = dialog;
+        }
+
+        public string Title
+        {
+            get;
+            private set;
         }
 
         public RelayCommand RecordCommand { get; private set; }
