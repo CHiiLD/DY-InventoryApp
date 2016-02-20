@@ -72,7 +72,7 @@
                     </i:Interaction.Triggers>-->
             </ComboBox>
 
-            <TextBlock Grid.Column="0" Grid.Row="4" Text="규격의 설명" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="추가 설명" HorizontalAlignment="Left" VerticalAlignment="Center" />
             <TextBox Grid.Column="1" Grid.Row="4" Width="400" Text="{Binding Memo}" VerticalAlignment="Center" VerticalContentAlignment="Center"
                      Margin="-0.25,0,0,0">
                 <TextBox.Style>

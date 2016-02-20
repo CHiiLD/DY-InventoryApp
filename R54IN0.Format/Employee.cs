@@ -5,6 +5,9 @@
     /// </summary>
     public class Employee : IField
     {
+        public const string HEADER = "담당자";
+
+
         public string ID { get; set; }
         public string Name { get; set; }
     }

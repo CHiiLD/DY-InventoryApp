@@ -41,7 +41,7 @@ namespace R54IN0.WPF
             ChangeIOStockViewByProductCommand = new RelayCommand(ExecuteChangeIOStockViewByProductCommand);
             ChangeIOStockByDateCommand = new RelayCommand(ExecuteChangeIOStockByDateCommand);
             ChangeIOStockByProjectCommand = new RelayCommand(ExecuteChangeIOStockByProjectCommand);
-            //AddNewIOStockCommand = new RelayCommand(ExecuteAddNewIOStockCommand);
+            OpenFieldManagerWindow = new RelayCommand(ExecuteOpenFieldManagerWindow);
 
             AccentColors = ThemeManager.Accents.Select(a => new AccentColorMenuData()
             {
@@ -100,13 +100,13 @@ namespace R54IN0.WPF
             }
         }
 
-        public RelayCommand AboutAppCommand { get; set; }
-        public RelayCommand AppExitCommand { get; set; }
-        public RelayCommand ChangeInventoryViewCommand { get; set; }
-        public RelayCommand ChangeIOStockViewByProductCommand { get; set; }
-        public RelayCommand ChangeIOStockByDateCommand { get; set; }
-        public RelayCommand ChangeIOStockByProjectCommand { get; set; }
-        //public RelayCommand AddNewIOStockCommand { get; set; }
+        public RelayCommand AboutAppCommand { get; private set; }
+        public RelayCommand AppExitCommand { get; private set; }
+        public RelayCommand ChangeInventoryViewCommand { get; private set; }
+        public RelayCommand ChangeIOStockViewByProductCommand { get; private set; }
+        public RelayCommand ChangeIOStockByDateCommand { get; private set; }
+        public RelayCommand ChangeIOStockByProjectCommand { get; private set; }
+        public RelayCommand OpenFieldManagerWindow { get; private set; }
 
         public ObservableCollection<TabItem> Items
         {
@@ -248,10 +248,10 @@ namespace R54IN0.WPF
 
         private void ExecuteAboutAppCommand()
         {
-            Window window = Application.Current.MainWindow;
-            if (window != null && window is MetroWindow)
+            Window main = Application.Current.MainWindow;
+            if (main != null && main is MetroWindow)
             {
-                MetroWindow metroWindow = window as MetroWindow;
+                MetroWindow metroWindow = main as MetroWindow;
                 metroWindow.ShowMessageAsync(
                     AppName,
                     AppVersion + "\n\n\n\n\n\n\n" + Copyright,
@@ -263,6 +263,17 @@ namespace R54IN0.WPF
         private void ExecuteAppExitCommand()
         {
             Application.Current.Shutdown(110);
+        }
+
+        private void ExecuteOpenFieldManagerWindow()
+        {
+            Window main = Application.Current.MainWindow;
+            if (main != null)
+            {
+                Window win = new FieldManagerWindow();
+                win.Owner = main;
+                win.ShowDialog();
+            }
         }
 
         public void NotifyPropertyChanged(string name)

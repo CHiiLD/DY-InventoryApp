@@ -126,6 +126,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DailyInventory\Controls\BindingProxy.cs" />
+    <Compile Include="DailyInventory\Controls\FieldManager\FieldManagerControl.xaml.cs">
+      <DependentUpon>FieldManagerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DailyInventory\Controls\FieldManager\FieldManagerViewModel.cs" />
     <Compile Include="DailyInventory\Controls\ICollectionViewModel.cs" />
     <Compile Include="DailyInventory\Controls\ICollectionViewModelObserver.cs" />
     <Compile Include="DailyInventory\Controls\IOStockManager\IOStockManagerControl.xaml.cs">
@@ -194,6 +198,9 @@
     <Compile Include="DailyInventory\Data\Db\Event\SQLInsertEventArgs.cs" />
     <Compile Include="DailyInventory\Data\Inventory\UpdateLocker.cs" />
     <Compile Include="DailyInventory\Data\TreeViewNodeJsonFormat.cs" />
+    <Compile Include="DailyInventory\Windows\FieldManagerWindow.xaml.cs">
+      <DependentUpon>FieldManagerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DailyInventory\Windows\IOStockManagerWindow.xaml.cs">
       <DependentUpon>IOStockManagerWindow.xaml</DependentUpon>
     </Compile>
@@ -201,6 +208,10 @@
     <Compile Include="DailyInventory\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="DailyInventory\Controls\FieldManager\FieldManagerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DailyInventory\Controls\IOStockManager\IOStockManagerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -238,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DailyInventory\Windows\FieldManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

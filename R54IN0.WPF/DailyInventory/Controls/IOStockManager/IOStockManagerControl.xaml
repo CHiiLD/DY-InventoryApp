@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              xmlns:local="clr-namespace:R54IN0.WPF"
+             xmlns:format="clr-namespace:R54IN0;assembly=R54IN0.Format"
              xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:mvvmlight="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform">
@@ -58,10 +59,10 @@
                                 <Style TargetType="{x:Type Label}" BasedOn="{StaticResource LabelStyle}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding IsChecked, ElementName=IncomingStockRadioButton}" Value="True">
-                                            <Setter Property="Content" Value="입고처" />
+                                            <Setter Property="Content" Value="{x:Static format:Supplier.HEADER}" />
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding IsChecked, ElementName=OutgoingStockRadioButton}" Value="True">
-                                            <Setter Property="Content" Value="출고처" />
+                                            <Setter Property="Content" Value="{x:Static format:Customer.HEADER}" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -87,7 +88,7 @@
                         <ComboBox DockPanel.Dock="Left" Text="{Binding ProjectText}" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" DisplayMemberPath="Name"  IsEditable="True" />
                     </DockPanel>
                     <DockPanel>
-                        <Label DockPanel.Dock="Left" Content="담당자" Style="{DynamicResource LabelStyle}" />
+                        <Label DockPanel.Dock="Left" Content="{x:Static format:Employee.HEADER}" Style="{DynamicResource LabelStyle}" />
                         <ComboBox DockPanel.Dock="Left" Text="{Binding EmployeeText}" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" DisplayMemberPath="Name"  IsEditable="True" />
                     </DockPanel>
                     <DockPanel>
@@ -98,7 +99,7 @@
                                     <Style.Triggers>
                                         <Trigger Property="mah:TextBoxHelper.HasText" Value="False">
                                             <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="False" />
-                                            <Setter Property="mah:TextBoxHelper.Watermark" Value="입출고 기록 메모란" />
+                                            <Setter Property="mah:TextBoxHelper.Watermark" Value="비고" />
                                         </Trigger>
                                         <Trigger Property="mah:TextBoxHelper.HasText" Value="True">
                                             <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True" />

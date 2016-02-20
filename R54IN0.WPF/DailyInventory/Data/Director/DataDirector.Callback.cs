@@ -21,7 +21,7 @@ namespace R54IN0.WPF
                     break;
 
                 case nameof(IOStockFormat):
-                    IOStockFormat stof = iID as IOStockFormat; //TODO 여기 부분은 DataGridItem ?
+                    IOStockFormat stof = iID as IOStockFormat;
                     IOStockDataGridItem osto = new IOStockDataGridItem(stof);
                     _subject.NotifyNewItemAdded(osto);
                     break;

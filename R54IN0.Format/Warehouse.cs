@@ -5,6 +5,8 @@
     /// </summary>
     public class Warehouse : IField
     {
+        public const string HEADER = "보관장소";
+
         public string ID { get; set; }
         public string Name { get; set; }
     }

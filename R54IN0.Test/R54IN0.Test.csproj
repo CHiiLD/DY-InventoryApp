@@ -81,6 +81,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Test\FieldManagerViewModelUnitTest.cs" />
     <Compile Include="Test\IOStockManagerViewModelUnitTest.cs" />
     <Compile Include="Test\TreeViewViewModelUnitTest.cs" />
     <Compile Include="Test\InventoryManagerDialogViewModelUnitTest.cs" />

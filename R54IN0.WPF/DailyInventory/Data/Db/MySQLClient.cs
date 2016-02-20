@@ -190,7 +190,7 @@ namespace R54IN0.WPF
             }
         }
 
-        public string QueryInvID(string stockID)
+        private string QueryInvID(string stockID)
         {
             string invID = null;
             string sql = string.Format("select InventoryID from {0} where ID = '{1}'", nameof(IOStockFormat), stockID);

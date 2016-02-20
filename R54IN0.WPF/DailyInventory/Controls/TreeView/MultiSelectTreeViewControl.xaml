@@ -79,7 +79,7 @@
 
         <tree:TreeViewEx.InputBindings>
             <KeyBinding Key="F2" Command="{Binding DataContext.SelectedNodeRenameCommand, Source={StaticResource DataContextProxy}}" />
-            <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding DataContext.IOStockAmenderWindowCallCommand, Source={StaticResource DataContextProxy}}" />
+            <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding DataContext.StockModifyCommand, Source={StaticResource DataContextProxy}}" />
         </tree:TreeViewEx.InputBindings>
     </tree:TreeViewEx>
 </UserControl>

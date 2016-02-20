@@ -7,6 +7,8 @@ namespace R54IN0
     /// </summary>
     public class Supplier : IField
     {
+        public const string HEADER = "구매처";
+
         public string ID { get; set; }
         public string Name { get; set; }
     }
