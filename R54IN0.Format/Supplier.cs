@@ -9,6 +9,16 @@ namespace R54IN0
     {
         public const string HEADER = "구매처";
 
+        public Supplier()
+        {
+        }
+
+        public Supplier(string name)
+        {
+            Name = name;
+            ID = Guid.NewGuid().ToString();
+        }
+
         public string ID { get; set; }
         public string Name { get; set; }
     }

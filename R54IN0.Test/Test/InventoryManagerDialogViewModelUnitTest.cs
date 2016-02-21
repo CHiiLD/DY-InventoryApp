@@ -106,7 +106,7 @@ namespace R54IN0.Test
         public void WhenNewInventoryDataInsertThenSyncTreeView()
         {
             var inventoryStatusViewModel = new InventoryStatusViewModel();
-            var node = inventoryStatusViewModel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            var node = inventoryStatusViewModel.TreeViewViewModel.SearchNodesInRoot(NodeType.PRODUCT).Random();
             inventoryStatusViewModel.TreeViewViewModel.AddSelectedNodes(node);
 
             var product = DataDirector.GetInstance().SearchField<Product>(node.ObservableObjectID);
@@ -123,7 +123,7 @@ namespace R54IN0.Test
         public void WhenNewInventoryDataInsertThenSyncDataGridViewMdoel()
         {
             var inventoryStatusViewModel = new InventoryStatusViewModel();
-            var node = inventoryStatusViewModel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            var node = inventoryStatusViewModel.TreeViewViewModel.SearchNodesInRoot(NodeType.PRODUCT).Random();
             inventoryStatusViewModel.TreeViewViewModel.AddSelectedNodes(node);
 
             var product = DataDirector.GetInstance().SearchField<Product>(node.ObservableObjectID);

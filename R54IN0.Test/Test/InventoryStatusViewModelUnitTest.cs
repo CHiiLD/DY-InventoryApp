@@ -257,7 +257,7 @@ namespace R54IN0.Test.New
 
             var someMaker = new Observable<Maker>("some maker");
             Assert.IsFalse(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
-            DataDirector.GetInstance().AddField(someMaker);
+            DataDirector.GetInstance().AddField(someMaker.Field);
             Assert.IsTrue(viewmodel.DataGridViewModel1.Makers.Any(x => x.ID == someMaker.ID));
         }
 
@@ -268,7 +268,7 @@ namespace R54IN0.Test.New
 
             var someMeasure = new Observable<Measure>("some measure");
             Assert.IsFalse(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
-            DataDirector.GetInstance().AddField(someMeasure);
+            DataDirector.GetInstance().AddField(someMeasure.Field);
             Assert.IsTrue(viewmodel.DataGridViewModel1.Measures.Any(x => x.ID == someMeasure.ID));
         }
 
@@ -279,7 +279,7 @@ namespace R54IN0.Test.New
         public void TestTreeViewSelect()
         {
             var viewmodel = new InventoryStatusViewModel();
-            var node = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.INVENTORY).Random();
+            var node = viewmodel.TreeViewViewModel.SearchNodesInRoot(NodeType.INVENTORY).Random();
             viewmodel.TreeViewViewModel.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { node }, null));
 
             Assert.AreEqual(viewmodel.GetDataGridItems().Single().ID, node.ObservableObjectID);
@@ -292,7 +292,7 @@ namespace R54IN0.Test.New
         public void TestTreeViewSelect2()
         {
             var viewmodel = new InventoryStatusViewModel();
-            var node = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            var node = viewmodel.TreeViewViewModel.SearchNodesInRoot(NodeType.PRODUCT).Random();
             viewmodel.TreeViewViewModel.AddSelectedNodes(node);
 
             var inventories = DataDirector.GetInstance().SearchInventories(node.ObservableObjectID);
@@ -307,7 +307,7 @@ namespace R54IN0.Test.New
         public void TestTreeViewSelect3()
         {
             var viewmodel = new InventoryStatusViewModel();
-            var productNode = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            var productNode = viewmodel.TreeViewViewModel.SearchNodesInRoot(NodeType.PRODUCT).Random();
             var inventoryNode = productNode.Root.Random();
             viewmodel.TreeViewViewModel.AddSelectedNodes(productNode);
             viewmodel.TreeViewViewModel.AddSelectedNodes(inventoryNode);
@@ -321,7 +321,7 @@ namespace R54IN0.Test.New
         public void DeleteInventoryNodeThenSyncTreeView()
         {
             var viewmodel = new InventoryStatusViewModel();
-            var productNode = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            var productNode = viewmodel.TreeViewViewModel.SearchNodesInRoot(NodeType.PRODUCT).Random();
             var inventoryNode = productNode.Root.Random();
             var treeview = viewmodel.TreeViewViewModel;
             treeview.AddSelectedNodes(inventoryNode);

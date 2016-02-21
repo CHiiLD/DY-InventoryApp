@@ -21,7 +21,6 @@ namespace R54IN0.WPF
         private Visibility _newFolderAddVisibility;
         private Visibility _newProductAddVisibility;
         private Visibility _contextMenuVisibility;
-
         private event PropertyChangedEventHandler _propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
@@ -46,11 +45,11 @@ namespace R54IN0.WPF
             NewFolderAddMenuVisibility = Visibility.Visible;
             NewProductAddMenuVisibility = Visibility.Visible;
             ContextMenuVisibility = Visibility.Visible;
-            
+
             //Drag & Drop
             DragCommand = new RelayCommand<DragParameters>(ExecuteDrag, CanDrag);
             DropCommand = new RelayCommand<DropParameters>(ExecuteDrop, CanDrop);
-            
+
             //mouse click
             NodesSelectedEventCommand = new RelayCommand<SelectionChangedCancelEventArgs>(ExecuteNodesSelectedEventCommand);
             MouseRightButtonDownEventCommand = new RelayCommand<MouseButtonEventArgs>(ExecuteMouseRightButtonDownEventCommand);
@@ -69,7 +68,6 @@ namespace R54IN0.WPF
             CollectionViewModelObserverSubject.GetInstance().Attach(this);
         }
 
-     
         ~MultiSelectTreeViewModelView()
         {
             CollectionViewModelObserverSubject.GetInstance().Detach(this);
@@ -248,18 +246,41 @@ namespace R54IN0.WPF
             }
         }
 
+        /// <summary>
+        /// 선택된 노드들 중에서 노드타입에 해당하는 노드들을 반환합니다.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public List<TreeViewNode> SearchNodeInSelectedNodes(NodeType type)
         {
             var children = SelectedNodes.SelectMany(x => x.Descendants());
             return children.Where(x => type.HasFlag(x.Type)).ToList();
         }
 
-        public List<TreeViewNode> SearchNodeInRoot(NodeType type)
+        /// <summary>
+        /// 전체 노드들 중에서 노드타입에 해당하는 노드를 반환합니다.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public List<TreeViewNode> SearchNodesInRoot(NodeType type)
         {
             var children = Root.SelectMany(x => x.Descendants());
             return children.Where(x => type.HasFlag(x.Type)).ToList();
         }
 
+        public TreeViewNode SearchNodeInRoot(string id)
+        {
+            List<TreeViewNode> nodes = SearchNodesInRoot(NodeType.PRODUCT | NodeType.INVENTORY);
+            if (nodes.Any(x => x.ObservableObjectID == id))
+                return nodes.Where(x => x.ObservableObjectID == id).Single();
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// SelectedNodes 프로퍼티에 새로운 노드를 추가합니다.
+        /// </summary>
+        /// <param name="node"></param>
         public void AddSelectedNodes(TreeViewNode node)
         {
             if (!_director.Contains(node))
@@ -277,17 +298,17 @@ namespace R54IN0.WPF
         {
             if (item is Observable<Product>)
             {
-                var product = item as Observable<Product>;
-                var result = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ObservableObjectID == product.ID));
-                if (result.Count() == 0)
-                    Root.Add(new TreeViewNode(product));
+                Observable<Product> prod = item as Observable<Product>;
+                TreeViewNode node = SearchNodeInRoot(prod.ID);
+                if (node == null)
+                    Root.Add(new TreeViewNode(prod));
             }
             else if (item is ObservableInventory)
             {
-                var inventory = item as ObservableInventory;
-                var parentNode = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ObservableObjectID == inventory.Product.ID)).Single();
-                if (parentNode.Root.All(x => x.ObservableObjectID != inventory.ID))
-                    parentNode.Root.Add(new TreeViewNode(inventory));
+                ObservableInventory inv = item as ObservableInventory;
+                TreeViewNode node = SearchNodeInRoot(inv.ProductID);
+                if (node != null && node.Root.All(x => x.ObservableObjectID != inv.ID))
+                    node.Root.Add(new TreeViewNode(inv));
             }
         }
 
@@ -295,17 +316,17 @@ namespace R54IN0.WPF
         {
             if (item is Observable<Product>)
             {
-                var product = item as Observable<Product>;
-                var result = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.PRODUCT && y.ObservableObjectID == product.ID));
-                if (result.Count() == 1)
-                    _director.Remove(result.Single());
+                Observable<Product> prod = item as Observable<Product>;
+                TreeViewNode node = SearchNodeInRoot(prod.ID);
+                if (node != null)
+                    _director.Remove(node);
             }
             else if (item is ObservableInventory)
             {
-                var inventory = item as ObservableInventory;
-                var result = Root.SelectMany(x => x.Descendants().Where(y => y.Type == NodeType.INVENTORY && y.ObservableObjectID == inventory.ID));
-                if (result.Count() == 1)
-                    _director.Remove(result.Single());
+                ObservableInventory inv = item as ObservableInventory;
+                TreeViewNode node = SearchNodeInRoot(inv.ID);
+                if (node != null)
+                    _director.Remove(node);
             }
         }
     }

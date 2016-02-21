@@ -376,7 +376,7 @@ namespace R54IN0.Test
             IOStockStatusViewModel svm = new IOStockStatusViewModel();
 
             svm.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PRODUCT;
-            List<TreeViewNode> nodes = svm.TreeViewViewModel.SearchNodeInRoot(NodeType.INVENTORY);
+            List<TreeViewNode> nodes = svm.TreeViewViewModel.SearchNodesInRoot(NodeType.INVENTORY);
             TreeViewNode node = nodes.Where(x => x.ObservableObjectID == qret.InventoryID).Single();
             svm.TreeViewViewModel.AddSelectedNodes(node);
 

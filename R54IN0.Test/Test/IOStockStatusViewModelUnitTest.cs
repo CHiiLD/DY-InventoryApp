@@ -109,7 +109,7 @@ namespace R54IN0.Test
             var viewmodel = new IOStockStatusViewModel();
             Assert.AreEqual(0, viewmodel.DataGridViewModel.Items.Count);
             viewmodel.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PRODUCT;
-            var node = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            var node = viewmodel.TreeViewViewModel.SearchNodesInRoot(NodeType.PRODUCT).Random();
             viewmodel.TreeViewViewModel.ExecuteNodesSelectedEventCommand(
                 new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, new List<TreeViewNode>()));
             viewmodel.OnTreeViewNodesSelected(viewmodel.TreeViewViewModel, new PropertyChangedEventArgs("SelectedNodes"));
@@ -131,7 +131,7 @@ namespace R54IN0.Test
             viewmodel.IsCheckedOutGoing = true;
             //제품 하나 선택
             viewmodel.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PRODUCT;
-            var node = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            var node = viewmodel.TreeViewViewModel.SearchNodesInRoot(NodeType.PRODUCT).Random();
             viewmodel.TreeViewViewModel.ExecuteNodesSelectedEventCommand(
                 new SelectionChangedCancelEventArgs(new List<TreeViewNode>() { node }, new List<TreeViewNode>()));
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(i => IOStockType.ALL.HasFlag(i.StockType)));
@@ -519,7 +519,7 @@ namespace R54IN0.Test
         {
             var viewmodel = new IOStockStatusViewModel();
             viewmodel.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PRODUCT;
-            TreeViewNode node = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            TreeViewNode node = viewmodel.TreeViewViewModel.SearchNodesInRoot(NodeType.PRODUCT).Random();
             viewmodel.TreeViewViewModel.AddSelectedNodes(node);
             return viewmodel;
         }
@@ -637,7 +637,7 @@ namespace R54IN0.Test
         public void TestTreeViewSelect2()
         {
             var viewmodel = new IOStockStatusViewModel();
-            var node = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            var node = viewmodel.TreeViewViewModel.SearchNodesInRoot(NodeType.PRODUCT).Random();
             viewmodel.TreeViewViewModel.AddSelectedNodes(node);
 
             var inventories = DataDirector.GetInstance().SearchInventories(node.ObservableObjectID);
@@ -653,7 +653,7 @@ namespace R54IN0.Test
         public void TestTreeViewSelect3()
         {
             var viewmodel = new IOStockStatusViewModel();
-            var productNode = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            var productNode = viewmodel.TreeViewViewModel.SearchNodesInRoot(NodeType.PRODUCT).Random();
             var inventoryNode = productNode.Root.Random();
             viewmodel.TreeViewViewModel.AddSelectedNodes(productNode);
             viewmodel.TreeViewViewModel.AddSelectedNodes(inventoryNode);
@@ -668,7 +668,7 @@ namespace R54IN0.Test
         public void DeleteInventoryNodeThenSyncTreeView()
         {
             var viewmodel = new IOStockStatusViewModel();
-            var productNode = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            var productNode = viewmodel.TreeViewViewModel.SearchNodesInRoot(NodeType.PRODUCT).Random();
             var inventoryNode = productNode.Root.Random();
             var treeview = viewmodel.TreeViewViewModel;
             treeview.NodesSelectedEventCommand.Execute(new SelectionChangedCancelEventArgs(new TreeViewNode[] { inventoryNode }, null));
@@ -691,7 +691,7 @@ namespace R54IN0.Test
         public void CalcQuantity()
         {
             var viewmodel = new IOStockStatusViewModel();
-            var node = viewmodel.TreeViewViewModel.SearchNodeInRoot(NodeType.INVENTORY).Random();
+            var node = viewmodel.TreeViewViewModel.SearchNodesInRoot(NodeType.INVENTORY).Random();
             viewmodel.TreeViewViewModel.AddSelectedNodes(node);
             IEnumerable<IOStockDataGridItem> items = viewmodel.DataGridViewModel.Items;
             IEnumerable<IOStockDataGridItem> orderedItems = items.OrderBy(x => x.Date);

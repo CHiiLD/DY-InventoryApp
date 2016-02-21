@@ -291,38 +291,38 @@ namespace R54IN0.WPF
 
         private void ExecuteAddNewItemCommand()
         {
-            IObservableField newObject = null;
+            IField newField = null;
             string header = SelectedTabItem.Header as string;
             switch (header)
             {
                 case Maker.HEADER:
-                    newObject = new Observable<Maker>(string.Format("새로운 {0}", Maker.HEADER));
+                    newField = new Maker(string.Format("새로운 {0}", Maker.HEADER));
                     break;
                 case Measure.HEADER:
-                    newObject = new Observable<Measure>(string.Format("새로운 {0}", Measure.HEADER));
+                    newField = new Measure(string.Format("새로운 {0}", Measure.HEADER));
                     break;
                 case Employee.HEADER:
-                    newObject = new Observable<Employee>(string.Format("새로운 {0}", Employee.HEADER));
+                    newField = new Employee(string.Format("새로운 {0}", Employee.HEADER));
                     break;
                 case Customer.HEADER:
-                    newObject = new Observable<Customer>(string.Format("새로운 {0}", Customer.HEADER));
+                    newField = new Customer(string.Format("새로운 {0}", Customer.HEADER));
                     break;
                 case Supplier.HEADER:
-                    newObject = new Observable<Supplier>(string.Format("새로운 {0}", Supplier.HEADER));
+                    newField = new Supplier(string.Format("새로운 {0}", Supplier.HEADER));
                     break;
                 case Warehouse.HEADER:
-                    newObject = new Observable<Warehouse>(string.Format("새로운 {0}", Warehouse.HEADER));
+                    newField = new Warehouse(string.Format("새로운 {0}", Warehouse.HEADER));
                     break;
                 case Project.HEADER:
-                    newObject = new Observable<Project>(string.Format("새로운 {0}", Project.HEADER));
+                    newField = new Project(string.Format("새로운 {0}", Project.HEADER));
                     break;
                 default:
                     throw new NotSupportedException();
             }
-            AddField(newObject);
+            AddField(newField);
         }
 
-        public void AddField(IObservableField field)
+        public void AddField(IField field)
         {
             DataDirector.GetInstance().AddField(field);
         }

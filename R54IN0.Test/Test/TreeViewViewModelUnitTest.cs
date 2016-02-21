@@ -58,7 +58,7 @@ namespace R54IN0.Test
 
         public TreeViewNode GetProductNode(MultiSelectTreeViewModelView viewmodel)
         {
-            return viewmodel.SearchNodeInRoot(NodeType.PRODUCT).Random();
+            return viewmodel.SearchNodesInRoot(NodeType.PRODUCT).Random();
         }
 
         public bool Has(MultiSelectTreeViewModelView viewmodel, TreeViewNode node)

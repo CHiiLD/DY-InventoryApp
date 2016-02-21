@@ -99,6 +99,7 @@ namespace R54IN0.WPF
 
         #region field director
 
+#if false
         public void AddField<TableT>(IObservableField oField)
         {
             AddField(oField);
@@ -132,6 +133,31 @@ namespace R54IN0.WPF
                 _db.Insert<Warehouse>(iField);
             else if (iField is Employee)
                 _db.Insert<Employee>(iField);
+            else
+                throw new NotSupportedException();
+        }
+#endif
+        public void AddField(IField field)
+        {
+            if (field == null)
+                throw new ArgumentNullException();
+
+            if (field is Product)
+                _db.Insert<Product>(field);
+            else if (field is Maker)
+                _db.Insert<Maker>(field);
+            else if (field is Measure)
+                _db.Insert<Measure>(field);
+            else if (field is Customer)
+                _db.Insert<Customer>(field);
+            else if (field is Supplier)
+                _db.Insert<Supplier>(field);
+            else if (field is Project)
+                _db.Insert<Project>(field);
+            else if (field is Warehouse)
+                _db.Insert<Warehouse>(field);
+            else if (field is Employee)
+                _db.Insert<Employee>(field);
             else
                 throw new NotSupportedException();
         }
@@ -176,7 +202,7 @@ namespace R54IN0.WPF
                 throw new NotSupportedException();
         }
 
-        #endregion field director
+#endregion field director
 
         private void Initialze()
         {

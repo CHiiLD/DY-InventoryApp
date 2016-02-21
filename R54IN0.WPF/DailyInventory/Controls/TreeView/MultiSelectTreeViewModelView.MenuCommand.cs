@@ -100,20 +100,21 @@ namespace R54IN0.WPF
         /// </summary>
         private void ExecuteNewProductNodeAddCommand()
         {
-            Observable<Product> newProduct = new Observable<Product>("새로운 제품");
-            DataDirector.GetInstance().AddField(newProduct);
+            Product newProd = new Product("새로운 제품");
+            DataDirector.GetInstance().AddField(newProd); //여기 시점에서 이미 TreeView에선 추가가 됨
 
-            var node = SelectedNodes.SingleOrDefault();
-            Debug.Assert(node == null || node.Type == NodeType.FOLDER, "제품 추가시 선택된 노드는 null이거나 folder타입이어야 함");
-            TreeViewNode newTreeViewNode = new TreeViewNode(newProduct);
-            if (node != null)
+            TreeViewNode fnode = SelectedNodes.SingleOrDefault(); //선택된 노드
+            TreeViewNode pnode = SearchNodeInRoot(newProd.ID);
+            if (pnode != null && fnode != null && fnode.Type == NodeType.FOLDER)   //폴더 노드라면 여기 하위에 제품노드를 이동시킨다.
             {
-                var remove = Root.SelectMany(x => x.Descendants().Where(y => y.ObservableObjectID == newTreeViewNode.ObservableObjectID)).Single();
-                _director.Remove(remove);
-                _director.AddToParent(node, newTreeViewNode);
+                _director.Remove(pnode);
+                fnode.Root.Add(fnode);
             }
         }
 
+        /// <summary>
+        /// InventoryManagerDialog를 실행한다.
+        /// </summary>
         private async void ExecuteNewInventoryNodeAddCommand()
         {
             if (Application.Current != null)
@@ -203,7 +204,6 @@ namespace R54IN0.WPF
             StockModifyCommand.RaiseCanExecuteChanged();
             SearchAsInventoryRecordCommand.RaiseCanExecuteChanged();
             SelectedNodeDeletionCommand.RaiseCanExecuteChanged();
-
             NewFolderNodeAddCommand.RaiseCanExecuteChanged();
             NewProductNodeAddCommand.RaiseCanExecuteChanged();
             NewInventoryNodeAddCommand.RaiseCanExecuteChanged();
@@ -309,11 +309,9 @@ namespace R54IN0.WPF
             {
                 case NodeType.FOLDER:
                     return true;
-
                 case NodeType.PRODUCT:
                 case NodeType.INVENTORY:
                     return false;
-
                 default:
                     throw new NotSupportedException();
             }

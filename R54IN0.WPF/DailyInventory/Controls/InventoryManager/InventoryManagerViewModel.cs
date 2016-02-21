@@ -255,20 +255,18 @@ namespace R54IN0.WPF
 
         private void CreateBindingProperties()
         {
-            var maker = Maker;
-            var measure = Measure;
-
-            if (maker == null && MakerText != null)
+            DataDirector ddr = DataDirector.GetInstance();
+            if (Maker == null && MakerText != null)
             {
-                maker = new Observable<Maker>(MakerText);
-                DataDirector.GetInstance().AddField(maker);
-                Maker = maker;
+                Maker newMaker = new Maker(MakerText);
+                ddr.AddField(newMaker);
+                Maker = ddr.SearchField<Maker>(newMaker.ID);
             }
-            if (measure == null && MeasureText != null)
+            if (Measure == null && MeasureText != null)
             {
-                measure = new Observable<Measure>(MeasureText);
-                DataDirector.GetInstance().AddField(measure);
-                Measure = measure;
+                Measure newMeasure = new Measure(MeasureText);
+                ddr.AddField(newMeasure);
+                Measure = ddr.SearchField<Measure>(newMeasure.ID);
             }
         }
 

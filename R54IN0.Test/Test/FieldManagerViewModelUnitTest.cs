@@ -63,7 +63,7 @@ namespace R54IN0.Test.Test
         public void TestAdd()
         {
             string name = "soime";
-            Observable<Maker> maker = new Observable<Maker>(name);
+            Maker maker = new Maker(name);
             FieldManagerViewModel vm = new FieldManagerViewModel();
             vm.AddField(maker);
 

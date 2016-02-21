@@ -4,7 +4,7 @@
   <description asmv2:iconFile="InventoryIcon152.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="DailY Inventory" version="1.0.5894.31703" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="DailY Inventory" version="1.0.5895.19114" language="neutral" processorArchitecture="msil" />
     <commandLine file="DailY Inventory.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -50,19 +50,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>WbdoTtqBoA0sDY2Bj0l+i1tl3jYLVD89HHk3YsBP6/M=</dsig:DigestValue>
+        <dsig:DigestValue>hUjzssMPxXoSz4wxJ1vW/i9PVIUyNv3LcbmAfdUrcTI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DailY Inventory.exe" size="429056">
-      <assemblyIdentity name="DailY Inventory" version="1.0.5894.31703" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DailY Inventory.exe" size="428032">
+      <assemblyIdentity name="DailY Inventory" version="1.0.5895.19114" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>m6/giz2vB6lcRpKFODmrRZvhi5oxFkRHtrRm0FRjdvs=</dsig:DigestValue>
+        <dsig:DigestValue>l6eFs+jg3XrxHq4o3fG+cKEf47+zoQmgcGAIWOB0hLA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -92,25 +92,25 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GalaSoft.MvvmLight.dll" size="31232">
-      <assemblyIdentity name="GalaSoft.MvvmLight" version="5.2.1.31642" publicKeyToken="E7570AB207BCB616" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="GalaSoft.MvvmLight" version="5.2.1.16627" publicKeyToken="E7570AB207BCB616" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>X/dq74pH1J0p5/wyMHMDwcdRCpZBUcuhC5e+nXtfzI8=</dsig:DigestValue>
+        <dsig:DigestValue>QfyKxiufrMMQ/HzX4Er3ZzRmVLOOHKA1xGa+4JZLnn0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GalaSoft.MvvmLight.Platform.dll" size="14336">
-      <assemblyIdentity name="GalaSoft.MvvmLight.Platform" version="5.2.1.31643" publicKeyToken="5F873C45E98AF8A1" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="GalaSoft.MvvmLight.Platform" version="5.2.1.16628" publicKeyToken="5F873C45E98AF8A1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9mDZ78lgVhEgLiBZJhuvhUTLWoWWQSAl67seRn2nqmQ=</dsig:DigestValue>
+        <dsig:DigestValue>KmTJ3Mk5QVYYCp5unD0Oi6auKo0FesbARPFsRpkVJIk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -122,7 +122,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZZXk9eiDPB5ju6LEEBUzdkEjnVzb/aaWR5/sLQzxYrY=</dsig:DigestValue>
+        <dsig:DigestValue>jAof6V26e7Rh+oU5XTCfQqc1k+L3d9HHWSyekz8Cr/Q=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -134,7 +134,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ABQSvVhqOGCN+/ENn9CK/89/lGGoVz4lRqE3Wvqsfvo=</dsig:DigestValue>
+        <dsig:DigestValue>EaB/CWtujynpaeK6aETBau3hGiAgUrSynKiQT/D6QHI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -146,7 +146,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>WT82WglTvFxD6eeJx/e745mO203pEf6kC3QeehIlhCc=</dsig:DigestValue>
+        <dsig:DigestValue>U7x2fJ9AaO7r3v2UuOjSXAeL0g+5kUkzfo7h97V8RsE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -170,19 +170,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7N1om2+iUG1SxXLSrBU4vqVpZHNKUs8yORwTMFyEt0Y=</dsig:DigestValue>
+        <dsig:DigestValue>v70oLo0ydxA6m/LPC4ODjxhE6OgwaX9uvqdPmLYQtGI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="R54IN0.Format.dll" size="10752">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="R54IN0.Format.dll" size="11264">
       <assemblyIdentity name="R54IN0.Format" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GeYgGyBXtIWbprqmCO7deo+obDLWNMv5rIWnVqQAfOs=</dsig:DigestValue>
+        <dsig:DigestValue>+RZv5QAzaJpqS1SJ55D02HvfDEVrwd9jADQTZNrJm2c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -362,7 +362,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>r64EjqzpleeaZySvzJPnXov7VhqP8vvCYwp6JXzEonI=</dsig:DigestValue>
+        <dsig:DigestValue>QmfdWE74kR4ZL+JLVkDcofUhmoxRuEDNMWLzc8pXEfA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

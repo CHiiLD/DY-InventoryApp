@@ -498,47 +498,43 @@ namespace R54IN0.WPF
 
         private void CreateBindingProperties()
         {
-            var account = SelectedAccount;
-            var project = SelectedProject;
-            var employee = SelectedEmployee;
-
+            DataDirector ddr = DataDirector.GetInstance();
             switch (StockType)
             {
                 case IOStockType.INCOMING:
-                    if (account == null && AccountText != null)
+                    if (SelectedAccount == null && AccountText != null)
                     {
-                        account = new Observable<Supplier>(AccountText);
-                        DataDirector.GetInstance().AddField(account);
-                        SelectedAccount = account;
+                        Supplier newSupplier = new Supplier(AccountText);
+                        DataDirector.GetInstance().AddField(newSupplier);
+                        SelectedAccount = ddr.SearchField<Supplier>(newSupplier.ID);
                     }
-                    if (project == null && ProjectText != null)
+                    if (SelectedProject == null && ProjectText != null)
                     {
-                        project = new Observable<Warehouse>(ProjectText);
-                        DataDirector.GetInstance().AddField(project);
-                        SelectedProject = project;
+                        Warehouse newWarehouse = new Warehouse(ProjectText);
+                        DataDirector.GetInstance().AddField(newWarehouse);
+                        SelectedProject = ddr.SearchField<Warehouse>(newWarehouse.ID);
                     }
                     break;
-
                 case IOStockType.OUTGOING:
-                    if (account == null && AccountText != null)
+                    if (SelectedAccount == null && AccountText != null)
                     {
-                        account = new Observable<Customer>(AccountText);
-                        DataDirector.GetInstance().AddField(account);
-                        SelectedAccount = account;
+                        Customer newCustomer = new Customer(AccountText);
+                        DataDirector.GetInstance().AddField(newCustomer);
+                        SelectedAccount = ddr.SearchField<Customer>(newCustomer.ID);
                     }
-                    if (project == null && ProjectText != null)
+                    if (SelectedProject == null && ProjectText != null)
                     {
-                        project = new Observable<Project>(ProjectText);
-                        DataDirector.GetInstance().AddField(project);
-                        SelectedProject = project;
+                        Project newProject = new Project(ProjectText);
+                        DataDirector.GetInstance().AddField(newProject);
+                        SelectedProject = ddr.SearchField<Project>(newProject.ID);
                     }
                     break;
             }
-            if (employee == null && EmployeeText != null)
+            if (SelectedEmployee == null && EmployeeText != null)
             {
-                employee = new Observable<Employee>(EmployeeText);
-                DataDirector.GetInstance().AddField(employee);
-                SelectedEmployee = employee;
+                Employee newEmployee = new Employee(EmployeeText);
+                DataDirector.GetInstance().AddField(newEmployee);
+                SelectedEmployee = ddr.SearchField<Employee>(newEmployee.ID);
             }
         }
 

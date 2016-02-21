@@ -23,18 +23,20 @@ namespace R54IN0.WPF
             }
         }
 
-        public Observable()
-        {
-            _t = new FieldT();
-        }
+        //public Observable()
+        //{
+        //    _t = new FieldT();
+        //}
 
         /// <summary>
         /// 이름 할당 및 자동 디비 저장
         /// </summary>
         /// <param name="name"></param>
-        public Observable(string name) : this()
+        public Observable(string name) //: this()
         {
+            _t = new FieldT();
             _t.Name = name;
+            _t.ID = Guid.NewGuid().ToString();
         }
 
         public Observable(FieldT field)
@@ -120,7 +122,7 @@ namespace R54IN0.WPF
                 throw new Exception();
 
             if (ID == null)
-                DataDirector.GetInstance().AddField(this);
+                throw new Exception("ID must not null.");
             else if (UpdateLock)
                 DataDirector.GetInstance().DB.Update<FieldT>(ID, nameof(Name), Name);
         }
