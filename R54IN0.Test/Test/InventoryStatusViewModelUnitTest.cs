@@ -255,9 +255,8 @@ namespace R54IN0.Test.New
         {
             var viewmodel = new InventoryStatusViewModel();
 
-            var someMaker = new Observable<Maker>("some maker");
-            Assert.IsFalse(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
-            DataDirector.GetInstance().AddField(someMaker.Field);
+            var someMaker = new Maker("some maker");
+            DataDirector.GetInstance().AddField(someMaker);
             Assert.IsTrue(viewmodel.DataGridViewModel1.Makers.Any(x => x.ID == someMaker.ID));
         }
 
@@ -266,9 +265,8 @@ namespace R54IN0.Test.New
         {
             var viewmodel = new InventoryStatusViewModel();
 
-            var someMeasure = new Observable<Measure>("some measure");
-            Assert.IsFalse(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
-            DataDirector.GetInstance().AddField(someMeasure.Field);
+            var someMeasure = new Measure("some measure");
+            DataDirector.GetInstance().AddField(someMeasure);
             Assert.IsTrue(viewmodel.DataGridViewModel1.Measures.Any(x => x.ID == someMeasure.ID));
         }
 

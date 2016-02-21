@@ -50,11 +50,14 @@ namespace R54IN0.WPF
         {
             if (_me != null)
             {
+                _me._field = null;
+                _me._inventory = null;
+                _me._subject = null;
                 _me.DB.Close();
+                _me._db = null;
                 _me = null;
             }
         }
-
         #region inventory director
 
         /// <summary>
@@ -62,12 +65,11 @@ namespace R54IN0.WPF
         /// </summary>
         /// <param name="inventoryFormat"></param>
         /// <returns></returns>
-        public void AddInventory(ObservableInventory oInventory)
+        public void AddInventory(InventoryFormat invf)
         {
-            if (oInventory.ID == null)
-                oInventory.ID = Guid.NewGuid().ToString();
-
-            _db.Insert(oInventory.Format);
+            if (invf.ID == null)
+                invf.ID = Guid.NewGuid().ToString();
+            _db.Insert(invf);
         }
 
         public List<ObservableInventory> CopyInventories()
@@ -94,49 +96,9 @@ namespace R54IN0.WPF
         {
             return _inventory.SearchAsProductID(productID);
         }
-
         #endregion inventory director
 
         #region field director
-
-#if false
-        public void AddField<TableT>(IObservableField oField)
-        {
-            AddField(oField);
-        }
-
-        /// <summary>
-        /// 새로운 필드 데이터를 등록한다.
-        /// </summary>
-        /// <param name="oField"></param>
-        /// <returns></returns>
-        public void AddField(IObservableField oField)
-        {
-            if (oField.Field.ID == null)
-                oField.Field.ID = Guid.NewGuid().ToString();
-
-            IField iField = oField.Field;
-
-            if (iField is Product)
-                _db.Insert<Product>(iField);
-            else if (iField is Maker)
-                _db.Insert<Maker>(iField);
-            else if (iField is Measure)
-                _db.Insert<Measure>(iField);
-            else if (iField is Customer)
-                _db.Insert<Customer>(iField);
-            else if (iField is Supplier)
-                _db.Insert<Supplier>(iField);
-            else if (iField is Project)
-                _db.Insert<Project>(iField);
-            else if (iField is Warehouse)
-                _db.Insert<Warehouse>(iField);
-            else if (iField is Employee)
-                _db.Insert<Employee>(iField);
-            else
-                throw new NotSupportedException();
-        }
-#endif
         public void AddField(IField field)
         {
             if (field == null)
@@ -175,34 +137,34 @@ namespace R54IN0.WPF
         /// <summary>
         /// 기존의 필드 데이터를 삭제한다.
         /// </summary>
-        /// <param name="oFIeld"></param>
+        /// <param name="ofield"></param>
         /// <returns></returns>
-        public void RemoveField(IObservableField oFIeld)
+        public void RemoveField(IObservableField ofield)
         {
-            IField iField = oFIeld.Field;
-            string id = oFIeld.ID;
+            IField ifeld = ofield.Field;
+            string id = ofield.ID;
 
-            if (iField is Product)
+            if (ifeld is Product)
                 _db.Delete<Product>(id);
-            else if (iField is Maker)
+            else if (ifeld is Maker)
                 _db.Delete<Maker>(id);
-            else if (iField is Measure)
+            else if (ifeld is Measure)
                 _db.Delete<Measure>(id);
-            else if (iField is Customer)
+            else if (ifeld is Customer)
                 _db.Delete<Customer>(id);
-            else if (iField is Supplier)
+            else if (ifeld is Supplier)
                 _db.Delete<Supplier>(id);
-            else if (iField is Project)
+            else if (ifeld is Project)
                 _db.Delete<Project>(id);
-            else if (iField is Warehouse)
+            else if (ifeld is Warehouse)
                 _db.Delete<Warehouse>(id);
-            else if (iField is Employee)
+            else if (ifeld is Employee)
                 _db.Delete<Employee>(id);
             else
                 throw new NotSupportedException();
         }
 
-#endregion field director
+        #endregion field director
 
         private void Initialze()
         {

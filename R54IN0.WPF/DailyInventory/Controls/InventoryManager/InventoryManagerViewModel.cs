@@ -219,12 +219,13 @@ namespace R54IN0.WPF
         {
             CreateBindingProperties();
 
-            InventoryFormat format = CreateInventoryFormat();
-            format.ID = Guid.NewGuid().ToString();
-            ObservableInventory inventory = new ObservableInventory(format);
-            DataDirector.GetInstance().AddInventory(inventory);
+            InventoryFormat invf = CreateInventoryFormat();
+            invf.ID = Guid.NewGuid().ToString();
 
-            return inventory;
+            DataDirector.GetInstance().AddInventory(invf);
+            ObservableInventory inv = DataDirector.GetInstance().SearchInventory(invf.ID);
+
+            return inv;
         }
 
         public ObservableInventory Update()

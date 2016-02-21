@@ -26,35 +26,15 @@ namespace R54IN0.WPF
             }
         }
 
-        public ObservableInventory()
+        private ObservableInventory()
         {
             _fmt = new InventoryFormat();
         }
 
-        public ObservableInventory(Observable<Product> product, string specification, int quantity, string memo,
-            Observable<Maker> maker = null, Observable<Measure> measure = null) : this()
+        public ObservableInventory(InventoryFormat invf)
         {
-            this.product = product;
-            _fmt.ProductID = product.ID;
-            _fmt.Specification = specification;
-            _fmt.Quantity = quantity;
-            _fmt.Memo = memo;
-            if (maker != null)
-            {
-                _fmt.MakerID = maker.ID;
-                this.maker = maker;
-            }
-            if (measure != null)
-            {
-                _fmt.MeasureID = measure.ID;
-                this.measure = measure;
-            }
-        }
-
-        public ObservableInventory(InventoryFormat fmt)
-        {
-            _fmt = fmt;
-            InitializeProperties(fmt);
+            _fmt = invf;
+            InitializeProperties(invf);
         }
 
         public virtual InventoryFormat Format
@@ -278,7 +258,7 @@ namespace R54IN0.WPF
                 return;
 
             if (ID == null)
-                DataDirector.GetInstance().AddInventory(this);
+                throw new Exception("ID must not null");
             else if (UpdateLock)
                 DataDirector.GetInstance().DB.Update<InventoryFormat>(ID, name, GetType().GetProperty(name).GetValue(this));
         }

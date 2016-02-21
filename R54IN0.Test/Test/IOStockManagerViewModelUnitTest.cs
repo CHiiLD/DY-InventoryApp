@@ -404,7 +404,7 @@ namespace R54IN0.Test
             inv.ProductID = prod.ID;
             inv.ID = Guid.NewGuid().ToString();
 
-            DataDirector.GetInstance().AddInventory(new ObservableInventory(inv));
+            DataDirector.GetInstance().AddInventory(inv);
 
             var vm = new IOStockManagerViewModel(prod);
             vm.SelectedInventory = vm.Inventories.Random();
@@ -422,8 +422,11 @@ namespace R54IN0.Test
         {
             DataDirector ddr = DataDirector.GetInstance();
             Observable<Product> prod = ddr.CopyFields<Product>().Random();
-            ObservableInventory inv = new ObservableInventory(prod, "new spec", 0, "");
-            ddr.AddInventory(inv);
+            InventoryFormat invf = new InventoryFormat() { ProductID = prod.ID, Specification = "some"};
+            
+            ddr.AddInventory(invf);
+
+            ObservableInventory inv = DataDirector.GetInstance().SearchInventory(invf.ID);
 
             IOStockManagerViewModel vm = new IOStockManagerViewModel(inv);
             Assert.AreEqual(0, vm.UnitPrice); //입고 출고에 아무런 데이터가 없어서 자동적으로 0으로 초기화

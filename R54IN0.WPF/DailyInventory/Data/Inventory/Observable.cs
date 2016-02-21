@@ -28,16 +28,16 @@ namespace R54IN0.WPF
         //    _t = new FieldT();
         //}
 
-        /// <summary>
-        /// 이름 할당 및 자동 디비 저장
-        /// </summary>
-        /// <param name="name"></param>
-        public Observable(string name) //: this()
-        {
-            _t = new FieldT();
-            _t.Name = name;
-            _t.ID = Guid.NewGuid().ToString();
-        }
+        ///// <summary>
+        ///// 이름 할당 및 자동 디비 저장
+        ///// </summary>
+        ///// <param name="name"></param>
+        //public Observable(string name) //: this()
+        //{
+        //    _t = new FieldT();
+        //    _t.Name = name;
+        //    _t.ID = Guid.NewGuid().ToString();
+        //}
 
         public Observable(FieldT field)
         {

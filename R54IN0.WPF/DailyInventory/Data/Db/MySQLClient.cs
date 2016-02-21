@@ -201,12 +201,12 @@ namespace R54IN0.WPF
             }
         }
 
-        public string Insert<TableT>(object item) where TableT : class, IID, new()
+        public string Insert<TableT>(object item) where TableT : class, IID
         {
             return Insert<TableT>(item as TableT);
         }
 
-        public string Insert<TableT>(TableT item) where TableT : IID, new()
+        public string Insert<TableT>(TableT item) where TableT : IID
         {
             if (item.ID == null)
                 item.ID = Guid.NewGuid().ToString();
