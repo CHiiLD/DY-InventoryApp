@@ -141,24 +141,24 @@ namespace R54IN0.WPF
         /// <returns></returns>
         public void RemoveField(IObservableField ofield)
         {
-            IField ifeld = ofield.Field;
+            IField ifield = ofield.Field;
             string id = ofield.ID;
 
-            if (ifeld is Product)
+            if (ifield is Product)
                 _db.Delete<Product>(id);
-            else if (ifeld is Maker)
+            else if (ifield is Maker)
                 _db.Delete<Maker>(id);
-            else if (ifeld is Measure)
+            else if (ifield is Measure)
                 _db.Delete<Measure>(id);
-            else if (ifeld is Customer)
+            else if (ifield is Customer)
                 _db.Delete<Customer>(id);
-            else if (ifeld is Supplier)
+            else if (ifield is Supplier)
                 _db.Delete<Supplier>(id);
-            else if (ifeld is Project)
+            else if (ifield is Project)
                 _db.Delete<Project>(id);
-            else if (ifeld is Warehouse)
+            else if (ifield is Warehouse)
                 _db.Delete<Warehouse>(id);
-            else if (ifeld is Employee)
+            else if (ifield is Employee)
                 _db.Delete<Employee>(id);
             else
                 throw new NotSupportedException();
