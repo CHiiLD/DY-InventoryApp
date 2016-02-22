@@ -28,3 +28,6 @@
 [submodule "AsyncEx"]
 	path = AsyncEx
 	url = https://github.com/StephenCleary/AsyncEx.git
+[submodule "SuperSocket.ClientEngine"]
+	path = SuperSocket.ClientEngine
+	url = https://github.com/kerryjiang/SuperSocket.ClientEngine.git

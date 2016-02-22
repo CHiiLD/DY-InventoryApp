@@ -510,7 +510,7 @@ namespace R54IN0.WPF
             {
                 DateTime fromDate = DatePickerViewModel.FromDate;
                 DateTime toDate = DatePickerViewModel.ToDate;
-                string fmt = MySQLClient.DATETIME;
+                string fmt = ClientAdapter.DATETIME;
                 string sql = string.Format("select * from {0} where {1} between '{2}' and '{3}' order by Date desc;", 
                     typeof(IOStockFormat).Name, "Date", fromDate.ToString(fmt), toDate.ToString(fmt));
                 Dispatcher.CurrentDispatcher.BeginInvoke(new Func<string, Task>(SetDataGridItems), sql);

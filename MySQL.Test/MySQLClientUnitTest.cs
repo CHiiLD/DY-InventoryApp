@@ -37,14 +37,14 @@ namespace MySQL.Test
         [TestMethod]
         public void CanCreate()
         {
-            new MySQLClient();
-            new MySQLClient(_conn);
+            new ClientAdapter();
+            new ClientAdapter(_conn);
         }
 
         [TestMethod]
         public async Task TestSelect()
         {
-            var ms = new MySQLClient(_conn);
+            var ms = new ClientAdapter(_conn);
             List<Product> products = await ms.SelectAsync<Product>();
             products.ForEach(x => Console.WriteLine(x.Name));
         }
@@ -52,7 +52,7 @@ namespace MySQL.Test
         [TestMethod]
         public async Task TestSelect2()
         {
-            var ms = new MySQLClient(_conn);
+            var ms = new ClientAdapter(_conn);
             List<Product> products = await ms.SelectAsync<Product>();
             Product product = await ms.SelectAsync<Product>(products.Random().ID);
             Console.WriteLine(product.Name);
@@ -61,7 +61,7 @@ namespace MySQL.Test
         [TestMethod]
         public async Task TestSelect3()
         {
-            var ms = new MySQLClient(_conn);
+            var ms = new ClientAdapter(_conn);
             List<InventoryFormat> invs = await ms.SelectAsync<InventoryFormat>();
             InventoryFormat inv = await ms.SelectAsync<InventoryFormat>(invs.Random().ID);
             Console.WriteLine(inv.Memo);
@@ -70,7 +70,7 @@ namespace MySQL.Test
         [TestMethod]
         public async Task TestInsert()
         {
-            var ms = new MySQLClient(_conn);
+            var ms = new ClientAdapter(_conn);
             var product = new Product() { Name = "new" };
             string id = ms.Insert<Product>(product);
             Console.WriteLine(id);
@@ -82,7 +82,7 @@ namespace MySQL.Test
         [TestMethod]
         public async Task TestUpdate0()
         {
-            var ms = new MySQLClient(_conn);
+            var ms = new ClientAdapter(_conn);
             List<Product> products = await ms.SelectAsync<Product>();
             Product product = products.Random();
             string name = "some";
@@ -96,7 +96,7 @@ namespace MySQL.Test
         [TestMethod]
         public async Task TestUpdate1()
         {
-            var ms = new MySQLClient(_conn);
+            var ms = new ClientAdapter(_conn);
             List<Product> products = await ms.SelectAsync<Product>();
             Product product = products.Random();
             string name = "some";
@@ -110,7 +110,7 @@ namespace MySQL.Test
         [TestMethod]
         public async Task TestDelete0()
         {
-            var ms = new MySQLClient(_conn);
+            var ms = new ClientAdapter(_conn);
             List<Product> products = await ms.SelectAsync<Product>();
             Product product = products.Random();
             ms.Delete<Product>(product.ID);
@@ -122,7 +122,7 @@ namespace MySQL.Test
         [TestMethod]
         public async Task TestDelete1()
         {
-            var ms = new MySQLClient(_conn);
+            var ms = new ClientAdapter(_conn);
             List<Employee> employees = await ms.SelectAsync<Employee>();
             Employee employee = employees.Random();
             ms.Delete<Employee>(employee.ID);
@@ -134,7 +134,7 @@ namespace MySQL.Test
         [TestMethod]
         public async Task TestDelete2()
         {
-            var ms = new MySQLClient(_conn);
+            var ms = new ClientAdapter(_conn);
             List<Maker> makers = await ms.SelectAsync<Maker>();
             Maker maker = makers.Random();
             ms.Delete<Maker>(maker.ID);

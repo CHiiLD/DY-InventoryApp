@@ -92,18 +92,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.99.0\lib\net45\System.Data.SQLite.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.SQLite.EF6, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.99.0\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.99.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -179,12 +167,13 @@
     </Compile>
     <Compile Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewModelView.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNode.cs" />
-    <Compile Include="DailyInventory\Data\Db\Event\SQLUpdateEventArgs.cs" />
-    <Compile Include="DailyInventory\Data\Db\Event\SQLDeleteEventArgs.cs" />
-    <Compile Include="DailyInventory\Data\Db\MySQLClient.cs" />
+    <Compile Include="DailyInventory\Data\Client\Event\SQLUpdateEventArgs.cs" />
+    <Compile Include="DailyInventory\Data\Client\Event\SQLDeleteEventArgs.cs" />
+    <Compile Include="DailyInventory\Data\Client\ClientAdapter.cs" />
+    <Compile Include="DailyInventory\Data\Client\ClientAdapter.Socket.cs" />
     <Compile Include="DailyInventory\Data\Director\DataDirector.Callback.cs" />
     <Compile Include="DailyInventory\Data\Director\DataDirector.cs" />
-    <Compile Include="DailyInventory\Data\Db\LexDb.cs" />
+    <Compile Include="DailyInventory\Data\Client\LexDb.cs" />
     <Compile Include="DailyInventory\Data\Director\CollectionViewModelObserverSubject.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableFieldManager.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableInventoryManager.cs" />
@@ -195,7 +184,7 @@
     <Compile Include="DailyInventory\Data\Inventory\IObservableInventoryProperties.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableInventory.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableIOStock.cs" />
-    <Compile Include="DailyInventory\Data\Db\Event\SQLInsertEventArgs.cs" />
+    <Compile Include="DailyInventory\Data\Client\Event\SQLInsertEventArgs.cs" />
     <Compile Include="DailyInventory\Data\Inventory\UpdateLocker.cs" />
     <Compile Include="DailyInventory\Data\TreeViewNodeJsonFormat.cs" />
     <Compile Include="DailyInventory\Windows\FieldManagerWindow.xaml.cs">
@@ -328,6 +317,10 @@
     <ProjectReference Include="..\R54IN0.Format\R54IN0.Format.csproj">
       <Project>{54185bea-d735-4a8e-808c-807f8b626463}</Project>
       <Name>R54IN0.Format</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SuperSocket.ClientEngine\SuperSocket.ClientEngine.Net40.csproj">
+      <Project>{8bca34d7-18e8-4b33-a102-9f0a3951b742}</Project>
+      <Name>SuperSocket.ClientEngine.Net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\TreeViewEx\TreeViewEx\TreeViewEx.csproj">
       <Project>{2854814f-ea3c-41d4-aa94-460c4694f430}</Project>

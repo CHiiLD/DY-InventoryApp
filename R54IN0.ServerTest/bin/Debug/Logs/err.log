@@ -1,0 +1,72 @@
+﻿2016-02-23 00:29:33,064 [12132] ERROR ReadOnlyServer - Session: e9bb699e-51c2-4d12-ace0-8e6df2dffedd/127.0.0.1:4337
+Protocol error
+System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
+   위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
+   위치: System.Convert.ToInt32(String value, Int32 fromBase)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-23 00:29:53,868 [12144] ERROR ReadOnlyServer - Session: 82ab04be-ec9a-4a1d-b302-b25903b3f46d/127.0.0.1:4386
+Protocol error
+System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
+   위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
+   위치: System.Convert.ToInt32(String value, Int32 fromBase)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-23 00:30:04,815 [8816] ERROR ReadOnlyServer - Session: 2c766f9c-0ed9-4622-a4f4-3fbdbfb245ea/127.0.0.1:4450
+Protocol error
+System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
+   위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
+   위치: System.Convert.ToInt32(String value, Int32 fromBase)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-23 00:30:15,130 [1136] ERROR ReadOnlyServer - Session: 996ce066-b688-427d-b0fd-a1d3f5c25d4d/127.0.0.1:4510
+Protocol error
+System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
+   위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
+   위치: System.Convert.ToInt32(String value, Int32 fromBase)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-23 00:33:01,235 [2876] ERROR ReadOnlyServer - Session: 3da5378e-f375-4215-806a-60702dfe1075/127.0.0.1:4542
+Protocol error
+System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
+   위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
+   위치: System.Convert.ToInt32(String value, Int32 fromBase)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-23 00:33:28,933 [9308] ERROR ReadOnlyServer - Session: 84addd4e-21fb-47bc-9828-38456c5e3180/127.0.0.1:4592
+Protocol error
+System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
+   위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
+   위치: System.Convert.ToInt32(String value, Int32 fromBase)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240

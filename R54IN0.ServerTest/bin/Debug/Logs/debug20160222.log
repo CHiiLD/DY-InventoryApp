@@ -1,0 +1,6 @@
+﻿2016-02-22 23:50:36,590 [10900] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.Server.Command.SelectAllCommand) has been discovered
+2016-02-22 23:50:36,656 [10900] DEBUG ReadOnlyServer - Listener (0.0.0.0:555) was started
+2016-02-22 23:50:36,979 [10900] DEBUG ReadOnlyServer - Listener (0.0.0.0:555) was stoppped
+2016-02-22 23:57:04,484 [14364] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.Server.Command.SelectAllCommand) has been discovered
+2016-02-22 23:57:04,543 [14364] DEBUG ReadOnlyServer - Listener (0.0.0.0:555) was started
+2016-02-22 23:57:04,835 [14364] DEBUG ReadOnlyServer - Listener (0.0.0.0:555) was stoppped

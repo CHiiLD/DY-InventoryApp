@@ -7,9 +7,9 @@ namespace R54IN0.WPF
     internal class ObservableInventoryManager
     {
         private IDictionary<string, ObservableInventory> _inventories;
-        private MySQLClient _db;
+        private ClientAdapter _db;
 
-        internal ObservableInventoryManager(MySQLClient _db)
+        internal ObservableInventoryManager(ClientAdapter _db)
         {
             this._db = _db;
         }

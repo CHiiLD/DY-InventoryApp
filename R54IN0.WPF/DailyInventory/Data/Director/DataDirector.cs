@@ -13,7 +13,7 @@ namespace R54IN0.WPF
         private ObservableFieldManager _field;
         private ObservableInventoryManager _inventory;
         private CollectionViewModelObserverSubject _subject;
-        private MySQLClient _db;
+        private ClientAdapter _db;
 
         private DataDirector()
         {
@@ -25,7 +25,7 @@ namespace R54IN0.WPF
         {
         }
 
-        public MySQLClient DB
+        public ClientAdapter DB
         {
             get
             {
@@ -170,7 +170,7 @@ namespace R54IN0.WPF
         public static async Task InstanceInitialzeAsync()
         {
             DataDirector ddr = GetInstance();
-            MySQLClient db = ddr._db = new MySQLClient();
+            ClientAdapter db = ddr._db = new ClientAdapter();
             if (!db.Open())
                 throw new Exception();
 

@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using R54IN0.Format;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
-    public class MySQLClient
+    public partial class ClientAdapter : IDisposable
     {
         public const string DATETIME = "yyyy-MM-dd HH:mm:ss.fff";
         private MySqlConnection _conn;
@@ -26,14 +27,14 @@ namespace R54IN0.WPF
             }
         }
 
-        public MySQLClient()
+        public ClientAdapter()
         {
             DataInsertEventHandler += OnDataInserted;
             DataUpdateEventHandler += OnDataUpdated;
             DataDeleteEventHandler += OnDataDeleted;
         }
 
-        public MySQLClient(MySqlConnection conn)
+        public ClientAdapter(MySqlConnection conn)
         {
             this._conn = conn;
             DataInsertEventHandler += OnDataInserted;
@@ -49,7 +50,7 @@ namespace R54IN0.WPF
             _conn = new MySqlConnection("Server=localhost;Database=inventory;Uid=root;Pwd=f54645464");
 #endif
             _conn.Open();
-
+#if false
             //Table 생성
             CreateTable<InventoryFormat>();
             CreateTable<IOStockFormat>();
@@ -61,6 +62,11 @@ namespace R54IN0.WPF
             CreateTable<Project>();
             CreateTable<Supplier>();
             CreateTable<Warehouse>();
+#endif
+
+            _readSession = new System.Net.Sockets.TcpClient();
+            _readSession.Connect("127.0.0.1", 4000);
+
             return true;
         }
 
@@ -188,10 +194,18 @@ namespace R54IN0.WPF
 
         public async Task<List<TableT>> SelectAsync<TableT>() where TableT : class, IID, new()
         {
+#if false
             await Task.Delay(1);
             List<TableT> result = new List<TableT>();
             string sql = string.Format("select * from {0};", typeof(TableT).Name);
             return ExecuteSelect0<TableT>(sql);
+#endif
+            byte[] data = new ProtocolFormat(typeof(TableT)).ToByteArray(ReceiveName.SELECT_ALL);
+            await _readSession.GetStream().WriteAsync(data, 0, data.Length);
+            int size = await _readSession.GetStream().ReadAsync(_buffer, _bufIndex, _buffer.Length - _bufIndex);
+            ProtocolFormat pfmt = ProtocolFormat.ToFormat(_buffer, _bufIndex, size);
+            IEnumerable<TableT> formats = pfmt.Formats.Cast<TableT>();
+            return formats.ToList();
         }
 
         public async Task<TableT> SelectAsync<TableT>(string id) where TableT : class, IID, new()
@@ -216,7 +230,7 @@ namespace R54IN0.WPF
             return QueryReturnTuple<T1>(sql, args);
         }
 
-        #region private method
+#region private method
 
         private void CalcInventoryQty<TableT>(string stockID, string invID = null)
         {
@@ -462,6 +476,10 @@ namespace R54IN0.WPF
         {
         }
 
-        #endregion private method
+        public void Dispose()
+        {
+
+        }
+#endregion private method
     }
 }

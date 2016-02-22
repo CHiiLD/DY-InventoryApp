@@ -702,7 +702,7 @@ namespace R54IN0.Test
                 string sql = string.Format(@"select
                                             (select sum(Quantity) from IOStockFormat where InventoryID = '{0}' and StockType = '{1}' and Date <= '{3}') -
                                             (select sum(Quantity) from IOStockFormat where InventoryID = '{0}' and StockType = '{2}' and Date <= '{3}');",
-                                             i.InventoryID, (int)IOStockType.INCOMING, (int)IOStockType.OUTGOING, i.Date.ToString(MySQLClient.DATETIME));
+                                             i.InventoryID, (int)IOStockType.INCOMING, (int)IOStockType.OUTGOING, i.Date.ToString(ClientAdapter.DATETIME));
                 using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {

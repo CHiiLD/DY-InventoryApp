@@ -1,0 +1,50 @@
+﻿2016-02-23 00:01:44,270 [15236] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:01:44,286 [15236] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:03:26,820 [9112] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:03:26,829 [9112] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:08:12,622 [13060] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:08:12,633 [13060] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:21:00,805 [10848] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:21:00,814 [10848] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:21:00,832 [10848] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:21:00,996 [10848] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:21:22,042 [6320] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:21:22,375 [6320] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:21:46,323 [1508] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:21:46,625 [1508] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:22:16,868 [10352] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:24:22,776 [11020] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:24:57,923 [11020] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:25:13,267 [11784] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:25:13,439 [11784] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:25:32,455 [12244] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:29:32,814 [11612] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:29:32,944 [12180] INFO  ReadOnlyServer - Session: e9bb699e-51c2-4d12-ace0-8e6df2dffedd/127.0.0.1:4337
+A new session connected!
+2016-02-23 00:29:33,082 [12132] INFO  ReadOnlyServer - Session: e9bb699e-51c2-4d12-ace0-8e6df2dffedd/127.0.0.1:4337
+This session was closed for ProtocolError!
+2016-02-23 00:29:33,116 [11612] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:29:53,549 [11980] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:29:53,691 [8496] INFO  ReadOnlyServer - Session: 82ab04be-ec9a-4a1d-b302-b25903b3f46d/127.0.0.1:4386
+A new session connected!
+2016-02-23 00:29:53,897 [12144] INFO  ReadOnlyServer - Session: 82ab04be-ec9a-4a1d-b302-b25903b3f46d/127.0.0.1:4386
+This session was closed for ProtocolError!
+2016-02-23 00:29:53,946 [11980] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:30:04,497 [9992] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:30:04,639 [6004] INFO  ReadOnlyServer - Session: 2c766f9c-0ed9-4622-a4f4-3fbdbfb245ea/127.0.0.1:4450
+A new session connected!
+2016-02-23 00:30:04,841 [8816] INFO  ReadOnlyServer - Session: 2c766f9c-0ed9-4622-a4f4-3fbdbfb245ea/127.0.0.1:4450
+This session was closed for ProtocolError!
+2016-02-23 00:30:04,889 [9992] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:30:14,826 [11404] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:30:14,963 [10628] INFO  ReadOnlyServer - Session: 996ce066-b688-427d-b0fd-a1d3f5c25d4d/127.0.0.1:4510
+A new session connected!
+2016-02-23 00:33:00,980 [5504] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:33:01,114 [4572] INFO  ReadOnlyServer - Session: 3da5378e-f375-4215-806a-60702dfe1075/127.0.0.1:4542
+A new session connected!
+2016-02-23 00:33:01,247 [2876] INFO  ReadOnlyServer - Session: 3da5378e-f375-4215-806a-60702dfe1075/127.0.0.1:4542
+This session was closed for ProtocolError!
+2016-02-23 00:33:01,277 [5504] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 00:33:28,620 [12056] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 00:33:28,770 [3568] INFO  ReadOnlyServer - Session: 84addd4e-21fb-47bc-9828-38456c5e3180/127.0.0.1:4592
+A new session connected!
