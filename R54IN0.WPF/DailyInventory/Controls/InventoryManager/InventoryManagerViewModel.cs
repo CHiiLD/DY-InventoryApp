@@ -3,6 +3,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reflection;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
 
 namespace R54IN0.WPF
 {
@@ -44,6 +47,7 @@ namespace R54IN0.WPF
 
             RecordCommand = new RelayCommand(ExecuteRecordCommand);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
+            ComboBoxKeyUpEventCommand = new RelayCommand<KeyEventArgs>(ExecuteComboBoxKeyUpEventCommand);
 
             var idc = DataDirector.GetInstance();
             _makerList = new ObservableCollection<Observable<Maker>>(idc.CopyFields<Maker>());
@@ -82,6 +86,7 @@ namespace R54IN0.WPF
 
         public RelayCommand RecordCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
+        public RelayCommand<KeyEventArgs> ComboBoxKeyUpEventCommand { get; private set; }
 
         public string ProductName
         {
@@ -209,6 +214,19 @@ namespace R54IN0.WPF
             await _control.RequestCloseAsync();
         }
 
+        private void ExecuteComboBoxKeyUpEventCommand(KeyEventArgs e)
+        {
+            TextBox textbox = e.OriginalSource as TextBox;
+            ComboBox combobox = e.Source as ComboBox;
+            if (textbox != null && combobox != null)
+            {
+                string text = textbox.Text;
+                BindingExpression bindingExp = BindingOperations.GetBindingExpression(combobox, ComboBox.TextProperty);
+                Binding binding = BindingOperations.GetBinding(combobox, ComboBox.TextProperty);
+                GetType().GetProperty(binding.Path.Path).SetValue(this, text);
+            }
+        }
+
         public void NotifyPropertyChanged(string name)
         {
             if (_propertyChanged != null)
@@ -254,6 +272,20 @@ namespace R54IN0.WPF
             return origin;
         }
 
+        private InventoryFormat CreateInventoryFormat()
+        {
+            InventoryFormat format = new InventoryFormat();
+            format.ProductID = _product.ID;
+            if (Maker != null)
+                format.MakerID = Maker.ID;
+            if (Measure != null)
+                format.MeasureID = Measure.ID;
+            format.Specification = Specification;
+            format.Memo = Memo;
+
+            return format;
+        }
+
         private void CreateBindingProperties()
         {
             DataDirector ddr = DataDirector.GetInstance();
@@ -287,20 +319,6 @@ namespace R54IN0.WPF
                 origin.Measure.Name = MeasureText;
                 Measure = origin.Measure;
             }
-        }
-
-        private InventoryFormat CreateInventoryFormat()
-        {
-            InventoryFormat format = new InventoryFormat();
-            format.ProductID = _product.ID;
-            if (Maker != null)
-                format.MakerID = Maker.ID;
-            if (Measure != null)
-                format.MeasureID = Measure.ID;
-            format.Specification = Specification;
-            format.Memo = Memo;
-
-            return format;
         }
     }
 }

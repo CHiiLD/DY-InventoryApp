@@ -6,6 +6,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
 
 namespace R54IN0.WPF
 {
@@ -33,7 +36,6 @@ namespace R54IN0.WPF
         private string _employeeText;
         private string _memo;
         private IOStockStatusViewModel _iOStockStatusViewModel;
-        private ObservableIOStock iostock;
 
         private event PropertyChangedEventHandler _propertyChanged;
 
@@ -103,7 +105,8 @@ namespace R54IN0.WPF
             InitComboboxItemsSources(productID);
             RecordCommand = new RelayCommand(ExecuteRecordCommand, CanRecord);
             CancelCommand = new RelayCommand(ExecuteCancelCommand);
-        }
+            ComboBoxKeyUpEventCommand = new RelayCommand<KeyEventArgs>(ExecuteComboBoxKeyUpEventCommand);
+    }
 
         public IOStockManagerViewModel(IOStockStatusViewModel iOStockStatusViewModel, ObservableIOStock stock)
             : this(stock)
@@ -409,6 +412,12 @@ namespace R54IN0.WPF
             private set;
         }
 
+        public RelayCommand<KeyEventArgs> ComboBoxKeyUpEventCommand
+        {
+            get;
+            private set;
+        }
+
         #endregion viewmodel binding properties
 
         /// <summary>
@@ -636,6 +645,19 @@ namespace R54IN0.WPF
                 Update();
 
             ExecuteCancelCommand();
+        }
+
+        private void ExecuteComboBoxKeyUpEventCommand(KeyEventArgs e)
+        {
+            TextBox textbox = e.OriginalSource as TextBox;
+            ComboBox combobox = e.Source as ComboBox;
+            if (textbox != null && combobox != null)
+            {
+                string text = textbox.Text;
+                BindingExpression bindingExp = BindingOperations.GetBindingExpression(combobox, ComboBox.TextProperty);
+                Binding binding = BindingOperations.GetBinding(combobox, ComboBox.TextProperty);
+                GetType().GetProperty(binding.Path.Path).SetValue(this, text);
+            }
         }
 
         private void SetUnitPriceAndAccount()

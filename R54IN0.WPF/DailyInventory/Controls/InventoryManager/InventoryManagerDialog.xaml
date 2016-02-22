@@ -45,13 +45,13 @@
                     ItemsSource="{Binding MeasureList}"
                     DisplayMemberPath="Name"
                     IsEditable="True" VerticalAlignment="Center" HorizontalAlignment="Left">
-                <!--<i:Interaction.Triggers>
-                        <i:EventTrigger EventName="KeyUp">
-                            <mvvmlight:EventToCommand
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="KeyUp">
+                        <mvvmlight:EventToCommand
                                 Command="{Binding ComboBoxKeyUpEventCommand}"
                                 PassEventArgsToCommand="True" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>-->
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ComboBox>
 
             <TextBlock Grid.Column="0" Grid.Row="3" Text="제조사" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -63,13 +63,13 @@
                     ItemsSource="{Binding MakerList}"
                     DisplayMemberPath="Name"
                     IsEditable="True" VerticalAlignment="Center" HorizontalAlignment="Left">
-                <!--<i:Interaction.Triggers>
-                        <i:EventTrigger EventName="KeyUp">
-                            <mvvmlight:EventToCommand
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="KeyUp">
+                        <mvvmlight:EventToCommand
                                 Command="{Binding ComboBoxKeyUpEventCommand}"
                                 PassEventArgsToCommand="True" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>-->
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ComboBox>
 
             <TextBlock Grid.Column="0" Grid.Row="4" Text="추가 설명" HorizontalAlignment="Left" VerticalAlignment="Center" />

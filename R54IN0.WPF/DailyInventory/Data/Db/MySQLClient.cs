@@ -43,7 +43,7 @@ namespace R54IN0.WPF
         public bool Open()
         {
 #if DEBUG
-            _conn = new MySqlConnection("Host=child_home.gonetis.com;Port=3306;Server=localhost;Database=test_inventory;Uid=child;Pwd=f54645464");
+            _conn = new MySqlConnection("Host=child_home.gonetis.com;Port=3306;Server=child_home.gonetis.com;Database=test_inventory;Uid=child;Pwd=f54645464");
 #else
             _conn = new MySqlConnection("Server=localhost;Database=inventory;Uid=root;Pwd=f54645464");
 #endif
@@ -221,7 +221,7 @@ namespace R54IN0.WPF
             return item.ID;
         }
 
-#region private method
+        #region private method
 
         private void CalcInventoryQty<TableT>(string stockID, string invID = null)
         {
@@ -452,6 +452,6 @@ namespace R54IN0.WPF
         {
         }
 
-#endregion private method
+        #endregion private method
     }
 }
