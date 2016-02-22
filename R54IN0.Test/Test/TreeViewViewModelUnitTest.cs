@@ -5,6 +5,7 @@ using R54IN0.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace R54IN0.Test
@@ -125,7 +126,7 @@ namespace R54IN0.Test
         /// 트리뷰에서 제품 노드를 삭제하고 데이터베이스에서도 관련 자료를 삭제한다.
         /// </summary>
         [TestMethod]
-        public void DeleteProductNodeThenSyncDb()
+        public async Task DeleteProductNodeThenSyncDb()
         {
             var treeview = new MultiSelectTreeViewModelView();
             var node = GetProductNode(treeview);
@@ -141,16 +142,16 @@ namespace R54IN0.Test
 
             foreach (var inven in invens)
             {
-                var iosfmts = DataDirector.GetInstance().DB.Query<IOStockFormat>(
+                var iosfmts = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>(
                     "select * from IOStockFormat where {0} = '{1}';",
                     "InventoryID", inven.ID);
                 Assert.AreEqual(0, iosfmts.Count());
             }
-            var infmts = DataDirector.GetInstance().DB.Query<InventoryFormat>(
+            var infmts = await DataDirector.GetInstance().DB.QueryAsync<InventoryFormat>(
                 "select * from InventoryFormat where {0} = '{1}';",
                 "ProductID", product.ID);
             Assert.AreEqual(0, infmts.Count());
-            Assert.IsNull(DataDirector.GetInstance().DB.Select<Product>(product.ID));
+            Assert.IsNull(DataDirector.GetInstance().DB.SelectAsync<Product>(product.ID));
         }
 
         [TestMethod]

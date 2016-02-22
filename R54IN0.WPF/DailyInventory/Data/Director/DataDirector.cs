@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
@@ -16,6 +17,8 @@ namespace R54IN0.WPF
 
         private DataDirector()
         {
+            _subject = CollectionViewModelObserverSubject.GetInstance();
+            StockList = new List<IOStockDataGridItem>();
         }
 
         ~DataDirector()
@@ -30,7 +33,7 @@ namespace R54IN0.WPF
             }
         }
 
-        public List<IOStockDataGridItem> StockCollection
+        public List<IOStockDataGridItem> StockList
         {
             get;
             private set;
@@ -41,7 +44,6 @@ namespace R54IN0.WPF
             if (_me == null)
             {
                 _me = new DataDirector();
-                _me.Initialze();
             }
             return _me;
         }
@@ -163,22 +165,24 @@ namespace R54IN0.WPF
             else
                 throw new NotSupportedException();
         }
-
         #endregion field director
 
-        private void Initialze()
+        public static async Task InstanceInitialzeAsync()
         {
-            _db = new MySQLClient();
-            if (_db.Open())
-            {
-                StockCollection = new List<IOStockDataGridItem>();
-                _field = new ObservableFieldManager(_db);
-                _inventory = new ObservableInventoryManager(_db);
-                _subject = CollectionViewModelObserverSubject.GetInstance();
-                _db.DataInsertEventHandler += OnDataInserted;
-                _db.DataUpdateEventHandler += OnDataUpdated;
-                _db.DataDeleteEventHandler += OnDataDeleted;
-            }
+            DataDirector ddr = GetInstance();
+            MySQLClient db = ddr._db = new MySQLClient();
+            if (!db.Open())
+                throw new Exception();
+
+            ddr.StockList = new List<IOStockDataGridItem>();
+            ddr._field = new ObservableFieldManager(db);
+            ddr._inventory = new ObservableInventoryManager(db);
+            await ddr._field.InitializeAsync();
+            await ddr._inventory.InitializeAsync();
+
+            db.DataInsertEventHandler += ddr.OnDataInserted;
+            db.DataUpdateEventHandler += ddr.OnDataUpdated;
+            db.DataDeleteEventHandler += ddr.OnDataDeleted;
         }
     }
 }

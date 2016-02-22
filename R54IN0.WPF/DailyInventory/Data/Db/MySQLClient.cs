@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
@@ -70,27 +71,6 @@ namespace R54IN0.WPF
             _conn = null;
         }
 
-        public List<TableT> Select<TableT>() where TableT : class, IID, new()
-        {
-            List<TableT> result = new List<TableT>();
-            string sql = string.Format("select * from {0};", typeof(TableT).Name);
-            return ExecuteSelect0<TableT>(sql);
-        }
-
-        public TableT Select<TableT>(string id) where TableT : class, IID, new()
-        {
-            string sql = string.Format("select * from {0} where {1} = '{2}';", typeof(TableT).Name, "ID", id);
-            return ExecuteSelect1<TableT>(sql);
-        }
-
-        public List<TableT> Query<TableT>(string sql, params object[] args) where TableT : class, IID, new()
-        {
-            sql = string.Format(sql, args);
-            if (!sql.Contains("where") || !sql.Contains("*"))
-                throw new ArgumentException();
-            return ExecuteSelect0<TableT>(sql);
-        }
-
         public List<Tuple<T1>> QueryReturnTuple<T1>(string sql, params object[] args)
         {
             List<Tuple<T1>> result = new List<Tuple<T1>>();
@@ -109,7 +89,7 @@ namespace R54IN0.WPF
             return result;
         }
 
-        public List<Tuple<T1, T2>> QueryReturnTuple<T1, T2>(string sql, params object[] args)
+        private List<Tuple<T1, T2>> QueryReturnTuple<T1, T2>(string sql, params object[] args)
         {
             List<Tuple<T1, T2>> result = new List<Tuple<T1, T2>>();
             sql = string.Format(sql, args);
@@ -186,21 +166,6 @@ namespace R54IN0.WPF
             KillProject(projID);
         }
 
-        /// <summary>
-        /// projID를 가진 IOStockFormat이 하나도 없는 경우 해당 프로젝트는 삭제된다.
-        /// </summary>
-        /// <param name="projID"></param>
-        private void KillProject(string projID)
-        {
-            if (string.IsNullOrEmpty(projID))
-                return;
-            Tuple<int> tuple = QueryReturnTuple<int>("select count(*) from {0} where ProjectID = '{1}';", nameof(IOStockFormat), projID).SingleOrDefault();
-            if (tuple != null && tuple.Item1 == 0)
-            {
-                Delete<Project>(projID);
-            }
-        }
-
         public string Insert<TableT>(object item) where TableT : class, IID
         {
             return Insert<TableT>(item as TableT);
@@ -219,6 +184,36 @@ namespace R54IN0.WPF
             DataInsertEventHandler(this, new SQLInsertEventArgs(item));
             CalcInventoryQty<TableT>(item.ID);
             return item.ID;
+        }
+
+        public async Task<List<TableT>> SelectAsync<TableT>() where TableT : class, IID, new()
+        {
+            await Task.Delay(1);
+            List<TableT> result = new List<TableT>();
+            string sql = string.Format("select * from {0};", typeof(TableT).Name);
+            return ExecuteSelect0<TableT>(sql);
+        }
+
+        public async Task<TableT> SelectAsync<TableT>(string id) where TableT : class, IID, new()
+        {
+            await Task.Delay(1);
+            string sql = string.Format("select * from {0} where {1} = '{2}';", typeof(TableT).Name, "ID", id);
+            return ExecuteSelect1<TableT>(sql);
+        }
+
+        public async Task<List<TableT>> QueryAsync<TableT>(string sql, params object[] args) where TableT : class, IID, new()
+        {
+            await Task.Delay(1);
+            sql = string.Format(sql, args);
+            if (!sql.Contains("where") || !sql.Contains("*"))
+                throw new ArgumentException();
+            return ExecuteSelect0<TableT>(sql);
+        }
+
+        public async Task<List<Tuple<T1>>> QueryReturnTupleAsync<T1>(string sql, params object[] args)
+        {
+            await Task.Delay(1);
+            return QueryReturnTuple<T1>(sql, args);
         }
 
         #region private method
@@ -389,6 +384,21 @@ namespace R54IN0.WPF
             Console.WriteLine(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
                 cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// projID를 가진 IOStockFormat이 하나도 없는 경우 해당 프로젝트는 삭제된다.
+        /// </summary>
+        /// <param name="projID"></param>
+        private void KillProject(string projID)
+        {
+            if (string.IsNullOrEmpty(projID))
+                return;
+            Tuple<int> tuple = QueryReturnTuple<int>("select count(*) from {0} where ProjectID = '{1}';", nameof(IOStockFormat), projID).SingleOrDefault();
+            if (tuple != null && tuple.Item1 == 0)
+            {
+                Delete<Project>(projID);
+            }
         }
 
         private object ConvertSqlValue(object value)

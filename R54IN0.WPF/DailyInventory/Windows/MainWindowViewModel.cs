@@ -8,9 +8,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace R54IN0.WPF
 {
@@ -25,23 +27,13 @@ namespace R54IN0.WPF
 
         public MainWindowViewModel()
         {
-            InventoryStatusControl inventoryStatus = new InventoryStatusControl();
-            IOStockStatusControl ioStockStatus = new IOStockStatusControl();
-
-            _items = new ObservableCollection<TabItem>();
-            _items.Add(new TabItem() { Content = inventoryStatus, Header = "재고 현황" });
-            _items.Add(new TabItem() { Content = ioStockStatus, Header = "입출고 현황" });
-
-            InventoryViewModel = inventoryStatus.DataContext as InventoryStatusViewModel;
-            IOStockViewModel = ioStockStatus.DataContext as IOStockStatusViewModel;
-
             AppExitCommand = new RelayCommand(ExecuteAppExitCommand);
             AboutAppCommand = new RelayCommand(ExecuteAboutAppCommand);
-            ChangeInventoryViewCommand = new RelayCommand(ExecuteSelectInventoryStatusViewCommand);
-            ChangeIOStockViewByProductCommand = new RelayCommand(ExecuteChangeIOStockViewByProductCommand);
-            ChangeIOStockByDateCommand = new RelayCommand(ExecuteChangeIOStockByDateCommand);
-            ChangeIOStockByProjectCommand = new RelayCommand(ExecuteChangeIOStockByProjectCommand);
-            OpenFieldManagerWindow = new RelayCommand(ExecuteOpenFieldManagerWindow);
+            ChangeInventoryViewCommand = new RelayCommand(ExecuteSelectInventoryStatusViewCommand, CanExecuteMenuItemCommand);
+            ChangeIOStockViewByProductCommand = new RelayCommand(ExecuteChangeIOStockViewByProductCommand, CanExecuteMenuItemCommand);
+            ChangeIOStockByDateCommand = new RelayCommand(ExecuteChangeIOStockByDateCommand, CanExecuteMenuItemCommand);
+            ChangeIOStockByProjectCommand = new RelayCommand(ExecuteChangeIOStockByProjectCommand, CanExecuteMenuItemCommand);
+            OpenFieldManagerWindow = new RelayCommand(ExecuteOpenFieldManagerWindow, CanExecuteMenuItemCommand);
 
             AccentColors = ThemeManager.Accents.Select(a => new AccentColorMenuData()
             {
@@ -55,11 +47,48 @@ namespace R54IN0.WPF
                 BorderColorBrush = a.Resources["BlackColorBrush"] as Brush,
                 ColorBrush = a.Resources["WhiteColorBrush"] as Brush
             });
+
+            Dispatcher.CurrentDispatcher.BeginInvoke(new Func<Task>(InitializeAsync));
         }
 
-        public IEnumerable<AccentColorMenuData> AccentColors { get; set; }
+        private bool CanExecuteMenuItemCommand()
+        {
+            return InventoryViewModel != null && IOStockViewModel != null;
+        }
 
-        public IEnumerable<AppThemeMenuData> AppThemes { get; set; }
+        public async Task InitializeAsync()
+        {
+            //TODO MySQL 또는 서버에 접속할 수가 없다면 Dialog로 이를 알려주어야 한다. 
+            //Dialog의 버튼은 다시 접속하기, 앱 종료하기 기능을 구현해준다.
+            try
+            {
+                await DataDirector.InstanceInitialzeAsync();
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+
+            }
+
+            InventoryStatusControl inventoryStatus = new InventoryStatusControl();
+            IOStockStatusControl ioStockStatus = new IOStockStatusControl();
+
+            InventoryViewModel = inventoryStatus.DataContext as InventoryStatusViewModel;
+            IOStockViewModel = ioStockStatus.DataContext as IOStockStatusViewModel;
+
+            Items = new ObservableCollection<TabItem>();
+            Items.Add(new TabItem() { Content = inventoryStatus, Header = "재고 현황" });
+            Items.Add(new TabItem() { Content = ioStockStatus, Header = "입출고 현황" });
+
+            ChangeInventoryViewCommand.RaiseCanExecuteChanged();
+            ChangeIOStockViewByProductCommand.RaiseCanExecuteChanged();
+            ChangeIOStockByDateCommand.RaiseCanExecuteChanged();
+            ChangeIOStockByProjectCommand.RaiseCanExecuteChanged();
+            OpenFieldManagerWindow.RaiseCanExecuteChanged();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -73,6 +102,10 @@ namespace R54IN0.WPF
                 _propertyChanged -= value;
             }
         }
+
+        public IEnumerable<AccentColorMenuData> AccentColors { get; set; }
+
+        public IEnumerable<AppThemeMenuData> AppThemes { get; set; }
 
         public string AppName
         {
@@ -136,9 +169,17 @@ namespace R54IN0.WPF
 
         #region ViewModel
 
-        public InventoryStatusViewModel InventoryViewModel { get; set; }
+        public InventoryStatusViewModel InventoryViewModel
+        {
+            get;
+            set;
+        }
 
-        public IOStockStatusViewModel IOStockViewModel { get; set; }
+        public IOStockStatusViewModel IOStockViewModel
+        {
+            get;
+            set;
+        }
 
         #endregion ViewModel
 

@@ -3,7 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace R54IN0.WPF
 {
@@ -166,7 +169,7 @@ namespace R54IN0.WPF
                     ProjectListBoxViewModelVisibility = Visibility.Collapsed;
                     DataGridViewModel.RemainQtyColumnVisibility = Visibility.Collapsed;
                 }
-                DataDirector.GetInstance().StockCollection.Clear();
+                DataDirector.GetInstance().StockList.Clear();
                 DataGridViewModel.Items.Clear();
                 NotifyPropertyChanged("SelectedDataGridGroupOption");
             }
@@ -452,21 +455,28 @@ namespace R54IN0.WPF
         {
             if (sender == TreeViewViewModel && e.PropertyName == "SelectedNodes")
             {
-                var inode = TreeViewViewModel.SearchNodeInSelectedNodes(NodeType.INVENTORY);
-                var pnode = TreeViewViewModel.SearchNodeInSelectedNodes(NodeType.PRODUCT);
-                var sumnode = pnode.SelectMany(x => x.Root.Select(y => y));
-                var unionnode = inode.Union(sumnode);
+                List<TreeViewNode> inode = TreeViewViewModel.SearchNodeInSelectedNodes(NodeType.INVENTORY);
+                List<TreeViewNode> pnode = TreeViewViewModel.SearchNodeInSelectedNodes(NodeType.PRODUCT);
+                IEnumerable<TreeViewNode> sumnode = pnode.SelectMany(x => x.Root.Select(y => y));
+                IEnumerable<TreeViewNode> unionnode = inode.Union(sumnode);
+                IEnumerable<ObservableInventory> invs = unionnode.Select(x => DataDirector.GetInstance().SearchInventory(x.ObservableObjectID));
 
-                List<IOStockFormat> format = new List<IOStockFormat>();
-                var inventories = unionnode.Select(x => DataDirector.GetInstance().SearchInventory(x.ObservableObjectID));
-                foreach (var inventory in inventories)
+                string sql = null;
+                if (invs.Count() != 0)
                 {
-                    List<IOStockFormat> fmt = DataDirector.GetInstance().DB.Query<IOStockFormat>(
-                        "select * from {0} where {1} = '{2}' order by Date desc;", typeof(IOStockFormat).Name, "InventoryID", inventory.ID);
-                    if (fmt != null)
-                        format.AddRange(fmt);
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var inv in invs)
+                    {
+                        sb.Append('\'');
+                        sb.Append(inv.ID);
+                        sb.Append("', ");
+                    }
+                    if (sb.Length > 1)
+                        sb.Remove(sb.Length - 2, 2);
+                    sql = string.Format("select * from {0} where {1} in ({2}) order by Date desc;",
+                        typeof(IOStockFormat).Name, "InventoryID", sb.ToString());
                 }
-                SetDataGridItems(format);
+                Dispatcher.CurrentDispatcher.BeginInvoke(new Func<string, Task>(SetDataGridItems), sql);
             }
         }
 
@@ -482,11 +492,9 @@ namespace R54IN0.WPF
                 Observable<Project> proejct = ProjectListBoxViewModel.SelectedItem;
                 if (proejct != null)
                 {
-                    List<IOStockFormat> formats = DataDirector.GetInstance().DB.Query<IOStockFormat>(
-                        "select * from {0} where {1} = '{2}' order by Date desc;",
+                    string sql = string.Format("select * from {0} where {1} = '{2}' order by Date desc;",
                         typeof(IOStockFormat).Name, "ProjectID", proejct.ID);
-                    if (formats != null)
-                        SetDataGridItems(formats);
+                    Dispatcher.CurrentDispatcher.BeginInvoke(new Func<string, Task>(SetDataGridItems), sql);
                 }
             }
         }
@@ -503,9 +511,9 @@ namespace R54IN0.WPF
                 DateTime fromDate = DatePickerViewModel.FromDate;
                 DateTime toDate = DatePickerViewModel.ToDate;
                 string fmt = MySQLClient.DATETIME;
-                var formats = DataDirector.GetInstance().DB.Query<IOStockFormat>(
-                    "select * from {0} where {1} between '{2}' and '{3}' order by Date desc;", typeof(IOStockFormat).Name, "Date", fromDate.ToString(fmt), toDate.ToString(fmt));
-                SetDataGridItems(formats);
+                string sql = string.Format("select * from {0} where {1} between '{2}' and '{3}' order by Date desc;", 
+                    typeof(IOStockFormat).Name, "Date", fromDate.ToString(fmt), toDate.ToString(fmt));
+                Dispatcher.CurrentDispatcher.BeginInvoke(new Func<string, Task>(SetDataGridItems), sql);
             }
         }
 
@@ -522,35 +530,38 @@ namespace R54IN0.WPF
         {
             TreeViewViewModel.SelectedNodes.Clear();
             SelectedDataGridGroupOption = null;
-            IEnumerable<IOStockFormat> formats = SearchViewModel.SearchAsFilter();
-            SetDataGridItems(formats);
+            string sql = SearchViewModel.SearchAsFilter();
+            Dispatcher.CurrentDispatcher.BeginInvoke(new Func<string, Task>(SetDataGridItems), sql);
         }
 
         /// <summary>
         /// 입고, 출고에 따라 백업 데이터를 사용하여 데이터그리드의 아이템을 초기화한다.
         /// </summary>
-        private void SetDataGridItems(IEnumerable<IOStockFormat> formats)
+        private async Task SetDataGridItems(string sql)
         {
-            if (formats != null)
+            DataDirector.GetInstance().StockList.Clear();
+            if (!string.IsNullOrEmpty(sql))
             {
-                DataDirector.GetInstance().StockCollection.Clear();
-                foreach (var fmt in formats)
-                    DataDirector.GetInstance().StockCollection.Add(new IOStockDataGridItem(fmt));
-
+                List<IOStockFormat> stofmts = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>(sql);
+                foreach (var stof in stofmts)
+                {
+                    IOStockDataGridItem item = new IOStockDataGridItem(stof);
+                    DataDirector.GetInstance().StockList.Add(item);
+                }
                 CalcRemainQuantity();
-                SetDataGridItems();
             }
+            SetDataGridItems();
         }
 
         public void SetDataGridItems()
         {
             DataGridViewModel.Items.Clear();
             IOStockType flag = GetCurrentStockTypeFlag();
-            var coll = DataDirector.GetInstance().StockCollection.ToList();
+            var coll = DataDirector.GetInstance().StockList.ToList();
             foreach (IOStockDataGridItem stock in coll)
             {
                 if (!IsAddEnableInDataGridItems(stock))
-                    DataDirector.GetInstance().StockCollection.Remove(stock);
+                    DataDirector.GetInstance().StockList.Remove(stock);
                 else if (flag.HasFlag(stock.StockType))
                     DataGridViewModel.Items.Add(stock);
             }
@@ -571,7 +582,7 @@ namespace R54IN0.WPF
             if (SelectedDataGridGroupOption != DATAGRID_OPTION_PRODUCT)
                 return;
 
-            List<IOStockDataGridItem> list = DataDirector.GetInstance().StockCollection;
+            List<IOStockDataGridItem> list = DataDirector.GetInstance().StockList;
             ILookup<string, IOStockDataGridItem> loopup = list.ToLookup(x => x.InventoryID);
             foreach (var l in loopup)
             {
@@ -636,7 +647,7 @@ namespace R54IN0.WPF
                 IOStockDataGridItem stock = item as IOStockDataGridItem;
                 if (IsAddEnableInDataGridItems(stock))
                 {
-                    DataDirector.GetInstance().StockCollection.Add(stock);
+                    DataDirector.GetInstance().StockList.Add(stock);
 
                     IOStockType flag = GetCurrentStockTypeFlag();
                     if (flag.HasFlag(stock.StockType))
@@ -653,7 +664,7 @@ namespace R54IN0.WPF
             {
                 IOStockDataGridItem stock = item as IOStockDataGridItem;
 
-                DataDirector.GetInstance().StockCollection.Remove(stock);
+                DataDirector.GetInstance().StockList.Remove(stock);
 
                 DataGridViewModel.Items.Remove(stock);
 

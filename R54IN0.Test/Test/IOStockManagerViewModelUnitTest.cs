@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace R54IN0.Test
 {
@@ -71,19 +72,19 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void CanCreate2()
+        public async Task CanCreate2()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' limit 1;", inv.ID);
             var ios = new ObservableIOStock(qret.Random());
             new IOStockManagerViewModel(ios);
         }
 
         [TestMethod]
-        public void TestInit0()
+        public async Task TestInit0()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
             var ios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(ios);
 
@@ -98,10 +99,10 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void TestInit1()
+        public async Task TestInit1()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var ios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(ios);
 
@@ -150,10 +151,10 @@ namespace R54IN0.Test
         /// 출고로 변경할 때 선택된 창고와 입고처를 null로 대입
         /// </summary>
         [TestMethod]
-        public void TestIOStockTypeChange2()
+        public async Task TestIOStockTypeChange2()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
             var iios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(iios);
 
@@ -167,10 +168,10 @@ namespace R54IN0.Test
         /// 입고로 변경할 때 선택된 프로젝트와 출고처를 null로 대입
         /// </summary>
         [TestMethod]
-        public void TestIOStockTypeChange3()
+        public async Task TestIOStockTypeChange3()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(oios);
 
@@ -281,10 +282,10 @@ namespace R54IN0.Test
         /// 금액과 수량 변경 확인
         /// </summary>
         [TestMethod]
-        public void ModifyIOStockFormat0()
+        public async Task ModifyIOStockFormat0()
         {
             ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
-            List<IOStockFormat> qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
+            List<IOStockFormat> qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
             ObservableIOStock oios = new ObservableIOStock(qret.Random());
             IOStockManagerViewModel vm = new IOStockManagerViewModel(oios);
 
@@ -301,10 +302,10 @@ namespace R54IN0.Test
         /// 구입처, 담당자, 창고 변경하기
         /// </summary>
         [TestMethod]
-        public void ModifyIOStockFormat1()
+        public async Task ModifyIOStockFormat1()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(oios);
 
@@ -323,10 +324,10 @@ namespace R54IN0.Test
         /// 출고처, 담당자, 프로젝트 변경하기
         /// </summary>
         [TestMethod]
-        public void ModifyIOStockFormat2()
+        public async Task ModifyIOStockFormat2()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(oios);
 
@@ -345,10 +346,10 @@ namespace R54IN0.Test
         /// 이름 수정하기
         /// </summary>
         [TestMethod]
-        public void ModifyIOStockFormat3()
+        public async Task ModifyIOStockFormat3()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(oios);
 
@@ -368,10 +369,10 @@ namespace R54IN0.Test
         }
 
         [TestMethod]
-        public void WhenModifyQtyThenSyncDataGridViewItems()
+        public async Task WhenModifyQtyThenSyncDataGridViewItems()
         {
             ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
-            IOStockFormat qret = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID).Single();
+            IOStockFormat qret = (await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID)).Single();
 
             IOStockStatusViewModel svm = new IOStockStatusViewModel();
 
@@ -380,7 +381,7 @@ namespace R54IN0.Test
             TreeViewNode node = nodes.Where(x => x.ObservableObjectID == qret.InventoryID).Single();
             svm.TreeViewViewModel.AddSelectedNodes(node);
 
-            IOStockDataGridItem stock = DataDirector.GetInstance().StockCollection.Where(x => x.ID == qret.ID).Single();
+            IOStockDataGridItem stock = DataDirector.GetInstance().StockList.Where(x => x.ID == qret.ID).Single();
 
             IOStockManagerViewModel vm = new IOStockManagerViewModel(stock);
             int qty = vm.Quantity = 10;

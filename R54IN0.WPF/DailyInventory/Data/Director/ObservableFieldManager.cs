@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
@@ -12,21 +13,20 @@ namespace R54IN0.WPF
         internal ObservableFieldManager(MySQLClient _db)
         {
             this._db = _db;
-            Load();
         }
 
-        internal void Load()
+        internal async Task InitializeAsync()
         {
             _fields = new Dictionary<Type, Dictionary<string, IObservableField>>();
 
-            var customer = _db.Select<Customer>();
-            var employee = _db.Select<Employee>();
-            var maker = _db.Select<Maker>();
-            var measure = _db.Select<Measure>();
-            var product = _db.Select<Product>();
-            var project = _db.Select<Project>();
-            var supplier = _db.Select<Supplier>();
-            var warehouse = _db.Select<Warehouse>();
+            List<Customer> customer = await _db.SelectAsync<Customer>();
+            List<Employee> employee = await _db.SelectAsync<Employee>();
+            List<Maker> maker = await _db.SelectAsync<Maker>();
+            List<Measure> measure = await _db.SelectAsync<Measure>();
+            List<Product> product = await _db.SelectAsync<Product>();
+            List<Project> project = await _db.SelectAsync<Project>();
+            List<Supplier> supplier = await _db.SelectAsync<Supplier>();
+            List<Warehouse> warehouse = await _db.SelectAsync<Warehouse>();
 
             _fields[typeof(Customer)] = customer.ToDictionary<Customer, string, IObservableField>(x => x.ID, x => new Observable<Customer>(x));
             _fields[typeof(Employee)] = employee.ToDictionary<Employee, string, IObservableField>(x => x.ID, x => new Observable<Employee>(x));

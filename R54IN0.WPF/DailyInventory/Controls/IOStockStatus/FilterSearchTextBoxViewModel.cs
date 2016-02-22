@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
 
 namespace R54IN0.WPF
 {
@@ -40,68 +41,85 @@ namespace R54IN0.WPF
             get; set;
         }
 
-        public IEnumerable<IOStockFormat> SearchAsFilter()
+        public string SearchAsFilter()
         {
             string[] keywords = Text.Split(new char[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             IEnumerable<string> lowerKeywords = keywords.Select(x => x.ToLower());
 
-            List<IOStockFormat> result = new List<IOStockFormat>();
             string column = string.Empty;
+            StringBuilder sb = new StringBuilder();
+            string sql = null;
+
             if (SelectedItem == FILTER_PRODUCT || SelectedItem == FILTER_SPECIFICATION || SelectedItem == FILTER_MAKER)
             {
-                IEnumerable<ObservableInventory> inventories = DataDirector.GetInstance().CopyInventories();
+                IEnumerable<ObservableInventory> invs = DataDirector.GetInstance().CopyInventories();
                 IEnumerable<ObservableInventory> match = null;
                 switch (SelectedItem)
                 {
                     case FILTER_PRODUCT:
-                        match = lowerKeywords.SelectMany(word => inventories.Where(inven => inven.Product.Name.ToLower().Contains(word)));
+                        match = lowerKeywords.SelectMany(word => invs.Where(inven => inven.Product.Name.ToLower().Contains(word)));
                         break;
 
                     case FILTER_SPECIFICATION:
-                        match = lowerKeywords.SelectMany(word => inventories.Where(inven => inven.Specification.ToLower().Contains(word)));
+                        match = lowerKeywords.SelectMany(word => invs.Where(inven => inven.Specification.ToLower().Contains(word)));
                         break;
 
                     case FILTER_MAKER:
-                        match = lowerKeywords.SelectMany(word => inventories.Where(inven => inven.Maker != null && inven.Maker.Name.ToLower().Contains(word)));
+                        match = lowerKeywords.SelectMany(word => invs.Where(inven => inven.Maker != null && inven.Maker.Name.ToLower().Contains(word)));
                         break;
                 }
+                if (match.Count() == 0)
+                    return null;
+
                 foreach (var inventory in match.Distinct())
-                    result.AddRange(DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}';", typeof(IOStockFormat).Name, "InventoryID", inventory.ID));
+                {
+                    sb.Append('\'');
+                    sb.Append(inventory.ID);
+                    sb.Append("', ");
+                }
+                sb.Remove(sb.Length - 2, 2);
+                sql = string.Format("select * from {0} where {1} in ({2});", typeof(IOStockFormat).Name, "InventoryID", sb.ToString());
             }
             else if (SelectedItem == FILTER_SUPPLIER || SelectedItem == FILTER_WAREHOUSE || SelectedItem == FILTER_CUSTOMER || SelectedItem == FILTER_EMPLOYEE)
             {
-                IEnumerable<IField> fields = null;
+                IEnumerable<IObservableField> fields = null;
                 switch (SelectedItem)
                 {
                     case FILTER_SUPPLIER:
-                        fields = DataDirector.GetInstance().DB.Select<Supplier>();
+                        fields = DataDirector.GetInstance().CopyFields<Supplier>();
                         column = "SupplierID";
                         break;
 
                     case FILTER_WAREHOUSE:
-                        fields = DataDirector.GetInstance().DB.Select<Warehouse>();
+                        fields = DataDirector.GetInstance().CopyFields<Warehouse>();
                         column = "WarehouseID";
                         break;
 
                     case FILTER_CUSTOMER:
-                        fields = DataDirector.GetInstance().DB.Select<Customer>();
+                        fields = DataDirector.GetInstance().CopyFields<Customer>();
                         column = "CustomerID";
                         break;
 
                     case FILTER_EMPLOYEE:
-                        fields = DataDirector.GetInstance().DB.Select<Employee>();
+                        fields = DataDirector.GetInstance().CopyFields<Employee>();
                         column = "EmployeeID";
                         break;
                 }
-                IEnumerable<IField> match = lowerKeywords.SelectMany(word => fields.Where(x => x.Name != null && x.Name.ToLower().Contains(word)));
+                IEnumerable<IObservableField> match = lowerKeywords.SelectMany(
+                    word => fields.Where(x => x.Name != null && x.Name.ToLower().Contains(word)));
+                if (match.Count() == 0)
+                    return null;
+
                 foreach (var field in match.Distinct())
                 {
-                    var formats = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}';",
-                        typeof(IOStockFormat).Name, column, field.ID);
-                    result.AddRange(formats);
+                    sb.Append('\'');
+                    sb.Append(field.ID);
+                    sb.Append("', ");
                 }
+                sb.Remove(sb.Length - 2, 2);
+                sql = string.Format("select * from {0} where {1} in ({2});", typeof(IOStockFormat).Name, column, sb.ToString());
             }
-            return result;
+            return sql;
         }
     }
 }

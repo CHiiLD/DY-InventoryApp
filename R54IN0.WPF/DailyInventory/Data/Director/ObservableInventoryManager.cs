@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
@@ -11,13 +12,12 @@ namespace R54IN0.WPF
         internal ObservableInventoryManager(MySQLClient _db)
         {
             this._db = _db;
-            Load();
         }
 
-        public void Load()
+        public async Task InitializeAsync()
         {
             _inventories = new Dictionary<string, ObservableInventory>();
-            IEnumerable<InventoryFormat> formats = _db.Select<InventoryFormat>();
+            IEnumerable<InventoryFormat> formats = await _db.SelectAsync<InventoryFormat>();
             _inventories = formats.Select(x => new ObservableInventory(x)).ToDictionary(x => x.ID);
         }
 

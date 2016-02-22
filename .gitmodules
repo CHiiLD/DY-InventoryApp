@@ -21,7 +21,10 @@
 	url = https://github.com/CHiiLD/mvvmlight.git
 [submodule "AsyncMvvm"]
 	path = AsyncMvvm
-	url = https://github.com/CHiiLD/AsyncMvvm.git
+	url = https://github.com/dmitry-shechtman/AsyncMvvm.git
 [submodule "NLog"]
 	path = NLog
 	url = https://github.com/NLog/NLog.git
+[submodule "AsyncEx"]
+	path = AsyncEx
+	url = https://github.com/StephenCleary/AsyncEx.git

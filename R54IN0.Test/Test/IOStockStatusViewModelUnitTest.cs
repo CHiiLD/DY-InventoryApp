@@ -277,7 +277,7 @@ namespace R54IN0.Test
 
             viewmodel.DataGridViewModel.IOStockFormatDeletionCommand.Execute(null);
 
-            var iofmts = DataDirector.GetInstance().DB.Select<IOStockFormat>(iosID);
+            var iofmts = DataDirector.GetInstance().DB.SelectAsync<IOStockFormat>(iosID);
             Assert.IsNull(iofmts);
         }
 
@@ -339,7 +339,7 @@ namespace R54IN0.Test
 
             viewmodel.DataGridViewModel.ChekcedIOStockFormatsDeletionCommand.Execute(null);
 
-            var iofmts = DataDirector.GetInstance().DB.Select<IOStockFormat>(iosID);
+            var iofmts = DataDirector.GetInstance().DB.SelectAsync<IOStockFormat>(iosID);
             Assert.IsNull(iofmts);
         }
 
@@ -415,7 +415,7 @@ namespace R54IN0.Test
 
             foreach (var item in checkedItems)
             {
-                var iofmts = DataDirector.GetInstance().DB.Select<IOStockFormat>(item.ID);
+                var iofmts = DataDirector.GetInstance().DB.SelectAsync<IOStockFormat>(item.ID);
                 Assert.IsNull(iofmts);
             }
         }

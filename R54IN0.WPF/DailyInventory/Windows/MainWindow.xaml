@@ -33,15 +33,6 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Window.InputBindings>
-        <!--<KeyBinding Key="F1" Command="{Binding ChangeInventoryViewCommand}" />
-        <KeyBinding Key="F2" Command="{Binding ChangeIOStockViewByProductCommand}" />
-        <KeyBinding Key="F3" Command="{Binding ChangeIOStockByDateCommand}" />
-        <KeyBinding Key="F4" Command="{Binding ChangeIOStockByProjectCommand}" />-->
-
-        <!--<KeyBinding Key="S" Modifiers="Shift+Ctrl" Command="{Binding AddNewIOStockCommand}" />-->
-    </Window.InputBindings>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -88,14 +79,7 @@
         </Menu>
 
         <Grid Grid.Row="1">
-            <TabControl x:Name="MainTabControl" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}">
-                <!--<TabItem x:Name="InventoryStatusTab" Header="재고 현황">
-                    <local:InventoryStatus x:Name="InventoryStatusView" />
-                </TabItem>
-                <TabItem x:Name="IOStockStatusTab" Header="입출고 현황">
-                    <local:IOStockStatus x:Name="IOStockStatusView" />
-                </TabItem>-->
-            </TabControl>
+            <TabControl x:Name="MainTabControl" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" />
         </Grid>
 
         <StatusBar Grid.Row="2">

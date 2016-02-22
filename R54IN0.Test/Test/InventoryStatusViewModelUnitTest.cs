@@ -5,6 +5,7 @@ using R54IN0.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -196,7 +197,7 @@ namespace R54IN0.Test.New
         /// </summary>
         /// <returns></returns>
         [TestMethod]
-        public void DeleteItemThenSyncDb()
+        public async Task DeleteItemThenSyncDb()
         {
             var viewmodel = new InventoryStatusViewModel();
             var item = viewmodel.DataGridViewModel1.SelectedItem = viewmodel.DataGridViewModel1.Items.Random();
@@ -204,10 +205,10 @@ namespace R54IN0.Test.New
 
             viewmodel.DataGridViewModel1.InventoryDataDeletionCommand.Execute(null);
 
-            var infmt = DataDirector.GetInstance().DB.Select<InventoryFormat>(inventoryID);
+            var infmt = DataDirector.GetInstance().DB.SelectAsync<InventoryFormat>(inventoryID);
             Assert.IsNull(infmt);
 
-            var iofmts = DataDirector.GetInstance().DB.Query<IOStockFormat>("select * from {0} where {1} = '{2}';", typeof(IOStockFormat).Name, "InventoryID", inventoryID);
+            var iofmts = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from {0} where {1} = '{2}';", typeof(IOStockFormat).Name, "InventoryID", inventoryID);
             Assert.AreEqual(0, iofmts.Count());
         }
 
