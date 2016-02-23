@@ -171,9 +171,7 @@ namespace R54IN0.WPF
         {
             DataDirector ddr = GetInstance();
             MySQLClient db = ddr._db = new MySQLClient();
-            if (!db.Open())
-                throw new Exception();
-
+            await db.OpenAsync();
             ddr.StockList = new List<IOStockDataGridItem>();
             ddr._field = new ObservableFieldManager(db);
             ddr._inventory = new ObservableInventoryManager(db);

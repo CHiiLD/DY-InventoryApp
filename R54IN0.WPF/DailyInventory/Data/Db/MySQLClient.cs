@@ -41,14 +41,14 @@ namespace R54IN0.WPF
             DataDeleteEventHandler += OnDataDeleted;
         }
 
-        public bool Open()
+        public async Task OpenAsync()
         {
 #if DEBUG
-            _conn = new MySqlConnection("Host=child_home.gonetis.com;Port=3306;Server=child_home.gonetis.com;Database=test_inventory;Uid=child;Pwd=f54645464");
+            _conn = new MySqlConnection("Server=localhost;Database=inventory;Uid=child;Pwd=f54645464");
 #else
-            _conn = new MySqlConnection("Server=localhost;Database=inventory;Uid=root;Pwd=f54645464");
+            _conn = new MySqlConnection("host=192.168.10.89;Port=3306;Server=192.168.10.89;Database=inventory;Uid=child;Pwd=f54645464");
 #endif
-            _conn.Open();
+            await _conn.OpenAsync();
 
             //Table 생성
             CreateTable<InventoryFormat>();
@@ -61,7 +61,6 @@ namespace R54IN0.WPF
             CreateTable<Project>();
             CreateTable<Supplier>();
             CreateTable<Warehouse>();
-            return true;
         }
 
         public void Close()
@@ -70,7 +69,6 @@ namespace R54IN0.WPF
                 _conn.Close();
             _conn = null;
         }
-
         public List<Tuple<T1>> QueryReturnTuple<T1>(string sql, params object[] args)
         {
             List<Tuple<T1>> result = new List<Tuple<T1>>();

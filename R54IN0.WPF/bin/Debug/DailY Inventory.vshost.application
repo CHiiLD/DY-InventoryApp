@@ -8,7 +8,7 @@
         <beforeApplicationStartup />
       </update>
     </subscription>
-    <deploymentProvider codebase="http://bootcamp/DailY%20Inventory/DailY%20Inventory.application" />
+    <deploymentProvider codebase="http://child-pot/DailY%20Inventory/DailY%20Inventory.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
@@ -21,7 +21,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YnwMOW4nCOJd6UY+FffkvJolE3raYsIZy9FHxmV3o2M=</dsig:DigestValue>
+        <dsig:DigestValue>Q7vQSwIDqv367dc7vfbZpOw81AbnoeAFewBe4fuN5EI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

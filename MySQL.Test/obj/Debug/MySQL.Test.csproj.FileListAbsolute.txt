@@ -1,0 +1,34 @@
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\MySQL.Test.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\MySQL.Test.pdb
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\DailY Inventory.exe
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\MySql.Data.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\R54IN0.Format.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\GalaSoft.MvvmLight.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\MahApps.Metro.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\TreeViewEx.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\Lex.Db.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\R54IN0.Format.pdb
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\DailY Inventory.pdb
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\GalaSoft.MvvmLight.pdb
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\GalaSoft.MvvmLight.xml
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\MahApps.Metro.pdb
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\MahApps.Metro.xml
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\TreeViewEx.pdb
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\Lex.Db.pdb
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\Newtonsoft.Json.xml
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\de\System.Windows.Interactivity.resources.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\en\System.Windows.Interactivity.resources.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\es\System.Windows.Interactivity.resources.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\it\System.Windows.Interactivity.resources.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\obj\Debug\MySQL.Test.csprojResolveAssemblyReference.cache
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\obj\Debug\MySQL.Test.dll
+C:\Users\CHILD\GitHub\R54IN0\MySQL.Test\obj\Debug\MySQL.Test.pdb

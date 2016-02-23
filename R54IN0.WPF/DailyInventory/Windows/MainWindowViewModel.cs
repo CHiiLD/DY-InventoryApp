@@ -56,21 +56,34 @@ namespace R54IN0.WPF
             return InventoryViewModel != null && IOStockViewModel != null;
         }
 
+        private async Task ShowConnectionFailDialog(Exception e)
+        {
+            Window main = Application.Current.MainWindow;
+            MetroWindow metroWindow = main as MetroWindow;
+            MessageDialogResult result = await metroWindow.ShowMessageAsync(
+                "데이터베이스 접속 에러",
+                string.Format(e.Message + "\n" + e.StackTrace),
+                MessageDialogStyle.AffirmativeAndNegative,
+                new MetroDialogSettings()
+                {
+                    AffirmativeButtonText = "접속시도",
+                    NegativeButtonText = "닫기",
+                    ColorScheme = MetroDialogColorScheme.Accented
+                });
+            if(result == MessageDialogResult.Affirmative)
+                await InitializeAsync();
+        }
+
         public async Task InitializeAsync()
         {
-            //TODO MySQL 또는 서버에 접속할 수가 없다면 Dialog로 이를 알려주어야 한다. 
-            //Dialog의 버튼은 다시 접속하기, 앱 종료하기 기능을 구현해준다.
             try
             {
                 await DataDirector.InstanceInitialzeAsync();
             }
             catch (Exception e)
             {
-
-            }
-            finally
-            {
-
+                await Dispatcher.CurrentDispatcher.BeginInvoke(new Func<Exception, Task>(ShowConnectionFailDialog), e);
+                return;
             }
 
             InventoryStatusControl inventoryStatus = new InventoryStatusControl();
