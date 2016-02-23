@@ -90,6 +90,7 @@
     <Compile Include="Test\InventoryStatusViewModelUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\ProjectUnitTest.cs" />
+    <Compile Include="Test\NewtonSoftjsonUnitTest.cs" />
     <Compile Include="Tool\RandomLinq.cs" />
   </ItemGroup>
   <ItemGroup>

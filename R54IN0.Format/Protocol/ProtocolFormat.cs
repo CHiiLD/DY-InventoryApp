@@ -70,12 +70,17 @@ namespace R54IN0.Format
             return result;
         }
 
-        public byte[] ToByteArray(string name)
+        /// <summary>
+        /// ProtocolFormat 프로퍼티를 Json데이터로 변환 후 byte[] 데이터로 변환
+        /// </summary>
+        /// <param name="requestName"></param>
+        /// <returns></returns>
+        public byte[] ToByteArray(string requestName)
         {
-            if (name.Length != NAME_SIZE && !IsRequestName(name))
+            if (requestName.Length != NAME_SIZE && !IsRequestName(requestName))
                 throw new Exception();
 
-            Name = name;
+            Name = requestName;
 
             string json = JsonConvert.SerializeObject(this);
             int jsonLen = Encoding.UTF8.GetByteCount(json);
@@ -84,7 +89,7 @@ namespace R54IN0.Format
                 throw new Exception();
 
             byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
-            byte[] headerBytes = Encoding.UTF8.GetBytes(name + lenstr);
+            byte[] headerBytes = Encoding.UTF8.GetBytes(requestName + lenstr);
             byte[] protocolData = new byte[jsonBytes.Length + headerBytes.Length];
             Array.Copy(headerBytes, protocolData, headerBytes.Length);
             Array.Copy(jsonBytes, 0, protocolData, headerBytes.Length, jsonBytes.Length);
@@ -92,10 +97,16 @@ namespace R54IN0.Format
             return protocolData;
         }
 
-        public static ProtocolFormat ToFormat(string key, byte[] body)
+        /// <summary>
+        /// 서버에서 클라이언트 측 데이터를 분석
+        /// </summary>
+        /// <param name="requestName"></param>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        public static ProtocolFormat ToFormat(string requestName, byte[] body)
         {
             byte[] jsonBytes = body;
-            string name = key;
+            string name = requestName;
             if (!IsRequestName(name))
             {
                 throw new Exception();
@@ -105,6 +116,13 @@ namespace R54IN0.Format
             return format;
         }
 
+        /// <summary>
+        /// 클라이언트에서 서버측 데이터를 분석
+        /// </summary>
+        /// <param name="readBuffer"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static ProtocolFormat ToFormat(byte[] readBuffer, int offset, int length)
         {
             byte[] nameBytes = new byte[NAME_SIZE];

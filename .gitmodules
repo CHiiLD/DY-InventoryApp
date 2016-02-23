@@ -31,3 +31,6 @@
 [submodule "SuperSocket.ClientEngine"]
 	path = SuperSocket.ClientEngine
 	url = https://github.com/kerryjiang/SuperSocket.ClientEngine.git
+[submodule "SuperSocket"]
+	path = SuperSocket
+	url = https://github.com/kerryjiang/SuperSocket.git

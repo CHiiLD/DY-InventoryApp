@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using R54IN0.Format;
 using System;
 using System.Collections.Generic;
@@ -43,12 +44,9 @@ namespace R54IN0.WPF
         }
 
         public bool Open()
-        {
-#if DEBUG
-            _conn = new MySqlConnection("Host=child_home.gonetis.com;Port=3306;Server=child_home.gonetis.com;Database=test_inventory;Uid=child;Pwd=f54645464");
-#else
-            _conn = new MySqlConnection("Server=localhost;Database=inventory;Uid=root;Pwd=f54645464");
-#endif
+        { 
+            string connectStr = MySqlConfig.ConnectionString(@".\mysql.json");
+            _conn = new MySqlConnection(connectStr);
             _conn.Open();
 #if false
             //Table 생성
@@ -63,10 +61,8 @@ namespace R54IN0.WPF
             CreateTable<Supplier>();
             CreateTable<Warehouse>();
 #endif
-
-            _readSession = new System.Net.Sockets.TcpClient();
-            _readSession.Connect("127.0.0.1", 4000);
-
+            //_readSession = new System.Net.Sockets.TcpClient();
+            //_readSession.Connect("127.0.0.1", 4000);
             return true;
         }
 
@@ -230,7 +226,7 @@ namespace R54IN0.WPF
             return QueryReturnTuple<T1>(sql, args);
         }
 
-#region private method
+        #region private method
 
         private void CalcInventoryQty<TableT>(string stockID, string invID = null)
         {
@@ -480,6 +476,6 @@ namespace R54IN0.WPF
         {
 
         }
-#endregion private method
+        #endregion private method
     }
 }

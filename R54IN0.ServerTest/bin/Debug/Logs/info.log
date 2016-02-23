@@ -48,3 +48,10 @@ This session was closed for ProtocolError!
 2016-02-23 00:33:28,620 [12056] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
 2016-02-23 00:33:28,770 [3568] INFO  ReadOnlyServer - Session: 84addd4e-21fb-47bc-9828-38456c5e3180/127.0.0.1:4592
 A new session connected!
+2016-02-23 14:01:06,026 [31328] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 14:01:06,032 [31328] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 14:01:21,046 [31328] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 14:01:56,530 [32020] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 14:02:11,614 [32020] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-23 14:05:26,338 [34760] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-23 14:05:41,372 [34760] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!

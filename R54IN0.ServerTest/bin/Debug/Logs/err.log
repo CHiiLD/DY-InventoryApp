@@ -70,3 +70,47 @@ System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
    위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
    위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-23 14:01:06,015 [31328] ERROR ReadOnlyServer - One exception wa thrown in the method 'OnStartup()'.
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   위치: MySql.Data.MySqlClient.NativeDriver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
+   위치: R54IN0.Server.ReadOnlyServer.OnStarted() 파일 C:\Users\CHILD\GitHub\R54IN0\R54IN0.Server\Server\OnlyRead\ReadOnlyServer.cs:줄 33
+   위치: SuperSocket.SocketBase.AppServerBase`2.Start() 파일 C:\Users\CHILD\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1077
+2016-02-23 14:01:21,046 [31328] ERROR ReadOnlyServer - One exception wa thrown in the method 'OnStartup()'.
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   위치: MySql.Data.MySqlClient.NativeDriver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
+   위치: R54IN0.Server.ReadOnlyServer.OnStarted() 파일 C:\Users\CHILD\GitHub\R54IN0\R54IN0.Server\Server\OnlyRead\ReadOnlyServer.cs:줄 33
+   위치: SuperSocket.SocketBase.AppServerBase`2.Start() 파일 C:\Users\CHILD\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1077
+2016-02-23 14:01:56,509 [32020] ERROR ReadOnlyServer - One exception wa thrown in the method 'OnStartup()'.
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   위치: MySql.Data.MySqlClient.NativeDriver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
+   위치: R54IN0.Server.ReadOnlyServer.OnStarted() 파일 C:\Users\CHILD\GitHub\R54IN0\R54IN0.Server\Server\OnlyRead\ReadOnlyServer.cs:줄 33
+   위치: SuperSocket.SocketBase.AppServerBase`2.Start() 파일 C:\Users\CHILD\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1077
+2016-02-23 14:05:26,322 [34760] ERROR ReadOnlyServer - One exception wa thrown in the method 'OnStartup()'.
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   위치: MySql.Data.MySqlClient.NativeDriver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
+   위치: R54IN0.Server.ReadOnlyServer.OnStarted() 파일 C:\Users\CHILD\GitHub\R54IN0\R54IN0.Server\Server\OnlyRead\ReadOnlyServer.cs:줄 33
+   위치: SuperSocket.SocketBase.AppServerBase`2.Start() 파일 C:\Users\CHILD\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1077

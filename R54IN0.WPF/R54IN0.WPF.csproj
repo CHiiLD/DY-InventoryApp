@@ -187,6 +187,7 @@
     <Compile Include="DailyInventory\Data\Client\Event\SQLInsertEventArgs.cs" />
     <Compile Include="DailyInventory\Data\Inventory\UpdateLocker.cs" />
     <Compile Include="DailyInventory\Data\TreeViewNodeJsonFormat.cs" />
+    <Compile Include="DailyInventory\MySqlConfig.cs" />
     <Compile Include="DailyInventory\Windows\FieldManagerWindow.xaml.cs">
       <DependentUpon>FieldManagerWindow.xaml</DependentUpon>
     </Compile>
@@ -277,6 +278,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="mysql.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
