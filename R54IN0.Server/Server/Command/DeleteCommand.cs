@@ -53,7 +53,11 @@ namespace R54IN0.Server
                 cmd.ExecuteNonQuery();
 
             SerialKiller(conn, type, id);
-            //DataDeleteEventHandler(this, new SQLDeleteEventArgs(typeof(TableT), id));
+
+            byte[] data = new ProtocolFormat(type).SetID(id).ToBytes(ReceiveName.DELETE);
+            foreach (WriteOnlySession s in server.GetAllSessions())
+                s.Send(data, 0, data.Length);
+
             this.CalcInventoryFormatQty(conn, type, id, invID);
             KillProject(session, conn, projID);
         }

@@ -100,7 +100,10 @@ namespace R54IN0.Server
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
 
-            //DataInsertEventHandler(this, new SQLInsertEventArgs(item));
+            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(ReceiveName.DELETE);
+            foreach (WriteOnlySession s in server.GetAllSessions())
+                s.Send(data, 0, data.Length);
+
             this.CalcInventoryFormatQty(conn, type.Name, iid.ID);
         }
     }

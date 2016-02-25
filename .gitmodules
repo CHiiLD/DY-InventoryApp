@@ -34,3 +34,6 @@
 [submodule "SuperSocket"]
 	path = SuperSocket
 	url = https://github.com/kerryjiang/SuperSocket.git
+[submodule "Dawn.SocketAwaitable"]
+	path = Dawn.SocketAwaitable
+	url = https://github.com/safakgur/Dawn.SocketAwaitable.git

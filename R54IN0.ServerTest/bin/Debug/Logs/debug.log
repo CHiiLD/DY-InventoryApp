@@ -103,3 +103,21 @@
 2016-02-26 08:13:36,933 [4320] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
 2016-02-26 08:13:36,935 [4320] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
 2016-02-26 08:13:37,039 [4320] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-26 02:07:43,313 [8148] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-26 02:07:43,333 [8148] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-26 02:07:43,333 [8148] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-26 02:07:43,388 [8148] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-26 02:07:43,678 [8148] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-26 02:07:43,714 [8148] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-26 02:07:43,840 [8148] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-26 02:07:43,845 [8148] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-26 02:07:43,967 [8148] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-26 02:33:20,039 [2216] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-26 02:33:20,063 [2216] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-26 02:33:20,064 [2216] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-26 02:33:20,126 [2216] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-26 02:33:20,387 [2216] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-26 02:33:20,446 [2216] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-26 02:33:20,562 [2216] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-26 02:33:20,565 [2216] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-26 02:33:20,685 [2216] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped

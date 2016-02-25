@@ -72,6 +72,13 @@ namespace R54IN0.Server
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
 
+            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(ReceiveName.DELETE);
+            foreach (WriteOnlySession s in server.GetAllSessions())
+            {
+                if(s != session)
+                    s.Send(data, 0, data.Length);
+            }
+
             if (type == typeof(IOStockFormat))
             {
                 if (sql.Contains("Quantity") || sql.Contains("StockType"))

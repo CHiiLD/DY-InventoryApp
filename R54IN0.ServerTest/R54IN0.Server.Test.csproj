@@ -63,7 +63,7 @@
     <Compile Include="WriteOnlyServerUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Dawn.SocketAwaitable\src\Dawn.SocketAwaitable\Dawn.SocketAwaitable.csproj">
+    <ProjectReference Include="..\Dawn.SocketAwaitable\src\Dawn.SocketAwaitable\Dawn.SocketAwaitable.csproj">
       <Project>{09c67697-1b3e-4e40-a972-c6768ffa006c}</Project>
       <Name>Dawn.SocketAwaitable</Name>
     </ProjectReference>
