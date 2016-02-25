@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,8 +15,10 @@ namespace R54IN0.Format
         public string Table { get; set; }
         public string ID { get; set; }
         public string SQL { get; set; }
+        public string Ping { get; set; }
+        public object Value { get; set; }
         public Dictionary<string, object> KeyValues { get; set; }
-        public List<object> Formats { get; set; }
+        public List<object> JFormatList { get; set; }
 
         public ProtocolFormat()
         {
@@ -26,16 +30,9 @@ namespace R54IN0.Format
             Table = type.Name;
         }
 
-        public ProtocolFormat(Type type, Dictionary<string, object> data)
-        {
-            Table = type.Name;
-            KeyValues = data;
-        }
-
-        public ProtocolFormat(string type, List<object> formats)
+        public ProtocolFormat(string type)
         {
             Table = type;
-            Formats = formats;
         }
 
         public ProtocolFormat SetID(string id)
@@ -50,9 +47,42 @@ namespace R54IN0.Format
             return this;
         }
 
+        public ProtocolFormat SetPing(string ping)
+        {
+            Ping = ping;
+            return this;
+        }
+
+        public ProtocolFormat SetFormats(List<object> formats)
+        {
+            JFormatList = formats;
+            return this;
+        }
+
+        public List<TableT> ConvertJFormatList<TableT>() where TableT : class, IID, new()
+        {
+            if (JFormatList == null)
+                return null;
+
+            List<TableT> result = new List<TableT>();
+            PropertyInfo[] properties = typeof(TableT).GetProperties();
+            foreach (JObject jobj in JFormatList)
+            {
+                TableT t = jobj.ToObject<TableT>();
+                result.Add(t);
+            }
+            return result;
+        }
+
+        public ProtocolFormat SetQueryResult(object value)
+        {
+            Value = value;
+            return this;
+        }
+
         public static bool IsRequestName(string header)
         {
-            bool result = false;
+            bool ret = false;
             switch (header)
             {
                 case SELECT_ALL:
@@ -62,34 +92,30 @@ namespace R54IN0.Format
                 case INSERT:
                 case DELETE:
                 case UPDATE:
-                    result = true;
-                    break;
-                default:
+                case PING:
+                case PONG:
+                    ret = true;
                     break;
             }
-            return result;
+            return ret;
         }
 
         /// <summary>
         /// ProtocolFormat 프로퍼티를 Json데이터로 변환 후 byte[] 데이터로 변환
         /// </summary>
-        /// <param name="requestName"></param>
+        /// <param name="receiveName"></param>
         /// <returns></returns>
-        public byte[] ToByteArray(string requestName)
+        public byte[] ToBytes(string receiveName)
         {
-            if (requestName.Length != NAME_SIZE && !IsRequestName(requestName))
+            if (!IsRequestName(receiveName))
                 throw new Exception();
 
-            Name = requestName;
-
+            Name = receiveName;
             string json = JsonConvert.SerializeObject(this);
             int jsonLen = Encoding.UTF8.GetByteCount(json);
-            string lenstr = string.Format("{0:D4}", jsonLen);
-            if (lenstr.Length != BODYLEN_SIZE)
-                throw new Exception();
-
+            string jsonLenStr = string.Format("{0:D4}", jsonLen);
             byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
-            byte[] headerBytes = Encoding.UTF8.GetBytes(requestName + lenstr);
+            byte[] headerBytes = Encoding.UTF8.GetBytes(receiveName + jsonLenStr);
             byte[] protocolData = new byte[jsonBytes.Length + headerBytes.Length];
             Array.Copy(headerBytes, protocolData, headerBytes.Length);
             Array.Copy(jsonBytes, 0, protocolData, headerBytes.Length, jsonBytes.Length);
@@ -100,17 +126,16 @@ namespace R54IN0.Format
         /// <summary>
         /// 서버에서 클라이언트 측 데이터를 분석
         /// </summary>
-        /// <param name="requestName"></param>
+        /// <param name="receiveName"></param>
         /// <param name="body"></param>
         /// <returns></returns>
-        public static ProtocolFormat ToFormat(string requestName, byte[] body)
+        public static ProtocolFormat ToFormat(string receiveName, byte[] body)
         {
             byte[] jsonBytes = body;
-            string name = requestName;
+            string name = receiveName;
             if (!IsRequestName(name))
-            {
-                throw new Exception();
-            }
+                throw new Exception(string.Format("Name을 알 수 없습니다. {0}", name));
+
             string json = Encoding.UTF8.GetString(jsonBytes);
             ProtocolFormat format = JsonConvert.DeserializeObject<ProtocolFormat>(json);
             return format;
@@ -129,20 +154,17 @@ namespace R54IN0.Format
             byte[] bodyLenBytes = new byte[BODYLEN_SIZE];
             byte[] jsonBytes = new byte[readBuffer.Length - HEADER_SIZE];
             Array.Copy(readBuffer, offset, nameBytes, 0, NAME_SIZE);
-            Array.Copy(readBuffer, offset + NAME_SIZE, nameBytes, 0, BODYLEN_SIZE);
+            Array.Copy(readBuffer, offset + NAME_SIZE, bodyLenBytes, 0, BODYLEN_SIZE);
 
             string name = Encoding.UTF8.GetString(nameBytes);
             if (!IsRequestName(name))
-            {
-                throw new Exception();
-            }
+                throw new Exception(string.Format("Name을 알 수 없습니다. {0}", name));
 
             string jsonLens = Encoding.UTF8.GetString(bodyLenBytes);
             int jsonLen = int.Parse(jsonLens);
+
             if (jsonLen != length - HEADER_SIZE)
-            {
-                throw new Exception();
-            }
+                throw new Exception(string.Format("bodyLength와 실제 Json string Length가 불일치합니다."));
 
             Array.Copy(readBuffer, offset + HEADER_SIZE, jsonBytes, 0, length - HEADER_SIZE);
             string json = Encoding.UTF8.GetString(jsonBytes);
@@ -150,5 +172,7 @@ namespace R54IN0.Format
             ProtocolFormat format = JsonConvert.DeserializeObject<ProtocolFormat>(json);
             return format;
         }
+
+
     }
 }

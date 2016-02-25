@@ -1,0 +1,34 @@
+﻿2016-02-26 00:09:07,057 [21840] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-26 00:09:33,765 [21928] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-26 00:09:33,791 [11812] INFO  SomeServer - Session: 5f2bcc69-c19c-4191-b4c2-9d433c8894dd/127.0.0.1:10066
+A new session connected!
+2016-02-26 00:09:33,814 [11812] INFO  SomeServer - Session: 5f2bcc69-c19c-4191-b4c2-9d433c8894dd/127.0.0.1:10066
+This session was closed for ClientClosing!
+2016-02-26 00:09:52,872 [8248] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-26 00:09:52,949 [4132] INFO  SomeServer - Session: 26915e72-b7f5-4019-9e77-20a7b75227b5/127.0.0.1:10135
+A new session connected!
+2016-02-26 00:11:15,943 [19228] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-26 00:11:15,969 [22652] INFO  SomeServer - Session: 20fba72b-6d14-4250-b82b-d2c2c3573d03/127.0.0.1:10174
+A new session connected!
+2016-02-26 00:11:16,000 [2224] INFO  SomeServer - Session: 20fba72b-6d14-4250-b82b-d2c2c3573d03/127.0.0.1:10174
+This session was closed for ClientClosing!
+2016-02-26 00:11:16,043 [22652] INFO  SomeServer - Session: eb2a7349-5bc5-4b8a-97d2-061f2d0b690a/127.0.0.1:10175
+A new session connected!
+2016-02-26 00:11:16,045 [17880] INFO  SomeServer - Session: eb2a7349-5bc5-4b8a-97d2-061f2d0b690a/127.0.0.1:10175
+This session was closed for ClientClosing!
+2016-02-26 00:54:32,852 [15320] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-26 00:54:32,884 [13608] INFO  SomeServer - Session: 6c499eef-65c8-4acd-bb77-ea3e2d4e7f87/127.0.0.1:10669
+A new session connected!
+2016-02-26 00:54:32,908 [23296] INFO  SomeServer - Session: 6c499eef-65c8-4acd-bb77-ea3e2d4e7f87/127.0.0.1:10669
+This session was closed for ClientClosing!
+2016-02-26 00:54:37,337 [10204] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-26 00:54:37,361 [13056] INFO  SomeServer - Session: 90cc16d4-9123-4f91-a303-2bb075826be9/127.0.0.1:10670
+A new session connected!
+2016-02-26 00:54:37,389 [18660] INFO  SomeServer - Session: 90cc16d4-9123-4f91-a303-2bb075826be9/127.0.0.1:10670
+This session was closed for ClientClosing!
+2016-02-26 04:50:39,346 [15252] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-26 04:50:39,375 [20664] INFO  SomeServer - Session: 5b20150d-6c64-4c00-a3c4-dd32a5caf753/127.0.0.1:3854
+A new session connected!
+2016-02-26 04:50:39,398 [20664] INFO  SomeServer - The server instance SomeServer has been stopped!
+2016-02-26 04:50:39,399 [8616] INFO  SomeServer - Session: 5b20150d-6c64-4c00-a3c4-dd32a5caf753/127.0.0.1:3854
+This session was closed for ClientClosing!

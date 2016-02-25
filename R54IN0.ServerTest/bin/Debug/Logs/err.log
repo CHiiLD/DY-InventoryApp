@@ -1,116 +1,234 @@
-﻿2016-02-23 00:29:33,064 [12132] ERROR ReadOnlyServer - Session: e9bb699e-51c2-4d12-ace0-8e6df2dffedd/127.0.0.1:4337
+﻿2016-02-26 01:36:11,462 [2736] ERROR ReadOnlyServer - Session: 68fb2c4b-58ad-48ee-a066-17391c4b0cf1/127.0.0.1:12308
 Protocol error
 System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
    위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
    위치: System.Convert.ToInt32(String value, Int32 fromBase)
-   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
-   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
-   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
-   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
-2016-02-23 00:29:53,868 [12144] ERROR ReadOnlyServer - Session: 82ab04be-ec9a-4a1d-b302-b25903b3f46d/127.0.0.1:4386
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 26
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-26 01:58:33,951 [20692] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 01:58:33,971 [20692] ERROR ReadOnlyServer - Session: 279cc6ab-d9a5-4ebf-a223-92acfa94c141/127.0.0.1:13023
 Protocol error
-System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
-   위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
-   위치: System.Convert.ToInt32(String value, Int32 fromBase)
-   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
-   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
-   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
-   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
-2016-02-23 00:30:04,815 [8816] ERROR ReadOnlyServer - Session: 2c766f9c-0ed9-4622-a4f4-3fbdbfb245ea/127.0.0.1:4450
+System.FormatException: 입력 문자열의 형식이 잘못되었습니다.
+   위치: System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   위치: System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   위치: System.Convert.ToInt32(String value)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 23
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-26 02:00:14,531 [1812] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 02:00:14,571 [1812] ERROR ReadOnlyServer - Session: 7fb0dde2-da8a-49a3-a1c5-f727e2ea4bab/127.0.0.1:13203
 Protocol error
-System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
-   위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
-   위치: System.Convert.ToInt32(String value, Int32 fromBase)
-   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
-   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
-   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
-   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
-2016-02-23 00:30:15,130 [1136] ERROR ReadOnlyServer - Session: 996ce066-b688-427d-b0fd-a1d3f5c25d4d/127.0.0.1:4510
+System.FormatException: 입력 문자열의 형식이 잘못되었습니다.
+   위치: System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   위치: System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   위치: System.Convert.ToInt32(String value)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 23
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-26 02:01:25,440 [22428] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 02:01:25,477 [22428] ERROR ReadOnlyServer - Session: b8bd1b7a-c2f7-41de-a144-a6333477886f/127.0.0.1:13310
 Protocol error
-System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
-   위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
-   위치: System.Convert.ToInt32(String value, Int32 fromBase)
-   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
-   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
-   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
-   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
-2016-02-23 00:33:01,235 [2876] ERROR ReadOnlyServer - Session: 3da5378e-f375-4215-806a-60702dfe1075/127.0.0.1:4542
+System.FormatException: 입력 문자열의 형식이 잘못되었습니다.
+   위치: System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   위치: System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   위치: System.Convert.ToInt32(String value)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 23
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-26 02:02:19,919 [19572] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 02:04:33,818 [18352] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 02:04:37,998 [18352] ERROR ReadOnlyServer - Session: f1a38f86-4d5d-4ba1-84ec-df6d9b331d0e/127.0.0.1:13516
 Protocol error
-System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
-   위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
-   위치: System.Convert.ToInt32(String value, Int32 fromBase)
-   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
-   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
-   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
-   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
-2016-02-23 00:33:28,933 [9308] ERROR ReadOnlyServer - Session: 84addd4e-21fb-47bc-9828-38456c5e3180/127.0.0.1:4592
+System.FormatException: 입력 문자열의 형식이 잘못되었습니다.
+   위치: System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   위치: System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   위치: System.Convert.ToInt32(String value)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 23
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-26 02:04:56,800 [21140] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 02:04:58,294 [21140] ERROR ReadOnlyServer - Session: 24f6cd22-9b3a-4dff-a47f-35a9627b99e9/127.0.0.1:13619
 Protocol error
-System.FormatException: 인식할 수 있는 숫자를 찾지 못했습니다.
-   위치: System.ParseNumbers.StringToInt(String s, Int32 radix, Int32 flags, Int32* currPos)
-   위치: System.Convert.ToInt32(String value, Int32 fromBase)
-   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\Child\Github\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 25
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
-   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
-   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
-   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
-   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\Child\Github\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
-2016-02-23 14:01:06,015 [31328] ERROR ReadOnlyServer - One exception wa thrown in the method 'OnStartup()'.
-MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
-   위치: MySql.Data.MySqlClient.NativeDriver.Open()
-   위치: MySql.Data.MySqlClient.Driver.Open()
-   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
-   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
-   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
-   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
-   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
-   위치: R54IN0.Server.ReadOnlyServer.OnStarted() 파일 C:\Users\CHILD\GitHub\R54IN0\R54IN0.Server\Server\OnlyRead\ReadOnlyServer.cs:줄 33
-   위치: SuperSocket.SocketBase.AppServerBase`2.Start() 파일 C:\Users\CHILD\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1077
-2016-02-23 14:01:21,046 [31328] ERROR ReadOnlyServer - One exception wa thrown in the method 'OnStartup()'.
-MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
-   위치: MySql.Data.MySqlClient.NativeDriver.Open()
-   위치: MySql.Data.MySqlClient.Driver.Open()
-   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
-   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
-   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
-   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
-   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
-   위치: R54IN0.Server.ReadOnlyServer.OnStarted() 파일 C:\Users\CHILD\GitHub\R54IN0\R54IN0.Server\Server\OnlyRead\ReadOnlyServer.cs:줄 33
-   위치: SuperSocket.SocketBase.AppServerBase`2.Start() 파일 C:\Users\CHILD\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1077
-2016-02-23 14:01:56,509 [32020] ERROR ReadOnlyServer - One exception wa thrown in the method 'OnStartup()'.
-MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
-   위치: MySql.Data.MySqlClient.NativeDriver.Open()
-   위치: MySql.Data.MySqlClient.Driver.Open()
-   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
-   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
-   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
-   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
-   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
-   위치: R54IN0.Server.ReadOnlyServer.OnStarted() 파일 C:\Users\CHILD\GitHub\R54IN0\R54IN0.Server\Server\OnlyRead\ReadOnlyServer.cs:줄 33
-   위치: SuperSocket.SocketBase.AppServerBase`2.Start() 파일 C:\Users\CHILD\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1077
-2016-02-23 14:05:26,322 [34760] ERROR ReadOnlyServer - One exception wa thrown in the method 'OnStartup()'.
-MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
-   위치: MySql.Data.MySqlClient.NativeDriver.Open()
-   위치: MySql.Data.MySqlClient.Driver.Open()
-   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
-   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
-   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
-   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
-   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
-   위치: R54IN0.Server.ReadOnlyServer.OnStarted() 파일 C:\Users\CHILD\GitHub\R54IN0\R54IN0.Server\Server\OnlyRead\ReadOnlyServer.cs:줄 33
-   위치: SuperSocket.SocketBase.AppServerBase`2.Start() 파일 C:\Users\CHILD\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1077
+System.FormatException: 입력 문자열의 형식이 잘못되었습니다.
+   위치: System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   위치: System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   위치: System.Convert.ToInt32(String value)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 23
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-26 02:05:15,536 [10720] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 02:06:35,102 [724] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 02:06:35,117 [724] ERROR ReadOnlyServer - Session: 506a021f-8bf4-46d2-81c3-e43b2fd6924e/127.0.0.1:13760
+Protocol error
+System.FormatException: 입력 문자열의 형식이 잘못되었습니다.
+   위치: System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   위치: System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   위치: System.Convert.ToInt32(String value)
+   위치: R54IN0.Server.ProtocolFormatReceiveFilter.GetBodyLengthFromHeader(Byte[] header, Int32 offset, Int32 length) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Filter\ProtocolFormatReceiveFilter.cs:줄 23
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.ProcessMatchedRequest(Byte[] buffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 117
+   위치: SuperSocket.Facility.Protocol.FixedSizeReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedSizeReceiveFilter.cs:줄 64
+   위치: SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter`1.Filter(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\Facility\Protocol\FixedHeaderReceiveFilter.cs:줄 48
+   위치: SuperSocket.SocketBase.AppSession`2.FilterRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied, Int32& rest, Int32& offsetDelta) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 515
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 574
+   위치: SuperSocket.SocketEngine.AsyncSocketSession.ProcessReceive(SocketAsyncEventArgs e) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\AsyncSocketSession.cs:줄 240
+2016-02-26 02:08:10,111 [7184] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 02:08:37,142 [21956] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 02:09:05,981 [1164] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 02:09:34,434 [19012] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 02:10:01,498 [22424] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.InvalidOperationException: Connection must be valid and open.
+   위치: MySql.Data.MySqlClient.MySqlConnection.Throw(Exception ex)
+   위치: MySql.Data.MySqlClient.MySqlCommand.CheckState()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader()
+   위치: R54IN0.Server.SelectAllCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 48
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 03:49:01,803 [8748] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
+   위치: R54IN0.Server.SelectAllCommand.Send(ReadOnlySession session, String sql, String formatName) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 56
+   위치: R54IN0.Server.QueryCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryCommand.cs:줄 26
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580
+2016-02-26 03:49:13,325 [22748] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
+   위치: R54IN0.Server.SelectAllCommand.Send(ReadOnlySession session, String sql, String formatName) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 56
+   위치: R54IN0.Server.QueryCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryCommand.cs:줄 26
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 580

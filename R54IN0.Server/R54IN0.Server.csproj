@@ -45,7 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Server\Command\PingCommand.cs" />
+    <Compile Include="Server\Command\QueryInstanceCommand.cs" />
+    <Compile Include="Server\Command\QueryValueCommand.cs" />
     <Compile Include="Server\Command\SelectAllCommand.cs" />
+    <Compile Include="Server\Command\SelectCommand.cs" />
+    <Compile Include="Server\OnlyWrite\WriteOnlySession.cs" />
     <Compile Include="Server\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\OnlyRead\ReadOnlyServer.cs" />

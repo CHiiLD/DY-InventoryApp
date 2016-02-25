@@ -1,0 +1,28 @@
+﻿2016-02-25 23:42:16,101 [6156] DEBUG SomeServer-33439030 - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:44:36,889 [22612] DEBUG SomeServer-33439030 - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:44:46,833 [22544] DEBUG SomeServer-33439030 - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:46:24,194 [18720] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:47:09,694 [15448] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:47:09,754 [15448] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-25 23:47:20,970 [15320] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:47:21,054 [15320] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-25 23:48:20,109 [16584] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:48:20,172 [16584] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-25 23:48:34,411 [19852] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:48:34,484 [19852] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-25 23:49:09,796 [15988] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:49:09,879 [15988] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-25 23:54:00,705 [2652] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:54:00,766 [2652] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-25 23:54:17,957 [14420] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:54:18,038 [14420] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-25 23:55:19,292 [8512] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:55:19,354 [8512] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-25 23:56:36,256 [8248] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:56:36,322 [8248] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-25 23:56:48,741 [13436] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:56:48,826 [13436] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-25 23:57:06,220 [3292] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:57:06,305 [3292] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-25 23:57:20,505 [16684] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-25 23:57:20,568 [16684] DEBUG SomeServer - Listener (0.0.0.0:2012) was started

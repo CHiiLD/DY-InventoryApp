@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Test\FieldManagerViewModelUnitTest.cs" />
     <Compile Include="Test\IOStockManagerViewModelUnitTest.cs" />
+    <Compile Include="Test\MySQLClientUnitTest.cs" />
     <Compile Include="Test\TreeViewViewModelUnitTest.cs" />
     <Compile Include="Test\InventoryManagerDialogViewModelUnitTest.cs" />
     <Compile Include="Test\IOStockStatusViewModelUnitTest.cs" />
@@ -106,9 +107,9 @@
       <Project>{6A912701-3BA1-4975-ADBF-160CAF66B640}</Project>
       <Name>GalaSoft.MvvmLight %28PCL%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MySQL.Test\MySQL.Test.csproj">
+    <ProjectReference Include="..\MySQL.Test\MySQLTest.csproj">
       <Project>{14258388-26c2-4bc1-a836-86b677038273}</Project>
-      <Name>MySQL.Test</Name>
+      <Name>MySQLTest</Name>
     </ProjectReference>
     <ProjectReference Include="..\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
       <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>

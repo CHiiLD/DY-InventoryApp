@@ -31,13 +31,7 @@ namespace MySQL.Test
         }
 
         [TestMethod]
-        public void UnitTest()
-        {
-            Assert.IsNotNull(_conn);
-        }
-
-        [TestMethod]
-        public void UnitTest2()
+        public void DummyWorkTest()
         {
             Assert.IsNotNull(_conn);
         }

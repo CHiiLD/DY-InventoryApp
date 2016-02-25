@@ -5,16 +5,17 @@ using SuperSocket.SocketBase.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace R54IN0.Server.Server.Command
+namespace R54IN0.Server
 {
     public class SelectAllCommand : ICommand<ReadOnlySession, BinaryRequestInfo>
     {
-        public string Name
+        public virtual string Name
         {
             get
             {
@@ -28,30 +29,32 @@ namespace R54IN0.Server.Server.Command
             {
                 case nameof(Maker):
                     return new Maker();
+                case nameof(IOStockFormat):
+                    return new IOStockFormat();
             }
             return null;
         }
 
-        public void ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo)
+        public virtual void ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo)
         {
-            session.Logger.DebugFormat("{0}-{1} CommandExecute", session.AppServer.Name, Name);
-
             ProtocolFormat pfmt = ProtocolFormat.ToFormat(requestInfo.Key, requestInfo.Body);
+            string formatName = pfmt.Table;
+            string sql = string.Format("select * from {0};", formatName);
+            Send(session, sql, formatName);
+        }
 
-            string table = pfmt.Table;
-            string sql = string.Format("select * from {0};", table);
+        public void Send(ReadOnlySession session, string sql, string formatName)
+        {
             List<object> formats = new List<object>();
-
             ReadOnlyServer server = session.AppServer as ReadOnlyServer;
             MySqlConnection conn = server.MySQL;
 
-            Console.WriteLine(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
             using (DbDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    object format = GetForamt(table);
+                    object format = GetForamt(formatName);
                     PropertyInfo[] properties = format.GetType().GetProperties();
                     foreach (PropertyInfo property in properties)
                     {
@@ -65,7 +68,7 @@ namespace R54IN0.Server.Server.Command
                 }
             }
 
-            byte[] response = new ProtocolFormat(table, formats).ToByteArray(Name);
+            byte[] response = new ProtocolFormat(formatName).SetFormats(formats).ToBytes(Name);
             session.Send(response, 0, response.Length);
         }
     }

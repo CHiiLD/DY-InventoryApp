@@ -1,4 +1,5 @@
-﻿using SuperSocket.Common;
+﻿using R54IN0.Format;
+using SuperSocket.Common;
 using SuperSocket.Facility.Protocol;
 using SuperSocket.SocketBase.Protocol;
 using System;
@@ -11,24 +12,30 @@ namespace R54IN0.Server
 {
     public class ProtocolFormatReceiveFilter : FixedHeaderReceiveFilter<BinaryRequestInfo>
     {
-        public ProtocolFormatReceiveFilter() : base(8)
+        public ProtocolFormatReceiveFilter() : base(ReceiveName.HEADER_SIZE)
         {
 
         }
 
         protected override int GetBodyLengthFromHeader(byte[] header, int offset, int length)
         {
-            byte[] dest = new byte[4];
-            Array.Copy(header, offset, dest, 0, 4);
-
-            string lens = Encoding.Default.GetString(dest);
-            int len = Convert.ToInt32(lens, 10);
+            int len = 0;
+            string lens = null;
+            try
+            {
+                lens = Encoding.UTF8.GetString(header, offset + ReceiveName.NAME_SIZE, ReceiveName.BODYLEN_SIZE);
+                len = Convert.ToInt32(lens);
+            }
+            catch(Exception e)
+            {
+                
+            }
             return len;
         }
 
         protected override BinaryRequestInfo ResolveRequestInfo(ArraySegment<byte> header, byte[] bodyBuffer, int offset, int length)
         {
-            return new BinaryRequestInfo(Encoding.UTF8.GetString(header.Array, header.Offset, 4), bodyBuffer.CloneRange(offset, length));
+            return new BinaryRequestInfo(Encoding.UTF8.GetString(header.Array, header.Offset, ReceiveName.NAME_SIZE), bodyBuffer.CloneRange(offset, length));
         }
     }
 }

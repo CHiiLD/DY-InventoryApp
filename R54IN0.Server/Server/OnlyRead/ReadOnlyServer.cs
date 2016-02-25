@@ -11,36 +11,24 @@ namespace R54IN0.Server
 {
     public class ReadOnlyServer : AppServer<ReadOnlySession, BinaryRequestInfo>
     {
-        private MySqlConnection _mySqlConn;
+        private MySqlConnection _mysql;
 
         public ReadOnlyServer() : base(new DefaultReceiveFilterFactory<ProtocolFormatReceiveFilter, BinaryRequestInfo>())
         {
-            _mySqlConn = new MySqlConnection(
-                "Host=child_home.gonetis.com;Port=3306;Server=child_home.gonetis.com;Database=test_inventory;Uid=child;Pwd=f54645464");
+#if DEBUG
+            _mysql = new MySqlConnection("Server=localhost;Database=test_inventory;Uid=child;Pwd=f54645464");
+#else
+            _mySqlConn = new MySqlConnection("Server=localhost;Database=inventory;Uid=child;Pwd=f54645464");
+#endif
+            _mysql.Open();
         }
 
         public MySqlConnection MySQL
         {
             get
             {
-                return _mySqlConn;
+                return _mysql;
             }
-        }
-
-        protected override void OnStarted()
-        {
-            Logger.Debug(Name + " 서버 시작 ...");
-            _mySqlConn.Open();
-            Logger.Debug(Name + " 데이터베이스 접속 성공");
-            base.OnStarted();
-        }
-
-        protected override void OnStopped()
-        {
-            Logger.Debug(Name + " 서버 종료 ...");
-            base.OnStopped();
-            Logger.Debug(Name + " 데이터베이스 접속 해제");
-            _mySqlConn.Close();
         }
     }
 }

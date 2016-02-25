@@ -1,0 +1,44 @@
+﻿2016-02-25 23:47:09,754 [15448] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:47:09,779 [20096] INFO  SomeServer - Session: d95cdf15-c801-40dc-800d-f683c5712ae3/127.0.0.1:9379
+A new session connected!
+2016-02-25 23:47:21,055 [15320] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:47:27,185 [11812] INFO  SomeServer - Session: 16722aa4-60b4-4412-8991-56eeaef5bc07/127.0.0.1:9450
+A new session connected!
+2016-02-25 23:48:20,173 [16584] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:48:20,198 [6472] INFO  SomeServer - Session: 399875b3-5e2e-4025-b065-8cf7887f0441/127.0.0.1:9490
+A new session connected!
+2016-02-25 23:48:34,485 [19852] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:48:34,516 [18100] INFO  SomeServer - Session: 12b71e28-081c-4fa4-9673-c01c346f4cb5/127.0.0.1:9491
+A new session connected!
+2016-02-25 23:49:09,880 [15988] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:49:09,917 [1812] INFO  SomeServer - Session: 80f434b8-d7d0-41e1-83e0-38024afa2069/127.0.0.1:9558
+A new session connected!
+2016-02-25 23:54:00,767 [2652] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:54:00,796 [21536] INFO  SomeServer - Session: dfdf5abb-b184-427f-94bd-11ed6902f6d2/127.0.0.1:9619
+A new session connected!
+2016-02-25 23:54:18,039 [14420] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:54:19,552 [7636] INFO  SomeServer - Session: a6805e57-6734-4ec1-bc97-53f45cba90e7/127.0.0.1:9686
+A new session connected!
+2016-02-25 23:55:19,355 [8512] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:55:19,387 [14560] INFO  SomeServer - Session: b98ee28b-eef1-4bcb-bc33-175286afb86b/127.0.0.1:9731
+A new session connected!
+2016-02-25 23:55:19,411 [11856] INFO  SomeServer - Session: b98ee28b-eef1-4bcb-bc33-175286afb86b/127.0.0.1:9731
+This session was closed for ClientClosing!
+2016-02-25 23:56:36,323 [8248] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:56:36,357 [10112] INFO  SomeServer - Session: db87678e-3e14-4d7d-b445-cbedc9dafcb0/127.0.0.1:9761
+A new session connected!
+2016-02-25 23:56:36,394 [18288] INFO  SomeServer - Session: db87678e-3e14-4d7d-b445-cbedc9dafcb0/127.0.0.1:9761
+This session was closed for ClientClosing!
+2016-02-25 23:56:48,827 [13436] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:56:48,877 [16732] INFO  SomeServer - Session: 4bd8e47a-a46f-4078-8e93-155d47ee8865/127.0.0.1:9827
+A new session connected!
+2016-02-25 23:56:51,230 [13748] INFO  SomeServer - Session: 4bd8e47a-a46f-4078-8e93-155d47ee8865/127.0.0.1:9827
+This session was closed for ClientClosing!
+2016-02-25 23:57:06,306 [3292] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:57:06,359 [10740] INFO  SomeServer - Session: 6e5e014c-7874-4db1-a33a-7c44cd8cdca6/127.0.0.1:9928
+A new session connected!
+2016-02-25 23:57:20,568 [16684] INFO  SomeServer - The server instance SomeServer has been started!
+2016-02-25 23:57:20,598 [23236] INFO  SomeServer - Session: 5c8edd12-43d5-46e6-900f-c63a8e0e2e1f/127.0.0.1:9965
+A new session connected!
+2016-02-25 23:57:20,626 [19952] INFO  SomeServer - Session: 5c8edd12-43d5-46e6-900f-c63a8e0e2e1f/127.0.0.1:9965
+This session was closed for ClientClosing!

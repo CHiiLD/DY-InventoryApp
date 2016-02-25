@@ -44,10 +44,12 @@ namespace R54IN0.WPF
         }
 
         public bool Open()
-        { 
+        {
+#if false
             string connectStr = MySqlConfig.ConnectionString(@".\mysql.json");
             _conn = new MySqlConnection(connectStr);
             _conn.Open();
+#endif
 #if false
             //Table 생성
             CreateTable<InventoryFormat>();
@@ -61,8 +63,8 @@ namespace R54IN0.WPF
             CreateTable<Supplier>();
             CreateTable<Warehouse>();
 #endif
-            //_readSession = new System.Net.Sockets.TcpClient();
-            //_readSession.Connect("127.0.0.1", 4000);
+            _readSession = new System.Net.Sockets.TcpClient();
+            _readSession.Connect("127.0.0.1", 4000);
             return true;
         }
 
@@ -196,11 +198,11 @@ namespace R54IN0.WPF
             string sql = string.Format("select * from {0};", typeof(TableT).Name);
             return ExecuteSelect0<TableT>(sql);
 #endif
-            byte[] data = new ProtocolFormat(typeof(TableT)).ToByteArray(ReceiveName.SELECT_ALL);
+            byte[] data = new ProtocolFormat(typeof(TableT)).ToBytes(ReceiveName.SELECT_ALL);
             await _readSession.GetStream().WriteAsync(data, 0, data.Length);
             int size = await _readSession.GetStream().ReadAsync(_buffer, _bufIndex, _buffer.Length - _bufIndex);
             ProtocolFormat pfmt = ProtocolFormat.ToFormat(_buffer, _bufIndex, size);
-            IEnumerable<TableT> formats = pfmt.Formats.Cast<TableT>();
+            IEnumerable<TableT> formats = pfmt.JFormatList.Cast<TableT>();
             return formats.ToList();
         }
 
@@ -226,7 +228,7 @@ namespace R54IN0.WPF
             return QueryReturnTuple<T1>(sql, args);
         }
 
-        #region private method
+#region private method
 
         private void CalcInventoryQty<TableT>(string stockID, string invID = null)
         {
@@ -476,6 +478,6 @@ namespace R54IN0.WPF
         {
 
         }
-        #endregion private method
+#endregion private method
     }
 }

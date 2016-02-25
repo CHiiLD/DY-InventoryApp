@@ -22,5 +22,8 @@ namespace R54IN0.Format
         public const string UPDATE = "UPDT";
 
         public const string ERROR = "ER00";
+
+        public const string PING = "PING";
+        public const string PONG = "PONG";
     }
 }

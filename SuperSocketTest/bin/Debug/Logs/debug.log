@@ -1,0 +1,17 @@
+﻿2016-02-26 00:09:06,988 [21840] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-26 00:09:07,057 [21840] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-26 00:09:33,705 [21928] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-26 00:09:33,764 [21928] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-26 00:09:52,799 [8248] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-26 00:09:52,871 [8248] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-26 00:11:15,881 [19228] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-26 00:11:15,943 [19228] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-26 00:11:16,028 [19228] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-26 00:11:16,038 [19228] DEBUG SomeServer - Listener (0.0.0.0:2012) failed to start
+2016-02-26 00:54:32,778 [15320] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-26 00:54:32,852 [15320] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-26 00:54:37,275 [10204] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-26 00:54:37,337 [10204] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-26 04:50:39,284 [15252] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-26 04:50:39,345 [15252] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-26 04:50:39,397 [20664] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
