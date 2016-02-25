@@ -1,345 +1,174 @@
-﻿2016-02-26 01:36:11,306 [3904] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 01:36:11,334 [22028] INFO  ReadOnlyServer - Session: 68fb2c4b-58ad-48ee-a066-17391c4b0cf1/127.0.0.1:12308
+﻿2016-02-26 06:52:02,195 [20196] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 06:52:02,219 [18384] INFO  WriteOnlyServer - Session: 65dc4916-f836-4c9b-809f-65c06ef161b0/127.0.0.1:1654
 A new session connected!
-2016-02-26 01:36:11,475 [2736] INFO  ReadOnlyServer - Session: 68fb2c4b-58ad-48ee-a066-17391c4b0cf1/127.0.0.1:12308
-This session was closed for ProtocolError!
-2016-02-26 01:37:55,341 [13788] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 01:37:55,424 [23288] INFO  ReadOnlyServer - Session: a295d98b-f474-4616-8ba0-e579f28fa866/127.0.0.1:12393
-A new session connected!
-2016-02-26 01:39:20,154 [16752] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 01:39:20,214 [21236] INFO  ReadOnlyServer - Session: b7d98268-4710-438c-9802-5e83997b7707/127.0.0.1:12499
-A new session connected!
-2016-02-26 01:39:54,708 [10220] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 01:39:54,810 [19376] INFO  ReadOnlyServer - Session: fbba1267-5768-44fa-9e39-ef80de23bd39/127.0.0.1:12598
-A new session connected!
-2016-02-26 01:40:29,395 [12760] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 01:40:29,398 [14056] INFO  ReadOnlyServer - Session: fbba1267-5768-44fa-9e39-ef80de23bd39/127.0.0.1:12598
-This session was closed for ClientClosing!
-2016-02-26 01:40:55,534 [20396] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 01:40:55,584 [6836] INFO  ReadOnlyServer - Session: ca32f2e5-44e3-440c-b689-8d4236b3d206/127.0.0.1:12702
-A new session connected!
-2016-02-26 01:44:09,959 [12644] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 01:44:09,986 [18428] INFO  ReadOnlyServer - Session: a07dfc53-6997-4d47-9180-f0e7b1f44a1b/127.0.0.1:12756
-A new session connected!
-2016-02-26 01:44:10,158 [18428] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 01:44:10,162 [20828] INFO  ReadOnlyServer - Session: a07dfc53-6997-4d47-9180-f0e7b1f44a1b/127.0.0.1:12756
-This session was closed for ClientClosing!
-2016-02-26 01:45:28,490 [18576] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 01:45:28,524 [10512] INFO  ReadOnlyServer - Session: b719aec6-54e7-40bc-bcb2-222a7cd5c514/127.0.0.1:12768
-A new session connected!
-2016-02-26 01:45:28,696 [18576] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 01:45:28,696 [17468] INFO  ReadOnlyServer - Session: b719aec6-54e7-40bc-bcb2-222a7cd5c514/127.0.0.1:12768
-This session was closed for ClientClosing!
-2016-02-26 01:58:33,688 [22268] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 01:58:33,720 [5596] INFO  ReadOnlyServer - Session: 1f9e19f5-2109-40e8-a66b-ce366d6dfaa8/127.0.0.1:13022
-A new session connected!
-2016-02-26 01:58:33,910 [22268] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 01:58:33,915 [22840] INFO  ReadOnlyServer - Session: 1f9e19f5-2109-40e8-a66b-ce366d6dfaa8/127.0.0.1:13022
-This session was closed for ClientClosing!
-2016-02-26 01:58:33,929 [22268] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 01:58:33,932 [22840] INFO  ReadOnlyServer - Session: 279cc6ab-d9a5-4ebf-a223-92acfa94c141/127.0.0.1:13023
-A new session connected!
-2016-02-26 01:58:33,970 [20692] INFO  ReadOnlyServer - Session: 279cc6ab-d9a5-4ebf-a223-92acfa94c141/127.0.0.1:13023
+2016-02-26 06:52:02,257 [9772] INFO  WriteOnlyServer - Session: 65dc4916-f836-4c9b-809f-65c06ef161b0/127.0.0.1:1654
 This session was closed for ApplicationError!
-2016-02-26 01:58:33,998 [22268] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 01:59:13,227 [18372] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 01:59:13,298 [22992] INFO  ReadOnlyServer - Session: b2524afb-d5a4-4325-9355-d25bebf3d972/127.0.0.1:13098
+2016-02-26 06:52:02,396 [20196] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 06:52:32,363 [6016] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 06:52:32,422 [9864] INFO  WriteOnlyServer - Session: 04fa88d1-eefd-48b4-a9c6-9f96b9359b0c/127.0.0.1:1729
 A new session connected!
-2016-02-26 01:59:32,296 [15388] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 01:59:32,370 [22980] INFO  ReadOnlyServer - Session: 7fb0dde2-da8a-49a3-a1c5-f727e2ea4bab/127.0.0.1:13203
+2016-02-26 06:52:59,112 [22504] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 06:52:59,142 [20124] INFO  WriteOnlyServer - Session: 37407e9a-41d4-4ca4-b750-8ee89114b6a6/127.0.0.1:1766
 A new session connected!
-2016-02-26 02:00:14,548 [1812] INFO  ReadOnlyServer - Session: 7fb0dde2-da8a-49a3-a1c5-f727e2ea4bab/127.0.0.1:13203
-This session was closed for ApplicationError!
-2016-02-26 02:00:14,615 [15388] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:01:25,146 [1764] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:01:25,222 [22332] INFO  ReadOnlyServer - Session: b8bd1b7a-c2f7-41de-a144-a6333477886f/127.0.0.1:13310
-A new session connected!
-2016-02-26 02:01:25,459 [22428] INFO  ReadOnlyServer - Session: b8bd1b7a-c2f7-41de-a144-a6333477886f/127.0.0.1:13310
-This session was closed for ApplicationError!
-2016-02-26 02:01:25,521 [1764] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:02:12,162 [10804] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:02:12,235 [11628] INFO  ReadOnlyServer - Session: 96c1b5ad-28c2-41d6-bde0-1dfda1059df0/127.0.0.1:13411
-A new session connected!
-2016-02-26 02:02:19,938 [19572] INFO  ReadOnlyServer - Session: 96c1b5ad-28c2-41d6-bde0-1dfda1059df0/127.0.0.1:13411
-This session was closed for ApplicationError!
-2016-02-26 02:03:34,315 [14640] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:03:34,384 [2420] INFO  ReadOnlyServer - Session: f1a38f86-4d5d-4ba1-84ec-df6d9b331d0e/127.0.0.1:13516
-A new session connected!
-2016-02-26 02:04:33,825 [18352] INFO  ReadOnlyServer - Session: f1a38f86-4d5d-4ba1-84ec-df6d9b331d0e/127.0.0.1:13516
-This session was closed for ApplicationError!
-2016-02-26 02:04:38,055 [14640] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:04:51,205 [18744] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:04:51,274 [16424] INFO  ReadOnlyServer - Session: 24f6cd22-9b3a-4dff-a47f-35a9627b99e9/127.0.0.1:13619
-A new session connected!
-2016-02-26 02:04:56,822 [21140] INFO  ReadOnlyServer - Session: 24f6cd22-9b3a-4dff-a47f-35a9627b99e9/127.0.0.1:13619
-This session was closed for ApplicationError!
-2016-02-26 02:04:58,342 [18744] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:05:11,686 [23240] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:05:11,752 [112] INFO  ReadOnlyServer - Session: 341dd834-49fe-4ad7-91d6-cf008266cafc/127.0.0.1:13717
-A new session connected!
-2016-02-26 02:05:15,555 [10720] INFO  ReadOnlyServer - Session: 341dd834-49fe-4ad7-91d6-cf008266cafc/127.0.0.1:13717
-This session was closed for ApplicationError!
-2016-02-26 02:06:17,760 [5700] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:06:17,793 [22268] INFO  ReadOnlyServer - Session: 153f329a-ae05-4f36-9df1-8140f3e6dd13/127.0.0.1:13756
-A new session connected!
-2016-02-26 02:06:17,962 [20964] INFO  ReadOnlyServer - Session: 153f329a-ae05-4f36-9df1-8140f3e6dd13/127.0.0.1:13756
+2016-02-26 06:52:59,265 [6120] INFO  WriteOnlyServer - Session: 37407e9a-41d4-4ca4-b750-8ee89114b6a6/127.0.0.1:1766
 This session was closed for ClientClosing!
-2016-02-26 02:06:17,963 [5700] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:06:34,877 [20212] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:06:34,911 [3348] INFO  ReadOnlyServer - Session: 506a021f-8bf4-46d2-81c3-e43b2fd6924e/127.0.0.1:13760
+2016-02-26 06:52:59,266 [22504] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 06:53:06,833 [16716] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 06:53:06,859 [9044] INFO  WriteOnlyServer - Session: ea0e43e5-8a85-4edd-bc2f-90f4a55aeec2/127.0.0.1:1769
 A new session connected!
-2016-02-26 02:06:35,115 [724] INFO  ReadOnlyServer - Session: 506a021f-8bf4-46d2-81c3-e43b2fd6924e/127.0.0.1:13760
+2016-02-26 06:53:06,997 [10828] INFO  WriteOnlyServer - Session: ea0e43e5-8a85-4edd-bc2f-90f4a55aeec2/127.0.0.1:1769
+This session was closed for ClientClosing!
+2016-02-26 06:53:06,997 [16716] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 06:53:07,010 [16716] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 06:53:07,012 [9044] INFO  WriteOnlyServer - Session: 346531fb-4ec9-4e50-8a6e-601b7831da3f/127.0.0.1:1770
+A new session connected!
+2016-02-26 06:53:07,123 [16716] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 06:53:07,123 [10828] INFO  WriteOnlyServer - Session: 346531fb-4ec9-4e50-8a6e-601b7831da3f/127.0.0.1:1770
+This session was closed for ClientClosing!
+2016-02-26 07:18:59,100 [23444] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:18:59,125 [7392] INFO  WriteOnlyServer - Session: d5bd573b-0f55-4796-bf77-cdf6e484c53b/127.0.0.1:2050
+A new session connected!
+2016-02-26 07:18:59,267 [9948] INFO  WriteOnlyServer - Session: d5bd573b-0f55-4796-bf77-cdf6e484c53b/127.0.0.1:2050
+This session was closed for ClientClosing!
+2016-02-26 07:18:59,268 [23444] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:18:59,280 [23444] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:18:59,282 [7392] INFO  WriteOnlyServer - Session: 5f60c8e9-ec24-4533-ac7b-03a0150ccebf/127.0.0.1:2051
+A new session connected!
+2016-02-26 07:18:59,386 [9948] INFO  WriteOnlyServer - Session: 5f60c8e9-ec24-4533-ac7b-03a0150ccebf/127.0.0.1:2051
+This session was closed for ClientClosing!
+2016-02-26 07:18:59,386 [23444] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:18:59,388 [23444] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:18:59,392 [13532] INFO  WriteOnlyServer - Session: 93b62357-0869-4e7a-8be0-b4554b9b9cbe/127.0.0.1:2052
+A new session connected!
+2016-02-26 07:18:59,495 [17884] INFO  WriteOnlyServer - Session: 93b62357-0869-4e7a-8be0-b4554b9b9cbe/127.0.0.1:2052
+This session was closed for ClientClosing!
+2016-02-26 07:18:59,495 [23444] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:50:35,827 [13152] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:50:35,863 [5676] INFO  WriteOnlyServer - Session: 4a8348ba-20c1-4015-b726-206f7fca8fce/127.0.0.1:2270
+A new session connected!
+2016-02-26 07:50:36,003 [11360] INFO  WriteOnlyServer - Session: 4a8348ba-20c1-4015-b726-206f7fca8fce/127.0.0.1:2270
+This session was closed for ClientClosing!
+2016-02-26 07:50:36,003 [13152] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:50:36,018 [13152] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:50:36,020 [7700] INFO  WriteOnlyServer - Session: 4c3d45f2-05f2-4581-a878-20f50f47a744/127.0.0.1:2271
+A new session connected!
+2016-02-26 07:50:36,122 [13152] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:50:36,122 [12912] INFO  WriteOnlyServer - Session: 4c3d45f2-05f2-4581-a878-20f50f47a744/127.0.0.1:2271
+This session was closed for ClientClosing!
+2016-02-26 07:50:36,123 [13152] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:50:36,125 [5676] INFO  WriteOnlyServer - Session: ca8a10f7-5cab-41ac-b7c7-3af791c0317e/127.0.0.1:2272
+A new session connected!
+2016-02-26 07:50:36,148 [11360] INFO  WriteOnlyServer - Session: ca8a10f7-5cab-41ac-b7c7-3af791c0317e/127.0.0.1:2272
 This session was closed for ApplicationError!
-2016-02-26 02:06:35,145 [20212] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:08:09,894 [19744] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:08:09,930 [9456] INFO  ReadOnlyServer - Session: 6dd3fee2-70e2-438b-9953-bf58c2bf3866/127.0.0.1:13776
+2016-02-26 07:50:36,251 [13152] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:50:46,665 [20140] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:50:46,721 [11316] INFO  WriteOnlyServer - Session: edfe30b9-a54d-44ee-a422-d02ac195ff47/127.0.0.1:2343
 A new session connected!
-2016-02-26 02:08:10,125 [7184] INFO  ReadOnlyServer - Session: 6dd3fee2-70e2-438b-9953-bf58c2bf3866/127.0.0.1:13776
+2016-02-26 07:50:46,829 [5640] INFO  WriteOnlyServer - Session: edfe30b9-a54d-44ee-a422-d02ac195ff47/127.0.0.1:2343
 This session was closed for ApplicationError!
-2016-02-26 02:08:10,153 [19744] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:08:20,997 [5312] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:08:21,082 [7696] INFO  ReadOnlyServer - Session: 20d7f4e6-e774-4999-afe5-d4e89f10c90d/127.0.0.1:13847
+2016-02-26 07:50:46,909 [20140] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:50:58,917 [18140] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:50:58,976 [12656] INFO  WriteOnlyServer - Session: c0c3bf2f-dbc7-4e2d-8bff-bd3cf7e5543b/127.0.0.1:2436
 A new session connected!
-2016-02-26 02:08:37,161 [21956] INFO  ReadOnlyServer - Session: 20d7f4e6-e774-4999-afe5-d4e89f10c90d/127.0.0.1:13847
+2016-02-26 07:50:59,084 [19624] INFO  WriteOnlyServer - Session: c0c3bf2f-dbc7-4e2d-8bff-bd3cf7e5543b/127.0.0.1:2436
 This session was closed for ApplicationError!
-2016-02-26 02:08:48,457 [5312] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:09:05,768 [18916] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:09:05,805 [9284] INFO  ReadOnlyServer - Session: eeeefb87-b1e2-4cbc-babb-8b1cd1f2cbc9/127.0.0.1:13889
+2016-02-26 07:50:59,173 [18140] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:51:08,882 [19704] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:51:08,938 [2444] INFO  WriteOnlyServer - Session: 0424c0c3-685e-420d-ae48-25a6c4d91d4e/127.0.0.1:2542
 A new session connected!
-2016-02-26 02:09:05,996 [1164] INFO  ReadOnlyServer - Session: eeeefb87-b1e2-4cbc-babb-8b1cd1f2cbc9/127.0.0.1:13889
+2016-02-26 07:51:09,045 [8084] INFO  WriteOnlyServer - Session: 0424c0c3-685e-420d-ae48-25a6c4d91d4e/127.0.0.1:2542
 This session was closed for ApplicationError!
-2016-02-26 02:09:06,027 [18916] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:09:30,989 [15620] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:09:31,061 [4416] INFO  ReadOnlyServer - Session: 7421bb18-061f-4612-a855-c1a838a6f594/127.0.0.1:13958
+2016-02-26 07:51:09,120 [19704] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:51:22,147 [15124] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:51:22,199 [9628] INFO  WriteOnlyServer - Session: 1b30bdc1-1b5b-4b2c-b54e-4cc46037ed59/127.0.0.1:2639
 A new session connected!
-2016-02-26 02:09:34,454 [19012] INFO  ReadOnlyServer - Session: 7421bb18-061f-4612-a855-c1a838a6f594/127.0.0.1:13958
+2016-02-26 07:51:28,490 [9844] INFO  WriteOnlyServer - Session: 1b30bdc1-1b5b-4b2c-b54e-4cc46037ed59/127.0.0.1:2639
 This session was closed for ApplicationError!
-2016-02-26 02:09:38,221 [15620] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:09:55,995 [21240] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:09:56,084 [4204] INFO  ReadOnlyServer - Session: 3f44d9bf-856b-4939-b048-99a9c0085ad6/127.0.0.1:14065
+2016-02-26 07:51:28,510 [15124] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:56:09,066 [7856] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:56:09,095 [21616] INFO  WriteOnlyServer - Session: fddadcfc-0229-435e-a78b-e29e74b31ca5/127.0.0.1:2723
 A new session connected!
-2016-02-26 02:10:01,518 [22424] INFO  ReadOnlyServer - Session: 3f44d9bf-856b-4939-b048-99a9c0085ad6/127.0.0.1:14065
-This session was closed for ApplicationError!
-2016-02-26 02:10:02,002 [21240] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:10:39,192 [8356] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:10:39,219 [22240] INFO  ReadOnlyServer - Session: bad3400f-dd76-48bd-9d30-37bf6e04329d/127.0.0.1:14102
-A new session connected!
-2016-02-26 02:10:39,401 [7572] INFO  ReadOnlyServer - Session: bad3400f-dd76-48bd-9d30-37bf6e04329d/127.0.0.1:14102
-This session was closed for SocketError!
-2016-02-26 02:10:39,426 [8356] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:10:55,237 [23452] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:10:55,311 [6988] INFO  ReadOnlyServer - Session: af4c841b-a520-4f91-bece-836ff80baefc/127.0.0.1:14172
-A new session connected!
-2016-02-26 02:11:19,606 [23452] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:11:19,640 [19936] INFO  ReadOnlyServer - Session: af4c841b-a520-4f91-bece-836ff80baefc/127.0.0.1:14172
-This session was closed for ServerShutdown!
-2016-02-26 02:11:38,709 [20544] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:11:38,783 [6292] INFO  ReadOnlyServer - Session: 7d521e49-b736-4798-8417-7b7817f2107c/127.0.0.1:14275
-A new session connected!
-2016-02-26 02:16:24,198 [7648] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:16:24,280 [16492] INFO  ReadOnlyServer - Session: 9f133ebf-be04-41a7-ba98-8fbe7ca9c5bc/127.0.0.1:14465
-A new session connected!
-2016-02-26 02:18:51,109 [1644] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:18:51,168 [21992] INFO  ReadOnlyServer - Session: 588577e9-00f3-4476-9bf1-c4aafd486b14/127.0.0.1:14586
-A new session connected!
-2016-02-26 02:19:20,399 [4632] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:19:20,457 [11156] INFO  ReadOnlyServer - Session: 63305585-1652-43d1-b29c-395620a189d8/127.0.0.1:14682
-A new session connected!
-2016-02-26 02:19:30,226 [4632] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:19:30,246 [19952] INFO  ReadOnlyServer - Session: 63305585-1652-43d1-b29c-395620a189d8/127.0.0.1:14682
-This session was closed for ServerShutdown!
-2016-02-26 02:19:48,921 [20844] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:19:48,978 [2140] INFO  ReadOnlyServer - Session: b4a5f173-4cb9-4901-994d-a77c1ea8c9c1/127.0.0.1:14788
-A new session connected!
-2016-02-26 02:22:29,090 [16316] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:22:29,156 [16968] INFO  ReadOnlyServer - Session: e7c1369d-53dd-49cb-a7b4-9151138b7a4b/127.0.0.1:14903
-A new session connected!
-2016-02-26 02:49:42,333 [20524] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:49:42,362 [5664] INFO  ReadOnlyServer - Session: 92238467-bcb5-4162-b259-97e671393167/127.0.0.1:1195
-A new session connected!
-2016-02-26 02:49:42,559 [20524] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:49:42,559 [5664] INFO  ReadOnlyServer - Session: 92238467-bcb5-4162-b259-97e671393167/127.0.0.1:1195
+2016-02-26 07:56:09,243 [15252] INFO  WriteOnlyServer - Session: fddadcfc-0229-435e-a78b-e29e74b31ca5/127.0.0.1:2723
 This session was closed for ClientClosing!
-2016-02-26 02:49:42,575 [20524] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:49:42,578 [5664] INFO  ReadOnlyServer - Session: f59194d7-4076-460b-86db-30f9702a166e/127.0.0.1:1196
+2016-02-26 07:56:09,264 [7856] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:56:22,418 [16864] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:56:22,471 [23288] INFO  WriteOnlyServer - Session: eda32063-6f73-4766-906a-53342b61b938/127.0.0.1:2794
 A new session connected!
-2016-02-26 02:49:42,639 [13260] INFO  ReadOnlyServer - Session: f59194d7-4076-460b-86db-30f9702a166e/127.0.0.1:1196
+2016-02-26 07:57:13,224 [9604] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:57:13,251 [16964] INFO  WriteOnlyServer - Session: b43e0355-1497-4820-9d60-3f911cd1fdf5/127.0.0.1:2838
+A new session connected!
+2016-02-26 07:57:13,387 [14768] INFO  WriteOnlyServer - Session: b43e0355-1497-4820-9d60-3f911cd1fdf5/127.0.0.1:2838
 This session was closed for ClientClosing!
-2016-02-26 02:49:42,665 [20524] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:50:30,891 [20828] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:50:30,945 [20348] INFO  ReadOnlyServer - Session: 9db59d7e-c7df-4b3f-9545-3debb4809755/127.0.0.1:1274
+2016-02-26 07:57:13,388 [9604] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:57:22,080 [2820] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:57:22,106 [5860] INFO  WriteOnlyServer - Session: 0ddda8b1-c2ef-453c-84f1-53d6faadb592/127.0.0.1:2841
 A new session connected!
-2016-02-26 02:57:00,488 [11584] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:57:00,514 [20908] INFO  ReadOnlyServer - Session: 4146d1a2-72f4-4e5b-a530-763ae8074e09/127.0.0.1:1391
-A new session connected!
-2016-02-26 02:57:00,714 [13240] INFO  ReadOnlyServer - Session: 4146d1a2-72f4-4e5b-a530-763ae8074e09/127.0.0.1:1391
+2016-02-26 07:57:22,244 [7104] INFO  WriteOnlyServer - Session: 0ddda8b1-c2ef-453c-84f1-53d6faadb592/127.0.0.1:2841
 This session was closed for ClientClosing!
-2016-02-26 02:57:00,747 [11584] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:57:30,335 [4820] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:57:30,405 [22388] INFO  ReadOnlyServer - Session: 2d749548-523c-4e16-8a89-04747878baef/127.0.0.1:1469
+2016-02-26 07:57:22,246 [2820] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:57:22,276 [2820] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:57:22,277 [5860] INFO  WriteOnlyServer - Session: a8552805-dd4b-40f4-8d8c-0de5aa5402cd/127.0.0.1:2842
 A new session connected!
-2016-02-26 02:57:31,361 [4820] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:57:31,408 [19236] INFO  ReadOnlyServer - Session: 2d749548-523c-4e16-8a89-04747878baef/127.0.0.1:1469
-This session was closed for ServerShutdown!
-2016-02-26 02:57:47,762 [3952] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 02:57:47,807 [12908] INFO  ReadOnlyServer - Session: ca94ddf6-a2d7-45e5-a508-75032ed1da9c/127.0.0.1:1573
-A new session connected!
-2016-02-26 02:58:23,949 [3952] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 02:58:23,981 [17692] INFO  ReadOnlyServer - Session: ca94ddf6-a2d7-45e5-a508-75032ed1da9c/127.0.0.1:1573
-This session was closed for ServerShutdown!
-2016-02-26 03:03:59,042 [8884] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:03:59,068 [11524] INFO  ReadOnlyServer - Session: 74c4b0b7-6cd1-4d92-b4ac-d2bf824c236b/127.0.0.1:1699
-A new session connected!
-2016-02-26 03:03:59,276 [15568] INFO  ReadOnlyServer - Session: 74c4b0b7-6cd1-4d92-b4ac-d2bf824c236b/127.0.0.1:1699
+2016-02-26 07:57:22,386 [7104] INFO  WriteOnlyServer - Session: a8552805-dd4b-40f4-8d8c-0de5aa5402cd/127.0.0.1:2842
 This session was closed for ClientClosing!
-2016-02-26 03:03:59,277 [8884] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:40:48,213 [6308] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:40:48,242 [4880] INFO  ReadOnlyServer - Session: 68cbd3fa-f9c9-40f2-a32a-b93f7d6c3d69/127.0.0.1:2658
+2016-02-26 07:57:22,386 [2820] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:57:22,387 [2820] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 07:57:22,390 [12856] INFO  WriteOnlyServer - Session: a3b945b6-e25b-4f2a-b264-63dd221a4f2c/127.0.0.1:2843
 A new session connected!
-2016-02-26 03:40:48,405 [6308] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:40:48,406 [9324] INFO  ReadOnlyServer - Session: 68cbd3fa-f9c9-40f2-a32a-b93f7d6c3d69/127.0.0.1:2658
+2016-02-26 07:57:22,491 [2820] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 07:57:22,491 [7104] INFO  WriteOnlyServer - Session: a3b945b6-e25b-4f2a-b264-63dd221a4f2c/127.0.0.1:2843
 This session was closed for ClientClosing!
-2016-02-26 03:40:48,420 [6308] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:40:48,422 [9324] INFO  ReadOnlyServer - Session: 641b33af-ffc8-4073-a829-9cc857ad10aa/127.0.0.1:2659
+2016-02-26 08:09:08,726 [17176] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 08:09:08,751 [2732] INFO  WriteOnlyServer - Session: 8a4a1364-f5fa-460d-8aa1-8dd3516376ae/127.0.0.1:2895
 A new session connected!
-2016-02-26 03:40:48,462 [6308] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:40:48,462 [17644] INFO  ReadOnlyServer - Session: 641b33af-ffc8-4073-a829-9cc857ad10aa/127.0.0.1:2659
-This session was closed for ServerShutdown!
-2016-02-26 03:40:48,463 [6308] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:40:48,465 [12812] INFO  ReadOnlyServer - Session: 4fd28010-0103-4a07-9bd8-315bf3237657/127.0.0.1:2660
-A new session connected!
-2016-02-26 03:41:28,269 [19648] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:41:28,301 [20212] INFO  ReadOnlyServer - Session: c0f9cd98-df9d-4c25-bebd-980b0f005837/127.0.0.1:2669
-A new session connected!
-2016-02-26 03:41:28,459 [19648] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:41:28,462 [4084] INFO  ReadOnlyServer - Session: c0f9cd98-df9d-4c25-bebd-980b0f005837/127.0.0.1:2669
+2016-02-26 08:09:08,891 [16740] INFO  WriteOnlyServer - Session: 8a4a1364-f5fa-460d-8aa1-8dd3516376ae/127.0.0.1:2895
 This session was closed for ClientClosing!
-2016-02-26 03:41:28,473 [19648] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:41:28,475 [4084] INFO  ReadOnlyServer - Session: d282be60-c09b-4545-85e8-d7aa57ba1d87/127.0.0.1:2670
+2016-02-26 08:09:08,892 [17176] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 08:09:08,904 [17176] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 08:09:08,906 [11288] INFO  WriteOnlyServer - Session: e6ec1a54-33bb-410a-9f49-b324976f174c/127.0.0.1:2896
 A new session connected!
-2016-02-26 03:41:28,513 [19648] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:41:28,513 [17884] INFO  ReadOnlyServer - Session: d282be60-c09b-4545-85e8-d7aa57ba1d87/127.0.0.1:2670
-This session was closed for ServerShutdown!
-2016-02-26 03:41:28,518 [19648] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:41:28,520 [18008] INFO  ReadOnlyServer - Session: c6592a67-1fe5-49ec-a024-8ef8ad88ec67/127.0.0.1:2671
-A new session connected!
-2016-02-26 03:41:28,523 [19648] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:41:28,523 [1904] INFO  ReadOnlyServer - Session: c6592a67-1fe5-49ec-a024-8ef8ad88ec67/127.0.0.1:2671
-This session was closed for ServerShutdown!
-2016-02-26 03:41:34,378 [22576] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:41:34,404 [20220] INFO  ReadOnlyServer - Session: 60150728-55a8-4dcf-ac7b-eb19e5181c88/127.0.0.1:2675
-A new session connected!
-2016-02-26 03:41:34,560 [22576] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:41:34,561 [3132] INFO  ReadOnlyServer - Session: 60150728-55a8-4dcf-ac7b-eb19e5181c88/127.0.0.1:2675
+2016-02-26 08:09:09,008 [16740] INFO  WriteOnlyServer - Session: e6ec1a54-33bb-410a-9f49-b324976f174c/127.0.0.1:2896
 This session was closed for ClientClosing!
-2016-02-26 03:41:34,573 [22576] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:41:34,575 [3132] INFO  ReadOnlyServer - Session: 17e0625d-a593-4c81-84a9-d1ddeef11222/127.0.0.1:2676
+2016-02-26 08:09:09,008 [17176] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 08:09:09,009 [17176] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 08:09:09,011 [2732] INFO  WriteOnlyServer - Session: 3d6c4db8-19f5-4837-b1a4-dfce87881446/127.0.0.1:2897
 A new session connected!
-2016-02-26 03:41:34,616 [22576] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:41:34,616 [18804] INFO  ReadOnlyServer - Session: 17e0625d-a593-4c81-84a9-d1ddeef11222/127.0.0.1:2676
-This session was closed for ServerShutdown!
-2016-02-26 03:41:34,617 [22576] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:41:34,619 [1880] INFO  ReadOnlyServer - Session: 4aee0a44-2883-449e-afb7-36c8b0b6e8b9/127.0.0.1:2677
-A new session connected!
-2016-02-26 03:41:34,621 [22576] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:41:34,621 [11892] INFO  ReadOnlyServer - Session: 4aee0a44-2883-449e-afb7-36c8b0b6e8b9/127.0.0.1:2677
-This session was closed for ServerShutdown!
-2016-02-26 03:42:20,591 [20872] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:42:20,643 [22344] INFO  ReadOnlyServer - Session: 4ad5f154-4a89-44f7-9400-dedf978514ff/127.0.0.1:2758
-A new session connected!
-2016-02-26 03:42:25,956 [20872] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:42:26,033 [20736] INFO  ReadOnlyServer - Session: 4ad5f154-4a89-44f7-9400-dedf978514ff/127.0.0.1:2758
-This session was closed for ServerShutdown!
-2016-02-26 03:49:01,615 [4464] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:49:01,639 [4860] INFO  ReadOnlyServer - Session: f2ea1f48-2bd6-41a0-b5a6-d049b3d15a71/127.0.0.1:2853
-A new session connected!
-2016-02-26 03:49:01,812 [8748] INFO  ReadOnlyServer - Session: f2ea1f48-2bd6-41a0-b5a6-d049b3d15a71/127.0.0.1:2853
-This session was closed for ApplicationError!
-2016-02-26 03:49:01,840 [4464] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:49:13,140 [18208] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:49:13,168 [20452] INFO  ReadOnlyServer - Session: a973a38b-e0c3-4c2d-adfd-9fb4ce69c271/127.0.0.1:2856
-A new session connected!
-2016-02-26 03:49:13,335 [22748] INFO  ReadOnlyServer - Session: a973a38b-e0c3-4c2d-adfd-9fb4ce69c271/127.0.0.1:2856
-This session was closed for ApplicationError!
-2016-02-26 03:49:13,363 [18208] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 03:50:22,505 [12744] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 03:50:22,535 [16244] INFO  ReadOnlyServer - Session: 7d67822d-4280-4789-82fc-aed49f308f81/127.0.0.1:2890
-A new session connected!
-2016-02-26 03:50:22,750 [15480] INFO  ReadOnlyServer - Session: 7d67822d-4280-4789-82fc-aed49f308f81/127.0.0.1:2890
+2016-02-26 08:09:09,120 [16740] INFO  WriteOnlyServer - Session: 3d6c4db8-19f5-4837-b1a4-dfce87881446/127.0.0.1:2897
 This session was closed for ClientClosing!
-2016-02-26 03:50:22,751 [12744] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:00:39,901 [16580] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:00:39,927 [11960] INFO  ReadOnlyServer - Session: 4dcd753d-d559-4d5f-8dac-1e6683aa2075/127.0.0.1:3026
+2016-02-26 08:09:09,120 [17176] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 08:09:14,275 [6512] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 08:09:14,304 [19360] INFO  WriteOnlyServer - Session: 8a8f4567-2905-48fa-8d0d-d45b21ec9f88/127.0.0.1:2900
 A new session connected!
-2016-02-26 04:00:40,117 [10652] INFO  ReadOnlyServer - Session: 4dcd753d-d559-4d5f-8dac-1e6683aa2075/127.0.0.1:3026
+2016-02-26 08:09:14,438 [14724] INFO  WriteOnlyServer - Session: 8a8f4567-2905-48fa-8d0d-d45b21ec9f88/127.0.0.1:2900
 This session was closed for ClientClosing!
-2016-02-26 04:00:40,128 [16580] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:00:51,929 [4976] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:00:51,982 [13236] INFO  ReadOnlyServer - Session: c4595a0b-049a-42be-bb03-12f21d4a6fac/127.0.0.1:3101
+2016-02-26 08:09:14,439 [6512] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 08:09:14,452 [6512] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 08:09:14,454 [376] INFO  WriteOnlyServer - Session: ebcebd78-07bf-4b65-bacd-09974fe1a26a/127.0.0.1:2901
 A new session connected!
-2016-02-26 04:00:52,724 [4976] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:00:52,763 [13000] INFO  ReadOnlyServer - Session: c4595a0b-049a-42be-bb03-12f21d4a6fac/127.0.0.1:3101
-This session was closed for ServerShutdown!
-2016-02-26 04:01:07,460 [11928] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:01:07,511 [21348] INFO  ReadOnlyServer - Session: df0651ef-978e-4588-9b69-ed0b2872be27/127.0.0.1:3194
-A new session connected!
-2016-02-26 04:01:30,700 [11928] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:01:30,748 [18860] INFO  ReadOnlyServer - Session: df0651ef-978e-4588-9b69-ed0b2872be27/127.0.0.1:3194
-This session was closed for ServerShutdown!
-2016-02-26 04:02:14,000 [11268] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:02:14,051 [17984] INFO  ReadOnlyServer - Session: 4a6bb22c-f934-453c-8cc7-a914e5aa73ef/127.0.0.1:3311
-A new session connected!
-2016-02-26 04:09:11,197 [22084] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:09:11,221 [9444] INFO  ReadOnlyServer - Session: 60f571e5-6eac-43df-8ffa-03cad8c9f2b5/127.0.0.1:3447
-A new session connected!
-2016-02-26 04:09:11,401 [22084] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:09:11,405 [7664] INFO  ReadOnlyServer - Session: 60f571e5-6eac-43df-8ffa-03cad8c9f2b5/127.0.0.1:3447
-This session was closed for ServerShutdown!
-2016-02-26 04:49:48,749 [2064] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:49:48,775 [18620] INFO  ReadOnlyServer - Session: af8e3694-7ee7-4293-a32c-37c0f26478fa/127.0.0.1:3838
-A new session connected!
-2016-02-26 04:49:48,930 [18444] INFO  ReadOnlyServer - Session: af8e3694-7ee7-4293-a32c-37c0f26478fa/127.0.0.1:3838
+2016-02-26 08:09:14,556 [14724] INFO  WriteOnlyServer - Session: ebcebd78-07bf-4b65-bacd-09974fe1a26a/127.0.0.1:2901
 This session was closed for ClientClosing!
-2016-02-26 04:49:48,930 [2064] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:49:48,944 [2064] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:49:48,946 [18444] INFO  ReadOnlyServer - Session: 5e56dd81-67b7-4695-ba2e-9186436aca37/127.0.0.1:3839
+2016-02-26 08:09:14,556 [6512] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 08:09:14,557 [6512] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 08:09:14,559 [19360] INFO  WriteOnlyServer - Session: 15e33af9-3bb6-49fd-a7d8-089f2a8f1c87/127.0.0.1:2902
 A new session connected!
-2016-02-26 04:49:48,985 [2064] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:49:48,985 [7588] INFO  ReadOnlyServer - Session: 5e56dd81-67b7-4695-ba2e-9186436aca37/127.0.0.1:3839
-This session was closed for ServerShutdown!
-2016-02-26 04:49:48,986 [2064] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:49:48,988 [10580] INFO  ReadOnlyServer - Session: 3ae14158-8c59-4a4d-a8ed-a7ba12e4e4a6/127.0.0.1:3840
-A new session connected!
-2016-02-26 04:49:48,990 [2064] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:49:48,991 [14816] INFO  ReadOnlyServer - Session: 3ae14158-8c59-4a4d-a8ed-a7ba12e4e4a6/127.0.0.1:3840
-This session was closed for ServerShutdown!
-2016-02-26 04:49:54,866 [22496] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:49:54,901 [5676] INFO  ReadOnlyServer - Session: ad0ad849-71c9-4fcd-8e74-4e8df67f863a/127.0.0.1:3847
-A new session connected!
-2016-02-26 04:49:55,060 [22496] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:49:55,060 [22996] INFO  ReadOnlyServer - Session: ad0ad849-71c9-4fcd-8e74-4e8df67f863a/127.0.0.1:3847
+2016-02-26 08:09:14,669 [14724] INFO  WriteOnlyServer - Session: 15e33af9-3bb6-49fd-a7d8-089f2a8f1c87/127.0.0.1:2902
 This session was closed for ClientClosing!
-2016-02-26 04:49:55,073 [22496] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:49:55,076 [22996] INFO  ReadOnlyServer - Session: eeaa1bfb-d946-4e1c-ae5b-aaa6145ba925/127.0.0.1:3849
+2016-02-26 08:09:14,669 [6512] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 08:13:36,643 [4320] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 08:13:36,670 [14344] INFO  WriteOnlyServer - Session: d967beb2-f7a8-4290-a167-045993d66ee4/127.0.0.1:2935
 A new session connected!
-2016-02-26 04:49:55,118 [22496] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:49:55,118 [16536] INFO  ReadOnlyServer - Session: eeaa1bfb-d946-4e1c-ae5b-aaa6145ba925/127.0.0.1:3849
+2016-02-26 08:13:36,798 [7768] INFO  WriteOnlyServer - Session: d967beb2-f7a8-4290-a167-045993d66ee4/127.0.0.1:2935
 This session was closed for ClientClosing!
-2016-02-26 04:49:55,119 [22496] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:49:55,121 [22996] INFO  ReadOnlyServer - Session: 5e8a64c0-2b01-45b2-9537-6d86dcae0b08/127.0.0.1:3850
+2016-02-26 08:13:36,801 [4320] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 08:13:36,821 [4320] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 08:13:36,823 [14344] INFO  WriteOnlyServer - Session: ed041a8a-b684-485c-b171-5498e30db8b5/127.0.0.1:2936
 A new session connected!
-2016-02-26 04:49:55,124 [22496] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:49:55,124 [16536] INFO  ReadOnlyServer - Session: 5e8a64c0-2b01-45b2-9537-6d86dcae0b08/127.0.0.1:3850
-This session was closed for ServerShutdown!
-2016-02-26 04:49:55,125 [22496] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:49:55,127 [22996] INFO  ReadOnlyServer - Session: 064c0b62-2beb-4e58-8092-e00053d0d2b3/127.0.0.1:3851
+2016-02-26 08:13:36,933 [4320] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-26 08:13:36,933 [10048] INFO  WriteOnlyServer - Session: ed041a8a-b684-485c-b171-5498e30db8b5/127.0.0.1:2936
+This session was closed for ClientClosing!
+2016-02-26 08:13:36,935 [4320] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-26 08:13:36,938 [18980] INFO  WriteOnlyServer - Session: 55149fe2-5a1d-456a-a9c8-31f0188e7098/127.0.0.1:2937
 A new session connected!
-2016-02-26 04:49:55,152 [22496] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:49:55,152 [18092] INFO  ReadOnlyServer - Session: 064c0b62-2beb-4e58-8092-e00053d0d2b3/127.0.0.1:3851
-This session was closed for ServerShutdown!
-2016-02-26 04:49:55,153 [22496] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
-2016-02-26 04:49:55,155 [22996] INFO  ReadOnlyServer - Session: 08684004-4dbe-4df1-96a4-591b29b4a307/127.0.0.1:3852
-A new session connected!
-2016-02-26 04:49:55,158 [22496] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
-2016-02-26 04:49:55,159 [17100] INFO  ReadOnlyServer - Session: 08684004-4dbe-4df1-96a4-591b29b4a307/127.0.0.1:3852
-This session was closed for ServerShutdown!
+2016-02-26 08:13:37,039 [7768] INFO  WriteOnlyServer - Session: 55149fe2-5a1d-456a-a9c8-31f0188e7098/127.0.0.1:2937
+This session was closed for ClientClosing!
+2016-02-26 08:13:37,039 [4320] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!

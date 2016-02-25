@@ -17,7 +17,6 @@ namespace R54IN0.Format
         public string SQL { get; set; }
         public string Ping { get; set; }
         public object Value { get; set; }
-        public Dictionary<string, object> KeyValues { get; set; }
         public List<object> JFormatList { get; set; }
 
         public ProtocolFormat()
@@ -74,7 +73,13 @@ namespace R54IN0.Format
             return result;
         }
 
-        public ProtocolFormat SetQueryResult(object value)
+        public ProtocolFormat SetInstance(object instance)
+        {
+            Value = instance;
+            return this;
+        }
+
+        public ProtocolFormat SetQueryValueResult(object value)
         {
             Value = value;
             return this;
@@ -172,7 +177,5 @@ namespace R54IN0.Format
             ProtocolFormat format = JsonConvert.DeserializeObject<ProtocolFormat>(json);
             return format;
         }
-
-
     }
 }

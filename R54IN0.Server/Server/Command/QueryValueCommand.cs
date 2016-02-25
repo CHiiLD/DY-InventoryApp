@@ -45,7 +45,7 @@ namespace R54IN0.Server
                 }
             }
 
-            byte[] response = new ProtocolFormat().SetQueryResult(value).ToBytes(Name);
+            byte[] response = new ProtocolFormat().SetQueryValueResult(value).ToBytes(Name);
             session.Send(response, 0, response.Length);
         }
     }

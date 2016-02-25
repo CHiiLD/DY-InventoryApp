@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeViewEx", "TreeViewEx\Tr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodules", "submodules", "{B3627858-8280-4E36-99B3-66543AD8BB9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.Test", "R54IN0.Test\R54IN0.Test.csproj", "{EC787DFF-E080-4A02-958E-111AD0534DE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.WPF.Test", "R54IN0.Test\R54IN0.WPF.Test.csproj", "{EC787DFF-E080-4A02-958E-111AD0534DE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.WPF", "R54IN0.WPF\R54IN0.WPF.csproj", "{5A0C4CA1-B587-42A9-8DF0-3151B1B33784}"
 EndProject
@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahApps.Metro.Resources", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.Format", "R54IN0.Format\R54IN0.Format.csproj", "{54185BEA-D735-4A8E-808C-807F8B626463}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQLTest", "MySQL.Test\MySQLTest.csproj", "{14258388-26C2-4BC1-A836-86B677038273}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQL.Test", "MySQL.Test\MySQL.Test.csproj", "{14258388-26C2-4BC1-A836-86B677038273}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.Server", "R54IN0.Server\R54IN0.Server.csproj", "{003618A6-945C-4681-9DF2-1CB23F898966}"
 EndProject
@@ -41,7 +41,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.ClientEngine.Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.Facility.Net40", "SuperSocket\Facility\SuperSocket.Facility.Net40.csproj", "{01987BAC-C498-44DD-B274-62EA2506B51D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.ServerTest", "R54IN0.ServerTest\R54IN0.ServerTest.csproj", "{0F6F9ED4-25F3-45B6-BD9C-F7A37C82BF85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R54IN0.Server.Test", "R54IN0.ServerTest\R54IN0.Server.Test.csproj", "{0F6F9ED4-25F3-45B6-BD9C-F7A37C82BF85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dawn.SocketAwaitable", "..\Dawn.SocketAwaitable\src\Dawn.SocketAwaitable\Dawn.SocketAwaitable.csproj", "{09C67697-1B3E-4E40-A972-C6768FFA006C}"
 EndProject
@@ -49,7 +49,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F0476BAD-6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.SocketService.Net40", "SuperSocket\SocketService\SuperSocket.SocketService.Net40.csproj", "{B9113694-7226-4152-938D-3172B11571A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocketTest", "SuperSocketTest\SuperSocketTest.csproj", "{C7BC42DB-287A-453B-BE71-F7893AB7C341}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.Test", "SuperSocketTest\SuperSocket.Test.csproj", "{C7BC42DB-287A-453B-BE71-F7893AB7C341}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

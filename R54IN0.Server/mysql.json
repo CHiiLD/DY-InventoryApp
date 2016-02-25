@@ -1,0 +1,8 @@
+﻿{
+    "Host":"127.0.0.1",
+    "Server":"localhost",
+    "Port":3306,
+    "Database":"test_inventory",
+    "Uid":"child",
+    "Pwd":"f54645464"
+}

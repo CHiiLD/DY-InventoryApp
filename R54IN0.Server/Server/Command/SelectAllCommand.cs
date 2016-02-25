@@ -23,16 +23,35 @@ namespace R54IN0.Server
             }
         }
 
-        public object GetForamt(string formatName)
+        public IID GetForamt(string formatName)
         {
+            IID iid = null;
             switch (formatName)
             {
                 case nameof(Maker):
-                    return new Maker();
+                    iid = new Maker(); break;
+                case nameof(Measure):
+                    iid = new Measure(); break;
+                case nameof(Customer):
+                    iid = new Customer(); break;
+                case nameof(Supplier):
+                    iid = new Supplier(); break;
+                case nameof(Project):
+                    iid = new Project(); break;
+                case nameof(Product):
+                    iid = new Product(); break;
+                case nameof(Warehouse):
+                    iid = new Warehouse(); break;
+                case nameof(Employee):
+                    iid = new Employee(); break;
+                case nameof(InventoryFormat):
+                    iid = new InventoryFormat(); break;
                 case nameof(IOStockFormat):
-                    return new IOStockFormat();
+                    iid = new IOStockFormat(); break;
+                default:
+                    throw new NotSupportedException();
             }
-            return null;
+            return iid;
         }
 
         public virtual void ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo)

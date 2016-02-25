@@ -15,11 +15,8 @@ namespace R54IN0.Server
 
         public ReadOnlyServer() : base(new DefaultReceiveFilterFactory<ProtocolFormatReceiveFilter, BinaryRequestInfo>())
         {
-#if DEBUG
-            _mysql = new MySqlConnection("Server=localhost;Database=test_inventory;Uid=child;Pwd=f54645464");
-#else
-            _mySqlConn = new MySqlConnection("Server=localhost;Database=inventory;Uid=child;Pwd=f54645464");
-#endif
+            string connectionStr = MySQLConfig.ConnectionString(@"mysql.json");
+            _mysql = new MySqlConnection(connectionStr);
             _mysql.Open();
         }
 

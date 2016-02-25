@@ -45,11 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Server\Command\DeleteCommand.cs" />
+    <Compile Include="Server\Command\IWriteSessionCommand.cs" />
+    <Compile Include="Server\Command\InsertCommand.cs" />
     <Compile Include="Server\Command\PingCommand.cs" />
     <Compile Include="Server\Command\QueryInstanceCommand.cs" />
     <Compile Include="Server\Command\QueryValueCommand.cs" />
     <Compile Include="Server\Command\SelectAllCommand.cs" />
     <Compile Include="Server\Command\SelectCommand.cs" />
+    <Compile Include="MySqlConfig.cs" />
+    <Compile Include="Server\Command\UpdateCommand.cs" />
+    <Compile Include="Server\Command\WriteSessionCommandExtension.cs" />
     <Compile Include="Server\OnlyWrite\WriteOnlySession.cs" />
     <Compile Include="Server\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="mysql.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

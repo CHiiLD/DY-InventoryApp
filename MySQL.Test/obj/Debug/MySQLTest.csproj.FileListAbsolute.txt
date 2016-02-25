@@ -33,6 +33,6 @@ C:\Users\rians\Documents\GitHub\R54IN0\MySQL.Test\bin\Debug\ko\System.Windows.In
 C:\Users\rians\Documents\GitHub\R54IN0\MySQL.Test\bin\Debug\ru\System.Windows.Interactivity.resources.dll
 C:\Users\rians\Documents\GitHub\R54IN0\MySQL.Test\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 C:\Users\rians\Documents\GitHub\R54IN0\MySQL.Test\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
-C:\Users\rians\Documents\GitHub\R54IN0\MySQL.Test\obj\Debug\MySQL.Test.csprojResolveAssemblyReference.cache
+C:\Users\rians\Documents\GitHub\R54IN0\MySQL.Test\obj\Debug\MySQLTest.csprojResolveAssemblyReference.cache
 C:\Users\rians\Documents\GitHub\R54IN0\MySQL.Test\obj\Debug\MySQL.Test.dll
 C:\Users\rians\Documents\GitHub\R54IN0\MySQL.Test\obj\Debug\MySQL.Test.pdb
