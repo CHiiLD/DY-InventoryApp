@@ -87,8 +87,20 @@ namespace R54IN0.Server
                 }
             }
 
+            List<ArraySegment<byte>> segments = new List<ArraySegment<byte>>();
             byte[] response = new ProtocolFormat(formatName).SetFormats(formats).ToBytes(Name);
-            session.Send(response, 0, response.Length);
+            const int BUFSIZE = ProtocolFormat.BUFFER_SIZE;
+            for (int i = 0; i < response.Count(); i += BUFSIZE)
+            {
+                int size = response.Count() - i;
+                if (size > BUFSIZE)
+                    size = BUFSIZE;
+                ArraySegment<byte> segment = new ArraySegment<byte>(response, i, size);
+                segments.Add(segment);
+            }
+            Console.WriteLine("send byte size: " + response.Count());
+            //session.Send(response, 0, response.Length);
+            session.Send(segments);
         }
     }
 }

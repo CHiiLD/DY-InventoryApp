@@ -138,7 +138,7 @@ namespace MySQL.Test
 
             foreach (var inven in invens)
             {
-                int count = r.Next(3, 6);
+                int count = r.Next(5, 10);
                 string sql;
                 for (int i = 0; i < count; i++)
                 {

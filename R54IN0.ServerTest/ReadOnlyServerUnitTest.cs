@@ -29,7 +29,7 @@ namespace R54IN0.ServerTest
             Console.WriteLine(nameof(ClassInitialize));
             Console.WriteLine(context.TestName);
 
-            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn = new MySqlConnection(MySQLConfig.ConnectionString(@"./MySqlConnectionString.json"));
             _conn.Open();
             Dummy dummy = new Dummy(_conn);
             dummy.Create();
@@ -40,7 +40,9 @@ namespace R54IN0.ServerTest
                 Ip = "Any",
                 MaxConnectionNumber = 10,
                 Mode = SocketMode.Tcp,
-                Name = nameof(ReadOnlyServer)
+                Name = nameof(ReadOnlyServer),
+                SendBufferSize = short.MaxValue,
+                SendingQueueSize = 100
             };
             _server = new ReadOnlyServer();
             _server.Setup(_config);
@@ -211,6 +213,44 @@ namespace R54IN0.ServerTest
                 object value = pfmt.Value;
                 int qty = Convert.ToInt32(value);
                 Console.WriteLine("query result " + qty);
+            }
+        }
+
+        [TestMethod]
+        public async Task BufferManagerTest()
+        {
+            BlockingBufferManager bbm = new BlockingBufferManager(ProtocolFormat.BUFFER_SIZE, 100);
+            IPEndPoint iep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), _config.Port);
+            using (Socket s = new Socket(iep.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
+            {
+                SocketAwaitable a = new SocketAwaitable();
+                a.RemoteEndPoint = iep;
+                await s.ConnectAsync(a);
+
+                a = new SocketAwaitable();
+                var buf = a.Buffer = bbm.GetBuffer();
+
+                string sql = "select * from IOStockFormat";
+                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(ReceiveName.QUERY_FORMAT);
+                Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
+                await s.SendAsync(a);
+
+                int count = 0;
+                List<ArraySegment<byte>> segments = new List<ArraySegment<byte>>();
+                while (await s.ReceiveAsync(a) == SocketError.Success && a.Transferred.Count > 0)
+                {
+                    segments.Add(a.Buffer);
+                    count += a.Transferred.Count;
+                    if (ProtocolFormat.IsReceivedCompletely(a.Transferred.Array, 0, count))
+                        break;
+                    a.Buffer = bbm.GetBuffer();
+                }
+                ProtocolFormat pfmt = ProtocolFormat.ToFormat(a.Transferred.Array, 0, count);
+                var stofmts = pfmt.ConvertJFormatList<IOStockFormat>();
+                foreach (var stofmt in stofmts)
+                    Console.WriteLine(stofmt.ID);
+                Console.WriteLine("recv byte size: " + count);
+                segments.ForEach(x => bbm.ReleaseBuffer(x));
             }
         }
     }

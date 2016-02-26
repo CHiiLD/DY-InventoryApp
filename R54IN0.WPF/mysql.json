@@ -1,8 +1,0 @@
-﻿{
-    "Host":"192.168.10.89",
-    "Server":"localhost",
-    "Port":3306,
-    "Database":"test_inventory",
-    "Uid":"child",
-    "Pwd":"f54645464"
-}

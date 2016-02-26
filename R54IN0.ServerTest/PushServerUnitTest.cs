@@ -31,7 +31,7 @@ namespace R54IN0.ServerTest
             Console.WriteLine(nameof(ClassInitialize));
             Console.WriteLine(context.TestName);
 
-            _conn = new MySqlConnection(MySQLConfig.ConnectionString(@"./mysql.json"));
+            _conn = new MySqlConnection(MySQLConfig.ConnectionString(@"./MySqlConnectionString.json"));
             _conn.Open();
             Dummy dummy = new Dummy(_conn);
             dummy.Create();

@@ -398,3 +398,400 @@
 2016-02-26 09:17:38,177 [2440] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
 2016-02-26 09:17:38,178 [2440] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
 2016-02-26 09:17:38,382 [2440] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-26 11:56:25,837 [11864] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 11:56:25,850 [11864] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 11:56:25,850 [11864] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 11:56:25,850 [11864] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 11:56:25,851 [11864] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 11:56:25,889 [11864] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 11:56:25,990 [11864] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 11:56:26,007 [11864] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 11:56:26,062 [11864] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 11:56:26,064 [11864] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 11:56:26,068 [11864] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 11:56:26,072 [11864] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 11:56:26,101 [11864] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 11:56:26,102 [11864] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 11:56:26,107 [11864] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 11:59:22,239 [14152] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 11:59:22,251 [14152] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 11:59:22,251 [14152] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 11:59:22,251 [14152] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 11:59:22,251 [14152] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 11:59:22,290 [14152] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 11:59:22,378 [14152] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 11:59:22,394 [14152] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 11:59:22,442 [14152] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 11:59:22,444 [14152] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 11:59:22,448 [14152] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 11:59:22,451 [14152] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 11:59:22,478 [14152] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 11:59:22,479 [14152] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 11:59:22,483 [14152] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 12:26:00,401 [8696] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:26:00,417 [8696] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:26:00,417 [8696] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:26:00,417 [8696] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:26:00,417 [8696] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:26:00,465 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:26:00,567 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 12:26:00,586 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:26:00,635 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 12:26:00,636 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:26:00,640 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 12:26:00,643 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:26:00,669 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 12:26:00,670 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:26:00,676 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 12:26:00,677 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:26:00,749 [8696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 12:26:29,178 [11560] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:26:29,190 [11560] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:26:29,190 [11560] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:26:29,190 [11560] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:26:29,190 [11560] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:26:29,229 [11560] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:26:29,404 [11560] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 12:26:47,349 [8644] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:26:47,363 [8644] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:26:47,363 [8644] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:26:47,364 [8644] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:26:47,364 [8644] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:26:47,410 [8644] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:28:30,735 [11080] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:28:30,750 [11080] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:28:30,750 [11080] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:28:30,750 [11080] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:28:30,750 [11080] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:28:30,792 [11080] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:33:29,223 [13768] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:33:29,235 [13768] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:33:29,235 [13768] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:33:29,235 [13768] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:33:29,235 [13768] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:33:29,273 [13768] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:34:04,946 [14512] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:34:04,959 [14512] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:34:04,959 [14512] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:34:04,959 [14512] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:34:04,959 [14512] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:34:05,002 [14512] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:37:27,290 [6692] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:37:27,305 [6692] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:37:27,305 [6692] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:37:27,305 [6692] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:37:27,305 [6692] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:37:27,348 [6692] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:38:00,808 [12668] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:38:00,821 [12668] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:38:00,821 [12668] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:38:00,821 [12668] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:38:00,821 [12668] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:38:00,863 [12668] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:38:51,587 [9700] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:38:51,602 [9700] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:38:51,603 [9700] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:38:51,603 [9700] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:38:51,603 [9700] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:38:51,649 [9700] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:40:35,129 [13296] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:40:35,141 [13296] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:40:35,141 [13296] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:40:35,141 [13296] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:40:35,141 [13296] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:40:35,179 [13296] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:41:28,432 [7332] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:41:28,447 [7332] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:41:28,447 [7332] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:41:28,448 [7332] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:41:28,448 [7332] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:41:28,488 [7332] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:52:06,851 [11676] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:52:06,862 [11676] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:52:06,863 [11676] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:52:06,863 [11676] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:52:06,863 [11676] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:52:06,901 [11676] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:52:23,711 [13688] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:52:23,724 [13688] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:52:23,725 [13688] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:52:23,725 [13688] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:52:23,725 [13688] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:52:23,766 [13688] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 12:53:45,864 [11676] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 12:53:45,877 [11676] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 12:53:45,877 [11676] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 12:53:45,877 [11676] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 12:53:45,877 [11676] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 12:53:45,919 [11676] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:03:54,370 [4956] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:03:54,383 [4956] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:03:54,383 [4956] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:03:54,383 [4956] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:03:54,383 [4956] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:03:54,422 [4956] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:03:54,506 [4956] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:03:54,524 [4956] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:03:54,572 [4956] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:03:54,574 [4956] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:03:54,579 [4956] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:03:54,582 [4956] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:03:54,609 [4956] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:03:54,610 [4956] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:03:54,621 [4956] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:04:12,794 [14320] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:04:12,807 [14320] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:04:12,807 [14320] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:04:12,807 [14320] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:04:12,807 [14320] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:04:12,848 [14320] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:04:56,049 [5484] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:04:56,061 [5484] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:04:56,061 [5484] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:04:56,061 [5484] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:04:56,061 [5484] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:04:56,100 [5484] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:05:14,898 [9860] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:05:14,912 [9860] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:05:14,912 [9860] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:05:14,912 [9860] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:05:14,912 [9860] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:05:14,959 [9860] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:06:01,401 [15072] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:06:01,413 [15072] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:06:01,413 [15072] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:06:01,413 [15072] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:06:01,413 [15072] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:06:01,451 [15072] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:06:42,227 [15340] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:06:42,240 [15340] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:06:42,240 [15340] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:06:42,240 [15340] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:06:42,240 [15340] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:06:42,283 [15340] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:12:13,950 [12228] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:12:13,962 [12228] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:12:13,962 [12228] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:12:13,962 [12228] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:12:13,962 [12228] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:12:14,000 [12228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:12:27,005 [420] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:12:27,018 [420] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:12:27,018 [420] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:12:27,018 [420] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:12:27,018 [420] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:12:27,062 [420] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:17:51,179 [11480] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:17:51,191 [11480] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:17:51,191 [11480] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:17:51,191 [11480] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:17:51,191 [11480] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:17:51,230 [11480] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:17:51,322 [11480] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:17:51,338 [11480] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:17:51,394 [11480] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:17:51,395 [11480] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:17:51,400 [11480] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:17:51,402 [11480] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:17:51,428 [11480] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:17:51,431 [11480] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:17:51,437 [11480] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:18:21,235 [14696] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:18:21,247 [14696] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:18:21,248 [14696] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:18:21,248 [14696] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:18:21,248 [14696] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:18:21,287 [14696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:18:21,554 [14696] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:20:32,593 [7272] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:20:32,605 [7272] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:20:32,606 [7272] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:20:32,606 [7272] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:20:32,606 [7272] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:20:32,644 [7272] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:20:32,904 [7272] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:21:30,524 [13896] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:21:30,537 [13896] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:21:30,537 [13896] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:21:30,537 [13896] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:21:30,537 [13896] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:21:30,578 [13896] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:21:31,069 [13896] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:39:10,637 [13692] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:39:10,651 [13692] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:39:10,651 [13692] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:39:10,652 [13692] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:39:10,652 [13692] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:39:10,695 [13692] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:39:31,136 [13692] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:53:01,928 [3360] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:53:01,941 [3360] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:53:01,941 [3360] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:53:01,941 [3360] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:53:01,941 [3360] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:53:01,982 [3360] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:54:11,332 [3360] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:54:38,861 [11048] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:54:38,873 [11048] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:54:38,874 [11048] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:54:38,874 [11048] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:54:38,874 [11048] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:54:38,915 [11048] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:54:44,709 [11048] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 13:55:54,538 [5372] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 13:55:54,551 [5372] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 13:55:54,551 [5372] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 13:55:54,551 [5372] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 13:55:54,552 [5372] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 13:55:54,593 [5372] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 13:56:00,493 [5372] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:04:32,257 [3148] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:04:32,269 [3148] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:04:32,269 [3148] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:04:32,269 [3148] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:04:32,269 [3148] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:04:32,308 [3148] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:04:37,525 [3148] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:05:12,381 [13592] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:05:12,393 [13592] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:05:12,393 [13592] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:05:12,393 [13592] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:05:12,394 [13592] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:05:12,434 [13592] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:08:21,077 [5968] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:08:21,089 [5968] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:08:21,089 [5968] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:08:21,089 [5968] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:08:21,089 [5968] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:08:21,128 [5968] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:08:21,303 [5968] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:09:04,674 [5780] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:09:04,686 [5780] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:09:04,686 [5780] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:09:04,686 [5780] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:09:04,686 [5780] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:09:04,725 [5780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:09:04,907 [5780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:10:07,114 [4048] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:10:07,127 [4048] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:10:07,127 [4048] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:10:07,127 [4048] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:10:07,127 [4048] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:10:07,166 [4048] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:11:52,129 [12000] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:11:52,144 [12000] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:11:52,144 [12000] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:11:52,144 [12000] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:11:52,144 [12000] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:11:52,185 [12000] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:13:15,516 [11412] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:13:15,528 [11412] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:13:15,528 [11412] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:13:15,528 [11412] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:13:15,528 [11412] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:13:15,568 [11412] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:13:26,357 [9780] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:13:26,369 [9780] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:13:26,369 [9780] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:13:26,369 [9780] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:13:26,369 [9780] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:13:26,407 [9780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:13:26,488 [9780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:13:26,505 [9780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:13:26,558 [9780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:13:26,561 [9780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:13:26,565 [9780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:13:26,568 [9780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:13:26,594 [9780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:13:26,596 [9780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:13:26,600 [9780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:13:26,601 [9780] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:31,399 [4228] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:15:31,413 [4228] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:15:31,413 [4228] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:15:31,413 [4228] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:15:31,413 [4228] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:15:31,453 [4228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:31,540 [4228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:15:31,558 [4228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:31,612 [4228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:15:31,613 [4228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:31,624 [4228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:15:31,627 [4228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:31,654 [4228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:15:31,657 [4228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:31,662 [4228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:15:31,663 [4228] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:57,900 [7496] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:15:57,912 [7496] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:15:57,912 [7496] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:15:57,912 [7496] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:15:57,912 [7496] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:15:57,950 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:58,035 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:15:58,051 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:58,106 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:15:58,108 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:58,112 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:15:58,115 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:58,142 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:15:58,143 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:58,149 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:15:58,150 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:15:58,212 [7496] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:21:03,103 [13920] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:21:03,115 [13920] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:21:03,115 [13920] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:21:03,115 [13920] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:21:03,115 [13920] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:21:03,154 [13920] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:21:03,235 [13920] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:21:03,252 [13920] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:21:03,302 [13920] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:21:03,304 [13920] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:21:03,314 [13920] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:21:03,317 [13920] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:21:03,343 [13920] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:21:03,344 [13920] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:21:03,349 [13920] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:21:03,350 [13920] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:25:25,672 [8552] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:25:25,685 [8552] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:25:25,685 [8552] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:25:25,685 [8552] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:25:25,685 [8552] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:25:25,727 [8552] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:27:29,550 [15260] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:27:29,562 [15260] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:27:29,562 [15260] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:27:29,563 [15260] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:27:29,563 [15260] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:27:29,601 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:27:29,683 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:27:29,700 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:27:29,754 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:27:29,756 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:27:29,760 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:27:29,763 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:27:29,789 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:27:29,790 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:27:29,795 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:27:29,796 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:27:29,817 [15260] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:44:43,495 [7632] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-26 14:44:43,507 [7632] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-26 14:44:43,507 [7632] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-26 14:44:43,507 [7632] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-26 14:44:43,507 [7632] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-26 14:44:43,546 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:44:43,630 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:44:43,648 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:44:43,699 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:44:43,702 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:44:43,706 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:44:43,709 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:44:43,735 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:44:43,737 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:44:43,740 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-26 14:44:43,742 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-26 14:44:44,448 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped

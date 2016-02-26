@@ -11,6 +11,8 @@ namespace R54IN0.Format
 {
     public class ProtocolFormat : ReceiveName
     {
+        public const int BUFFER_SIZE = 1024 * 1000;
+
         public string Name { get; set; }
         public string Table { get; set; }
         public string ID { get; set; }
@@ -105,6 +107,19 @@ namespace R54IN0.Format
             return ret;
         }
 
+        public static bool IsReceivedCompletely(byte[] buffer, int offset, int count)
+        {
+            if (count <= HEADER_SIZE)
+                return false;
+
+            byte[] lenBytes = new byte[BODYLEN_SIZE];
+            Array.Copy(buffer, offset + NAME_SIZE, lenBytes, 0, BODYLEN_SIZE);
+            string jsonLenStr = Encoding.UTF8.GetString(lenBytes);
+            int length = Convert.ToInt32(jsonLenStr, 16);
+
+            return length == count - HEADER_SIZE;
+        }
+
         /// <summary>
         /// ProtocolFormat 프로퍼티를 Json데이터로 변환 후 byte[] 데이터로 변환
         /// </summary>
@@ -118,7 +133,7 @@ namespace R54IN0.Format
             Name = receiveName;
             string json = JsonConvert.SerializeObject(this);
             int jsonLen = Encoding.UTF8.GetByteCount(json);
-            string jsonLenStr = string.Format("{0:D4}", jsonLen);
+            string jsonLenStr = string.Format("{0:X8}", jsonLen);
             byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
             byte[] headerBytes = Encoding.UTF8.GetBytes(receiveName + jsonLenStr);
             byte[] protocolData = new byte[jsonBytes.Length + headerBytes.Length];
@@ -149,29 +164,29 @@ namespace R54IN0.Format
         /// <summary>
         /// 클라이언트에서 서버측 데이터를 분석
         /// </summary>
-        /// <param name="readBuffer"></param>
+        /// <param name="buffer"></param>
         /// <param name="offset"></param>
-        /// <param name="length"></param>
+        /// <param name="count"></param>
         /// <returns></returns>
-        public static ProtocolFormat ToFormat(byte[] readBuffer, int offset, int length)
+        public static ProtocolFormat ToFormat(byte[] buffer, int offset, int count)
         {
             byte[] nameBytes = new byte[NAME_SIZE];
-            byte[] bodyLenBytes = new byte[BODYLEN_SIZE];
-            byte[] jsonBytes = new byte[readBuffer.Length - HEADER_SIZE];
-            Array.Copy(readBuffer, offset, nameBytes, 0, NAME_SIZE);
-            Array.Copy(readBuffer, offset + NAME_SIZE, bodyLenBytes, 0, BODYLEN_SIZE);
+            byte[] lenBytes = new byte[BODYLEN_SIZE];
+            byte[] jsonBytes = new byte[buffer.Length - HEADER_SIZE];
+            Array.Copy(buffer, offset, nameBytes, 0, NAME_SIZE);
+            Array.Copy(buffer, offset + NAME_SIZE, lenBytes, 0, BODYLEN_SIZE);
 
-            string name = Encoding.UTF8.GetString(nameBytes);
-            if (!IsRequestName(name))
-                throw new Exception(string.Format("Name을 알 수 없습니다. {0}", name));
+            string receiveName = Encoding.UTF8.GetString(nameBytes);
+            if (!IsRequestName(receiveName))
+                throw new Exception(string.Format("Name을 알 수 없습니다. {0}", receiveName));
 
-            string jsonLens = Encoding.UTF8.GetString(bodyLenBytes);
-            int jsonLen = int.Parse(jsonLens);
+            string jsonLenStr = Encoding.UTF8.GetString(lenBytes);
+            int length = Convert.ToInt32(jsonLenStr, 16);
 
-            if (jsonLen != length - HEADER_SIZE)
+            if (length != count - HEADER_SIZE)
                 throw new Exception(string.Format("bodyLength와 실제 Json string Length가 불일치합니다."));
 
-            Array.Copy(readBuffer, offset + HEADER_SIZE, jsonBytes, 0, length - HEADER_SIZE);
+            Array.Copy(buffer, offset + HEADER_SIZE, jsonBytes, 0, count - HEADER_SIZE);
             string json = Encoding.UTF8.GetString(jsonBytes);
 
             ProtocolFormat format = JsonConvert.DeserializeObject<ProtocolFormat>(json);

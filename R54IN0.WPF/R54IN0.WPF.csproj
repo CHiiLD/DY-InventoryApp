@@ -113,6 +113,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DailyInventory\Data\Client\ClientConfig.cs" />
     <Compile Include="DailyInventory\Controls\BindingProxy.cs" />
     <Compile Include="DailyInventory\Controls\FieldManager\FieldManagerControl.xaml.cs">
       <DependentUpon>FieldManagerControl.xaml</DependentUpon>
@@ -187,7 +188,6 @@
     <Compile Include="DailyInventory\Data\Client\Event\SQLInsertEventArgs.cs" />
     <Compile Include="DailyInventory\Data\Inventory\UpdateLocker.cs" />
     <Compile Include="DailyInventory\Data\TreeViewNodeJsonFormat.cs" />
-    <Compile Include="DailyInventory\MySqlConfig.cs" />
     <Compile Include="DailyInventory\Windows\FieldManagerWindow.xaml.cs">
       <DependentUpon>FieldManagerWindow.xaml</DependentUpon>
     </Compile>
@@ -278,7 +278,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="mysql.json">
+    <None Include="ClientConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

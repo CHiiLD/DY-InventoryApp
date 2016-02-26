@@ -15,13 +15,16 @@ namespace SuperSocketTest
     {
         public override void ExecuteCommand(RaceSession session, StringRequestInfo requestInfo)
         {
+            Console.WriteLine("\n=BEGIN==============================!!");
             RaceServer server = session.AppServer as RaceServer;
             server.Count1 += 1;
             Interlocked.Add(ref server.Count2, 1);
 
             string body = requestInfo.Body;
             int i = int.Parse(body);
-            Console.WriteLine(i);
+            Console.WriteLine(i.ToString().PadLeft(20));
+
+            Console.WriteLine("================================END=!!\n");
         }
     }
 

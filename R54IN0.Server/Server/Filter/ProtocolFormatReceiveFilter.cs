@@ -24,7 +24,7 @@ namespace R54IN0.Server
             try
             {
                 lens = Encoding.UTF8.GetString(header, offset + ReceiveName.NAME_SIZE, ReceiveName.BODYLEN_SIZE);
-                len = Convert.ToInt32(lens);
+                len = Convert.ToInt32(lens, 16);
             }
             catch(Exception e)
             {

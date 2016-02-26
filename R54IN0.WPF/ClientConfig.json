@@ -1,0 +1,6 @@
+﻿{
+    "ReadServerHost":"127.0.0.1",
+	"ReadServerPort":"4000",
+	"WriteServerHost":"127.0.0.1",
+	"WriteServerPort":"4001",
+}

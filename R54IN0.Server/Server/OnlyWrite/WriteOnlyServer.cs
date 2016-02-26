@@ -15,7 +15,7 @@ namespace R54IN0.Server
 
         public WriteOnlyServer() : base(new DefaultReceiveFilterFactory<ProtocolFormatReceiveFilter, BinaryRequestInfo>())
         {
-            string connectionStr = MySQLConfig.ConnectionString(@"mysql.json");
+            string connectionStr = MySQLConfig.ConnectionString(@"MySqlConnectionString.json");
             _mysql = new MySqlConnection(connectionStr);
             _mysql.Open();
         }

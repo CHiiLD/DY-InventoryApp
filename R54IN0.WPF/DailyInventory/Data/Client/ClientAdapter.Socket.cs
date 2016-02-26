@@ -11,6 +11,7 @@ namespace R54IN0.WPF
 {
     public partial class ClientAdapter
     {
+#if false
         public const string HOST = "";
         public const int READ_SERVER_PORT = 4000;
         public const int WRITE_SERVER_PORT = 4001;
@@ -45,5 +46,6 @@ namespace R54IN0.WPF
         {
 
         }
+#endif
     }
 }

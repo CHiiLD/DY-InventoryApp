@@ -63,6 +63,9 @@ namespace R54IN0.WPF
             CreateTable<Supplier>();
             CreateTable<Warehouse>();
 #endif
+            //TODO 여기에 파일 못 찾으면 에러 띄우기
+            ClientConfig config = JsonConvert.DeserializeObject<ClientConfig>(@"./ClientConfig.json");
+
             return true;
         }
 
@@ -196,12 +199,15 @@ namespace R54IN0.WPF
             string sql = string.Format("select * from {0};", typeof(TableT).Name);
             return ExecuteSelect0<TableT>(sql);
 #endif
+#if false
             byte[] data = new ProtocolFormat(typeof(TableT)).ToBytes(ReceiveName.SELECT_ALL);
             await _readSession.GetStream().WriteAsync(data, 0, data.Length);
             int size = await _readSession.GetStream().ReadAsync(_buffer, _bufIndex, _buffer.Length - _bufIndex);
             ProtocolFormat pfmt = ProtocolFormat.ToFormat(_buffer, _bufIndex, size);
             IEnumerable<TableT> formats = pfmt.JFormatList.Cast<TableT>();
             return formats.ToList();
+#endif
+            throw new NotSupportedException();
         }
 
         public async Task<TableT> SelectAsync<TableT>(string id) where TableT : class, IID, new()
