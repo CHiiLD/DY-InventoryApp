@@ -63,8 +63,6 @@ namespace R54IN0.WPF
             CreateTable<Supplier>();
             CreateTable<Warehouse>();
 #endif
-            _readSession = new System.Net.Sockets.TcpClient();
-            _readSession.Connect("127.0.0.1", 4000);
             return true;
         }
 

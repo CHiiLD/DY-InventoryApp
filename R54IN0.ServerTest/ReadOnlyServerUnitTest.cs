@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SuperSocket.SocketBase.Config;
 using SuperSocket.SocketBase;
 using R54IN0.Server;
-using R54IN0.WPF;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Net.Sockets;

@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="ReadOnlyServerUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PushServerUnitTest.cs" />
     <Compile Include="WriteOnlyServerUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,10 +83,6 @@
     <ProjectReference Include="..\R54IN0.Server\R54IN0.Server.csproj">
       <Project>{003618a6-945c-4681-9df2-1cb23f898966}</Project>
       <Name>R54IN0.Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\R54IN0.WPF\R54IN0.WPF.csproj">
-      <Project>{5a0c4ca1-b587-42a9-8df0-3151b1b33784}</Project>
-      <Name>R54IN0.WPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\SuperSocket.ClientEngine\SuperSocket.ClientEngine.Net40.csproj">
       <Project>{8bca34d7-18e8-4b33-a102-9f0a3951b742}</Project>

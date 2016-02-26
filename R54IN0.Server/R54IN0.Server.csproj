@@ -53,7 +53,7 @@
     <Compile Include="Server\Command\QueryValueCommand.cs" />
     <Compile Include="Server\Command\SelectAllCommand.cs" />
     <Compile Include="Server\Command\SelectCommand.cs" />
-    <Compile Include="MySqlConfig.cs" />
+    <Compile Include="MySQLConfig.cs" />
     <Compile Include="Server\Command\UpdateCommand.cs" />
     <Compile Include="Server\Command\WriteSessionCommandExtension.cs" />
     <Compile Include="Server\OnlyWrite\WriteOnlySession.cs" />

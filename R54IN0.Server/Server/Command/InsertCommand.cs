@@ -100,7 +100,7 @@ namespace R54IN0.Server
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
 
-            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(ReceiveName.DELETE);
+            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(ReceiveName.INSERT);
             foreach (WriteOnlySession s in server.GetAllSessions())
                 s.Send(data, 0, data.Length);
 

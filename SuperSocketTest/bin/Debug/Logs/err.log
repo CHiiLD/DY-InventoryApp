@@ -3,3 +3,13 @@ System.Net.Sockets.SocketException (0x80004005): 각 소켓 주소(프로토콜/
    위치: System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
    위치: System.Net.Sockets.Socket.Bind(EndPoint localEP)
    위치: SuperSocket.SocketEngine.TcpAsyncSocketListener.Start(IServerConfig config) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\TcpAsyncSocketListener.cs:줄 41
+2016-02-26 10:10:52,230 [2468] ERROR RaceServer - Listener (0.0.0.0:2132) error: 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
+System.Net.Sockets.SocketException (0x80004005): 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
+   위치: System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   위치: System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   위치: SuperSocket.SocketEngine.TcpAsyncSocketListener.Start(IServerConfig config) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\TcpAsyncSocketListener.cs:줄 41
+2016-02-26 10:11:55,142 [7208] ERROR RaceServer - Listener (0.0.0.0:2132) error: 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
+System.Net.Sockets.SocketException (0x80004005): 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
+   위치: System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   위치: System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   위치: SuperSocket.SocketEngine.TcpAsyncSocketListener.Start(IServerConfig config) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\TcpAsyncSocketListener.cs:줄 41

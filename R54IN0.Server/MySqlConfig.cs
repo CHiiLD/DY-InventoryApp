@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0.Server
 {
-    internal class MySQLConfig
+    public class MySQLConfig
     {
         public string Host { get; set; }
         public int Port { get; set; }
