@@ -260,7 +260,7 @@ namespace R54IN0.WPF
             if (ID == null)
                 throw new Exception("ID must not null");
             else if (UpdateLock)
-                DataDirector.GetInstance().DB.Update<InventoryFormat>(Format);
+                DataDirector.GetInstance().Db.Update<InventoryFormat>(Format);
         }
     }
 }

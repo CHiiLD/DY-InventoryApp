@@ -14,7 +14,7 @@ namespace R54IN0.Server
         {
             get
             {
-                return Commands.QUERY_FORMAT;
+                return ProtocolCommand.QUERY_FORMAT;
             }
         }
 

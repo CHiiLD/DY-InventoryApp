@@ -1,55 +1,45 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using MySQL.Test;
 using MySql.Data.MySqlClient;
 using R54IN0.WPF;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using R54IN0.Server;
 
-namespace R54IN0.Test.Test
+namespace R54IN0.WPF.Test.Test
 {
-    [TestClass]
+    [TestFixture]
     public class ProjectUnitTest
     {
-        private static MySqlConnection _conn;
+        MySqlConnection _conn;
 
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestFixtureSetUp]
+        public void TestSetUp()
         {
-            Console.WriteLine(nameof(ClassInitialize));
-            Console.WriteLine(context.TestName);
-
-            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json"));
             _conn.Open();
-
             Dummy dummy = new Dummy(_conn);
             dummy.Create();
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        [TestFixtureTearDown]
+        public void TestTearDown()
         {
-            Console.WriteLine(nameof(ClassCleanup));
             _conn.Close();
-            _conn = null;
         }
 
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void Setup()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
-            //    cmd.ExecuteNonQuery();
+            IDbAction dbAction = new FakeDbAction(_conn);
+            DataDirector.IntializeInstance(dbAction);
         }
 
-        [TestCleanup]
-        public void TestCleanup()
+        [TearDown]
+        public void TearDown()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
-            //    cmd.ExecuteNonQuery();
-
             CollectionViewModelObserverSubject.Destory();
             TreeViewNodeDirector.Destroy(true);
             DataDirector.Destroy();
@@ -58,15 +48,15 @@ namespace R54IN0.Test.Test
         /// <summary>
         /// IOStockFormat에 기록된 Project의 개수가 0가 된 경우 Project를 삭제한다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public async Task DeleteProjectAutomatically()
         {
             DataDirector ddr = DataDirector.GetInstance();
             Observable<Project> project = ddr.CopyFields<Project>().Random();
 
             //IOStockFormat 로드 해서 하나씩 삭제 중 ..
-            List<Tuple<string>> tuples = await ddr.DB.QueryReturnTuple<string>("select ID from {0} where ProjectID = '{1}';", nameof(IOStockFormat), project.ID);
-            tuples.ForEach(x => ddr.DB.Delete<IOStockFormat>(x.Item1));
+            List<Tuple<string>> tuples = await ddr.Db.QueryReturnTupleAsync<string>("select ID from {0} where ProjectID = '{1}';", nameof(IOStockFormat), project.ID);
+            tuples.ForEach(x => ddr.Db.Delete<IOStockFormat>(x.Item1));
 
             Assert.IsFalse(ddr.CopyFields<Project>().Any(x => x == project));
         }

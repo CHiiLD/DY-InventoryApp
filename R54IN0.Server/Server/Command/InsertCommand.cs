@@ -18,7 +18,7 @@ namespace R54IN0.Server
         {
             get
             {
-                return Commands.INSERT;
+                return ProtocolCommand.INSERT;
             }
         }
 
@@ -96,11 +96,11 @@ namespace R54IN0.Server
 
             WriteOnlyServer server = session.AppServer as WriteOnlyServer;
             MySqlConnection conn = server.MySQL;
-            Console.WriteLine(sql);
+            session.Logger.Debug(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
 
-            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(Commands.INSERT);
+            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(ProtocolCommand.INSERT);
             foreach (WriteOnlySession s in server.GetAllSessions())
                 s.Send(data, 0, data.Length);
 

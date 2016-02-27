@@ -1,14 +1,18 @@
-﻿using MySql.Data.MySqlClient;
+﻿using log4net;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace R54IN0.Server
 {
+    //TODO PING PONG 1분 간격으로 전송해서 응답 없으면 섹션 해제
     public static class WriteSessionCommandExtension
     {
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public const string DATETIME = "yyyy-MM-dd HH:mm:ss.fff";
 
         public static object ConvertMySQLTypeValue(this IWriteSessionCommand writeSessionCmd, object value)
@@ -25,7 +29,7 @@ namespace R54IN0.Server
         {
             List<Tuple<T1>> result = new List<Tuple<T1>>();
             sql = string.Format(sql, args);
-            Console.WriteLine(sql);
+            log.Debug(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
             using (MySqlDataReader reader = cmd.ExecuteReader())
             {
@@ -43,7 +47,7 @@ namespace R54IN0.Server
         {
             List<Tuple<T1, T2>> result = new List<Tuple<T1, T2>>();
             sql = string.Format(sql, args);
-            Console.WriteLine(sql);
+            log.Debug(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
             using (MySqlDataReader reader = cmd.ExecuteReader())
             {
@@ -83,7 +87,7 @@ namespace R54IN0.Server
                     nameof(IOStockFormat), invID, (int)IOStockType.INCOMING,
                     nameof(IOStockFormat), invID, (int)IOStockType.OUTGOING,
                     invID);
-                Console.WriteLine(sql);
+                log.Debug(sql);
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     cmd.ExecuteNonQuery();
                 //재고 수량 구해서 업데이트

@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using log4net;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Linq;
 using R54IN0.Format;
 using SuperSocket.SocketBase.Command;
@@ -14,11 +15,13 @@ namespace R54IN0.Server
 {
     public class DeleteCommand : ICommand<WriteOnlySession, BinaryRequestInfo>, IWriteSessionCommand
     {
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public string Name
         {
             get
             {
-                return Commands.DELETE;
+                return ProtocolCommand.DELETE;
             }
         }
 
@@ -48,13 +51,13 @@ namespace R54IN0.Server
             }
 
             string sql = string.Format("delete from {0} where ID = '{1}';", type, id);
-            Console.WriteLine(sql);
+            session.Logger.Debug(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
 
             SerialKiller(conn, type, id);
 
-            byte[] data = new ProtocolFormat(type).SetID(id).ToBytes(Commands.DELETE);
+            byte[] data = new ProtocolFormat(type).SetID(id).ToBytes(ProtocolCommand.DELETE);
             foreach (WriteOnlySession s in server.GetAllSessions())
                 s.Send(data, 0, data.Length);
 
@@ -64,7 +67,7 @@ namespace R54IN0.Server
 
         private void SerialKiller(MySqlConnection conn, string type, string id)
         {
-            Console.WriteLine(nameof(SerialKiller));
+            log.Debug(nameof(SerialKiller));
             if (type == typeof(Product).Name)
                 KillInventoryFormat(conn, id);
             else if (type == typeof(InventoryFormat).Name)
@@ -75,7 +78,7 @@ namespace R54IN0.Server
 
         private void KillFieldFormat(MySqlConnection conn, string type, string fieldID)
         {
-            Console.WriteLine(nameof(KillFieldFormat));
+            log.Debug(nameof(KillFieldFormat));
             string pType;
             if (type == typeof(Maker).Name || type == typeof(Measure).Name)
                 pType = typeof(InventoryFormat).Name;
@@ -84,36 +87,36 @@ namespace R54IN0.Server
             string pName = type + "ID";
             string sql = string.Format("update {0} set {1} = '{2}' where {1} = '{3}';", pType, pName, null, fieldID);
 
-            Console.WriteLine(sql);
+            log.Debug(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
         }
 
         private void KillInventoryFormat(MySqlConnection conn, string productID)
         {
-            Console.WriteLine(nameof(KillInventoryFormat));
+            log.Debug(nameof(KillInventoryFormat));
             string sql;
             List<string> invIDs = new List<string>();
 
             sql = string.Format("delete from {0} where InventoryID in (select ID from {1} where ProductID = '{2}');",
                 nameof(IOStockFormat), nameof(InventoryFormat), productID);
-            Console.WriteLine(sql);
+            log.Debug(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
 
             sql = string.Format("delete from {0} where ProductID = '{1}';",
                 nameof(InventoryFormat), productID);
-            Console.WriteLine(sql);
+            log.Debug(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
         }
 
         private void KillIOStockFormat(MySqlConnection conn, string inventoryID)
         {
-            Console.WriteLine(nameof(KillIOStockFormat));
+            log.Debug(nameof(KillIOStockFormat));
             string sql = string.Format("delete from {0} where InventoryID = '{1}';",
                         nameof(IOStockFormat), inventoryID);
-            Console.WriteLine(sql);
+            log.Debug(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
         }

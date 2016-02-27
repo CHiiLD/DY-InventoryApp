@@ -8,25 +8,23 @@ namespace R54IN0.WPF
     internal class ObservableFieldManager
     {
         private IDictionary<Type, Dictionary<string, IObservableField>> _fields;
-        private MySqlBridge _db;
 
-        internal ObservableFieldManager(MySqlBridge _db)
+        internal ObservableFieldManager()
         {
-            this._db = _db;
         }
 
-        internal async Task InitializeAsync()
+        internal async Task InitializeAsync(IDbAction db)
         {
             _fields = new Dictionary<Type, Dictionary<string, IObservableField>>();
 
-            List<Customer> customer = await _db.SelectAsync<Customer>();
-            List<Employee> employee = await _db.SelectAsync<Employee>();
-            List<Maker> maker = await _db.SelectAsync<Maker>();
-            List<Measure> measure = await _db.SelectAsync<Measure>();
-            List<Product> product = await _db.SelectAsync<Product>();
-            List<Project> project = await _db.SelectAsync<Project>();
-            List<Supplier> supplier = await _db.SelectAsync<Supplier>();
-            List<Warehouse> warehouse = await _db.SelectAsync<Warehouse>();
+            List<Customer> customer = await db.SelectAsync<Customer>();
+            List<Employee> employee = await db.SelectAsync<Employee>();
+            List<Maker> maker = await db.SelectAsync<Maker>();
+            List<Measure> measure = await db.SelectAsync<Measure>();
+            List<Product> product = await db.SelectAsync<Product>();
+            List<Project> project = await db.SelectAsync<Project>();
+            List<Supplier> supplier = await db.SelectAsync<Supplier>();
+            List<Warehouse> warehouse = await db.SelectAsync<Warehouse>();
 
             _fields[typeof(Customer)] = customer.ToDictionary<Customer, string, IObservableField>(x => x.ID, x => new Observable<Customer>(x));
             _fields[typeof(Employee)] = employee.ToDictionary<Employee, string, IObservableField>(x => x.ID, x => new Observable<Employee>(x));

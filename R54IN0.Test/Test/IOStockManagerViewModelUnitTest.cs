@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using MySql.Data.MySqlClient;
 using MySQL.Test;
 using R54IN0.WPF;
@@ -7,83 +7,75 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using R54IN0.Server;
 
-namespace R54IN0.Test
+namespace R54IN0.WPF.Test
 {
-    [TestClass]
+    [TestFixture]
     public class IOStockManagerViewModelUnitTest
     {
-        private static MySqlConnection _conn;
+        
 
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        MySqlConnection _conn;
+
+        [TestFixtureSetUp]
+        public void TestSetUp()
         {
-            Console.WriteLine(nameof(ClassInitialize));
-            Console.WriteLine(context.TestName);
-
-            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json"));
             _conn.Open();
-
             Dummy dummy = new Dummy(_conn);
             dummy.Create();
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        [TestFixtureTearDown]
+        public void TestTearDown()
         {
-            Console.WriteLine(nameof(ClassCleanup));
             _conn.Close();
-            _conn = null;
         }
 
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void Setup()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
-            //    cmd.ExecuteNonQuery();
+            IDbAction dbAction = new FakeDbAction(_conn);
+            DataDirector.IntializeInstance(dbAction);
         }
 
-        [TestCleanup]
-        public void TestCleanup()
+        [TearDown]
+        public void TearDown()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
-            //    cmd.ExecuteNonQuery();
-
             CollectionViewModelObserverSubject.Destory();
             TreeViewNodeDirector.Destroy(true);
             DataDirector.Destroy();
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreate0()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             new IOStockManagerViewModel(prod);
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreate1()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
             new IOStockManagerViewModel(inv);
         }
 
-        [TestMethod]
+        [Test]
         public async Task CanCreate2()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' limit 1;", inv.ID);
             var ios = new ObservableIOStock(qret.Random());
             new IOStockManagerViewModel(ios);
         }
 
-        [TestMethod]
+        [Test]
         public async Task TestInit0()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
             var ios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(ios);
 
@@ -97,11 +89,11 @@ namespace R54IN0.Test
             Assert.AreEqual(vm.UnitPrice, ios.UnitPrice);
         }
 
-        [TestMethod]
+        [Test]
         public async Task TestInit1()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var ios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(ios);
 
@@ -120,7 +112,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 입고에서 출고로 변경할 때 프로젝트와 출고처를 선택할 수 있도록 한다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TestIOStockTypeChange0()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
@@ -134,7 +126,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 출고에서 입고로 변경할 때 창고와 입고처를 선택할 수 있게 한다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TestIOStockTypeChange1()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
@@ -149,11 +141,11 @@ namespace R54IN0.Test
         /// <summary>
         /// 출고로 변경할 때 선택된 창고와 입고처를 null로 대입
         /// </summary>
-        [TestMethod]
+        [Test]
         public async Task TestIOStockTypeChange2()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
             var iios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(iios);
 
@@ -166,11 +158,11 @@ namespace R54IN0.Test
         /// <summary>
         /// 입고로 변경할 때 선택된 프로젝트와 출고처를 null로 대입
         /// </summary>
-        [TestMethod]
+        [Test]
         public async Task TestIOStockTypeChange3()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(oios);
 
@@ -183,7 +175,7 @@ namespace R54IN0.Test
         /// <summary>
         /// IOStockFormat 생성
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateNewIOStock0()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
@@ -207,7 +199,7 @@ namespace R54IN0.Test
         /// <summary>
         /// IOStockFormat 생성
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateNewIOStock1()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
@@ -230,7 +222,7 @@ namespace R54IN0.Test
         /// <summary>
         /// IOStockFormat 생성
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateNewIOStock2()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
@@ -256,7 +248,7 @@ namespace R54IN0.Test
         /// <summary>
         /// IOStockFormat 생성
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateNewIOStock3()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
@@ -280,11 +272,11 @@ namespace R54IN0.Test
         /// <summary>
         /// 금액과 수량 변경 확인
         /// </summary>
-        [TestMethod]
+        [Test]
         public async Task ModifyIOStockFormat0()
         {
             ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
-            List<IOStockFormat> qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
+            List<IOStockFormat> qret = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
             ObservableIOStock oios = new ObservableIOStock(qret.Random());
             IOStockManagerViewModel vm = new IOStockManagerViewModel(oios);
 
@@ -300,11 +292,11 @@ namespace R54IN0.Test
         /// <summary>
         /// 구입처, 담당자, 창고 변경하기
         /// </summary>
-        [TestMethod]
+        [Test]
         public async Task ModifyIOStockFormat1()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 1 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(oios);
 
@@ -322,11 +314,11 @@ namespace R54IN0.Test
         /// <summary>
         /// 출고처, 담당자, 프로젝트 변경하기
         /// </summary>
-        [TestMethod]
+        [Test]
         public async Task ModifyIOStockFormat2()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(oios);
 
@@ -344,11 +336,11 @@ namespace R54IN0.Test
         /// <summary>
         /// 이름 수정하기
         /// </summary>
-        [TestMethod]
+        [Test]
         public async Task ModifyIOStockFormat3()
         {
             var inv = DataDirector.GetInstance().CopyInventories().Random();
-            var qret = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
+            var qret = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID);
             var oios = new ObservableIOStock(qret.Random());
             var vm = new IOStockManagerViewModel(oios);
 
@@ -367,11 +359,11 @@ namespace R54IN0.Test
             Assert.AreEqual(name, oio.Project.Name);
         }
 
-        [TestMethod]
+        [Test]
         public async Task WhenModifyQtyThenSyncDataGridViewItems()
         {
             ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
-            IOStockFormat qret = (await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID)).Single();
+            IOStockFormat qret = (await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>("select * from IOStockFormat where InventoryID = '{0}' and StockType = 2 limit 1;", inv.ID)).Single();
 
             IOStockStatusViewModel svm = new IOStockStatusViewModel();
 
@@ -381,7 +373,7 @@ namespace R54IN0.Test
             svm.TreeViewViewModel.AddSelectedNodes(node);
 
             IOStockDataGridItem stock = DataDirector.GetInstance().StockList.Where(x => x.ID == qret.ID).Single();
-
+            
             IOStockManagerViewModel vm = new IOStockManagerViewModel(stock);
             int qty = vm.Quantity = 10;
             vm.Update();
@@ -396,7 +388,7 @@ namespace R54IN0.Test
         /// <summary>
         /// bugfix sql quantity null query 문제
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateInventoryThenCreateStock()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
@@ -417,7 +409,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 입출고 데이터가 하나도 없는 상태에서 UnitPrice를 쿼리 시 적절한 대처를 검사
         /// </summary>
-        [TestMethod]
+        [Test]
         public void UnitPriceAndAccountQueryTest0()
         {
             DataDirector ddr = DataDirector.GetInstance();
@@ -449,48 +441,51 @@ namespace R54IN0.Test
             Assert.IsNull(vm.SelectedAccount);
         }
 
-        [TestMethod]
+        [Test]
         public void UnitPriceAndAccountQueryTest1()
         {
             DataDirector ddr = DataDirector.GetInstance();
             Observable<Product> prod = ddr.CopyFields<Product>().Random();
             IOStockManagerViewModel vm = new IOStockManagerViewModel(prod);
-
+            
             Assert.AreEqual(0, vm.UnitPrice);
 
             vm.SelectedInventory = vm.Inventories.Random();
-
+            
             Assert.AreNotEqual(0, vm.UnitPrice);
         }
 
-        [TestMethod]
+        [Test]
         public void UnitPriceAndAccountQueryTest2()
         {
             ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
             IOStockManagerViewModel vm = new IOStockManagerViewModel(inv);
+            
             decimal price = vm.UnitPrice;
             var supplier = vm.SelectedAccount = vm.Accounts.Random();
             price = vm.UnitPrice = price + 1000;
             vm.Insert();
-
             vm = new IOStockManagerViewModel(inv);
+            
             Assert.AreEqual(price, vm.UnitPrice);
             Assert.AreEqual(supplier, vm.SelectedAccount);
         }
 
-        [TestMethod]
+        [Test]
         public void UnitPriceAndAccountQueryTest3()
         {
             ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
             IOStockManagerViewModel vm = new IOStockManagerViewModel(inv);
             decimal price = vm.UnitPrice;
             vm.StockType = IOStockType.OUTGOING;
+            
             price = vm.UnitPrice = price + 1000;
             var supplier = vm.SelectedAccount = vm.Accounts.Random();
             vm.Insert();
-
             vm = new IOStockManagerViewModel(inv);
+            
             vm.StockType = IOStockType.OUTGOING;
+            
             Assert.AreEqual(price, vm.UnitPrice);
             Assert.AreEqual(supplier, vm.SelectedAccount);
         }

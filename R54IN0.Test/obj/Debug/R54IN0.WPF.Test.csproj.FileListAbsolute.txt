@@ -1,0 +1,5 @@
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Test\bin\Debug\DailY Inventory.exe
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Test\bin\Debug\nunit.framework.dll
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Test\bin\Debug\R54IN0.Format.dll
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Test\bin\Debug\R54IN0.WPF.Test.dll
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Test\bin\Debug\R54IN0.WPF.Test.pdb

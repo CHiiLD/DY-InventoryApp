@@ -12,8 +12,8 @@ DEBUG;TRACE
 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\App.xaml
 14-1392509560
 
-68460740352
-821967022196
+70-961706824
+801149105635
 DailyInventory\Controls\FieldManager\FieldManagerControl.xaml;DailyInventory\Controls\IOStockManager\IOStockManagerControl.xaml;DailyInventory\Controls\IOStockStatus\IOStockDatePickerControl.xaml;DailyInventory\Controls\IOStockStatus\IOStockProjectListBoxControl.xaml;DailyInventory\Controls\IOStockStatus\IOStockStatusControl.xaml;DailyInventory\Controls\InventoryStatus\InventoryStatusControl.xaml;DailyInventory\Controls\IOStockStatus\IOStockDataGridControl.xaml;DailyInventory\Controls\InventoryStatus\InventoryDataGridControl.xaml;DailyInventory\Controls\MetroButtonStyles.xaml;DailyInventory\Controls\InventoryManager\InventoryManagerDialog.xaml;DailyInventory\Controls\TreeView\MultiSelectTreeViewControl.xaml;DailyInventory\Windows\FieldManagerWindow.xaml;DailyInventory\Windows\IOStockManagerWindow.xaml;DailyInventory\Windows\MainWindow.xaml;
 
 False

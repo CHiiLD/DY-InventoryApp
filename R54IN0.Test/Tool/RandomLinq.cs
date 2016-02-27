@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace R54IN0.Test
+namespace R54IN0.WPF.Test
 {
     public static class LinqRandom
     {

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace R54IN0.Format
 {
-    public class ProtocolFormat : Commands
+    public class ProtocolFormat : ProtocolCommand
     {
-        public const int BUFFER_SIZE = 1024 * 4;
+        public const int BUFFER_SIZE = 1024 * 2;
 
         public string Name { get; set; }
         public string Table { get; set; }
@@ -127,7 +127,7 @@ namespace R54IN0.Format
             Name = receiveName;
             string json = JsonConvert.SerializeObject(this);
             int jsonLen = Encoding.UTF8.GetByteCount(json);
-            string jsonLenStr = string.Format("{0:X8}", jsonLen);
+            string jsonLenStr = string.Format("{0:X4}", jsonLen);
             byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
             byte[] headerBytes = Encoding.UTF8.GetBytes(receiveName + jsonLenStr);
             byte[] protocolData = new byte[jsonBytes.Length + headerBytes.Length];
@@ -154,7 +154,7 @@ namespace R54IN0.Format
             byte[] jsonBytes = body;
             string name = receiveName;
             if (!IsCommands(name))
-                throw new Exception(string.Format("Name을 알 수 없습니다. {0}", name));
+                throw new Exception(string.Format("Header의 Command를 알 수 없습니다.({0})", name));
 
             string json = Encoding.UTF8.GetString(jsonBytes);
             ProtocolFormat format = JsonConvert.DeserializeObject<ProtocolFormat>(json);
@@ -178,13 +178,13 @@ namespace R54IN0.Format
 
             string receiveName = Encoding.UTF8.GetString(nameBytes);
             if (!IsCommands(receiveName))
-                throw new Exception(string.Format("Name을 알 수 없습니다. {0}", receiveName));
+                throw new Exception(string.Format("Header의 Command를 알 수 없습니다.({0})", receiveName));
 
             string jsonLenStr = Encoding.UTF8.GetString(lenBytes);
             int length = Convert.ToInt32(jsonLenStr, 16);
 
             if (length != count - HEADER_SIZE)
-                throw new Exception(string.Format("bodyLength와 실제 Json string Length가 불일치합니다."));
+                throw new Exception(string.Format("Header정보의 길이와 본체의 데이터 길이가 같지 않습니다."));
 
             Array.Copy(buffer, offset + HEADER_SIZE, jsonBytes, 0, count - HEADER_SIZE);
             string json = Encoding.UTF8.GetString(jsonBytes);

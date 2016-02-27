@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SuperSocket.SocketBase.Config;
 using SuperSocket.SocketBase;
 using R54IN0.Server;
@@ -13,22 +12,21 @@ using R54IN0.Format;
 using MySQL.Test;
 using MySql.Data.MySqlClient;
 using System.Linq;
+using NUnit.Framework;
+using System.Threading;
 
 namespace R54IN0.ServerTest
 {
-    [TestClass]
+    [TestFixture]
     public class ReadOnlyServerUnitTest
     {
-        private static ReadOnlyServer _server;
-        private static ServerConfig _config;
-        private static MySqlConnection _conn;
+        private ReadOnlyServer _server;
+        private ServerConfig _config;
+        private MySqlConnection _conn;
 
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestFixtureSetUp]
+        public void ClassInitialize()
         {
-            Console.WriteLine(nameof(ClassInitialize));
-            Console.WriteLine(context.TestName);
-
             _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString(@"./mysql_connection_string.json"));
             _conn.Open();
             Dummy dummy = new Dummy(_conn);
@@ -46,27 +44,27 @@ namespace R54IN0.ServerTest
             _server.Setup(_config);
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        [TestFixtureTearDown]
+        public void ClassCleanup()
         {
             Console.WriteLine(nameof(ClassCleanup));
             _conn.Close();
             _conn = null;
         }
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _server.Start();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestCleanup()
         {
             _server.Stop();
         }
 
-        [TestMethod]
+        [Test]
         public async Task PingPongCommandTest()
         {
             IPEndPoint iep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), _config.Port);
@@ -79,7 +77,7 @@ namespace R54IN0.ServerTest
                 string pp = "1234";
 
                 a = new SocketAwaitable();
-                byte[] reqtBytes = new ProtocolFormat().SetPing(pp).ToBytes(Commands.PING);
+                byte[] reqtBytes = new ProtocolFormat().SetPing(pp).ToBytes(ProtocolCommand.PING);
                 a.Buffer = new ArraySegment<byte>(reqtBytes);
                 await s.SendAsync(a);
 
@@ -87,12 +85,29 @@ namespace R54IN0.ServerTest
                 Assert.AreNotEqual(0, a.Transferred.Count);
                 ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(a.Transferred.Array, 0, a.Transferred.Count);
 
-                Assert.AreEqual(pfmt.Name, Commands.PONG);
+                Assert.AreEqual(pfmt.Name, ProtocolCommand.PONG);
                 Assert.AreEqual(pp, pfmt.Ping);
             }
         }
 
-        [TestMethod]
+        [Test]
+        public void AsyncWaitHandleTest()
+        {
+            IPEndPoint iep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), _config.Port);
+            using (Socket s = new Socket(iep.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
+            {
+                var beginAsyncResult = s.BeginConnect(iep, (beginAr) => 
+                {
+                    Thread.Sleep(2000);
+                    Console.WriteLine("connected!");
+                }, null);
+                Console.WriteLine("wait start");
+                beginAsyncResult.AsyncWaitHandle.WaitOne();
+                Console.WriteLine("wait end");
+            }
+        }
+
+        [Test]
         public async Task SelectAllCommandTest()
         {
             IPEndPoint iep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), _config.Port);
@@ -105,7 +120,7 @@ namespace R54IN0.ServerTest
                 a = new SocketAwaitable();
                 a.Buffer = bbm.GetBuffer();
 
-                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).ToBytes(Commands.SELECT_ALL);
+                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).ToBytes(ProtocolCommand.SELECT_ALL);
                 Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
                 await s.SendAsync(a);
 
@@ -113,14 +128,14 @@ namespace R54IN0.ServerTest
                 Assert.AreNotEqual(0, a.Transferred.Count);
                 ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(a.Transferred.Array, 0, a.Transferred.Count);
 
-                Assert.AreEqual(pfmt.Name, Commands.SELECT_ALL);
+                Assert.AreEqual(pfmt.Name, ProtocolCommand.SELECT_ALL);
                 var fmts = pfmt.ConvertToFormat<Maker>();
                 foreach (var maker in fmts)
                     Console.WriteLine(maker.Name);
             }
         }
 
-        [TestMethod]
+        [Test]
         public async Task SelectCommandTest()
         {
             IPEndPoint iep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), _config.Port);
@@ -144,7 +159,7 @@ namespace R54IN0.ServerTest
                     }
                 }
 
-                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(Commands.SELECT_ONE);
+                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(ProtocolCommand.SELECT_ONE);
                 Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
                 await s.SendAsync(a);
 
@@ -157,7 +172,7 @@ namespace R54IN0.ServerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public async Task QueryInstanceCommandTest()
         {
             IPEndPoint iep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), _config.Port);
@@ -171,7 +186,7 @@ namespace R54IN0.ServerTest
                 a.Buffer = bbm.GetBuffer();
 
                 string sql = "select * from IOStockFormat where StockType = 1 order by Date limit 10;";
-                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(Commands.QUERY_FORMAT);
+                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(ProtocolCommand.QUERY_FORMAT);
                 Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
                 await s.SendAsync(a);
 
@@ -186,7 +201,7 @@ namespace R54IN0.ServerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public async Task QueryValueCommand()
         {
             IPEndPoint iep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), _config.Port);
@@ -200,7 +215,7 @@ namespace R54IN0.ServerTest
                 a.Buffer = bbm.GetBuffer();
 
                 string sql = "select Quantity from InventoryFormat order by rand() limit 1;";
-                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(Commands.QUERY_VALUE);
+                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(ProtocolCommand.QUERY_VALUE);
                 Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
                 await s.SendAsync(a);
 
@@ -214,7 +229,7 @@ namespace R54IN0.ServerTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public async Task TcpClientTest()
         {
             IPEndPoint iep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), _config.Port);
@@ -228,7 +243,7 @@ namespace R54IN0.ServerTest
                 a.Buffer = bbm.GetBuffer();
 
                 string sql = "select Quantity from InventoryFormat order by rand() limit 1;";
-                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(Commands.QUERY_VALUE);
+                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(ProtocolCommand.QUERY_VALUE);
                 Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
                 await socket.SendAsync(a);
 
@@ -242,7 +257,8 @@ namespace R54IN0.ServerTest
             }
         }
 
-        [TestMethod]
+        [Ignore]
+        [Test]
         public async Task BufferManagerTest()
         {
             BlockingBufferManager bbm = new BlockingBufferManager(ProtocolFormat.BUFFER_SIZE, 10000);
@@ -257,21 +273,21 @@ namespace R54IN0.ServerTest
                 var buf = awaitable.Buffer = bbm.GetBuffer();
 
                 string sql = "select * from IOStockFormat";
-                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(Commands.QUERY_FORMAT);
+                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(ProtocolCommand.QUERY_FORMAT);
                 Array.Copy(reqtBytes, awaitable.Buffer.Array, reqtBytes.Length);
                 await socket.SendAsync(awaitable);
-
+                int offset = buf.Offset;
                 int count = 0;
                 List<ArraySegment<byte>> segments = new List<ArraySegment<byte>>();
                 while (await socket.ReceiveAsync(awaitable) == SocketError.Success && awaitable.Transferred.Count > 0)
                 {
                     segments.Add(awaitable.Buffer);
                     count += awaitable.Transferred.Count;
-                    if (ProtocolFormat.IsReceivedCompletely(awaitable.Transferred.Array, 0, count))
+                    if (ProtocolFormat.IsReceivedCompletely(awaitable.Transferred.Array, offset, count))
                         break;
                     awaitable.Buffer = bbm.GetBuffer();
                 }
-                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(awaitable.Transferred.Array, 0, count);
+                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(awaitable.Transferred.Array, offset, count);
                 var stofmts = pfmt.ConvertToFormat<IOStockFormat>();
                 foreach (var stofmt in stofmts)
                     Console.WriteLine(stofmt.ID);

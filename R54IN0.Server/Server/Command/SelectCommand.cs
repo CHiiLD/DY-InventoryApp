@@ -17,7 +17,7 @@ namespace R54IN0.Server
         {
             get
             {
-                return Commands.SELECT_ONE;
+                return ProtocolCommand.SELECT_ONE;
             }
         }
 

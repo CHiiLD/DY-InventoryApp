@@ -17,23 +17,33 @@ namespace R54IN0.WPF
         private ObservableFieldManager _field;
         private ObservableInventoryManager _inventory;
         private CollectionViewModelObserverSubject _subject;
-        private MySqlBridge _bridge;
+        private IDbAction _dbAction;
 
         private DataDirector()
         {
-            _subject = CollectionViewModelObserverSubject.GetInstance();
             StockList = new List<IOStockDataGridItem>();
+            _subject = CollectionViewModelObserverSubject.GetInstance();
+            _field = new ObservableFieldManager();
+            _inventory = new ObservableInventoryManager();
         }
 
         ~DataDirector()
         {
         }
 
-        public MySqlBridge DB
+        public IDbAction Db
         {
             get
             {
-                return _bridge;
+                return _dbAction;
+            }
+            set
+            {
+                _dbAction = value;
+                _dbAction.DataInsertEventHandler += OnDataInserted;
+                _dbAction.DataUpdateEventHandler += OnDataUpdated;
+                _dbAction.DataDeleteEventHandler += OnDataDeleted;
+
             }
         }
 
@@ -59,11 +69,13 @@ namespace R54IN0.WPF
                 _me._field = null;
                 _me._inventory = null;
                 _me._subject = null;
-                _me._bridge.Dispose();
-                _me._bridge = null;
+                _me._dbAction.Dispose();
+                _me._dbAction = null;
                 _me = null;
             }
         }
+
+
         #region inventory director
 
         /// <summary>
@@ -75,7 +87,7 @@ namespace R54IN0.WPF
         {
             if (invf.ID == null)
                 invf.ID = Guid.NewGuid().ToString();
-            _bridge.Insert(invf);
+            _dbAction.Insert(invf);
         }
 
         public List<ObservableInventory> CopyInventories()
@@ -90,7 +102,7 @@ namespace R54IN0.WPF
         /// <returns></returns>
         public void RemoveInventory(ObservableInventory oInventory)
         {
-            _bridge.Delete<InventoryFormat>(oInventory.ID);
+            _dbAction.Delete<InventoryFormat>(oInventory.ID);
         }
 
         public ObservableInventory SearchInventory(string inventoryID)
@@ -111,21 +123,21 @@ namespace R54IN0.WPF
                 throw new ArgumentNullException();
 
             if (field is Product)
-                _bridge.Insert<Product>(field);
+                _dbAction.Insert<Product>(field);
             else if (field is Maker)
-                _bridge.Insert<Maker>(field);
+                _dbAction.Insert<Maker>(field);
             else if (field is Measure)
-                _bridge.Insert<Measure>(field);
+                _dbAction.Insert<Measure>(field);
             else if (field is Customer)
-                _bridge.Insert<Customer>(field);
+                _dbAction.Insert<Customer>(field);
             else if (field is Supplier)
-                _bridge.Insert<Supplier>(field);
+                _dbAction.Insert<Supplier>(field);
             else if (field is Project)
-                _bridge.Insert<Project>(field);
+                _dbAction.Insert<Project>(field);
             else if (field is Warehouse)
-                _bridge.Insert<Warehouse>(field);
+                _dbAction.Insert<Warehouse>(field);
             else if (field is Employee)
-                _bridge.Insert<Employee>(field);
+                _dbAction.Insert<Employee>(field);
             else
                 throw new NotSupportedException();
         }
@@ -151,44 +163,49 @@ namespace R54IN0.WPF
             string id = ofield.ID;
 
             if (ifield is Product)
-                _bridge.Delete<Product>(id);
+                _dbAction.Delete<Product>(id);
             else if (ifield is Maker)
-                _bridge.Delete<Maker>(id);
+                _dbAction.Delete<Maker>(id);
             else if (ifield is Measure)
-                _bridge.Delete<Measure>(id);
+                _dbAction.Delete<Measure>(id);
             else if (ifield is Customer)
-                _bridge.Delete<Customer>(id);
+                _dbAction.Delete<Customer>(id);
             else if (ifield is Supplier)
-                _bridge.Delete<Supplier>(id);
+                _dbAction.Delete<Supplier>(id);
             else if (ifield is Project)
-                _bridge.Delete<Project>(id);
+                _dbAction.Delete<Project>(id);
             else if (ifield is Warehouse)
-                _bridge.Delete<Warehouse>(id);
+                _dbAction.Delete<Warehouse>(id);
             else if (ifield is Employee)
-                _bridge.Delete<Employee>(id);
+                _dbAction.Delete<Employee>(id);
             else
                 throw new NotSupportedException();
         }
         #endregion field director
 
-        public static async Task InstanceInitialzeAsync()
+        public static async Task InitialzeInstanceAsync(int connectionTimeout = 1000)
         {
+            Destroy();
             DataDirector ddr = GetInstance();
-            MySqlBridge bridge = ddr._bridge = new MySqlBridge();
+            MySqlBridge bridge = new MySqlBridge();
+            ddr.Db = bridge;
+            IAsyncResult ar = bridge.Connect();
+            ar.AsyncWaitHandle.WaitOne(connectionTimeout);
 
-            bridge.DataInsertEventHandler += ddr.OnDataInserted;
-            bridge.DataUpdateEventHandler += ddr.OnDataUpdated;
-            bridge.DataDeleteEventHandler += ddr.OnDataDeleted;
-            //TODO 동기화 문제 
-            bridge.Connect();
+            if (bridge.Socket.Connected)
+            {
+                await ddr._field.InitializeAsync(bridge);
+                await ddr._inventory.InitializeAsync(bridge);
+            }
+        }
 
-            await Task.Delay(2000);
-
-            ddr.StockList = new List<IOStockDataGridItem>();
-            ddr._field = new ObservableFieldManager(bridge);
-            ddr._inventory = new ObservableInventoryManager(bridge);
-            await ddr._field.InitializeAsync();
-            await ddr._inventory.InitializeAsync();
+        public static void IntializeInstance(IDbAction dbAction)
+        {
+            Destroy();
+            DataDirector ddr = GetInstance();
+            ddr.Db = dbAction;
+            ddr._field.InitializeAsync(dbAction).Wait();
+            ddr._inventory.InitializeAsync(dbAction).Wait();
         }
     }
 }

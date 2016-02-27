@@ -476,7 +476,7 @@ namespace R54IN0.WPF
                     sql = string.Format("select * from {0} where {1} in ({2}) order by Date desc;",
                         typeof(IOStockFormat).Name, "InventoryID", sb.ToString());
                 }
-                Dispatcher.CurrentDispatcher.BeginInvoke(new Func<string, Task>(SetDataGridItems), sql);
+                Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataGridItems), sql);
             }
         }
 
@@ -494,7 +494,7 @@ namespace R54IN0.WPF
                 {
                     string sql = string.Format("select * from {0} where {1} = '{2}' order by Date desc;",
                         typeof(IOStockFormat).Name, "ProjectID", proejct.ID);
-                    Dispatcher.CurrentDispatcher.BeginInvoke(new Func<string, Task>(SetDataGridItems), sql);
+                    Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataGridItems), sql);
                 }
             }
         }
@@ -513,7 +513,7 @@ namespace R54IN0.WPF
                 string strfmt = "yyyy-MM-dd HH:mm:ss.fff";
                 string sql = string.Format("select * from {0} where {1} between '{2}' and '{3}' order by Date desc;", 
                     typeof(IOStockFormat).Name, "Date", fromDate.ToString(strfmt), toDate.ToString(strfmt));
-                Dispatcher.CurrentDispatcher.BeginInvoke(new Func<string, Task>(SetDataGridItems), sql);
+                Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataGridItems), sql);
             }
         }
 
@@ -531,7 +531,7 @@ namespace R54IN0.WPF
             TreeViewViewModel.SelectedNodes.Clear();
             SelectedDataGridGroupOption = null;
             string sql = SearchViewModel.SearchAsFilter();
-            Dispatcher.CurrentDispatcher.BeginInvoke(new Func<string, Task>(SetDataGridItems), sql);
+            Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataGridItems), sql);
         }
 
         /// <summary>
@@ -542,7 +542,7 @@ namespace R54IN0.WPF
             DataDirector.GetInstance().StockList.Clear();
             if (!string.IsNullOrEmpty(sql))
             {
-                List<IOStockFormat> stofmts = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>(sql);
+                List<IOStockFormat> stofmts = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>(sql);
                 foreach (var stof in stofmts)
                 {
                     IOStockDataGridItem item = new IOStockDataGridItem(stof);

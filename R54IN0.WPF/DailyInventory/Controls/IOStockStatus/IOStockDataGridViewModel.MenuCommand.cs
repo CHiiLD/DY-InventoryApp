@@ -95,7 +95,7 @@ namespace R54IN0.WPF
             {
                 var item = SelectedItem;
                 CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(item);
-                DataDirector.GetInstance().DB.Delete<IOStockFormat>(item.ID);
+                DataDirector.GetInstance().Db.Delete<IOStockFormat>(item.ID);
                 SelectedItem = null;
             }
         }
@@ -109,7 +109,7 @@ namespace R54IN0.WPF
             foreach (var item in items)
             {
                 CollectionViewModelObserverSubject.GetInstance().NotifyItemDeleted(item);
-                DataDirector.GetInstance().DB.Delete<IOStockFormat>(item.ID);
+                DataDirector.GetInstance().Db.Delete<IOStockFormat>(item.ID);
             }
         }
 

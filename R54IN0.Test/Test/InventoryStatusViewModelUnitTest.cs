@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using MySql.Data.MySqlClient;
 using MySQL.Test;
 using R54IN0.WPF;
@@ -8,56 +8,52 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using R54IN0.Server;
 
-namespace R54IN0.Test.New
+namespace R54IN0.WPF.Test.New
 {
-    [TestClass]
+    [TestFixture]
     public class InventoryStatusViewModelUnitTest
     {
-        private static MySqlConnection _conn;
+        MySqlConnection _conn;
 
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestFixtureSetUp]
+        public void TestSetUp()
         {
-            Console.WriteLine(nameof(ClassInitialize));
-            Console.WriteLine(context.TestName);
-
-            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json"));
             _conn.Open();
-
             Dummy dummy = new Dummy(_conn);
             dummy.Create();
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        [TestFixtureTearDown]
+        public void TestTearDown()
         {
-            Console.WriteLine(nameof(ClassCleanup));
             _conn.Close();
-            _conn = null;
         }
 
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void Setup()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
-            //    cmd.ExecuteNonQuery();
+            using (MySqlCommand cmd = new MySqlCommand("begin work;", _conn))
+                cmd.ExecuteNonQuery();
+
+            IDbAction dbAction = new FakeDbAction(_conn);
+            DataDirector.IntializeInstance(dbAction);
         }
 
-        [TestCleanup]
-        public void TestCleanup()
+        [TearDown]
+        public void TearDown()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
-            //    cmd.ExecuteNonQuery();
-
             CollectionViewModelObserverSubject.Destory();
             TreeViewNodeDirector.Destroy(true);
             DataDirector.Destroy();
+
+            using (MySqlCommand cmd = new MySqlCommand("rollback;", _conn))
+                cmd.ExecuteNonQuery();
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreate()
         {
             new InventoryStatusViewModel();
@@ -66,7 +62,7 @@ namespace R54IN0.Test.New
         /// <summary>
         /// 재고현황의 데이터그리드들과 데이터그리드의 아이템 개수를 체크한다. (항상 좌측이 많아야 한다)
         /// </summary>
-        [TestMethod]
+        [Test]
         public void DataGridInitializationTest()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -78,7 +74,7 @@ namespace R54IN0.Test.New
         /// <summary>
         /// 객체의 체크박스와 컨트롤의 Visibility 옵션의 연동을 체크
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ColumnCheckBoxTest()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -114,7 +110,7 @@ namespace R54IN0.Test.New
         /// <summary>
         /// TreeViewNode의 이름 변경을 검사
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ReNameTreeViewNode()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -132,7 +128,7 @@ namespace R54IN0.Test.New
         /// <summary>
         /// TreeView에서 Node를 여러개 선택했을 경우 관련 재고 데이터를 데이터그리드에 업데이트한다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenSelectNodesThenUpdateDataGrid()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -155,7 +151,7 @@ namespace R54IN0.Test.New
         /// 데이터그리드의 아이템을 하나 선택 후 SelectedNodeDeletionCommand을 작동시킬 경우
         /// 데이터그리드에서 해당하는 아이템을 담당하는 셀이 없어져야 한다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void DeleteItemThenSyncDataGridItems()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -170,7 +166,7 @@ namespace R54IN0.Test.New
         /// 삭제 시 IOStockStatusViewModel 역시 동기화를 하여야 한다.
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         public void DeleteItemThenSyncIOStockViewModel()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -196,7 +192,7 @@ namespace R54IN0.Test.New
         /// 삭제 후 데이터베이스에서 관련 자료가 모두 삭제되어야 한다. (인벤토리, 인벤토리와 관련된 입출고 데이터)
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         public async Task DeleteItemThenSyncDb()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -205,10 +201,10 @@ namespace R54IN0.Test.New
 
             viewmodel.DataGridViewModel1.InventoryDataDeletionCommand.Execute(null);
 
-            var infmt = DataDirector.GetInstance().DB.SelectAsync<InventoryFormat>(inventoryID);
+            var infmt = await DataDirector.GetInstance().Db.SelectAsync<InventoryFormat>(inventoryID);
             Assert.IsNull(infmt);
 
-            var iofmts = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>("select * from {0} where {1} = '{2}';", typeof(IOStockFormat).Name, "InventoryID", inventoryID);
+            var iofmts = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>("select * from {0} where {1} = '{2}';", typeof(IOStockFormat).Name, "InventoryID", inventoryID);
             Assert.AreEqual(0, iofmts.Count());
         }
 
@@ -216,7 +212,7 @@ namespace R54IN0.Test.New
         /// 삭제 후 데이터 관리자의 데이터도 동기화 되어야 한다.
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         public void DeleteItemThenSyncDirector()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -229,7 +225,7 @@ namespace R54IN0.Test.New
             Assert.IsNull(result);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenDeleteMakerSyncMakers()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -240,7 +236,7 @@ namespace R54IN0.Test.New
             Assert.IsFalse(viewmodel.DataGridViewModel1.Makers.Contains(someMaker));
         }
 
-        [TestMethod]
+        [Test]
         public void WhenDeleteMeasureSyncMeasures()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -251,7 +247,7 @@ namespace R54IN0.Test.New
             Assert.IsFalse(viewmodel.DataGridViewModel1.Measures.Contains(someMeasure));
         }
 
-        [TestMethod]
+        [Test]
         public void WhenAddNewMakerSyncMakers()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -261,7 +257,7 @@ namespace R54IN0.Test.New
             Assert.IsTrue(viewmodel.DataGridViewModel1.Makers.Any(x => x.ID == someMaker.ID));
         }
 
-        [TestMethod]
+        [Test]
         public void WhenAddNewMeasureSyncMeasures()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -274,7 +270,7 @@ namespace R54IN0.Test.New
         /// <summary>
         /// 인벤토리 노드 하나를 클릭할 경우 관련 데이터를 데이터그리드에 업데이트
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TestTreeViewSelect()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -287,7 +283,7 @@ namespace R54IN0.Test.New
         /// <summary>
         /// 제품 노드를 하나 클릭한 경우 관련 데이터를 데이터그리드에 업데이트
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TestTreeViewSelect2()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -302,7 +298,7 @@ namespace R54IN0.Test.New
         /// <summary>
         /// 제품노드와 그 하위 노드를 클릭한 경우 제품노드와 관련된 데이터를 데이터그리드에 업데이트
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TestTreeViewSelect3()
         {
             var viewmodel = new InventoryStatusViewModel();
@@ -316,7 +312,7 @@ namespace R54IN0.Test.New
             Assert.IsTrue(viewmodel.GetDataGridItems().All(x => inventoryIds.Contains(x.ID)));
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteInventoryNodeThenSyncTreeView()
         {
             var viewmodel = new InventoryStatusViewModel();

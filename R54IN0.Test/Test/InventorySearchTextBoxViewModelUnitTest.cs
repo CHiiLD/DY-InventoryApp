@@ -1,39 +1,50 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using MySql.Data.MySqlClient;
 using MySQL.Test;
+using NUnit.Framework;
 using R54IN0.WPF;
 using System;
 using System.Linq;
+using R54IN0.Server;
 
-namespace R54IN0.Test
+namespace R54IN0.WPF.Test
 {
-    [TestClass]
+    [TestFixture]
     public class InventorySearchTextBoxViewModelUnitTest
     {
-        private static MySqlConnection _conn;
+        MySqlConnection _conn;
 
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestFixtureSetUp]
+        public void TestSetUp()
         {
-            Console.WriteLine(nameof(ClassInitialize));
-            Console.WriteLine(context.TestName);
-
-            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json"));
             _conn.Open();
-
             Dummy dummy = new Dummy(_conn);
             dummy.Create();
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        [TestFixtureTearDown]
+        public void TestTearDown()
         {
-            Console.WriteLine(nameof(ClassCleanup));
             _conn.Close();
-            _conn = null;
         }
 
-        [TestMethod]
+        [SetUp]
+        public void Setup()
+        {
+            IDbAction dbAction = new FakeDbAction(_conn);
+            DataDirector.IntializeInstance(dbAction);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            CollectionViewModelObserverSubject.Destory();
+            TreeViewNodeDirector.Destroy(true);
+            DataDirector.Destroy();
+        }
+
+        [Test]
         public void CanCreate()
         {
             new InventorySearchTextBoxViewModel();
@@ -42,7 +53,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 재고 현황의 재고 검색 테스트
         /// </summary>
-        [TestMethod]
+        [Test]
         public void Search()
         {
             string product = "     스위치 ";

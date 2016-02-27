@@ -10,14 +10,15 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace R54IN0.WPF
 {
     public partial class MySqlBridge
     {
         private AsyncTcpSession _session;
-        private BlockingBufferManager _bufManager;
-        private SocketAwaitablePool _pool;
+        private readonly BlockingBufferManager _bufManager = new BlockingBufferManager(ProtocolFormat.BUFFER_SIZE, 10000);
+        private readonly SocketAwaitablePool _pool = new SocketAwaitablePool(100);
         private Socket _socket;
 
         public Socket Socket
@@ -36,22 +37,11 @@ namespace R54IN0.WPF
             }
         }
 
-        public void Connect()
-        {
-            string json = System.IO.File.ReadAllText("ipconfig.json");
-            IPConfigJsonFormat config = JsonConvert.DeserializeObject<IPConfigJsonFormat>(json);
-            IPEndPoint iep = new IPEndPoint(IPAddress.Parse(config.WriteServerHost), config.WriteServerPort);
-            _session = new AsyncTcpSession(iep);
-            _session.Connected += ConnectCallback;
-            _session.Connect();
-
-            //TODO Timeout 설정하기 (config에서 로드해서 실제로 await에서 먹히는지 테스트)
-            iep = new IPEndPoint(IPAddress.Parse(config.ReadServerHost), config.ReadServerPort);
-            _socket = new Socket(iep.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            _socket.BeginConnect(iep, new AsyncCallback(ConnectCallback), _socket);
-        }
-
-        public async Task ConnectAsync()
+        /// <summary>
+        /// Re/Write서버에 접속합니다. 
+        /// </summary>
+        /// <returns>read session BeginConnect 실행 후 반환값</returns>
+        public IAsyncResult Connect()
         {
             string json = System.IO.File.ReadAllText("ipconfig.json");
             IPConfigJsonFormat config = JsonConvert.DeserializeObject<IPConfigJsonFormat>(json);
@@ -62,7 +52,7 @@ namespace R54IN0.WPF
 
             iep = new IPEndPoint(IPAddress.Parse(config.ReadServerHost), config.ReadServerPort);
             _socket = new Socket(iep.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            await Task.Factory.FromAsync(_socket.BeginConnect(iep, new AsyncCallback(ConnectCallback), _socket), ConnectCallback);
+            return _socket.BeginConnect(iep, new AsyncCallback(ConnectCallback), _socket);
         }
 
         public void Disconnect()
@@ -86,8 +76,6 @@ namespace R54IN0.WPF
                 _bufManager.Dispose();
 
             _socket = null;
-            _pool = null;
-            _bufManager = null;
             _session = null;
         }
 
@@ -95,36 +83,39 @@ namespace R54IN0.WPF
         {
             Socket client = (Socket)ar.AsyncState;
             client.EndConnect(ar);
-            _bufManager = new BlockingBufferManager(ProtocolFormat.BUFFER_SIZE, 10000);
-            _pool = new SocketAwaitablePool(100);
-            log.Debug("ReadOnlyServer connection success");
+            log.Debug("READ_ONLY_SERVER CONNECTION SUCCESS");
         }
 
         private void ConnectCallback(object sender, EventArgs e)
         {
             AsyncTcpSession session = sender as AsyncTcpSession;
             session.DataReceived += OnDataReceived;
-
-            log.Debug("WriteOnlyServer connection success");
+            log.Debug("WRITE_ONLY_SERVER CONNECTION SUCCESS");
         }
 
         private void OnDataReceived(object sender, DataEventArgs e)
         {
             ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(e.Data, e.Offset, e.Length);
-            Type type = Type.GetType("R54IN0.Format." + pfmt.Table + ", R54IN0.Format"); //TODO 여기 부분도 체크해야함
+            Dispatcher.CurrentDispatcher.BeginInvoke(new Action<ProtocolFormat>(DataReceiveHandler), pfmt);
+        }
+
+        private void DataReceiveHandler(ProtocolFormat pfmt)
+        {
             switch (pfmt.Name)
             {
-                case Commands.INSERT:
+                case ProtocolCommand.INSERT:
                     JObject jobj = pfmt.Value as JObject;
                     DataInsertEventHandler(this, new SQLInsertEventArgs(ToFormat(pfmt.Table, jobj)));
                     break;
-                case Commands.UPDATE:
+                case ProtocolCommand.UPDATE:
                     jobj = pfmt.Value as JObject;
                     DataUpdateEventHandler(this, new SQLUpdateEventArgs(ToFormat(pfmt.Table, jobj)));
                     break;
-                case Commands.DELETE:
-                    DataDeleteEventHandler(this, new SQLDeleteEventArgs(type, pfmt.ID));
+                case ProtocolCommand.DELETE:
+                    DataDeleteEventHandler(this, new SQLDeleteEventArgs(ToType(pfmt.Table), pfmt.ID));
                     break;
+                default:
+                    throw new NotSupportedException();
             }
         }
 
@@ -151,6 +142,7 @@ namespace R54IN0.WPF
                     at.Buffer = _bufManager.GetBuffer();
                 }
                 resultFmt = ProtocolFormat.ToProtocolFormat(at.Transferred.Array, offset, count);
+                log.DebugFormat("SEND TO READ SERVER({0})", resultFmt.Name);
             }
             catch (Exception e)
             {
@@ -167,8 +159,50 @@ namespace R54IN0.WPF
 
         private void Send(string receiveName, ProtocolFormat sendingFmt)
         {
+            log.DebugFormat("SEND TO WRITE SERVER({0})", receiveName);
             ArraySegment<byte> segment = sendingFmt.ToArraySegment(receiveName);
             _session.Send(segment);
+        }
+
+        private Type ToType(string formatName)
+        {
+            Type type = null;
+            switch (formatName)
+            {
+                case nameof(Maker):
+                    type = typeof(Maker);
+                    break;
+                case nameof(Measure):
+                    type = typeof(Measure);
+                    break;
+                case nameof(Customer):
+                    type = typeof(Customer);
+                    break;
+                case nameof(Supplier):
+                    type = typeof(Supplier);
+                    break;
+                case nameof(Project):
+                    type = typeof(Project);
+                    break;
+                case nameof(Product):
+                    type = typeof(Product);
+                    break;
+                case nameof(Warehouse):
+                    type = typeof(Warehouse);
+                    break;
+                case nameof(Employee):
+                    type = typeof(Employee);
+                    break;
+                case nameof(InventoryFormat):
+                    type = typeof(InventoryFormat);
+                    break;
+                case nameof(IOStockFormat):
+                    type = typeof(IOStockFormat);
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+            return type;
         }
 
         private IID ToFormat(string formatName, JObject jobj)

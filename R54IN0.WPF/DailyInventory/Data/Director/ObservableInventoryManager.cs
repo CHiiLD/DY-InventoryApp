@@ -7,17 +7,15 @@ namespace R54IN0.WPF
     internal class ObservableInventoryManager
     {
         private IDictionary<string, ObservableInventory> _inventories;
-        private MySqlBridge _db;
 
-        internal ObservableInventoryManager(MySqlBridge _db)
+        internal ObservableInventoryManager()
         {
-            this._db = _db;
         }
 
-        public async Task InitializeAsync()
+        public async Task InitializeAsync(IDbAction db)
         {
             _inventories = new Dictionary<string, ObservableInventory>();
-            IEnumerable<InventoryFormat> formats = await _db.SelectAsync<InventoryFormat>();
+            IEnumerable<InventoryFormat> formats = await db.SelectAsync<InventoryFormat>();
             _inventories = formats.Select(x => new ObservableInventory(x)).ToDictionary(x => x.ID);
         }
 

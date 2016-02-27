@@ -75,7 +75,7 @@ namespace R54IN0.ServerTest
 
                 a = new SocketAwaitable();
                 Maker maker = new Maker() { ID = Guid.NewGuid().ToString(), Name = "SomE Maker" };
-                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(Commands.INSERT);
+                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(ProtocolCommand.INSERT);
                 a.Buffer = new ArraySegment<byte>(reqtBytes);
                 await s.SendAsync(a);
 
@@ -118,7 +118,7 @@ namespace R54IN0.ServerTest
                 Assert.IsNotNull(id);
 
                 a = new SocketAwaitable();
-                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(Commands.DELETE);
+                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(ProtocolCommand.DELETE);
                 a.Buffer = new ArraySegment<byte>(reqtBytes);
                 await s.SendAsync(a);
 
@@ -163,7 +163,7 @@ namespace R54IN0.ServerTest
                 Maker maker = new Maker() { ID = id, Name = "some maker ~ " };
 
                 a = new SocketAwaitable();
-                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(Commands.UPDATE);
+                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(ProtocolCommand.UPDATE);
                 a.Buffer = new ArraySegment<byte>(reqtBytes);
                 await s.SendAsync(a);
 

@@ -15,13 +15,13 @@ using System.Threading.Tasks;
 
 namespace R54IN0.WPF
 {
-    public partial class MySqlBridge : IDisposable
+    public partial class MySqlBridge : IDisposable, IDbAction
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public EventHandler<SQLInsertEventArgs> DataInsertEventHandler;
-        public EventHandler<SQLUpdateEventArgs> DataUpdateEventHandler;
-        public EventHandler<SQLDeleteEventArgs> DataDeleteEventHandler;
+        public EventHandler<SQLInsertEventArgs> DataInsertEventHandler { get; set; }
+        public EventHandler<SQLUpdateEventArgs> DataUpdateEventHandler { get; set; }
+        public EventHandler<SQLDeleteEventArgs> DataDeleteEventHandler { get; set; }
 
         public MySqlBridge()
         {
@@ -38,9 +38,9 @@ namespace R54IN0.WPF
         /// <param name="sql"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public async Task<List<Tuple<T1>>> QueryReturnTuple<T1>(string sql, params object[] args)
+        public async Task<List<Tuple<T1>>> QueryReturnTupleAsync<T1>(string sql, params object[] args)
         {
-            ProtocolFormat pfmt = await SendAsync(Commands.QUERY_VALUE, new ProtocolFormat(typeof(T1)).SetSQL(sql));
+            ProtocolFormat pfmt = await SendAsync(ProtocolCommand.QUERY_VALUE, new ProtocolFormat(typeof(T1)).SetSQL(sql));
             IEnumerable<T1> t1s =  pfmt.ValueList.Cast<T1>();
             List<Tuple<T1>> tuples = new List<Tuple<T1>>();
             foreach (T1 t1 in t1s)
@@ -56,7 +56,7 @@ namespace R54IN0.WPF
         /// <param name="item"></param>
         public void Update<TableT>(TableT item) where TableT : class, IID, new()
         {
-            Send(Commands.UPDATE, new ProtocolFormat(typeof(TableT)).SetInstance(item));
+            Send(ProtocolCommand.UPDATE, new ProtocolFormat(typeof(TableT)).SetInstance(item));
         }
         
         /// <summary>
@@ -67,7 +67,7 @@ namespace R54IN0.WPF
         /// <param name="id"></param>
         public void Delete<TableT>(string id) where TableT : class, IID, new()
         {
-            Send(Commands.DELETE, new ProtocolFormat(typeof(TableT)).SetID(id));
+            Send(ProtocolCommand.DELETE, new ProtocolFormat(typeof(TableT)).SetID(id));
         }
 
         public void Insert<TableT>(object item) where TableT : class, IID
@@ -85,7 +85,7 @@ namespace R54IN0.WPF
         {
             if (item.ID == null)
                 item.ID = Guid.NewGuid().ToString();
-            Send(Commands.INSERT, new ProtocolFormat(typeof(TableT)).SetInstance(item));
+            Send(ProtocolCommand.INSERT, new ProtocolFormat(typeof(TableT)).SetInstance(item));
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace R54IN0.WPF
         /// <returns></returns>
         public async Task<List<TableT>> SelectAsync<TableT>() where TableT : class, IID, new()
         {
-            ProtocolFormat pfmt = await SendAsync(Commands.SELECT_ALL, new ProtocolFormat(typeof(TableT)));
+            ProtocolFormat pfmt = await SendAsync(ProtocolCommand.SELECT_ALL, new ProtocolFormat(typeof(TableT)));
             List<TableT> tables = new List<TableT>();
             foreach (JObject jobject in pfmt.ValueList)
             {
@@ -116,7 +116,7 @@ namespace R54IN0.WPF
         public async Task<TableT> SelectAsync<TableT>(string id) where TableT : class, IID, new()
         {
             TableT table = null;
-            ProtocolFormat pfmt = await SendAsync(Commands.SELECT_ONE, new ProtocolFormat(typeof(TableT)).SetID(id));
+            ProtocolFormat pfmt = await SendAsync(ProtocolCommand.SELECT_ONE, new ProtocolFormat(typeof(TableT)).SetID(id));
             object value = pfmt.ValueList.SingleOrDefault();
             if(value != null)
             {
@@ -136,7 +136,7 @@ namespace R54IN0.WPF
         /// <returns></returns>
         public async Task<List<TableT>> QueryAsync<TableT>(string sql, params object[] args) where TableT : class, IID, new()
         {
-            ProtocolFormat pfmt = await SendAsync(Commands.QUERY_FORMAT, new ProtocolFormat(typeof(TableT)).SetSQL(string.Format(sql, args)));
+            ProtocolFormat pfmt = await SendAsync(ProtocolCommand.QUERY_FORMAT, new ProtocolFormat(typeof(TableT)).SetSQL(string.Format(sql, args)));
             List<TableT> tables = new List<TableT>();
             foreach (JObject jobject in pfmt.ValueList)
             {

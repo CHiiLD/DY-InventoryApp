@@ -8,48 +8,41 @@ using R54IN0.Server;
 using Newtonsoft.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net.Sockets;
+using SuperSocket.SocketBase.Config;
 
-namespace R54IN0.Test.Test
+namespace R54IN0.WPF.Test
 {
     [TestFixture]
     public class FieldManagerViewModelUnitTest
     {
-        public ReadOnlyServer _readServer;
-        public WriteOnlyServer _writeServer;
+        MySqlConnection _conn;
 
         [TestFixtureSetUp]
-        public void ClassInitialize()
+        public void TestSetUp()
         {
-            using (MySqlConnection conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json")))
-            {
-                conn.Open();
-                Dummy dummy = new Dummy(conn);
-                dummy.Create();
-            }
+            _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json"));
+            _conn.Open();
+            Dummy dummy = new Dummy(_conn);
+            dummy.Create();
+        }
 
-            string json = System.IO.File.ReadAllText("ipconfig.json");
-            IPConfigJsonFormat config = JsonConvert.DeserializeObject<IPConfigJsonFormat>(json);
-            _readServer = new ReadOnlyServer();
-            _readServer.Setup(config.ReadServerHost, config.ReadServerPort);
-            _writeServer = new WriteOnlyServer();
-            _writeServer.Setup(config.WriteServerHost, config.WriteServerPort);
+        [TestFixtureTearDown]
+        public void TestTearDown()
+        {
+            _conn.Close();
         }
 
         [SetUp]
         public void Setup()
         {
-            _readServer.Start();
-            _writeServer.Start();
-
-            DataDirector.InstanceInitialzeAsync();
+            IDbAction dbAction = new FakeDbAction(_conn);
+            DataDirector.IntializeInstance(dbAction);
         }
 
         [TearDown]
-        public void Clean()
+        public void TearDown()
         {
-            _readServer.Stop();
-            _writeServer.Stop();
-
             CollectionViewModelObserverSubject.Destory();
             TreeViewNodeDirector.Destroy(true);
             DataDirector.Destroy();
@@ -58,35 +51,30 @@ namespace R54IN0.Test.Test
         [Test]
         public void CanCreate()
         {
+            DataDirector ddr = DataDirector.GetInstance();
             new FieldManagerViewModel();
         }
 
         [Test]
-        public void TestAdd()
+        public void CanAdd()
         {
             string name = "soime";
             Maker maker = new Maker(name);
             FieldManagerViewModel vm = new FieldManagerViewModel();
             vm.AddField(maker);
-
-            Thread.Sleep(10);
-
             Assert.IsTrue(vm.MakerList.Any(x => x.Name == maker.Name));
             Assert.IsTrue(vm.MakerList.Any(x => x.ID == maker.ID));
         }
 
         [Test]
-        public void TestRemove()
+        public void CanRemove()
         {
             FieldManagerViewModel vm = new FieldManagerViewModel();
             var maker = vm.MakerList.Random();
             vm.RemoveField(maker);
 
-            Thread.Sleep(10);
-
             vm.MakerList.Any(x => x.Name == maker.Name);
             vm.MakerList.Any(x => x.ID == maker.ID);
-
             Assert.IsFalse(vm.MakerList.Any(x => x.Name == maker.Name));
             Assert.IsFalse(vm.MakerList.Any(x => x.ID == maker.ID));
         }

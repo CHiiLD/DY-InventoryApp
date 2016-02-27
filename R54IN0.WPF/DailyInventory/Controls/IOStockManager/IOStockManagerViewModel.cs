@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,6 +18,7 @@ namespace R54IN0.WPF
     public class IOStockManagerViewModel : INotifyPropertyChanged
     {
         #region private var
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private IOStockType _stockType;
         private ObservableCollection<Observable<Supplier>> _suppiers;
@@ -462,7 +464,7 @@ namespace R54IN0.WPF
             CreateBindingProperties();
 
             var fmt = CreateIOStockFormat();
-            DataDirector.GetInstance().DB.Insert<IOStockFormat>(fmt);
+            DataDirector.GetInstance().Db.Insert<IOStockFormat>(fmt);
 
             return new ObservableIOStock(fmt);
         }
@@ -666,11 +668,14 @@ namespace R54IN0.WPF
         {
             if (_target != null || SelectedInventory == null)
                 return;
-            Dispatcher.CurrentDispatcher.BeginInvoke(new Func<Task>(SetUnitPriceAndAccountAsync));
+            Dispatcher.CurrentDispatcher.Invoke(new Func<Task>(SetUnitPriceAndAccountAsync));
+            //Task.Run(SetUnitPriceAndAccountAsync).Wait();
         }
 
         private async Task SetUnitPriceAndAccountAsync()
         {
+            log.Debug("join " + nameof(SetUnitPriceAndAccountAsync));
+
             string sql = string.Format("select UnitPrice from {0} where InventoryID = '{1}' and StockType = '{2}' order by Date desc limit 1",
                         nameof(IOStockFormat), SelectedInventory.ID, (int)IOStockType.INCOMING);
             List<Tuple<decimal>> pTuples = null;
@@ -680,7 +685,7 @@ namespace R54IN0.WPF
                 sql = string.Format(@"select ifnull((select UnitPrice from {0} where InventoryID = '{1}' and StockType = '{2}' order by Date desc limit 1), ({3}))",
                         nameof(IOStockFormat), SelectedInventory.ID, (int)IOStockType.OUTGOING, sql);
             }
-            pTuples = await DataDirector.GetInstance().DB.QueryReturnTuple<decimal>(sql);
+            pTuples = await DataDirector.GetInstance().Db.QueryReturnTupleAsync<decimal>(sql);
             Tuple<decimal> pTuple = pTuples.SingleOrDefault();
             if (pTuple != null)
                 UnitPrice = pTuple.Item1;
@@ -688,7 +693,7 @@ namespace R54IN0.WPF
             string idName = StockType == IOStockType.INCOMING ? "SupplierID" : "CustomerID";
             sql = string.Format("select {0} from {1} where InventoryID = '{2}' and StockType = '{3}' order by Date desc limit 1",
                 idName, nameof(IOStockFormat), SelectedInventory.ID, (int)StockType);
-            cTuples = await DataDirector.GetInstance().DB.QueryReturnTuple<string>(sql);
+            cTuples = await DataDirector.GetInstance().Db.QueryReturnTupleAsync<string>(sql);
             Tuple<string> cTuple = cTuples.SingleOrDefault();
             if (cTuple != null)
                 SelectedAccount = Accounts.Where(x => x.ID == cTuple.Item1).SingleOrDefault();

@@ -393,9 +393,9 @@ namespace R54IN0.WPF
                 return;
 
             if (ID == null)
-                DataDirector.GetInstance().DB.Insert(Format);
+                DataDirector.GetInstance().Db.Insert(Format);
             else if (UpdateLock)
-                DataDirector.GetInstance().DB.Update<IOStockFormat>(Format);
+                DataDirector.GetInstance().Db.Update<IOStockFormat>(Format);
         }
     }
 }

@@ -1,0 +1,1909 @@
+﻿2016-02-27 15:56:13,086 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 49,942,528.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 15:57:13,076 Performance - ---------------------------------------------------
+CPU Usage: 0.06%, Physical Memory Usage: 55,226,368.00, Total Thread Count: 31
+AvailableWorkingThreads: 32763, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 19
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 15:58:13,071 Performance - ---------------------------------------------------
+CPU Usage: 0.02%, Physical Memory Usage: 56,324,096.00, Total Thread Count: 31
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 19
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 4
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 15:59:13,089 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 56,938,496.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 19
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 4
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:00:13,096 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 57,597,952.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 19
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 4
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:01:13,096 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 58,208,256.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 19
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 4
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:02:13,104 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 61,124,608.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 31
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 4
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 16:03:13,098 Performance - ---------------------------------------------------
+CPU Usage: 0.03%, Physical Memory Usage: 61,317,120.00, Total Thread Count: 38
+AvailableWorkingThreads: 32765, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 31
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 6
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 16:04:13,095 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 62,992,384.00, Total Thread Count: 35
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 54
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 6
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 16:05:13,105 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 64,077,824.00, Total Thread Count: 35
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 54
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 6
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:06:13,101 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 61,816,832.00, Total Thread Count: 35
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 72
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 3:56:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 6
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 16:15:20,346 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 51,060,736.00, Total Thread Count: 38
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:15:20
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:15:20
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:16:20,344 Performance - ---------------------------------------------------
+CPU Usage: 0.05%, Physical Memory Usage: 54,173,696.00, Total Thread Count: 37
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:15:20
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 26
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:15:20
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:17:20,345 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 54,771,712.00, Total Thread Count: 38
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:15:20
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 26
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:15:20
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:18:20,347 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 55,042,048.00, Total Thread Count: 34
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:15:20
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 26
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:15:20
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:19:20,345 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 55,775,232.00, Total Thread Count: 35
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:15:20
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 26
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:15:20
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:32:30,917 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 49,733,632.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:33:30,910 Performance - ---------------------------------------------------
+CPU Usage: 0.05%, Physical Memory Usage: 54,751,232.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 28
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:34:30,926 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 56,385,536.00, Total Thread Count: 37
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 28
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:35:30,916 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 56,840,192.00, Total Thread Count: 35
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 28
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:36:30,918 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 57,520,128.00, Total Thread Count: 35
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 28
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:37:30,918 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 58,265,600.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 28
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:38:30,910 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 58,814,464.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 28
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:39:30,909 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 60,096,512.00, Total Thread Count: 35
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 40
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:32:30
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:41:37,604 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 49,938,432.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:41:37
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:41:37
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 16:42:37,606 Performance - ---------------------------------------------------
+CPU Usage: 0.07%, Physical Memory Usage: 58,687,488.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:41:37
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 18
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 4:41:37
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:02:31,185 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 51,306,496.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:03:31,188 Performance - ---------------------------------------------------
+CPU Usage: 0.06%, Physical Memory Usage: 58,232,832.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 19:04:31,184 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 58,900,480.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 19:05:31,209 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 59,473,920.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 19:06:31,212 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 60,145,664.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 19:07:31,216 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 60,760,064.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:08:31,219 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 61,407,232.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:09:31,225 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 62,152,704.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:10:31,246 Performance - ---------------------------------------------------
+CPU Usage: 0.03%, Physical Memory Usage: 61,366,272.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:11:31,246 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 61,517,824.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:12:31,235 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 58,535,936.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:13:31,238 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 58,880,000.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:14:31,242 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 59,310,080.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:15:31,244 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 60,964,864.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:16:31,248 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 61,358,080.00, Total Thread Count: 33
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:17:31,252 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 62,287,872.00, Total Thread Count: 33
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:18:31,268 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 62,480,384.00, Total Thread Count: 35
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:19:31,286 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 62,672,896.00, Total Thread Count: 35
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:20:31,298 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 63,299,584.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:21:31,308 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 63,455,232.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:22:31,320 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 63,647,744.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:23:31,319 Performance - ---------------------------------------------------
+CPU Usage: 0.03%, Physical Memory Usage: 61,730,816.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:24:31,333 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 62,226,432.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:25:31,320 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 63,062,016.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:26:31,337 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 63,614,976.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:27:31,345 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 64,270,336.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:28:31,347 Performance - ---------------------------------------------------
+CPU Usage: 0.03%, Physical Memory Usage: 64,720,896.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:29:31,369 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 65,040,384.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:30:31,374 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 59,817,984.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:31:31,408 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 60,022,784.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:32:31,431 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 60,420,096.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:33:31,433 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 60,780,544.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:34:31,450 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 59,932,672.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:35:31,454 Performance - ---------------------------------------------------
+CPU Usage: 0.03%, Physical Memory Usage: 61,120,512.00, Total Thread Count: 33
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:36:31,469 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 61,571,072.00, Total Thread Count: 33
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:37:31,483 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 61,751,296.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:38:31,500 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 61,984,768.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:39:31,514 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 62,173,184.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:40:31,532 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 63,053,824.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:41:31,536 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 64,122,880.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:42:31,544 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 64,401,408.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:43:31,561 Performance - ---------------------------------------------------
+CPU Usage: 0.03%, Physical Memory Usage: 63,447,040.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:44:31,575 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 63,778,816.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:45:31,594 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 58,519,552.00, Total Thread Count: 32
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 19:46:31,600 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 58,925,056.00, Total Thread Count: 34
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 9
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 7:02:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 20:57:46,473 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 51,109,888.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 20:58:46,484 Performance - ---------------------------------------------------
+CPU Usage: 0.05%, Physical Memory Usage: 55,504,896.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 10
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 20:59:46,471 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 56,184,832.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 10
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 21:00:46,509 Performance - ---------------------------------------------------
+CPU Usage: 0.03%, Physical Memory Usage: 57,831,424.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 10
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 21:01:46,510 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 58,466,304.00, Total Thread Count: 36
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 20
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 21:02:46,516 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 60,166,144.00, Total Thread Count: 34
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 23
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2016-02-27 21:03:46,532 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 60,477,440.00, Total Thread Count: 36
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 24
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 8:57:46
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 21:04:59,871 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 51,380,224.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 9:04:59
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 9:04:59
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 21:05:59,856 Performance - ---------------------------------------------------
+CPU Usage: 0.05%, Physical Memory Usage: 56,098,816.00, Total Thread Count: 29
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 9:04:59
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 11
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 9:04:59
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 21:06:59,844 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 56,913,920.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 9:04:59
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 11
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 9:04:59
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 22:46:00,679 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 51,466,240.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 10:46:00
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 10:46:00
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2016-02-27 22:47:00,672 Performance - ---------------------------------------------------
+CPU Usage: 0.06%, Physical Memory Usage: 57,282,560.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+ReadOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 10:46:00
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 14
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+WriteOnlyServer ----------------------------------
+Started Time: 2016-02-27 오후 10:46:00
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+

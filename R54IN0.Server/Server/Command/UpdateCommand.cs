@@ -18,7 +18,7 @@ namespace R54IN0.Server
         {
             get
             {
-                return Commands.UPDATE;
+                return ProtocolCommand.UPDATE;
             }
         }
 
@@ -68,11 +68,11 @@ namespace R54IN0.Server
             sb.Append(string.Format(" where ID = '{0}';", iid.ID));
             sql = sb.ToString();
 
-            Console.WriteLine(sql);
+            session.Logger.Debug(sql);
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
 
-            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(Commands.UPDATE);
+            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(ProtocolCommand.UPDATE);
             foreach (WriteOnlySession s in server.GetAllSessions())
             {
                 if(s != session)

@@ -62,7 +62,23 @@ namespace R54IN0.WPF
             //Dialog의 버튼은 다시 접속하기, 앱 종료하기 기능을 구현해준다.
             try
             {
-                DataDirector.InstanceInitialzeAsync();
+                await DataDirector.InitialzeInstanceAsync();
+
+                InventoryStatusControl inventoryStatus = new InventoryStatusControl();
+                IOStockStatusControl ioStockStatus = new IOStockStatusControl();
+
+                InventoryViewModel = inventoryStatus.DataContext as InventoryStatusViewModel;
+                IOStockViewModel = ioStockStatus.DataContext as IOStockStatusViewModel;
+
+                Items = new ObservableCollection<TabItem>();
+                Items.Add(new TabItem() { Content = inventoryStatus, Header = "재고 현황" });
+                Items.Add(new TabItem() { Content = ioStockStatus, Header = "입출고 현황" });
+
+                ChangeInventoryViewCommand.RaiseCanExecuteChanged();
+                ChangeIOStockViewByProductCommand.RaiseCanExecuteChanged();
+                ChangeIOStockByDateCommand.RaiseCanExecuteChanged();
+                ChangeIOStockByProjectCommand.RaiseCanExecuteChanged();
+                OpenFieldManagerWindow.RaiseCanExecuteChanged();
             }
             catch (Exception e)
             {
@@ -72,22 +88,6 @@ namespace R54IN0.WPF
             {
 
             }
-
-            InventoryStatusControl inventoryStatus = new InventoryStatusControl();
-            IOStockStatusControl ioStockStatus = new IOStockStatusControl();
-
-            InventoryViewModel = inventoryStatus.DataContext as InventoryStatusViewModel;
-            IOStockViewModel = ioStockStatus.DataContext as IOStockStatusViewModel;
-
-            Items = new ObservableCollection<TabItem>();
-            Items.Add(new TabItem() { Content = inventoryStatus, Header = "재고 현황" });
-            Items.Add(new TabItem() { Content = ioStockStatus, Header = "입출고 현황" });
-
-            ChangeInventoryViewCommand.RaiseCanExecuteChanged();
-            ChangeIOStockViewByProductCommand.RaiseCanExecuteChanged();
-            ChangeIOStockByDateCommand.RaiseCanExecuteChanged();
-            ChangeIOStockByProjectCommand.RaiseCanExecuteChanged();
-            OpenFieldManagerWindow.RaiseCanExecuteChanged();
         }
 
         public event PropertyChangedEventHandler PropertyChanged

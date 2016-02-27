@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace R54IN0.Format
 {
-    public class Commands
+    public class ProtocolCommand
     {
         public const int NAME_SIZE = 4;
-        public const int BODYLEN_SIZE = 8;
+        public const int BODYLEN_SIZE = 4;
         public const int HEADER_SIZE = NAME_SIZE + BODYLEN_SIZE;
 
         public const string SELECT_ALL = "SELA";

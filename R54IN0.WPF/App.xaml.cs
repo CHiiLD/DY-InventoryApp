@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net.Config;
+using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -20,6 +21,8 @@ namespace R54IN0.WPF
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            BasicConfigurator.Configure();
+
             Process thisProc = Process.GetCurrentProcess();
             if (Process.GetProcessesByName(thisProc.ProcessName).Length > 1)
             {

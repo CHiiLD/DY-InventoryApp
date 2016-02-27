@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using MySql.Data.MySqlClient;
 using MySQL.Test;
 using R54IN0.WPF;
@@ -7,51 +7,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using R54IN0.Server;
 
-namespace R54IN0.Test
+namespace R54IN0.WPF.Test
 {
-    [TestClass]
+    [TestFixture]
     public class TreeViewViewModelUnitTest
     {
-        private static MySqlConnection _conn;
+        MySqlConnection _conn;
 
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestFixtureSetUp]
+        public void TestSetUp()
         {
-            Console.WriteLine(nameof(ClassInitialize));
-            Console.WriteLine(context.TestName);
-
-            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json"));
             _conn.Open();
-
             Dummy dummy = new Dummy(_conn);
             dummy.Create();
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        [TestFixtureTearDown]
+        public void TestTearDown()
         {
-            Console.WriteLine(nameof(ClassCleanup));
             _conn.Close();
-            _conn = null;
         }
 
-
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void Setup()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
-            //    cmd.ExecuteNonQuery();
+            IDbAction dbAction = new FakeDbAction(_conn);
+            DataDirector.IntializeInstance(dbAction);
         }
 
-        [TestCleanup]
-        public void TestCleanup()
+        [TearDown]
+        public void TearDown()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
-            //    cmd.ExecuteNonQuery();
-
             CollectionViewModelObserverSubject.Destory();
             TreeViewNodeDirector.Destroy(true);
             DataDirector.Destroy();
@@ -70,7 +59,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 트리뷰에서 제품 노드를 삭제하고 트리뷰에서 삭제됨을 확인함
         /// </summary>
-        [TestMethod]
+        [Test]
         public void DeleteProductNodeThenSyncTreeView()
         {
             var treeview = new MultiSelectTreeViewModelView();
@@ -85,7 +74,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 트리뷰에서 제품 노드를 삭제하고 재고, 입출고 현황 뷰모델의 데이터그리드 또한 동기화한다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void DeleteProductNodeThenSyncDataGrid()
         {
             var treeview = new MultiSelectTreeViewModelView();
@@ -109,7 +98,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 트리뷰에서 제품 노드를 삭제하고 디렉터에서 관련 컬렉션 또한 동기화한다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void DeleteProductNodeThenSyncDirector()
         {
             var treeview = new MultiSelectTreeViewModelView();
@@ -125,7 +114,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 트리뷰에서 제품 노드를 삭제하고 데이터베이스에서도 관련 자료를 삭제한다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public async Task DeleteProductNodeThenSyncDb()
         {
             var treeview = new MultiSelectTreeViewModelView();
@@ -142,19 +131,19 @@ namespace R54IN0.Test
 
             foreach (var inven in invens)
             {
-                var iosfmts = await DataDirector.GetInstance().DB.QueryAsync<IOStockFormat>(
+                var iosfmts = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>(
                     "select * from IOStockFormat where {0} = '{1}';",
                     "InventoryID", inven.ID);
                 Assert.AreEqual(0, iosfmts.Count());
             }
-            var infmts = await DataDirector.GetInstance().DB.QueryAsync<InventoryFormat>(
+            var infmts = await DataDirector.GetInstance().Db.QueryAsync<InventoryFormat>(
                 "select * from InventoryFormat where {0} = '{1}';",
                 "ProductID", product.ID);
             Assert.AreEqual(0, infmts.Count());
-            Assert.IsNull(DataDirector.GetInstance().DB.SelectAsync<Product>(product.ID));
+            Assert.IsNull(await DataDirector.GetInstance().Db.SelectAsync<Product>(product.ID));
         }
 
-        [TestMethod]
+        [Test]
         public void WhenCreateNewProjectTypeTreeViewNodeThenNameInitializedAsProductName()
         {
             var someProduct = DataDirector.GetInstance().CopyFields<Product>().Random();

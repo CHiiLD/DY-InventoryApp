@@ -99,7 +99,7 @@ namespace R54IN0.ServerTest
             };
             _session2.DataReceived += handler;
 
-            byte[] send = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(Commands.INSERT);
+            byte[] send = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(ProtocolCommand.INSERT);
             _session1.Send(send, 0, send.Length);
 
             await Task.Delay(100);
@@ -134,7 +134,7 @@ namespace R54IN0.ServerTest
             };
             _session2.DataReceived += handler;
 
-            byte[] send = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(Commands.UPDATE);
+            byte[] send = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(ProtocolCommand.UPDATE);
             _session1.Send(send, 0, send.Length);
 
             await Task.Delay(200);
@@ -166,7 +166,7 @@ namespace R54IN0.ServerTest
             };
             _session2.DataReceived += handler;
 
-            byte[] send = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(Commands.DELETE);
+            byte[] send = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(ProtocolCommand.DELETE);
             _session1.Send(send, 0, send.Length);
 
             await Task.Delay(200);

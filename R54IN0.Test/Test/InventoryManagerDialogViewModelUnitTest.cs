@@ -1,66 +1,56 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using MySQL.Test;
+using NUnit.Framework;
+using R54IN0.Server;
 using R54IN0.WPF;
 using System;
 using System.Linq;
 
-namespace R54IN0.Test
+namespace R54IN0.WPF.Test
 {
-    [TestClass]
+    [TestFixture]
     public class InventoryManagerDialogViewModelUnitTest
     {
-        private static MySqlConnection _conn;
+        MySqlConnection _conn;
 
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestFixtureSetUp]
+        public void TestSetUp()
         {
-            Console.WriteLine(nameof(ClassInitialize));
-            Console.WriteLine(context.TestName);
-
-            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json"));
             _conn.Open();
-
             Dummy dummy = new Dummy(_conn);
             dummy.Create();
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        [TestFixtureTearDown]
+        public void TestTearDown()
         {
-            Console.WriteLine(nameof(ClassCleanup));
             _conn.Close();
-            _conn = null;
         }
 
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void Setup()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
-            //    cmd.ExecuteNonQuery();
+            IDbAction dbAction = new FakeDbAction(_conn);
+            DataDirector.IntializeInstance(dbAction);
         }
 
-        [TestCleanup]
-        public void TestCleanup()
+        [TearDown]
+        public void TearDown()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
-            //    cmd.ExecuteNonQuery();
-
             CollectionViewModelObserverSubject.Destory();
             TreeViewNodeDirector.Destroy(true);
             DataDirector.Destroy();
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreate()
         {
             var product = DataDirector.GetInstance().CopyFields<Product>().Random();
             new InventoryManagerViewModel(product);
         }
 
-        [TestMethod]
+        [Test]
         public void TestRegister()
         {
             var product = DataDirector.GetInstance().CopyFields<Product>().Random();
@@ -80,7 +70,7 @@ namespace R54IN0.Test
             Assert.AreEqual(inventory.Measure, measure);
         }
 
-        [TestMethod]
+        [Test]
         public void TestInsert2()
         {
             var product = DataDirector.GetInstance().CopyFields<Product>().Random();
@@ -102,7 +92,7 @@ namespace R54IN0.Test
             Assert.IsNotNull(DataDirector.GetInstance().SearchField<Measure>(inventory.Measure.ID));
         }
 
-        [TestMethod]
+        [Test]
         public void WhenNewInventoryDataInsertThenSyncTreeView()
         {
             var inventoryStatusViewModel = new InventoryStatusViewModel();
@@ -119,7 +109,7 @@ namespace R54IN0.Test
             Assert.IsTrue(node.Root.Any(x => x.ObservableObjectID == inventory.ID));
         }
 
-        [TestMethod]
+        [Test]
         public void WhenNewInventoryDataInsertThenSyncDataGridViewMdoel()
         {
             var inventoryStatusViewModel = new InventoryStatusViewModel();
@@ -135,14 +125,14 @@ namespace R54IN0.Test
             Assert.IsTrue(inventoryStatusViewModel.GetDataGridItems().Any(x => x.ID == inventory.ID));
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreateForModify()
         {
             ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
             InventoryManagerViewModel vm = new InventoryManagerViewModel(inv);
         }
 
-        [TestMethod]
+        [Test]
         public void TestPropertyInitCheck()
         {
             ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
@@ -155,7 +145,7 @@ namespace R54IN0.Test
             Assert.AreEqual(inv.Measure, vm.Measure);
         }
 
-        [TestMethod]
+        [Test]
         public void PropertyChange()
         {
             ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();
@@ -176,7 +166,7 @@ namespace R54IN0.Test
             Assert.AreEqual(measure, inv.Measure.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void PropertyChange2()
         {
             ObservableInventory inv = DataDirector.GetInstance().CopyInventories().Random();

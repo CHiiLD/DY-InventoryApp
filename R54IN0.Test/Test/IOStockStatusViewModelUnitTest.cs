@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using MySql.Data.MySqlClient;
 using MySQL.Test;
 using R54IN0.WPF;
@@ -7,56 +7,47 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Controls;
+using R54IN0.Server;
+using System.Threading.Tasks;
 
-namespace R54IN0.Test
+namespace R54IN0.WPF.Test
 {
-    [TestClass]
+    [TestFixture]
     public class IOStockStatusViewModelUnitTest
     {
-        private static MySqlConnection _conn;
+        MySqlConnection _conn;
 
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestFixtureSetUp]
+        public void TestSetUp()
         {
-            Console.WriteLine(nameof(ClassInitialize));
-            Console.WriteLine(context.TestName);
-
-            _conn = new MySqlConnection(ConnectingString.KEY);
+            _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json"));
             _conn.Open();
-
             Dummy dummy = new Dummy(_conn);
             dummy.Create();
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        [TestFixtureTearDown]
+        public void TestTearDown()
         {
-            Console.WriteLine(nameof(ClassCleanup));
             _conn.Close();
-            _conn = null;
         }
 
-        [TestInitialize]
-        public void TestInitialize()
+        [SetUp]
+        public void Setup()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
-            //    cmd.ExecuteNonQuery();
+            IDbAction dbAction = new FakeDbAction(_conn);
+            DataDirector.IntializeInstance(dbAction);
         }
 
-        [TestCleanup]
-        public void TestCleanup()
+        [TearDown]
+        public void TearDown()
         {
-            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            //using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
-            //    cmd.ExecuteNonQuery();
-
             CollectionViewModelObserverSubject.Destory();
             TreeViewNodeDirector.Destroy(true);
             DataDirector.Destroy();
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreate()
         {
             new IOStockStatusViewModel();
@@ -65,7 +56,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 뷰에서 날짜별로 그룹화를 선택해서 오늘날짜를 클릭한다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SelectDatePicker()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -84,7 +75,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 뷰에서 프로젝트별 그룹화를 선택한 후 프로젝트를 클릭한다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SelectProject()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -103,7 +94,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 뷰에서 제품별 그룹화를 선택한 후 탐색기에서 제품셀을 선택
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SelectProduct()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -123,7 +114,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 입고와 출고 체크박스를 선택하였을 때 그에 맞는 데이터가 데이터 그리드에 업데이트 되어야 한다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ControlInoutStockCheckBox()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -153,7 +144,7 @@ namespace R54IN0.Test
         /// IOStockDataGridItem의 IsChecked체크박스 활성화
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         [Ignore]
         public void CheckDataGridRowCell()
         {
@@ -166,7 +157,7 @@ namespace R54IN0.Test
         /// 하나의 데이터그리드 아이템을 체크
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         [Ignore]
         public void CopyCheckedDataGridRowCell()
         {
@@ -187,7 +178,7 @@ namespace R54IN0.Test
         /// 다수의 데이터그리드 아이템을 체크
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         [Ignore]
         public void CopyCheckedDataGridRowCells()
         {
@@ -213,7 +204,7 @@ namespace R54IN0.Test
         /// 데이터그리드를 복사하여 추가한 뒤 Quantity가 제대로 계산되었는지 확인한다.
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         [Ignore]
         public void CopyRowCellThenCheckThatQuantityHaveToCalc()
         {
@@ -232,7 +223,7 @@ namespace R54IN0.Test
         /// 데이터그리드를 복사하여 여러 데이터를 추가한 뒤 Quantity가 제대로 계산되었는지 확인한다.
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         [Ignore]
         public void CopyRowCellThenCheckThatQuantityHaveToCalc2()
         {
@@ -254,7 +245,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 데이터그리드의 아이템을 하나 삭제하고 데이터그리드를 최신화 시킨다.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void DeleteItemThenSyncDataGridItems()
         {
             var viewmodel = SelectSomeTreeViewNode();
@@ -268,8 +259,8 @@ namespace R54IN0.Test
         /// <summary>
         /// 삭제 후 데이터베이스에서 관련 자료가 모두 삭제되어야 한다.
         /// </summary>
-        [TestMethod]
-        public void DeleteItemThenSyncDb()
+        [Test]
+        public async Task DeleteItemThenSyncDb()
         {
             var viewmodel = SelectSomeTreeViewNode();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
@@ -277,7 +268,7 @@ namespace R54IN0.Test
 
             viewmodel.DataGridViewModel.IOStockFormatDeletionCommand.Execute(null);
 
-            var iofmts = DataDirector.GetInstance().DB.SelectAsync<IOStockFormat>(iosID);
+            var iofmts = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(iosID);
             Assert.IsNull(iofmts);
         }
 
@@ -285,7 +276,7 @@ namespace R54IN0.Test
         /// 삭제 후 잔여수량과 재고수량을 업데이트 한다.
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         public void DeleteItemThenSyncQty()
         {
             var viewmodel = SelectSomeTreeViewNode();
@@ -301,7 +292,7 @@ namespace R54IN0.Test
         /// 삭제 후 잔여수량과 재고수량을 업데이트 한다.
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         public void DeleteItemThenSyncInventoryQty()
         {
             IOStockStatusViewModel viewmodel = SelectSomeTreeViewNode();
@@ -314,7 +305,7 @@ namespace R54IN0.Test
             Assert.AreNotEqual(invQty, inQty2);
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteCheckedItemThenSyncDataGridItems()
         {
             var viewmodel = SelectSomeTreeViewNode();
@@ -329,8 +320,8 @@ namespace R54IN0.Test
         /// <summary>
         /// 삭제 후 데이터베이스에서 관련 자료가 모두 삭제되어야 한다.
         /// </summary>
-        [TestMethod]
-        public void DeleteCheckedItemThenSyncDb()
+        [Test]
+        public async Task DeleteCheckedItemThenSyncDb()
         {
             var viewmodel = SelectSomeTreeViewNode();
             var item = viewmodel.DataGridViewModel.SelectedItem = viewmodel.DataGridViewModel.Items.Random();
@@ -339,7 +330,7 @@ namespace R54IN0.Test
 
             viewmodel.DataGridViewModel.ChekcedIOStockFormatsDeletionCommand.Execute(null);
 
-            var iofmts = DataDirector.GetInstance().DB.SelectAsync<IOStockFormat>(iosID);
+            var iofmts = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(iosID);
             Assert.IsNull(iofmts);
         }
 
@@ -347,7 +338,7 @@ namespace R54IN0.Test
         /// 삭제 후 잔여수량과 재고수량을 업데이트 한다.
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         [Ignore]
         public void DeleteCheckedItemThenSyncQty()
         {
@@ -365,7 +356,7 @@ namespace R54IN0.Test
         /// 삭제 후 잔여수량과 재고수량을 업데이트 한다.
         /// </summary>
         /// <returns></returns>
-        [TestMethod]
+        [Test]
         [Ignore]
         public void DeleteCheckedItemThenSyncInventoryQty()
         {
@@ -381,7 +372,7 @@ namespace R54IN0.Test
             Assert.AreNotEqual(inQty, inQty2);
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteCheckedItemsThenSyncDataGridItems()
         {
             var viewmodel = SelectSomeTreeViewNode();
@@ -398,8 +389,8 @@ namespace R54IN0.Test
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.IsChecked != true));
         }
 
-        [TestMethod]
-        public void DeleteCheckedItemsThenSyncDb()
+        [Test]
+        public async Task DeleteCheckedItemsThenSyncDb()
         {
             var viewmodel = SelectSomeTreeViewNode();
             for (int i = 0; i < 10; i++)
@@ -415,13 +406,13 @@ namespace R54IN0.Test
 
             foreach (var item in checkedItems)
             {
-                var iofmts = DataDirector.GetInstance().DB.SelectAsync<IOStockFormat>(item.ID);
+                var iofmts = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(item.ID);
                 Assert.IsNull(iofmts);
             }
         }
 
         [Ignore]
-        [TestMethod]
+        [Test]
         public void DeleteCheckedItemsThenSyncQty()
         {
             var viewmodel = SelectSomeTreeViewNode();
@@ -441,7 +432,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 제품을 검색하기
         /// </summary>
-        [TestMethod]
+        [Test]
         [Ignore]
         public void SearchProductName()
         {
@@ -459,7 +450,7 @@ namespace R54IN0.Test
         /// 규격을 검색하기
         /// </summary>
         [Ignore]
-        [TestMethod]
+        [Test]
         public void SearchSpecificationName()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -476,7 +467,7 @@ namespace R54IN0.Test
         /// 제품과 규격 검색하기
         /// </summary>
         [Ignore]
-        [TestMethod]
+        [Test]
         public void SearchCommand()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -524,7 +515,7 @@ namespace R54IN0.Test
             return viewmodel;
         }
 
-        [TestMethod]
+        [Test]
         public void TestProductSearch()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -537,7 +528,7 @@ namespace R54IN0.Test
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Product.Name.Contains(searchvm.Text)));
         }
 
-        [TestMethod]
+        [Test]
         public void TestSpecificationSearch()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -550,7 +541,7 @@ namespace R54IN0.Test
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Specification.Contains(searchvm.Text)));
         }
 
-        [TestMethod]
+        [Test]
         public void TestMakerSearch()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -563,7 +554,7 @@ namespace R54IN0.Test
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Maker.Name.Contains(searchvm.Text)));
         }
 
-        [TestMethod]
+        [Test]
         public void TestSuppilerSearch()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -576,7 +567,7 @@ namespace R54IN0.Test
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Supplier.Name.Contains(searchvm.Text)));
         }
 
-        [TestMethod]
+        [Test]
         public void TestWarehouseSearch()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -589,7 +580,7 @@ namespace R54IN0.Test
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Warehouse.Name.Contains(searchvm.Text)));
         }
 
-        [TestMethod]
+        [Test]
         public void TestCustomerSearch()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -602,7 +593,7 @@ namespace R54IN0.Test
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Customer.Name.Contains(searchvm.Text)));
         }
 
-        [TestMethod]
+        [Test]
         public void ProjectListItemDeleteTest()
         {
             IOStockStatusViewModel viewmodel = new IOStockStatusViewModel();
@@ -620,7 +611,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 인벤토리 노드 하나를 클릭할 경우 관련 데이터를 데이터그리드에 업데이트
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TestTreeViewSelect()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -633,7 +624,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 제품 노드를 하나 클릭한 경우 관련 데이터를 데이터그리드에 업데이트
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TestTreeViewSelect2()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -649,7 +640,7 @@ namespace R54IN0.Test
         /// <summary>
         /// 제품노드와 그 하위 노드를 클릭한 경우 제품노드와 관련된 데이터를 데이터그리드에 업데이트
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TestTreeViewSelect3()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -664,7 +655,7 @@ namespace R54IN0.Test
             Assert.IsTrue(viewmodel.DataGridViewModel.Items.All(x => x.Inventory.Product.ID == productNode.ObservableObjectID));
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteInventoryNodeThenSyncTreeView()
         {
             var viewmodel = new IOStockStatusViewModel();
@@ -686,7 +677,7 @@ namespace R54IN0.Test
             Assert.IsFalse(viewmodel.DataGridViewModel.Items.Any(x => x.Inventory.ID == inventoryNode.ObservableObjectID));
         }
 
-        [TestMethod]
+        [Test]
         [Ignore]
         public void CalcQuantity()
         {
@@ -716,7 +707,7 @@ namespace R54IN0.Test
         /// <summary>
         /// buffix 프로젝트를 삭제할 시 에러 발생
         /// </summary>
-        [TestMethod]
+        [Test]
         [Ignore]
         public void DeleteSelectedProject()
         {
@@ -730,7 +721,7 @@ namespace R54IN0.Test
             Assert.AreEqual(0, items.Count());
         }
 
-        [TestMethod]
+        [Test]
         public void ChangeQuantityProperty()
         {
             var viewmodel = SelectSomeTreeViewNode();
@@ -743,7 +734,7 @@ namespace R54IN0.Test
             AssertQuantityChecking(viewmodel.DataGridViewModel.Items);
         }
 
-        [TestMethod]
+        [Test]
         public void ChangeDateTimeProperty()
         {
             var viewmodel = SelectSomeTreeViewNode();
@@ -756,7 +747,7 @@ namespace R54IN0.Test
             AssertQuantityChecking(viewmodel.DataGridViewModel.Items);
         }
 
-        [TestMethod]
+        [Test]
         public void ChangeStockTypeProperty()
         {
             var viewmodel = SelectSomeTreeViewNode();
@@ -772,7 +763,7 @@ namespace R54IN0.Test
         /// <summary>
         /// bugfix io status 에서 project list가 선택되어 있을 때 새로운 iostock 등록 시 에러 발생
         /// </summary>
-        [TestMethod]
+        [Test]
         public void AddNewStockData()
         {
             IOStockStatusViewModel viewmodel = new IOStockStatusViewModel();
