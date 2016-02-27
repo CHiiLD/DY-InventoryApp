@@ -29,7 +29,7 @@ namespace R54IN0.ServerTest
             Console.WriteLine(nameof(ClassInitialize));
             Console.WriteLine(context.TestName);
 
-            _conn = new MySqlConnection(MySQLConfig.ConnectionString(@"./MySqlConnectionString.json"));
+            _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString(@"./mysql_connection_string.json"));
             _conn.Open();
             Dummy dummy = new Dummy(_conn);
             dummy.Create();
@@ -40,9 +40,7 @@ namespace R54IN0.ServerTest
                 Ip = "Any",
                 MaxConnectionNumber = 10,
                 Mode = SocketMode.Tcp,
-                Name = nameof(ReadOnlyServer),
-                SendBufferSize = short.MaxValue,
-                SendingQueueSize = 100
+                Name = nameof(ReadOnlyServer)
             };
             _server = new ReadOnlyServer();
             _server.Setup(_config);
@@ -81,15 +79,15 @@ namespace R54IN0.ServerTest
                 string pp = "1234";
 
                 a = new SocketAwaitable();
-                byte[] reqtBytes = new ProtocolFormat().SetPing(pp).ToBytes(ReceiveName.PING);
+                byte[] reqtBytes = new ProtocolFormat().SetPing(pp).ToBytes(Commands.PING);
                 a.Buffer = new ArraySegment<byte>(reqtBytes);
                 await s.SendAsync(a);
 
                 await s.ReceiveAsync(a);
                 Assert.AreNotEqual(0, a.Transferred.Count);
-                ProtocolFormat pfmt = ProtocolFormat.ToFormat(a.Transferred.Array, 0, a.Transferred.Count);
+                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(a.Transferred.Array, 0, a.Transferred.Count);
 
-                Assert.AreEqual(pfmt.Name, ReceiveName.PONG);
+                Assert.AreEqual(pfmt.Name, Commands.PONG);
                 Assert.AreEqual(pp, pfmt.Ping);
             }
         }
@@ -107,16 +105,16 @@ namespace R54IN0.ServerTest
                 a = new SocketAwaitable();
                 a.Buffer = bbm.GetBuffer();
 
-                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).ToBytes(ReceiveName.SELECT_ALL);
+                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).ToBytes(Commands.SELECT_ALL);
                 Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
                 await s.SendAsync(a);
 
                 await s.ReceiveAsync(a);
                 Assert.AreNotEqual(0, a.Transferred.Count);
-                ProtocolFormat pfmt = ProtocolFormat.ToFormat(a.Transferred.Array, 0, a.Transferred.Count);
+                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(a.Transferred.Array, 0, a.Transferred.Count);
 
-                Assert.AreEqual(pfmt.Name, ReceiveName.SELECT_ALL);
-                var fmts = pfmt.ConvertJFormatList<Maker>();
+                Assert.AreEqual(pfmt.Name, Commands.SELECT_ALL);
+                var fmts = pfmt.ConvertToFormat<Maker>();
                 foreach (var maker in fmts)
                     Console.WriteLine(maker.Name);
             }
@@ -146,15 +144,15 @@ namespace R54IN0.ServerTest
                     }
                 }
 
-                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(ReceiveName.SELECT_ONE);
+                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(Commands.SELECT_ONE);
                 Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
                 await s.SendAsync(a);
 
                 await s.ReceiveAsync(a);
                 Assert.AreNotEqual(0, a.Transferred.Count);
-                ProtocolFormat pfmt = ProtocolFormat.ToFormat(a.Transferred.Array, 0, a.Transferred.Count);
+                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(a.Transferred.Array, 0, a.Transferred.Count);
 
-                var fmts = pfmt.ConvertJFormatList<Maker>();
+                var fmts = pfmt.ConvertToFormat<Maker>();
                 Assert.AreEqual(id, fmts.Single().ID);
             }
         }
@@ -173,15 +171,15 @@ namespace R54IN0.ServerTest
                 a.Buffer = bbm.GetBuffer();
 
                 string sql = "select * from IOStockFormat where StockType = 1 order by Date limit 10;";
-                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(ReceiveName.QUERY_FORMAT);
+                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(Commands.QUERY_FORMAT);
                 Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
                 await s.SendAsync(a);
 
                 await s.ReceiveAsync(a);
                 Assert.AreNotEqual(0, a.Transferred.Count);
-                ProtocolFormat pfmt = ProtocolFormat.ToFormat(a.Transferred.Array, 0, a.Transferred.Count);
+                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(a.Transferred.Array, 0, a.Transferred.Count);
 
-                var stofmts = pfmt.ConvertJFormatList<IOStockFormat>();
+                var stofmts = pfmt.ConvertToFormat<IOStockFormat>();
                 Assert.AreEqual(10, stofmts.Count());
                 foreach (var stofmt in stofmts)
                     Console.WriteLine(stofmt.ID);
@@ -202,13 +200,41 @@ namespace R54IN0.ServerTest
                 a.Buffer = bbm.GetBuffer();
 
                 string sql = "select Quantity from InventoryFormat order by rand() limit 1;";
-                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(ReceiveName.QUERY_VALUE);
+                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(Commands.QUERY_VALUE);
                 Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
                 await s.SendAsync(a);
 
                 await s.ReceiveAsync(a);
                 Assert.AreNotEqual(0, a.Transferred.Count);
-                ProtocolFormat pfmt = ProtocolFormat.ToFormat(a.Transferred.Array, 0, a.Transferred.Count);
+                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(a.Transferred.Array, 0, a.Transferred.Count);
+
+                object value = pfmt.Value;
+                int qty = Convert.ToInt32(value);
+                Console.WriteLine("query result " + qty);
+            }
+        }
+
+        [TestMethod]
+        public async Task TcpClientTest()
+        {
+            IPEndPoint iep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), _config.Port);
+            using (TcpClient tcpClient = new TcpClient())
+            {
+                tcpClient.Connect(iep);
+                Socket socket = tcpClient.Client;
+
+                BlockingBufferManager bbm = new BlockingBufferManager(4096, 1);
+                var a = new SocketAwaitable();
+                a.Buffer = bbm.GetBuffer();
+
+                string sql = "select Quantity from InventoryFormat order by rand() limit 1;";
+                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(Commands.QUERY_VALUE);
+                Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
+                await socket.SendAsync(a);
+
+                await socket.ReceiveAsync(a);
+                Assert.AreNotEqual(0, a.Transferred.Count);
+                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(a.Transferred.Array, 0, a.Transferred.Count);
 
                 object value = pfmt.Value;
                 int qty = Convert.ToInt32(value);
@@ -219,34 +245,34 @@ namespace R54IN0.ServerTest
         [TestMethod]
         public async Task BufferManagerTest()
         {
-            BlockingBufferManager bbm = new BlockingBufferManager(ProtocolFormat.BUFFER_SIZE, 100);
+            BlockingBufferManager bbm = new BlockingBufferManager(ProtocolFormat.BUFFER_SIZE, 10000);
             IPEndPoint iep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), _config.Port);
-            using (Socket s = new Socket(iep.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
+            using (Socket socket = new Socket(iep.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
             {
-                SocketAwaitable a = new SocketAwaitable();
-                a.RemoteEndPoint = iep;
-                await s.ConnectAsync(a);
+                SocketAwaitable awaitable = new SocketAwaitable();
+                awaitable.RemoteEndPoint = iep;
+                await socket.ConnectAsync(awaitable);
 
-                a = new SocketAwaitable();
-                var buf = a.Buffer = bbm.GetBuffer();
+                awaitable = new SocketAwaitable();
+                var buf = awaitable.Buffer = bbm.GetBuffer();
 
                 string sql = "select * from IOStockFormat";
-                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(ReceiveName.QUERY_FORMAT);
-                Array.Copy(reqtBytes, a.Buffer.Array, reqtBytes.Length);
-                await s.SendAsync(a);
+                byte[] reqtBytes = new ProtocolFormat(typeof(IOStockFormat)).SetSQL(sql).ToBytes(Commands.QUERY_FORMAT);
+                Array.Copy(reqtBytes, awaitable.Buffer.Array, reqtBytes.Length);
+                await socket.SendAsync(awaitable);
 
                 int count = 0;
                 List<ArraySegment<byte>> segments = new List<ArraySegment<byte>>();
-                while (await s.ReceiveAsync(a) == SocketError.Success && a.Transferred.Count > 0)
+                while (await socket.ReceiveAsync(awaitable) == SocketError.Success && awaitable.Transferred.Count > 0)
                 {
-                    segments.Add(a.Buffer);
-                    count += a.Transferred.Count;
-                    if (ProtocolFormat.IsReceivedCompletely(a.Transferred.Array, 0, count))
+                    segments.Add(awaitable.Buffer);
+                    count += awaitable.Transferred.Count;
+                    if (ProtocolFormat.IsReceivedCompletely(awaitable.Transferred.Array, 0, count))
                         break;
-                    a.Buffer = bbm.GetBuffer();
+                    awaitable.Buffer = bbm.GetBuffer();
                 }
-                ProtocolFormat pfmt = ProtocolFormat.ToFormat(a.Transferred.Array, 0, count);
-                var stofmts = pfmt.ConvertJFormatList<IOStockFormat>();
+                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(awaitable.Transferred.Array, 0, count);
+                var stofmts = pfmt.ConvertToFormat<IOStockFormat>();
                 foreach (var stofmt in stofmts)
                     Console.WriteLine(stofmt.ID);
                 Console.WriteLine("recv byte size: " + count);

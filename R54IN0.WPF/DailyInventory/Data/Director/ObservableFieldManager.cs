@@ -8,9 +8,9 @@ namespace R54IN0.WPF
     internal class ObservableFieldManager
     {
         private IDictionary<Type, Dictionary<string, IObservableField>> _fields;
-        private ClientAdapter _db;
+        private MySqlBridge _db;
 
-        internal ObservableFieldManager(ClientAdapter _db)
+        internal ObservableFieldManager(MySqlBridge _db)
         {
             this._db = _db;
         }

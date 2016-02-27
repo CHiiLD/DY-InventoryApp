@@ -16,6 +16,8 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>ftp://192.168.10.89/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -35,8 +37,6 @@
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -88,6 +88,10 @@
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SuperSocket\Reference\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -113,7 +117,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DailyInventory\Data\Client\ClientConfig.cs" />
+    <Compile Include="DailyInventory\Network\IPConfigJsonFormat.cs" />
     <Compile Include="DailyInventory\Controls\BindingProxy.cs" />
     <Compile Include="DailyInventory\Controls\FieldManager\FieldManagerControl.xaml.cs">
       <DependentUpon>FieldManagerControl.xaml</DependentUpon>
@@ -168,13 +172,13 @@
     </Compile>
     <Compile Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewModelView.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNode.cs" />
-    <Compile Include="DailyInventory\Data\Client\Event\SQLUpdateEventArgs.cs" />
-    <Compile Include="DailyInventory\Data\Client\Event\SQLDeleteEventArgs.cs" />
-    <Compile Include="DailyInventory\Data\Client\ClientAdapter.cs" />
-    <Compile Include="DailyInventory\Data\Client\ClientAdapter.Socket.cs" />
+    <Compile Include="DailyInventory\Network\Event\SQLUpdateEventArgs.cs" />
+    <Compile Include="DailyInventory\Network\Event\SQLDeleteEventArgs.cs" />
+    <Compile Include="DailyInventory\Network\MySqlBridge.cs" />
+    <Compile Include="DailyInventory\Network\MySqlBridge.Socket.cs" />
     <Compile Include="DailyInventory\Data\Director\DataDirector.Callback.cs" />
     <Compile Include="DailyInventory\Data\Director\DataDirector.cs" />
-    <Compile Include="DailyInventory\Data\Client\LexDb.cs" />
+    <Compile Include="DailyInventory\Data\LexDb.cs" />
     <Compile Include="DailyInventory\Data\Director\CollectionViewModelObserverSubject.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableFieldManager.cs" />
     <Compile Include="DailyInventory\Data\Director\ObservableInventoryManager.cs" />
@@ -185,7 +189,7 @@
     <Compile Include="DailyInventory\Data\Inventory\IObservableInventoryProperties.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableInventory.cs" />
     <Compile Include="DailyInventory\Data\Inventory\ObservableIOStock.cs" />
-    <Compile Include="DailyInventory\Data\Client\Event\SQLInsertEventArgs.cs" />
+    <Compile Include="DailyInventory\Network\Event\SQLInsertEventArgs.cs" />
     <Compile Include="DailyInventory\Data\Inventory\UpdateLocker.cs" />
     <Compile Include="DailyInventory\Data\TreeViewNodeJsonFormat.cs" />
     <Compile Include="DailyInventory\Windows\FieldManagerWindow.xaml.cs">
@@ -278,7 +282,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClientConfig.json">
+    <None Include="ipconfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -294,6 +298,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dawn.SocketAwaitable\src\Dawn.SocketAwaitable\Dawn.SocketAwaitable.csproj">
+      <Project>{09c67697-1b3e-4e40-a972-c6768ffa006c}</Project>
+      <Name>Dawn.SocketAwaitable</Name>
+    </ProjectReference>
     <ProjectReference Include="..\lex.db\lib\Lex.Db.Net45\Lex.Db.Net45.csproj">
       <Project>{04608184-27B9-42A2-9E5E-69A6CB21ECFE}</Project>
       <Name>Lex.Db.Net45</Name>

@@ -7,9 +7,9 @@ namespace R54IN0.WPF
     internal class ObservableInventoryManager
     {
         private IDictionary<string, ObservableInventory> _inventories;
-        private ClientAdapter _db;
+        private MySqlBridge _db;
 
-        internal ObservableInventoryManager(ClientAdapter _db)
+        internal ObservableInventoryManager(MySqlBridge _db)
         {
             this._db = _db;
         }
@@ -28,7 +28,7 @@ namespace R54IN0.WPF
             return _inventories.ContainsKey(id) ? _inventories[id] as ObservableInventory : null;
         }
 
-        public IEnumerable<ObservableInventory> SearchAsProductID(string id)
+        public List<ObservableInventory> SearchAsProductID(string id)
         {
             return _inventories.Values.Where(x => x.Product.ID == id).ToList();
         }

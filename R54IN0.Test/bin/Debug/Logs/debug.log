@@ -1,0 +1,1021 @@
+﻿2016-02-27 00:33:59,022 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 00:33:59,034 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 00:33:59,034 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 00:33:59,034 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 00:33:59,034 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 00:33:59,130 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 00:33:59,131 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 00:33:59,131 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 00:33:59,171 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:33:59,173 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:33:59,457 [13472] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 00:33:59,472 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:33:59,473 [3360] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 00:33:59,473 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:33:59,503 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:33:59,503 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:33:59,503 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:33:59,504 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:33:59,554 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:33:59,555 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:33:59,580 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:33:59,580 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:33:59,582 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:33:59,582 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:33:59,586 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:33:59,586 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:33:59,587 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:33:59,588 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:33:59,592 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:33:59,592 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:33:59,593 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:33:59,594 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:33:59,645 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:33:59,645 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:33:59,646 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:33:59,647 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:33:59,650 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:33:59,650 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:33:59,651 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:33:59,652 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:33:59,655 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:33:59,655 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:33:59,661 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:33:59,661 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:33:59,666 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:33:59,666 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:33:59,668 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:33:59,668 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:33:59,673 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:33:59,674 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:59:33,279 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 00:59:33,288 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 00:59:33,289 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 00:59:33,289 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 00:59:33,289 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 00:59:33,355 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 00:59:33,356 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 00:59:33,356 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 00:59:33,385 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:59:33,387 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:59:33,423 [18244] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 00:59:33,450 [3860] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 00:59:33,450 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:59:33,450 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:59:45,423 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 00:59:45,433 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 00:59:45,433 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 00:59:45,433 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 00:59:45,433 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 00:59:45,500 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 00:59:45,500 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 00:59:45,500 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 00:59:45,529 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:59:45,530 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:59:45,559 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:59:45,559 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 00:59:53,057 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 00:59:53,066 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 00:59:53,066 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 00:59:53,066 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 00:59:53,066 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 00:59:53,132 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 00:59:53,132 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 00:59:53,132 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 00:59:53,159 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 00:59:53,161 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 00:59:53,196 [900] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 00:59:53,213 [8436] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 00:59:53,214 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 00:59:53,215 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:00:08,237 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:00:08,248 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:00:08,248 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:00:08,250 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:00:08,250 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:00:08,335 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:00:08,335 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:00:08,335 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:00:08,369 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:00:08,372 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:00:35,733 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:00:35,742 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:00:35,742 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:00:35,742 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:00:35,742 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:00:35,810 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:00:35,810 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:00:35,810 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:00:35,837 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:00:35,839 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:00:35,871 [15312] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:00:35,880 [18464] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:00:36,385 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:00:36,385 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:00:52,454 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:00:52,463 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:00:52,463 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:00:52,464 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:00:52,464 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:00:52,532 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:00:52,532 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:00:52,532 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:00:52,565 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:00:52,567 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:00:52,611 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:00:52,611 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:05:38,329 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:05:38,338 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:05:38,338 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:05:38,338 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:05:38,339 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:05:38,430 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:05:38,430 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:05:38,430 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:05:38,470 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:05:38,472 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:05:38,519 [12660] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:05:38,537 [19176] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:05:38,640 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:05:38,641 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:05:38,670 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:05:38,670 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:05:38,671 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:05:38,671 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:05:38,672 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:05:38,672 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:05:38,676 [6232] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:05:38,681 [14768] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:08:43,563 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:08:43,572 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:08:43,572 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:08:43,572 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:08:43,572 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:08:43,647 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:08:43,647 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:08:43,647 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:08:43,675 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:08:43,677 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:08:43,717 [14588] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:08:43,727 [10476] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:09:40,498 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:09:40,508 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:09:40,508 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:09:40,508 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:09:40,508 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:09:40,587 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:09:40,587 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:09:40,587 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:09:40,620 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:09:40,622 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:09:40,693 [14684] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:09:40,784 [16756] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:10:58,740 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:10:58,749 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:10:58,750 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:10:58,750 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:10:58,750 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:10:58,822 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:10:58,822 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:10:58,822 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:10:58,855 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:10:58,857 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:10:58,923 [8624] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:10:58,989 [11992] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:19:05,136 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:19:05,145 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:19:05,145 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:19:05,145 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:19:05,146 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:19:05,210 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:19:05,211 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:19:05,211 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:19:05,238 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:19:05,240 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:19:05,275 [11568] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:19:05,293 [10580] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:19:05,768 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:19:05,768 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:19:47,991 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:19:48,005 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:19:48,005 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:19:48,005 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:19:48,005 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:19:48,090 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:19:48,090 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:19:48,090 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:19:48,125 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:19:48,128 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:19:48,190 [7624] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:19:48,281 [12272] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:20:37,339 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:20:37,348 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:20:37,348 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:20:37,348 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:20:37,348 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:20:37,412 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:20:37,412 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:20:37,412 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:20:37,439 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:20:37,441 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:20:37,473 [18752] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:20:37,493 [14644] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:20:37,588 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:20:37,588 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:20:37,608 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:20:37,608 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:20:37,609 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:20:37,609 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:20:37,610 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:20:37,610 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:20:37,612 [7860] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:20:37,614 [7860] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:20:38,370 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:20:38,370 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:20:38,372 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:20:38,373 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:20:38,375 [14644] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:20:38,379 [14644] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:20:39,000 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:20:39,000 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:20:39,002 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:20:39,002 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:20:39,004 [7860] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:20:39,006 [7860] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:20:39,644 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:20:39,644 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:20:39,645 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:20:39,646 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:20:39,647 [14644] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:20:39,649 [14644] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:20:40,096 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:20:40,096 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:20:40,097 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:20:40,098 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:20:40,099 [7860] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:20:40,101 [7860] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:20:40,498 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:20:40,498 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:20:40,499 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:20:40,499 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:20:40,501 [12364] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:20:40,503 [12364] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:20:41,164 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:20:41,164 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:20:41,168 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:20:41,169 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:20:41,170 [14644] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:20:41,172 [14644] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:20:41,897 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:20:41,897 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:20:41,898 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:20:41,899 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:20:41,900 [18752] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:20:41,903 [18752] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:20:42,533 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:20:42,533 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:23:00,281 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:23:00,291 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:23:00,291 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:23:00,291 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:23:00,291 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:23:00,386 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:23:00,387 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:23:00,387 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:23:00,427 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:23:00,429 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:23:00,471 [15700] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:23:00,491 [6512] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:23:00,586 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:23:00,586 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:23:00,614 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:23:00,614 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:23:00,615 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:23:00,615 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:23:00,617 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:23:00,617 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:23:00,621 [6076] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:23:00,624 [6076] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:27:57,287 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:27:57,296 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:27:57,296 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:27:57,297 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:27:57,297 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:27:57,363 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:27:57,363 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:27:57,364 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:27:57,394 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:27:57,397 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:27:57,432 [12536] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:27:57,441 [3868] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:27:57,932 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:27:57,932 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:28:05,417 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:28:05,426 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:28:05,427 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:28:05,427 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:28:05,427 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:28:05,495 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:28:05,495 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:28:05,495 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:28:05,523 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:28:05,525 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:28:05,558 [10492] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:28:05,573 [12260] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:28:38,806 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:28:38,817 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:28:38,817 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:28:38,818 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:28:38,818 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:28:38,898 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:28:38,898 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:28:38,898 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:28:38,933 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:28:38,936 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:28:39,001 [12608] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:28:39,078 [15588] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:29:57,331 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:29:57,344 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:29:57,345 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:29:57,345 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:29:57,345 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:29:57,426 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:29:57,426 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:29:57,426 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:29:57,456 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:29:57,458 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:29:57,517 [15464] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:29:57,574 [16212] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:34:30,880 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:34:30,892 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:34:30,893 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:34:30,893 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:34:30,893 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:34:30,964 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:34:30,964 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:34:30,964 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:34:30,993 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:34:30,995 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:34:31,065 [15160] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:34:31,090 [18172] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:37:02,755 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:37:02,765 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:37:02,765 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:37:02,765 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:37:02,765 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:37:02,832 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:37:02,832 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:37:02,832 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:37:02,859 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:37:02,861 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:37:02,895 [5576] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:37:02,914 [12524] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:37:03,674 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:37:03,675 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:37:11,503 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:37:11,513 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:37:11,513 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:37:11,513 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:37:11,513 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:37:11,578 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:37:11,578 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:37:11,578 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:37:11,606 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:37:11,608 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:37:11,641 [9848] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:37:11,659 [13916] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:37:11,757 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:37:11,757 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:37:11,778 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:37:11,778 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:37:11,778 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:37:11,778 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:37:11,779 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:37:11,780 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:37:11,782 [12140] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:37:11,785 [12140] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:37:12,554 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:37:12,554 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:37:12,559 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:37:12,559 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:37:12,561 [13916] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:37:12,563 [13916] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:37:13,231 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:37:13,231 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:37:13,233 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:37:13,233 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:37:13,235 [12140] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:37:13,237 [12140] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:37:13,910 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:37:13,910 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:37:13,911 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:37:13,911 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:37:13,913 [13220] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:37:13,915 [13220] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:37:14,373 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:37:14,373 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:37:14,375 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:37:14,375 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:37:14,377 [13916] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:37:14,379 [13916] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:37:14,743 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:37:14,743 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:37:14,746 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:37:14,746 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:37:14,748 [12140] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:37:14,750 [12140] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:37:15,406 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:37:15,406 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:37:15,410 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:37:15,411 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:37:15,413 [13220] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:37:15,415 [13916] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:37:16,135 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:37:16,136 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:37:16,137 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:37:16,137 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:37:16,139 [13220] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:37:16,141 [13220] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:37:16,785 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:37:16,785 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:39:22,692 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:39:22,701 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:39:22,702 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:39:22,702 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:39:22,702 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:39:22,768 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:39:22,768 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:39:22,768 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:39:22,795 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:39:22,796 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:39:22,830 [12644] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:39:22,845 [14060] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:39:23,369 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:39:23,369 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:39:53,137 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:39:53,146 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:39:53,146 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:39:53,147 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:39:53,147 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:39:53,213 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:39:53,213 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:39:53,213 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:39:53,239 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:39:53,241 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:39:53,275 [14756] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:39:53,288 [18260] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:39:54,030 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:39:54,031 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:40:07,424 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:40:07,433 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:40:07,433 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:40:07,433 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:40:07,433 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:40:07,501 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:40:07,501 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:40:07,501 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:40:07,530 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:40:07,532 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:40:07,566 [13944] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:40:07,586 [12628] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:40:08,331 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:40:08,331 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:40:25,534 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:40:25,543 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:40:25,543 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:40:25,543 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:40:25,543 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:40:25,611 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:40:25,611 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:40:25,611 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:40:25,638 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:40:25,640 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:40:25,675 [15000] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:40:25,690 [17564] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:40:26,526 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:40:26,527 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:40:44,323 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:40:44,332 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:40:44,332 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:40:44,332 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:40:44,332 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:40:44,398 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:40:44,399 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:40:44,399 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:40:44,426 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:40:44,428 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:40:44,461 [13564] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:40:44,474 [19192] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:40:45,213 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:40:45,214 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:40:57,923 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:40:57,932 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:40:57,932 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:40:57,933 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:40:57,933 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:40:57,998 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:40:57,998 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:40:57,998 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:40:58,024 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:40:58,026 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:40:58,060 [8440] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:40:58,077 [17876] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:40:58,822 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:40:58,823 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:41:18,308 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:41:18,317 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:41:18,317 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:41:18,317 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:41:18,317 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:41:18,383 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:41:18,383 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:41:18,383 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:41:18,412 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:41:18,414 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:41:18,449 [5760] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:41:18,463 [8608] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:41:19,112 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:41:19,113 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:41:55,020 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:41:55,037 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:41:55,037 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:41:55,037 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:41:55,037 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:41:55,138 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:41:55,138 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:41:55,138 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:41:55,176 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:41:55,178 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:41:55,235 [7044] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:41:55,249 [19076] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:41:55,254 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:41:55,255 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:41:55,283 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:41:55,283 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:41:55,284 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:41:55,284 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:41:55,288 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:41:55,288 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:41:55,291 [17912] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:41:55,294 [17912] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:42:48,389 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:42:48,398 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:42:48,398 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:42:48,398 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:42:48,398 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:42:48,465 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:42:48,465 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:42:48,465 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:42:48,497 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:42:48,499 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:42:48,537 [6968] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:42:48,553 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:42:48,553 [5764] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:42:48,553 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:42:48,575 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:42:48,575 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:42:48,576 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:42:48,576 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:42:48,577 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:42:48,577 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:42:48,580 [5764] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:42:48,583 [13748] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:43:05,133 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:43:05,142 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:43:05,142 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:43:05,143 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:43:05,143 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:43:05,214 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:43:05,215 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:43:05,215 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:43:05,253 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:05,255 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:29,394 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:43:29,403 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:43:29,403 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:43:29,404 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:43:29,404 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:43:29,473 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:43:29,473 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:43:29,474 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:43:29,505 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:29,510 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:32,365 [12332] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:43:32,387 [5496] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:43:32,407 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:43:32,431 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:43:32,489 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:32,489 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:32,489 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:43:32,489 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:43:32,490 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:32,490 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:32,493 [6624] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:43:32,497 [5496] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:43:33,233 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:43:33,234 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:43:33,239 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:33,239 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:33,242 [6624] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:43:33,245 [6624] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:43:33,820 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:43:33,821 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:43:33,822 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:33,822 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:33,824 [6624] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:43:33,826 [6624] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:43:34,440 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:43:34,440 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:43:34,441 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:34,441 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:34,443 [6624] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:43:34,445 [6624] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:43:34,828 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:43:34,828 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:43:34,829 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:34,830 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:34,832 [6624] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:43:34,834 [5496] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:43:35,125 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:43:35,125 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:43:35,127 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:35,127 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:35,129 [6624] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:43:35,131 [6624] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:43:35,689 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:43:35,689 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:43:35,693 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:35,693 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:35,695 [6624] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:43:35,697 [6624] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:43:36,346 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:43:36,346 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:43:36,347 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:36,348 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:36,350 [6624] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:43:36,352 [6624] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:43:36,972 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:43:36,972 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:43:56,721 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:43:56,732 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:43:56,732 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:43:56,732 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:43:56,732 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:43:56,800 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:43:56,800 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:43:56,800 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:43:56,829 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:43:56,831 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:43:56,913 [19348] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:43:56,955 [18384] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:43:57,738 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:43:57,739 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:44:46,441 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:44:46,450 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:44:46,450 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:44:46,450 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:44:46,450 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:44:46,519 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:44:46,519 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:44:46,519 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:44:46,547 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:44:46,548 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:44:46,583 [15068] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:44:46,596 [8444] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:44:46,634 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:44:46,634 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:23,363 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:45:23,372 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:45:23,372 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:45:23,372 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:45:23,373 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:45:23,443 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:45:23,443 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:45:23,444 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:45:23,473 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:23,475 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:23,535 [6660] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:45:23,575 [17304] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:45:24,301 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:24,302 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:35,306 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:45:35,315 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:45:35,315 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:45:35,315 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:45:35,315 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:45:35,384 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:45:35,385 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:45:35,385 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:45:35,412 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:35,414 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:35,447 [11032] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:45:35,462 [16132] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:45:35,478 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:35,479 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:55,041 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:45:55,050 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:45:55,050 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:45:55,051 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:45:55,051 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:45:55,115 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:45:55,116 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:45:55,116 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:45:55,142 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:55,146 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:55,179 [2036] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:45:55,189 [8880] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:45:55,210 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:55,210 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:55,230 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:55,230 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:55,231 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:55,231 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:55,232 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:55,232 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:55,234 [19444] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:45:55,236 [19444] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:45:55,882 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:55,882 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:55,885 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:55,886 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:55,888 [19444] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:45:55,891 [19444] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:45:56,445 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:56,445 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:56,447 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:56,447 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:56,449 [19444] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:45:56,451 [19444] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:45:56,989 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:56,989 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:56,991 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:56,991 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:56,993 [19444] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:45:56,998 [19444] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:45:57,362 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:57,362 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:57,372 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:57,373 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:57,377 [9276] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:45:57,396 [9276] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:45:57,406 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:57,407 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:57,409 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:57,410 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:57,412 [9276] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:45:57,414 [2036] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:45:58,462 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:58,463 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:58,464 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:58,464 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:58,468 [2036] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:45:58,470 [9276] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:45:59,123 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:59,123 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:45:59,124 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:45:59,124 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:45:59,126 [19444] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:45:59,128 [2036] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:45:59,672 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:45:59,672 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:47:52,254 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 01:47:52,263 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 01:47:52,263 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 01:47:52,263 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 01:47:52,263 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 01:47:52,330 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 01:47:52,330 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 01:47:52,330 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 01:47:52,356 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:47:52,360 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:47:52,393 [8440] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:47:52,403 [7464] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:47:52,425 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:47:52,425 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:47:52,446 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:47:52,446 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:47:52,446 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:47:52,446 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:47:52,447 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:47:52,447 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:47:52,450 [14144] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:47:52,452 [7464] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:47:53,108 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:47:53,109 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:47:53,112 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:47:53,112 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:47:53,114 [7464] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:47:53,117 [7464] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:47:53,717 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:47:53,718 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:47:53,719 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:47:53,720 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:47:53,722 [1720] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:47:53,725 [1720] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:47:54,640 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:47:54,640 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:47:54,642 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:47:54,642 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:47:54,644 [1720] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:47:54,647 [1720] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:47:55,116 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:47:55,116 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:47:55,118 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:47:55,118 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:47:55,120 [7464] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:47:55,122 [7464] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:47:55,433 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:47:55,433 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:47:55,434 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:47:55,435 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:47:55,437 [14144] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:47:55,439 [14144] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:47:55,998 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:47:55,998 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:47:56,000 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:47:56,003 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:47:56,004 [7464] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:47:56,007 [7464] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:47:56,545 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:47:56,545 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 01:47:56,546 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 01:47:56,547 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 01:47:56,548 [14144] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 01:47:56,550 [14144] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 01:47:57,185 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 01:47:57,185 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:01:49,895 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 02:01:49,904 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 02:01:49,904 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 02:01:49,905 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 02:01:49,905 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 02:01:49,972 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 02:01:49,972 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 02:01:49,972 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 02:01:50,008 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:01:50,010 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:01:50,038 [13808] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:01:50,046 [19096] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:01:50,065 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:01:50,065 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:01:50,085 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:01:50,085 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:01:50,085 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:01:50,085 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:01:50,086 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:01:50,087 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:01:50,089 [14296] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:01:50,092 [14296] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:01:50,744 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:01:50,744 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:01:50,745 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:01:50,745 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:01:50,747 [14296] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:01:50,750 [14296] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:01:51,336 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:01:51,336 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:01:51,338 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:01:51,338 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:01:51,340 [19096] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:01:51,343 [19096] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:01:52,010 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:01:52,010 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:01:52,018 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:01:52,019 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:01:52,023 [12868] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:01:52,034 [19096] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:01:52,344 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:01:52,345 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:01:52,362 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:01:52,362 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:01:52,364 [12868] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:01:52,369 [12868] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:01:52,641 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:01:52,641 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:01:52,643 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:01:52,643 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:01:52,645 [19096] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:01:52,647 [19096] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:01:53,181 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:01:53,181 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:01:53,183 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:01:53,183 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:01:53,185 [14296] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:01:53,187 [14296] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:01:53,811 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:01:53,811 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:01:53,812 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:01:53,813 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:01:53,815 [12868] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:01:53,817 [12868] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:01:54,426 [TestRunnerThread] DEBUG ReadOnlyServer-44484853 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:01:54,427 [TestRunnerThread] DEBUG WriteOnlyServer-29699141 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:09:26,288 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 02:09:26,297 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 02:09:26,297 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 02:09:26,298 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 02:09:26,298 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 02:09:26,363 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 02:09:26,363 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 02:09:26,363 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 02:09:26,391 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:09:26,393 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:09:26,437 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:09:26,438 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:09:26,464 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:09:26,464 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:09:26,466 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:09:26,466 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:09:26,468 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:09:26,469 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:09:26,470 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:09:26,470 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:13:23,148 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 02:13:23,157 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 02:13:23,158 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 02:13:23,158 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 02:13:23,158 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 02:13:23,224 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 02:13:23,224 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 02:13:23,224 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 02:13:23,252 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:13:23,254 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:13:23,294 [6104] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:13:23,308 [18196] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:13:23,323 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:13:23,325 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:13:23,363 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:13:23,363 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:13:23,364 [14700] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:13:23,366 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:13:23,366 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:13:23,367 [14700] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:13:23,367 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:13:23,368 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:13:23,368 [14700] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:13:23,370 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:13:23,370 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:13:23,370 [14700] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:13:47,008 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 02:13:47,020 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 02:13:47,020 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 02:13:47,021 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 02:13:47,021 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 02:13:47,091 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 02:13:47,092 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 02:13:47,092 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 02:13:47,121 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:13:47,124 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:13:47,190 [17584] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:13:47,227 [3904] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:14:23,754 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 02:14:23,763 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 02:14:23,763 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 02:14:23,763 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 02:14:23,763 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 02:14:23,829 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 02:14:23,829 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 02:14:23,829 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 02:14:23,857 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:14:23,859 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:14:23,893 [15648] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:14:23,913 [15248] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:14:23,928 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:14:23,931 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:27:59,497 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 02:27:59,506 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 02:27:59,506 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 02:27:59,506 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 02:27:59,506 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 02:27:59,578 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 02:27:59,578 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 02:27:59,578 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 02:27:59,606 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:27:59,608 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:27:59,642 [12332] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:27:59,680 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:27:59,682 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:27:59,711 [18684] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:27:59,726 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:27:59,726 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:27:59,727 [18684] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:27:59,730 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:27:59,730 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:27:59,733 [18684] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:27:59,737 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:27:59,737 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:27:59,738 [18684] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success
+2016-02-27 02:27:59,741 [TestRunnerThread] DEBUG ReadOnlyServer-24026409 - Listener (127.0.0.1:4000) was stoppped
+2016-02-27 02:27:59,742 [TestRunnerThread] DEBUG WriteOnlyServer-7348436 - Listener (127.0.0.1:4001) was stoppped
+2016-02-27 02:27:59,745 [18684] DEBUG R54IN0.WPF.MySqlBridge - ReadOnlyServer connection success
+2016-02-27 02:29:30,529 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 02:29:30,539 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 02:29:30,539 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 02:29:30,539 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 02:29:30,539 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 02:29:30,606 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 02:29:30,607 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 02:29:30,607 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 02:29:30,635 [TestRunnerThread] DEBUG ReadOnlyServer-46429731 - Listener (127.0.0.1:4000) was started
+2016-02-27 02:29:30,637 [TestRunnerThread] DEBUG WriteOnlyServer-1897140 - Listener (127.0.0.1:4001) was started
+2016-02-27 02:29:30,704 [17564] DEBUG R54IN0.WPF.MySqlBridge - WriteOnlyServer connection success

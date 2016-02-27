@@ -510,9 +510,9 @@ namespace R54IN0.WPF
             {
                 DateTime fromDate = DatePickerViewModel.FromDate;
                 DateTime toDate = DatePickerViewModel.ToDate;
-                string fmt = ClientAdapter.DATETIME;
+                string strfmt = "yyyy-MM-dd HH:mm:ss.fff";
                 string sql = string.Format("select * from {0} where {1} between '{2}' and '{3}' order by Date desc;", 
-                    typeof(IOStockFormat).Name, "Date", fromDate.ToString(fmt), toDate.ToString(fmt));
+                    typeof(IOStockFormat).Name, "Date", fromDate.ToString(strfmt), toDate.ToString(strfmt));
                 Dispatcher.CurrentDispatcher.BeginInvoke(new Func<string, Task>(SetDataGridItems), sql);
             }
         }

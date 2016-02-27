@@ -36,21 +36,20 @@ namespace R54IN0.Test
             _conn = null;
         }
 
-
         [TestInitialize]
         public void TestInitialize()
         {
-            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
-                cmd.ExecuteNonQuery();
+            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
+            //using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
+            //    cmd.ExecuteNonQuery();
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
-                cmd.ExecuteNonQuery();
+            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
+            //using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
+            //    cmd.ExecuteNonQuery();
 
             CollectionViewModelObserverSubject.Destory();
             TreeViewNodeDirector.Destroy(true);

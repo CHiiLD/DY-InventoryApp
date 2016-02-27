@@ -19,7 +19,7 @@ namespace R54IN0.Server
         {
             get
             {
-                return ReceiveName.SELECT_ALL;
+                return Commands.SELECT_ALL;
             }
         }
 
@@ -56,7 +56,7 @@ namespace R54IN0.Server
 
         public virtual void ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo)
         {
-            ProtocolFormat pfmt = ProtocolFormat.ToFormat(requestInfo.Key, requestInfo.Body);
+            ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             string formatName = pfmt.Table;
             string sql = string.Format("select * from {0};", formatName);
             Send(session, sql, formatName);
@@ -88,7 +88,7 @@ namespace R54IN0.Server
             }
 
             List<ArraySegment<byte>> segments = new List<ArraySegment<byte>>();
-            byte[] response = new ProtocolFormat(formatName).SetFormats(formats).ToBytes(Name);
+            byte[] response = new ProtocolFormat(formatName).SetValueList(formats).ToBytes(Name);
             const int BUFSIZE = ProtocolFormat.BUFFER_SIZE;
             for (int i = 0; i < response.Count(); i += BUFSIZE)
             {

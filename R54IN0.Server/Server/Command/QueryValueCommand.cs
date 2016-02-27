@@ -17,13 +17,13 @@ namespace R54IN0.Server
         {
             get
             {
-                return ReceiveName.QUERY_VALUE;
+                return Commands.QUERY_VALUE;
             }
         }
 
         public virtual void ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo)
         {
-            ProtocolFormat pfmt = ProtocolFormat.ToFormat(requestInfo.Key, requestInfo.Body);
+            ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             string formatName = pfmt.Table;
             string sql = pfmt.SQL;
             Send(session, sql, formatName);
@@ -35,17 +35,15 @@ namespace R54IN0.Server
             ReadOnlyServer server = session.AppServer as ReadOnlyServer;
             MySqlConnection conn = server.MySQL;
 
-            object value = null;
+            List<object> values = new List<object>();
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
             using (DbDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
-                {
-                    value = reader.GetValue(0);
-                }
+                    values.Add(reader.GetValue(0) == DBNull.Value ? null : reader.GetValue(0));
             }
 
-            byte[] response = new ProtocolFormat().SetQueryValueResult(value).ToBytes(Name);
+            byte[] response = new ProtocolFormat().SetValueList(values).ToBytes(Name);
             session.Send(response, 0, response.Length);
         }
     }

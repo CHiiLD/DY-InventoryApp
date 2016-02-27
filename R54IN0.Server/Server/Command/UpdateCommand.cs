@@ -18,13 +18,13 @@ namespace R54IN0.Server
         {
             get
             {
-                return ReceiveName.UPDATE;
+                return Commands.UPDATE;
             }
         }
 
         public override void ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo)
         {
-            ProtocolFormat pfmt = ProtocolFormat.ToFormat(requestInfo.Key, requestInfo.Body);
+            ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             ExecuteCommand(session, pfmt, Update);
         }
 
@@ -72,7 +72,7 @@ namespace R54IN0.Server
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
 
-            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(ReceiveName.UPDATE);
+            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(Commands.UPDATE);
             foreach (WriteOnlySession s in server.GetAllSessions())
             {
                 if(s != session)

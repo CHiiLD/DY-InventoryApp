@@ -15,14 +15,14 @@ namespace R54IN0.Server
         {
             get
             {
-                return ReceiveName.PING;
+                return Commands.PING;
             }
         }
 
         public void ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo)
         {
-            ProtocolFormat pfmt = ProtocolFormat.ToFormat(requestInfo.Key, requestInfo.Body);
-            byte[] bytes = new ProtocolFormat().SetPing(pfmt.Ping).ToBytes(ReceiveName.PONG);
+            ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
+            byte[] bytes = new ProtocolFormat().SetPing(pfmt.Ping).ToBytes(Commands.PONG);
             session.Send(bytes, 0, bytes.Length);
         }
     }

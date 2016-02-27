@@ -14,13 +14,13 @@ namespace R54IN0.Server
         {
             get
             {
-                return ReceiveName.QUERY_FORMAT;
+                return Commands.QUERY_FORMAT;
             }
         }
 
         public override void ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo)
         {
-            ProtocolFormat pfmt = ProtocolFormat.ToFormat(requestInfo.Key, requestInfo.Body);
+            ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             string formatName = pfmt.Table;
             string sql = pfmt.SQL;
             Send(session, sql, formatName);

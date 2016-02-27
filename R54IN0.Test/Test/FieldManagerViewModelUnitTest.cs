@@ -1,65 +1,67 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MySql.Data.MySqlClient;
 using MySQL.Test;
 using R54IN0.WPF;
 using System.Linq;
+using NUnit.Framework;
+using R54IN0.Server;
+using Newtonsoft.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace R54IN0.Test.Test
 {
-    [TestClass]
+    [TestFixture]
     public class FieldManagerViewModelUnitTest
     {
-        private static MySqlConnection _conn;
+        public ReadOnlyServer _readServer;
+        public WriteOnlyServer _writeServer;
 
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [TestFixtureSetUp]
+        public void ClassInitialize()
         {
-            Console.WriteLine(nameof(ClassInitialize));
-            Console.WriteLine(context.TestName);
+            using (MySqlConnection conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json")))
+            {
+                conn.Open();
+                Dummy dummy = new Dummy(conn);
+                dummy.Create();
+            }
 
-            _conn = new MySqlConnection(ConnectingString.KEY);
-            _conn.Open();
-
-            Dummy dummy = new Dummy(_conn);
-            dummy.Create();
+            string json = System.IO.File.ReadAllText("ipconfig.json");
+            IPConfigJsonFormat config = JsonConvert.DeserializeObject<IPConfigJsonFormat>(json);
+            _readServer = new ReadOnlyServer();
+            _readServer.Setup(config.ReadServerHost, config.ReadServerPort);
+            _writeServer = new WriteOnlyServer();
+            _writeServer.Setup(config.WriteServerHost, config.WriteServerPort);
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        [SetUp]
+        public void Setup()
         {
-            Console.WriteLine(nameof(ClassCleanup));
-            _conn.Close();
-            _conn = null;
+            _readServer.Start();
+            _writeServer.Start();
+
+            DataDirector.InstanceInitialzeAsync();
         }
 
-        [TestInitialize]
-        public void TestInitialize()
+        [TearDown]
+        public void Clean()
         {
-            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
-                cmd.ExecuteNonQuery();
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
-                cmd.ExecuteNonQuery();
+            _readServer.Stop();
+            _writeServer.Stop();
 
             CollectionViewModelObserverSubject.Destory();
             TreeViewNodeDirector.Destroy(true);
             DataDirector.Destroy();
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreate()
         {
             new FieldManagerViewModel();
         }
 
-        [TestMethod]
+        [Test]
         public void TestAdd()
         {
             string name = "soime";
@@ -67,16 +69,20 @@ namespace R54IN0.Test.Test
             FieldManagerViewModel vm = new FieldManagerViewModel();
             vm.AddField(maker);
 
+            Thread.Sleep(10);
+
             Assert.IsTrue(vm.MakerList.Any(x => x.Name == maker.Name));
             Assert.IsTrue(vm.MakerList.Any(x => x.ID == maker.ID));
         }
 
-        [TestMethod]
+        [Test]
         public void TestRemove()
         {
             FieldManagerViewModel vm = new FieldManagerViewModel();
             var maker = vm.MakerList.Random();
             vm.RemoveField(maker);
+
+            Thread.Sleep(10);
 
             vm.MakerList.Any(x => x.Name == maker.Name);
             vm.MakerList.Any(x => x.ID == maker.ID);

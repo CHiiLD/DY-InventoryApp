@@ -18,13 +18,13 @@ namespace R54IN0.Server
         {
             get
             {
-                return ReceiveName.INSERT;
+                return Commands.INSERT;
             }
         }
 
         public virtual void ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo)
         {
-            ProtocolFormat pfmt = ProtocolFormat.ToFormat(requestInfo.Key, requestInfo.Body);
+            ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             ExecuteCommand(session, pfmt, Insert);
         }
 
@@ -100,7 +100,7 @@ namespace R54IN0.Server
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 cmd.ExecuteNonQuery();
 
-            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(ReceiveName.INSERT);
+            byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(Commands.INSERT);
             foreach (WriteOnlySession s in server.GetAllSessions())
                 s.Send(data, 0, data.Length);
 

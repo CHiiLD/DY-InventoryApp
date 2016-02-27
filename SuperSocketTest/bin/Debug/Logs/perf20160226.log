@@ -1,0 +1,14 @@
+﻿2016-02-26 11:16:41,512 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 37,392,384.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+RaceServer ----------------------------------
+Started Time: 2016-02-26 오전 11:16:41
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 100
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+

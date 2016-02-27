@@ -12,7 +12,7 @@ namespace R54IN0.Server
 {
     public class ProtocolFormatReceiveFilter : FixedHeaderReceiveFilter<BinaryRequestInfo>
     {
-        public ProtocolFormatReceiveFilter() : base(ReceiveName.HEADER_SIZE)
+        public ProtocolFormatReceiveFilter() : base(Commands.HEADER_SIZE)
         {
 
         }
@@ -23,7 +23,7 @@ namespace R54IN0.Server
             string lens = null;
             try
             {
-                lens = Encoding.UTF8.GetString(header, offset + ReceiveName.NAME_SIZE, ReceiveName.BODYLEN_SIZE);
+                lens = Encoding.UTF8.GetString(header, offset + Commands.NAME_SIZE, Commands.BODYLEN_SIZE);
                 len = Convert.ToInt32(lens, 16);
             }
             catch(Exception e)
@@ -35,7 +35,7 @@ namespace R54IN0.Server
 
         protected override BinaryRequestInfo ResolveRequestInfo(ArraySegment<byte> header, byte[] bodyBuffer, int offset, int length)
         {
-            return new BinaryRequestInfo(Encoding.UTF8.GetString(header.Array, header.Offset, ReceiveName.NAME_SIZE), bodyBuffer.CloneRange(offset, length));
+            return new BinaryRequestInfo(Encoding.UTF8.GetString(header.Array, header.Offset, Commands.NAME_SIZE), bodyBuffer.CloneRange(offset, length));
         }
     }
 }

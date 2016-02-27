@@ -39,17 +39,17 @@ namespace R54IN0.Test
         [TestInitialize]
         public void TestInitialize()
         {
-            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
-                cmd.ExecuteNonQuery();
+            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
+            //using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
+            //    cmd.ExecuteNonQuery();
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
-                cmd.ExecuteNonQuery();
+            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
+            //using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
+            //    cmd.ExecuteNonQuery();
 
             CollectionViewModelObserverSubject.Destory();
             TreeViewNodeDirector.Destroy(true);
@@ -702,7 +702,7 @@ namespace R54IN0.Test
                 string sql = string.Format(@"select
                                             (select sum(Quantity) from IOStockFormat where InventoryID = '{0}' and StockType = '{1}' and Date <= '{3}') -
                                             (select sum(Quantity) from IOStockFormat where InventoryID = '{0}' and StockType = '{2}' and Date <= '{3}');",
-                                             i.InventoryID, (int)IOStockType.INCOMING, (int)IOStockType.OUTGOING, i.Date.ToString(ClientAdapter.DATETIME));
+                                             i.InventoryID, (int)IOStockType.INCOMING, (int)IOStockType.OUTGOING, i.Date.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {

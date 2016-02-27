@@ -18,13 +18,13 @@ namespace R54IN0.Server
         {
             get
             {
-                return ReceiveName.DELETE;
+                return Commands.DELETE;
             }
         }
 
         public void ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo)
         {
-            ProtocolFormat pfmt = ProtocolFormat.ToFormat(requestInfo.Key, requestInfo.Body);
+            ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             Delete(session, pfmt.Table, pfmt.ID);
         }
 
@@ -54,7 +54,7 @@ namespace R54IN0.Server
 
             SerialKiller(conn, type, id);
 
-            byte[] data = new ProtocolFormat(type).SetID(id).ToBytes(ReceiveName.DELETE);
+            byte[] data = new ProtocolFormat(type).SetID(id).ToBytes(Commands.DELETE);
             foreach (WriteOnlySession s in server.GetAllSessions())
                 s.Send(data, 0, data.Length);
 

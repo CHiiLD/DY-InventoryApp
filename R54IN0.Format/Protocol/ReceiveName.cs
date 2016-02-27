@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0.Format
 {
-    public class ReceiveName
+    public class Commands
     {
         public const int NAME_SIZE = 4;
         public const int BODYLEN_SIZE = 8;

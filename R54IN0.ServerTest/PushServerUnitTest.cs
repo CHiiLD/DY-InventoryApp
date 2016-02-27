@@ -31,7 +31,7 @@ namespace R54IN0.ServerTest
             Console.WriteLine(nameof(ClassInitialize));
             Console.WriteLine(context.TestName);
 
-            _conn = new MySqlConnection(MySQLConfig.ConnectionString(@"./MySqlConnectionString.json"));
+            _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json"));
             _conn.Open();
             Dummy dummy = new Dummy(_conn);
             dummy.Create();
@@ -93,13 +93,13 @@ namespace R54IN0.ServerTest
             Maker result = null;
             EventHandler<DataEventArgs> handler = (object o, DataEventArgs e) =>
             {
-                ProtocolFormat pfmt = ProtocolFormat.ToFormat(e.Data, e.Offset, e.Length);
+                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(e.Data, e.Offset, e.Length);
                 JObject jobj = pfmt.Value as JObject;
                 result = jobj.ToObject<Maker>();
             };
             _session2.DataReceived += handler;
 
-            byte[] send = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(ReceiveName.INSERT);
+            byte[] send = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(Commands.INSERT);
             _session1.Send(send, 0, send.Length);
 
             await Task.Delay(100);
@@ -128,13 +128,13 @@ namespace R54IN0.ServerTest
 
             EventHandler<DataEventArgs> handler = (object o, DataEventArgs e) =>
             {
-                ProtocolFormat pfmt = ProtocolFormat.ToFormat(e.Data, e.Offset, e.Length);
+                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(e.Data, e.Offset, e.Length);
                 JObject jobj = pfmt.Value as JObject;
                 result = jobj.ToObject<Maker>();
             };
             _session2.DataReceived += handler;
 
-            byte[] send = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(ReceiveName.UPDATE);
+            byte[] send = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(Commands.UPDATE);
             _session1.Send(send, 0, send.Length);
 
             await Task.Delay(200);
@@ -161,12 +161,12 @@ namespace R54IN0.ServerTest
             Assert.IsNotNull(id);
             EventHandler<DataEventArgs> handler = (object o, DataEventArgs e) =>
             {
-                ProtocolFormat pfmt = ProtocolFormat.ToFormat(e.Data, e.Offset, e.Length);
+                ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(e.Data, e.Offset, e.Length);
                 result = pfmt.ID;
             };
             _session2.DataReceived += handler;
 
-            byte[] send = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(ReceiveName.DELETE);
+            byte[] send = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(Commands.DELETE);
             _session1.Send(send, 0, send.Length);
 
             await Task.Delay(200);

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace R54IN0.Format
 {
-    public class ProtocolFormat : ReceiveName
+    public class ProtocolFormat : Commands
     {
-        public const int BUFFER_SIZE = 1024 * 1000;
+        public const int BUFFER_SIZE = 1024 * 4;
 
         public string Name { get; set; }
         public string Table { get; set; }
@@ -19,7 +19,7 @@ namespace R54IN0.Format
         public string SQL { get; set; }
         public string Ping { get; set; }
         public object Value { get; set; }
-        public List<object> JFormatList { get; set; }
+        public List<object> ValueList { get; set; }
 
         public ProtocolFormat()
         {
@@ -54,20 +54,20 @@ namespace R54IN0.Format
             return this;
         }
 
-        public ProtocolFormat SetFormats(List<object> formats)
+        public ProtocolFormat SetValueList(List<object> formats)
         {
-            JFormatList = formats;
+            ValueList = formats;
             return this;
         }
 
-        public List<TableT> ConvertJFormatList<TableT>() where TableT : class, IID, new()
+        public List<TableT> ConvertToFormat<TableT>() where TableT : class, IID, new()
         {
-            if (JFormatList == null)
+            if (ValueList == null)
                 return null;
 
             List<TableT> result = new List<TableT>();
             PropertyInfo[] properties = typeof(TableT).GetProperties();
-            foreach (JObject jobj in JFormatList)
+            foreach (JObject jobj in ValueList)
             {
                 TableT t = jobj.ToObject<TableT>();
                 result.Add(t);
@@ -81,13 +81,7 @@ namespace R54IN0.Format
             return this;
         }
 
-        public ProtocolFormat SetQueryValueResult(object value)
-        {
-            Value = value;
-            return this;
-        }
-
-        public static bool IsRequestName(string header)
+        public static bool IsCommands(string header)
         {
             bool ret = false;
             switch (header)
@@ -127,7 +121,7 @@ namespace R54IN0.Format
         /// <returns></returns>
         public byte[] ToBytes(string receiveName)
         {
-            if (!IsRequestName(receiveName))
+            if (!IsCommands(receiveName))
                 throw new Exception();
 
             Name = receiveName;
@@ -143,17 +137,23 @@ namespace R54IN0.Format
             return protocolData;
         }
 
+        public ArraySegment<byte> ToArraySegment(string receiveName)
+        {
+            byte[] bytes = ToBytes(receiveName);
+            return new ArraySegment<byte>(bytes);
+        }
+
         /// <summary>
         /// 서버에서 클라이언트 측 데이터를 분석
         /// </summary>
         /// <param name="receiveName"></param>
         /// <param name="body"></param>
         /// <returns></returns>
-        public static ProtocolFormat ToFormat(string receiveName, byte[] body)
+        public static ProtocolFormat ToProtocolFormat(string receiveName, byte[] body)
         {
             byte[] jsonBytes = body;
             string name = receiveName;
-            if (!IsRequestName(name))
+            if (!IsCommands(name))
                 throw new Exception(string.Format("Name을 알 수 없습니다. {0}", name));
 
             string json = Encoding.UTF8.GetString(jsonBytes);
@@ -168,7 +168,7 @@ namespace R54IN0.Format
         /// <param name="offset"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static ProtocolFormat ToFormat(byte[] buffer, int offset, int count)
+        public static ProtocolFormat ToProtocolFormat(byte[] buffer, int offset, int count)
         {
             byte[] nameBytes = new byte[NAME_SIZE];
             byte[] lenBytes = new byte[BODYLEN_SIZE];
@@ -177,7 +177,7 @@ namespace R54IN0.Format
             Array.Copy(buffer, offset + NAME_SIZE, lenBytes, 0, BODYLEN_SIZE);
 
             string receiveName = Encoding.UTF8.GetString(nameBytes);
-            if (!IsRequestName(receiveName))
+            if (!IsCommands(receiveName))
                 throw new Exception(string.Format("Name을 알 수 없습니다. {0}", receiveName));
 
             string jsonLenStr = Encoding.UTF8.GetString(lenBytes);

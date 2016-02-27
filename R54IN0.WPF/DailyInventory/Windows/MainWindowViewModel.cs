@@ -62,7 +62,7 @@ namespace R54IN0.WPF
             //Dialog의 버튼은 다시 접속하기, 앱 종료하기 기능을 구현해준다.
             try
             {
-                await DataDirector.InstanceInitialzeAsync();
+                DataDirector.InstanceInitialzeAsync();
             }
             catch (Exception e)
             {

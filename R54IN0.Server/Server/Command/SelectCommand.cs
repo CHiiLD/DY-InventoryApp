@@ -17,13 +17,13 @@ namespace R54IN0.Server
         {
             get
             {
-                return ReceiveName.SELECT_ONE;
+                return Commands.SELECT_ONE;
             }
         }
 
         public override void ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo)
         {
-            ProtocolFormat pfmt = ProtocolFormat.ToFormat(requestInfo.Key, requestInfo.Body);
+            ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             string formatName = pfmt.Table;
             string sql = string.Format("select * from {0} where ID = '{1}';", formatName, pfmt.ID);
             Send(session, sql, formatName);

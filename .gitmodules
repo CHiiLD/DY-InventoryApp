@@ -37,3 +37,6 @@
 [submodule "Dawn.SocketAwaitable"]
 	path = Dawn.SocketAwaitable
 	url = https://github.com/safakgur/Dawn.SocketAwaitable.git
+[submodule "log4net"]
+	path = log4net
+	url = https://github.com/apache/log4net.git

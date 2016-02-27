@@ -1,5 +1,7 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace R54IN0.WPF
@@ -9,11 +11,13 @@ namespace R54IN0.WPF
     /// </summary>
     public partial class DataDirector
     {
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         private static DataDirector _me;
         private ObservableFieldManager _field;
         private ObservableInventoryManager _inventory;
         private CollectionViewModelObserverSubject _subject;
-        private ClientAdapter _db;
+        private MySqlBridge _bridge;
 
         private DataDirector()
         {
@@ -25,11 +29,11 @@ namespace R54IN0.WPF
         {
         }
 
-        public ClientAdapter DB
+        public MySqlBridge DB
         {
             get
             {
-                return _db;
+                return _bridge;
             }
         }
 
@@ -55,8 +59,8 @@ namespace R54IN0.WPF
                 _me._field = null;
                 _me._inventory = null;
                 _me._subject = null;
-                _me.DB.Close();
-                _me._db = null;
+                _me._bridge.Dispose();
+                _me._bridge = null;
                 _me = null;
             }
         }
@@ -71,7 +75,7 @@ namespace R54IN0.WPF
         {
             if (invf.ID == null)
                 invf.ID = Guid.NewGuid().ToString();
-            _db.Insert(invf);
+            _bridge.Insert(invf);
         }
 
         public List<ObservableInventory> CopyInventories()
@@ -86,7 +90,7 @@ namespace R54IN0.WPF
         /// <returns></returns>
         public void RemoveInventory(ObservableInventory oInventory)
         {
-            _db.Delete<InventoryFormat>(oInventory.ID);
+            _bridge.Delete<InventoryFormat>(oInventory.ID);
         }
 
         public ObservableInventory SearchInventory(string inventoryID)
@@ -94,7 +98,7 @@ namespace R54IN0.WPF
             return _inventory.Search(inventoryID);
         }
 
-        public IEnumerable<ObservableInventory> SearchInventories(string productID)
+        public List<ObservableInventory> SearchInventories(string productID)
         {
             return _inventory.SearchAsProductID(productID);
         }
@@ -107,21 +111,21 @@ namespace R54IN0.WPF
                 throw new ArgumentNullException();
 
             if (field is Product)
-                _db.Insert<Product>(field);
+                _bridge.Insert<Product>(field);
             else if (field is Maker)
-                _db.Insert<Maker>(field);
+                _bridge.Insert<Maker>(field);
             else if (field is Measure)
-                _db.Insert<Measure>(field);
+                _bridge.Insert<Measure>(field);
             else if (field is Customer)
-                _db.Insert<Customer>(field);
+                _bridge.Insert<Customer>(field);
             else if (field is Supplier)
-                _db.Insert<Supplier>(field);
+                _bridge.Insert<Supplier>(field);
             else if (field is Project)
-                _db.Insert<Project>(field);
+                _bridge.Insert<Project>(field);
             else if (field is Warehouse)
-                _db.Insert<Warehouse>(field);
+                _bridge.Insert<Warehouse>(field);
             else if (field is Employee)
-                _db.Insert<Employee>(field);
+                _bridge.Insert<Employee>(field);
             else
                 throw new NotSupportedException();
         }
@@ -147,21 +151,21 @@ namespace R54IN0.WPF
             string id = ofield.ID;
 
             if (ifield is Product)
-                _db.Delete<Product>(id);
+                _bridge.Delete<Product>(id);
             else if (ifield is Maker)
-                _db.Delete<Maker>(id);
+                _bridge.Delete<Maker>(id);
             else if (ifield is Measure)
-                _db.Delete<Measure>(id);
+                _bridge.Delete<Measure>(id);
             else if (ifield is Customer)
-                _db.Delete<Customer>(id);
+                _bridge.Delete<Customer>(id);
             else if (ifield is Supplier)
-                _db.Delete<Supplier>(id);
+                _bridge.Delete<Supplier>(id);
             else if (ifield is Project)
-                _db.Delete<Project>(id);
+                _bridge.Delete<Project>(id);
             else if (ifield is Warehouse)
-                _db.Delete<Warehouse>(id);
+                _bridge.Delete<Warehouse>(id);
             else if (ifield is Employee)
-                _db.Delete<Employee>(id);
+                _bridge.Delete<Employee>(id);
             else
                 throw new NotSupportedException();
         }
@@ -170,19 +174,21 @@ namespace R54IN0.WPF
         public static async Task InstanceInitialzeAsync()
         {
             DataDirector ddr = GetInstance();
-            ClientAdapter db = ddr._db = new ClientAdapter();
-            if (!db.Open())
-                throw new Exception();
+            MySqlBridge bridge = ddr._bridge = new MySqlBridge();
+
+            bridge.DataInsertEventHandler += ddr.OnDataInserted;
+            bridge.DataUpdateEventHandler += ddr.OnDataUpdated;
+            bridge.DataDeleteEventHandler += ddr.OnDataDeleted;
+            //TODO 동기화 문제 
+            bridge.Connect();
+
+            await Task.Delay(2000);
 
             ddr.StockList = new List<IOStockDataGridItem>();
-            ddr._field = new ObservableFieldManager(db);
-            ddr._inventory = new ObservableInventoryManager(db);
+            ddr._field = new ObservableFieldManager(bridge);
+            ddr._inventory = new ObservableInventoryManager(bridge);
             await ddr._field.InitializeAsync();
             await ddr._inventory.InitializeAsync();
-
-            db.DataInsertEventHandler += ddr.OnDataInserted;
-            db.DataUpdateEventHandler += ddr.OnDataUpdated;
-            db.DataDeleteEventHandler += ddr.OnDataDeleted;
         }
     }
 }

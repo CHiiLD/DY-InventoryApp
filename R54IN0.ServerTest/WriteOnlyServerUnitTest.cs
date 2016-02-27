@@ -26,7 +26,7 @@ namespace R54IN0.ServerTest
             Console.WriteLine(nameof(ClassInitialize));
             Console.WriteLine(context.TestName);
 
-            _conn = new MySqlConnection(MySQLConfig.ConnectionString(@"./MySqlConnectionString.json"));
+            _conn = new MySqlConnection(MySqlJsonFormat.ConnectionString(@"mysql_connection_string.json"));
             _conn.Open();
             Dummy dummy = new Dummy(_conn);
             dummy.Create();
@@ -75,7 +75,7 @@ namespace R54IN0.ServerTest
 
                 a = new SocketAwaitable();
                 Maker maker = new Maker() { ID = Guid.NewGuid().ToString(), Name = "SomE Maker" };
-                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(ReceiveName.INSERT);
+                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(Commands.INSERT);
                 a.Buffer = new ArraySegment<byte>(reqtBytes);
                 await s.SendAsync(a);
 
@@ -118,7 +118,7 @@ namespace R54IN0.ServerTest
                 Assert.IsNotNull(id);
 
                 a = new SocketAwaitable();
-                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(ReceiveName.DELETE);
+                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetID(id).ToBytes(Commands.DELETE);
                 a.Buffer = new ArraySegment<byte>(reqtBytes);
                 await s.SendAsync(a);
 
@@ -163,7 +163,7 @@ namespace R54IN0.ServerTest
                 Maker maker = new Maker() { ID = id, Name = "some maker ~ " };
 
                 a = new SocketAwaitable();
-                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(ReceiveName.UPDATE);
+                byte[] reqtBytes = new ProtocolFormat(typeof(Maker)).SetInstance(maker).ToBytes(Commands.UPDATE);
                 a.Buffer = new ArraySegment<byte>(reqtBytes);
                 await s.SendAsync(a);
 

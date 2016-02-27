@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using R54IN0.WPF;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace R54IN0.Test.Test
 {
@@ -37,35 +38,34 @@ namespace R54IN0.Test.Test
         [TestInitialize]
         public void TestInitialize()
         {
-            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
-                cmd.ExecuteNonQuery();
+            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
+            //using (MySqlCommand cmd = new MySqlCommand("begin work;", conn))
+            //    cmd.ExecuteNonQuery();
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
-            using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
-                cmd.ExecuteNonQuery();
+            //MySqlConnection conn = DataDirector.GetInstance().DB.Connection;
+            //using (MySqlCommand cmd = new MySqlCommand("rollback;", conn))
+            //    cmd.ExecuteNonQuery();
 
             CollectionViewModelObserverSubject.Destory();
             TreeViewNodeDirector.Destroy(true);
             DataDirector.Destroy();
         }
 
-
         /// <summary>
         /// IOStockFormat에 기록된 Project의 개수가 0가 된 경우 Project를 삭제한다.
         /// </summary>
         [TestMethod]
-        public void DeleteProjectAutomatically()
+        public async Task DeleteProjectAutomatically()
         {
             DataDirector ddr = DataDirector.GetInstance();
             Observable<Project> project = ddr.CopyFields<Project>().Random();
 
             //IOStockFormat 로드 해서 하나씩 삭제 중 ..
-            List<Tuple<string>> tuples = ddr.DB.QueryReturnTuple<string>("select ID from {0} where ProjectID = '{1}';", nameof(IOStockFormat), project.ID);
+            List<Tuple<string>> tuples = await ddr.DB.QueryReturnTuple<string>("select ID from {0} where ProjectID = '{1}';", nameof(IOStockFormat), project.ID);
             tuples.ForEach(x => ddr.DB.Delete<IOStockFormat>(x.Item1));
 
             Assert.IsFalse(ddr.CopyFields<Project>().Any(x => x == project));
