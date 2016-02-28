@@ -19,6 +19,8 @@ namespace R54IN0.Format
         public string SQL { get; set; }
         public string Ping { get; set; }
         public object Value { get; set; }
+        public int Offset { get; set; }
+        public int RowCount { get; set; }
         public List<object> ValueList { get; set; }
 
         public ProtocolFormat()
@@ -51,6 +53,13 @@ namespace R54IN0.Format
         public ProtocolFormat SetPing(string ping)
         {
             Ping = ping;
+            return this;
+        }
+
+        public ProtocolFormat SetLimitParameter(int offset, int rowCount)
+        {
+            Offset = offset;
+            RowCount = rowCount;
             return this;
         }
 

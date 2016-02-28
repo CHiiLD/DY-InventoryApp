@@ -179,6 +179,13 @@ namespace R54IN0.WPF.Test
             CalcInventoryQty<TableT>(item.ID);
         }
 
+        public async Task<List<TableT>> SelectAsync<TableT>(int offset, int rowCount) where TableT : class, IID, new()
+        {
+            List<TableT> result = new List<TableT>();
+            string sql = string.Format("select * from {0} limit {1}, {2};", typeof(TableT).Name, offset, rowCount);
+            return ExecuteSelect0<TableT>(sql);
+        }
+
         public async Task<List<TableT>> SelectAsync<TableT>() where TableT : class, IID, new()
         {
             List<TableT> result = new List<TableT>();
@@ -458,6 +465,7 @@ namespace R54IN0.WPF.Test
         private void OnDataInserted(object sender, SQLInsertEventArgs e)
         {
         }
+
         #endregion private method
     }
 }

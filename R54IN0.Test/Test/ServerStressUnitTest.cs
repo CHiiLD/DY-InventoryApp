@@ -61,16 +61,11 @@ namespace R54IN0.WPF.Test
         /// 10초 동안 서버로부터 데이터를 받는다.
         /// </summary>
         [Test]
+        [Ignore]
         public async Task ReceiveDataForAbout10s()
         {
             IDbAction db = DataDirector.GetInstance().Db;
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            while (sw.ElapsedMilliseconds < 1000 * 2)
-            {
-                await db.SelectAsync<IOStockFormat>();
-            }
-            Console.WriteLine(sw.ElapsedMilliseconds + " ms");
+            await db.SelectAsync<IOStockFormat>();
         }
     }
 }

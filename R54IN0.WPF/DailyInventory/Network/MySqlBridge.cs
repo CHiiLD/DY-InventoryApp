@@ -29,24 +29,6 @@ namespace R54IN0.WPF
             DataUpdateEventHandler += OnDataUpdated;
             DataDeleteEventHandler += OnDataDeleted;
         }
-
-        /// <summary>
-        /// reqt: type, sql
-        /// recv: JFormatList(value type)
-        /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <param name="sql"></param>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public async Task<List<Tuple<T1>>> QueryReturnTupleAsync<T1>(string sql, params object[] args)
-        {
-            ProtocolFormat pfmt = await SendAsync(ProtocolCommand.QUERY_VALUE, new ProtocolFormat(typeof(T1)).SetSQL(sql));
-            IEnumerable<T1> t1s =  pfmt.ValueList.Cast<T1>();
-            List<Tuple<T1>> tuples = new List<Tuple<T1>>();
-            foreach (T1 t1 in t1s)
-                tuples.Add(new Tuple<T1>(t1));
-            return tuples;
-        }
         
         /// <summary>
         /// reqt: type, instance
@@ -128,6 +110,26 @@ namespace R54IN0.WPF
 
         /// <summary>
         /// reqt: type, sql
+        /// recv: JFormatList(value type)
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public async Task<List<Tuple<T1>>> QueryReturnTupleAsync<T1>(string sql, params object[] args) //where T1 : class
+        {
+            ProtocolFormat pfmt = await SendAsync(ProtocolCommand.QUERY_VALUE, new ProtocolFormat(typeof(T1)).SetSQL(sql));
+            List<Tuple<T1>> tuples = new List<Tuple<T1>>();
+            foreach (object value in pfmt.ValueList)
+            {
+                object t1 = Convert.ChangeType(value, typeof(T1));
+                tuples.Add(new Tuple<T1>((T1)t1));
+            }
+            return tuples;
+        }
+
+        /// <summary>
+        /// reqt: type, sql
         /// recv: type, JObjectList
         /// </summary>
         /// <typeparam name="TableT"></typeparam>
@@ -157,5 +159,6 @@ namespace R54IN0.WPF
         private void OnDataInserted(object sender, SQLInsertEventArgs e)
         {
         }
+
     }
 }

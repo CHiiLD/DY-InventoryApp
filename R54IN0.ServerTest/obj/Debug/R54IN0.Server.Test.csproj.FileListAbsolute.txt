@@ -1,4 +1,0 @@
-C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.ServerTest\bin\Debug\R54IN0.ServerTest.dll
-C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.ServerTest\bin\Debug\R54IN0.ServerTest.pdb
-C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.ServerTest\bin\Debug\R54IN0.Format.dll
-C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.ServerTest\bin\Debug\nunit.framework.dll

@@ -11,7 +11,7 @@ using R54IN0.Server;
 
 namespace R54IN0.WPF.Test
 {
-    [TestFixture]
+    [TestFixture, RequiresSTA]
     public class TreeViewViewModelUnitTest
     {
         MySqlConnection _conn;

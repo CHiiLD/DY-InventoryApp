@@ -12,6 +12,7 @@ namespace R54IN0.WPF
 {
     public class IOStockStatusViewModel : INotifyPropertyChanged, ICollectionViewModelObserver
     {
+        public const int QUERY_LIMIT_ROWCOUNT = 31;
         public const string DATAGRID_OPTION_DATE = "날짜별";
         public const string DATAGRID_OPTION_PROJECT = "프로젝트별";
         public const string DATAGRID_OPTION_PRODUCT = "제품별";
@@ -61,7 +62,6 @@ namespace R54IN0.WPF
         {
             CollectionViewModelObserverSubject.GetInstance().Detach(this);
         }
-
         #region ViewModel
 
         /// <summary>
@@ -83,6 +83,11 @@ namespace R54IN0.WPF
         /// 데이터 선택하기 뷰모델
         /// </summary>
         public IOStockDatePickerViewModel DatePickerViewModel { get; private set; }
+
+        /// <summary>
+        /// 데이터그리드 페이징 컨트롤 뷰모델
+        /// </summary>
+        public PagingViewModel DataGridPagingViewModel { get; private set; }
 
         /// <summary>
         /// 검색기능 뷰모델
@@ -373,6 +378,7 @@ namespace R54IN0.WPF
             DatePickerViewModel = new IOStockDatePickerViewModel();
             SearchViewModel = new FilterSearchTextBoxViewModel();
             SearchViewModel.SearchCommand = new RelayCommand(ExecuteSearchCommand, CanSearch);
+            DataGridPagingViewModel = new PagingViewModel();
 
             IsCheckedInComing = true;
             IsCheckedOutGoing = true;
@@ -446,6 +452,8 @@ namespace R54IN0.WPF
                 SelectedItemModifyCommand.RaiseCanExecuteChanged();
         }
 
+        #region Datagrid Query Action
+
         /// <summary>
         /// 트리뷰에서 제품들을 선택했을 경우, 이와 관련된 입출고 데이터를 보여준다.
         /// </summary>
@@ -511,11 +519,12 @@ namespace R54IN0.WPF
                 DateTime fromDate = DatePickerViewModel.FromDate;
                 DateTime toDate = DatePickerViewModel.ToDate;
                 string strfmt = "yyyy-MM-dd HH:mm:ss.fff";
-                string sql = string.Format("select * from {0} where {1} between '{2}' and '{3}' order by Date desc;", 
+                string sql = string.Format("select * from {0} where {1} between '{2}' and '{3}' order by Date desc;",
                     typeof(IOStockFormat).Name, "Date", fromDate.ToString(strfmt), toDate.ToString(strfmt));
                 Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataGridItems), sql);
             }
         }
+
 
         private bool CanSearch()
         {
@@ -534,25 +543,49 @@ namespace R54IN0.WPF
             Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataGridItems), sql);
         }
 
+        #endregion
+
         /// <summary>
         /// 입고, 출고에 따라 백업 데이터를 사용하여 데이터그리드의 아이템을 초기화한다.
         /// </summary>
         private async Task SetDataGridItems(string sql)
         {
-            DataDirector.GetInstance().StockList.Clear();
             if (!string.IsNullOrEmpty(sql))
             {
-                List<IOStockFormat> stofmts = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>(sql);
-                foreach (var stof in stofmts)
-                {
-                    IOStockDataGridItem item = new IOStockDataGridItem(stof);
-                    DataDirector.GetInstance().StockList.Add(item);
-                }
-                CalcRemainQuantity();
+                string querySql = sql.Replace("*", "count(*)");
+                List<Tuple<int>> tupleList = await DataDirector.GetInstance().Db.QueryReturnTupleAsync<int>(querySql);
+
+                Tuple<int> tuple = tupleList.SingleOrDefault();
+                if (tuple == null)
+                    return;
+                int count = tuple.Item1;
+                DataGridPagingViewModel.SetNavigation(QUERY_LIMIT_ROWCOUNT, count, OnPagingButtonClicked, sql);
             }
+            else
+            {
+                DataDirector.GetInstance().StockList.Clear();
+                SetDataGridItems();
+            }
+        }
+
+        private async void OnPagingButtonClicked(int offset, int rowCount, object state)
+        {
+            DataDirector.GetInstance().StockList.Clear();
+            string sql = state as string;
+            sql = sql.Replace(";", string.Format(" limit {0}, {1};", offset, rowCount));
+            List<IOStockFormat> stofmts = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>(sql);
+            foreach (var stof in stofmts)
+            {
+                IOStockDataGridItem item = new IOStockDataGridItem(stof);
+                DataDirector.GetInstance().StockList.Add(item);
+            }
+            CalcRemainQuantity();
             SetDataGridItems();
         }
 
+        /// <summary>
+        /// StockList에 저장된 데이터를 데이터그리드에 다시 재적용
+        /// </summary>
         public void SetDataGridItems()
         {
             DataGridViewModel.Items.Clear();

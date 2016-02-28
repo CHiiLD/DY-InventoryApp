@@ -1,0 +1,15 @@
+﻿2016-02-28 13:38:14,004 [12016] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where ID = '4c94d5e8-d1fa-4c8b-8db5-51125696b2ce'' at line 1
+   위치: MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   위치: MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   위치: MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
+   위치: MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   위치: MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
+   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 73
+   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
+   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579

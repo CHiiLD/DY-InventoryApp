@@ -57,6 +57,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="1*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid Margin="0,-5,0,0">
@@ -97,27 +98,9 @@
                             </TextBox.InputBindings>
                         </TextBox>
                     </StackPanel>
-
-                    <!--<StackPanel Grid.Column="2" Height="Auto" Visibility="Collapsed" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,0">
-                        <StackPanel.Resources>
-                            <Style TargetType="Button" BasedOn="{StaticResource MetroButton}">
-                                <Setter Property="Margin" Value="5,0,0,0" />
-                                <Setter Property="FontSize" Value="12" />
-                                <Setter Property="HorizontalAlignment" Value="Center" />
-                                <Setter Property="VerticalAlignment" Value="Center" />
-                                <Setter Property="FontFamily" Value="Segoe UI Light" />
-                            </Style>
-                        </StackPanel.Resources>
-                        <Button Visibility="Visible" Command="{Binding NewInoutStockAddCommand}" HorizontalAlignment="Center" VerticalAlignment="Center">새로운 입출고 기록을 추가하기</Button>
-                        <Button Visibility="Visible" Command="{Binding SelectedItemModifyCommand}">선택된 기록을 수정하기</Button>
-                        -->
-                    <!--<Button>체크된 기록을 삭제하기</Button>
-                        <Button>체크된 기록을 오늘 날짜로 복사하여 추가하기</Button>
-                        <Button  Visibility="Collapsed">선택된 기록을 재고현황 기록으로 보기</Button>-->
-                    <!--
-                    </StackPanel>-->
                 </Grid>
                 <local:IOStockDataGridControl DataContext="{Binding DataGridViewModel}" x:Name="DataGrid" Grid.Row="1" />
+                <local:PagingControl DataContext="{Binding DataGridPagingViewModel}" VerticalAlignment="Bottom" Grid.Row="2" HorizontalAlignment="Right" Margin="0,5,5,0"/>
             </Grid>
         </GroupBox>
     </Grid>

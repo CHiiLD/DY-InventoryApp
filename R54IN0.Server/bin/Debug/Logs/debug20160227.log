@@ -1,0 +1,352 @@
+﻿2016-02-27 15:56:12,629 [7632] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been created!
+2016-02-27 15:56:12,693 [7632] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 15:56:12,693 [7632] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 15:56:12,694 [7632] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 15:56:12,694 [7632] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 15:56:12,694 [7632] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 15:56:12,713 [7632] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been initialized!
+2016-02-27 15:56:12,745 [7632] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been created!
+2016-02-27 15:56:12,748 [7632] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 15:56:12,748 [7632] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 15:56:12,748 [7632] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 15:56:12,749 [7632] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been initialized!
+2016-02-27 15:56:13,029 [7632] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2016-02-27 15:56:13,029 [7632] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2016-02-27 15:56:13,056 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-27 15:56:13,058 [7632] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-27 15:56:13,064 [7632] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2016-02-27 15:56:21,699 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 1018)
+2016-02-27 15:56:22,126 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 763)
+2016-02-27 15:56:22,497 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1127)
+2016-02-27 15:56:22,827 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 15:56:23,174 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 15:56:23,532 [4696] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 529)
+2016-02-27 15:56:23,874 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 1021)
+2016-02-27 15:56:24,233 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 661)
+2016-02-27 15:56:24,574 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 7186)
+2016-02-27 15:56:44,827 [4696] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 5390)
+2016-02-27 15:56:46,339 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6155)
+2016-02-27 15:56:47,491 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 4643)
+2016-02-27 15:56:48,504 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 10691)
+2016-02-27 15:56:54,550 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6155)
+2016-02-27 15:56:56,381 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 3887)
+2016-02-27 15:56:57,072 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 5399)
+2016-02-27 15:57:01,034 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6155)
+2016-02-27 15:57:05,341 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 108)
+2016-02-27 15:57:06,305 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 4152)
+2016-02-27 15:57:13,804 [1244] DEBUG WriteOnlyServer - delete from Maker where ID = '024aa4d8-1b6b-4524-88bd-363dba817c06';
+2016-02-27 15:57:13,810 [1244] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-27 15:57:13,810 [1244] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-27 15:57:13,810 [1244] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '024aa4d8-1b6b-4524-88bd-363dba817c06';
+2016-02-27 15:57:13,876 [9204] DEBUG WriteOnlyServer - update InventoryFormat set MakerID = '' where ID = '363e0b19-01b2-4656-9789-0ba22686ecd0';
+2016-02-27 15:57:13,879 [9132] DEBUG WriteOnlyServer - update InventoryFormat set MakerID = '' where ID = '3f16d863-e75a-46a5-b703-bf65129b5692';
+2016-02-27 15:57:13,882 [9132] DEBUG WriteOnlyServer - update InventoryFormat set MakerID = '' where ID = '549a10f5-932e-438c-ab6a-4e0b9038cb10';
+2016-02-27 16:01:54,519 [9132] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 1018)
+2016-02-27 16:01:54,980 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 763)
+2016-02-27 16:01:55,386 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1059)
+2016-02-27 16:01:55,740 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 16:01:56,123 [9204] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 16:01:56,497 [4696] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 529)
+2016-02-27 16:01:56,856 [9132] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 1021)
+2016-02-27 16:01:57,227 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 661)
+2016-02-27 16:01:57,603 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 7078)
+2016-02-27 16:02:01,267 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 10691)
+2016-02-27 16:02:02,537 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6155)
+2016-02-27 16:02:03,452 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 4643)
+2016-02-27 16:02:05,235 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 65689)
+2016-02-27 16:03:09,106 [9204] DEBUG WriteOnlyServer - delete from Maker where ID = '54ded63e-a89f-441c-851e-1135b3e69047';
+2016-02-27 16:03:09,110 [9204] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-27 16:03:09,110 [9204] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-27 16:03:09,110 [9204] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '54ded63e-a89f-441c-851e-1135b3e69047';
+2016-02-27 16:03:13,080 [4696] DEBUG WriteOnlyServer - delete from Maker where ID = '16c515cb-3a3f-4b3e-8371-4d7cd90be6c4';
+2016-02-27 16:03:13,082 [4696] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-27 16:03:13,082 [4696] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-27 16:03:13,082 [4696] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '16c515cb-3a3f-4b3e-8371-4d7cd90be6c4';
+2016-02-27 16:03:22,025 [4696] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 1018)
+2016-02-27 16:03:22,679 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 763)
+2016-02-27 16:03:23,128 [9132] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 929)
+2016-02-27 16:03:23,459 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 16:03:23,778 [9132] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 16:03:24,113 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 529)
+2016-02-27 16:03:24,439 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 1021)
+2016-02-27 16:03:24,772 [4696] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 661)
+2016-02-27 16:03:25,228 [9204] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 6898)
+2016-02-27 16:03:38,904 [4696] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 5390)
+2016-02-27 16:03:39,671 [9204] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 10691)
+2016-02-27 16:03:41,672 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 13715)
+2016-02-27 16:03:43,110 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 12581)
+2016-02-27 16:03:45,569 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 476)
+2016-02-27 16:03:46,534 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 12581)
+2016-02-27 16:03:49,182 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 13715)
+2016-02-27 16:03:52,504 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 15227)
+2016-02-27 16:03:54,497 [9132] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 108)
+2016-02-27 16:03:57,252 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 14471)
+2016-02-27 16:03:59,672 [9132] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 2730)
+2016-02-27 16:04:02,119 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 2730)
+2016-02-27 16:04:04,381 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 108)
+2016-02-27 16:04:05,507 [4696] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 108)
+2016-02-27 16:04:06,546 [9204] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 137701)
+2016-02-27 16:05:43,830 [9204] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 1018)
+2016-02-27 16:05:45,467 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 763)
+2016-02-27 16:05:45,850 [9132] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 929)
+2016-02-27 16:05:46,188 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 16:05:46,551 [4696] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 16:05:46,907 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 529)
+2016-02-27 16:05:47,278 [9204] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 1021)
+2016-02-27 16:05:47,647 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 661)
+2016-02-27 16:05:48,007 [9132] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 6898)
+2016-02-27 16:06:04,442 [9204] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 1018)
+2016-02-27 16:06:04,881 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 763)
+2016-02-27 16:06:05,260 [4696] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 929)
+2016-02-27 16:06:05,595 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 16:06:05,933 [9132] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 16:06:06,267 [11248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 529)
+2016-02-27 16:06:06,594 [9204] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 1021)
+2016-02-27 16:06:06,931 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 661)
+2016-02-27 16:06:07,269 [4696] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 6898)
+2016-02-27 16:06:14,657 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 5390)
+2016-02-27 16:06:16,182 [10212] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6155)
+2016-02-27 16:06:22,119 [1244] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6155)
+2016-02-27 16:06:27,456 [9204] DEBUG WriteOnlyServer - update InventoryFormat set Specification = 'ZB5-AZ104-' where ID = '66b0fe94-6b27-4016-8ded-2ae84c0d59d8';
+2016-02-27 16:06:29,577 [4696] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 4643)
+2016-02-27 16:06:30,294 [9204] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6155)
+2016-02-27 16:06:51,640 [7632] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-27 16:06:51,641 [7632] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-27 16:06:51,641 [7632] DEBUG DefaultBootstrap - The PerformanceMonitor has been stoppped!
+2016-02-27 16:15:19,964 [7132] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been created!
+2016-02-27 16:15:20,017 [7132] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 16:15:20,017 [7132] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 16:15:20,017 [7132] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 16:15:20,017 [7132] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 16:15:20,018 [7132] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 16:15:20,035 [7132] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been initialized!
+2016-02-27 16:15:20,067 [7132] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been created!
+2016-02-27 16:15:20,069 [7132] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 16:15:20,069 [7132] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 16:15:20,069 [7132] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 16:15:20,070 [7132] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been initialized!
+2016-02-27 16:15:20,293 [7132] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2016-02-27 16:15:20,293 [7132] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2016-02-27 16:15:20,312 [7132] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-27 16:15:20,319 [7132] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-27 16:15:20,324 [7132] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2016-02-27 16:15:25,622 [9544] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 962)
+2016-02-27 16:15:26,175 [8820] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 650)
+2016-02-27 16:15:26,588 [9544] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1127)
+2016-02-27 16:15:26,918 [10640] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 16:15:27,242 [7300] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 16:15:27,560 [8820] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 473)
+2016-02-27 16:15:27,882 [9544] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 962)
+2016-02-27 16:15:28,199 [10640] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 602)
+2016-02-27 16:15:28,598 [7300] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 7024)
+2016-02-27 16:15:31,891 [7300] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6911)
+2016-02-27 16:15:32,781 [10640] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6911)
+2016-02-27 16:15:33,710 [8820] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6911)
+2016-02-27 16:32:30,553 [8376] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been created!
+2016-02-27 16:32:30,611 [8376] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 16:32:30,611 [8376] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 16:32:30,612 [8376] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 16:32:30,612 [8376] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 16:32:30,612 [8376] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 16:32:30,629 [8376] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been initialized!
+2016-02-27 16:32:30,660 [8376] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been created!
+2016-02-27 16:32:30,662 [8376] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 16:32:30,662 [8376] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 16:32:30,662 [8376] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 16:32:30,663 [8376] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been initialized!
+2016-02-27 16:32:30,877 [8376] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2016-02-27 16:32:30,877 [8376] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2016-02-27 16:32:30,894 [8376] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-27 16:32:30,896 [8376] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-27 16:32:30,900 [8376] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2016-02-27 16:32:34,932 [11932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 1009)
+2016-02-27 16:32:35,414 [4024] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 765)
+2016-02-27 16:32:35,780 [11932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1127)
+2016-02-27 16:32:36,123 [11932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 16:32:36,453 [11468] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 16:32:36,783 [13172] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 529)
+2016-02-27 16:32:37,127 [4024] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 1021)
+2016-02-27 16:32:37,464 [11932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 661)
+2016-02-27 16:32:37,844 [11468] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 7182)
+2016-02-27 16:32:41,305 [11468] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 7592)
+2016-02-27 16:33:07,312 [13172] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 1009)
+2016-02-27 16:33:07,980 [11932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 765)
+2016-02-27 16:33:08,369 [11468] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1127)
+2016-02-27 16:33:08,693 [4024] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 16:33:09,008 [13172] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 16:33:09,332 [11932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 529)
+2016-02-27 16:33:09,661 [11468] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 1021)
+2016-02-27 16:33:09,992 [4024] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 661)
+2016-02-27 16:33:10,396 [13172] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 7182)
+2016-02-27 16:33:14,518 [11932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 3887)
+2016-02-27 16:38:37,436 [11932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 1009)
+2016-02-27 16:38:38,049 [4024] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 765)
+2016-02-27 16:38:38,454 [13172] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1127)
+2016-02-27 16:38:38,772 [11468] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 16:38:39,086 [10828] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 16:38:39,426 [13172] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 529)
+2016-02-27 16:38:39,750 [11468] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 1021)
+2016-02-27 16:38:40,076 [10828] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 661)
+2016-02-27 16:38:40,518 [13172] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 7182)
+2016-02-27 16:38:45,058 [11932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 14397)
+2016-02-27 16:38:45,316 [10828] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 7592)
+2016-02-27 16:41:37,233 [6084] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been created!
+2016-02-27 16:41:37,287 [6084] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 16:41:37,288 [6084] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 16:41:37,288 [6084] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 16:41:37,288 [6084] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 16:41:37,288 [6084] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 16:41:37,306 [6084] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been initialized!
+2016-02-27 16:41:37,339 [6084] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been created!
+2016-02-27 16:41:37,341 [6084] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 16:41:37,341 [6084] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 16:41:37,341 [6084] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 16:41:37,342 [6084] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been initialized!
+2016-02-27 16:41:37,563 [6084] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2016-02-27 16:41:37,563 [6084] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2016-02-27 16:41:37,579 [6084] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-27 16:41:37,581 [6084] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-27 16:41:37,585 [6084] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2016-02-27 16:41:39,711 [364] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 1009)
+2016-02-27 16:41:40,261 [12516] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 765)
+2016-02-27 16:41:40,721 [10752] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1127)
+2016-02-27 16:41:41,037 [11800] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 16:41:41,347 [364] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 16:41:41,675 [12516] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 529)
+2016-02-27 16:41:42,029 [10752] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 1021)
+2016-02-27 16:41:42,371 [11800] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 661)
+2016-02-27 16:41:42,787 [11800] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 7182)
+2016-02-27 16:41:46,099 [364] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 7592)
+2016-02-27 16:41:47,744 [364] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 3887)
+2016-02-27 16:41:50,371 [11800] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6155)
+2016-02-27 16:41:51,742 [12516] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 4268)
+2016-02-27 16:41:53,395 [12516] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6527)
+2016-02-27 16:41:55,381 [364] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6456)
+2016-02-27 16:41:57,581 [10752] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 4268)
+2016-02-27 16:41:59,274 [10752] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6527)
+2016-02-27 16:42:01,560 [12516] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 7055)
+2016-02-27 16:42:05,956 [12516] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 142237)
+2016-02-27 19:02:30,790 [9832] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been created!
+2016-02-27 19:02:30,837 [9832] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 19:02:30,837 [9832] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 19:02:30,837 [9832] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 19:02:30,837 [9832] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 19:02:30,853 [9832] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 19:02:30,868 [9832] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been initialized!
+2016-02-27 19:02:30,906 [9832] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been created!
+2016-02-27 19:02:30,906 [9832] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 19:02:30,906 [9832] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 19:02:30,906 [9832] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 19:02:30,906 [9832] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been initialized!
+2016-02-27 19:02:31,122 [9832] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2016-02-27 19:02:31,122 [9832] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2016-02-27 19:02:31,153 [9832] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-27 19:02:31,153 [9832] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-27 19:02:31,153 [9832] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2016-02-27 19:02:53,295 [8356] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 962)
+2016-02-27 19:02:53,792 [2404] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 650)
+2016-02-27 19:02:54,176 [8356] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1127)
+2016-02-27 19:02:54,524 [2324] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 19:02:54,876 [2344] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 580)
+2016-02-27 19:02:55,235 [2404] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 473)
+2016-02-27 19:02:55,582 [8356] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 962)
+2016-02-27 19:02:55,916 [2324] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 602)
+2016-02-27 19:02:56,259 [2404] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 5346)
+2016-02-27 19:03:16,702 [8356] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 67392)
+2016-02-27 19:46:54,997 [9832] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-27 19:46:54,998 [9832] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-27 19:46:55,000 [9832] DEBUG DefaultBootstrap - The PerformanceMonitor has been stoppped!
+2016-02-27 20:57:46,050 [4452] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been created!
+2016-02-27 20:57:46,119 [4452] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 20:57:46,119 [4452] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 20:57:46,119 [4452] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 20:57:46,119 [4452] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 20:57:46,119 [4452] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 20:57:46,150 [4452] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been initialized!
+2016-02-27 20:57:46,172 [4452] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been created!
+2016-02-27 20:57:46,172 [4452] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 20:57:46,172 [4452] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 20:57:46,172 [4452] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 20:57:46,172 [4452] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been initialized!
+2016-02-27 20:57:46,420 [4452] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2016-02-27 20:57:46,420 [4452] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2016-02-27 20:57:46,435 [4452] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-27 20:57:46,435 [4452] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-27 20:57:46,451 [4452] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2016-02-27 20:57:55,929 [8012] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 962)
+2016-02-27 20:57:56,387 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 650)
+2016-02-27 20:57:56,625 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1127)
+2016-02-27 20:57:56,831 [4996] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 20:57:56,996 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 20:57:57,193 [4996] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 473)
+2016-02-27 20:57:57,386 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 962)
+2016-02-27 20:57:57,555 [4996] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 602)
+2016-02-27 20:57:57,741 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 6849)
+2016-02-27 20:58:09,096 [4996] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 4643)
+2016-02-27 21:01:36,200 [8012] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 962)
+2016-02-27 21:01:36,696 [8932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 650)
+2016-02-27 21:01:36,948 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1127)
+2016-02-27 21:01:37,142 [9184] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 21:01:37,318 [4996] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 21:01:37,480 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 473)
+2016-02-27 21:01:37,649 [9184] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 962)
+2016-02-27 21:01:37,834 [4996] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 602)
+2016-02-27 21:01:38,013 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 6849)
+2016-02-27 21:01:44,076 [8932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 8423)
+2016-02-27 21:01:49,735 [9184] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 6911)
+2016-02-27 21:01:51,668 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 5399)
+2016-02-27 21:01:53,735 [4996] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 5399)
+2016-02-27 21:01:55,374 [8932] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 11447)
+2016-02-27 21:03:45,540 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 962)
+2016-02-27 21:03:50,892 [4452] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-27 21:03:50,893 [4452] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-27 21:03:50,894 [4452] DEBUG DefaultBootstrap - The PerformanceMonitor has been stoppped!
+2016-02-27 21:04:59,454 [5668] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been created!
+2016-02-27 21:04:59,508 [5668] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 21:04:59,508 [5668] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 21:04:59,508 [5668] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 21:04:59,508 [5668] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 21:04:59,508 [5668] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 21:04:59,539 [5668] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been initialized!
+2016-02-27 21:04:59,570 [5668] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been created!
+2016-02-27 21:04:59,570 [5668] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 21:04:59,570 [5668] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 21:04:59,570 [5668] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 21:04:59,570 [5668] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been initialized!
+2016-02-27 21:04:59,808 [5668] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2016-02-27 21:04:59,808 [5668] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2016-02-27 21:04:59,839 [5668] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-27 21:04:59,839 [5668] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-27 21:04:59,839 [5668] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2016-02-27 21:05:04,078 [10548] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Customer, BYTE SIZE: 962)
+2016-02-27 21:05:04,537 [5032] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Employee, BYTE SIZE: 650)
+2016-02-27 21:05:04,748 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1127)
+2016-02-27 21:05:04,934 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Measure, BYTE SIZE: 336)
+2016-02-27 21:05:05,134 [9124] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Product, BYTE SIZE: 850)
+2016-02-27 21:05:05,306 [10548] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Project, BYTE SIZE: 473)
+2016-02-27 21:05:05,474 [5032] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Supplier, BYTE SIZE: 962)
+2016-02-27 21:05:05,657 [11488] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Warehouse, BYTE SIZE: 602)
+2016-02-27 21:05:05,845 [9124] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: InventoryFormat, BYTE SIZE: 6849)
+2016-02-27 21:05:13,850 [5032] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 8423)
+2016-02-27 21:05:35,163 [5032] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 4643)
+2016-02-27 21:05:37,944 [9124] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 16739)
+2016-02-27 22:46:00,250 [4816] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been created!
+2016-02-27 22:46:00,311 [4816] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-27 22:46:00,312 [4816] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-27 22:46:00,312 [4816] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-27 22:46:00,312 [4816] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-27 22:46:00,313 [4816] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-27 22:46:00,335 [4816] DEBUG DefaultBootstrap - The server instance ReadOnlyServer has been initialized!
+2016-02-27 22:46:00,373 [4816] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been created!
+2016-02-27 22:46:00,376 [4816] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-27 22:46:00,376 [4816] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-27 22:46:00,377 [4816] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-27 22:46:00,377 [4816] DEBUG DefaultBootstrap - The server instance WriteOnlyServer has been initialized!
+2016-02-27 22:46:00,625 [4816] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2016-02-27 22:46:00,625 [4816] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2016-02-27 22:46:00,644 [4816] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-27 22:46:00,646 [4816] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-27 22:46:00,652 [4816] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2016-02-27 22:47:53,622 [4816] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-27 22:47:53,624 [4816] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-27 22:47:53,625 [4816] DEBUG DefaultBootstrap - The PerformanceMonitor has been stoppped!

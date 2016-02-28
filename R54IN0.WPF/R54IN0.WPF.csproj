@@ -109,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DailyInventory\Controls\PagingControl\PagingControl.xaml.cs">
+      <DependentUpon>PagingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DailyInventory\Controls\PagingControl\PagingViewModel.cs" />
     <Compile Include="DailyInventory\Network\IDbAction.cs" />
     <Compile Include="DailyInventory\Network\IPConfigJsonFormat.cs" />
     <Compile Include="DailyInventory\Controls\BindingProxy.cs" />
@@ -233,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DailyInventory\Controls\InventoryManager\InventoryManagerDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DailyInventory\Controls\PagingControl\PagingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

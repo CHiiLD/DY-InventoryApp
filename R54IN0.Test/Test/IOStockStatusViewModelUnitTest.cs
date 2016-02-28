@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace R54IN0.WPF.Test
 {
-    [TestFixture]
+    [TestFixture, RequiresSTA]
     public class IOStockStatusViewModelUnitTest
     {
         MySqlConnection _conn;

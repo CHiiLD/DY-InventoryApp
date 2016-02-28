@@ -78,7 +78,6 @@ namespace R54IN0.Server
                 if(s != session)
                     s.Send(data, 0, data.Length);
             }
-
             if (type == typeof(IOStockFormat))
             {
                 if (sql.Contains("Quantity") || sql.Contains("StockType"))

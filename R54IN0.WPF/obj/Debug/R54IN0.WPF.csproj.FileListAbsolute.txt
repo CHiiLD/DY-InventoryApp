@@ -69,7 +69,3 @@ Z:\Users\Child\Github\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.Resources.pdb
 Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\Window2.g.cs
 Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\DailyInventory\Controls\MetroButtonStyles.baml
 Z:\Users\Child\Github\R54IN0\R54IN0.WPF\obj\Debug\Window2.baml
-C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\bin\Debug\DailY Inventory.exe
-C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\bin\Debug\Lex.Db.dll
-C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\bin\Debug\MahApps.Metro.dll
-C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\bin\Debug\R54IN0.Format.dll

@@ -1,20 +1,11 @@
-﻿2016-02-27 02:01:22,315 [7076] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
-System.TimeoutException: The sending attempt timed out
-   위치: SuperSocket.SocketBase.AppSession`2.InternalSend(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 446
-   위치: SuperSocket.SocketBase.AppSession`2.Send(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 457
-   위치: R54IN0.Server.SelectAllCommand.Send(ReadOnlySession session, String sql, String formatName) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 103
-   위치: R54IN0.Server.QueryInstanceCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryInstanceCommand.cs:줄 26
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 02:04:28,634 [15536] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+﻿2016-02-29 01:59:51,139 [12592] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
 System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 58
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 28
+   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
+   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 02:04:28,737 [7240] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+2016-02-29 01:59:51,237 [11404] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
 System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
    위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
    위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
@@ -22,32 +13,14 @@ System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 11:24:45,476 [3836] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
-System.TimeoutException: The sending attempt timed out
-   위치: SuperSocket.SocketBase.AppSession`2.InternalSend(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 446
-   위치: SuperSocket.SocketBase.AppSession`2.Send(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 457
-   위치: R54IN0.Server.SelectAllCommand.Send(ReadOnlySession session, String sql, String formatName) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 103
-   위치: R54IN0.Server.QueryInstanceCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryInstanceCommand.cs:줄 26
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 12:02:53,412 [12668] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
-System.TimeoutException: The sending attempt timed out
-   위치: SuperSocket.SocketBase.AppSession`2.InternalSend(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 446
-   위치: SuperSocket.SocketBase.AppSession`2.Send(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 457
-   위치: R54IN0.Server.SelectAllCommand.Send(ReadOnlySession session, String sql, String formatName) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 103
-   위치: R54IN0.Server.QueryInstanceCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryInstanceCommand.cs:줄 26
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 14:51:08,562 [8000] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+2016-02-29 02:02:02,278 [11516] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
 System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
    위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
    위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 14:51:08,673 [9220] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+2016-02-29 02:02:02,385 [7832] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
 System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
    위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
    위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
@@ -55,41 +28,14 @@ System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 14:51:22,020 [7328] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
-System.TimeoutException: The sending attempt timed out
-   위치: SuperSocket.SocketBase.AppSession`2.InternalSend(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 446
-   위치: SuperSocket.SocketBase.AppSession`2.Send(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 457
-   위치: R54IN0.Server.SelectAllCommand.Send(ReadOnlySession session, String sql, String formatName) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 102
-   위치: R54IN0.Server.QueryInstanceCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryInstanceCommand.cs:줄 26
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 14:54:15,321 [660] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
-System.TimeoutException: The sending attempt timed out
-   위치: SuperSocket.SocketBase.AppSession`2.InternalSend(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 446
-   위치: SuperSocket.SocketBase.AppSession`2.Send(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 457
-   위치: R54IN0.Server.SelectAllCommand.Send(ReadOnlySession session, String sql, String formatName) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 102
-   위치: R54IN0.Server.QueryInstanceCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryInstanceCommand.cs:줄 26
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 14:56:00,859 [11932] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
-System.TimeoutException: The sending attempt timed out
-   위치: SuperSocket.SocketBase.AppSession`2.InternalSend(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 446
-   위치: SuperSocket.SocketBase.AppSession`2.Send(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 457
-   위치: R54IN0.Server.SelectAllCommand.Send(ReadOnlySession session, String sql, String formatName) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 102
-   위치: R54IN0.Server.QueryInstanceCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryInstanceCommand.cs:줄 26
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:00:07,476 [5884] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+2016-02-29 02:05:28,739 [11964] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
 System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
    위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
    위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:00:07,586 [12016] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+2016-02-29 02:05:28,854 [4916] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
 System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
    위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
    위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
@@ -97,23 +43,14 @@ System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:00:26,002 [12016] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
-System.TimeoutException: The sending attempt timed out
-   위치: SuperSocket.SocketBase.AppSession`2.InternalSend(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 446
-   위치: SuperSocket.SocketBase.AppSession`2.Send(IList`1 segments) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 457
-   위치: R54IN0.Server.SelectAllCommand.Send(ReadOnlySession session, String sql, String formatName) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\SelectAllCommand.cs:줄 102
-   위치: R54IN0.Server.QueryInstanceCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryInstanceCommand.cs:줄 26
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:08:59,113 [8580] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+2016-02-29 02:06:17,465 [5848] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
 System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
    위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
    위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:08:59,231 [11972] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+2016-02-29 02:06:17,574 [11960] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
 System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
    위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
    위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
@@ -121,194 +58,14 @@ System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:10:15,487 [9340] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+2016-02-29 03:43:03,238 [10752] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
 System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
    위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
    위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:10:15,597 [12980] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:36:32,205 [10052] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:36:32,313 [8916] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:38:34,973 [11036] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:38:35,075 [13136] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:39:15,225 [6940] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 15:39:15,329 [11140] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:20:16,613 [9808] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:20:16,758 [12976] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:45:29,583 [9844] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:45:29,687 [9924] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:46:42,308 [8464] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:46:42,410 [5780] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:47:40,850 [11192] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:47:40,952 [10192] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:50:25,659 [9520] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where ID = '2ee6dd13-0f39-4bab-b8b1-b43b7db9885a'' at line 1
-   위치: MySql.Data.MySqlClient.MySqlStream.ReadPacket()
-   위치: MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
-   위치: MySql.Data.MySqlClient.Driver.GetResult(Int32 statementId, Int32& affectedRows, Int64& insertedId)
-   위치: MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
-   위치: MySql.Data.MySqlClient.MySqlDataReader.NextResult()
-   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
-   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 73
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:50:27,659 [8240] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:50:27,768 [10592] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:52:22,068 [12948] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:52:22,172 [11208] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:53:26,097 [32] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 16:53:26,201 [3428] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
-   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39
-   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 28
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 18:41:15,694 [8668] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
-System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
-   위치: R54IN0.Server.DeleteCommand.Delete(WriteOnlySession session, String type, String id) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 61
-   위치: R54IN0.Server.DeleteCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\DeleteCommand.cs:줄 31
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
-   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
-   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
-2016-02-27 18:41:15,804 [9624] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+2016-02-29 03:43:03,352 [2652] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
 System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
    위치: R54IN0.Server.UpdateCommand.Update(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 76
    위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 39

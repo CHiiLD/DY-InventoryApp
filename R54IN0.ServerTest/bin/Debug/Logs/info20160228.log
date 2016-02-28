@@ -1,0 +1,75 @@
+﻿2016-02-28 13:38:13,690 [7792] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-28 13:38:13,710 [14624] INFO  WriteOnlyServer - Session: 4dd602a3-b73b-4026-93d3-d810e9936832/127.0.0.1:10847
+A new session connected!
+2016-02-28 13:38:13,710 [11808] INFO  WriteOnlyServer - Session: 1403a931-9df1-4b08-b671-300fb899f4d1/127.0.0.1:10846
+A new session connected!
+2016-02-28 13:38:13,831 [7792] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-28 13:38:13,836 [8144] INFO  WriteOnlyServer - Session: 1403a931-9df1-4b08-b671-300fb899f4d1/127.0.0.1:10846
+This session was closed for ServerShutdown!
+2016-02-28 13:38:13,836 [11216] INFO  WriteOnlyServer - Session: 4dd602a3-b73b-4026-93d3-d810e9936832/127.0.0.1:10847
+This session was closed for ServerShutdown!
+2016-02-28 13:38:13,842 [7792] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-28 13:38:13,843 [5752] INFO  WriteOnlyServer - Session: dc941f64-2765-465e-b6bb-1c43fe8e828d/127.0.0.1:10848
+A new session connected!
+2016-02-28 13:38:13,843 [15064] INFO  WriteOnlyServer - Session: 3a51a3f6-5d70-4cb1-9dce-59d26bccb6ae/127.0.0.1:10849
+A new session connected!
+2016-02-28 13:38:13,982 [7792] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-28 13:38:13,983 [11216] INFO  WriteOnlyServer - Session: 3a51a3f6-5d70-4cb1-9dce-59d26bccb6ae/127.0.0.1:10849
+This session was closed for ServerShutdown!
+2016-02-28 13:38:13,983 [12016] INFO  WriteOnlyServer - Session: dc941f64-2765-465e-b6bb-1c43fe8e828d/127.0.0.1:10848
+This session was closed for ServerShutdown!
+2016-02-28 13:38:13,985 [7792] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-28 13:38:13,986 [15064] INFO  WriteOnlyServer - Session: 1644ba5d-46f1-45dc-aa47-73bce08db65d/127.0.0.1:10850
+A new session connected!
+2016-02-28 13:38:13,986 [5752] INFO  WriteOnlyServer - Session: 9bf2b520-93eb-4660-b317-f055ff0060a0/127.0.0.1:10851
+A new session connected!
+2016-02-28 13:38:14,014 [12016] INFO  WriteOnlyServer - Session: 1644ba5d-46f1-45dc-aa47-73bce08db65d/127.0.0.1:10850
+This session was closed for ApplicationError!
+2016-02-28 13:38:14,224 [7792] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-28 13:38:14,224 [11216] INFO  WriteOnlyServer - Session: 9bf2b520-93eb-4660-b317-f055ff0060a0/127.0.0.1:10851
+This session was closed for ServerShutdown!
+2016-02-28 13:38:14,225 [7792] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-28 13:38:14,225 [5752] INFO  WriteOnlyServer - Session: 6d528231-a0ee-487b-850a-6f87f35c98b4/127.0.0.1:10852
+A new session connected!
+2016-02-28 13:38:14,226 [5752] INFO  WriteOnlyServer - Session: dc13feb9-93de-45ce-bdbd-db485b1f80ef/127.0.0.1:10853
+A new session connected!
+2016-02-28 13:38:14,441 [7792] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-28 13:38:14,441 [13388] INFO  WriteOnlyServer - Session: 6d528231-a0ee-487b-850a-6f87f35c98b4/127.0.0.1:10852
+This session was closed for ServerShutdown!
+2016-02-28 13:38:14,441 [13388] INFO  WriteOnlyServer - Session: dc13feb9-93de-45ce-bdbd-db485b1f80ef/127.0.0.1:10853
+This session was closed for ServerShutdown!
+2016-02-28 17:24:23,612 [16324] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-28 17:24:23,641 [6888] INFO  WriteOnlyServer - Session: c941cacd-e0cf-47f9-893e-d493009be89b/127.0.0.1:6392
+A new session connected!
+2016-02-28 17:24:23,641 [17252] INFO  WriteOnlyServer - Session: 943df56a-f379-471e-b8be-46a43074bb54/127.0.0.1:6393
+A new session connected!
+2016-02-28 17:24:23,755 [16324] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-28 17:24:23,762 [2616] INFO  WriteOnlyServer - Session: 943df56a-f379-471e-b8be-46a43074bb54/127.0.0.1:6393
+This session was closed for ServerShutdown!
+2016-02-28 17:24:23,762 [15376] INFO  WriteOnlyServer - Session: c941cacd-e0cf-47f9-893e-d493009be89b/127.0.0.1:6392
+This session was closed for ServerShutdown!
+2016-02-28 17:24:23,763 [16324] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-28 17:24:23,765 [14916] INFO  WriteOnlyServer - Session: 8c041741-e7aa-42b9-b2d3-6270610bcf9d/127.0.0.1:6394
+A new session connected!
+2016-02-28 17:24:23,765 [17252] INFO  WriteOnlyServer - Session: f4f149b5-4589-439a-a8a3-e3c2ea3601b9/127.0.0.1:6395
+A new session connected!
+2016-02-28 17:24:23,920 [16324] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-28 17:24:23,921 [2616] INFO  WriteOnlyServer - Session: 8c041741-e7aa-42b9-b2d3-6270610bcf9d/127.0.0.1:6394
+This session was closed for ServerShutdown!
+2016-02-28 17:24:23,921 [16964] INFO  WriteOnlyServer - Session: f4f149b5-4589-439a-a8a3-e3c2ea3601b9/127.0.0.1:6395
+This session was closed for ServerShutdown!
+2016-02-28 17:24:23,922 [16324] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-28 17:24:23,923 [17252] INFO  WriteOnlyServer - Session: 69689dbb-6b6a-4254-86b5-d445bbb44866/127.0.0.1:6396
+A new session connected!
+2016-02-28 17:24:23,924 [17252] INFO  WriteOnlyServer - Session: 64f7aab3-e150-4e82-9f22-4251421b3577/127.0.0.1:6397
+A new session connected!
+2016-02-28 17:24:24,128 [16324] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-28 17:24:24,128 [2616] INFO  WriteOnlyServer - Session: 69689dbb-6b6a-4254-86b5-d445bbb44866/127.0.0.1:6396
+This session was closed for ServerShutdown!
+2016-02-28 17:24:24,128 [2616] INFO  WriteOnlyServer - Session: 64f7aab3-e150-4e82-9f22-4251421b3577/127.0.0.1:6397
+This session was closed for ServerShutdown!
+2016-02-28 17:24:24,130 [16324] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-28 17:24:24,131 [17252] INFO  WriteOnlyServer - Session: 1f1fa437-f3c8-42b9-b82c-328471e692ce/127.0.0.1:6398
+A new session connected!
+2016-02-28 17:24:24,132 [17252] INFO  WriteOnlyServer - Session: 790d279a-9acc-4514-958a-36d63ffa528c/127.0.0.1:6399
+A new session connected!

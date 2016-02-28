@@ -166,7 +166,7 @@ namespace R54IN0.WPF.Test.New
         /// 삭제 시 IOStockStatusViewModel 역시 동기화를 하여야 한다.
         /// </summary>
         /// <returns></returns>
-        [Test]
+        [Test, STAThread]
         public void DeleteItemThenSyncIOStockViewModel()
         {
             var viewmodel = new InventoryStatusViewModel();

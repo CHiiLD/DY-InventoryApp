@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using MySql.Data.MySqlClient;
 using MySQL.Test;
-using NUnit.Framework;
 using R54IN0.WPF;
 using System;
 using System.Linq;

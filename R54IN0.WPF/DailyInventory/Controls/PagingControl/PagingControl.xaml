@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="R54IN0.WPF.PagingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:local="clr-namespace:R54IN0.WPF"
+             xmlns:format="clr-namespace:R54IN0;assembly=R54IN0.Format"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mvvmlight="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             >
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource MetroButton}">
+                    <Setter Property="Margin" Value="2, 0"/>
+                    <Setter Property="Width" Value="24"/>
+                    <Setter Property="Height" Value="24"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Padding" Value="1,2" />
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Background" Value="{x:Null}" />
+                    <Setter Property="Foreground" Value="{DynamicResource AccentColorBrush}"/>
+                    <Setter Property="FontWeight" Value="Normal" />
+                </Style>
+
+                <Canvas x:Key="begin_image" Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                    <Path Width="38" Height="38.7916" Canvas.Left="19" Canvas.Top="18.2084" Stretch="Fill" Fill="{DynamicResource BlackBrush}" Data="m 403.107 403.883 c 12.354 12.354 12.354 32.391 0 44.744 -12.354 12.359 -32.386 12.359 -44.751 0 L 164.073 254.34 c -6.174 -6.177 -9.262 -14.269 -9.262 -22.366 0 -8.097 3.094 -16.195 9.262 -22.369 L 358.356 15.32 c 12.365 -12.359 32.397 -12.359 44.751 0 12.354 12.354 12.354 32.394 0 44.748 L 231.201 231.974 403.107 403.883 Z M 108.065 0 51.576 0 C 48.23 0 45.523 2.707 45.523 6.053 l 0 436.291 c 0 3.352 2.707 6.053 6.053 6.053 l 56.489 0 c 3.348 0 6.052 -2.701 6.052 -6.053 l 0 -436.291 C 114.118 2.707 111.414 0 108.065 0 Z"/>
+                </Canvas>
+
+                <Canvas x:Key="pre_image"  Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                    <Path Width="38" Height="38.7916" Canvas.Left="19" Canvas.Top="18.2084" Stretch="Fill" Fill="{DynamicResource BlackBrush}" Data="M 345.441 248.292 151.154 442.573 c -12.359 12.365 -32.397 12.365 -44.75 0 -12.354 -12.354 -12.354 -32.391 0 -44.744 L 278.318 225.92 106.409 54.017 c -12.354 -12.359 -12.354 -32.394 0 -44.748 12.354 -12.359 32.391 -12.359 44.75 0 l 194.287 194.284 c 6.177 6.18 9.262 14.271 9.262 22.366 0 8.099 -3.091 16.196 -9.267 22.373 z"/>
+                </Canvas>
+            </StackPanel.Resources>
+
+            <Button Command="{Binding FirstMoveCommand}">
+                <Rectangle Width="16" Height="16" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{DynamicResource begin_image}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+
+            <Button Width="18" Command="{Binding PreviousCommand}">
+                <Rectangle Width="10" Height="16" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" RenderTransformOrigin="0.5,0.5">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="180"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{DynamicResource pre_image}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding NumericButtons}" >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
+
+            <Button Width="18" Command="{Binding NextCommand}">
+                <Rectangle Width="10" Height="16" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{DynamicResource pre_image}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+
+            <Button Command="{Binding LastMoveCommand}">
+                <Rectangle Width="16" Height="16" Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" RenderTransformOrigin="0.5,0.5">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="180"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{DynamicResource begin_image}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

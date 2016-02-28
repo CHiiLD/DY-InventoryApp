@@ -87,6 +87,10 @@ namespace R54IN0.Server
                 }
             }
 
+            byte[] data = new ProtocolFormat(formatName).SetValueList(formats).ToBytes(Name);
+            session.Logger.DebugFormat("R54IN0 FORMAT SENDING (TYPE: {0}, BYTE SIZE: {1})", formatName, data.Count());
+            session.Send(data, 0, data.Length);
+#if false
             List<ArraySegment<byte>> segments = new List<ArraySegment<byte>>();
             byte[] data = new ProtocolFormat(formatName).SetValueList(formats).ToBytes(Name);
             const int BUFSIZE = ProtocolFormat.BUFFER_SIZE;
@@ -101,6 +105,7 @@ namespace R54IN0.Server
 
             session.Logger.DebugFormat("R54IN0 FORMAT SENDING (TYPE: {0}, BYTE SIZE: {1})", formatName, data.Count());
             session.Send(segments);
+#endif
         }
     }
 }
