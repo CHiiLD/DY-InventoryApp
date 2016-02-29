@@ -1,7 +1,13 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿#if DEBUG
+//#define SERVER_FOR_DEBUG
+#endif
+
+using GalaSoft.MvvmLight.Command;
 using MahApps.Metro;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using Newtonsoft.Json;
+//using SuperSocket.SocketBase.Config;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +28,10 @@ namespace R54IN0.WPF
 
         private ObservableCollection<TabItem> _items;
         private TabItem _selectedItem;
-
+#if SERVER_FOR_DEBUG
+        private ReadOnlyServer _readServer;
+        private WriteOnlyServer _writeServer;
+#endif
         private event PropertyChangedEventHandler _propertyChanged;
 
         public MainWindowViewModel()
@@ -47,19 +56,31 @@ namespace R54IN0.WPF
                 BorderColorBrush = a.Resources["BlackColorBrush"] as Brush,
                 ColorBrush = a.Resources["WhiteColorBrush"] as Brush
             });
-
             Dispatcher.CurrentDispatcher.BeginInvoke(new Func<Task>(InitializeAsync));
-        }
-
-        private bool CanExecuteMenuItemCommand()
-        {
-            return InventoryViewModel != null && IOStockViewModel != null;
         }
 
         public async Task InitializeAsync()
         {
-            //TODO MySQL 또는 서버에 접속할 수가 없다면 Dialog로 이를 알려주어야 한다. 
-            //Dialog의 버튼은 다시 접속하기, 앱 종료하기 기능을 구현해준다.
+#if SERVER_FOR_DEBUG
+            IPConfigJsonFormat ip = JsonConvert.DeserializeObject<IPConfigJsonFormat>("ipconfig.json");
+
+            _thiz._readServer = new ReadOnlyServer();
+            _thiz._readServer.Setup(new ServerConfig()
+            {
+                Ip = ip.ReadServerHost,
+                Port = ip.ReadServerPort,
+                DisableSessionSnapshot = true,
+            });
+            _thiz._writeServer = new WriteOnlyServer();
+            _thiz._writeServer.Setup(new ServerConfig()
+            {
+                Ip = ip.WriteServerHost,
+                Port = ip.WriteServerPort,
+                DisableSessionSnapshot = true,
+            });
+            _thiz._readServer.Start();
+            _thiz._writeServer.Start();
+#endif
             try
             {
                 await DataDirector.InitialzeInstanceAsync();
@@ -195,13 +216,24 @@ namespace R54IN0.WPF
         public static MainWindowViewModel GetInstance()
         {
             if (_thiz == null)
+            {
                 _thiz = new MainWindowViewModel();
+            }
             return _thiz;
         }
 
         public static void Destory()
         {
+#if SERVER_FOR_DEBUG
+            _thiz._readServer.Stop();
+            _thiz._writeServer.Stop();
+#endif
             _thiz = null;
+        }
+
+        private bool CanExecuteMenuItemCommand()
+        {
+            return InventoryViewModel != null && IOStockViewModel != null;
         }
 
         /// <summary>

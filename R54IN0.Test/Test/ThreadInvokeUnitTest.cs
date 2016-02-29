@@ -22,7 +22,6 @@ namespace R54IN0.WPF.Test
         {
             Dispatcher.CurrentDispatcher.Invoke(Output);
             Console.WriteLine("world");
-
         }
 
         /// <summary>

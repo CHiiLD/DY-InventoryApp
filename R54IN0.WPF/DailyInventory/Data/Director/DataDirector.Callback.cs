@@ -121,6 +121,9 @@ namespace R54IN0.WPF
                     throw new NotSupportedException();
             }
 
+            if (target == null)
+                return;
+
             PropertyInfo[] properties = type.GetProperties();
             Type targetType = target.GetType();
 
@@ -135,12 +138,12 @@ namespace R54IN0.WPF
                     if (value1 == null ^ value2 == null)
                     {
                         targetType.GetProperty(name).SetValue(target, value2);
-                        log.DebugFormat("update Property: {0}  {1} -> {2}", name, value1, value2);
+                        log.DebugFormat("update Property: {0} Convert {1} to {2}", name, value1, value2);
                     }
                     else if (value1 != null && value2 != null && value1.ToString() != value2.ToString())
                     {
                         targetType.GetProperty(name).SetValue(target, value2);
-                        log.DebugFormat("update Property: {0}  {1} -> {2}", name, value1, value2);
+                        log.DebugFormat("update Property: {0} Convert {1} to {2}", name, value1, value2);
                     }
                 }
             }

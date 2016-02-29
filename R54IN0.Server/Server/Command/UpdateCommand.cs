@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace R54IN0.Server
 {
-    public class UpdateCommand : InsertCommand, IWriteSessionCommand
+    public class UpdateCommand : ICommand<WriteOnlySession, BinaryRequestInfo>, IWriteSessionCommand
     {
-        public override string Name
+        public virtual string Name
         {
             get
             {
@@ -22,13 +22,55 @@ namespace R54IN0.Server
             }
         }
 
-        public override void ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo)
+        public virtual void ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo)
         {
             ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             ExecuteCommand(session, pfmt, Update);
         }
 
-        public void Update(WriteOnlySession session, object item)
+        protected void ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action<WriteOnlySession, object> action)
+        {
+            string formatName = pfmt.Table;
+            JObject jobj = pfmt.Value as JObject;
+
+            switch (formatName)
+            {
+                case nameof(Maker):
+                    action(session, jobj.ToObject<Maker>());
+                    break;
+                case nameof(Measure):
+                    action(session, jobj.ToObject<Measure>());
+                    break;
+                case nameof(Customer):
+                    action(session, jobj.ToObject<Customer>());
+                    break;
+                case nameof(Supplier):
+                    action(session, jobj.ToObject<Supplier>());
+                    break;
+                case nameof(Project):
+                    action(session, jobj.ToObject<Project>());
+                    break;
+                case nameof(Product):
+                    action(session, jobj.ToObject<Product>());
+                    break;
+                case nameof(Warehouse):
+                    action(session, jobj.ToObject<Warehouse>());
+                    break;
+                case nameof(Employee):
+                    action(session, jobj.ToObject<Employee>());
+                    break;
+                case nameof(InventoryFormat):
+                    action(session, jobj.ToObject<InventoryFormat>());
+                    break;
+                case nameof(IOStockFormat):
+                    action(session, jobj.ToObject<IOStockFormat>());
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
+        private void Update(WriteOnlySession session, object item)
         {
             WriteOnlyServer server = session.AppServer as WriteOnlyServer;
             MySqlConnection conn = server.MySQL;
@@ -38,6 +80,7 @@ namespace R54IN0.Server
             string sql = string.Format("update {0} set ", type.Name);
             StringBuilder sb = new StringBuilder(sql);
 
+            int fieldCnt = 0;
             sql = string.Format("select * from {0} where ID = '{1}'", type.Name, iid.ID);
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
             using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -57,13 +100,17 @@ namespace R54IN0.Server
                             value2 = (int)value2;
 
                         object value3 = this.ConvertMySQLTypeValue(value2);
-                        if (value1 == null ^ value2 == null)
+                        if ((value1 == null ^ value2 == null) || (value1 != null && value2 != null && value1.ToString() != value2.ToString()))
+                        {
                             sb.Append(string.Format("{0} = '{1}', ", name, value3));
-                        else if (value1 != null && value2 != null && value1.ToString() != value2.ToString())
-                            sb.Append(string.Format("{0} = '{1}', ", name, value3)); //TODO여기 부분 잘 작동되는지 확인하기 InventoryFormat, IOStockFormat
+                            fieldCnt++;
+                        }
                     }
                 }
             }
+            if (fieldCnt == 0)
+                return;
+
             sb.Remove(sb.Length - 2, 2);
             sb.Append(string.Format(" where ID = '{0}';", iid.ID));
             sql = sb.ToString();
@@ -73,16 +120,13 @@ namespace R54IN0.Server
                 cmd.ExecuteNonQuery();
 
             byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(ProtocolCommand.UPDATE);
+
+            session.Logger.DebugFormat("변경된 포맷을 클라이언트들에게 알립니다.(TYPE: {0}, SIZE: {1})", type, data.Length);
+
             foreach (WriteOnlySession s in server.GetAllSessions())
-            {
-                if(s != session)
-                    s.Send(data, 0, data.Length);
-            }
-            if (type == typeof(IOStockFormat))
-            {
-                if (sql.Contains("Quantity") || sql.Contains("StockType"))
-                    this.CalcInventoryFormatQty(conn, type.Name, iid.ID);
-            }
+                s.Send(data, 0, data.Length);
+            if (type == typeof(IOStockFormat) && (sql.Contains("Quantity") || sql.Contains("StockType") || sql.Contains("Date")))
+                this.InvfQuantityBroadCast(session, type.Name, iid.ID, null);
         }
     }
 }

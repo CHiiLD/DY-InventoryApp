@@ -1,19 +1,4 @@
-﻿2016-02-29 03:58:38,579 [3300] ERROR RaceServer - Listener (0.0.0.0:2132) error: 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
-System.Net.Sockets.SocketException (0x80004005): 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
-   위치: System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
-   위치: System.Net.Sockets.Socket.Bind(EndPoint localEP)
-   위치: SuperSocket.SocketEngine.TcpAsyncSocketListener.Start(IServerConfig config) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\TcpAsyncSocketListener.cs:줄 41
-2016-02-29 03:59:03,193 [8904] ERROR RaceServer - Listener (0.0.0.0:2132) error: 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
-System.Net.Sockets.SocketException (0x80004005): 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
-   위치: System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
-   위치: System.Net.Sockets.Socket.Bind(EndPoint localEP)
-   위치: SuperSocket.SocketEngine.TcpAsyncSocketListener.Start(IServerConfig config) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\TcpAsyncSocketListener.cs:줄 41
-2016-02-29 04:00:08,192 [11044] ERROR RaceServer - Listener (0.0.0.0:2132) error: 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
-System.Net.Sockets.SocketException (0x80004005): 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
-   위치: System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
-   위치: System.Net.Sockets.Socket.Bind(EndPoint localEP)
-   위치: SuperSocket.SocketEngine.TcpAsyncSocketListener.Start(IServerConfig config) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\TcpAsyncSocketListener.cs:줄 41
-2016-02-29 13:13:30,202 [10920] ERROR RaceServer - Listener (0.0.0.0:2132) error: 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
+﻿2016-03-01 01:11:16,986 [4924] ERROR RaceServer - Listener (0.0.0.0:2132) error: 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
 System.Net.Sockets.SocketException (0x80004005): 각 소켓 주소(프로토콜/네트워크 주소/포트)는 하나만 사용할 수 있습니다
    위치: System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
    위치: System.Net.Sockets.Socket.Bind(EndPoint localEP)

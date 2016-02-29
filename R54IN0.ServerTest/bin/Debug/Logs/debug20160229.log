@@ -1,0 +1,471 @@
+﻿2016-02-29 21:01:32,523 [7416] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 21:01:32,533 [7416] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 21:01:32,533 [7416] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 21:01:32,595 [7416] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 21:01:32,595 [7416] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 21:01:32,595 [7416] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 21:01:32,621 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 21:01:32,748 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 21:01:32,756 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 21:01:32,824 [200] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('a98e04ea-98c3-4a2e-ab13-eab545e74edd', '!@# SomE Make r ');
+2016-02-29 21:01:32,834 [200] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 21:01:32,900 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 21:01:32,901 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 21:01:32,906 [16580] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '6269be83-964a-4b91-a876-7eb8e3be6a2c';
+2016-02-29 21:01:32,914 [16580] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 21:01:33,104 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 21:01:33,105 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 21:01:33,108 [5752] DEBUG WriteOnlyServer - delete from Maker where ID = 'acc14aa3-f03f-4a8c-83fd-0d900c88a9b2';
+2016-02-29 21:01:33,116 [5752] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 21:01:33,117 [5752] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 21:01:33,117 [5752] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'acc14aa3-f03f-4a8c-83fd-0d900c88a9b2';
+2016-02-29 21:01:33,120 [5752] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 21:01:33,321 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 21:01:34,927 [7416] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 21:01:34,927 [7416] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 21:01:34,927 [7416] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 21:01:34,927 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 21:01:34,934 [16580] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('09d15444-b4af-4de7-8061-fed889c7f973', 'SomE Maker');
+2016-02-29 21:01:34,942 [16580] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 189)
+2016-02-29 21:01:35,042 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 21:01:35,044 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 21:01:35,050 [5752] DEBUG WriteOnlyServer - delete from Maker where ID = '34caf693-99fa-472a-b48e-f88d2cead43b';
+2016-02-29 21:01:35,058 [5752] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 21:01:35,058 [5752] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 21:01:35,058 [5752] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '34caf693-99fa-472a-b48e-f88d2cead43b';
+2016-02-29 21:01:35,063 [5752] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 21:01:35,152 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 21:01:35,153 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 21:01:35,156 [12240] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = 'eda0eca6-dedd-4509-a690-9c5bd154fae5';
+2016-02-29 21:01:35,163 [12240] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 192)
+2016-02-29 21:01:35,264 [7416] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 21:01:47,772 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 21:01:47,781 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 21:01:47,781 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 21:01:47,781 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 21:01:47,781 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 21:01:47,819 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 21:01:47,827 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 21:01:47,847 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 21:01:47,917 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 21:01:47,919 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 21:01:47,945 [16580] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: QUEF, TYPE: IOStockFormat, BYTE SIZE: 3913)
+2016-02-29 21:01:47,971 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 21:01:47,975 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 21:01:47,980 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 21:01:47,982 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 21:01:47,988 [14068] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Maker, BYTE SIZE: 1153)
+2016-02-29 21:01:47,988 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 21:01:47,993 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 21:01:47,996 [200] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELO, TYPE: Maker, BYTE SIZE: 190)
+2016-02-29 21:01:47,998 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 21:01:48,008 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 21:01:48,015 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 22:11:57,748 [11532] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 22:11:57,758 [11532] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 22:11:57,758 [11532] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 22:11:57,821 [11532] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 22:11:57,821 [11532] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 22:11:57,821 [11532] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 22:11:57,842 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 22:11:57,973 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 22:11:57,982 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 22:11:58,051 [3924] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('e299100d-8c63-4b44-b017-35a7deec7b3b', '!@# SomE Make r ');
+2016-02-29 22:11:58,061 [3924] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 22:11:58,124 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 22:11:58,125 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 22:11:58,130 [232] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '00a6907c-cccf-41c3-ac94-e354efbcc494';
+2016-02-29 22:11:58,132 [232] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 22:11:58,328 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 22:11:58,329 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 22:11:58,333 [15084] DEBUG WriteOnlyServer - delete from Maker where ID = 'a8d844b6-03fd-4ea8-a194-8973df2a2f1b';
+2016-02-29 22:11:58,342 [15084] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 22:11:58,342 [15084] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 22:11:58,342 [15084] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'a8d844b6-03fd-4ea8-a194-8973df2a2f1b';
+2016-02-29 22:11:58,346 [15084] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 22:11:58,533 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 22:12:00,112 [11532] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 22:12:00,112 [11532] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 22:12:00,112 [11532] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 22:12:00,114 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 22:12:00,120 [232] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('21c685c4-b772-454d-b8d2-19c564d8c766', 'SomE Maker');
+2016-02-29 22:12:00,124 [232] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 189)
+2016-02-29 22:12:00,233 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 22:12:00,235 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 22:12:00,238 [3924] DEBUG WriteOnlyServer - delete from Maker where ID = '21c685c4-b772-454d-b8d2-19c564d8c766';
+2016-02-29 22:12:00,257 [3924] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 22:12:00,257 [3924] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 22:12:00,257 [3924] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '21c685c4-b772-454d-b8d2-19c564d8c766';
+2016-02-29 22:12:00,259 [3924] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 22:12:00,340 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 22:12:00,341 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 22:12:00,345 [16188] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = '18d375e0-0c8f-41ad-9241-4564f4e5b4b5';
+2016-02-29 22:12:00,353 [16188] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 192)
+2016-02-29 22:12:00,452 [11532] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 22:12:13,584 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 22:12:13,593 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 22:12:13,593 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 22:12:13,593 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 22:12:13,593 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 22:12:13,632 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 22:12:13,642 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 22:12:13,669 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 22:12:13,735 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 22:12:13,737 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 22:12:13,768 [2888] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: QUEF, TYPE: IOStockFormat, BYTE SIZE: 3913)
+2016-02-29 22:12:13,804 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 22:12:13,808 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 22:12:13,813 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 22:12:13,815 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 22:12:13,822 [7404] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Maker, BYTE SIZE: 1153)
+2016-02-29 22:12:13,823 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 22:12:13,829 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 22:12:13,833 [16188] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELO, TYPE: Maker, BYTE SIZE: 190)
+2016-02-29 22:12:13,839 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 22:12:13,841 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 22:12:13,847 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:01:36,107 [10684] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:01:36,116 [10684] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:01:36,116 [10684] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:01:36,173 [10684] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:01:36,173 [10684] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:01:36,173 [10684] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:01:36,192 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:01:36,330 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:01:36,338 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:01:36,401 [5200] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('2cecdc5f-f978-4a65-9117-aae730a3530c', '!@# SomE Make r ');
+2016-02-29 23:01:36,410 [5200] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:01:36,486 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:01:36,488 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:01:36,498 [10428] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '90ec7668-7147-4e4c-91e8-c38fad4a18e2';
+2016-02-29 23:01:36,507 [10428] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:01:36,706 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:01:36,708 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:01:36,715 [10428] DEBUG WriteOnlyServer - delete from Maker where ID = '0240cc77-ff31-4d29-97ba-480d24f4c1b6';
+2016-02-29 23:01:36,725 [10428] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:01:36,725 [10428] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:01:36,725 [10428] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '0240cc77-ff31-4d29-97ba-480d24f4c1b6';
+2016-02-29 23:01:36,729 [10428] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:01:36,915 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:01:38,436 [10684] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:01:38,436 [10684] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:01:38,436 [10684] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:01:38,436 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:01:38,443 [1200] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('fb37f984-460d-437f-a09c-2b68ee00eaf7', 'SomE Maker');
+2016-02-29 23:01:38,447 [1200] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 189)
+2016-02-29 23:01:38,544 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:01:38,545 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:01:38,548 [10428] DEBUG WriteOnlyServer - delete from Maker where ID = '41ad4d8d-b25e-4a45-8fb6-4f0bcb896226';
+2016-02-29 23:01:38,556 [10428] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:01:38,556 [10428] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:01:38,556 [10428] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '41ad4d8d-b25e-4a45-8fb6-4f0bcb896226';
+2016-02-29 23:01:38,559 [10428] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:01:38,656 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:01:38,657 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:01:38,660 [5200] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = '62d63897-7523-44cf-a3ea-9e4846d0b9be';
+2016-02-29 23:01:38,667 [5200] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 192)
+2016-02-29 23:01:38,760 [10684] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:01:51,695 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 23:01:51,703 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 23:01:51,703 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 23:01:51,703 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 23:01:51,703 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 23:01:51,742 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:01:51,750 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:01:51,770 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:01:51,832 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:01:51,834 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:01:51,860 [1200] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: QUEF, TYPE: IOStockFormat, BYTE SIZE: 3913)
+2016-02-29 23:01:51,886 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:01:51,892 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:01:51,898 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:01:51,899 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:01:51,905 [10428] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Maker, BYTE SIZE: 1153)
+2016-02-29 23:01:51,906 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:01:51,911 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:01:51,914 [5336] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELO, TYPE: Maker, BYTE SIZE: 185)
+2016-02-29 23:01:51,915 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:01:51,917 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:01:51,922 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:13:09,085 [4068] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:13:09,094 [4068] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:13:09,094 [4068] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:13:09,152 [4068] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:13:09,152 [4068] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:13:09,152 [4068] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:13:09,171 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:13:09,296 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:13:09,306 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:13:09,376 [16776] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('05a5f795-d1a8-406b-8d74-38d318b943c5', '!@# SomE Make r ');
+2016-02-29 23:13:09,386 [16776] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:13:09,451 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:13:09,452 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:13:09,459 [10200] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '447f1373-ca4a-4fc6-962d-453aa84111d1';
+2016-02-29 23:13:09,462 [10200] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:13:09,655 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:13:09,658 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:13:09,665 [9648] DEBUG WriteOnlyServer - delete from Maker where ID = 'c55b5285-c3b6-410f-a05c-47834e20fdad';
+2016-02-29 23:13:09,674 [9648] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:13:09,675 [9648] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:13:09,675 [9648] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'c55b5285-c3b6-410f-a05c-47834e20fdad';
+2016-02-29 23:13:09,681 [9648] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:13:09,868 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:13:11,222 [4068] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:13:11,222 [4068] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:13:11,222 [4068] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:13:11,222 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:13:11,229 [13484] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('146f42ff-5d5c-43b9-908c-e1108589dc7a', 'SomE Maker');
+2016-02-29 23:13:11,232 [13484] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 189)
+2016-02-29 23:13:11,343 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:13:11,344 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:13:11,346 [16776] DEBUG WriteOnlyServer - delete from Maker where ID = 'b6427305-1b70-4ee3-918b-c97d24305236';
+2016-02-29 23:13:11,354 [16776] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:13:11,354 [16776] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:13:11,354 [16776] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'b6427305-1b70-4ee3-918b-c97d24305236';
+2016-02-29 23:13:11,358 [16776] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:13:11,448 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:13:11,449 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:13:11,452 [13484] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = 'ada67163-f9cb-48b9-b14a-9df71081839d';
+2016-02-29 23:13:11,455 [13484] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 192)
+2016-02-29 23:13:11,559 [4068] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:13:24,226 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 23:13:24,235 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 23:13:24,235 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 23:13:24,235 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 23:13:24,235 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 23:13:24,275 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:13:24,283 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:13:24,306 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:13:24,407 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:13:24,409 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:13:24,447 [10200] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: QUEF, TYPE: IOStockFormat, BYTE SIZE: 3913)
+2016-02-29 23:14:58,347 [12760] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:14:58,356 [12760] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:14:58,356 [12760] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:14:58,418 [12760] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:14:58,419 [12760] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:14:58,419 [12760] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:14:58,440 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:14:58,581 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:14:58,591 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:14:58,661 [9584] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('a4225949-2c44-452c-b94e-9726dcc029ee', '!@# SomE Make r ');
+2016-02-29 23:14:58,670 [9584] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:14:58,745 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:14:58,746 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:14:58,750 [9400] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '6a223f6d-4870-4b33-9b8a-8c7a7ba4360c';
+2016-02-29 23:14:58,758 [9400] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:14:58,949 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:14:58,950 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:14:58,953 [9584] DEBUG WriteOnlyServer - delete from Maker where ID = '78c5a76b-acdf-4688-9223-41856bc34bf9';
+2016-02-29 23:14:58,962 [9584] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:14:58,962 [9584] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:14:58,962 [9584] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '78c5a76b-acdf-4688-9223-41856bc34bf9';
+2016-02-29 23:14:58,966 [9584] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:14:59,153 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:15:00,476 [12760] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:15:00,476 [12760] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:15:00,476 [12760] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:15:00,476 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:15:00,483 [8300] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('0d50cc11-e8c8-4cd4-88a4-ee3c51d1c567', 'SomE Maker');
+2016-02-29 23:15:00,486 [8300] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 189)
+2016-02-29 23:15:00,590 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:15:00,591 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:15:00,594 [9400] DEBUG WriteOnlyServer - delete from Maker where ID = '4402b48f-e5bb-428f-8262-6ae8d5e2b24e';
+2016-02-29 23:15:00,595 [9400] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:15:00,595 [9400] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:15:00,596 [9400] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '4402b48f-e5bb-428f-8262-6ae8d5e2b24e';
+2016-02-29 23:15:00,598 [9400] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:15:00,702 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:15:00,704 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:15:00,709 [9584] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = '4918d02a-911d-49c4-865f-b7e43020254b';
+2016-02-29 23:15:00,711 [9584] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 192)
+2016-02-29 23:15:00,809 [12760] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:15:20,591 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 23:15:20,600 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 23:15:20,600 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 23:15:20,601 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 23:15:20,601 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 23:15:20,646 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:15:20,655 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:15:20,683 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:15:20,766 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:15:20,768 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:15:41,094 [5096] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: QUEF, TYPE: IOStockFormat, BYTE SIZE: 3913)
+2016-02-29 23:16:17,837 [13128] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:16:17,846 [13128] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:16:17,846 [13128] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:16:17,911 [13128] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:16:17,911 [13128] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:16:17,911 [13128] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:16:17,930 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:16:18,064 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:16:18,072 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:16:18,137 [11096] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('2cb46c8e-73c6-4db4-9f11-5c17a252f9a5', '!@# SomE Make r ');
+2016-02-29 23:16:18,146 [11096] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:16:18,213 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:16:18,214 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:16:18,218 [3568] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '30e8a19b-203f-4039-b819-b9283f930918';
+2016-02-29 23:16:18,220 [3568] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:16:18,417 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:16:18,418 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:16:18,421 [11096] DEBUG WriteOnlyServer - delete from Maker where ID = '24335fd4-e030-4d49-a8a4-590583b4bd18';
+2016-02-29 23:16:18,429 [11096] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:16:18,429 [11096] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:16:18,429 [11096] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '24335fd4-e030-4d49-a8a4-590583b4bd18';
+2016-02-29 23:16:18,431 [11096] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:16:18,621 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:16:20,113 [13128] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:16:20,113 [13128] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:16:20,113 [13128] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:16:20,113 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:16:20,120 [14072] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('db356c5d-1ae9-46d3-9ae3-8bdb1f07e9d0', 'SomE Maker');
+2016-02-29 23:16:20,123 [14072] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 189)
+2016-02-29 23:16:20,227 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:16:20,229 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:16:20,232 [14072] DEBUG WriteOnlyServer - delete from Maker where ID = 'a1338237-5438-4fa0-87d6-3c26facbb421';
+2016-02-29 23:16:20,233 [14072] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:16:20,233 [14072] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:16:20,233 [14072] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'a1338237-5438-4fa0-87d6-3c26facbb421';
+2016-02-29 23:16:20,237 [14072] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:16:20,340 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:16:20,341 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:16:20,344 [10628] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = '50fb5bd9-887e-4cd7-bd83-3e9dc7c754d6';
+2016-02-29 23:16:20,351 [10628] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 192)
+2016-02-29 23:16:20,451 [13128] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:16:27,689 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 23:16:27,704 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 23:16:27,704 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 23:16:27,705 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 23:16:27,705 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 23:16:27,751 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:16:27,759 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:16:27,778 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:16:27,848 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:16:27,851 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:16:27,882 [11096] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: QUEF, TYPE: IOStockFormat, BYTE SIZE: 3913)
+2016-02-29 23:16:27,917 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:16:27,922 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:16:27,927 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:16:27,928 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:16:27,937 [11096] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Maker, BYTE SIZE: 1153)
+2016-02-29 23:16:27,939 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:16:27,944 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:16:27,949 [6008] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELO, TYPE: Maker, BYTE SIZE: 193)
+2016-02-29 23:16:27,950 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:16:27,952 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:16:27,959 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:23:25,988 [17348] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:23:25,997 [17348] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:23:25,997 [17348] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:23:26,056 [17348] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:23:26,056 [17348] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:23:26,056 [17348] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:23:26,075 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:23:26,205 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:23:26,213 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:23:26,278 [15848] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('26c28446-866a-4bf0-b6dc-21cecd64512b', '!@# SomE Make r ');
+2016-02-29 23:23:26,288 [15848] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:23:26,354 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:23:26,354 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:23:26,359 [10580] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = 'c690d03a-2f5c-4eb6-ad0a-942e4f6c6880';
+2016-02-29 23:23:26,362 [10580] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:23:26,557 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:23:26,560 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:23:26,566 [10580] DEBUG WriteOnlyServer - delete from Maker where ID = 'b5694b6c-db7a-4b44-bc92-d2872bc2f63b';
+2016-02-29 23:23:26,575 [10580] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:23:26,576 [10580] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:23:26,576 [10580] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'b5694b6c-db7a-4b44-bc92-d2872bc2f63b';
+2016-02-29 23:23:26,582 [10580] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:23:26,765 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:23:28,083 [17348] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:23:28,083 [17348] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:23:28,083 [17348] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:23:28,083 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:23:28,092 [15848] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('5a31a968-d592-456a-b1ba-e175b4c4d77c', 'SomE Maker');
+2016-02-29 23:23:28,097 [15848] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 189)
+2016-02-29 23:23:28,200 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:23:28,201 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:23:28,203 [13628] DEBUG WriteOnlyServer - delete from Maker where ID = '4880a7f2-cd96-4418-a821-60e2fc645089';
+2016-02-29 23:23:28,212 [13628] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:23:28,212 [13628] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:23:28,212 [13628] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '4880a7f2-cd96-4418-a821-60e2fc645089';
+2016-02-29 23:23:28,214 [13628] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:23:28,311 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:23:28,312 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:23:28,315 [10580] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = '821bc5d2-114e-4d5b-95bf-794b237ae03e';
+2016-02-29 23:23:28,323 [10580] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 192)
+2016-02-29 23:23:28,416 [17348] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:23:41,684 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 23:23:41,693 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 23:23:41,693 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 23:23:41,693 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 23:23:41,693 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 23:23:41,734 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:23:41,746 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:23:41,772 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:23:41,857 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:23:41,859 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:23:41,894 [7280] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: QUEF, TYPE: IOStockFormat, BYTE SIZE: 3913)
+2016-02-29 23:25:16,741 [16776] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:25:16,751 [16776] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:25:16,751 [16776] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:25:16,809 [16776] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:25:16,809 [16776] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:25:16,809 [16776] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:25:16,828 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:25:16,972 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:25:16,984 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:25:17,047 [14928] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('2c83f99b-0082-4ee9-8019-fd97762a0b15', '!@# SomE Make r ');
+2016-02-29 23:25:17,056 [14928] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:25:17,124 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:25:17,125 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:25:17,129 [17352] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '175f0b10-fb2a-4b8a-9212-9b04c65ea2fc';
+2016-02-29 23:25:17,131 [17352] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 195)
+2016-02-29 23:25:17,327 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:25:17,330 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:25:17,337 [14928] DEBUG WriteOnlyServer - delete from Maker where ID = 'afeb3377-1fa1-4400-9399-9961b185faef';
+2016-02-29 23:25:17,348 [14928] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:25:17,349 [14928] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:25:17,349 [14928] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'afeb3377-1fa1-4400-9399-9961b185faef';
+2016-02-29 23:25:17,352 [14928] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:25:17,536 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:25:19,028 [16776] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 23:25:19,028 [16776] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 23:25:19,028 [16776] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 23:25:19,029 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:25:19,036 [17352] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('c1c36323-5432-4af1-9580-05904dc05e1d', 'SomE Maker');
+2016-02-29 23:25:19,040 [17352] DEBUG WriteOnlyServer - 추가된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 189)
+2016-02-29 23:25:19,136 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:25:19,137 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:25:19,140 [17352] DEBUG WriteOnlyServer - delete from Maker where ID = 'c1c36323-5432-4af1-9580-05904dc05e1d';
+2016-02-29 23:25:19,147 [17352] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 23:25:19,147 [17352] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 23:25:19,147 [17352] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'c1c36323-5432-4af1-9580-05904dc05e1d';
+2016-02-29 23:25:19,149 [17352] DEBUG WriteOnlyServer - 삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: Maker, SIZE: 162)
+2016-02-29 23:25:19,249 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:25:19,250 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 23:25:19,253 [6400] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = '73fac515-58d1-477d-a29d-a8f8ce9cfb0e';
+2016-02-29 23:25:19,261 [6400] DEBUG WriteOnlyServer - 변경된 포맷을 클라이언트들에게 알립니다.(TYPE: R54IN0.Maker, SIZE: 192)
+2016-02-29 23:25:19,354 [16776] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 23:25:32,556 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 23:25:32,565 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 23:25:32,565 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 23:25:32,565 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 23:25:32,565 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 23:25:32,603 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:25:32,611 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:25:32,631 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:25:32,702 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:25:32,704 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:25:32,732 [4696] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: QUEF, TYPE: IOStockFormat, BYTE SIZE: 3913)
+2016-02-29 23:25:32,767 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:25:32,771 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:25:32,776 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:25:32,778 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:25:32,784 [4348] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Maker, BYTE SIZE: 1153)
+2016-02-29 23:25:32,785 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:25:32,790 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:25:32,794 [11700] DEBUG ReadOnlyServer - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELO, TYPE: Maker, BYTE SIZE: 193)
+2016-02-29 23:25:32,796 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 23:25:32,812 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 23:25:32,817 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped

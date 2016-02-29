@@ -115,59 +115,80 @@ namespace R54IN0.Format
             if (count <= HEADER_SIZE)
                 return false;
 
-            byte[] lenBytes = new byte[BODYLEN_SIZE];
-            Array.Copy(buffer, offset + NAME_SIZE, lenBytes, 0, BODYLEN_SIZE);
-            string jsonLenStr = Encoding.UTF8.GetString(lenBytes);
-            int length = Convert.ToInt32(jsonLenStr, 16);
+            string cr = Encoding.UTF8.GetString(buffer, offset + count - END_STRING.Length, END_STRING.Length);
+            if (cr != END_STRING)
+                return false;
 
-            return length == count - HEADER_SIZE;
+            string command = Encoding.UTF8.GetString(buffer, offset, NAME_SIZE);
+            if (!IsCommands(command))
+                return false;
+
+            string lenstr = Encoding.UTF8.GetString(buffer, offset + NAME_SIZE, BODYLEN_SIZE);
+            int len = Convert.ToInt32(lenstr, 16);
+
+            return len == count - HEADER_SIZE;
         }
 
         /// <summary>
         /// ProtocolFormat 프로퍼티를 Json데이터로 변환 후 byte[] 데이터로 변환
         /// </summary>
-        /// <param name="receiveName"></param>
+        /// <param name="command"></param>
         /// <returns></returns>
-        public byte[] ToBytes(string receiveName)
+        public byte[] ToBytes(string command)
         {
-            if (!IsCommands(receiveName))
-                throw new Exception();
-
-            Name = receiveName;
-            string json = JsonConvert.SerializeObject(this);
-            int jsonLen = Encoding.UTF8.GetByteCount(json);
-            string jsonLenStr = string.Format("{0:X4}", jsonLen);
-            byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
-            byte[] headerBytes = Encoding.UTF8.GetBytes(receiveName + jsonLenStr);
-            byte[] protocolData = new byte[jsonBytes.Length + headerBytes.Length];
-            Array.Copy(headerBytes, protocolData, headerBytes.Length);
-            Array.Copy(jsonBytes, 0, protocolData, headerBytes.Length, jsonBytes.Length);
-
-            return protocolData;
+            string str = ToString(command);
+            byte[] data = Encoding.UTF8.GetBytes(str);
+            return data;
         }
 
-        public ArraySegment<byte> ToArraySegment(string receiveName)
+        public string ToString(string command)
         {
-            byte[] bytes = ToBytes(receiveName);
+            if (!IsCommands(command))
+                throw new Exception();
+
+            Name = command;
+            string json = JsonConvert.SerializeObject(this);
+            int jsonLen = Encoding.UTF8.GetByteCount(json) + Encoding.UTF8.GetByteCount(END_STRING);
+            string jsonLenStr = string.Format("{0:X4}", jsonLen);
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Name);
+            sb.Append(jsonLenStr);
+            sb.Append(json);
+            sb.Append(END_STRING);
+            return sb.ToString();
+        }
+
+        public ArraySegment<byte> ToArraySegment(string command)
+        {
+            byte[] bytes = ToBytes(command);
             return new ArraySegment<byte>(bytes);
         }
 
         /// <summary>
         /// 서버에서 클라이언트 측 데이터를 분석
         /// </summary>
-        /// <param name="receiveName"></param>
+        /// <param name="command"></param>
         /// <param name="body"></param>
         /// <returns></returns>
-        public static ProtocolFormat ToProtocolFormat(string receiveName, byte[] body)
+        public static ProtocolFormat ToProtocolFormat(string command, byte[] body)
         {
-            byte[] jsonBytes = body;
-            string name = receiveName;
-            if (!IsCommands(name))
-                throw new Exception(string.Format("Header의 Command를 알 수 없습니다.({0})", name));
+            if (!IsCommands(command))
+                throw new Exception(string.Format("Header의 Command를 알 수 없습니다.({0})", command));
 
-            string json = Encoding.UTF8.GetString(jsonBytes);
-            ProtocolFormat format = JsonConvert.DeserializeObject<ProtocolFormat>(json);
-            return format;
+            string json = Encoding.UTF8.GetString(body);
+            ProtocolFormat pfmt = JsonConvert.DeserializeObject<ProtocolFormat>(json);
+            return pfmt;
+        }
+
+        public static ProtocolFormat ToProtocolFormat(byte[] buffer, int offset, int count)
+        {
+            if (!IsReceivedCompletely(buffer, offset, count))
+                throw new Exception("올바른 형태의 버퍼 데이터가 아닙니다.");
+
+            string json = Encoding.UTF8.GetString(buffer, offset + HEADER_SIZE, count - HEADER_SIZE);
+            ProtocolFormat pfmt = JsonConvert.DeserializeObject<ProtocolFormat>(json);
+            return pfmt;
         }
 
         /// <summary>
@@ -177,8 +198,22 @@ namespace R54IN0.Format
         /// <param name="offset"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public static ProtocolFormat ToProtocolFormat(byte[] buffer, int offset, int count)
+        public static List<ProtocolFormat> ToProtocolFormats(byte[] buffer, int offset, int count)
         {
+            List<ProtocolFormat> fmts = new List<ProtocolFormat>();
+            string utf8string = Encoding.UTF8.GetString(buffer, offset, count);
+            string[] split = utf8string.Split(new string[] { END_STRING }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string str in split)
+            {
+                string name = str.Substring(0, NAME_SIZE);
+                if (!IsCommands(name))
+                    throw new Exception(string.Format("Header의 Command를 알 수 없습니다.({0})", name));
+                string jsonLen = str.Substring(NAME_SIZE, BODYLEN_SIZE);
+                string json = str.Substring(HEADER_SIZE, str.Length - HEADER_SIZE);
+                ProtocolFormat pfmt = JsonConvert.DeserializeObject<ProtocolFormat>(json);
+                fmts.Add(pfmt);
+            }
+#if false
             byte[] nameBytes = new byte[NAME_SIZE];
             byte[] lenBytes = new byte[BODYLEN_SIZE];
             byte[] jsonBytes = new byte[buffer.Length - HEADER_SIZE];
@@ -194,12 +229,14 @@ namespace R54IN0.Format
 
             if (length != count - HEADER_SIZE)
                 throw new Exception(string.Format("Header정보의 길이와 본체의 데이터 길이가 같지 않습니다."));
-
+            
             Array.Copy(buffer, offset + HEADER_SIZE, jsonBytes, 0, count - HEADER_SIZE);
             string json = Encoding.UTF8.GetString(jsonBytes);
 
             ProtocolFormat format = JsonConvert.DeserializeObject<ProtocolFormat>(json);
             return format;
+#endif
+            return fmts;
         }
     }
 }

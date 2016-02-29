@@ -456,33 +456,35 @@ namespace R54IN0.WPF
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
-        public ObservableIOStock Insert()
+        public string Insert()
         {
             if (SelectedInventory == null)
                 throw new Exception();
 
             CreateBindingProperties();
 
-            var fmt = CreateIOStockFormat();
-            DataDirector.GetInstance().Db.Insert<IOStockFormat>(fmt);
+            var stofmt = CreateIOStockFormat();
+            DataDirector.GetInstance().Db.Insert<IOStockFormat>(stofmt);
 
-            return new ObservableIOStock(fmt);
+            return stofmt.ID;
         }
 
-        public ObservableIOStock Update()
+        public string Update()
         {
             if (SelectedInventory == null)
                 throw new Exception();
             ObservableIOStock origin = _target;
+#if false
             IOStockType bType = origin.StockType;
             int bQty = origin.Quantity;
             DateTime bDate = origin.Date;
-
+#endif
             ModifyBindingProperties();
             CreateBindingProperties();
             IOStockFormat modify = CreateIOStockFormat();
             modify.ID = origin.ID;
-
+            DataDirector.GetInstance().Db.Update<IOStockFormat>(modify);
+#if false
             PropertyInfo[] properties = modify.GetType().GetProperties();
             foreach (PropertyInfo modifyProperty in properties)
             {
@@ -506,7 +508,8 @@ namespace R54IN0.WPF
                 else if (bQty != origin.Quantity)
                     _iOStockStatusViewModel.CalcRemainQuantity();
             }
-            return origin;
+#endif
+            return modify.ID;
         }
 
         private void CreateBindingProperties()
@@ -519,13 +522,13 @@ namespace R54IN0.WPF
                     {
                         Supplier newSupplier = new Supplier(AccountText);
                         DataDirector.GetInstance().AddField(newSupplier);
-                        SelectedAccount = ddr.SearchField<Supplier>(newSupplier.ID);
+                        SelectedAccount = new Observable<Supplier>(newSupplier); //ddr.SearchField<Supplier>(newSupplier.ID);
                     }
                     if (SelectedProject == null && ProjectText != null)
                     {
                         Warehouse newWarehouse = new Warehouse(ProjectText);
                         DataDirector.GetInstance().AddField(newWarehouse);
-                        SelectedProject = ddr.SearchField<Warehouse>(newWarehouse.ID);
+                        SelectedProject = new Observable<Warehouse>(newWarehouse); //ddr.SearchField<Warehouse>(newWarehouse.ID);
                     }
                     break;
                 case IOStockType.OUTGOING:
@@ -533,13 +536,13 @@ namespace R54IN0.WPF
                     {
                         Customer newCustomer = new Customer(AccountText);
                         DataDirector.GetInstance().AddField(newCustomer);
-                        SelectedAccount = ddr.SearchField<Customer>(newCustomer.ID);
+                        SelectedAccount = new Observable<Customer>(newCustomer); //ddr.SearchField<Customer>(newCustomer.ID);
                     }
                     if (SelectedProject == null && ProjectText != null)
                     {
                         Project newProject = new Project(ProjectText);
                         DataDirector.GetInstance().AddField(newProject);
-                        SelectedProject = ddr.SearchField<Project>(newProject.ID);
+                        SelectedProject = new Observable<Project>(newProject); //ddr.SearchField<Project>(newProject.ID);
                     }
                     break;
             }
@@ -547,7 +550,7 @@ namespace R54IN0.WPF
             {
                 Employee newEmployee = new Employee(EmployeeText);
                 DataDirector.GetInstance().AddField(newEmployee);
-                SelectedEmployee = ddr.SearchField<Employee>(newEmployee.ID);
+                SelectedEmployee = new Observable<Employee>(newEmployee); //ddr.SearchField<Employee>(newEmployee.ID);
             }
         }
 

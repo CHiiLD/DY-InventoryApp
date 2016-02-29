@@ -740,7 +740,7 @@ namespace R54IN0.WPF.Test
         }
 
         [Test]
-        public async Task ChangeDateTimeProperty()
+        public void ChangeDateTimeProperty()
         {
             var viewmodel = SelectSomeTreeViewNode();
 
@@ -748,7 +748,6 @@ namespace R54IN0.WPF.Test
             var mvm = new IOStockManagerViewModel(viewmodel, item);
             mvm.SelectedDate = DateTime.Now;
             mvm.Update();
-            await Task.Delay(10);
             AssertQuantityChecking(viewmodel.DataGridViewModel.Items);
         }
 

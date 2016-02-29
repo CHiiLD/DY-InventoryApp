@@ -1,0 +1,12 @@
+﻿2016-02-29 05:12:12,602 [15616] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
+MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ifnull((select sum(Quantity) from f598a505-d1a2-4039-a349-c3872070b60a where Inv' at line 1
+   위치: MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   위치: MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
+   위치: MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
+   위치: MySql.Data.MySqlClient.MySqlDataReader.NextResult()
+   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
+   위치: R54IN0.Server.QueryValueCommand.Send(ReadOnlySession session, String sql, String formatName) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryValueCommand.cs:줄 40
+   위치: R54IN0.Server.QueryValueCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryValueCommand.cs:줄 29
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579

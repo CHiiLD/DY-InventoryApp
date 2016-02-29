@@ -14,14 +14,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="DailY Inventory.exe.manifest" size="22452">
+    <dependentAssembly dependencyType="install" codebase="DailY Inventory.exe.manifest" size="23835">
       <assemblyIdentity name="DailY Inventory.exe" version="0.1.0.15" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>e52ssxBPPGT4kevcD5qHG5ZIE+ehpaU2QUhiyHUwyjg=</dsig:DigestValue>
+        <dsig:DigestValue>HGfNj4WuiN8OdImKJKJoJZwyOTcI3ju8K3NDaHG4joM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

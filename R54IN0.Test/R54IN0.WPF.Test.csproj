@@ -78,7 +78,7 @@
     <Compile Include="Test\InventoryStatusViewModelUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\ProjectUnitTest.cs" />
-    <Compile Include="Test\ServerStressUnitTest.cs" />
+    <Compile Include="Test\WriteServerUnitTest.cs" />
     <Compile Include="Test\ThreadInvokeUnitTest.cs" />
     <Compile Include="Tool\FakeDbAction.cs" />
     <Compile Include="Tool\RandomLinq.cs" />

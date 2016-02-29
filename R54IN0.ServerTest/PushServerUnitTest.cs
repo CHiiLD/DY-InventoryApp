@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using SuperSocket.ClientEngine;
 using R54IN0.Format;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace R54IN0.ServerTest
 {

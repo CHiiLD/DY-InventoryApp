@@ -88,7 +88,7 @@ namespace R54IN0.Server
             }
 
             byte[] data = new ProtocolFormat(formatName).SetValueList(formats).ToBytes(Name);
-            session.Logger.DebugFormat("R54IN0 FORMAT SENDING (TYPE: {0}, BYTE SIZE: {1})", formatName, data.Count());
+            session.Logger.DebugFormat("검색 결과를 클라이언트에게 전송합니다.(CMD: {0}, TYPE: {1}, BYTE SIZE: {2})", Name, formatName, data.Count());
             session.Send(data, 0, data.Length);
 #if false
             List<ArraySegment<byte>> segments = new List<ArraySegment<byte>>();

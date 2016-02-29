@@ -1,0 +1,252 @@
+﻿2016-02-29 01:59:51,834 [15292] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 01:59:51,891 [15292] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 01:59:51,937 [4492] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 01:59:51,963 [15292] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 01:59:51,989 [15292] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 01:59:52,091 [12432] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 01:59:52,101 [15292] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 01:59:52,107 [15292] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 01:59:53,126 [15292] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 01:59:53,135 [15292] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 01:59:53,136 [15292] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 01:59:55,018 [15292] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 02:02:02,920 [11704] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:02:02,979 [11704] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 02:02:03,026 [12084] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 02:02:03,050 [11704] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:02:03,075 [11704] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 02:02:03,185 [12740] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 02:02:03,194 [11704] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:02:03,195 [11704] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 02:02:04,209 [11704] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 02:02:04,218 [11704] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:02:04,219 [11704] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 02:02:05,237 [11704] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 02:05:29,458 [17392] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:05:29,520 [17392] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 02:05:29,577 [14184] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 02:05:29,604 [17392] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:05:29,640 [17392] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 02:05:29,742 [15040] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 02:05:29,753 [17392] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:05:29,754 [17392] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 02:05:30,772 [17392] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 02:05:30,794 [17392] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:05:30,795 [17392] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 02:05:31,815 [17392] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 02:06:18,122 [8092] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:06:18,176 [8092] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 02:06:18,220 [13072] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 02:06:18,245 [8092] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:06:18,271 [8092] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 02:06:18,374 [11960] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 02:06:18,384 [8092] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:06:18,384 [8092] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 02:06:19,401 [8092] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 02:06:19,410 [8092] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 02:06:19,411 [8092] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 02:06:20,427 [8092] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 03:43:03,903 [2940] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:43:03,956 [2940] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 03:43:03,999 [9764] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 03:43:04,023 [2940] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:43:04,048 [2940] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 03:43:04,150 [2652] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 03:43:04,159 [2940] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:43:04,160 [2940] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 03:43:05,175 [2940] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 03:43:05,188 [2940] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:43:05,189 [2940] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 03:43:06,202 [2940] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 03:58:37,136 [3300] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:58:37,206 [3300] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 03:58:37,256 [12736] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 03:58:37,277 [3300] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:58:37,306 [3300] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 03:58:37,434 [564] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 03:58:37,437 [3300] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:58:37,437 [3300] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 03:58:38,577 [3300] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:58:38,582 [3300] DEBUG RaceServer - Listener (0.0.0.0:2132) failed to start
+2016-02-29 03:59:01,779 [8904] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:59:01,840 [8904] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 03:59:01,891 [9140] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 03:59:01,918 [8904] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:59:01,946 [8904] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 03:59:02,063 [3724] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 03:59:02,073 [8904] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:59:02,074 [8904] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 03:59:03,191 [8904] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:59:03,196 [8904] DEBUG RaceServer - Listener (0.0.0.0:2132) failed to start
+2016-02-29 03:59:45,670 [7120] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:59:45,739 [7120] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 03:59:45,791 [8108] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 03:59:45,821 [7120] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:59:45,823 [7120] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 03:59:45,932 [15416] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 03:59:45,941 [7120] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:59:45,942 [7120] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 03:59:46,960 [7120] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 03:59:46,982 [7120] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 03:59:46,985 [7120] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 03:59:49,755 [7120] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 04:00:06,808 [11044] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:00:06,867 [11044] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 04:00:06,916 [11100] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 04:00:06,936 [11044] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:00:06,968 [11044] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 04:00:07,075 [7444] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 04:00:07,084 [11044] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:00:07,085 [11044] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 04:00:08,176 [11044] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:00:08,194 [11044] DEBUG RaceServer - Listener (0.0.0.0:2132) failed to start
+2016-02-29 04:39:45,286 [4424] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:39:45,340 [4424] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 04:39:45,383 [2700] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 04:39:45,409 [4424] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:39:45,438 [4424] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 04:39:45,541 [16416] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 04:39:45,551 [4424] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:39:45,551 [4424] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 04:39:46,565 [4424] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 04:39:46,575 [4424] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:39:46,576 [4424] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 04:39:49,526 [4424] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 04:41:05,754 [10828] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:41:05,817 [10828] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 04:41:05,861 [17228] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 04:41:05,889 [10828] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:41:05,890 [10828] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 04:41:05,999 [15904] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 04:41:06,008 [10828] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:41:06,009 [10828] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 04:41:07,023 [10828] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 04:41:07,032 [10828] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 04:41:07,033 [10828] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 04:41:08,050 [10828] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 13:03:47,497 [8088] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:03:47,552 [8088] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 13:03:47,598 [12844] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 13:03:47,623 [8088] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:03:47,649 [8088] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 13:03:47,763 [1640] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 13:03:47,772 [8088] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:03:47,773 [8088] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 13:03:48,790 [8088] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 13:03:48,812 [8088] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:03:48,814 [8088] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 13:03:49,840 [8088] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 13:05:44,977 [11364] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:05:45,029 [11364] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 13:05:45,072 [7312] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 13:05:45,096 [11364] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:05:45,123 [11364] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 13:05:45,232 [3944] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 13:05:45,243 [11364] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:05:45,243 [11364] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 13:05:46,259 [11364] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 13:05:46,269 [11364] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:05:46,269 [11364] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 13:05:47,286 [11364] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 13:13:28,856 [10920] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:13:28,910 [10920] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 13:13:28,956 [9608] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 13:13:28,979 [10920] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:13:29,005 [10920] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 13:13:29,107 [11916] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 13:13:29,117 [10920] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:13:29,118 [10920] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 13:13:30,197 [10920] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 13:13:30,204 [10920] DEBUG RaceServer - Listener (0.0.0.0:2132) failed to start
+2016-02-29 21:01:39,855 [7416] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 21:01:39,914 [7416] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 21:01:39,958 [1936] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 21:01:39,981 [7416] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 21:01:39,982 [7416] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 21:01:40,093 [16580] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 21:01:40,111 [7416] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 21:01:40,113 [7416] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 21:01:41,128 [7416] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 21:01:41,137 [7416] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 21:01:41,138 [7416] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 21:01:42,148 [7416] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 22:12:04,776 [11532] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 22:12:04,832 [11532] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 22:12:04,879 [10324] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 22:12:04,898 [11532] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 22:12:04,899 [11532] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 22:12:05,013 [15084] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 22:12:05,023 [11532] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 22:12:05,024 [11532] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 22:12:06,038 [11532] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 22:12:06,048 [11532] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 22:12:06,049 [11532] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 22:12:08,044 [11532] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:01:42,979 [10684] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:01:43,034 [10684] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 23:01:43,078 [8236] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 23:01:43,102 [10684] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:01:43,103 [10684] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:01:43,218 [5200] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:01:43,227 [10684] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:01:43,228 [10684] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:01:44,332 [10684] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:01:44,372 [10684] DEBUG RaceServer - Listener (0.0.0.0:2132) failed to start
+2016-02-29 23:13:15,900 [4068] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:13:15,956 [4068] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 23:13:16,003 [14568] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 23:13:16,026 [4068] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:13:16,027 [4068] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:13:16,137 [13140] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:13:16,148 [4068] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:13:16,149 [4068] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:13:17,165 [4068] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:13:17,175 [4068] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:13:17,176 [4068] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:13:18,738 [4068] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:15:05,086 [12760] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:15:05,142 [12760] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 23:15:05,200 [8168] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 23:15:05,220 [12760] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:15:05,222 [12760] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:15:05,324 [9584] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:15:05,336 [12760] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:15:05,338 [12760] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:15:06,428 [12760] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:15:06,436 [12760] DEBUG RaceServer - Listener (0.0.0.0:2132) failed to start
+2016-02-29 23:16:14,107 [13128] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:16:14,161 [13128] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 23:16:14,205 [8748] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 23:16:14,222 [13128] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:16:14,243 [13128] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:16:14,358 [11096] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:16:57,068 [15052] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:16:57,135 [15052] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:16:58,186 [15052] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:16:58,212 [15052] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:16:58,215 [15052] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:17:00,217 [15052] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:23:32,814 [17348] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:23:32,869 [17348] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 23:23:32,916 [1732] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 23:23:32,945 [17348] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:23:32,947 [17348] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:23:33,056 [8912] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:23:33,067 [17348] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:23:33,068 [17348] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:23:34,082 [17348] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:23:34,093 [17348] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:23:34,094 [17348] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:23:36,098 [17348] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:25:23,271 [16776] DEBUG SomeServer - The command ECHO(SuperSocketTest.ECHO, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:25:23,324 [16776] DEBUG SomeServer - Listener (0.0.0.0:2012) was started
+2016-02-29 23:25:23,369 [7572] DEBUG SomeServer - Listener (0.0.0.0:2012) was stoppped
+2016-02-29 23:25:23,394 [16776] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:25:23,395 [16776] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:25:23,497 [17352] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:25:23,507 [16776] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:25:23,508 [16776] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:25:24,525 [16776] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped
+2016-02-29 23:25:24,535 [16776] DEBUG RaceServer - The command ADD(SuperSocketTest.ADD, SuperSocketTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2016-02-29 23:25:24,536 [16776] DEBUG RaceServer - Listener (0.0.0.0:2132) was started
+2016-02-29 23:25:26,555 [16776] DEBUG RaceServer - Listener (0.0.0.0:2132) was stoppped

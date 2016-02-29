@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace R54IN0.WPF
@@ -84,24 +85,26 @@ namespace R54IN0.WPF
         {
             Socket client = (Socket)ar.AsyncState;
             client.EndConnect(ar);
-            log.Debug("READ_ONLY_SERVER CONNECTION SUCCESS");
+            log.Debug("쿼리 서버와의 연결에 성공하였습니다.");
         }
 
         private void ConnectCallback(object sender, EventArgs e)
         {
             AsyncTcpSession session = sender as AsyncTcpSession;
             session.DataReceived += OnDataReceived;
-            log.Debug("WRITE_ONLY_SERVER CONNECTION SUCCESS");
+            log.Debug("갱신 서버와의 연결에 성공하였습니다.");
         }
 
         private void OnDataReceived(object sender, DataEventArgs e)
         {
-            ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(e.Data, e.Offset, e.Length);
-            Dispatcher.CurrentDispatcher.BeginInvoke(new Action<ProtocolFormat>(DataReceiveHandler), pfmt);
+            log.DebugFormat("갱신 서버로부터 데이터 수신(BYTE: {0})", e.Length - e.Offset + 1);
+            List<ProtocolFormat> fmtList = ProtocolFormat.ToProtocolFormats(e.Data, e.Offset, e.Length);
+            fmtList.ForEach(x => DispatchService.Invoke(new Action<ProtocolFormat>(DataReceiveHandler), x));
         }
 
         private void DataReceiveHandler(ProtocolFormat pfmt)
         {
+            log.DebugFormat("갱신서버로부터 데이터를 수신받았습니다.(CMD: {0}, TYPE: {1})", pfmt.Name, pfmt.Table);
             switch (pfmt.Name)
             {
                 case ProtocolCommand.INSERT:
@@ -187,7 +190,7 @@ namespace R54IN0.WPF
                     offset += receivedSize;
                 }
                 rfmt = ProtocolFormat.ToProtocolFormat(_buffer, 0, offset + receivedSize);
-                log.DebugFormat("SEND TO READ SERVER({0})", rfmt.Name);
+                log.DebugFormat("쿼리 서버로 데이터를 전송합니다.(CMD: {0}, TYPE: {1})", rfmt.Name, rfmt.Table);
             }
             catch (Exception e)
             {
@@ -208,10 +211,10 @@ namespace R54IN0.WPF
             return skt.EndReceive(ar);
         }
 
-        private void Send(string receiveName, ProtocolFormat sendingFmt)
+        private void Send(string cmd, ProtocolFormat sendingFmt)
         {
-            log.DebugFormat("SEND TO WRITE SERVER({0})", receiveName);
-            ArraySegment<byte> segment = sendingFmt.ToArraySegment(receiveName);
+            log.DebugFormat("갱신 서버로 데이터를 전송합니다.(CMD: {0}, TYPE:{1})", cmd, sendingFmt.Table);
+            ArraySegment<byte> segment = sendingFmt.ToArraySegment(cmd);
             _session.Send(segment);
         }
 

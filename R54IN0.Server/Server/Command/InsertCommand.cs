@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace R54IN0.Server
 {
-    public class InsertCommand : ICommand<WriteOnlySession, BinaryRequestInfo>, IWriteSessionCommand
+    public class InsertCommand : UpdateCommand
     {
-        public virtual string Name
+        public override string Name
         {
             get
             {
@@ -22,52 +22,10 @@ namespace R54IN0.Server
             }
         }
 
-        public virtual void ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo)
+        public override void ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo)
         {
             ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             ExecuteCommand(session, pfmt, Insert);
-        }
-
-        protected void ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action<WriteOnlySession, object> action)
-        {
-            string formatName = pfmt.Table;
-            JObject jobj = pfmt.Value as JObject;
-
-            switch (formatName)
-            {
-                case nameof(Maker):
-                    action(session, jobj.ToObject<Maker>());
-                    break;
-                case nameof(Measure):
-                    action(session, jobj.ToObject<Measure>());
-                    break;
-                case nameof(Customer):
-                    action(session, jobj.ToObject<Customer>());
-                    break;
-                case nameof(Supplier):
-                    action(session, jobj.ToObject<Supplier>());
-                    break;
-                case nameof(Project):
-                    action(session, jobj.ToObject<Project>());
-                    break;
-                case nameof(Product):
-                    action(session, jobj.ToObject<Product>());
-                    break;
-                case nameof(Warehouse):
-                    action(session, jobj.ToObject<Warehouse>());
-                    break;
-                case nameof(Employee):
-                    action(session, jobj.ToObject<Employee>());
-                    break;
-                case nameof(InventoryFormat):
-                    action(session, jobj.ToObject<InventoryFormat>());
-                    break;
-                case nameof(IOStockFormat):
-                    action(session, jobj.ToObject<IOStockFormat>());
-                    break;
-                default:
-                    throw new NotSupportedException();
-            }
         }
 
         private void Insert(WriteOnlySession session, object item)
@@ -101,10 +59,13 @@ namespace R54IN0.Server
                 cmd.ExecuteNonQuery();
 
             byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(ProtocolCommand.INSERT);
+
+            session.Logger.DebugFormat("추가된 포맷을 클라이언트들에게 알립니다.(TYPE: {0}, SIZE: {1})", type, data.Length);
+
             foreach (WriteOnlySession s in server.GetAllSessions())
                 s.Send(data, 0, data.Length);
 
-            this.CalcInventoryFormatQty(conn, type.Name, iid.ID);
+            this.InvfQuantityBroadCast(session, type.Name, iid.ID);
         }
     }
 }

@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Linq;
 using R54IN0.Format;
+using R54IN0.Server;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
@@ -13,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace R54IN0.Server
 {
-    public class DeleteCommand : ICommand<WriteOnlySession, BinaryRequestInfo>, IWriteSessionCommand
+    public class DeleteCommand : UpdateCommand //ICommand<WriteOnlySession, BinaryRequestInfo>, IWriteSessionCommand
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public string Name
+        public override string Name
         {
             get
             {
@@ -25,7 +26,7 @@ namespace R54IN0.Server
             }
         }
 
-        public void ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo)
+        public override void ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo)
         {
             ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             Delete(session, pfmt.Table, pfmt.ID);
@@ -58,10 +59,11 @@ namespace R54IN0.Server
             SerialKiller(conn, type, id);
 
             byte[] data = new ProtocolFormat(type).SetID(id).ToBytes(ProtocolCommand.DELETE);
+            session.Logger.DebugFormat("삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: {0}, SIZE: {1})", type, data.Length);
             foreach (WriteOnlySession s in server.GetAllSessions())
                 s.Send(data, 0, data.Length);
 
-            this.CalcInventoryFormatQty(conn, type, id, invID);
+            this.InvfQuantityBroadCast(session, type, id, invID);
             KillProject(session, conn, projID);
         }
 
@@ -131,9 +133,7 @@ namespace R54IN0.Server
                 return;
             Tuple<int> tuple = this.QueryReturnTuple<int>(conn, "select count(*) from {0} where ProjectID = '{1}';", nameof(IOStockFormat), projID).SingleOrDefault();
             if (tuple != null && tuple.Item1 == 0)
-            {
                 Delete(session, typeof(Project).Name, projID);
-            }
         }
     }
 }

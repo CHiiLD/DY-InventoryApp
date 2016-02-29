@@ -197,6 +197,7 @@ namespace R54IN0.WPF
                 await ddr._field.InitializeAsync(bridge);
                 await ddr._inventory.InitializeAsync(bridge);
             }
+            log.Debug("---------------DataDirector 포맷 데이터 읽기 완료---------------");
         }
 
         public static void IntializeInstance(IDbAction dbAction)

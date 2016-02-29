@@ -1,0 +1,678 @@
+﻿2016-02-29 02:09:17,457 [12000] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 02:09:17,458 [12000] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 02:09:23,576 [10716] INFO  ReadOnlyServer - Session: 7bbaf773-4377-4220-8699-fdc6841d1cea/127.0.0.1:2095
+A new session connected!
+2016-02-29 02:09:23,576 [6424] INFO  WriteOnlyServer - Session: aac0ce38-3038-4537-bd79-50c0b5b7356a/127.0.0.1:2094
+A new session connected!
+2016-02-29 02:13:43,246 [14448] INFO  ReadOnlyServer - Session: 7bbaf773-4377-4220-8699-fdc6841d1cea/127.0.0.1:2095
+This session was closed for ClientClosing!
+2016-02-29 02:13:43,246 [9584] INFO  WriteOnlyServer - Session: aac0ce38-3038-4537-bd79-50c0b5b7356a/127.0.0.1:2094
+This session was closed for SocketError!
+2016-02-29 02:14:01,703 [7912] INFO  WriteOnlyServer - Session: 9ffd916f-7e3b-4a40-b370-060b3e2ce17f/127.0.0.1:2664
+A new session connected!
+2016-02-29 02:14:01,705 [7912] INFO  ReadOnlyServer - Session: c0db8349-854c-4f95-993f-cafb343d85e4/127.0.0.1:2665
+A new session connected!
+2016-02-29 02:15:29,554 [13752] INFO  WriteOnlyServer - Session: 9ffd916f-7e3b-4a40-b370-060b3e2ce17f/127.0.0.1:2664
+This session was closed for SocketError!
+2016-02-29 02:15:29,554 [9584] INFO  ReadOnlyServer - Session: c0db8349-854c-4f95-993f-cafb343d85e4/127.0.0.1:2665
+This session was closed for ClientClosing!
+2016-02-29 02:21:44,743 [5200] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 02:21:44,749 [5200] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 02:21:48,377 [11512] INFO  ReadOnlyServer - Session: 0e1ad9dc-4832-4566-a309-6241e98f7da6/127.0.0.1:3467
+A new session connected!
+2016-02-29 02:21:48,377 [15976] INFO  WriteOnlyServer - Session: a9781943-84a2-4e67-be84-e48082e4e5af/127.0.0.1:3466
+A new session connected!
+2016-02-29 02:22:15,000 [2604] INFO  WriteOnlyServer - Session: a9781943-84a2-4e67-be84-e48082e4e5af/127.0.0.1:3466
+This session was closed for SocketError!
+2016-02-29 02:22:15,001 [12700] INFO  ReadOnlyServer - Session: 0e1ad9dc-4832-4566-a309-6241e98f7da6/127.0.0.1:3467
+This session was closed for ClientClosing!
+2016-02-29 02:28:01,316 [1724] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 02:28:01,318 [1724] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 02:28:09,012 [1860] INFO  ReadOnlyServer - Session: bcc17418-a9fd-4558-a412-8e76d97801d9/127.0.0.1:4331
+A new session connected!
+2016-02-29 02:28:09,012 [14404] INFO  WriteOnlyServer - Session: fc5ad69f-2bc4-4512-89e5-abeb1a6613a7/127.0.0.1:4330
+A new session connected!
+2016-02-29 02:28:57,307 [1472] INFO  WriteOnlyServer - Session: fc5ad69f-2bc4-4512-89e5-abeb1a6613a7/127.0.0.1:4330
+This session was closed for SocketError!
+2016-02-29 02:28:57,307 [16728] INFO  ReadOnlyServer - Session: bcc17418-a9fd-4558-a412-8e76d97801d9/127.0.0.1:4331
+This session was closed for SocketError!
+2016-02-29 02:29:03,041 [808] INFO  WriteOnlyServer - Session: b4e0df7f-b41d-4d21-8c68-5ca5d9c7d9d7/127.0.0.1:4475
+A new session connected!
+2016-02-29 02:29:03,043 [1860] INFO  ReadOnlyServer - Session: 61d0a3a2-5f95-4663-ab9d-09497eb8d035/127.0.0.1:4476
+A new session connected!
+2016-02-29 02:29:38,296 [5040] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 02:29:38,298 [5040] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 02:29:42,178 [13960] INFO  ReadOnlyServer - Session: c3d7a68e-a66b-4c79-83e0-20773ff21cc6/127.0.0.1:4614
+A new session connected!
+2016-02-29 02:29:42,178 [9548] INFO  WriteOnlyServer - Session: 777dd137-3a49-4e5d-915a-d055f1a2908e/127.0.0.1:4613
+A new session connected!
+2016-02-29 02:30:33,754 [17136] INFO  ReadOnlyServer - Session: c3d7a68e-a66b-4c79-83e0-20773ff21cc6/127.0.0.1:4614
+This session was closed for SocketError!
+2016-02-29 02:30:33,754 [13112] INFO  WriteOnlyServer - Session: 777dd137-3a49-4e5d-915a-d055f1a2908e/127.0.0.1:4613
+This session was closed for SocketError!
+2016-02-29 02:31:18,185 [15772] INFO  WriteOnlyServer - Session: 5c8a18c5-c81c-4944-ada0-7bc93a348b07/127.0.0.1:4787
+A new session connected!
+2016-02-29 02:31:18,187 [15772] INFO  ReadOnlyServer - Session: bd9363a9-4a3a-4b1b-9c33-61e85aeae30c/127.0.0.1:4788
+A new session connected!
+2016-02-29 02:31:39,019 [16544] INFO  WriteOnlyServer - Session: 5c8a18c5-c81c-4944-ada0-7bc93a348b07/127.0.0.1:4787
+This session was closed for SocketError!
+2016-02-29 02:31:39,019 [13112] INFO  ReadOnlyServer - Session: bd9363a9-4a3a-4b1b-9c33-61e85aeae30c/127.0.0.1:4788
+This session was closed for ClientClosing!
+2016-02-29 02:32:37,625 [15772] INFO  WriteOnlyServer - Session: ac62ab5b-00b4-4add-897e-33963b83abc0/127.0.0.1:4972
+A new session connected!
+2016-02-29 02:32:37,628 [10084] INFO  ReadOnlyServer - Session: 4812d997-5e91-4a68-bea2-83cd9064a556/127.0.0.1:4973
+A new session connected!
+2016-02-29 02:32:56,820 [6640] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 02:32:56,821 [6640] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 02:33:01,793 [9572] INFO  ReadOnlyServer - Session: 5874965a-936f-4bc9-b183-6091e0ea25c8/127.0.0.1:5082
+A new session connected!
+2016-02-29 02:33:01,793 [7600] INFO  WriteOnlyServer - Session: 72e0ea39-68c1-4cd9-9e91-edc7890e6b33/127.0.0.1:5081
+A new session connected!
+2016-02-29 02:35:16,825 [6640] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-29 02:35:16,828 [6640] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-29 02:35:16,831 [7644] INFO  ReadOnlyServer - Session: 5874965a-936f-4bc9-b183-6091e0ea25c8/127.0.0.1:5082
+This session was closed for ServerShutdown!
+2016-02-29 02:35:16,832 [8076] INFO  WriteOnlyServer - Session: 72e0ea39-68c1-4cd9-9e91-edc7890e6b33/127.0.0.1:5081
+This session was closed for ServerShutdown!
+2016-02-29 02:36:50,426 [12684] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 02:36:50,427 [12684] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 02:36:53,663 [4768] INFO  ReadOnlyServer - Session: cb7513df-0b5d-4619-b227-a3e2018e5499/127.0.0.1:5451
+A new session connected!
+2016-02-29 02:36:53,663 [8180] INFO  WriteOnlyServer - Session: 46d1a805-8ce7-43cb-bbf9-6516a53dfc7d/127.0.0.1:5450
+A new session connected!
+2016-02-29 02:39:52,155 [5804] INFO  WriteOnlyServer - Session: 46d1a805-8ce7-43cb-bbf9-6516a53dfc7d/127.0.0.1:5450
+This session was closed for SocketError!
+2016-02-29 02:39:59,208 [1084] INFO  WriteOnlyServer - Session: 9a0309fc-679b-47b4-bfa5-a43febfefb64/127.0.0.1:5750
+A new session connected!
+2016-02-29 02:39:59,211 [14824] INFO  ReadOnlyServer - Session: 3ca85b26-1f99-4c1e-b0e4-b57ad7e56241/127.0.0.1:5751
+A new session connected!
+2016-02-29 02:40:10,810 [15088] INFO  ReadOnlyServer - Session: cb7513df-0b5d-4619-b227-a3e2018e5499/127.0.0.1:5451
+This session was closed for SocketError!
+2016-02-29 02:43:48,850 [14820] INFO  WriteOnlyServer - Session: 9a0309fc-679b-47b4-bfa5-a43febfefb64/127.0.0.1:5750
+This session was closed for ClientClosing!
+2016-02-29 02:43:48,850 [10832] INFO  ReadOnlyServer - Session: 3ca85b26-1f99-4c1e-b0e4-b57ad7e56241/127.0.0.1:5751
+This session was closed for ClientClosing!
+2016-02-29 02:45:17,657 [10992] INFO  WriteOnlyServer - Session: 9fb71b28-c0a5-4d74-9f6f-85c5e64eaf44/127.0.0.1:6213
+A new session connected!
+2016-02-29 02:45:17,659 [10992] INFO  ReadOnlyServer - Session: c031bae8-5c04-448f-bf2b-f0182401c6cf/127.0.0.1:6214
+A new session connected!
+2016-02-29 02:46:17,806 [15088] INFO  WriteOnlyServer - Session: 9fb71b28-c0a5-4d74-9f6f-85c5e64eaf44/127.0.0.1:6213
+This session was closed for ClientClosing!
+2016-02-29 02:46:17,807 [5804] INFO  ReadOnlyServer - Session: c031bae8-5c04-448f-bf2b-f0182401c6cf/127.0.0.1:6214
+This session was closed for ClientClosing!
+2016-02-29 02:47:55,028 [5756] INFO  WriteOnlyServer - Session: 2fa42a51-5c72-4a3c-a050-08c299db20ed/127.0.0.1:6511
+A new session connected!
+2016-02-29 02:47:55,030 [5756] INFO  ReadOnlyServer - Session: 44fe49ce-1acc-45f3-99b8-5d29418c9b79/127.0.0.1:6512
+A new session connected!
+2016-02-29 02:51:33,046 [5804] INFO  WriteOnlyServer - Session: 2fa42a51-5c72-4a3c-a050-08c299db20ed/127.0.0.1:6511
+This session was closed for ClientClosing!
+2016-02-29 02:51:33,047 [14820] INFO  ReadOnlyServer - Session: 44fe49ce-1acc-45f3-99b8-5d29418c9b79/127.0.0.1:6512
+This session was closed for ClientClosing!
+2016-02-29 02:51:57,671 [8236] INFO  WriteOnlyServer - Session: 4e420622-7f08-4bf9-a24e-acfe626d35c6/127.0.0.1:6901
+A new session connected!
+2016-02-29 02:51:57,675 [11904] INFO  ReadOnlyServer - Session: 32b16b24-2919-4984-a674-d3295bc08613/127.0.0.1:6902
+A new session connected!
+2016-02-29 02:52:19,723 [5804] INFO  WriteOnlyServer - Session: 4e420622-7f08-4bf9-a24e-acfe626d35c6/127.0.0.1:6901
+This session was closed for ClientClosing!
+2016-02-29 02:52:19,724 [15088] INFO  ReadOnlyServer - Session: 32b16b24-2919-4984-a674-d3295bc08613/127.0.0.1:6902
+This session was closed for ClientClosing!
+2016-02-29 02:52:34,883 [11212] INFO  WriteOnlyServer - Session: 564a2195-0903-49e1-8233-3a89a459ac34/127.0.0.1:7034
+A new session connected!
+2016-02-29 02:52:34,885 [11212] INFO  ReadOnlyServer - Session: 2f0bbc02-b68a-42e2-920a-351df3fe36cf/127.0.0.1:7035
+A new session connected!
+2016-02-29 02:53:16,848 [2656] INFO  WriteOnlyServer - Session: 564a2195-0903-49e1-8233-3a89a459ac34/127.0.0.1:7034
+This session was closed for ClientClosing!
+2016-02-29 02:53:16,849 [7724] INFO  ReadOnlyServer - Session: 2f0bbc02-b68a-42e2-920a-351df3fe36cf/127.0.0.1:7035
+This session was closed for ClientClosing!
+2016-02-29 02:53:33,739 [13752] INFO  WriteOnlyServer - Session: 565e5135-2a85-42e4-a2bd-653f8730fc56/127.0.0.1:7225
+A new session connected!
+2016-02-29 02:53:33,743 [6032] INFO  ReadOnlyServer - Session: 5044faba-d545-4fe0-b589-476241eb1c9c/127.0.0.1:7226
+A new session connected!
+2016-02-29 02:55:34,090 [7724] INFO  WriteOnlyServer - Session: 565e5135-2a85-42e4-a2bd-653f8730fc56/127.0.0.1:7225
+This session was closed for ClientClosing!
+2016-02-29 02:55:34,091 [14820] INFO  ReadOnlyServer - Session: 5044faba-d545-4fe0-b589-476241eb1c9c/127.0.0.1:7226
+This session was closed for ClientClosing!
+2016-02-29 02:56:23,849 [9436] INFO  WriteOnlyServer - Session: ce33e99f-c60c-4f53-a326-cdc001472b60/127.0.0.1:7590
+A new session connected!
+2016-02-29 02:56:23,851 [9436] INFO  ReadOnlyServer - Session: 4aae383a-568b-4756-81e7-826e15b6f231/127.0.0.1:7591
+A new session connected!
+2016-02-29 02:56:52,081 [2656] INFO  WriteOnlyServer - Session: ce33e99f-c60c-4f53-a326-cdc001472b60/127.0.0.1:7590
+This session was closed for ClientClosing!
+2016-02-29 02:56:52,081 [10832] INFO  ReadOnlyServer - Session: 4aae383a-568b-4756-81e7-826e15b6f231/127.0.0.1:7591
+This session was closed for ClientClosing!
+2016-02-29 03:27:18,728 [13444] INFO  WriteOnlyServer - Session: 287cd413-dab8-47f2-96d8-3c7b7843b851/127.0.0.1:9920
+A new session connected!
+2016-02-29 03:27:18,732 [13444] INFO  ReadOnlyServer - Session: b857770c-707c-4143-b058-4c9ce3f89aaa/127.0.0.1:9921
+A new session connected!
+2016-02-29 03:28:21,767 [2656] INFO  WriteOnlyServer - Session: 287cd413-dab8-47f2-96d8-3c7b7843b851/127.0.0.1:9920
+This session was closed for ClientClosing!
+2016-02-29 03:28:21,768 [7724] INFO  ReadOnlyServer - Session: b857770c-707c-4143-b058-4c9ce3f89aaa/127.0.0.1:9921
+This session was closed for ClientClosing!
+2016-02-29 03:30:50,359 [9072] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 03:30:50,361 [9072] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 03:30:53,807 [5804] INFO  ReadOnlyServer - Session: e934c01c-e086-4b38-b4e2-6fa5bf7b4a18/127.0.0.1:10377
+A new session connected!
+2016-02-29 03:30:53,807 [15188] INFO  WriteOnlyServer - Session: e3abfd46-d353-4c31-a93a-facbac3f0788/127.0.0.1:10373
+A new session connected!
+2016-02-29 03:31:45,787 [11316] INFO  WriteOnlyServer - Session: e3abfd46-d353-4c31-a93a-facbac3f0788/127.0.0.1:10373
+This session was closed for ClientClosing!
+2016-02-29 03:31:45,788 [13444] INFO  ReadOnlyServer - Session: e934c01c-e086-4b38-b4e2-6fa5bf7b4a18/127.0.0.1:10377
+This session was closed for ClientClosing!
+2016-02-29 03:34:45,752 [7128] INFO  WriteOnlyServer - Session: b79011fd-275e-483d-ad95-137ecfa284fc/127.0.0.1:10726
+A new session connected!
+2016-02-29 03:34:45,754 [7128] INFO  ReadOnlyServer - Session: f655e86d-b829-469c-8e1a-e004a932b4ea/127.0.0.1:10727
+A new session connected!
+2016-02-29 03:35:10,948 [10908] INFO  ReadOnlyServer - Session: f655e86d-b829-469c-8e1a-e004a932b4ea/127.0.0.1:10727
+This session was closed for ClientClosing!
+2016-02-29 03:35:10,949 [11316] INFO  WriteOnlyServer - Session: b79011fd-275e-483d-ad95-137ecfa284fc/127.0.0.1:10726
+This session was closed for SocketError!
+2016-02-29 03:35:36,185 [6596] INFO  WriteOnlyServer - Session: c3b7439f-c0f2-4c85-b357-81e18e698698/127.0.0.1:10864
+A new session connected!
+2016-02-29 03:35:36,188 [6596] INFO  ReadOnlyServer - Session: 94084a36-b130-4752-971b-e04feb396351/127.0.0.1:10865
+A new session connected!
+2016-02-29 03:35:56,378 [6772] INFO  WriteOnlyServer - Session: c3b7439f-c0f2-4c85-b357-81e18e698698/127.0.0.1:10864
+This session was closed for ClientClosing!
+2016-02-29 03:35:56,379 [6772] INFO  ReadOnlyServer - Session: 94084a36-b130-4752-971b-e04feb396351/127.0.0.1:10865
+This session was closed for ClientClosing!
+2016-02-29 03:40:56,571 [9576] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 03:40:56,573 [9576] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 03:41:09,104 [12544] INFO  WriteOnlyServer - Session: 9839ff1d-e7a8-433a-a497-846896809135/127.0.0.1:11379
+A new session connected!
+2016-02-29 03:41:09,104 [16808] INFO  ReadOnlyServer - Session: 8cfcf3ca-8851-4528-ab81-949a483db36a/127.0.0.1:11380
+A new session connected!
+2016-02-29 03:41:39,864 [3808] INFO  WriteOnlyServer - Session: 9839ff1d-e7a8-433a-a497-846896809135/127.0.0.1:11379
+This session was closed for ClientClosing!
+2016-02-29 03:41:39,864 [1200] INFO  ReadOnlyServer - Session: 8cfcf3ca-8851-4528-ab81-949a483db36a/127.0.0.1:11380
+This session was closed for ClientClosing!
+2016-02-29 04:50:42,801 [14328] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 04:50:42,803 [14328] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 04:50:48,481 [10016] INFO  WriteOnlyServer - Session: 60d34fae-bbdb-4451-8137-6aff60286159/127.0.0.1:4964
+A new session connected!
+2016-02-29 04:50:48,481 [7432] INFO  ReadOnlyServer - Session: d72bda9f-9e98-41fb-932c-892b7c99aa75/127.0.0.1:4965
+A new session connected!
+2016-02-29 04:52:29,266 [12512] INFO  ReadOnlyServer - Session: d72bda9f-9e98-41fb-932c-892b7c99aa75/127.0.0.1:4965
+This session was closed for ClientClosing!
+2016-02-29 04:52:29,266 [9208] INFO  WriteOnlyServer - Session: 60d34fae-bbdb-4451-8137-6aff60286159/127.0.0.1:4964
+This session was closed for ClientClosing!
+2016-02-29 05:11:58,749 [3700] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 05:11:58,751 [3700] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 05:12:03,579 [12396] INFO  ReadOnlyServer - Session: 11f5a163-7c39-4610-8e92-972db651d91b/127.0.0.1:6679
+A new session connected!
+2016-02-29 05:12:03,579 [13328] INFO  WriteOnlyServer - Session: e1d4155a-be5e-4418-b80e-9f92051a6e18/127.0.0.1:6678
+A new session connected!
+2016-02-29 05:12:12,633 [15616] INFO  ReadOnlyServer - Session: 11f5a163-7c39-4610-8e92-972db651d91b/127.0.0.1:6679
+This session was closed for ApplicationError!
+2016-02-29 05:12:27,991 [15616] INFO  WriteOnlyServer - Session: e1d4155a-be5e-4418-b80e-9f92051a6e18/127.0.0.1:6678
+This session was closed for SocketError!
+2016-02-29 05:13:15,812 [12604] INFO  WriteOnlyServer - Session: fb225781-fc7f-4557-b33b-2d47cf17eb1d/127.0.0.1:6886
+A new session connected!
+2016-02-29 05:13:15,814 [14348] INFO  ReadOnlyServer - Session: 3d2c5f13-2bfa-4246-9806-4f111ab72122/127.0.0.1:6887
+A new session connected!
+2016-02-29 05:14:03,972 [11596] INFO  WriteOnlyServer - Session: fb225781-fc7f-4557-b33b-2d47cf17eb1d/127.0.0.1:6886
+This session was closed for SocketError!
+2016-02-29 05:14:03,972 [7472] INFO  ReadOnlyServer - Session: 3d2c5f13-2bfa-4246-9806-4f111ab72122/127.0.0.1:6887
+This session was closed for ClientClosing!
+2016-02-29 05:20:02,224 [14480] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 05:20:02,226 [14480] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 05:20:06,698 [10176] INFO  ReadOnlyServer - Session: 6c0c222c-0eec-4474-b57e-506f334ac03b/127.0.0.1:7649
+A new session connected!
+2016-02-29 05:20:06,698 [13244] INFO  WriteOnlyServer - Session: 34e537a1-993d-4dfb-8451-287391864ee2/127.0.0.1:7648
+A new session connected!
+2016-02-29 05:20:33,327 [8748] INFO  WriteOnlyServer - Session: 34e537a1-993d-4dfb-8451-287391864ee2/127.0.0.1:7648
+This session was closed for ClientClosing!
+2016-02-29 05:20:33,327 [13444] INFO  ReadOnlyServer - Session: 6c0c222c-0eec-4474-b57e-506f334ac03b/127.0.0.1:7649
+This session was closed for ClientClosing!
+2016-02-29 05:22:02,980 [4492] INFO  WriteOnlyServer - Session: e24df8bb-d750-43d9-8b6b-89bc096226ec/127.0.0.1:7876
+A new session connected!
+2016-02-29 05:22:02,983 [4492] INFO  ReadOnlyServer - Session: a50eacb9-b5ea-4bb0-a279-7c3fab3aa89a/127.0.0.1:7877
+A new session connected!
+2016-02-29 05:23:25,604 [13620] INFO  ReadOnlyServer - Session: a50eacb9-b5ea-4bb0-a279-7c3fab3aa89a/127.0.0.1:7877
+This session was closed for ClientClosing!
+2016-02-29 05:23:25,604 [11724] INFO  WriteOnlyServer - Session: e24df8bb-d750-43d9-8b6b-89bc096226ec/127.0.0.1:7876
+This session was closed for SocketError!
+2016-02-29 05:25:31,172 [11828] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 05:25:31,173 [11828] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 05:25:35,827 [11680] INFO  ReadOnlyServer - Session: 7da06d8b-388e-406a-9fe9-80765059a6d2/127.0.0.1:8258
+A new session connected!
+2016-02-29 05:25:35,827 [13792] INFO  WriteOnlyServer - Session: 437ff98e-9c7f-45a3-9ddf-ce482676ec5e/127.0.0.1:8257
+A new session connected!
+2016-02-29 05:28:51,568 [13264] INFO  WriteOnlyServer - Session: 437ff98e-9c7f-45a3-9ddf-ce482676ec5e/127.0.0.1:8257
+This session was closed for SocketError!
+2016-02-29 05:28:51,568 [13048] INFO  ReadOnlyServer - Session: 7da06d8b-388e-406a-9fe9-80765059a6d2/127.0.0.1:8258
+This session was closed for ClientClosing!
+2016-02-29 05:32:39,105 [17224] INFO  WriteOnlyServer - Session: cbec5edd-39aa-48bc-b151-63eaad4995ab/127.0.0.1:8889
+A new session connected!
+2016-02-29 05:32:39,108 [17224] INFO  ReadOnlyServer - Session: 54643176-93db-4b9c-add1-8317c38356c7/127.0.0.1:8890
+A new session connected!
+2016-02-29 05:37:57,287 [7148] INFO  WriteOnlyServer - Session: cbec5edd-39aa-48bc-b151-63eaad4995ab/127.0.0.1:8889
+This session was closed for ClientClosing!
+2016-02-29 05:37:57,287 [13264] INFO  ReadOnlyServer - Session: 54643176-93db-4b9c-add1-8317c38356c7/127.0.0.1:8890
+This session was closed for ClientClosing!
+2016-02-29 12:54:33,970 [17056] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 12:54:33,972 [17056] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 12:54:38,397 [17120] INFO  ReadOnlyServer - Session: a3cd7c83-f61a-4726-bf6a-4f17a426a091/127.0.0.1:13800
+A new session connected!
+2016-02-29 12:54:38,397 [7244] INFO  WriteOnlyServer - Session: 86136caf-fb29-468a-8ab1-dd448062697f/127.0.0.1:13799
+A new session connected!
+2016-02-29 12:57:44,920 [7044] INFO  WriteOnlyServer - Session: 86136caf-fb29-468a-8ab1-dd448062697f/127.0.0.1:13799
+This session was closed for SocketError!
+2016-02-29 12:57:44,920 [7324] INFO  ReadOnlyServer - Session: a3cd7c83-f61a-4726-bf6a-4f17a426a091/127.0.0.1:13800
+This session was closed for ClientClosing!
+2016-02-29 12:58:16,021 [5312] INFO  WriteOnlyServer - Session: ba20a3f2-133d-4fcd-b5f0-b656e3a1eb1e/127.0.0.1:14010
+A new session connected!
+2016-02-29 12:58:16,025 [5312] INFO  ReadOnlyServer - Session: d04efc47-244b-4861-a541-96664b48e88c/127.0.0.1:14011
+A new session connected!
+2016-02-29 12:59:31,728 [7324] INFO  WriteOnlyServer - Session: ba20a3f2-133d-4fcd-b5f0-b656e3a1eb1e/127.0.0.1:14010
+This session was closed for ClientClosing!
+2016-02-29 12:59:31,729 [7324] INFO  ReadOnlyServer - Session: d04efc47-244b-4861-a541-96664b48e88c/127.0.0.1:14011
+This session was closed for ClientClosing!
+2016-02-29 13:15:44,158 [7060] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 13:15:44,160 [7060] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 13:15:47,036 [9380] INFO  ReadOnlyServer - Session: d7f90bb7-c87d-47da-bf18-08255b55f559/127.0.0.1:1561
+A new session connected!
+2016-02-29 13:15:47,036 [9432] INFO  WriteOnlyServer - Session: 5ac4d6c5-8047-49f6-8fae-118e1f030206/127.0.0.1:1560
+A new session connected!
+2016-02-29 13:18:47,799 [14668] INFO  WriteOnlyServer - Session: 5ac4d6c5-8047-49f6-8fae-118e1f030206/127.0.0.1:1560
+This session was closed for SocketError!
+2016-02-29 13:18:47,800 [10544] INFO  ReadOnlyServer - Session: d7f90bb7-c87d-47da-bf18-08255b55f559/127.0.0.1:1561
+This session was closed for ClientClosing!
+2016-02-29 13:20:23,597 [16192] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 13:20:23,598 [16192] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 13:20:27,279 [13432] INFO  WriteOnlyServer - Session: b29919ab-b980-4044-a139-9a5623787ced/127.0.0.1:2001
+A new session connected!
+2016-02-29 13:20:27,279 [7720] INFO  ReadOnlyServer - Session: b4e3a6d2-04dd-4528-93ac-64811cf07c90/127.0.0.1:2002
+A new session connected!
+2016-02-29 13:22:07,867 [7880] INFO  ReadOnlyServer - Session: b4e3a6d2-04dd-4528-93ac-64811cf07c90/127.0.0.1:2002
+This session was closed for ClientClosing!
+2016-02-29 13:22:07,867 [14120] INFO  WriteOnlyServer - Session: b29919ab-b980-4044-a139-9a5623787ced/127.0.0.1:2001
+This session was closed for ClientClosing!
+2016-02-29 14:06:52,652 [10676] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 14:06:52,654 [10676] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 14:06:57,321 [6912] INFO  ReadOnlyServer - Session: 68012e5a-c519-494f-aa06-a928bb8ea020/127.0.0.1:5665
+A new session connected!
+2016-02-29 14:06:57,321 [1852] INFO  WriteOnlyServer - Session: 259def6e-e044-4701-979a-12420e8085a6/127.0.0.1:5664
+A new session connected!
+2016-02-29 14:08:37,427 [12900] INFO  ReadOnlyServer - Session: 68012e5a-c519-494f-aa06-a928bb8ea020/127.0.0.1:5665
+This session was closed for SocketError!
+2016-02-29 14:08:37,428 [10208] INFO  WriteOnlyServer - Session: 259def6e-e044-4701-979a-12420e8085a6/127.0.0.1:5664
+This session was closed for SocketError!
+2016-02-29 14:08:56,238 [11728] INFO  WriteOnlyServer - Session: b452e48d-cb95-4bb7-b081-570e244e11c6/127.0.0.1:5853
+A new session connected!
+2016-02-29 14:08:56,241 [11728] INFO  ReadOnlyServer - Session: 5531dbdd-8e96-41cb-916b-20e2174270c5/127.0.0.1:5854
+A new session connected!
+2016-02-29 14:20:00,249 [10208] INFO  WriteOnlyServer - Session: b452e48d-cb95-4bb7-b081-570e244e11c6/127.0.0.1:5853
+This session was closed for ClientClosing!
+2016-02-29 14:20:00,249 [14116] INFO  ReadOnlyServer - Session: 5531dbdd-8e96-41cb-916b-20e2174270c5/127.0.0.1:5854
+This session was closed for ClientClosing!
+2016-02-29 14:20:23,586 [16340] INFO  WriteOnlyServer - Session: 85a0a2e4-57f9-4a49-bd1e-eaf37104e471/127.0.0.1:6129
+A new session connected!
+2016-02-29 14:20:23,589 [16340] INFO  ReadOnlyServer - Session: 0b02f684-61ca-4e50-bc40-9274539fd932/127.0.0.1:6130
+A new session connected!
+2016-02-29 14:21:08,992 [5336] INFO  WriteOnlyServer - Session: 85a0a2e4-57f9-4a49-bd1e-eaf37104e471/127.0.0.1:6129
+This session was closed for ClientClosing!
+2016-02-29 14:21:08,993 [5336] INFO  ReadOnlyServer - Session: 0b02f684-61ca-4e50-bc40-9274539fd932/127.0.0.1:6130
+This session was closed for ClientClosing!
+2016-02-29 14:22:37,683 [10388] INFO  WriteOnlyServer - Session: e21219dc-87b4-4e73-8126-309e3986ef82/127.0.0.1:6229
+A new session connected!
+2016-02-29 14:22:37,686 [10388] INFO  ReadOnlyServer - Session: 058cb2f6-86b8-4782-855d-48dc5ee970cf/127.0.0.1:6230
+A new session connected!
+2016-02-29 14:22:57,522 [10208] INFO  WriteOnlyServer - Session: e21219dc-87b4-4e73-8126-309e3986ef82/127.0.0.1:6229
+This session was closed for ClientClosing!
+2016-02-29 14:22:57,523 [10208] INFO  ReadOnlyServer - Session: 058cb2f6-86b8-4782-855d-48dc5ee970cf/127.0.0.1:6230
+This session was closed for ClientClosing!
+2016-02-29 15:06:28,557 [5268] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 15:06:28,558 [5268] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 15:06:31,726 [4900] INFO  WriteOnlyServer - Session: 52485534-62a6-4119-b3bf-af280717275b/127.0.0.1:7264
+A new session connected!
+2016-02-29 15:06:31,726 [14508] INFO  ReadOnlyServer - Session: 2f8b6222-0e1e-4820-b422-334afb5f62de/127.0.0.1:7265
+A new session connected!
+2016-02-29 15:08:18,796 [6500] INFO  ReadOnlyServer - Session: 2f8b6222-0e1e-4820-b422-334afb5f62de/127.0.0.1:7265
+This session was closed for ClientClosing!
+2016-02-29 15:08:18,796 [13384] INFO  WriteOnlyServer - Session: 52485534-62a6-4119-b3bf-af280717275b/127.0.0.1:7264
+This session was closed for ClientClosing!
+2016-02-29 16:47:44,707 [8168] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 16:47:44,708 [8168] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 16:47:51,913 [10792] INFO  ReadOnlyServer - Session: 3367a2f7-482b-4a5c-a1f1-e6595ac44340/127.0.0.1:6172
+A new session connected!
+2016-02-29 16:47:51,913 [13940] INFO  WriteOnlyServer - Session: 926b229e-c3d3-4921-9be1-6c8f4f3cb458/127.0.0.1:6171
+A new session connected!
+2016-02-29 16:48:47,140 [8688] INFO  WriteOnlyServer - Session: 926b229e-c3d3-4921-9be1-6c8f4f3cb458/127.0.0.1:6171
+This session was closed for ClientClosing!
+2016-02-29 16:48:47,141 [4464] INFO  ReadOnlyServer - Session: 3367a2f7-482b-4a5c-a1f1-e6595ac44340/127.0.0.1:6172
+This session was closed for ClientClosing!
+2016-02-29 16:48:54,267 [17028] INFO  WriteOnlyServer - Session: fee30d4f-3fce-4736-b91f-8cf792c171cc/127.0.0.1:6301
+A new session connected!
+2016-02-29 16:48:54,269 [17028] INFO  ReadOnlyServer - Session: 1f83594e-e508-47f1-b15a-58c65046eb5b/127.0.0.1:6302
+A new session connected!
+2016-02-29 16:53:04,935 [4464] INFO  ReadOnlyServer - Session: 1f83594e-e508-47f1-b15a-58c65046eb5b/127.0.0.1:6302
+This session was closed for SocketError!
+2016-02-29 16:53:04,936 [16440] INFO  WriteOnlyServer - Session: fee30d4f-3fce-4736-b91f-8cf792c171cc/127.0.0.1:6301
+This session was closed for SocketError!
+2016-02-29 16:53:12,002 [3336] INFO  WriteOnlyServer - Session: 9c9bacd7-0835-4fa5-bd3f-db0b3153373a/127.0.0.1:6455
+A new session connected!
+2016-02-29 16:53:12,005 [6812] INFO  ReadOnlyServer - Session: 5ffdd996-9420-4f0c-af8b-e8d10962dbd4/127.0.0.1:6456
+A new session connected!
+2016-02-29 16:54:39,675 [8688] INFO  ReadOnlyServer - Session: 5ffdd996-9420-4f0c-af8b-e8d10962dbd4/127.0.0.1:6456
+This session was closed for ClientClosing!
+2016-02-29 16:54:39,675 [4464] INFO  WriteOnlyServer - Session: 9c9bacd7-0835-4fa5-bd3f-db0b3153373a/127.0.0.1:6455
+This session was closed for ClientClosing!
+2016-02-29 16:55:30,153 [16988] INFO  WriteOnlyServer - Session: f4163ab4-f37c-419e-b686-6030f3c3a34d/127.0.0.1:6655
+A new session connected!
+2016-02-29 16:55:30,156 [1104] INFO  ReadOnlyServer - Session: a0319935-6f55-47bf-bdf5-6f8ff3e8c251/127.0.0.1:6656
+A new session connected!
+2016-02-29 16:56:56,486 [7852] INFO  WriteOnlyServer - Session: 92868928-5fcd-43fa-85f9-ac1eea6d1463/127.0.0.1:6845
+A new session connected!
+2016-02-29 16:56:56,489 [13932] INFO  ReadOnlyServer - Session: cbdc844a-9a29-4364-b0e7-394b4f75bb43/127.0.0.1:6846
+A new session connected!
+2016-02-29 16:57:05,800 [4464] INFO  ReadOnlyServer - Session: a0319935-6f55-47bf-bdf5-6f8ff3e8c251/127.0.0.1:6656
+This session was closed for SocketError!
+2016-02-29 16:57:05,810 [8688] INFO  WriteOnlyServer - Session: f4163ab4-f37c-419e-b686-6030f3c3a34d/127.0.0.1:6655
+This session was closed for SocketError!
+2016-02-29 16:57:12,895 [15424] INFO  WriteOnlyServer - Session: 92868928-5fcd-43fa-85f9-ac1eea6d1463/127.0.0.1:6845
+This session was closed for ClientClosing!
+2016-02-29 16:57:12,895 [8672] INFO  ReadOnlyServer - Session: cbdc844a-9a29-4364-b0e7-394b4f75bb43/127.0.0.1:6846
+This session was closed for ClientClosing!
+2016-02-29 16:57:24,562 [13932] INFO  WriteOnlyServer - Session: 5bf2ccdb-3288-44a5-8a1c-2b692d9750f6/127.0.0.1:6964
+A new session connected!
+2016-02-29 16:57:24,564 [13932] INFO  ReadOnlyServer - Session: 14a91c22-7374-4d63-aa47-f205456ca047/127.0.0.1:6965
+A new session connected!
+2016-02-29 16:59:01,488 [16440] INFO  ReadOnlyServer - Session: 14a91c22-7374-4d63-aa47-f205456ca047/127.0.0.1:6965
+This session was closed for ClientClosing!
+2016-02-29 16:59:01,488 [8672] INFO  WriteOnlyServer - Session: 5bf2ccdb-3288-44a5-8a1c-2b692d9750f6/127.0.0.1:6964
+This session was closed for ClientClosing!
+2016-02-29 17:16:33,444 [3440] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 17:16:33,451 [3440] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 17:16:38,560 [2812] INFO  WriteOnlyServer - Session: 9a320873-b401-41ad-b96d-2fa9663e32f9/127.0.0.1:8428
+A new session connected!
+2016-02-29 17:16:38,560 [8532] INFO  ReadOnlyServer - Session: 883f10ee-fb8e-4ddb-a124-00c96fade6ac/127.0.0.1:8429
+A new session connected!
+2016-02-29 17:51:41,193 [15376] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 17:51:41,195 [15376] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 17:52:11,134 [5728] INFO  WriteOnlyServer - Session: dfd2ca96-6b8c-417c-90ea-43c7fe909219/127.0.0.1:10559
+A new session connected!
+2016-02-29 17:52:11,135 [16912] INFO  ReadOnlyServer - Session: 037b86ac-6796-43f7-84ef-0369d31b887b/127.0.0.1:10560
+A new session connected!
+2016-02-29 17:52:56,556 [8560] INFO  WriteOnlyServer - Session: dfd2ca96-6b8c-417c-90ea-43c7fe909219/127.0.0.1:10559
+This session was closed for SocketError!
+2016-02-29 17:52:56,557 [12344] INFO  ReadOnlyServer - Session: 037b86ac-6796-43f7-84ef-0369d31b887b/127.0.0.1:10560
+This session was closed for ClientClosing!
+2016-02-29 17:53:04,866 [3692] INFO  WriteOnlyServer - Session: b9aa109c-deb5-4ac7-84f4-a12b9337dbc2/127.0.0.1:10676
+A new session connected!
+2016-02-29 17:53:04,889 [3692] INFO  ReadOnlyServer - Session: 40df61f7-884e-499a-a038-6746c06894be/127.0.0.1:10677
+A new session connected!
+2016-02-29 17:57:24,031 [12344] INFO  WriteOnlyServer - Session: b9aa109c-deb5-4ac7-84f4-a12b9337dbc2/127.0.0.1:10676
+This session was closed for SocketError!
+2016-02-29 17:57:24,031 [10516] INFO  ReadOnlyServer - Session: 40df61f7-884e-499a-a038-6746c06894be/127.0.0.1:10677
+This session was closed for ClientClosing!
+2016-02-29 17:59:47,944 [7468] INFO  WriteOnlyServer - Session: 1bf3daf2-0e0a-4274-9424-792ed1f75dbb/127.0.0.1:10970
+A new session connected!
+2016-02-29 17:59:47,944 [10800] INFO  ReadOnlyServer - Session: 273c65e4-9093-44a6-96ea-4ee59e604b20/127.0.0.1:10971
+A new session connected!
+2016-02-29 17:59:49,572 [10896] INFO  WriteOnlyServer - Session: 1bf3daf2-0e0a-4274-9424-792ed1f75dbb/127.0.0.1:10970
+This session was closed for ClientClosing!
+2016-02-29 17:59:49,572 [12344] INFO  ReadOnlyServer - Session: 273c65e4-9093-44a6-96ea-4ee59e604b20/127.0.0.1:10971
+This session was closed for ClientClosing!
+2016-02-29 18:01:35,087 [10800] INFO  WriteOnlyServer - Session: f342c6cd-25e7-40d3-898e-33276f2f1447/127.0.0.1:11036
+A new session connected!
+2016-02-29 18:01:35,087 [4704] INFO  ReadOnlyServer - Session: c2a48403-ea5e-4862-923f-35461e42579a/127.0.0.1:11037
+A new session connected!
+2016-02-29 18:01:36,663 [10896] INFO  WriteOnlyServer - Session: f342c6cd-25e7-40d3-898e-33276f2f1447/127.0.0.1:11036
+This session was closed for ClientClosing!
+2016-02-29 18:01:36,664 [12344] INFO  ReadOnlyServer - Session: c2a48403-ea5e-4862-923f-35461e42579a/127.0.0.1:11037
+This session was closed for ClientClosing!
+2016-02-29 18:01:55,062 [7372] INFO  WriteOnlyServer - Session: ef083df0-af07-4445-9b95-9ab2146669f5/127.0.0.1:11048
+A new session connected!
+2016-02-29 18:01:55,062 [8592] INFO  ReadOnlyServer - Session: b9d7a8f4-5b19-4715-8520-7227ef11d26a/127.0.0.1:11049
+A new session connected!
+2016-02-29 18:01:56,685 [14816] INFO  WriteOnlyServer - Session: ef083df0-af07-4445-9b95-9ab2146669f5/127.0.0.1:11048
+This session was closed for ClientClosing!
+2016-02-29 18:01:56,686 [8560] INFO  ReadOnlyServer - Session: b9d7a8f4-5b19-4715-8520-7227ef11d26a/127.0.0.1:11049
+This session was closed for ClientClosing!
+2016-02-29 18:02:13,310 [7372] INFO  WriteOnlyServer - Session: c4b62f53-6673-4861-a2f4-b331f1bdc221/127.0.0.1:11136
+A new session connected!
+2016-02-29 18:02:13,311 [16924] INFO  ReadOnlyServer - Session: 73e31a25-29d6-4216-8d47-a3f4e2b9b82c/127.0.0.1:11137
+A new session connected!
+2016-02-29 18:02:15,038 [14816] INFO  WriteOnlyServer - Session: c4b62f53-6673-4861-a2f4-b331f1bdc221/127.0.0.1:11136
+This session was closed for ClientClosing!
+2016-02-29 18:02:15,039 [8560] INFO  ReadOnlyServer - Session: 73e31a25-29d6-4216-8d47-a3f4e2b9b82c/127.0.0.1:11137
+This session was closed for ClientClosing!
+2016-02-29 18:03:26,275 [16924] INFO  WriteOnlyServer - Session: 150fe6bd-8100-4458-a3a6-ad79df671dd2/127.0.0.1:11202
+A new session connected!
+2016-02-29 18:03:26,275 [4612] INFO  ReadOnlyServer - Session: ddcf83e2-2607-42b1-80b7-04036da583fd/127.0.0.1:11203
+A new session connected!
+2016-02-29 18:03:27,934 [10516] INFO  WriteOnlyServer - Session: 150fe6bd-8100-4458-a3a6-ad79df671dd2/127.0.0.1:11202
+This session was closed for ClientClosing!
+2016-02-29 18:03:27,935 [14816] INFO  ReadOnlyServer - Session: ddcf83e2-2607-42b1-80b7-04036da583fd/127.0.0.1:11203
+This session was closed for ClientClosing!
+2016-02-29 18:03:45,524 [7444] INFO  WriteOnlyServer - Session: 207cab00-b2fa-422b-b8a7-3c0a8adb0c85/127.0.0.1:11276
+A new session connected!
+2016-02-29 18:03:45,526 [10536] INFO  ReadOnlyServer - Session: 1e65c566-22b2-4575-bcdc-cc02f32c8878/127.0.0.1:11277
+A new session connected!
+2016-02-29 18:03:47,336 [12344] INFO  WriteOnlyServer - Session: 207cab00-b2fa-422b-b8a7-3c0a8adb0c85/127.0.0.1:11276
+This session was closed for ClientClosing!
+2016-02-29 18:03:47,337 [14816] INFO  ReadOnlyServer - Session: 1e65c566-22b2-4575-bcdc-cc02f32c8878/127.0.0.1:11277
+This session was closed for ClientClosing!
+2016-02-29 18:07:08,081 [10372] INFO  WriteOnlyServer - Session: 17430a1e-090a-474b-b19b-2ef7dde6faa4/127.0.0.1:11475
+A new session connected!
+2016-02-29 18:07:08,081 [15964] INFO  ReadOnlyServer - Session: ef569f97-d59e-4009-9a6f-6f17b137290a/127.0.0.1:11476
+A new session connected!
+2016-02-29 18:07:57,181 [8560] INFO  WriteOnlyServer - Session: 17430a1e-090a-474b-b19b-2ef7dde6faa4/127.0.0.1:11475
+This session was closed for SocketError!
+2016-02-29 18:07:57,181 [8560] INFO  ReadOnlyServer - Session: ef569f97-d59e-4009-9a6f-6f17b137290a/127.0.0.1:11476
+This session was closed for SocketError!
+2016-02-29 18:08:10,219 [6356] INFO  WriteOnlyServer - Session: 1a6e7b34-da8e-45d7-8a12-a9aa43176c9c/127.0.0.1:11661
+A new session connected!
+2016-02-29 18:08:10,219 [7644] INFO  ReadOnlyServer - Session: 841c4b8a-92d8-4c4f-b6a2-687f3c9a66ba/127.0.0.1:11662
+A new session connected!
+2016-02-29 18:08:22,737 [10516] INFO  ReadOnlyServer - Session: 841c4b8a-92d8-4c4f-b6a2-687f3c9a66ba/127.0.0.1:11662
+This session was closed for SocketError!
+2016-02-29 18:08:22,737 [10896] INFO  WriteOnlyServer - Session: 1a6e7b34-da8e-45d7-8a12-a9aa43176c9c/127.0.0.1:11661
+This session was closed for SocketError!
+2016-02-29 18:10:57,006 [7644] INFO  WriteOnlyServer - Session: 0709eab3-bfa8-445e-85d3-957bb850acc0/127.0.0.1:11833
+A new session connected!
+2016-02-29 18:10:57,006 [7672] INFO  ReadOnlyServer - Session: f1108481-e011-4ba9-b6a9-0209114b33d0/127.0.0.1:11834
+A new session connected!
+2016-02-29 18:10:58,585 [8560] INFO  WriteOnlyServer - Session: 0709eab3-bfa8-445e-85d3-957bb850acc0/127.0.0.1:11833
+This session was closed for ClientClosing!
+2016-02-29 18:10:58,586 [12344] INFO  ReadOnlyServer - Session: f1108481-e011-4ba9-b6a9-0209114b33d0/127.0.0.1:11834
+This session was closed for ClientClosing!
+2016-02-29 18:11:16,918 [7672] INFO  WriteOnlyServer - Session: 75720cb8-d540-477e-b02e-a663261f7eda/127.0.0.1:11844
+A new session connected!
+2016-02-29 18:11:16,918 [8464] INFO  ReadOnlyServer - Session: bc9a0eb6-37f7-45d1-a4da-4b59a70ad344/127.0.0.1:11845
+A new session connected!
+2016-02-29 18:11:18,508 [10516] INFO  WriteOnlyServer - Session: 75720cb8-d540-477e-b02e-a663261f7eda/127.0.0.1:11844
+This session was closed for ClientClosing!
+2016-02-29 18:11:18,509 [8560] INFO  ReadOnlyServer - Session: bc9a0eb6-37f7-45d1-a4da-4b59a70ad344/127.0.0.1:11845
+This session was closed for ClientClosing!
+2016-02-29 18:11:38,276 [8464] INFO  WriteOnlyServer - Session: 4393fc6b-5137-4d21-8ead-3b65b99f0b6d/127.0.0.1:11861
+A new session connected!
+2016-02-29 18:11:38,277 [14428] INFO  ReadOnlyServer - Session: 2307351e-b87b-4adf-ad49-981ade5a8525/127.0.0.1:11862
+A new session connected!
+2016-02-29 18:11:40,970 [14816] INFO  WriteOnlyServer - Session: 4393fc6b-5137-4d21-8ead-3b65b99f0b6d/127.0.0.1:11861
+This session was closed for ClientClosing!
+2016-02-29 18:11:40,971 [10896] INFO  ReadOnlyServer - Session: 2307351e-b87b-4adf-ad49-981ade5a8525/127.0.0.1:11862
+This session was closed for ClientClosing!
+2016-02-29 18:14:08,136 [14428] INFO  WriteOnlyServer - Session: ef2f776e-50f7-43bd-9bec-dc3ea897007f/127.0.0.1:11985
+A new session connected!
+2016-02-29 18:14:08,138 [14428] INFO  ReadOnlyServer - Session: b369fe7e-6892-4e6d-89b4-5f5f5099b3db/127.0.0.1:11986
+A new session connected!
+2016-02-29 18:14:14,177 [10516] INFO  WriteOnlyServer - Session: ef2f776e-50f7-43bd-9bec-dc3ea897007f/127.0.0.1:11985
+This session was closed for SocketError!
+2016-02-29 18:14:14,177 [12344] INFO  ReadOnlyServer - Session: b369fe7e-6892-4e6d-89b4-5f5f5099b3db/127.0.0.1:11986
+This session was closed for ClientClosing!
+2016-02-29 18:14:24,369 [14428] INFO  WriteOnlyServer - Session: eb7d98ef-2295-4abc-b10c-764811f243d2/127.0.0.1:12065
+A new session connected!
+2016-02-29 18:14:24,369 [11332] INFO  ReadOnlyServer - Session: 8a3470e8-2ccc-4a4a-96ab-68e261be4505/127.0.0.1:12066
+A new session connected!
+2016-02-29 18:14:26,923 [14816] INFO  WriteOnlyServer - Session: eb7d98ef-2295-4abc-b10c-764811f243d2/127.0.0.1:12065
+This session was closed for ClientClosing!
+2016-02-29 18:14:26,924 [10896] INFO  ReadOnlyServer - Session: 8a3470e8-2ccc-4a4a-96ab-68e261be4505/127.0.0.1:12066
+This session was closed for ClientClosing!
+2016-02-29 18:15:12,539 [11332] INFO  WriteOnlyServer - Session: 771d05d4-4800-4fb6-81d4-9316c67d525f/127.0.0.1:12158
+A new session connected!
+2016-02-29 18:15:12,540 [13204] INFO  ReadOnlyServer - Session: e9a096ff-a2bb-4982-a0b1-1c44e288e740/127.0.0.1:12159
+A new session connected!
+2016-02-29 18:15:15,213 [8560] INFO  WriteOnlyServer - Session: 771d05d4-4800-4fb6-81d4-9316c67d525f/127.0.0.1:12158
+This session was closed for ClientClosing!
+2016-02-29 18:15:15,214 [10896] INFO  ReadOnlyServer - Session: e9a096ff-a2bb-4982-a0b1-1c44e288e740/127.0.0.1:12159
+This session was closed for ClientClosing!
+2016-02-29 18:16:04,623 [13204] INFO  WriteOnlyServer - Session: 0006a975-dba7-413e-8fb7-2480ea37ad2b/127.0.0.1:12306
+A new session connected!
+2016-02-29 18:16:04,624 [7828] INFO  ReadOnlyServer - Session: 3d22344c-551e-4ccc-879b-ad773fb40f01/127.0.0.1:12307
+A new session connected!
+2016-02-29 18:16:07,457 [10896] INFO  WriteOnlyServer - Session: 0006a975-dba7-413e-8fb7-2480ea37ad2b/127.0.0.1:12306
+This session was closed for ClientClosing!
+2016-02-29 18:16:07,458 [8560] INFO  ReadOnlyServer - Session: 3d22344c-551e-4ccc-879b-ad773fb40f01/127.0.0.1:12307
+This session was closed for ClientClosing!
+2016-02-29 18:16:21,842 [7828] INFO  WriteOnlyServer - Session: db13bf5f-3a55-4286-b52f-128ae706ad4f/127.0.0.1:12423
+A new session connected!
+2016-02-29 18:16:21,842 [7288] INFO  ReadOnlyServer - Session: 78c1155b-3533-4c25-a50a-5cd74ba0dacd/127.0.0.1:12424
+A new session connected!
+2016-02-29 18:16:24,496 [7808] INFO  WriteOnlyServer - Session: db13bf5f-3a55-4286-b52f-128ae706ad4f/127.0.0.1:12423
+This session was closed for ClientClosing!
+2016-02-29 18:16:24,497 [8560] INFO  ReadOnlyServer - Session: 78c1155b-3533-4c25-a50a-5cd74ba0dacd/127.0.0.1:12424
+This session was closed for ClientClosing!
+2016-02-29 18:17:22,462 [7288] INFO  WriteOnlyServer - Session: 45466203-84f9-4d09-a8a9-cceedbbafdb6/127.0.0.1:12566
+A new session connected!
+2016-02-29 18:17:22,462 [13552] INFO  ReadOnlyServer - Session: c6196c44-b334-478c-bdd4-871547f1deef/127.0.0.1:12567
+A new session connected!
+2016-02-29 18:17:25,089 [8560] INFO  WriteOnlyServer - Session: 45466203-84f9-4d09-a8a9-cceedbbafdb6/127.0.0.1:12566
+This session was closed for ClientClosing!
+2016-02-29 18:17:25,091 [10516] INFO  ReadOnlyServer - Session: c6196c44-b334-478c-bdd4-871547f1deef/127.0.0.1:12567
+This session was closed for ClientClosing!
+2016-02-29 18:17:41,708 [13552] INFO  WriteOnlyServer - Session: 1f06b175-7f87-4327-8953-c849b112551f/127.0.0.1:12664
+A new session connected!
+2016-02-29 18:17:41,708 [11836] INFO  ReadOnlyServer - Session: a93d274d-c7f8-4a59-bf57-e773d625979f/127.0.0.1:12665
+A new session connected!
+2016-02-29 18:17:44,335 [12344] INFO  WriteOnlyServer - Session: 1f06b175-7f87-4327-8953-c849b112551f/127.0.0.1:12664
+This session was closed for ClientClosing!
+2016-02-29 18:17:44,336 [7808] INFO  ReadOnlyServer - Session: a93d274d-c7f8-4a59-bf57-e773d625979f/127.0.0.1:12665
+This session was closed for ClientClosing!
+2016-02-29 18:22:33,742 [11836] INFO  WriteOnlyServer - Session: 16cb8f36-d18d-4f38-a6ee-0d3490dc7959/127.0.0.1:12842
+A new session connected!
+2016-02-29 18:22:33,742 [10156] INFO  ReadOnlyServer - Session: 467e0745-4d0e-42b4-ba23-59f9e2312979/127.0.0.1:12843
+A new session connected!
+2016-02-29 18:22:36,279 [8560] INFO  WriteOnlyServer - Session: 16cb8f36-d18d-4f38-a6ee-0d3490dc7959/127.0.0.1:12842
+This session was closed for ClientClosing!
+2016-02-29 18:22:36,280 [14816] INFO  ReadOnlyServer - Session: 467e0745-4d0e-42b4-ba23-59f9e2312979/127.0.0.1:12843
+This session was closed for ClientClosing!
+2016-02-29 18:22:36,307 [11836] INFO  WriteOnlyServer - Session: a875c7a3-14a9-45d1-b20d-5d2ffbf68a11/127.0.0.1:12844
+A new session connected!
+2016-02-29 18:22:36,307 [10156] INFO  ReadOnlyServer - Session: fa9060a1-ff18-474c-9264-29cecbb129f7/127.0.0.1:12845
+A new session connected!
+2016-02-29 18:22:37,936 [10516] INFO  ReadOnlyServer - Session: fa9060a1-ff18-474c-9264-29cecbb129f7/127.0.0.1:12845
+This session was closed for ClientClosing!
+2016-02-29 18:22:37,936 [8560] INFO  WriteOnlyServer - Session: a875c7a3-14a9-45d1-b20d-5d2ffbf68a11/127.0.0.1:12844
+This session was closed for ClientClosing!
+2016-02-29 18:22:37,945 [11836] INFO  WriteOnlyServer - Session: 4840d028-3861-4bfb-9263-2f05b095a0a6/127.0.0.1:12846
+A new session connected!
+2016-02-29 18:22:37,945 [10156] INFO  ReadOnlyServer - Session: 55837107-695c-4f8d-9453-cde2aaab36dc/127.0.0.1:12847
+A new session connected!
+2016-02-29 18:22:39,421 [8560] INFO  ReadOnlyServer - Session: 55837107-695c-4f8d-9453-cde2aaab36dc/127.0.0.1:12847
+This session was closed for ClientClosing!
+2016-02-29 18:22:39,421 [14816] INFO  WriteOnlyServer - Session: 4840d028-3861-4bfb-9263-2f05b095a0a6/127.0.0.1:12846
+This session was closed for ClientClosing!
+2016-02-29 18:22:39,455 [11836] INFO  WriteOnlyServer - Session: 158e0420-bf9c-4c5e-8332-bd02105608de/127.0.0.1:12848
+A new session connected!
+2016-02-29 18:22:39,455 [10156] INFO  ReadOnlyServer - Session: 03a3f7e6-3be1-4ecd-8c25-34a6fdfd6207/127.0.0.1:12849
+A new session connected!
+2016-02-29 18:22:40,841 [10516] INFO  ReadOnlyServer - Session: 03a3f7e6-3be1-4ecd-8c25-34a6fdfd6207/127.0.0.1:12849
+This session was closed for ClientClosing!
+2016-02-29 18:22:40,841 [14816] INFO  WriteOnlyServer - Session: 158e0420-bf9c-4c5e-8332-bd02105608de/127.0.0.1:12848
+This session was closed for ClientClosing!
+2016-02-29 18:22:40,872 [11836] INFO  WriteOnlyServer - Session: c9d7f8f6-6757-4817-9633-dad3809d0cfa/127.0.0.1:12850
+A new session connected!
+2016-02-29 18:22:40,873 [10156] INFO  ReadOnlyServer - Session: b0225b78-672e-4e33-87be-58b7c2a5c8d1/127.0.0.1:12851
+A new session connected!
+2016-02-29 18:22:42,183 [8560] INFO  ReadOnlyServer - Session: b0225b78-672e-4e33-87be-58b7c2a5c8d1/127.0.0.1:12851
+This session was closed for ClientClosing!
+2016-02-29 18:22:42,183 [14816] INFO  WriteOnlyServer - Session: c9d7f8f6-6757-4817-9633-dad3809d0cfa/127.0.0.1:12850
+This session was closed for ClientClosing!
+2016-02-29 18:23:25,199 [10156] INFO  WriteOnlyServer - Session: 7b3522e4-e112-40be-8fd5-d98afc7c6d77/127.0.0.1:12870
+A new session connected!
+2016-02-29 18:23:25,199 [3700] INFO  ReadOnlyServer - Session: 422dbf96-b496-4c5c-80a7-7cff125e0010/127.0.0.1:12871
+A new session connected!
+2016-02-29 18:23:26,961 [10516] INFO  WriteOnlyServer - Session: 7b3522e4-e112-40be-8fd5-d98afc7c6d77/127.0.0.1:12870
+This session was closed for ClientClosing!
+2016-02-29 18:23:26,962 [10896] INFO  ReadOnlyServer - Session: 422dbf96-b496-4c5c-80a7-7cff125e0010/127.0.0.1:12871
+This session was closed for ClientClosing!
+2016-02-29 18:23:53,762 [15820] INFO  WriteOnlyServer - Session: 133978d7-17d1-4a66-9e9e-f9ea74655287/127.0.0.1:12902
+A new session connected!
+2016-02-29 18:23:53,762 [16652] INFO  ReadOnlyServer - Session: b5415748-5fdd-458b-88cd-39f9d1a7a7bb/127.0.0.1:12903
+A new session connected!
+2016-02-29 18:23:56,293 [7808] INFO  WriteOnlyServer - Session: 133978d7-17d1-4a66-9e9e-f9ea74655287/127.0.0.1:12902
+This session was closed for ClientClosing!
+2016-02-29 18:23:56,294 [10516] INFO  ReadOnlyServer - Session: b5415748-5fdd-458b-88cd-39f9d1a7a7bb/127.0.0.1:12903
+This session was closed for ClientClosing!
+2016-02-29 18:48:05,842 [2892] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 18:48:05,844 [2892] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 18:48:14,583 [15744] INFO  WriteOnlyServer - Session: 8797bf9e-aec8-4c5c-8092-1fbc34e89e00/127.0.0.1:14432
+A new session connected!
+2016-02-29 18:48:14,583 [11040] INFO  ReadOnlyServer - Session: fcbc85af-5434-42a2-a801-d31059d70154/127.0.0.1:14433
+A new session connected!
+2016-02-29 18:49:09,461 [12660] INFO  ReadOnlyServer - Session: fcbc85af-5434-42a2-a801-d31059d70154/127.0.0.1:14433
+This session was closed for ClientClosing!
+2016-02-29 18:49:09,461 [16072] INFO  WriteOnlyServer - Session: 8797bf9e-aec8-4c5c-8092-1fbc34e89e00/127.0.0.1:14432
+This session was closed for SocketError!
+2016-02-29 21:48:11,135 [14296] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 21:48:11,137 [14296] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 21:48:16,848 [12180] INFO  WriteOnlyServer - Session: 0c710c90-62d0-484c-9b50-74a081e03086/127.0.0.1:7704
+A new session connected!
+2016-02-29 21:48:16,848 [15964] INFO  ReadOnlyServer - Session: ebdfce83-cd85-4781-b035-d54a4822e77c/127.0.0.1:7705
+A new session connected!
+2016-02-29 21:56:40,915 [15464] INFO  WriteOnlyServer - Session: 0c710c90-62d0-484c-9b50-74a081e03086/127.0.0.1:7704
+This session was closed for SocketError!
+2016-02-29 21:56:40,915 [9232] INFO  ReadOnlyServer - Session: ebdfce83-cd85-4781-b035-d54a4822e77c/127.0.0.1:7705
+This session was closed for ClientClosing!
+2016-02-29 21:59:15,891 [9596] INFO  WriteOnlyServer - Session: bef12690-460d-48a0-8ad6-aebbdfc6973b/127.0.0.1:7928
+A new session connected!
+2016-02-29 21:59:15,893 [4772] INFO  ReadOnlyServer - Session: e122bed8-382b-4602-842d-8ab4cf481494/127.0.0.1:7929
+A new session connected!
+2016-02-29 22:00:48,200 [5580] INFO  WriteOnlyServer - Session: bef12690-460d-48a0-8ad6-aebbdfc6973b/127.0.0.1:7928
+This session was closed for SocketError!
+2016-02-29 22:00:48,200 [15464] INFO  ReadOnlyServer - Session: e122bed8-382b-4602-842d-8ab4cf481494/127.0.0.1:7929
+This session was closed for ClientClosing!
+2016-02-29 22:11:13,338 [14296] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been stopped!
+2016-02-29 22:11:13,339 [14296] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been stopped!
+2016-02-29 23:30:36,380 [5384] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 23:30:36,381 [5384] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 23:30:40,246 [16364] INFO  WriteOnlyServer - Session: 86226f7d-f9a8-49fc-935b-dacdb171cf77/127.0.0.1:11326
+A new session connected!
+2016-02-29 23:30:40,246 [16108] INFO  ReadOnlyServer - Session: b5f42fcd-bba6-4c33-be48-0700e4673b5a/127.0.0.1:11327
+A new session connected!
+2016-02-29 23:37:17,456 [4884] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 23:37:17,457 [4884] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 23:37:22,282 [8196] INFO  WriteOnlyServer - Session: ab5c32ce-b605-4b3a-9c2f-daadaa13da6c/127.0.0.1:11459
+A new session connected!
+2016-02-29 23:37:22,282 [8432] INFO  ReadOnlyServer - Session: ea40eb95-2b22-40d0-8360-9885c04c2ff4/127.0.0.1:11460
+A new session connected!
+2016-02-29 23:41:51,316 [8408] INFO  WriteOnlyServer - Session: ab5c32ce-b605-4b3a-9c2f-daadaa13da6c/127.0.0.1:11459
+This session was closed for SocketError!
+2016-02-29 23:41:51,316 [9628] INFO  ReadOnlyServer - Session: ea40eb95-2b22-40d0-8360-9885c04c2ff4/127.0.0.1:11460
+This session was closed for SocketError!
+2016-02-29 23:42:50,616 [14556] INFO  ReadOnlyServer - The server instance ReadOnlyServer has been started!
+2016-02-29 23:42:50,618 [14556] INFO  WriteOnlyServer - The server instance WriteOnlyServer has been started!
+2016-02-29 23:42:57,313 [7664] INFO  WriteOnlyServer - Session: b842a274-c429-47b0-b1eb-6be5b74d8161/127.0.0.1:11590
+A new session connected!
+2016-02-29 23:42:57,313 [16128] INFO  ReadOnlyServer - Session: 1c7906a2-372a-489c-8bda-f79015afd22a/127.0.0.1:11591
+A new session connected!
+2016-02-29 23:51:10,059 [5096] INFO  WriteOnlyServer - Session: b842a274-c429-47b0-b1eb-6be5b74d8161/127.0.0.1:11590
+This session was closed for ClientClosing!
+2016-02-29 23:51:10,060 [13708] INFO  ReadOnlyServer - Session: 1c7906a2-372a-489c-8bda-f79015afd22a/127.0.0.1:11591
+This session was closed for ClientClosing!
+2016-02-29 23:52:03,305 [15940] INFO  WriteOnlyServer - Session: 900d5d7a-2c08-4b0a-9763-e4a3ee497edf/127.0.0.1:11741
+A new session connected!
+2016-02-29 23:52:03,307 [15940] INFO  ReadOnlyServer - Session: 0645a644-92d0-4740-8e2a-f472457d2a13/127.0.0.1:11742
+A new session connected!
+2016-02-29 23:54:47,930 [13620] INFO  WriteOnlyServer - Session: 900d5d7a-2c08-4b0a-9763-e4a3ee497edf/127.0.0.1:11741
+This session was closed for ClientClosing!
+2016-02-29 23:54:47,930 [13708] INFO  ReadOnlyServer - Session: 0645a644-92d0-4740-8e2a-f472457d2a13/127.0.0.1:11742
+This session was closed for ClientClosing!
+2016-02-29 23:55:23,444 [12336] INFO  WriteOnlyServer - Session: 3970738e-1c2d-4ba6-a177-a7e562fbb54b/127.0.0.1:11885
+A new session connected!
+2016-02-29 23:55:23,446 [12336] INFO  ReadOnlyServer - Session: b2ae676f-7420-48f0-bcc9-b9ec218de87b/127.0.0.1:11886
+A new session connected!
+2016-02-29 23:59:06,334 [13748] INFO  ReadOnlyServer - Session: b2ae676f-7420-48f0-bcc9-b9ec218de87b/127.0.0.1:11886
+This session was closed for ClientClosing!
+2016-02-29 23:59:06,335 [13620] INFO  WriteOnlyServer - Session: 3970738e-1c2d-4ba6-a177-a7e562fbb54b/127.0.0.1:11885
+This session was closed for SocketError!

@@ -60,7 +60,8 @@ namespace R54IN0.WPF.Test
             var maker = viewmodel.Maker = viewmodel.MakerList.Random();
             var measure = viewmodel.Measure = viewmodel.MeasureList.Random();
 
-            var inventory = viewmodel.Insert();
+            var invID = viewmodel.Insert();
+            var inventory = DataDirector.GetInstance().SearchInventory(invID);
 
             Assert.IsNotNull(inventory);
             Assert.AreEqual(inventory.Product, product);
@@ -80,7 +81,8 @@ namespace R54IN0.WPF.Test
             var maker = viewmodel.MakerText = "some maker";
             var measure = viewmodel.MeasureText = "some measure";
 
-            var inventory = viewmodel.Insert();
+            var invID = viewmodel.Insert();
+            var inventory = DataDirector.GetInstance().SearchInventory(invID);
 
             Assert.IsNotNull(inventory);
             Assert.AreEqual(inventory.Product, product);
@@ -103,7 +105,8 @@ namespace R54IN0.WPF.Test
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
 
-            var inventory = viewmodel.Insert();
+            var invID = viewmodel.Insert();
+            var inventory = DataDirector.GetInstance().SearchInventory(invID);
 
             Assert.IsNotNull(DataDirector.GetInstance().SearchInventory(inventory.ID));
             Assert.IsTrue(node.Root.Any(x => x.ObservableObjectID == inventory.ID));
@@ -120,7 +123,8 @@ namespace R54IN0.WPF.Test
             var viewmodel = new InventoryManagerViewModel(product);
             var name = viewmodel.Specification = "some specification";
 
-            var inventory = viewmodel.Insert();
+            var invID = viewmodel.Insert();
+            var inventory = DataDirector.GetInstance().SearchInventory(invID);
 
             Assert.IsTrue(inventoryStatusViewModel.GetDataGridItems().Any(x => x.ID == inventory.ID));
         }
@@ -158,7 +162,8 @@ namespace R54IN0.WPF.Test
             vm.Measure = null;
             string measure = vm.MeasureText = "new";
 
-            inv = vm.Update();
+            string invID = vm.Update();
+            inv = DataDirector.GetInstance().SearchInventory(invID);
 
             Assert.AreEqual(spec, inv.Specification);
             Assert.AreEqual(memo, inv.Memo);
@@ -177,7 +182,8 @@ namespace R54IN0.WPF.Test
             var maker = vm.Maker = vm.MakerList.Random();
             var measure = vm.Measure = vm.MeasureList.Random();
 
-            inv = vm.Update();
+            string invID = vm.Update();
+            inv = DataDirector.GetInstance().SearchInventory(invID);
 
             Assert.AreEqual(spec, inv.Specification);
             Assert.AreEqual(memo, inv.Memo);

@@ -59,7 +59,7 @@
     <Compile Include="Format\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol\ProtocolFormat.cs" />
-    <Compile Include="Protocol\ReceiveName.cs" />
+    <Compile Include="Protocol\ProtocolCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">

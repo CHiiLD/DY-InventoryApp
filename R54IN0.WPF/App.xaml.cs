@@ -16,12 +16,14 @@ namespace R54IN0.WPF
         {
             TreeViewNodeDirector.Destroy();
             DataDirector.Destroy();
+            MainWindowViewModel.Destory();
             base.OnExit(e);
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             BasicConfigurator.Configure();
+            //XmlConfigurator.Configure();
 
             Process thisProc = Process.GetCurrentProcess();
             if (Process.GetProcessesByName(thisProc.ProcessName).Length > 1)

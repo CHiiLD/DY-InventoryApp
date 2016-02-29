@@ -1,12 +1,50 @@
-﻿2016-02-29 05:12:12,602 [15616] ERROR ReadOnlyServer - R54IN0.Server.ReadOnlySession
-MySql.Data.MySqlClient.MySqlException (0x80004005): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ifnull((select sum(Quantity) from f598a505-d1a2-4039-a349-c3872070b60a where Inv' at line 1
-   위치: MySql.Data.MySqlClient.MySqlStream.ReadPacket()
-   위치: MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)
-   위치: MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)
-   위치: MySql.Data.MySqlClient.MySqlDataReader.NextResult()
-   위치: MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)
-   위치: R54IN0.Server.QueryValueCommand.Send(ReadOnlySession session, String sql, String formatName) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryValueCommand.cs:줄 40
-   위치: R54IN0.Server.QueryValueCommand.ExecuteCommand(ReadOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\QueryValueCommand.cs:줄 29
+﻿2016-03-01 00:29:18,536 [16460] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
+   위치: R54IN0.Server.UpdateCommand.InnfQuantityBroadCast(WriteOnlySession session, String invID, Int32 qty) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 140
+   위치: R54IN0.Server.WriteSessionCommandExtension.CalcInventoryFormatQty(IWriteSessionCommand session, Action`3 update, MySqlConnection conn, String type, String stoID, String invID) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\WriteSessionCommandExtension.cs:줄 99
+   위치: R54IN0.Server.InsertCommand.Insert(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 68
+   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 66
+   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 28
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
+2016-03-01 00:31:11,766 [9692] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
+   위치: R54IN0.Server.UpdateCommand.InnfQuantityBroadCast(WriteOnlySession session, String invID, Int32 qty) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 140
+   위치: R54IN0.Server.WriteSessionCommandExtension.CalcInventoryFormatQty(IWriteSessionCommand session, Action`3 update, MySqlConnection conn, String type, String stoID, String invID) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\WriteSessionCommandExtension.cs:줄 99
+   위치: R54IN0.Server.InsertCommand.Insert(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 68
+   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 66
+   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 28
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
+2016-03-01 00:32:19,221 [7272] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
+   위치: R54IN0.Server.UpdateCommand.InnfQuantityBroadCast(WriteOnlySession session, String invID, Int32 qty) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 140
+   위치: R54IN0.Server.WriteSessionCommandExtension.CalcInventoryFormatQty(IWriteSessionCommand session, Action`3 update, MySqlConnection conn, String type, String stoID, String invID) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\WriteSessionCommandExtension.cs:줄 99
+   위치: R54IN0.Server.InsertCommand.Insert(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 68
+   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 66
+   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 28
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
+2016-03-01 02:01:31,396 [14300] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
+   위치: R54IN0.Server.UpdateCommand.InnfQuantityBroadCast(WriteOnlySession session, String invID, Int32 qty) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 141
+   위치: R54IN0.Server.WriteSessionCommandExtension.CalcInventoryFormatQty(IWriteSessionCommand session, Action`3 update, MySqlConnection conn, String type, String stoID, String invID) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\WriteSessionCommandExtension.cs:줄 99
+   위치: R54IN0.Server.InsertCommand.Insert(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 68
+   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 66
+   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 28
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
+   위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
+   위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
+2016-03-01 02:05:37,565 [8372] ERROR WriteOnlyServer - R54IN0.Server.WriteOnlySession
+System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정되지 않았습니다.
+   위치: R54IN0.Server.UpdateCommand.InnfQuantityBroadCast(WriteOnlySession session, String invID, Int32 qty) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 140
+   위치: R54IN0.Server.WriteSessionCommandExtension.CalcInventoryFormatQty(IWriteSessionCommand commandInstance, Action`3 update, MySqlConnection conn, String type, String stoID, String invID) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\WriteSessionCommandExtension.cs:줄 99
+   위치: R54IN0.Server.InsertCommand.Insert(WriteOnlySession session, Object item) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 68
+   위치: R54IN0.Server.UpdateCommand.ExecuteCommand(WriteOnlySession session, ProtocolFormat pfmt, Action`2 action) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\UpdateCommand.cs:줄 66
+   위치: R54IN0.Server.InsertCommand.ExecuteCommand(WriteOnlySession session, BinaryRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\Command\InsertCommand.cs:줄 28
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579

@@ -95,6 +95,7 @@ namespace R54IN0.WPF.Test
             Type type = typeof(TableT);
 
             sql = string.Format("select * from {0} where ID = '{1}'", type.Name, iid.ID);
+            int cnt = 0;
             using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
             using (MySqlDataReader reader = cmd.ExecuteReader())
             {
@@ -113,13 +114,17 @@ namespace R54IN0.WPF.Test
                             value2 = (int)value2;
 
                         object value3 = this.ConvertSqlValue(value2);
-                        if (value1 == null ^ value2 == null)
+                        if ((value1 == null ^ value2 == null) || (value1 != null && value2 != null && value1.ToString() != value2.ToString()))
+                        {
                             sb.Append(string.Format("{0} = '{1}', ", name, value3));
-                        else if (value1 != null && value2 != null && value1.ToString() != value2.ToString())
-                            sb.Append(string.Format("{0} = '{1}', ", name, value3));
+                            cnt++;
+                        }
                     }
                 }
             }
+            if (cnt == 0)
+                return;
+
             sb.Remove(sb.Length - 2, 2);
             sb.Append(string.Format(" where ID = '{0}';", iid.ID));
             sql = sb.ToString();
@@ -128,10 +133,10 @@ namespace R54IN0.WPF.Test
             using (MySqlCommand cmd = new MySqlCommand(sql, _conn))
                 cmd.ExecuteNonQuery();
 
-            if (typeof(TableT) == typeof(IOStockFormat))
-            {
+            DataUpdateEventHandler(this, new SQLUpdateEventArgs(item));
+
+            if (type == typeof(IOStockFormat) && (sql.Contains("Quantity") || sql.Contains("StockType") || sql.Contains("Date")))
                 CalcInventoryQty<TableT>(iid.ID);
-            }
         }
 
         public void Delete<TableT>(string id) where TableT : class, IID, new()

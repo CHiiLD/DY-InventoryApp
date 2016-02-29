@@ -233,7 +233,7 @@ namespace R54IN0.WPF
                 _propertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
-        public ObservableInventory Insert()
+        public string Insert()
         {
             CreateBindingProperties();
 
@@ -243,10 +243,10 @@ namespace R54IN0.WPF
             DataDirector.GetInstance().AddInventory(invf);
             ObservableInventory inv = DataDirector.GetInstance().SearchInventory(invf.ID);
 
-            return inv;
+            return invf.ID;
         }
 
-        public ObservableInventory Update()
+        public string Update()
         {
             ObservableInventory origin = _target;
 
@@ -256,7 +256,7 @@ namespace R54IN0.WPF
             InventoryFormat modify = CreateInventoryFormat();
             modify.ID = origin.ID;
             modify.Quantity = origin.Quantity;
-
+#if false
             PropertyInfo[] properties = modify.GetType().GetProperties();
             foreach (PropertyInfo modifyProperty in properties)
             {
@@ -266,10 +266,12 @@ namespace R54IN0.WPF
                 PropertyInfo originProperty = origin.GetType().GetProperty(pname);
                 object v1 = originProperty.GetValue(origin);
                 object v2 = modifyProperty.GetValue(modify);
-                if (v1 != v2)
-                    originProperty.SetValue(origin, v2);
+                //if (v1 != v2)
+                //    originProperty.SetValue(origin, v2);
             }
-            return origin;
+#endif
+            DataDirector.GetInstance().Db.Update<InventoryFormat>(modify);
+            return modify.ID;
         }
 
         private InventoryFormat CreateInventoryFormat()
@@ -293,13 +295,13 @@ namespace R54IN0.WPF
             {
                 Maker newMaker = new Maker(MakerText);
                 ddr.AddField(newMaker);
-                Maker = ddr.SearchField<Maker>(newMaker.ID);
+                Maker = new Observable<Maker>(newMaker); //ddr.SearchField<Maker>(newMaker.ID); //TODO 여기 부분에서 에러가 남
             }
             if (Measure == null && MeasureText != null)
             {
                 Measure newMeasure = new Measure(MeasureText);
                 ddr.AddField(newMeasure);
-                Measure = ddr.SearchField<Measure>(newMeasure.ID);
+                Measure = new Observable<Measure>(newMeasure); //ddr.SearchField<Measure>(newMeasure.ID);
             }
         }
 

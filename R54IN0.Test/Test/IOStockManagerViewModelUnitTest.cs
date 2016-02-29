@@ -174,7 +174,7 @@ namespace R54IN0.WPF.Test
         /// IOStockFormat 생성
         /// </summary>
         [Test]
-        public void CreateNewIOStock0()
+        public async Task CreateNewIOStock0()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             var vm = new IOStockManagerViewModel(prod);
@@ -185,7 +185,9 @@ namespace R54IN0.WPF.Test
             var prj = vm.SelectedProject = vm.Projects.Random();
             var mem = vm.Memo = "some memo";
 
-            ObservableIOStock oio = vm.Insert();
+            string id = vm.Insert();
+            IOStockFormat fmt = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
+            ObservableIOStock oio = new ObservableIOStock(fmt);
 
             Assert.AreEqual(inv, oio.Inventory);
             Assert.AreEqual(acc, oio.Supplier);
@@ -198,7 +200,7 @@ namespace R54IN0.WPF.Test
         /// IOStockFormat 생성
         /// </summary>
         [Test]
-        public void CreateNewIOStock1()
+        public async Task CreateNewIOStock1()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             var vm = new IOStockManagerViewModel(prod);
@@ -209,7 +211,9 @@ namespace R54IN0.WPF.Test
             var eep = vm.EmployeeText = "new";
             var prj = vm.ProjectText = "new";
 
-            ObservableIOStock oio = vm.Insert();
+            string id = vm.Insert();
+            IOStockFormat fmt = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
+            ObservableIOStock oio = new ObservableIOStock(fmt);
 
             Assert.AreEqual(inv, oio.Inventory);
             Assert.AreEqual(acc, oio.Supplier.Name);
@@ -221,7 +225,7 @@ namespace R54IN0.WPF.Test
         /// IOStockFormat 생성
         /// </summary>
         [Test]
-        public void CreateNewIOStock2()
+        public async Task CreateNewIOStock2()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             var vm = new IOStockManagerViewModel(prod);
@@ -234,7 +238,9 @@ namespace R54IN0.WPF.Test
             var prj = vm.SelectedProject = vm.Projects.Random();
             var mem = vm.Memo = "some memo";
 
-            ObservableIOStock oio = vm.Insert();
+            string id = vm.Insert();
+            IOStockFormat fmt = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
+            ObservableIOStock oio = new ObservableIOStock(fmt);
 
             Assert.AreEqual(inv, oio.Inventory);
             Assert.AreEqual(acc, oio.Customer);
@@ -247,7 +253,7 @@ namespace R54IN0.WPF.Test
         /// IOStockFormat 생성
         /// </summary>
         [Test]
-        public void CreateNewIOStock3()
+        public async Task CreateNewIOStock3()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             var vm = new IOStockManagerViewModel(prod);
@@ -259,7 +265,9 @@ namespace R54IN0.WPF.Test
             var eep = vm.EmployeeText = "new";
             var prj = vm.ProjectText = "new";
 
-            ObservableIOStock oio = vm.Insert();
+            string id = vm.Insert();
+            IOStockFormat fmt = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
+            ObservableIOStock oio = new ObservableIOStock(fmt);
 
             Assert.AreEqual(inv, oio.Inventory);
             Assert.AreEqual(acc, oio.Customer.Name);
@@ -281,7 +289,9 @@ namespace R54IN0.WPF.Test
             var qty = vm.Quantity = 10;
             var pri = vm.UnitPrice = 1000;
 
-            ObservableIOStock oio = vm.Update();
+            string id = vm.Update();
+            IOStockFormat fmt = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
+            ObservableIOStock oio = new ObservableIOStock(fmt);
 
             Assert.AreEqual(qty, oio.Quantity);
             Assert.AreEqual(pri, oio.UnitPrice);
@@ -302,7 +312,9 @@ namespace R54IN0.WPF.Test
             vm.SelectedEmployee = vm.Employees.Random();
             vm.SelectedProject = vm.Projects.Random();
 
-            ObservableIOStock oio = vm.Update();
+            string id = vm.Update();
+            IOStockFormat fmt = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
+            ObservableIOStock oio = new ObservableIOStock(fmt);
 
             Assert.AreEqual(vm.SelectedAccount, oio.Supplier);
             Assert.AreEqual(vm.SelectedEmployee, oio.Employee);
@@ -324,7 +336,9 @@ namespace R54IN0.WPF.Test
             var emp = vm.SelectedEmployee = vm.Employees.Random();
             var prj = vm.SelectedProject = vm.Projects.Random();
 
-            ObservableIOStock oio = vm.Update();
+            string id = vm.Update();
+            IOStockFormat fmt = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
+            ObservableIOStock oio = new ObservableIOStock(fmt);
 
             Assert.AreEqual(acc, oio.Customer);
             Assert.AreEqual(emp, oio.Employee);
@@ -350,7 +364,9 @@ namespace R54IN0.WPF.Test
             vm.ProjectText = name;
             vm.EmployeeText = name;
 
-            ObservableIOStock oio = vm.Update();
+            string id = vm.Update();
+            IOStockFormat fmt = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
+            ObservableIOStock oio = new ObservableIOStock(fmt);
 
             Assert.AreEqual(name, oio.Customer.Name);
             Assert.AreEqual(name, oio.Employee.Name);
