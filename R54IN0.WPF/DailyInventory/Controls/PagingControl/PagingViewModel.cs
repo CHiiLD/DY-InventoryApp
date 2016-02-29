@@ -67,7 +67,7 @@ namespace R54IN0.WPF
                 if (value == -1)
                     return;
 
-                int idx =(_curSelectedIndex % MAX_PAGE_SIZE) - 1;
+                int idx = (_curSelectedIndex - 1) % MAX_PAGE_SIZE;
                 foreach (Button button in NumericButtons.Where(x => x != NumericButtons[idx]))
                     button.FontWeight = FontWeights.Normal;
                 NumericButtons[idx].FontWeight = FontWeights.UltraBold;

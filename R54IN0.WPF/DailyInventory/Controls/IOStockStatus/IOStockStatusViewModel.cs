@@ -579,7 +579,7 @@ namespace R54IN0.WPF
                 IOStockDataGridItem item = new IOStockDataGridItem(stof);
                 DataDirector.GetInstance().StockList.Add(item);
             }
-            CalcRemainQuantity();
+            await CalcRemainQuantity();
             SetDataGridItems();
         }
 
@@ -610,27 +610,32 @@ namespace R54IN0.WPF
             return flag;
         }
 
-        public void CalcRemainQuantity()
+        public async Task CalcRemainQuantity()
         {
             if (SelectedDataGridGroupOption != DATAGRID_OPTION_PRODUCT)
                 return;
 
-            List<IOStockDataGridItem> list = DataDirector.GetInstance().StockList;
-            ILookup<string, IOStockDataGridItem> loopup = list.ToLookup(x => x.InventoryID);
-            foreach (var l in loopup)
+            ILookup<string, IOStockDataGridItem> looper = DataDirector.GetInstance().StockList.ToLookup(x => x.InventoryID);
+            foreach (var l in looper)
             {
-                IEnumerable<IOStockDataGridItem> asc = l.OrderBy(x => x.Date);
-                int qty;
-                int? reQty = null;
-
-                foreach (IOStockDataGridItem i in asc)
+                IEnumerable<IOStockDataGridItem> orderedList = l.OrderBy(x => x.Date);
+                IOStockDataGridItem first = orderedList.First();
+                string sql = string.Format(@"select ifnull((select sum(Quantity) from {0} where InventoryID = '{1}' and StockType = '{2}' and Date < '{4}'), 0) -
+                    ifnull((select sum(Quantity) from {0} where InventoryID = '{1}' and StockType = '{3}' and Date < '{4}'), 0);",
+                    nameof(IOStockFormat), first.InventoryID, (int)IOStockType.INCOMING, (int)IOStockType.OUTGOING, first.Date.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                List<Tuple<int>> query = await DataDirector.GetInstance().Db.QueryReturnTupleAsync<int>(sql);
+                Tuple<int> tuple = query.SingleOrDefault();
+                if (tuple != null)
                 {
-                    qty = i.Quantity;
-                    if (i.StockType == IOStockType.OUTGOING)
-                        qty = -qty;
-                    if (reQty == null)
-                        reQty = 0;
-                    reQty = i.RemainingQuantity = (int)reQty + qty;
+                    int remQty = tuple.Item1;
+                    int stoQty = 0;
+                    foreach (IOStockDataGridItem item in orderedList)
+                    {
+                        stoQty = item.Quantity;
+                        if (item.StockType == IOStockType.OUTGOING)
+                            stoQty = -stoQty;
+                        remQty = item.RemainingQuantity = (int)remQty + stoQty;
+                    }
                 }
             }
         }
@@ -686,7 +691,7 @@ namespace R54IN0.WPF
                     if (flag.HasFlag(stock.StockType))
                         DataGridViewModel.Items.Add(stock);
 
-                    CalcRemainQuantity();
+                    Dispatcher.CurrentDispatcher.Invoke(new Func<Task>(CalcRemainQuantity));
                 }
             }
         }
@@ -701,7 +706,7 @@ namespace R54IN0.WPF
 
                 DataGridViewModel.Items.Remove(stock);
 
-                CalcRemainQuantity();
+                Dispatcher.CurrentDispatcher.Invoke(new Func<Task>(CalcRemainQuantity));
             }
         }
     }

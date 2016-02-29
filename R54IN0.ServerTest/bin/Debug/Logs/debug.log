@@ -292,3 +292,406 @@
 2016-02-29 03:43:38,121 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
 2016-02-29 03:43:38,123 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
 2016-02-29 03:43:38,129 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 03:58:33,906 [3300] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 03:58:33,916 [3300] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 03:58:33,916 [3300] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 03:58:33,974 [3300] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 03:58:33,974 [3300] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 03:58:33,974 [3300] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 03:58:33,996 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:58:34,145 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:58:34,154 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:58:34,237 [15684] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('8a6acd26-1f42-4557-ad04-8efa28f1c9dd', '!@# SomE Make r ');
+2016-02-29 03:58:34,310 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:58:34,311 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:58:34,316 [8248] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '748f437f-b6fb-44e6-b2b6-9c4014eec925';
+2016-02-29 03:58:34,514 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:58:34,515 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:58:34,520 [15684] DEBUG WriteOnlyServer - delete from Maker where ID = '443b396c-aca6-4d82-9414-b86e18767826';
+2016-02-29 03:58:34,526 [15684] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 03:58:34,526 [15684] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 03:58:34,526 [15684] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '443b396c-aca6-4d82-9414-b86e18767826';
+2016-02-29 03:58:34,723 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:58:36,243 [3300] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 03:58:36,243 [3300] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 03:58:36,243 [3300] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 03:58:36,244 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:58:36,251 [7196] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('a188d6ae-ee24-4ca4-9a04-bb3450f08c71', 'SomE Maker');
+2016-02-29 03:58:36,374 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:58:36,375 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:58:36,377 [15684] DEBUG WriteOnlyServer - delete from Maker where ID = '66a90342-4732-4976-80b1-74027dc0de9e';
+2016-02-29 03:58:36,384 [15684] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 03:58:36,384 [15684] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 03:58:36,384 [15684] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '66a90342-4732-4976-80b1-74027dc0de9e';
+2016-02-29 03:58:36,486 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:58:36,488 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:58:36,495 [8248] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = '8cf1563c-e966-4a4b-a733-8b5e9ff256c5';
+2016-02-29 03:58:36,604 [3300] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:58:58,847 [8904] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 03:58:58,858 [8904] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 03:58:58,858 [8904] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 03:58:58,907 [8904] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 03:58:58,907 [8904] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 03:58:58,907 [8904] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 03:58:58,937 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:58:59,087 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:58:59,115 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:58:59,190 [16644] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('00751de5-4715-4fab-b4de-14223ee0e8f2', '!@# SomE Make r ');
+2016-02-29 03:58:59,260 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:58:59,261 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:58:59,266 [16644] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = 'f7da5e39-97a5-4489-9417-e375e8621231';
+2016-02-29 03:58:59,464 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:58:59,465 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:58:59,469 [15444] DEBUG WriteOnlyServer - delete from Maker where ID = '1ca2d785-c513-4213-b93c-bb96cfa34d5c';
+2016-02-29 03:58:59,477 [15444] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 03:58:59,478 [15444] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 03:58:59,478 [15444] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '1ca2d785-c513-4213-b93c-bb96cfa34d5c';
+2016-02-29 03:58:59,667 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:59:00,918 [8904] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 03:59:00,918 [8904] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 03:59:00,918 [8904] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 03:59:00,918 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:59:00,926 [11184] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('b7972741-63cb-4443-a93a-c62bf04796a9', 'SomE Maker');
+2016-02-29 03:59:01,028 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:59:01,030 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:59:01,035 [11688] DEBUG WriteOnlyServer - delete from Maker where ID = '9ace3688-949a-49d3-8a63-06b7cc934f9d';
+2016-02-29 03:59:01,043 [11688] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 03:59:01,044 [11688] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 03:59:01,044 [11688] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '9ace3688-949a-49d3-8a63-06b7cc934f9d';
+2016-02-29 03:59:01,138 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:59:01,140 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:59:01,147 [11184] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = 'dfea3d83-9d21-4991-bab4-88d320393683';
+2016-02-29 03:59:01,254 [8904] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:59:30,031 [14420] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 03:59:30,041 [14420] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 03:59:30,041 [14420] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 03:59:30,104 [14420] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 03:59:30,104 [14420] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 03:59:30,104 [14420] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 03:59:30,126 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:59:30,254 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:59:30,272 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:59:30,343 [11560] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('c7cf9339-e239-4068-94e1-b3f35a3e150e', '!@# SomE Make r ');
+2016-02-29 03:59:30,415 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:59:30,417 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:59:30,422 [12988] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = 'af99a0d8-0757-42c4-abef-dfba69209bc7';
+2016-02-29 03:59:30,620 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:59:30,622 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:59:30,625 [16968] DEBUG WriteOnlyServer - delete from Maker where ID = '3c889417-cf0d-4295-ac03-ee718b5e59f5';
+2016-02-29 03:59:30,635 [16968] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 03:59:30,635 [16968] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 03:59:30,635 [16968] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '3c889417-cf0d-4295-ac03-ee718b5e59f5';
+2016-02-29 03:59:30,839 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:59:32,408 [14420] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 03:59:32,408 [14420] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 03:59:32,408 [14420] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 03:59:32,409 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:59:32,416 [12988] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('b3689f07-a5b5-4448-a37c-2aa203dc2db9', 'SomE Maker');
+2016-02-29 03:59:32,530 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:59:32,533 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:59:32,539 [16968] DEBUG WriteOnlyServer - delete from Maker where ID = 'b3689f07-a5b5-4448-a37c-2aa203dc2db9';
+2016-02-29 03:59:32,547 [16968] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 03:59:32,547 [16968] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 03:59:32,547 [16968] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'b3689f07-a5b5-4448-a37c-2aa203dc2db9';
+2016-02-29 03:59:32,640 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 03:59:32,641 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 03:59:32,644 [12988] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = '80ad409c-20a6-452a-ba8b-bafece49e743';
+2016-02-29 03:59:32,745 [14420] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:00:03,575 [11044] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 04:00:03,585 [11044] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 04:00:03,585 [11044] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 04:00:03,643 [11044] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 04:00:03,643 [11044] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 04:00:03,643 [11044] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 04:00:03,664 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:00:03,805 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:00:03,816 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:00:03,901 [15108] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('43b85941-c0ad-4f7e-bef7-47382c14a594', '!@# SomE Make r ');
+2016-02-29 04:00:03,979 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:00:03,980 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:00:03,985 [7444] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '1622d779-8070-47e9-a220-02c2742bc514';
+2016-02-29 04:00:04,183 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:00:04,184 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:00:04,188 [7444] DEBUG WriteOnlyServer - delete from Maker where ID = '08a2a7ba-5210-4e60-b2d5-ddf5a06d01a9';
+2016-02-29 04:00:04,195 [7444] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 04:00:04,196 [7444] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 04:00:04,196 [7444] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '08a2a7ba-5210-4e60-b2d5-ddf5a06d01a9';
+2016-02-29 04:00:04,392 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:00:05,896 [11044] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 04:00:05,896 [11044] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 04:00:05,896 [11044] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 04:00:05,896 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:00:05,896 [1256] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('df1c4242-7972-48c0-bea4-2d759a4c57c2', 'SomE Maker');
+2016-02-29 04:00:06,006 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:00:06,006 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:00:06,006 [1256] DEBUG WriteOnlyServer - delete from Maker where ID = '0d3db698-e37c-45e0-a513-71e6d8d01d04';
+2016-02-29 04:00:06,006 [1256] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 04:00:06,006 [1256] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 04:00:06,006 [1256] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '0d3db698-e37c-45e0-a513-71e6d8d01d04';
+2016-02-29 04:00:06,125 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:00:06,127 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:00:06,134 [4248] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = 'c706e202-7761-4e77-bc5c-b03f89cfbbf8';
+2016-02-29 04:00:06,264 [11044] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:39:42,155 [4424] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 04:39:42,164 [4424] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 04:39:42,164 [4424] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 04:39:42,225 [4424] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 04:39:42,225 [4424] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 04:39:42,225 [4424] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 04:39:42,246 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:39:42,388 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:39:42,404 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:39:42,470 [15556] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('201ab1f3-ad8e-40c1-bde6-1fcf1cf77e17', '!@# SomE Make r ');
+2016-02-29 04:39:42,546 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:39:42,550 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:39:42,559 [16416] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '01d8e703-1e09-43af-8ab9-d8fb80ff42f8';
+2016-02-29 04:39:42,769 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:39:42,770 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:39:42,773 [16416] DEBUG WriteOnlyServer - delete from Maker where ID = '16215185-b712-4851-b279-2fe3704a915f';
+2016-02-29 04:39:42,782 [16416] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 04:39:42,782 [16416] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 04:39:42,782 [16416] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '16215185-b712-4851-b279-2fe3704a915f';
+2016-02-29 04:39:42,974 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:39:44,509 [4424] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 04:39:44,509 [4424] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 04:39:44,509 [4424] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 04:39:44,510 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:39:44,518 [16416] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('9a39246f-a19d-4d12-99bf-913ce86be1cd', 'SomE Maker');
+2016-02-29 04:39:44,619 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:39:44,620 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:39:44,623 [15556] DEBUG WriteOnlyServer - delete from Maker where ID = '3ae5c3cf-56f6-4d9e-9e7e-e9150d1b179d';
+2016-02-29 04:39:44,625 [15556] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 04:39:44,625 [15556] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 04:39:44,625 [15556] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '3ae5c3cf-56f6-4d9e-9e7e-e9150d1b179d';
+2016-02-29 04:39:44,730 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:39:44,731 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:39:44,734 [16416] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = '4124e6c9-62d6-4f78-99a4-a45a552fcfec';
+2016-02-29 04:39:44,841 [4424] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:39:54,999 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 04:39:55,009 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 04:39:55,009 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 04:39:55,009 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 04:39:55,009 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 04:39:55,047 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 04:39:55,055 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 04:39:55,076 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 04:39:55,140 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 04:39:55,142 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 04:39:55,174 [15616] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 3911)
+2016-02-29 04:40:54,547 [14544] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 04:40:54,556 [14544] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 04:40:54,557 [14544] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 04:40:54,615 [14544] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 04:40:54,615 [14544] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 04:40:54,615 [14544] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 04:40:54,634 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:40:54,750 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:40:54,770 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:40:54,845 [14468] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('4a50e163-41f1-46da-9529-e3a674c39cc0', '!@# SomE Make r ');
+2016-02-29 04:40:54,923 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:40:54,926 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:40:54,935 [13896] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '3adc5396-cc39-49bf-9a65-52c70fe03298';
+2016-02-29 04:40:55,145 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:40:55,148 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:40:55,155 [13896] DEBUG WriteOnlyServer - delete from Maker where ID = '859c1b87-a5d7-4dd0-b62f-19262b1f4bd3';
+2016-02-29 04:40:55,164 [13896] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 04:40:55,165 [13896] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 04:40:55,165 [13896] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '859c1b87-a5d7-4dd0-b62f-19262b1f4bd3';
+2016-02-29 04:40:55,363 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:40:56,807 [14544] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 04:40:56,807 [14544] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 04:40:56,807 [14544] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 04:40:56,807 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:40:56,815 [14468] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('f9f1c7fb-1c1d-44ac-9f43-9613ef634b1d', 'SomE Maker');
+2016-02-29 04:40:56,916 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:40:56,917 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:40:56,920 [14468] DEBUG WriteOnlyServer - delete from Maker where ID = '7dc5105e-33de-4624-9644-1a027efa2877';
+2016-02-29 04:40:56,927 [14468] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 04:40:56,927 [14468] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 04:40:56,927 [14468] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '7dc5105e-33de-4624-9644-1a027efa2877';
+2016-02-29 04:40:57,028 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:40:57,029 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 04:40:57,032 [7532] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = 'd484b6e5-3a7e-46cf-bb41-05df604d400b';
+2016-02-29 04:40:57,139 [14544] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 04:41:00,000 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 04:41:00,009 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 04:41:00,009 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 04:41:00,009 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 04:41:00,009 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 04:41:00,045 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 04:41:00,053 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 04:41:00,072 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 04:41:00,131 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 04:41:00,133 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 04:41:00,168 [7532] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 3911)
+2016-02-29 04:41:00,193 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 04:41:00,196 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 04:41:00,201 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 04:41:00,203 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 04:41:00,208 [7532] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1151)
+2016-02-29 04:41:00,210 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 04:41:00,214 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 04:41:00,217 [14468] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 191)
+2016-02-29 04:41:00,219 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 04:41:00,220 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 04:41:00,225 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:03:44,427 [8088] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 13:03:44,436 [8088] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 13:03:44,437 [8088] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 13:03:44,518 [8088] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 13:03:44,518 [8088] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 13:03:44,518 [8088] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 13:03:44,546 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:03:44,671 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:03:44,679 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:03:44,747 [4068] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('49b286e4-43d0-41f5-82bf-e28adf191007', '!@# SomE Make r ');
+2016-02-29 13:03:44,824 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:03:44,825 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:03:44,829 [1640] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '896b4e22-210a-41bc-bfb7-2e3105c8cad9';
+2016-02-29 13:03:45,028 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:03:45,029 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:03:45,033 [4068] DEBUG WriteOnlyServer - delete from Maker where ID = '49b286e4-43d0-41f5-82bf-e28adf191007';
+2016-02-29 13:03:45,041 [4068] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 13:03:45,041 [4068] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 13:03:45,041 [4068] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '49b286e4-43d0-41f5-82bf-e28adf191007';
+2016-02-29 13:03:45,236 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:03:46,717 [8088] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 13:03:46,717 [8088] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 13:03:46,717 [8088] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 13:03:46,718 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:03:46,724 [12828] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('8b840745-461c-4b1c-ba38-57301295e9c4', 'SomE Maker');
+2016-02-29 13:03:46,827 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:03:46,828 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:03:46,831 [12828] DEBUG WriteOnlyServer - delete from Maker where ID = 'e7634f1b-241a-4d0b-b71d-5b1463ef811b';
+2016-02-29 13:03:46,840 [12828] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 13:03:46,840 [12828] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 13:03:46,840 [12828] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'e7634f1b-241a-4d0b-b71d-5b1463ef811b';
+2016-02-29 13:03:46,933 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:03:46,935 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:03:46,938 [4068] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = 'f5b16a19-ad54-44f0-9072-0eb3e355b32a';
+2016-02-29 13:03:47,047 [8088] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:03:55,325 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 13:03:55,334 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 13:03:55,334 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 13:03:55,334 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 13:03:55,334 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 13:03:55,373 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:03:55,383 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:03:55,405 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:03:55,473 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:03:55,474 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:03:55,513 [16304] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 3911)
+2016-02-29 13:05:41,828 [11364] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 13:05:41,837 [11364] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 13:05:41,837 [11364] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 13:05:41,894 [11364] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 13:05:41,894 [11364] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 13:05:41,894 [11364] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 13:05:41,914 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:05:42,060 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:05:42,076 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:05:42,145 [13248] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('eb0bbe96-8d01-4a22-af33-ae902933cb5c', '!@# SomE Make r ');
+2016-02-29 13:05:42,228 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:05:42,229 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:05:42,233 [13248] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '294c6103-244c-49f8-a5e4-0c204376014d';
+2016-02-29 13:05:42,432 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:05:42,447 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:05:42,450 [3944] DEBUG WriteOnlyServer - delete from Maker where ID = '774602e1-dbe6-4df0-99dd-f5b7886347c9';
+2016-02-29 13:05:42,458 [3944] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 13:05:42,458 [3944] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 13:05:42,458 [3944] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '774602e1-dbe6-4df0-99dd-f5b7886347c9';
+2016-02-29 13:05:42,650 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:05:44,184 [11364] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 13:05:44,184 [11364] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 13:05:44,184 [11364] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 13:05:44,184 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:05:44,193 [3944] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('6fe3545f-bd98-4186-8401-415a1af958f9', 'SomE Maker');
+2016-02-29 13:05:44,295 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:05:44,296 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:05:44,298 [3944] DEBUG WriteOnlyServer - delete from Maker where ID = 'c2507303-3466-4358-b228-aadb0eed69db';
+2016-02-29 13:05:44,306 [3944] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 13:05:44,306 [3944] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 13:05:44,306 [3944] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'c2507303-3466-4358-b228-aadb0eed69db';
+2016-02-29 13:05:44,402 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:05:44,404 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:05:44,410 [16700] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = '0c20171b-7b36-47ea-bde3-4051e7e3e5d1';
+2016-02-29 13:05:44,511 [11364] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:05:52,828 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 13:05:52,838 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 13:05:52,838 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 13:05:52,838 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 13:05:52,838 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 13:05:52,877 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:05:52,885 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:05:52,906 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:05:52,969 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:05:52,971 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:05:53,012 [10272] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 3911)
+2016-02-29 13:05:53,037 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:05:53,041 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:05:53,046 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:05:53,048 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:05:53,054 [3112] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1151)
+2016-02-29 13:05:53,055 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:05:53,060 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:05:53,064 [13248] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 185)
+2016-02-29 13:05:53,066 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:05:53,068 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:05:53,073 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:13:25,954 [10920] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 13:13:25,963 [10920] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 13:13:25,963 [10920] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 13:13:26,019 [10920] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 13:13:26,019 [10920] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 13:13:26,019 [10920] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 13:13:26,038 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:13:26,176 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:13:26,186 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:13:26,254 [8764] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('59089bde-8520-40b4-891e-b8c4b89dd313', '!@# SomE Make r ');
+2016-02-29 13:13:26,344 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:13:26,345 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:13:26,349 [1732] DEBUG WriteOnlyServer - update Maker set Name = '!@# SomE Make r ' where ID = '149088e0-a0e3-4d83-b656-47999d8bd3e9';
+2016-02-29 13:13:26,547 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:13:26,548 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:13:26,551 [11916] DEBUG WriteOnlyServer - delete from Maker where ID = '59089bde-8520-40b4-891e-b8c4b89dd313';
+2016-02-29 13:13:26,559 [11916] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 13:13:26,559 [11916] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 13:13:26,559 [11916] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = '59089bde-8520-40b4-891e-b8c4b89dd313';
+2016-02-29 13:13:26,751 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:13:28,093 [10920] DEBUG WriteOnlyServer - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-02-29 13:13:28,093 [10920] DEBUG WriteOnlyServer - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-02-29 13:13:28,093 [10920] DEBUG WriteOnlyServer - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-02-29 13:13:28,093 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:13:28,100 [1732] DEBUG WriteOnlyServer - insert into Maker (ID, Name) values ('6426b851-160c-4e3c-8c41-c2221c2fc36b', 'SomE Maker');
+2016-02-29 13:13:28,202 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:13:28,202 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:13:28,205 [1732] DEBUG WriteOnlyServer - delete from Maker where ID = 'eee82d0e-689b-496a-9583-df4a8371884e';
+2016-02-29 13:13:28,212 [1732] DEBUG R54IN0.Server.DeleteCommand - SerialKiller
+2016-02-29 13:13:28,212 [1732] DEBUG R54IN0.Server.DeleteCommand - KillFieldFormat
+2016-02-29 13:13:28,212 [1732] DEBUG R54IN0.Server.DeleteCommand - update InventoryFormat set MakerID = '' where MakerID = 'eee82d0e-689b-496a-9583-df4a8371884e';
+2016-02-29 13:13:28,307 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:13:28,308 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was started
+2016-02-29 13:13:28,310 [8764] DEBUG WriteOnlyServer - update Maker set Name = 'some maker ~ ' where ID = '1a3772b3-7c7c-4d91-ac97-2d210cce36ee';
+2016-02-29 13:13:28,417 [10920] DEBUG WriteOnlyServer - Listener (0.0.0.0:4001) was stoppped
+2016-02-29 13:13:36,639 [TestRunnerThread] DEBUG ReadOnlyServer - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-02-29 13:13:36,648 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-02-29 13:13:36,648 [TestRunnerThread] DEBUG ReadOnlyServer - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-02-29 13:13:36,648 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-02-29 13:13:36,648 [TestRunnerThread] DEBUG ReadOnlyServer - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-02-29 13:13:36,686 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:13:36,694 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:13:36,715 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:13:36,776 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:13:36,778 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:13:36,808 [7416] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: IOStockFormat, BYTE SIZE: 3911)
+2016-02-29 13:13:36,833 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:13:36,837 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:13:36,841 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:13:36,843 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:13:36,849 [11796] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 1151)
+2016-02-29 13:13:36,850 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:13:36,854 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:13:36,863 [11916] DEBUG ReadOnlyServer - R54IN0 FORMAT SENDING (TYPE: Maker, BYTE SIZE: 185)
+2016-02-29 13:13:36,864 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped
+2016-02-29 13:13:36,866 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was started
+2016-02-29 13:13:36,871 [TestRunnerThread] DEBUG ReadOnlyServer - Listener (0.0.0.0:4000) was stoppped

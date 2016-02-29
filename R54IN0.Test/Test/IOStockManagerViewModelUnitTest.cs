@@ -14,8 +14,6 @@ namespace R54IN0.WPF.Test
     [TestFixture, RequiresSTA]
     public class IOStockManagerViewModelUnitTest
     {
-        
-
         MySqlConnection _conn;
 
         [TestFixtureSetUp]

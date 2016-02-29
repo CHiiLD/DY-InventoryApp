@@ -40,3 +40,9 @@
 [submodule "log4net"]
 	path = log4net
 	url = https://github.com/apache/log4net.git
+[submodule "nunit"]
+	path = nunit
+	url = https://github.com/nunit/nunit.git
+[submodule "nunitv2"]
+	path = nunitv2
+	url = https://github.com/nunit/nunitv2.git
