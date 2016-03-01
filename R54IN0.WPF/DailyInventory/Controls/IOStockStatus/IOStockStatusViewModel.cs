@@ -66,6 +66,7 @@ namespace R54IN0.WPF
         {
             CollectionViewModelObserverSubject.GetInstance().Detach(this);
         }
+
         #region ViewModel
 
         /// <summary>
@@ -160,7 +161,7 @@ namespace R54IN0.WPF
                     DatePickerViewModelVisibility = Visibility.Collapsed;
                     ProjectListBoxViewModelVisibility = Visibility.Collapsed;
                     TreeViewViewModelVisibility = Visibility.Visible;
-                    DataGridViewModel.RemainQtyColumnVisibility = Visibility.Visible;
+                    DataGridViewModel.RemainQtyColumnVisibility = Visibility.Collapsed;
                     TreeViewViewModel.SelectedNodes.Clear();
                 }
                 else if (_selectedGroupoption == DATAGRID_OPTION_PROJECT)
@@ -473,6 +474,9 @@ namespace R54IN0.WPF
                 IEnumerable<TreeViewNode> unionnode = inode.Union(sumnode);
                 IEnumerable<ObservableInventory> invs = unionnode.Select(x => DataDirector.GetInstance().SearchInventory(x.ObservableObjectID));
 
+                //재고수량열 Visibility
+                DataGridViewModel.RemainQtyColumnVisibility = invs.Count() == 1 ? Visibility.Visible : Visibility.Collapsed;
+
                 string sql = null;
                 if (invs.Count() != 0)
                 {
@@ -529,7 +533,6 @@ namespace R54IN0.WPF
             }
         }
 
-
         private bool CanSearch()
         {
             return !string.IsNullOrEmpty(SearchViewModel.Text);
@@ -546,7 +549,8 @@ namespace R54IN0.WPF
             string sql = SearchViewModel.SearchAsFilter();
             Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataItemsAsync), sql);
         }
-        #endregion
+
+        #endregion Datagrid Query Action
 
         /// <summary>
         /// 입고, 출고에 따라 백업 데이터를 사용하여 데이터그리드의 아이템을 초기화한다.
@@ -558,11 +562,11 @@ namespace R54IN0.WPF
                 string querySql = selectSql.Replace("*", "count(*)");
                 List<Tuple<int>> tupleList = await DataDirector.GetInstance().Db.QueryReturnTupleAsync<int>(querySql); //레코드 개수 구하기
 
-                Tuple<int> tuple = tupleList.SingleOrDefault(); 
+                Tuple<int> tuple = tupleList.SingleOrDefault();
                 if (tuple == null)
                     return;
                 int count = tuple.Item1; //레코드 개수
-                DataGridPagingViewModel.SetNavigation(QUERY_LIMIT_ROWCOUNT, count, OnPagingButtonClickedAsync, selectSql); //페이징 설정 동시에 콜백 호출함 
+                DataGridPagingViewModel.SetNavigation(QUERY_LIMIT_ROWCOUNT, count, OnPagingButtonClickedAsync, selectSql); //페이징 설정 동시에 콜백 호출함
             }
             else
             {
@@ -571,9 +575,12 @@ namespace R54IN0.WPF
             }
         }
 
-        private async void OnPagingButtonClickedAsync(int offset, int rowCount, object state)
+        private async Task OnPagingButtonClickedAsync(object state)
         {
             DataDirector.GetInstance().StockList.Clear();
+            int offset = DataGridPagingViewModel.Offset;
+            int rowCount = DataGridPagingViewModel.RowCount;
+
             string sql = state as string;
             sql = sql.Replace(";", string.Format(" limit {0}, {1};", offset, rowCount));
             try
@@ -584,46 +591,20 @@ namespace R54IN0.WPF
                     IOStockDataGridItem item = new IOStockDataGridItem(stof);
                     DataDirector.GetInstance().StockList.Add(item);
                 }
+                //TODO 여기가 문제임
                 await CalcRemainQuantityAsync(); //잔여수량 계산함
                 SetDataGridItems(); //종류에 맞게 데이터그리드 Items를 초기화
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 log.Error(e.Message);
                 log.Error(e.StackTrace);
             }
         }
 
-        /// <summary>
-        /// StockList에 저장된 데이터를 데이터그리드에 다시 재적용
-        /// </summary>
-        public void SetDataGridItems()
-        {
-            DataGridViewModel.Items.Clear();
-            IOStockType flag = GetCurrentStockTypeFlag();
-            var coll = DataDirector.GetInstance().StockList.ToList();
-            foreach (IOStockDataGridItem stock in coll)
-            {
-                if (!IsAddEnableInDataGridItems(stock))
-                    DataDirector.GetInstance().StockList.Remove(stock);
-                else if (flag.HasFlag(stock.StockType))
-                    DataGridViewModel.Items.Add(stock);
-            }
-        }
-
-        private IOStockType GetCurrentStockTypeFlag()
-        {
-            IOStockType flag = IOStockType.NONE;
-            if (IsCheckedInComing)
-                flag = flag | IOStockType.INCOMING;
-            if (IsCheckedOutGoing)
-                flag = flag | IOStockType.OUTGOING;
-            return flag;
-        }
-
         public async Task CalcRemainQuantityAsync()
         {
-            if (SelectedDataGridGroupOption != DATAGRID_OPTION_PRODUCT)
+            if (DataGridViewModel.RemainQtyColumnVisibility != Visibility.Visible)
                 return;
             List<IOStockDataGridItem> stockList = DataDirector.GetInstance().StockList;
             if (stockList.Count() == 0)
@@ -655,6 +636,33 @@ namespace R54IN0.WPF
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// StockList에 저장된 데이터를 데이터그리드에 다시 재적용
+        /// </summary>
+        public void SetDataGridItems()
+        {
+            DataGridViewModel.Items.Clear();
+            IOStockType flag = GetCurrentStockTypeFlag();
+            var coll = DataDirector.GetInstance().StockList.ToList();
+            foreach (IOStockDataGridItem stock in coll)
+            {
+                if (!IsAddEnableInDataGridItems(stock))
+                    DataDirector.GetInstance().StockList.Remove(stock);
+                else if (flag.HasFlag(stock.StockType))
+                    DataGridViewModel.Items.Add(stock);
+            }
+        }
+
+        private IOStockType GetCurrentStockTypeFlag()
+        {
+            IOStockType flag = IOStockType.NONE;
+            if (IsCheckedInComing)
+                flag = flag | IOStockType.INCOMING;
+            if (IsCheckedOutGoing)
+                flag = flag | IOStockType.OUTGOING;
+            return flag;
         }
 
         /// <summary>

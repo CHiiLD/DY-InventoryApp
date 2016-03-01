@@ -145,3 +145,136 @@
    위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
    위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
    위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 581
+2016-03-01 20:46:07,047 [8556] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 20:46:07,063 [8556] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 143
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 20:47:38,407 [9576] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 20:47:38,407 [9576] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 143
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 20:47:40,036 [9576] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 20:47:40,036 [9576] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 143
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 20:47:40,416 [9576] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 20:47:40,432 [9576] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 143
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 20:47:40,785 [9576] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 20:47:40,785 [9576] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 143
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 20:48:37,141 [9576] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 20:48:37,142 [9576] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 143
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 20:48:39,123 [9576] ERROR - 'System.Double' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 20:48:39,123 [9576] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 143
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 20:48:42,275 [9576] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 20:48:42,275 [9576] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 143
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 20:48:43,192 [9576] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 20:48:43,192 [9576] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 143
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 20:48:43,979 [9576] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 20:48:43,994 [9576] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 143
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 20:48:44,485 [9576] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 20:48:44,485 [9576] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 143
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 21:03:02,170 [8568] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 21:03:02,174 [8568] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 144
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 21:03:18,591 [8568] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 21:03:18,592 [8568] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 144
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 21:06:06,276 [14196] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 21:06:06,280 [14196] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 144
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 21:06:19,028 [14196] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 21:06:19,028 [14196] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 144
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 21:06:20,824 [14196] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 21:06:20,824 [14196] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 144
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 21:06:40,203 [14196] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 21:06:40,204 [14196] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 144
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 21:06:42,787 [14196] ERROR - 'System.Double' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 21:06:42,788 [14196] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 144
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584
+2016-03-01 21:06:49,927 [14196] ERROR - 'System.Int64' 형식 개체를 'Newtonsoft.Json.Linq.JObject' 형식으로 캐스팅할 수 없습니다.
+2016-03-01 21:06:49,927 [14196] ERROR -    위치: R54IN0.WPF.MySqlBridge.<QueryAsync>d__21`1.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Network\MySqlBridge.cs:줄 144
+--- 예외가 throw된 이전 위치의 스택 추적 끝 ---
+   위치: System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   위치: System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   위치: R54IN0.WPF.IOStockStatusViewModel.<OnPagingButtonClickedAsync>d__107.MoveNext() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.WPF\DailyInventory\Controls\IOStockStatus\IOStockStatusViewModel.cs:줄 584

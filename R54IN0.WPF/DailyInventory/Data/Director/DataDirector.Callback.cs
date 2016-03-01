@@ -166,10 +166,11 @@ namespace R54IN0.WPF
 
                         List<IOStockDataGridItem> stos = StockList.Where(x => x.Inventory.ID == id).ToList();
                         stos.ForEach(x => OnDataDeleted(obj, new SQLDeleteEventArgs(typeof(IOStockFormat), x.ID)));
-                        
+
                         _inventory.Remove(inv.ID);
                     }
                     break;
+
                 case nameof(IOStockFormat):
                     IOStockDataGridItem stock = StockList.Where(x => x.ID == id).SingleOrDefault();
                     if (stock != null)

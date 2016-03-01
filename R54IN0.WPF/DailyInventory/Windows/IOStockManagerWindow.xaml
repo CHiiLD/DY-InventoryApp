@@ -11,7 +11,7 @@
         Width="300"
         SizeToContent="Height" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Window.Title>
-        <Binding ElementName="StockManagerControl" Path="DataContext.Title"/>
+        <Binding ElementName="StockManagerControl" Path="DataContext.Title" />
     </Window.Title>
-    <local:IOStockManagerControl x:Name="StockManagerControl"/>
+    <local:IOStockManagerControl x:Name="StockManagerControl" />
 </mah:MetroWindow>

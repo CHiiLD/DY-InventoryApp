@@ -48,7 +48,7 @@ namespace R54IN0.WPF.Test
             });
         }
 
-        
+
         [SetUp]
         public void Setup()
         {
@@ -135,57 +135,47 @@ namespace R54IN0.WPF.Test
             Assert.IsNotNull(DataDirector.GetInstance().SearchField<Measure>(inv.Measure.ID));
         }
 
-        [Ignore]
-        [Test, RequiresSTA]
-        public void TestUpdateInvQty()
-        {
-            Task work = Task.Factory.StartNew(new Action(async () =>
-            {
-                IOStockStatusViewModel svm = new IOStockStatusViewModel();
-                svm.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PRODUCT;
-                TreeViewNode node = svm.TreeViewViewModel.SearchNodesInRoot(NodeType.INVENTORY).Random();
-                svm.TreeViewViewModel.AddSelectedNodes(node);
-                await Task.Delay(100);
-                IOStockDataGridItem item = svm.DataGridViewModel.Items.Random();
-                ObservableInventory inv = DataDirector.GetInstance().SearchInventory(item.InventoryID);
-                int qty = inv.Quantity;
-                IOStockManagerViewModel mvm = new IOStockManagerViewModel(svm, item);
-                mvm.Quantity = mvm.Quantity * 2;
-                mvm.Update();
-                await Task.Delay(100);
-                Assert.AreNotEqual(qty, inv.Quantity);
-            }));
-            work.Wait();
-        }
+        //[Test, RequiresSTA]
+        //public void TestUpdateInvQty()
+        //{
+        //    IOStockStatusViewModel svm = new IOStockStatusViewModel();
+        //    svm.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PRODUCT;
+        //    TreeViewNode node = svm.TreeViewViewModel.SearchNodesInRoot(NodeType.INVENTORY).Random();
+        //    svm.TreeViewViewModel.AddSelectedNodes(node);
+        //    await Task.Delay(100);
+        //    IOStockDataGridItem item = svm.DataGridViewModel.Items.Random();
+        //    ObservableInventory inv = DataDirector.GetInstance().SearchInventory(item.InventoryID);
+        //    int qty = inv.Quantity;
+        //    IOStockManagerViewModel mvm = new IOStockManagerViewModel(svm, item);
+        //    mvm.Quantity = mvm.Quantity * 2;
+        //    mvm.Update();
+        //    await Task.Delay(100);
+        //    Assert.AreNotEqual(qty, inv.Quantity);
+        //}
 
-        [Ignore]
         [Test]
         public async Task TestCreateNewStockFormat()
         {
-            Task work = Task.Factory.StartNew(new Action(async () =>
-            {
-                var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
-                var vm = new IOStockManagerViewModel(prod);
+            var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
+            var vm = new IOStockManagerViewModel(prod);
 
-                var inv = vm.SelectedInventory = vm.Inventories.Random();
+            var inv = vm.SelectedInventory = vm.Inventories.Random();
 
-                vm.SelectedAccount = null;
-                var acc = vm.AccountText = "new";
-                var eep = vm.EmployeeText = "new";
-                var prj = vm.ProjectText = "new";
+            vm.SelectedAccount = null;
+            var acc = vm.AccountText = "new";
+            var eep = vm.EmployeeText = "new";
+            var prj = vm.ProjectText = "new";
 
-                string id = vm.Insert();
-                IOStockFormat fmt = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
-                ObservableIOStock oio = new ObservableIOStock(fmt);
+            string id = vm.Insert();
+            IOStockFormat fmt = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
+            ObservableIOStock oio = new ObservableIOStock(fmt);
 
-                await Task.Delay(100);
+            Thread.Sleep(100);
 
-                Assert.AreEqual(inv, oio.Inventory);
-                Assert.AreEqual(acc, oio.Supplier.Name);
-                Assert.AreEqual(eep, oio.Employee.Name);
-                Assert.AreEqual(prj, oio.Warehouse.Name);
-            }));
-            await work;
+            Assert.AreEqual(inv, oio.Inventory);
+            Assert.AreEqual(acc, oio.Supplier.Name);
+            Assert.AreEqual(eep, oio.Employee.Name);
+            Assert.AreEqual(prj, oio.Warehouse.Name);
         }
     }
 }

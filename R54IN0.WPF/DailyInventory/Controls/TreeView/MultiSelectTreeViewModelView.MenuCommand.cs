@@ -285,11 +285,13 @@ namespace R54IN0.WPF
                     _director.Remove(selectedNode);
                     productNodes.ForEach(x => _director.AddToRoot(x));
                     break;
+
                 case NodeType.PRODUCT:
                     _director.Remove(selectedNode);
                     var product = ddr.SearchField<Product>(selectedNode.ObservableObjectID);
                     ddr.RemoveField(product);
                     break;
+
                 case NodeType.INVENTORY:
                     _director.Remove(selectedNode);
                     var inventory = ddr.SearchInventory(selectedNode.ObservableObjectID);
@@ -309,9 +311,11 @@ namespace R54IN0.WPF
             {
                 case NodeType.FOLDER:
                     return true;
+
                 case NodeType.PRODUCT:
                 case NodeType.INVENTORY:
                     return false;
+
                 default:
                     throw new NotSupportedException();
             }

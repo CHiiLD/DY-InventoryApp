@@ -1,16 +1,10 @@
-﻿using Dawn.Net.Sockets;
-using log4net;
-using MySql.Data.MySqlClient;
-using Newtonsoft.Json;
+﻿using log4net;
 using Newtonsoft.Json.Linq;
 using R54IN0.Format;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
-using System.Net.Sockets;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace R54IN0.WPF
@@ -29,7 +23,7 @@ namespace R54IN0.WPF
             DataUpdateEventHandler += OnDataUpdated;
             DataDeleteEventHandler += OnDataDeleted;
         }
-        
+
         /// <summary>
         /// reqt: type, instance
         /// recv: type, instance (except me)
@@ -40,7 +34,7 @@ namespace R54IN0.WPF
         {
             Send(ProtocolCommand.UPDATE, new ProtocolFormat(typeof(TableT)).SetInstance(item));
         }
-        
+
         /// <summary>
         /// reqt: type, id
         /// recv: type, id
@@ -100,7 +94,7 @@ namespace R54IN0.WPF
             TableT table = null;
             ProtocolFormat pfmt = await SendAsync(ProtocolCommand.SELECT_ONE, new ProtocolFormat(typeof(TableT)).SetID(id));
             object value = pfmt.ValueList.SingleOrDefault();
-            if(value != null)
+            if (value != null)
             {
                 JObject jobject = value as JObject;
                 table = jobject.ToObject<TableT>();
@@ -124,6 +118,7 @@ namespace R54IN0.WPF
             {
                 object t1 = Convert.ChangeType(value, typeof(T1));
                 tuples.Add(new Tuple<T1>((T1)t1));
+                log.Debug("VALUE: " + t1.ToString());
             }
             return tuples;
         }
@@ -159,6 +154,5 @@ namespace R54IN0.WPF
         private void OnDataInserted(object sender, SQLInsertEventArgs e)
         {
         }
-
     }
 }

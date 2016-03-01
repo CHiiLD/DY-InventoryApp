@@ -68,7 +68,7 @@
                                 </Style>
                             </Label.Style>
                         </Label>
-                        <ComboBox DockPanel.Dock="Left" Text="{Binding AccountText}" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" DisplayMemberPath="Name" IsEditable="True" >
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding AccountText}" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" DisplayMemberPath="Name" IsEditable="True">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="KeyUp">
                                     <mvvmlight:EventToCommand
@@ -93,7 +93,7 @@
                                 </Style>
                             </Label.Style>
                         </Label>
-                        <ComboBox DockPanel.Dock="Left" Text="{Binding ProjectText}" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" DisplayMemberPath="Name"  IsEditable="True" >
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding ProjectText}" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}" DisplayMemberPath="Name"  IsEditable="True">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="KeyUp">
                                     <mvvmlight:EventToCommand
@@ -105,7 +105,7 @@
                     </DockPanel>
                     <DockPanel>
                         <Label DockPanel.Dock="Left" Content="{x:Static format:Employee.HEADER}" Style="{DynamicResource LabelStyle}" />
-                        <ComboBox DockPanel.Dock="Left" Text="{Binding EmployeeText}" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" DisplayMemberPath="Name"  IsEditable="True" >
+                        <ComboBox DockPanel.Dock="Left" Text="{Binding EmployeeText}" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" DisplayMemberPath="Name"  IsEditable="True">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="KeyUp">
                                     <mvvmlight:EventToCommand

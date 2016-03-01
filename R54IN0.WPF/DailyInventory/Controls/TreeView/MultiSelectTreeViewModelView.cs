@@ -21,6 +21,7 @@ namespace R54IN0.WPF
         private Visibility _newFolderAddVisibility;
         private Visibility _newProductAddVisibility;
         private Visibility _contextMenuVisibility;
+
         private event PropertyChangedEventHandler _propertyChanged;
 
         public event PropertyChangedEventHandler PropertyChanged
@@ -72,6 +73,7 @@ namespace R54IN0.WPF
         {
             CollectionViewModelObserverSubject.GetInstance().Detach(this);
         }
+
         public ObservableCollection<TreeViewNode> Root { get; private set; }
 
         public ObservableCollection<TreeViewNode> SelectedNodes

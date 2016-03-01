@@ -8,7 +8,7 @@
         Width="560"
         Height="360"
         GlowBrush="{DynamicResource AccentColorBrush}"
-        ResizeMode="NoResize" 
+        ResizeMode="NoResize"
         Title="기본정보관리"
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d">

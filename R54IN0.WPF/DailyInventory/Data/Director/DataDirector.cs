@@ -43,7 +43,6 @@ namespace R54IN0.WPF
                 _dbAction.DataInsertEventHandler += OnDataInserted;
                 _dbAction.DataUpdateEventHandler += OnDataUpdated;
                 _dbAction.DataDeleteEventHandler += OnDataDeleted;
-
             }
         }
 
@@ -74,7 +73,6 @@ namespace R54IN0.WPF
                 _me = null;
             }
         }
-
 
         #region inventory director
 
@@ -114,9 +112,11 @@ namespace R54IN0.WPF
         {
             return _inventory.SearchAsProductID(productID);
         }
+
         #endregion inventory director
 
         #region field director
+
         public void AddField(IField field)
         {
             if (field == null)
@@ -181,6 +181,7 @@ namespace R54IN0.WPF
             else
                 throw new NotSupportedException();
         }
+
         #endregion field director
 
         public static async Task InitialzeInstanceAsync(int connectionTimeout = 1000)

@@ -1,10 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,10 +16,11 @@ namespace R54IN0.WPF
 
         private int _curSelectedIndex;
         private int _rowCount;
-        private Action<int, int, object> _callback;
+        private Func<object, Task> _callback;
         private object _state;
 
         private event PropertyChangedEventHandler _propertyChanged;
+
         public event PropertyChangedEventHandler PropertyChanged
         {
             add
@@ -46,7 +45,7 @@ namespace R54IN0.WPF
             RowCount = 50;
 
             NumericButtons = new ObservableCollection<Button>();
-            for(int i = 0; i < MAX_PAGE_SIZE; i++)
+            for (int i = 0; i < MAX_PAGE_SIZE; i++)
             {
                 Button button = new Button();
                 button.Click += OnNumericButtonClicked;
@@ -74,7 +73,9 @@ namespace R54IN0.WPF
                 NumericButtons[idx].FontWeight = FontWeights.UltraBold;
 
                 if (_callback != null)
-                    Dispatcher.CurrentDispatcher.Invoke(_callback, Offset, RowCount, _state);
+                {
+                    Dispatcher.CurrentDispatcher.Invoke(_callback, _state);
+                }
             }
         }
 
@@ -177,7 +178,7 @@ namespace R54IN0.WPF
             }
         }
 
-        public void SetNavigation(int rowCount, int count, Action<int, int, object> callback, object state)
+        public void SetNavigation(int rowCount, int count, Func<object, Task> callback, object state)
         {
             _callback = callback;
             _state = state;

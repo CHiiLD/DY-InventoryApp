@@ -18,6 +18,7 @@ namespace R54IN0.WPF
     public class IOStockManagerViewModel : INotifyPropertyChanged
     {
         #region private var
+
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private IOStockType _stockType;
@@ -70,6 +71,7 @@ namespace R54IN0.WPF
                     SelectedAccount = stock.Supplier;
                     SelectedProject = stock.Warehouse;
                     break;
+
                 case IOStockType.OUTGOING:
                     SelectedAccount = stock.Customer;
                     SelectedProject = stock.Project;
@@ -531,6 +533,7 @@ namespace R54IN0.WPF
                         SelectedProject = new Observable<Warehouse>(newWarehouse); //ddr.SearchField<Warehouse>(newWarehouse.ID);
                     }
                     break;
+
                 case IOStockType.OUTGOING:
                     if (SelectedAccount == null && AccountText != null)
                     {
@@ -612,6 +615,7 @@ namespace R54IN0.WPF
                         SelectedProject = origin.Warehouse;
                     }
                     break;
+
                 case IOStockType.OUTGOING:
                     if (origin.Customer != null && account == null)
                     {

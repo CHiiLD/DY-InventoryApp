@@ -44,7 +44,7 @@ namespace R54IN0.Server
             }
             byte[] response = new ProtocolFormat().SetValueList(values).ToBytes(Name);
 
-            session.Logger.DebugFormat("Value 쿼리 결과를 클라이언트에게 전달합니다.(CMD: {0}, TYPE: {1}, BYTE SIZE: {1})", Name, formatName, response.Length);
+            session.Logger.DebugFormat("Value 쿼리 결과를 클라이언트에게 전달합니다.(CMD: {0}, TYPE: {1}, BYTE SIZE: {2})", Name, formatName, response.Length);
             session.Send(response, 0, response.Length);
         }
     }

@@ -1,11 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace R54IN0.WPF
@@ -229,21 +225,27 @@ namespace R54IN0.WPF
                 case Maker.HEADER:
                     selectedObject = SelectedMaker;
                     break;
+
                 case Measure.HEADER:
                     selectedObject = SelectedMeasure;
                     break;
+
                 case Employee.HEADER:
                     selectedObject = SelectedEmployee;
                     break;
+
                 case Customer.HEADER:
                     selectedObject = SelectedCustomer;
                     break;
+
                 case Supplier.HEADER:
                     selectedObject = SelectedSupplier;
                     break;
+
                 case Warehouse.HEADER:
                     selectedObject = SelectedWarehouse;
                     break;
+
                 case Project.HEADER:
                     selectedObject = SelectedProject;
                     break;
@@ -260,24 +262,31 @@ namespace R54IN0.WPF
                 case Maker.HEADER:
                     selectedObject = SelectedMaker;
                     break;
+
                 case Measure.HEADER:
                     selectedObject = SelectedMeasure;
                     break;
+
                 case Employee.HEADER:
                     selectedObject = SelectedEmployee;
                     break;
+
                 case Customer.HEADER:
                     selectedObject = SelectedCustomer;
                     break;
+
                 case Supplier.HEADER:
                     selectedObject = SelectedSupplier;
                     break;
+
                 case Warehouse.HEADER:
                     selectedObject = SelectedWarehouse;
                     break;
+
                 case Project.HEADER:
                     selectedObject = SelectedProject;
                     break;
+
                 default:
                     throw new NotSupportedException();
             }
@@ -298,24 +307,31 @@ namespace R54IN0.WPF
                 case Maker.HEADER:
                     newField = new Maker(string.Format("새로운 {0}", Maker.HEADER));
                     break;
+
                 case Measure.HEADER:
                     newField = new Measure(string.Format("새로운 {0}", Measure.HEADER));
                     break;
+
                 case Employee.HEADER:
                     newField = new Employee(string.Format("새로운 {0}", Employee.HEADER));
                     break;
+
                 case Customer.HEADER:
                     newField = new Customer(string.Format("새로운 {0}", Customer.HEADER));
                     break;
+
                 case Supplier.HEADER:
                     newField = new Supplier(string.Format("새로운 {0}", Supplier.HEADER));
                     break;
+
                 case Warehouse.HEADER:
                     newField = new Warehouse(string.Format("새로운 {0}", Warehouse.HEADER));
                     break;
+
                 case Project.HEADER:
                     newField = new Project(string.Format("새로운 {0}", Project.HEADER));
                     break;
+
                 default:
                     throw new NotSupportedException();
             }

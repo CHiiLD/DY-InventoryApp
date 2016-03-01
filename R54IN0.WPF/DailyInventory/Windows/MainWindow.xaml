@@ -55,8 +55,8 @@
                 <MenuItem Header="날짜별로 보기" Command="{Binding ChangeIOStockByDateCommand}" />
                 <MenuItem Header="프로젝트별로 보기" Command="{Binding ChangeIOStockByProjectCommand}" />
             </MenuItem>
-            
-            <MenuItem Header="기본정보관리" Command="{Binding OpenFieldManagerWindow}"/>
+
+            <MenuItem Header="기본정보관리" Command="{Binding OpenFieldManagerWindow}" />
 
             <MenuItem Header="인터페이스">
                 <MenuItem Header="테마"

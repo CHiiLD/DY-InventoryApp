@@ -6,7 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using MahApps.Metro;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using Newtonsoft.Json;
+
 //using SuperSocket.SocketBase.Config;
 using System;
 using System.Collections.Generic;
@@ -32,6 +32,7 @@ namespace R54IN0.WPF
         private ReadOnlyServer _readServer;
         private WriteOnlyServer _writeServer;
 #endif
+
         private event PropertyChangedEventHandler _propertyChanged;
 
         public MainWindowViewModel()
@@ -103,11 +104,9 @@ namespace R54IN0.WPF
             }
             catch (Exception e)
             {
-
             }
             finally
             {
-
             }
         }
 

@@ -100,7 +100,7 @@
                     </StackPanel>
                 </Grid>
                 <local:IOStockDataGridControl DataContext="{Binding DataGridViewModel}" x:Name="DataGrid" Grid.Row="1" />
-                <local:PagingControl DataContext="{Binding DataGridPagingViewModel}" VerticalAlignment="Bottom" Grid.Row="2" HorizontalAlignment="Right" Margin="0,5,5,0"/>
+                <local:PagingControl DataContext="{Binding DataGridPagingViewModel}" VerticalAlignment="Bottom" Grid.Row="2" HorizontalAlignment="Right" Margin="0,5,5,0" />
             </Grid>
         </GroupBox>
     </Grid>

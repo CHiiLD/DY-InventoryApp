@@ -5,11 +5,8 @@ using R54IN0.Format;
 using SuperSocket.ClientEngine;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -20,7 +17,6 @@ namespace R54IN0.WPF
     {
         private AsyncTcpSession _session;
         private Socket _socket;
-        //private readonly byte[] _socketBuffer = new byte[ProtocolFormat.BUFFER_SIZE * 100];
         private readonly BlockingBufferManager _bufferManager = new BlockingBufferManager(ProtocolFormat.BUFFER_SIZE * 10, 100);
 
         public Socket Socket
@@ -40,7 +36,7 @@ namespace R54IN0.WPF
         }
 
         /// <summary>
-        /// Re/Write서버에 접속합니다. 
+        /// Re/Write서버에 접속합니다.
         /// </summary>
         /// <returns>read session BeginConnect 실행 후 반환값</returns>
         public IAsyncResult Connect()
@@ -74,6 +70,7 @@ namespace R54IN0.WPF
             Disconnect();
             _socket = null;
             _session = null;
+            _bufferManager.Dispose();
         }
 
         private void ConnectCallback(IAsyncResult ar)
@@ -93,8 +90,13 @@ namespace R54IN0.WPF
         private void OnDataReceived(object sender, DataEventArgs e)
         {
             log.DebugFormat("갱신 서버로부터 데이터 수신(BYTE: {0})", e.Length - e.Offset + 1);
+
             List<ProtocolFormat> fmtList = ProtocolFormat.ToProtocolFormats(e.Data, e.Offset, e.Length);
-            fmtList.ForEach(x => DispatchService.Invoke(new Action<ProtocolFormat>(DataReceiveHandler), x));
+
+            if (Application.Current != null)
+                fmtList.ForEach(x => Application.Current.Dispatcher.Invoke(new Action<ProtocolFormat>(DataReceiveHandler), x));
+            else
+                fmtList.ForEach(x => Dispatcher.CurrentDispatcher.Invoke(new Action<ProtocolFormat>(DataReceiveHandler), x));
         }
 
         private void DataReceiveHandler(ProtocolFormat pfmt)
@@ -106,13 +108,16 @@ namespace R54IN0.WPF
                     JObject jobj = pfmt.Value as JObject;
                     DataInsertEventHandler(this, new SQLInsertEventArgs(ToFormat(pfmt.Table, jobj)));
                     break;
+
                 case ProtocolCommand.UPDATE:
                     jobj = pfmt.Value as JObject;
                     DataUpdateEventHandler(this, new SQLUpdateEventArgs(ToFormat(pfmt.Table, jobj)));
                     break;
+
                 case ProtocolCommand.DELETE:
                     DataDeleteEventHandler(this, new SQLDeleteEventArgs(ToType(pfmt.Table), pfmt.ID));
                     break;
+
                 default:
                     throw new NotSupportedException();
             }
@@ -190,33 +195,43 @@ namespace R54IN0.WPF
                 case nameof(Maker):
                     type = typeof(Maker);
                     break;
+
                 case nameof(Measure):
                     type = typeof(Measure);
                     break;
+
                 case nameof(Customer):
                     type = typeof(Customer);
                     break;
+
                 case nameof(Supplier):
                     type = typeof(Supplier);
                     break;
+
                 case nameof(Project):
                     type = typeof(Project);
                     break;
+
                 case nameof(Product):
                     type = typeof(Product);
                     break;
+
                 case nameof(Warehouse):
                     type = typeof(Warehouse);
                     break;
+
                 case nameof(Employee):
                     type = typeof(Employee);
                     break;
+
                 case nameof(InventoryFormat):
                     type = typeof(InventoryFormat);
                     break;
+
                 case nameof(IOStockFormat):
                     type = typeof(IOStockFormat);
                     break;
+
                 default:
                     throw new NotSupportedException();
             }
@@ -231,33 +246,43 @@ namespace R54IN0.WPF
                 case nameof(Maker):
                     instance = jobj.ToObject<Maker>();
                     break;
+
                 case nameof(Measure):
                     instance = jobj.ToObject<Measure>();
                     break;
+
                 case nameof(Customer):
                     instance = jobj.ToObject<Customer>();
                     break;
+
                 case nameof(Supplier):
                     instance = jobj.ToObject<Supplier>();
                     break;
+
                 case nameof(Project):
                     instance = jobj.ToObject<Project>();
                     break;
+
                 case nameof(Product):
                     instance = jobj.ToObject<Product>();
                     break;
+
                 case nameof(Warehouse):
                     instance = jobj.ToObject<Warehouse>();
                     break;
+
                 case nameof(Employee):
                     instance = jobj.ToObject<Employee>();
                     break;
+
                 case nameof(InventoryFormat):
                     instance = jobj.ToObject<InventoryFormat>();
                     break;
+
                 case nameof(IOStockFormat):
                     instance = jobj.ToObject<IOStockFormat>();
                     break;
+
                 default:
                     throw new NotSupportedException();
             }

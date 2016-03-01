@@ -1,5 +1,5 @@
 ﻿//SERVER
-//TODO WRITE 서버에서 수정 시 에러에 대비해서 트랜잭션 코드를 만든다. 
+//TODO WRITE 서버에서 수정 시 에러에 대비해서 트랜잭션 코드를 만든다.
 //TODO PING PONG을 read/write 서버용으로 command를 하나씩 만들어서 1분씩 서버가 클라이언트를 검사하게 함
 
 //CLIENT
