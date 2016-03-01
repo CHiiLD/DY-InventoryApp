@@ -1,8 +1,10 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +14,8 @@ namespace R54IN0.WPF
 {
     public class IOStockStatusViewModel : INotifyPropertyChanged, ICollectionViewModelObserver
     {
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public const int QUERY_LIMIT_ROWCOUNT = 31;
         public const string DATAGRID_OPTION_DATE = "날짜별";
         public const string DATAGRID_OPTION_PROJECT = "프로젝트별";
@@ -558,7 +562,7 @@ namespace R54IN0.WPF
                 if (tuple == null)
                     return;
                 int count = tuple.Item1; //레코드 개수
-                DataGridPagingViewModel.SetNavigation(QUERY_LIMIT_ROWCOUNT, count, OnPagingButtonClicked, selectSql); //페이징 설정 동시에 콜백 호출함 
+                DataGridPagingViewModel.SetNavigation(QUERY_LIMIT_ROWCOUNT, count, OnPagingButtonClickedAsync, selectSql); //페이징 설정 동시에 콜백 호출함 
             }
             else
             {
@@ -567,7 +571,7 @@ namespace R54IN0.WPF
             }
         }
 
-        private async void OnPagingButtonClicked(int offset, int rowCount, object state)
+        private async void OnPagingButtonClickedAsync(int offset, int rowCount, object state)
         {
             DataDirector.GetInstance().StockList.Clear();
             string sql = state as string;
@@ -585,7 +589,8 @@ namespace R54IN0.WPF
             }
             catch(Exception e)
             {
-                throw e;
+                log.Error(e.Message);
+                log.Error(e.StackTrace);
             }
         }
 

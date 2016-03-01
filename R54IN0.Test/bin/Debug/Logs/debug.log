@@ -4726,3 +4726,245 @@
 2016-03-01 14:40:16,451 [3860] DEBUG R54IN0.WPF.DataDirector - ---------------DataDirector 포맷 데이터 읽기 완료---------------
 2016-03-01 14:40:16,463 [TestRunnerThread] DEBUG ReadOnlyServer-52757806 - Listener (0.0.0.0:4000) was stoppped
 2016-03-01 14:40:16,463 [TestRunnerThread] DEBUG WriteOnlyServer-16298857 - Listener (0.0.0.0:4001) was stoppped
+2016-03-01 15:54:25,113 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 15:54:25,122 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 15:54:25,122 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 15:54:25,122 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 15:54:25,123 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 15:54:25,176 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 15:54:25,176 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 15:54:25,176 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 15:54:25,202 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - Listener (0.0.0.0:4000) was started
+2016-03-01 15:54:25,203 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - Listener (0.0.0.0:4001) was started
+2016-03-01 15:54:25,237 [3600] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 15:54:25,241 [9456] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 15:54:25,295 [10900] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 15:54:25,313 [8652] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 15:54:25,330 [9456] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 15:54:25,339 [9456] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Employee)
+2016-03-01 15:54:25,341 [8132] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Employee, BYTE SIZE: 676)
+2016-03-01 15:54:25,356 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - Listener (0.0.0.0:4000) was stoppped
+2016-03-01 15:54:25,356 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - Listener (0.0.0.0:4001) was stoppped
+2016-03-01 15:55:14,822 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 15:55:14,831 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 15:55:14,831 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 15:55:14,831 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 15:55:14,831 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 15:55:14,890 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 15:55:14,890 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 15:55:14,890 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 15:55:14,919 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - Listener (0.0.0.0:4000) was started
+2016-03-01 15:55:14,920 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - Listener (0.0.0.0:4001) was started
+2016-03-01 15:55:14,978 [1528] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 15:55:14,984 [11680] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 15:55:15,060 [TestRunnerThread] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 15:55:39,127 [8352] DEBUG ReadOnlyServer-34921712 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 15:55:39,147 [5384] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 15:55:39,155 [9000] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Employee)
+2016-03-01 15:55:45,743 [8352] DEBUG ReadOnlyServer-34921712 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Employee, BYTE SIZE: 676)
+2016-03-01 15:56:06,982 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 15:56:07,003 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 15:56:07,004 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 15:56:07,004 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 15:56:07,004 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 15:56:07,052 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 15:56:07,052 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 15:56:07,052 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 15:56:07,093 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - Listener (0.0.0.0:4000) was started
+2016-03-01 15:56:07,095 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - Listener (0.0.0.0:4001) was started
+2016-03-01 15:56:07,142 [9428] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 15:56:07,142 [9148] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 15:56:07,237 [TestRunnerThread] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 15:56:07,259 [1528] DEBUG ReadOnlyServer-34921712 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 15:56:21,521 [9428] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 15:56:21,531 [9428] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Employee)
+2016-03-01 15:56:21,547 [5360] DEBUG ReadOnlyServer-34921712 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Employee, BYTE SIZE: 676)
+2016-03-01 15:56:43,740 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 15:56:43,749 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 15:56:43,749 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 15:56:43,749 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 15:56:43,749 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 15:56:43,802 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 15:56:43,803 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 15:56:43,803 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 15:56:43,830 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - Listener (0.0.0.0:4000) was started
+2016-03-01 15:56:43,832 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - Listener (0.0.0.0:4001) was started
+2016-03-01 15:56:43,866 [2700] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 15:56:43,871 [9976] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 15:56:43,920 [5736] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 15:56:43,943 [10360] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 15:56:43,959 [9976] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 15:56:43,965 [5736] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Employee)
+2016-03-01 15:56:43,966 [7280] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Employee, BYTE SIZE: 676)
+2016-03-01 15:56:43,982 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - Listener (0.0.0.0:4000) was stoppped
+2016-03-01 15:56:43,982 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - Listener (0.0.0.0:4001) was stoppped
+2016-03-01 15:57:53,853 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 15:57:53,863 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 15:57:53,863 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 15:57:53,863 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 15:57:53,863 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 15:57:53,927 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 15:57:53,927 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 15:57:53,927 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 15:57:53,956 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - Listener (0.0.0.0:4000) was started
+2016-03-01 15:57:53,958 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - Listener (0.0.0.0:4001) was started
+2016-03-01 15:57:54,021 [11808] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 15:57:54,027 [10360] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 15:57:57,425 [11616] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 15:57:57,445 [7700] DEBUG ReadOnlyServer-34921712 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 15:57:58,554 [11808] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 15:58:05,244 [11808] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Employee)
+2016-03-01 15:58:33,800 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 15:58:33,800 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 15:58:33,800 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 15:58:33,800 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 15:58:33,800 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 15:58:33,866 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 15:58:33,866 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 15:58:33,867 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 15:58:33,894 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - Listener (0.0.0.0:4000) was started
+2016-03-01 15:58:33,896 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - Listener (0.0.0.0:4001) was started
+2016-03-01 15:58:33,955 [7344] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 15:58:33,960 [11104] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 16:05:09,201 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 16:05:09,211 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 16:05:09,211 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 16:05:09,211 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 16:05:09,211 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 16:05:09,268 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 16:05:09,268 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 16:05:09,268 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 16:05:09,298 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - Listener (0.0.0.0:4000) was started
+2016-03-01 16:05:09,299 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - Listener (0.0.0.0:4001) was started
+2016-03-01 16:05:09,335 [7888] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 16:05:09,341 [6892] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 16:05:09,396 [5284] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 16:05:09,418 [10608] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 16:05:09,441 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - Listener (0.0.0.0:4000) was stoppped
+2016-03-01 16:05:09,441 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - Listener (0.0.0.0:4001) was stoppped
+2016-03-01 16:06:15,211 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 16:06:15,221 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 16:06:15,221 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 16:06:15,221 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 16:06:15,222 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 16:06:15,282 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 16:06:15,283 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 16:06:15,283 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 16:06:15,311 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - Listener (0.0.0.0:4000) was started
+2016-03-01 16:06:15,313 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - Listener (0.0.0.0:4001) was started
+2016-03-01 16:06:15,373 [11660] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 16:06:15,381 [8396] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 16:06:15,464 [11660] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 16:06:15,486 [8528] DEBUG ReadOnlyServer-34921712 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 16:06:43,148 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 16:06:43,158 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 16:06:43,158 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 16:06:43,158 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 16:06:43,158 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 16:06:43,218 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 16:06:43,219 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 16:06:43,219 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 16:06:43,247 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - Listener (0.0.0.0:4000) was started
+2016-03-01 16:06:43,248 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - Listener (0.0.0.0:4001) was started
+2016-03-01 16:06:43,309 [6488] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 16:06:43,316 [1560] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 16:06:43,393 [TestRunnerThread] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 16:06:43,414 [9988] DEBUG ReadOnlyServer-34921712 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 16:07:34,503 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 16:07:34,512 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 16:07:34,513 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 16:07:34,513 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 16:07:34,513 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 16:07:34,569 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 16:07:34,570 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 16:07:34,570 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 16:07:34,599 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - Listener (0.0.0.0:4000) was started
+2016-03-01 16:07:34,601 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - Listener (0.0.0.0:4001) was started
+2016-03-01 16:07:34,660 [7912] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 16:07:34,666 [4836] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 16:07:34,755 [7912] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 16:07:34,776 [4536] DEBUG ReadOnlyServer-34921712 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 16:08:03,159 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 16:08:03,168 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 16:08:03,168 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 16:08:03,168 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 16:08:03,169 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 16:08:03,225 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 16:08:03,226 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 16:08:03,226 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 16:08:03,255 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - Listener (0.0.0.0:4000) was started
+2016-03-01 16:08:03,258 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - Listener (0.0.0.0:4001) was started
+2016-03-01 16:08:03,325 [9460] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 16:08:03,332 [10124] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 16:08:03,411 [TestRunnerThread] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 16:08:03,432 [5556] DEBUG ReadOnlyServer-34921712 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 16:08:34,480 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 16:08:34,490 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 16:08:34,490 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 16:08:34,490 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 16:08:34,490 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 16:08:34,550 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 16:08:34,551 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 16:08:34,551 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 16:08:34,579 [TestRunnerThread] DEBUG ReadOnlyServer-34921712 - Listener (0.0.0.0:4000) was started
+2016-03-01 16:08:34,581 [TestRunnerThread] DEBUG WriteOnlyServer-59408853 - Listener (0.0.0.0:4001) was started
+2016-03-01 16:08:34,642 [5584] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 16:08:34,649 [5284] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 16:08:34,725 [5584] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 16:08:34,745 [2900] DEBUG ReadOnlyServer-34921712 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 16:08:47,780 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 16:08:47,789 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 16:08:47,789 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 16:08:47,789 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 16:08:47,789 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 16:08:47,844 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 16:08:47,844 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 16:08:47,844 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 16:08:47,871 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - Listener (0.0.0.0:4000) was started
+2016-03-01 16:08:47,873 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - Listener (0.0.0.0:4001) was started
+2016-03-01 16:08:47,909 [10008] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 16:08:47,913 [8020] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 16:08:47,972 [9280] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 16:08:47,991 [10944] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 16:10:43,063 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command PING(R54IN0.Server.PingCommand) has been discovered
+2016-03-01 16:10:43,072 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command QUEF(R54IN0.Server.QueryInstanceCommand) has been discovered
+2016-03-01 16:10:43,072 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command QUEV(R54IN0.Server.QueryValueCommand) has been discovered
+2016-03-01 16:10:43,072 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command SELA(R54IN0.Server.SelectAllCommand) has been discovered
+2016-03-01 16:10:43,072 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - The command SELO(R54IN0.Server.SelectCommand) has been discovered
+2016-03-01 16:10:43,136 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command DELT(R54IN0.Server.DeleteCommand) has been discovered
+2016-03-01 16:10:43,136 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command INST(R54IN0.Server.InsertCommand) has been discovered
+2016-03-01 16:10:43,136 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - The command UPDT(R54IN0.Server.UpdateCommand) has been discovered
+2016-03-01 16:10:43,166 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - Listener (0.0.0.0:4000) was started
+2016-03-01 16:10:43,168 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - Listener (0.0.0.0:4001) was started
+2016-03-01 16:10:43,204 [6800] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버와의 연결에 성공하였습니다.
+2016-03-01 16:10:43,209 [11800] DEBUG R54IN0.WPF.MySqlBridge - 갱신 서버와의 연결에 성공하였습니다.
+2016-03-01 16:10:43,265 [11424] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 16:10:43,285 [5152] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Customer, BYTE SIZE: 988)
+2016-03-01 16:10:43,306 [11800] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Customer)
+2016-03-01 16:10:43,315 [11800] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Employee)
+2016-03-01 16:10:43,318 [2040] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Employee, BYTE SIZE: 676)
+2016-03-01 16:10:43,318 [10756] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Employee)
+2016-03-01 16:10:43,319 [11800] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Maker)
+2016-03-01 16:10:43,321 [9560] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Maker, BYTE SIZE: 1153)
+2016-03-01 16:10:43,321 [10756] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Maker)
+2016-03-01 16:10:43,322 [11424] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Measure)
+2016-03-01 16:10:43,324 [5264] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Measure, BYTE SIZE: 362)
+2016-03-01 16:10:43,324 [11424] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Measure)
+2016-03-01 16:10:43,325 [11424] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Product)
+2016-03-01 16:10:43,327 [5152] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Product, BYTE SIZE: 876)
+2016-03-01 16:10:43,327 [11800] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Product)
+2016-03-01 16:10:43,328 [11424] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Project)
+2016-03-01 16:10:43,329 [2040] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Project, BYTE SIZE: 499)
+2016-03-01 16:10:43,329 [11424] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Project)
+2016-03-01 16:10:43,330 [10756] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Supplier)
+2016-03-01 16:10:43,331 [9560] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Supplier, BYTE SIZE: 988)
+2016-03-01 16:10:43,332 [10756] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Supplier)
+2016-03-01 16:10:43,332 [11800] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: Warehouse)
+2016-03-01 16:10:43,334 [5264] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: Warehouse, BYTE SIZE: 628)
+2016-03-01 16:10:43,334 [11424] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: Warehouse)
+2016-03-01 16:10:43,340 [11800] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 전송합니다.(CMD: SELA, TYPE: InventoryFormat)
+2016-03-01 16:10:43,345 [5152] DEBUG ReadOnlyServer-22779505 - 검색 결과를 클라이언트에게 전송합니다.(CMD: SELA, TYPE: InventoryFormat, BYTE SIZE: 6872)
+2016-03-01 16:10:43,347 [10756] DEBUG R54IN0.WPF.MySqlBridge - 쿼리 서버로 데이터를 수신받았습니다.(CMD: SELA, TYPE: InventoryFormat)
+2016-03-01 16:10:43,351 [10756] DEBUG R54IN0.WPF.DataDirector - ---------------DataDirector 포맷 데이터 읽기 완료---------------
+2016-03-01 16:10:43,380 [TestRunnerThread] DEBUG ReadOnlyServer-22779505 - Listener (0.0.0.0:4000) was stoppped
+2016-03-01 16:10:43,381 [TestRunnerThread] DEBUG WriteOnlyServer-63291458 - Listener (0.0.0.0:4001) was stoppped

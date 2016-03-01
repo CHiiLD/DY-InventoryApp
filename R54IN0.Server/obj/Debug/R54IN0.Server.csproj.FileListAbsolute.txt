@@ -1,0 +1,11 @@
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\R54IN0.Server.exe
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\R54IN0.Server.pdb
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\log4net.dll
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\Newtonsoft.Json.dll
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\R54IN0.Format.dll
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.Common.dll
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.Facility.dll
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.SocketBase.dll
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.SocketEngine.dll
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.SocketService.exe
+C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.SocketEngine.pdb

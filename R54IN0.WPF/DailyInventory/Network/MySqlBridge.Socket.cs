@@ -20,7 +20,8 @@ namespace R54IN0.WPF
     {
         private AsyncTcpSession _session;
         private Socket _socket;
-        private readonly byte[] _socketBuffer = new byte[ProtocolFormat.BUFFER_SIZE * 100];
+        //private readonly byte[] _socketBuffer = new byte[ProtocolFormat.BUFFER_SIZE * 100];
+        private readonly BlockingBufferManager _bufferManager = new BlockingBufferManager(ProtocolFormat.BUFFER_SIZE * 10, 100);
 
         public Socket Socket
         {
@@ -120,9 +121,13 @@ namespace R54IN0.WPF
         private async Task<ProtocolFormat> SendAsync(string cmd, ProtocolFormat sfmt)
         {
             ProtocolFormat rfmt = null;
-            int offset = 0;
-            int receivedSize = 0;
             SocketError error = SocketError.Success;
+            ArraySegment<byte> segment = _bufferManager.GetBuffer();
+            int position = segment.Offset;
+            int offset = position;
+            int remainSize = _bufferManager.BufferSize;
+            byte[] array = segment.Array;
+            int receivedSize = 0;
             try
             {
                 byte[] sendbytes = sfmt.ToBytes(cmd);
@@ -131,27 +136,29 @@ namespace R54IN0.WPF
                 log.DebugFormat("쿼리 서버로 데이터를 전송합니다.(CMD: {0}, TYPE: {1})", sfmt.Name, sfmt.Table);
                 if (error != SocketError.Success)
                     throw new Exception("소켓 에러가 발생하였습니다. " + error.ToString());
-
-                while (true)
+                do
                 {
-                    IAsyncResult receiveBeginAr = _socket.BeginReceive(_socketBuffer, offset, _socketBuffer.Length - offset, SocketFlags.None, out error, null, _socket);
-                    receivedSize = await Task.Factory.FromAsync<int>(receiveBeginAr, EndReceiveCallback);
-
+                    remainSize -= receivedSize;
+                    position += receivedSize;
+                    IAsyncResult receiveBeginAr = _socket.BeginReceive(array, position, remainSize, SocketFlags.None, out error, null, _socket);
+                    int size = await Task.Factory.FromAsync<int>(receiveBeginAr, EndReceiveCallback);
                     if (error != SocketError.Success)
                         throw new Exception("소켓 에러가 발생하였습니다. " + error.ToString());
-                    if (receivedSize == 0)
+                    if (size == 0)
                         throw new Exception("read server에서 연결을 해제하였습니다.");
-
-                    if (ProtocolFormat.IsReceivedCompletely(_socketBuffer, 0, offset + receivedSize))
-                        break;
-                    offset += receivedSize;
+                    receivedSize += size;
                 }
-                rfmt = ProtocolFormat.ToProtocolFormat(_socketBuffer, 0, offset + receivedSize);
+                while (!ProtocolFormat.IsReceivedCompletely(array, offset, receivedSize));
+                rfmt = ProtocolFormat.ToProtocolFormat(array, offset, receivedSize);
                 log.DebugFormat("쿼리 서버로 데이터를 수신받았습니다.(CMD: {0}, TYPE: {1})", rfmt.Name, rfmt.Table);
             }
             catch (Exception e)
             {
                 throw e;
+            }
+            finally
+            {
+                _bufferManager.ReleaseBuffer(segment);
             }
             return rfmt;
         }
