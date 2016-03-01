@@ -11,7 +11,7 @@ namespace R54IN0.Format
 {
     public class ProtocolFormat : ProtocolCommand
     {
-        public const int BUFFER_SIZE = 1024 * 2;
+        public const int BUFFER_SIZE = 1024 * 4;
 
         public string Name { get; set; }
         public string Table { get; set; }

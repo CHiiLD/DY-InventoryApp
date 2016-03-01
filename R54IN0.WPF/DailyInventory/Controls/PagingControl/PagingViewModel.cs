@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace R54IN0.WPF
 {
@@ -73,7 +74,7 @@ namespace R54IN0.WPF
                 NumericButtons[idx].FontWeight = FontWeights.UltraBold;
 
                 if (_callback != null)
-                    _callback(Offset, RowCount, _state);
+                    Dispatcher.CurrentDispatcher.Invoke(_callback, Offset, RowCount, _state);
             }
         }
 

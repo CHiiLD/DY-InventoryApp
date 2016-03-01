@@ -26,6 +26,7 @@ namespace R54IN0.Server
             ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             string formatName = pfmt.Table;
             string sql = string.Format("select * from {0} where ID = '{1}';", formatName, pfmt.ID);
+
             Send(session, sql, formatName);
         }
     }

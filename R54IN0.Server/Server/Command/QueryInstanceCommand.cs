@@ -23,6 +23,7 @@ namespace R54IN0.Server
             ProtocolFormat pfmt = ProtocolFormat.ToProtocolFormat(requestInfo.Key, requestInfo.Body);
             string formatName = pfmt.Table;
             string sql = pfmt.SQL;
+
             Send(session, sql, formatName);
         }
     }

@@ -59,7 +59,7 @@ namespace R54IN0.Server
             SerialKiller(conn, type, id);
 
             byte[] data = new ProtocolFormat(type).SetID(id).ToBytes(ProtocolCommand.DELETE);
-            session.Logger.DebugFormat("삭제된 포맷을 클라이언트들에게 알립니다.(TYPE: {0}, SIZE: {1})", type, data.Length);
+            session.Logger.DebugFormat("삭제된 포맷을 클라이언트들에게 알립니다.(CMD: {0}, TYPE: {1}, SIZE: {2})", Name, type, data.Length);
             foreach (WriteOnlySession s in server.GetAllSessions())
                 s.Send(data, 0, data.Length);
 

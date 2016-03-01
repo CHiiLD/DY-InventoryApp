@@ -162,13 +162,14 @@ namespace R54IN0.WPF
                     ObservableInventory inv = SearchInventory(id);
                     if (inv != null)
                     {
+                        _subject.NotifyItemDeleted(inv);
+
                         List<IOStockDataGridItem> stos = StockList.Where(x => x.Inventory.ID == id).ToList();
                         stos.ForEach(x => OnDataDeleted(obj, new SQLDeleteEventArgs(typeof(IOStockFormat), x.ID)));
-                        _subject.NotifyItemDeleted(inv);
+                        
                         _inventory.Remove(inv.ID);
                     }
                     break;
-
                 case nameof(IOStockFormat):
                     IOStockDataGridItem stock = StockList.Where(x => x.ID == id).SingleOrDefault();
                     if (stock != null)
@@ -176,13 +177,15 @@ namespace R54IN0.WPF
                     break;
 
                 case nameof(Product):
-                    Observable<Product> prod = SearchField<Product>(id);
-                    if (prod != null)
+                    Observable<Product> product = SearchField<Product>(id);
+                    if (product != null)
                     {
-                        var invs = SearchInventories(prod.ID); //inven 삭제
+                        _subject.NotifyItemDeleted(product);
+
+                        var invs = SearchInventories(product.ID); //inven 삭제
                         invs.ForEach(x => OnDataDeleted(obj, new SQLDeleteEventArgs(typeof(InventoryFormat), x.ID)));
-                        _subject.NotifyItemDeleted(prod);
-                        _field.Delete<Product>(prod.ID);
+
+                        _field.Delete<Product>(product.ID);
                     }
                     break;
 

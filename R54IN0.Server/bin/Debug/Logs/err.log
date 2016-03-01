@@ -48,3 +48,19 @@ System.NullReferenceException: 개체 참조가 개체의 인스턴스로 설정
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(TAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1225
    위치: SuperSocket.SocketBase.AppServerBase`2.ExecuteCommand(IAppSession session, TRequestInfo requestInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppServerBase.cs:줄 1322
    위치: SuperSocket.SocketBase.AppSession`2.SuperSocket.SocketBase.IAppSession.ProcessRequest(Byte[] readBuffer, Int32 offset, Int32 length, Boolean toBeCopied) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketBase\AppSession.cs:줄 579
+2016-03-01 12:31:07,389 [9604] ERROR DefaultBootstrap - Failed to create server instance ReadOnlyServer!
+System.Reflection.TargetInvocationException: 호출 대상이 예외를 Throw했습니다. ---> System.IO.FileNotFoundException: 'C:\WINDOWS\system32\mysql_connection_string.json' 파일을 찾을 수 없습니다.
+   위치: System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   위치: System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   위치: System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   위치: System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   위치: System.IO.File.InternalReadAllText(String path, Encoding encoding, Boolean checkHost)
+   위치: R54IN0.Server.MySqlJsonFormat.ConnectionString(String configPath) 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\MySqlJsonFormat.cs:줄 22
+   위치: R54IN0.Server.ReadOnlyServer..ctor() 파일 C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\Server\OnlyRead\ReadOnlyServer.cs:줄 18
+   --- 내부 예외 스택 추적의 끝 ---
+   위치: System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   위치: System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   위치: System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   위치: System.Activator.CreateInstance(Type type)
+   위치: SuperSocket.SocketEngine.DefaultBootstrap.CreateWorkItemInstance(String serviceTypeName, StatusInfoAttribute[] serverStatusMetadata) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\DefaultBootstrap.cs:줄 229
+   위치: SuperSocket.SocketEngine.DefaultBootstrap.InitializeAndSetupWorkItem(WorkItemFactoryInfo factoryInfo) 파일 C:\Users\rians\Documents\GitHub\R54IN0\SuperSocket\SocketEngine\DefaultBootstrap.cs:줄 324

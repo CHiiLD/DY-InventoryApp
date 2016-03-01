@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -18,10 +19,8 @@ namespace R54IN0.WPF
     public partial class MySqlBridge
     {
         private AsyncTcpSession _session;
-        private readonly BlockingBufferManager _bufManager = new BlockingBufferManager(ProtocolFormat.BUFFER_SIZE, 10000);
-        private readonly SocketAwaitablePool _pool = new SocketAwaitablePool(100);
-        private readonly byte[] _buffer = new byte[ProtocolFormat.BUFFER_SIZE * 10000];
         private Socket _socket;
+        private readonly byte[] _socketBuffer = new byte[ProtocolFormat.BUFFER_SIZE * 100];
 
         public Socket Socket
         {
@@ -49,6 +48,7 @@ namespace R54IN0.WPF
             IPConfigJsonFormat config = JsonConvert.DeserializeObject<IPConfigJsonFormat>(json);
             IPEndPoint iep = new IPEndPoint(IPAddress.Parse(config.WriteServerHost), config.WriteServerPort);
             _session = new AsyncTcpSession(iep);
+            _session.ReceiveBufferSize = ProtocolFormat.BUFFER_SIZE * 100;
             _session.Connected += ConnectCallback;
             _session.Connect();
 
@@ -71,12 +71,6 @@ namespace R54IN0.WPF
         public void Dispose()
         {
             Disconnect();
-
-            if (_pool != null)
-                _pool.Dispose();
-            if (_bufManager != null)
-                _bufManager.Dispose();
-
             _socket = null;
             _session = null;
         }
@@ -123,61 +117,24 @@ namespace R54IN0.WPF
             }
         }
 
-        private async Task<ProtocolFormat> SendAsync(string cmdName, ProtocolFormat sfmt)
+        private async Task<ProtocolFormat> SendAsync(string cmd, ProtocolFormat sfmt)
         {
-#if false
-            SocketAwaitable at = _pool.Take();
-            List<ArraySegment<byte>> segments = new List<ArraySegment<byte>>();
-            ArraySegment<byte> segment = sendingFmt.ToArraySegment(receiveName);
-            at.Buffer = segment;
-            ProtocolFormat resultFmt = null;
-            try
-            {
-                if (SocketError.Success != await _socket.SendAsync(at))
-                    throw new Exception("send to readserver fail");
-                at.Buffer = _bufManager.GetBuffer();
-                int offset = at.Buffer.Offset;
-                int count = 0;
-                while (SocketError.Success == await _socket.ReceiveAsync(at) && at.Transferred.Count > 0)
-                {
-                    segments.Add(at.Buffer);
-                    count += at.Transferred.Count;
-                    if (ProtocolFormat.IsReceivedCompletely(at.Transferred.Array, offset, count))
-                        break;
-                    at.Buffer = _bufManager.GetBuffer();
-                }
-                if (count == 0)
-                    throw new Exception("read server에서 연결을 해제하였습니다.");
-                resultFmt = ProtocolFormat.ToProtocolFormat(at.Transferred.Array, offset, count);
-                log.DebugFormat("SEND TO READ SERVER({0})", resultFmt.Name);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            finally
-            {
-                at.Clear();
-                _pool.Add(at);
-                segments.ForEach(x => _bufManager.ReleaseBuffer(x));
-            }
-            return resultFmt;
-#endif
             ProtocolFormat rfmt = null;
             int offset = 0;
             int receivedSize = 0;
             SocketError error = SocketError.Success;
-            byte[] sendbytes = sfmt.ToBytes(cmdName);
             try
             {
+                byte[] sendbytes = sfmt.ToBytes(cmd);
                 IAsyncResult sendBeginAr = _socket.BeginSend(sendbytes, 0, sendbytes.Length, SocketFlags.None, out error, null, _socket);
                 await Task.Factory.FromAsync(sendBeginAr, EndSendCallback);
+                log.DebugFormat("쿼리 서버로 데이터를 전송합니다.(CMD: {0}, TYPE: {1})", sfmt.Name, sfmt.Table);
                 if (error != SocketError.Success)
                     throw new Exception("소켓 에러가 발생하였습니다. " + error.ToString());
 
                 while (true)
                 {
-                    IAsyncResult receiveBeginAr = _socket.BeginReceive(_buffer, offset, _buffer.Length - offset, SocketFlags.None, out error, null, _socket);
+                    IAsyncResult receiveBeginAr = _socket.BeginReceive(_socketBuffer, offset, _socketBuffer.Length - offset, SocketFlags.None, out error, null, _socket);
                     receivedSize = await Task.Factory.FromAsync<int>(receiveBeginAr, EndReceiveCallback);
 
                     if (error != SocketError.Success)
@@ -185,12 +142,12 @@ namespace R54IN0.WPF
                     if (receivedSize == 0)
                         throw new Exception("read server에서 연결을 해제하였습니다.");
 
-                    if (ProtocolFormat.IsReceivedCompletely(_buffer, 0, offset + receivedSize))
+                    if (ProtocolFormat.IsReceivedCompletely(_socketBuffer, 0, offset + receivedSize))
                         break;
                     offset += receivedSize;
                 }
-                rfmt = ProtocolFormat.ToProtocolFormat(_buffer, 0, offset + receivedSize);
-                log.DebugFormat("쿼리 서버로 데이터를 전송합니다.(CMD: {0}, TYPE: {1})", rfmt.Name, rfmt.Table);
+                rfmt = ProtocolFormat.ToProtocolFormat(_socketBuffer, 0, offset + receivedSize);
+                log.DebugFormat("쿼리 서버로 데이터를 수신받았습니다.(CMD: {0}, TYPE: {1})", rfmt.Name, rfmt.Table);
             }
             catch (Exception e)
             {
@@ -208,7 +165,7 @@ namespace R54IN0.WPF
         private int EndReceiveCallback(IAsyncResult ar)
         {
             Socket skt = ar.AsyncState as Socket;
-            return skt.EndReceive(ar);
+            return skt.EndReceive(ar); //TODO 접속이 안되거나 서버에서 연결을 끊으면 여기서 에러가 남
         }
 
         private void Send(string cmd, ProtocolFormat sendingFmt)

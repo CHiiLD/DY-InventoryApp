@@ -49,5 +49,47 @@ namespace R54IN0.WPF
                 action(arg);
             }
         }
+
+#if false
+        public static void Invoke<T>(Func<T, Task> func, T arg)
+        {
+            if (Application.Current != null)
+            {
+                Dispatcher dispatchObject = Application.Current.Dispatcher;
+                if (dispatchObject == null || dispatchObject.CheckAccess())
+                {
+                    func(arg);
+                }
+                else
+                {
+                    dispatchObject.Invoke(func, arg);
+                }
+            }
+            else
+            {
+                Dispatcher.CurrentDispatcher.Invoke(func, arg);
+            }
+        }
+
+        public static void Invoke(Func<Task> func)
+        {
+            if (Application.Current != null)
+            {
+                Dispatcher dispatchObject = Application.Current.Dispatcher;
+                if (dispatchObject == null || dispatchObject.CheckAccess())
+                {
+                    func();
+                }
+                else
+                {
+                    dispatchObject.Invoke(func);
+                }
+            }
+            else
+            {
+                Dispatcher.CurrentDispatcher.Invoke(func);
+            }
+        }
+#endif
     }
 }

@@ -42,8 +42,9 @@ namespace R54IN0.Server
                 while (reader.Read())
                     values.Add(reader.GetValue(0) == DBNull.Value ? null : reader.GetValue(0));
             }
-
             byte[] response = new ProtocolFormat().SetValueList(values).ToBytes(Name);
+
+            session.Logger.DebugFormat("Value 쿼리 결과를 클라이언트에게 전달합니다.(CMD: {0}, TYPE: {1}, BYTE SIZE: {1})", Name, formatName, response.Length);
             session.Send(response, 0, response.Length);
         }
     }

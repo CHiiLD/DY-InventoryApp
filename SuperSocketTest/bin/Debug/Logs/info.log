@@ -21,3 +21,39 @@ A new session connected!
 A new session connected!
 2016-03-01 01:11:16,990 [14064] INFO  RaceServer - Session: de224b3d-f821-472f-b904-9433af4bf710/127.0.0.1:13992
 A new session connected!
+2016-03-01 14:19:53,054 [1012] INFO  SomeServer - The server instance SomeServer has been started!
+2016-03-01 14:19:53,082 [11376] INFO  SomeServer - Session: 61252009-8a70-42d6-af29-4498f16e7445/127.0.0.1:14561
+A new session connected!
+2016-03-01 14:19:53,100 [11376] INFO  SomeServer - The server instance SomeServer has been stopped!
+2016-03-01 14:19:53,103 [1056] INFO  SomeServer - Session: 61252009-8a70-42d6-af29-4498f16e7445/127.0.0.1:14561
+This session was closed for ClientClosing!
+2016-03-01 14:19:53,147 [1012] INFO  RaceServer - The server instance RaceServer has been started!
+2016-03-01 14:19:53,148 [1056] INFO  RaceServer - Session: 60327365-c2f3-4ea3-97d8-cf340fe7ea17/127.0.0.1:14562
+A new session connected!
+2016-03-01 14:19:53,262 [8404] INFO  RaceServer - Session: 60327365-c2f3-4ea3-97d8-cf340fe7ea17/127.0.0.1:14562
+This session was closed for ClientClosing!
+2016-03-01 14:19:53,263 [10940] INFO  RaceServer - The server instance RaceServer has been stopped!
+2016-03-01 14:19:53,273 [1012] INFO  RaceServer - The server instance RaceServer has been started!
+2016-03-01 14:19:53,276 [11376] INFO  RaceServer - Session: 8c12db6e-05d2-4e96-b67e-9c6e4806eafa/127.0.0.1:14563
+A new session connected!
+2016-03-01 14:19:54,289 [11012] INFO  RaceServer - Session: 8c12db6e-05d2-4e96-b67e-9c6e4806eafa/127.0.0.1:14563
+This session was closed for ClientClosing!
+2016-03-01 14:19:54,292 [1012] INFO  RaceServer - The server instance RaceServer has been stopped!
+2016-03-01 14:19:54,307 [1012] INFO  RaceServer - The server instance RaceServer has been started!
+2016-03-01 14:19:54,307 [11376] INFO  RaceServer - Session: 195213bd-2f39-4a9a-81aa-5510ef9fac07/127.0.0.1:14564
+A new session connected!
+2016-03-01 14:19:54,308 [7772] INFO  RaceServer - Session: fa53da76-90e0-4610-897a-a9257c7c52f8/127.0.0.1:14565
+A new session connected!
+2016-03-01 14:19:54,308 [11376] INFO  RaceServer - Session: 43a0f49f-f1b8-45ca-9f1a-a511162b730c/127.0.0.1:14566
+A new session connected!
+2016-03-01 14:19:54,308 [1056] INFO  RaceServer - Session: f1658887-b06a-42ac-8feb-5a5e5b420625/127.0.0.1:14567
+A new session connected!
+2016-03-01 14:19:58,289 [11852] INFO  RaceServer - Session: 195213bd-2f39-4a9a-81aa-5510ef9fac07/127.0.0.1:14564
+This session was closed for ClientClosing!
+2016-03-01 14:19:58,289 [12268] INFO  RaceServer - Session: fa53da76-90e0-4610-897a-a9257c7c52f8/127.0.0.1:14565
+This session was closed for ClientClosing!
+2016-03-01 14:19:58,289 [6928] INFO  RaceServer - Session: 43a0f49f-f1b8-45ca-9f1a-a511162b730c/127.0.0.1:14566
+This session was closed for ClientClosing!
+2016-03-01 14:19:58,289 [11852] INFO  RaceServer - Session: f1658887-b06a-42ac-8feb-5a5e5b420625/127.0.0.1:14567
+This session was closed for ClientClosing!
+2016-03-01 14:19:58,290 [1012] INFO  RaceServer - The server instance RaceServer has been stopped!

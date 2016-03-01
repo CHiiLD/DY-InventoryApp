@@ -123,7 +123,7 @@ namespace R54IN0.Server
                 return;
 
             byte[] data = new ProtocolFormat(typeof(InventoryFormat)).SetInstance(invf).ToBytes(ProtocolCommand.UPDATE);
-            session.Logger.DebugFormat("인벤토리 포맷의 재고수량이 변경되었습니다.(QTY: {0}, BYTE: {1})", invf.Quantity, data.Length);
+            session.Logger.DebugFormat("인벤토리 포맷의 재고수량이 변경되었습니다.(CMD: {0}, QTY: {1}, BYTE: {2})", ProtocolCommand.UPDATE, invf.Quantity, data.Length);
             foreach (WriteOnlySession s in server.GetAllSessions())
                 s.Send(data, 0, data.Length);
         }

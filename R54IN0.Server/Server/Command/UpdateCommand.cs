@@ -121,7 +121,7 @@ namespace R54IN0.Server
 
             byte[] data = new ProtocolFormat(type).SetInstance(item).ToBytes(ProtocolCommand.UPDATE);
 
-            session.Logger.DebugFormat("변경된 포맷을 클라이언트들에게 알립니다.(TYPE: {0}, SIZE: {1})", type, data.Length);
+            session.Logger.DebugFormat("변경된 포맷을 클라이언트들에게 알립니다.(CMD: {0}, TYPE: {1}, SIZE: {2})", Name, type, data.Length);
 
             foreach (WriteOnlySession s in server.GetAllSessions())
                 s.Send(data, 0, data.Length);

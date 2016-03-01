@@ -118,7 +118,7 @@ namespace R54IN0.WPF
         /// <returns></returns>
         public async Task<List<Tuple<T1>>> QueryReturnTupleAsync<T1>(string sql, params object[] args) //where T1 : class
         {
-            ProtocolFormat pfmt = await SendAsync(ProtocolCommand.QUERY_VALUE, new ProtocolFormat(typeof(T1)).SetSQL(sql));
+            ProtocolFormat pfmt = await SendAsync(ProtocolCommand.QUERY_VALUE, new ProtocolFormat(typeof(T1).Name).SetSQL(sql));
             List<Tuple<T1>> tuples = new List<Tuple<T1>>();
             foreach (object value in pfmt.ValueList)
             {

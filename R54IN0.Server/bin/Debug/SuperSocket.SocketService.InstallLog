@@ -1,0 +1,13 @@
+﻿어셈블리 'C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.SocketService.exe'을(를) 설치하고 있습니다.
+영향을 받는 매개 변수:
+   logtoconsole = 
+   assemblypath = C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.SocketService.exe
+   logfile = C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.SocketService.InstallLog
+InventoryServerService 서비스를 설치하고 있습니다...
+InventoryServerService 서비스가 설치되었습니다.
+EventLog 소스 InventoryServerService을(를) 로그 Application에 만들고 있습니다...
+어셈블리 'C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.SocketService.exe'을(를) 커밋하고 있습니다.
+영향을 받는 매개 변수:
+   logtoconsole = 
+   assemblypath = C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.SocketService.exe
+   logfile = C:\Users\rians\Documents\GitHub\R54IN0\R54IN0.Server\bin\Debug\SuperSocket.SocketService.InstallLog

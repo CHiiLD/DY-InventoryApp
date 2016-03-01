@@ -484,7 +484,7 @@ namespace R54IN0.WPF
                     sql = string.Format("select * from {0} where {1} in ({2}) order by Date desc;",
                         typeof(IOStockFormat).Name, "InventoryID", sb.ToString());
                 }
-                Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataGridItems), sql);
+                Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataItemsAsync), sql);
             }
         }
 
@@ -502,7 +502,7 @@ namespace R54IN0.WPF
                 {
                     string sql = string.Format("select * from {0} where {1} = '{2}' order by Date desc;",
                         typeof(IOStockFormat).Name, "ProjectID", proejct.ID);
-                    Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataGridItems), sql);
+                    Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataItemsAsync), sql);
                 }
             }
         }
@@ -521,7 +521,7 @@ namespace R54IN0.WPF
                 string strfmt = "yyyy-MM-dd HH:mm:ss.fff";
                 string sql = string.Format("select * from {0} where {1} between '{2}' and '{3}' order by Date desc;",
                     typeof(IOStockFormat).Name, "Date", fromDate.ToString(strfmt), toDate.ToString(strfmt));
-                Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataGridItems), sql);
+                Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataItemsAsync), sql);
             }
         }
 
@@ -540,26 +540,25 @@ namespace R54IN0.WPF
             TreeViewViewModel.SelectedNodes.Clear();
             SelectedDataGridGroupOption = null;
             string sql = SearchViewModel.SearchAsFilter();
-            Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataGridItems), sql);
+            Dispatcher.CurrentDispatcher.Invoke(new Func<string, Task>(SetDataItemsAsync), sql);
         }
-
         #endregion
 
         /// <summary>
         /// 입고, 출고에 따라 백업 데이터를 사용하여 데이터그리드의 아이템을 초기화한다.
         /// </summary>
-        private async Task SetDataGridItems(string sql)
+        private async Task SetDataItemsAsync(string selectSql)
         {
-            if (!string.IsNullOrEmpty(sql))
+            if (!string.IsNullOrEmpty(selectSql))
             {
-                string querySql = sql.Replace("*", "count(*)");
-                List<Tuple<int>> tupleList = await DataDirector.GetInstance().Db.QueryReturnTupleAsync<int>(querySql);
+                string querySql = selectSql.Replace("*", "count(*)");
+                List<Tuple<int>> tupleList = await DataDirector.GetInstance().Db.QueryReturnTupleAsync<int>(querySql); //레코드 개수 구하기
 
-                Tuple<int> tuple = tupleList.SingleOrDefault();
+                Tuple<int> tuple = tupleList.SingleOrDefault(); 
                 if (tuple == null)
                     return;
-                int count = tuple.Item1;
-                DataGridPagingViewModel.SetNavigation(QUERY_LIMIT_ROWCOUNT, count, OnPagingButtonClicked, sql);
+                int count = tuple.Item1; //레코드 개수
+                DataGridPagingViewModel.SetNavigation(QUERY_LIMIT_ROWCOUNT, count, OnPagingButtonClicked, selectSql); //페이징 설정 동시에 콜백 호출함 
             }
             else
             {
@@ -573,14 +572,21 @@ namespace R54IN0.WPF
             DataDirector.GetInstance().StockList.Clear();
             string sql = state as string;
             sql = sql.Replace(";", string.Format(" limit {0}, {1};", offset, rowCount));
-            List<IOStockFormat> stofmts = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>(sql);
-            foreach (var stof in stofmts)
+            try
             {
-                IOStockDataGridItem item = new IOStockDataGridItem(stof);
-                DataDirector.GetInstance().StockList.Add(item);
+                List<IOStockFormat> stofmts = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>(sql); //쿼리로 레코드 리미트 개수만큼 가져옴
+                foreach (var stof in stofmts)
+                {
+                    IOStockDataGridItem item = new IOStockDataGridItem(stof);
+                    DataDirector.GetInstance().StockList.Add(item);
+                }
+                await CalcRemainQuantityAsync(); //잔여수량 계산함
+                SetDataGridItems(); //종류에 맞게 데이터그리드 Items를 초기화
             }
-            await CalcRemainQuantity();
-            SetDataGridItems();
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         /// <summary>
@@ -610,14 +616,20 @@ namespace R54IN0.WPF
             return flag;
         }
 
-        public async Task CalcRemainQuantity()
+        public async Task CalcRemainQuantityAsync()
         {
             if (SelectedDataGridGroupOption != DATAGRID_OPTION_PRODUCT)
                 return;
+            List<IOStockDataGridItem> stockList = DataDirector.GetInstance().StockList;
+            if (stockList.Count() == 0)
+                return;
 
-            ILookup<string, IOStockDataGridItem> looper = DataDirector.GetInstance().StockList.ToLookup(x => x.InventoryID);
+            ILookup<string, IOStockDataGridItem> looper = stockList.ToLookup(x => x.InventoryID);
             foreach (var l in looper)
             {
+                if (l.Count() == 0)
+                    continue;
+
                 IEnumerable<IOStockDataGridItem> orderedList = l.OrderBy(x => x.Date);
                 IOStockDataGridItem first = orderedList.First();
                 string sql = string.Format(@"select ifnull((select sum(Quantity) from {0} where InventoryID = '{1}' and StockType = '{2}' and Date < '{4}'), 0) -
@@ -691,22 +703,37 @@ namespace R54IN0.WPF
                     if (flag.HasFlag(stock.StockType))
                         DataGridViewModel.Items.Add(stock);
 
-                    Dispatcher.CurrentDispatcher.Invoke(new Func<Task>(CalcRemainQuantity));
+                    Dispatcher.CurrentDispatcher.Invoke(new Func<Task>(CalcRemainQuantityAsync));
                 }
             }
         }
 
         public void UpdateDelItem(object item)
         {
+            List<IOStockDataGridItem> list = null;
             if (item is IOStockDataGridItem)
             {
                 IOStockDataGridItem stock = item as IOStockDataGridItem;
-
-                DataDirector.GetInstance().StockList.Remove(stock);
-
-                DataGridViewModel.Items.Remove(stock);
-
-                Dispatcher.CurrentDispatcher.Invoke(new Func<Task>(CalcRemainQuantity));
+                list = new List<IOStockDataGridItem>() { stock };
+            }
+            else if (item is ObservableInventory)
+            {
+                ObservableInventory inv = item as ObservableInventory;
+                list = DataDirector.GetInstance().StockList.Where(x => x.InventoryID == inv.ID).ToList();
+            }
+            else if (item is Observable<Product>)
+            {
+                Observable<Product> product = item as Observable<Product>;
+                list = DataDirector.GetInstance().StockList.Where(x => x.ProjectID == product.ID).ToList();
+            }
+            if (list != null && list.Count() != 0)
+            {
+                foreach (var i in list)
+                {
+                    DataDirector.GetInstance().StockList.Remove(i);
+                    DataGridViewModel.Items.Remove(i);
+                }
+                Dispatcher.CurrentDispatcher.Invoke(new Func<Task>(CalcRemainQuantityAsync));
             }
         }
     }
