@@ -1,6 +1,7 @@
 ﻿using log4net;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -18,10 +19,11 @@ namespace R54IN0.WPF
         private ObservableInventoryManager _inventory;
         private CollectionViewModelObserverSubject _subject;
         private IDbAction _dbAction;
+        private List<IOStockDataGridItem> _stockDataList;
 
         private DataDirector()
         {
-            StockList = new List<IOStockDataGridItem>();
+            _stockDataList = new List<IOStockDataGridItem>();
             _subject = CollectionViewModelObserverSubject.GetInstance();
             _field = new ObservableFieldManager();
             _inventory = new ObservableInventoryManager();
@@ -44,12 +46,6 @@ namespace R54IN0.WPF
                 _dbAction.DataUpdateEventHandler += OnDataUpdated;
                 _dbAction.DataDeleteEventHandler += OnDataDeleted;
             }
-        }
-
-        public List<IOStockDataGridItem> StockList
-        {
-            get;
-            private set;
         }
 
         public static DataDirector GetInstance()
@@ -183,6 +179,44 @@ namespace R54IN0.WPF
         }
 
         #endregion field director
+
+        #region iostock director
+
+        public void AddStock(IOStockDataGridItem stofmt)
+        {
+            if (!_stockDataList.Any(x => x.ID == stofmt.ID))
+            {
+                _stockDataList.Add(stofmt);
+            }
+        }
+
+        public void RemoveStock(string id)
+        {
+            var stofmt = SearchStock(id);
+            if (stofmt != null)
+            {
+                _stockDataList.Remove(stofmt);
+            }
+        }
+
+        public List<IOStockDataGridItem> CopyStocks()
+        {
+            return new List<IOStockDataGridItem>(_stockDataList);
+        }
+
+        public void ResetStockList(IEnumerable<IOStockDataGridItem> content)
+        {
+            _stockDataList.Clear();
+            if(content != null)
+                _stockDataList.AddRange(content);
+        }
+
+        public IOStockDataGridItem SearchStock(string id)
+        {
+            return _stockDataList.Where(x => x.ID == id).SingleOrDefault();
+        }
+
+        #endregion
 
         public static async Task InitialzeInstanceAsync(int connectionTimeout = 1000)
         {

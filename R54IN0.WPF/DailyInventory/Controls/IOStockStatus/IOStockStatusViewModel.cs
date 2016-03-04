@@ -179,8 +179,7 @@ namespace R54IN0.WPF
                     ProjectListBoxViewModelVisibility = Visibility.Collapsed;
                     DataGridViewModel.RemainQtyColumnVisibility = Visibility.Collapsed;
                 }
-                DataDirector.GetInstance().StockList.Clear();
-                DataGridViewModel.Items.Clear();
+                EmptyDataGridItem();
                 NotifyPropertyChanged("SelectedDataGridGroupOption");
             }
         }
@@ -570,14 +569,13 @@ namespace R54IN0.WPF
             }
             else
             {
-                DataDirector.GetInstance().StockList.Clear();
-                SetDataGridItems();
+                EmptyDataGridItem();
             }
         }
 
         private async Task OnPagingButtonClickedAsync(object state)
         {
-            DataDirector.GetInstance().StockList.Clear();
+            DataDirector.GetInstance().ResetStockList(null);
             int offset = DataGridPagingViewModel.Offset;
             int rowCount = DataGridPagingViewModel.RowCount;
 
@@ -586,12 +584,9 @@ namespace R54IN0.WPF
             try
             {
                 List<IOStockFormat> stofmts = await DataDirector.GetInstance().Db.QueryAsync<IOStockFormat>(sql); //쿼리로 레코드 리미트 개수만큼 가져옴
-                foreach (var stof in stofmts)
-                {
-                    IOStockDataGridItem item = new IOStockDataGridItem(stof);
-                    DataDirector.GetInstance().StockList.Add(item);
-                }
-                //TODO 여기가 문제임
+                IEnumerable<IOStockDataGridItem> items = stofmts.Select(x => new IOStockDataGridItem(x));
+                DataDirector.GetInstance().ResetStockList(items);
+                
                 await CalcRemainQuantityAsync(); //잔여수량 계산함
                 SetDataGridItems(); //종류에 맞게 데이터그리드 Items를 초기화
             }
@@ -606,34 +601,30 @@ namespace R54IN0.WPF
         {
             if (DataGridViewModel.RemainQtyColumnVisibility != Visibility.Visible)
                 return;
-            List<IOStockDataGridItem> stockList = DataDirector.GetInstance().StockList;
-            if (stockList.Count() == 0)
+            List<IOStockDataGridItem> stocks = DataDirector.GetInstance().CopyStocks();
+            if (stocks.Count() == 0)
                 return;
 
-            ILookup<string, IOStockDataGridItem> looper = stockList.ToLookup(x => x.InventoryID);
-            foreach (var l in looper)
-            {
-                if (l.Count() == 0)
-                    continue;
+            IEnumerable<IOStockDataGridItem> items = stocks.OrderBy(x => x.Date);
+            IOStockDataGridItem f = items.First();
 
-                IEnumerable<IOStockDataGridItem> orderedList = l.OrderBy(x => x.Date);
-                IOStockDataGridItem first = orderedList.First();
-                string sql = string.Format(@"select ifnull((select sum(Quantity) from {0} where InventoryID = '{1}' and StockType = '{2}' and Date < '{4}'), 0) -
+            string sql = string.Format(@"select ifnull((select sum(Quantity) from {0} where InventoryID = '{1}' and StockType = '{2}' and Date < '{4}'), 0) -
                     ifnull((select sum(Quantity) from {0} where InventoryID = '{1}' and StockType = '{3}' and Date < '{4}'), 0);",
-                    nameof(IOStockFormat), first.InventoryID, (int)IOStockType.INCOMING, (int)IOStockType.OUTGOING, first.Date.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-                List<Tuple<int>> query = await DataDirector.GetInstance().Db.QueryReturnTupleAsync<int>(sql);
-                Tuple<int> tuple = query.SingleOrDefault();
-                if (tuple != null)
+                nameof(IOStockFormat), f.InventoryID, (int)IOStockType.INCOMING, (int)IOStockType.OUTGOING, f.Date.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            List<Tuple<int>> query = await DataDirector.GetInstance().Db.QueryReturnTupleAsync<int>(sql);
+            Tuple<int> tuple = query.SingleOrDefault();
+
+            if (tuple != null)
+            {
+                int remQty = tuple.Item1;
+                int stoQty = 0;
+                foreach (IOStockDataGridItem item in items)
                 {
-                    int remQty = tuple.Item1;
-                    int stoQty = 0;
-                    foreach (IOStockDataGridItem item in orderedList)
-                    {
-                        stoQty = item.Quantity;
-                        if (item.StockType == IOStockType.OUTGOING)
-                            stoQty = -stoQty;
-                        remQty = item.RemainingQuantity = (int)remQty + stoQty;
-                    }
+                    stoQty = item.Quantity;
+                    if (item.StockType == IOStockType.OUTGOING)
+                        stoQty = -stoQty;
+                    remQty = item.RemainingQuantity = (int)remQty + stoQty;
                 }
             }
         }
@@ -645,14 +636,21 @@ namespace R54IN0.WPF
         {
             DataGridViewModel.Items.Clear();
             IOStockType flag = GetCurrentStockTypeFlag();
-            var coll = DataDirector.GetInstance().StockList.ToList();
-            foreach (IOStockDataGridItem stock in coll)
+            var stocks = DataDirector.GetInstance().CopyStocks();
+
+            foreach (IOStockDataGridItem stock in stocks)
             {
                 if (!IsAddEnableInDataGridItems(stock))
-                    DataDirector.GetInstance().StockList.Remove(stock);
+                    DataDirector.GetInstance().RemoveStock(stock.ID);
                 else if (flag.HasFlag(stock.StockType))
                     DataGridViewModel.Items.Add(stock);
             }
+        }
+
+        private void EmptyDataGridItem()
+        {
+            DataGridViewModel.Items.Clear();
+            DataDirector.GetInstance().ResetStockList(null);
         }
 
         private IOStockType GetCurrentStockTypeFlag()
@@ -710,12 +708,10 @@ namespace R54IN0.WPF
                 IOStockDataGridItem stock = item as IOStockDataGridItem;
                 if (IsAddEnableInDataGridItems(stock))
                 {
-                    DataDirector.GetInstance().StockList.Add(stock);
-
+                    DataDirector.GetInstance().AddStock(stock);
                     IOStockType flag = GetCurrentStockTypeFlag();
                     if (flag.HasFlag(stock.StockType))
                         DataGridViewModel.Items.Add(stock);
-
                     Dispatcher.CurrentDispatcher.Invoke(new Func<Task>(CalcRemainQuantityAsync));
                 }
             }
@@ -723,27 +719,28 @@ namespace R54IN0.WPF
 
         public void UpdateDelItem(object item)
         {
-            List<IOStockDataGridItem> list = null;
+            IEnumerable<IOStockDataGridItem> datagridItems = null;
             if (item is IOStockDataGridItem)
             {
                 IOStockDataGridItem stock = item as IOStockDataGridItem;
-                list = new List<IOStockDataGridItem>() { stock };
+                datagridItems = new List<IOStockDataGridItem>() { stock };
             }
             else if (item is ObservableInventory)
             {
                 ObservableInventory inv = item as ObservableInventory;
-                list = DataDirector.GetInstance().StockList.Where(x => x.InventoryID == inv.ID).ToList();
+                datagridItems = DataDirector.GetInstance().CopyStocks().Where(x => x.InventoryID == inv.ID);
             }
             else if (item is Observable<Product>)
             {
                 Observable<Product> product = item as Observable<Product>;
-                list = DataDirector.GetInstance().StockList.Where(x => x.ProjectID == product.ID).ToList();
+                datagridItems = DataDirector.GetInstance().CopyStocks().Where(x => x.ProjectID == product.ID);
             }
-            if (list != null && list.Count() != 0)
+
+            if (datagridItems != null && datagridItems.Count() != 0)
             {
-                foreach (var i in list)
+                foreach (var i in datagridItems)
                 {
-                    DataDirector.GetInstance().StockList.Remove(i);
+                    DataDirector.GetInstance().RemoveStock(i.ID);
                     DataGridViewModel.Items.Remove(i);
                 }
                 Dispatcher.CurrentDispatcher.Invoke(new Func<Task>(CalcRemainQuantityAsync));

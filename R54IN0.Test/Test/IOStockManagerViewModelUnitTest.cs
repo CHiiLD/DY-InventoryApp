@@ -386,7 +386,7 @@ namespace R54IN0.WPF.Test
             TreeViewNode node = nodes.Where(x => x.ObservableObjectID == qret.InventoryID).Single();
             svm.TreeViewViewModel.AddSelectedNodes(node);
 
-            IOStockDataGridItem stock = DataDirector.GetInstance().StockList.Where(x => x.ID == qret.ID).Single();
+            IOStockDataGridItem stock = DataDirector.GetInstance().CopyStocks().Where(x => x.ID == qret.ID).Single();
             
             IOStockManagerViewModel vm = new IOStockManagerViewModel(stock);
             int qty = vm.Quantity = 10;

@@ -114,8 +114,8 @@
       <DependentUpon>PagingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DailyInventory\Controls\PagingControl\PagingViewModel.cs" />
-    <Compile Include="DailyInventory\Network\IDbAction.cs" />
-    <Compile Include="DailyInventory\Network\IPConfigJsonFormat.cs" />
+    <Compile Include="DailyInventory\NetworkHandler\IDbAction.cs" />
+    <Compile Include="DailyInventory\NetworkHandler\IPConfigJsonFormat.cs" />
     <Compile Include="DailyInventory\Controls\BindingProxy.cs" />
     <Compile Include="DailyInventory\Controls\FieldManager\FieldManagerControl.xaml.cs">
       <DependentUpon>FieldManagerControl.xaml</DependentUpon>
@@ -170,26 +170,26 @@
     </Compile>
     <Compile Include="DailyInventory\Controls\TreeView\MultiSelectTreeViewModelView.cs" />
     <Compile Include="DailyInventory\Controls\TreeView\TreeViewNode.cs" />
-    <Compile Include="DailyInventory\Network\Event\SQLUpdateEventArgs.cs" />
-    <Compile Include="DailyInventory\Network\Event\SQLDeleteEventArgs.cs" />
-    <Compile Include="DailyInventory\Network\MySqlBridge.cs" />
-    <Compile Include="DailyInventory\Network\MySqlBridge.Socket.cs" />
-    <Compile Include="DailyInventory\Data\Director\DataDirector.Callback.cs" />
-    <Compile Include="DailyInventory\Data\Director\DataDirector.cs" />
-    <Compile Include="DailyInventory\Data\LexDb.cs" />
-    <Compile Include="DailyInventory\Data\Director\CollectionViewModelObserverSubject.cs" />
-    <Compile Include="DailyInventory\Data\Director\ObservableFieldManager.cs" />
-    <Compile Include="DailyInventory\Data\Director\ObservableInventoryManager.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\IObservableField.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\IUpdateLock.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\Observable.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\IObservableIOStockProperties.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\IObservableInventoryProperties.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\ObservableInventory.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\ObservableIOStock.cs" />
-    <Compile Include="DailyInventory\Network\Event\SQLInsertEventArgs.cs" />
-    <Compile Include="DailyInventory\Data\Inventory\UpdateLocker.cs" />
-    <Compile Include="DailyInventory\Data\TreeViewNodeJsonFormat.cs" />
+    <Compile Include="DailyInventory\NetworkHandler\Event\SQLUpdateEventArgs.cs" />
+    <Compile Include="DailyInventory\NetworkHandler\Event\SQLDeleteEventArgs.cs" />
+    <Compile Include="DailyInventory\NetworkHandler\MySqlBridge.cs" />
+    <Compile Include="DailyInventory\NetworkHandler\MySqlBridge.Socket.cs" />
+    <Compile Include="DailyInventory\DataManagement\Director\DataDirector.Callback.cs" />
+    <Compile Include="DailyInventory\DataManagement\Director\DataDirector.cs" />
+    <Compile Include="DailyInventory\DataManagement\LexDb.cs" />
+    <Compile Include="DailyInventory\DataManagement\Director\CollectionViewModelObserverSubject.cs" />
+    <Compile Include="DailyInventory\DataManagement\Director\ObservableFieldManager.cs" />
+    <Compile Include="DailyInventory\DataManagement\Director\ObservableInventoryManager.cs" />
+    <Compile Include="DailyInventory\DataManagement\Inventory\IObservableField.cs" />
+    <Compile Include="DailyInventory\DataManagement\Inventory\IUpdateLock.cs" />
+    <Compile Include="DailyInventory\DataManagement\Inventory\Observable.cs" />
+    <Compile Include="DailyInventory\DataManagement\Inventory\IObservableIOStockProperties.cs" />
+    <Compile Include="DailyInventory\DataManagement\Inventory\IObservableInventoryProperties.cs" />
+    <Compile Include="DailyInventory\DataManagement\Inventory\ObservableInventory.cs" />
+    <Compile Include="DailyInventory\DataManagement\Inventory\ObservableIOStock.cs" />
+    <Compile Include="DailyInventory\NetworkHandler\Event\SQLInsertEventArgs.cs" />
+    <Compile Include="DailyInventory\DataManagement\Inventory\UpdateLocker.cs" />
+    <Compile Include="DailyInventory\DataManagement\TreeViewNodeJsonFormat.cs" />
     <Compile Include="DailyInventory\Windows\FieldManagerWindow.xaml.cs">
       <DependentUpon>FieldManagerWindow.xaml</DependentUpon>
     </Compile>

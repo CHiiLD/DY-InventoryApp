@@ -100,7 +100,7 @@ namespace R54IN0.WPF
                 case nameof(InventoryFormat):
                     target = SearchInventory(format.ID); break;
                 case nameof(IOStockFormat):
-                    target = StockList.Where(x => x.ID == format.ID).SingleOrDefault(); break;
+                    target = SearchStock(format.ID); break;
                 case nameof(Product):
                     target = SearchField<Product>(format.ID); break;
                 case nameof(Maker):
@@ -158,36 +158,31 @@ namespace R54IN0.WPF
 
             switch (type.Name)
             {
+                case nameof(Product):
+                    Observable<Product> product = SearchField<Product>(id);
+                    if (product != null)
+                    {
+                        var invs = SearchInventories(product.ID); //inven 삭제
+                        invs.ForEach(x => OnDataDeleted(obj, new SQLDeleteEventArgs(typeof(InventoryFormat), x.ID)));
+
+                        _subject.NotifyItemDeleted(product);
+                        _field.Delete<Product>(product.ID);
+                    }
+                    break;
+
                 case nameof(InventoryFormat):
                     ObservableInventory inv = SearchInventory(id);
                     if (inv != null)
                     {
                         _subject.NotifyItemDeleted(inv);
-
-                        List<IOStockDataGridItem> stos = StockList.Where(x => x.Inventory.ID == id).ToList();
-                        stos.ForEach(x => OnDataDeleted(obj, new SQLDeleteEventArgs(typeof(IOStockFormat), x.ID)));
-
                         _inventory.Remove(inv.ID);
                     }
                     break;
 
                 case nameof(IOStockFormat):
-                    IOStockDataGridItem stock = StockList.Where(x => x.ID == id).SingleOrDefault();
-                    if (stock != null)
-                        _subject.NotifyItemDeleted(stock);
-                    break;
-
-                case nameof(Product):
-                    Observable<Product> product = SearchField<Product>(id);
-                    if (product != null)
-                    {
-                        _subject.NotifyItemDeleted(product);
-
-                        var invs = SearchInventories(product.ID); //inven 삭제
-                        invs.ForEach(x => OnDataDeleted(obj, new SQLDeleteEventArgs(typeof(InventoryFormat), x.ID)));
-
-                        _field.Delete<Product>(product.ID);
-                    }
+                    IOStockDataGridItem sto = SearchStock(id);
+                    if (sto != null)
+                        _subject.NotifyItemDeleted(sto);
                     break;
 
                 case nameof(Maker):
@@ -214,7 +209,7 @@ namespace R54IN0.WPF
                     Observable<Customer> cust = SearchField<Customer>(id);
                     if (cust != null)
                     {
-                        StockList.ForEach(x => { if (x.CustomerID == id) x.CustomerID = null; });
+                        _stockDataList.ForEach(x => { if (x.CustomerID == id) x.CustomerID = null; });
                         _subject.NotifyItemDeleted(cust);
                         _field.Delete<Customer>(cust.ID);
                     }
@@ -224,7 +219,7 @@ namespace R54IN0.WPF
                     Observable<Supplier> supp = SearchField<Supplier>(id);
                     if (supp != null)
                     {
-                        StockList.ForEach(x => { if (x.SupplierID == id) x.SupplierID = null; });
+                        _stockDataList.ForEach(x => { if (x.SupplierID == id) x.SupplierID = null; });
                         _subject.NotifyItemDeleted(supp);
                         _field.Delete<Supplier>(supp.ID);
                     }
@@ -234,7 +229,7 @@ namespace R54IN0.WPF
                     Observable<Project> proj = SearchField<Project>(id);
                     if (proj != null)
                     {
-                        StockList.ForEach(x => { if (x.ProjectID == id) x.ProjectID = null; });
+                        _stockDataList.ForEach(x => { if (x.ProjectID == id) x.ProjectID = null; });
                         _subject.NotifyItemDeleted(proj);
                         _field.Delete<Project>(proj.ID);
                     }
@@ -244,7 +239,7 @@ namespace R54IN0.WPF
                     Observable<Warehouse> ware = SearchField<Warehouse>(id);
                     if (ware != null)
                     {
-                        StockList.ForEach(x => { if (x.WarehouseID == id) x.WarehouseID = null; });
+                        _stockDataList.ForEach(x => { if (x.WarehouseID == id) x.WarehouseID = null; });
                         _subject.NotifyItemDeleted(ware);
                         _field.Delete<Warehouse>(ware.ID);
                     }
@@ -254,7 +249,7 @@ namespace R54IN0.WPF
                     Observable<Employee> emp = SearchField<Employee>(id);
                     if (emp != null)
                     {
-                        StockList.ForEach(x => { if (x.EmployeeID == id) x.Employee = null; });
+                        _stockDataList.ForEach(x => { if (x.EmployeeID == id) x.Employee = null; });
                         _subject.NotifyItemDeleted(emp);
                         _field.Delete<Employee>(emp.ID);
                     }
