@@ -5,21 +5,16 @@ namespace R54IN0
     /// <summary>
     /// 자사원
     /// </summary>
-    public class Employee : IField
+    public class Employee : AField
     {
         public const string HEADER = "담당자";
 
-        public Employee()
+        public Employee() : base()
         {
         }
 
-        public Employee(string name)
+        public Employee(string name) : base(name)
         {
-            Name = name;
-            ID = Guid.NewGuid().ToString();
         }
-
-        public string ID { get; set; }
-        public string Name { get; set; }
     }
 }

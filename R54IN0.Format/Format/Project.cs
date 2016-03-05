@@ -5,21 +5,16 @@ namespace R54IN0
     /// <summary>
     /// 프로젝트명
     /// </summary>
-    public class Project : IField
+    public class Project : AField
     {
         public const string HEADER = "프로젝트";
 
-        public Project()
+        public Project() : base()
         {
         }
 
-        public Project(string name)
+        public Project(string name) : base(name)
         {
-            Name = name;
-            ID = Guid.NewGuid().ToString();
         }
-
-        public string ID { get; set; }
-        public string Name { get; set; }
     }
 }

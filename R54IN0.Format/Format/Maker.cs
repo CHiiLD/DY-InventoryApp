@@ -2,21 +2,16 @@
 
 namespace R54IN0
 {
-    public class Maker : IField
+    public class Maker : AField
     {
         public const string HEADER = "제조사";
 
-        public Maker()
+        public Maker() : base()
         {
         }
 
-        public Maker(string name)
+        public Maker(string name) : base(name)
         {
-            Name = name;
-            ID = Guid.NewGuid().ToString();
         }
-
-        public string ID { get; set; }
-        public string Name { get; set; }
     }
 }

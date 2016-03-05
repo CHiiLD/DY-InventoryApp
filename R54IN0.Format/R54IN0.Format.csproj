@@ -41,16 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Format\AField.cs" />
     <Compile Include="Format\Customer.cs" />
     <Compile Include="Format\Employee.cs" />
+    <Compile Include="Format\IIDExtension.cs" />
     <Compile Include="Interface\IInventoryFormat.cs" />
     <Compile Include="Interface\IIOStockFormat.cs" />
     <Compile Include="Interface\IField.cs" />
     <Compile Include="Interface\IID.cs" />
     <Compile Include="Interface\IName.cs" />
     <Compile Include="Format\InventoryFormat.cs" />
-    <Compile Include="Interface\IOStockFormat.cs" />
-    <Compile Include="Format\IOStockType.cs" />
+    <Compile Include="Format\IOStockFormat.cs" />
+    <Compile Include="Interface\IOStockType.cs" />
     <Compile Include="Format\Maker.cs" />
     <Compile Include="Format\Measure.cs" />
     <Compile Include="Format\Product.cs" />

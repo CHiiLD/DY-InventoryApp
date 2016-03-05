@@ -2,21 +2,16 @@
 
 namespace R54IN0
 {
-    public class Customer : IField
+    public class Customer : AField
     {
         public const string HEADER = "판매처";
 
-        public Customer()
+        public Customer() : base()
         {
         }
 
-        public Customer(string name)
+        public Customer(string name) : base(name)
         {
-            Name = name;
-            ID = Guid.NewGuid().ToString();
         }
-
-        public string ID { get; set; }
-        public string Name { get; set; }
     }
 }

@@ -71,6 +71,7 @@
     <Compile Include="Test\IOStockManagerViewModelUnitTest.cs" />
     <Compile Include="Test\MySQLAdapterUnitTest.cs" />
     <Compile Include="Test\PagingViewModelUnitTest.cs" />
+    <Compile Include="Test\StringCutoffUnitTest.cs" />
     <Compile Include="Test\TreeViewViewModelUnitTest.cs" />
     <Compile Include="Test\InventoryManagerDialogViewModelUnitTest.cs" />
     <Compile Include="Test\IOStockStatusViewModelUnitTest.cs" />
@@ -78,8 +79,7 @@
     <Compile Include="Test\InventoryStatusViewModelUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\ProjectUnitTest.cs" />
-    <Compile Include="Test\WriteServerUnitTest.cs" />
-    <Compile Include="Test\ThreadInvokeUnitTest.cs" />
+    <Compile Include="Test\ServerUnitTest.cs" />
     <Compile Include="Tool\FakeDbAction.cs" />
     <Compile Include="Tool\RandomLinq.cs" />
   </ItemGroup>

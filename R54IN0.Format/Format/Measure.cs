@@ -5,21 +5,16 @@ namespace R54IN0
     /// <summary>
     /// 단위
     /// </summary>
-    public class Measure : IField
+    public class Measure : AField
     {
         public const string HEADER = "단위";
 
-        public Measure()
+        public Measure() : base()
         {
         }
 
-        public Measure(string name)
+        public Measure(string name) : base(name)
         {
-            Name = name;
-            ID = Guid.NewGuid().ToString();
         }
-
-        public string ID { get; set; }
-        public string Name { get; set; }
     }
 }

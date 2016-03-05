@@ -37,7 +37,7 @@ namespace R54IN0.Server
 
             List<object> values = new List<object>();
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
-            using (DbDataReader reader = cmd.ExecuteReader())
+            using (MySqlDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                     values.Add(reader.GetValue(0) == DBNull.Value ? null : reader.GetValue(0));

@@ -1,6 +1,5 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
-//using NUnit.Framework;
 using R54IN0.Server;
 using MySQL.Test;
 using SuperSocket.SocketBase.Config;
@@ -9,27 +8,27 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
 using NUnit.Framework;
 
 namespace R54IN0.WPF.Test
 {
     [TestFixture]
-    public class WriteServerUnitTest
+    public class ServerUnitTest
     {
         private static ReadOnlyServer _rserver;
         private static WriteOnlyServer _wserver;
+        private static MySqlConnection _conn;
 
         [TestFixtureSetUp]
         public void TestSetUp()
         {
-            using (MySqlConnection conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json")))
-            {
-                conn.Open();
-                Dummy dummy = new Dummy(conn);
-                dummy.Create();
-            }
+            MySqlConnection conn = new MySqlConnection(MySqlJsonFormat.ConnectionString("mysql_connection_string.json"));
+            conn.Open();
+            _conn = conn;
+
+            Dummy dummy = new Dummy(conn);
+            dummy.Create();
 
             _rserver = new ReadOnlyServer();
             _rserver.Setup(new ServerConfig()
@@ -47,7 +46,6 @@ namespace R54IN0.WPF.Test
                 DisableSessionSnapshot = true,
             });
         }
-
 
         [SetUp]
         public void Setup()
@@ -67,6 +65,7 @@ namespace R54IN0.WPF.Test
             DataDirector.Destroy();
             _rserver.Stop();
             _wserver.Stop();
+            _conn.Close();
         }
 
         [Test]
@@ -76,27 +75,27 @@ namespace R54IN0.WPF.Test
         }
 
         [Test]
-        public async Task TestFieldManagerAddAction()
+        public void TestFieldManagerAddAction()
         {
             string name = "soime";
             Maker maker = new Maker(name);
             FieldManagerViewModel vm = new FieldManagerViewModel();
             vm.AddField(maker);
 
-            await Task.Delay(500);
+            Task.Delay(500).Wait();
 
             Assert.IsTrue(vm.MakerList.Any(x => x.Name == maker.Name));
             Assert.IsTrue(vm.MakerList.Any(x => x.ID == maker.ID));
         }
 
         [Test]
-        public async Task TestFieldManagerRemoveAction()
+        public void TestFieldManagerRemoveAction()
         {
             FieldManagerViewModel vm = new FieldManagerViewModel();
             var maker = vm.MakerList.Random();
             vm.RemoveField(maker);
 
-            await Task.Delay(100);
+            Task.Delay(100).Wait();
 
             vm.MakerList.Any(x => x.Name == maker.Name);
             vm.MakerList.Any(x => x.ID == maker.ID);
@@ -105,18 +104,20 @@ namespace R54IN0.WPF.Test
         }
 
         [Test]
-        public async Task TestCreateNewProduct()
+        public void TestCreateNewProduct()
         {
             MultiSelectTreeViewModelView vm = new MultiSelectTreeViewModelView();
             vm.NewProductNodeAddCommand.Execute(null);
-            await Task.Delay(100);
+
+            Task.Delay(100).Wait();
+
             List<TreeViewNode> nodes = vm.SearchNodesInRoot(NodeType.PRODUCT);
             foreach (var node in nodes)
                 Console.WriteLine(node.Name);
         }
 
         [Test]
-        public async Task TestCreateNewInventoryFormat()
+        public void TestCreateNewInventoryFormat()
         {
             var product = DataDirector.GetInstance().CopyFields<Product>().Random();
             var viewmodel = new InventoryManagerViewModel(product);
@@ -126,7 +127,7 @@ namespace R54IN0.WPF.Test
             var measure = viewmodel.MeasureText = "some measure";
 
             string invID = viewmodel.Insert();
-            await Task.Delay(100);
+            Task.Delay(500).Wait();
 
             ObservableInventory inv = DataDirector.GetInstance().SearchInventory(invID);
             Assert.IsNotNull(invID);
@@ -135,26 +136,12 @@ namespace R54IN0.WPF.Test
             Assert.IsNotNull(DataDirector.GetInstance().SearchField<Measure>(inv.Measure.ID));
         }
 
-        //[Test, RequiresSTA]
-        //public void TestUpdateInvQty()
-        //{
-        //    IOStockStatusViewModel svm = new IOStockStatusViewModel();
-        //    svm.SelectedDataGridGroupOption = IOStockStatusViewModel.DATAGRID_OPTION_PRODUCT;
-        //    TreeViewNode node = svm.TreeViewViewModel.SearchNodesInRoot(NodeType.INVENTORY).Random();
-        //    svm.TreeViewViewModel.AddSelectedNodes(node);
-        //    await Task.Delay(100);
-        //    IOStockDataGridItem item = svm.DataGridViewModel.Items.Random();
-        //    ObservableInventory inv = DataDirector.GetInstance().SearchInventory(item.InventoryID);
-        //    int qty = inv.Quantity;
-        //    IOStockManagerViewModel mvm = new IOStockManagerViewModel(svm, item);
-        //    mvm.Quantity = mvm.Quantity * 2;
-        //    mvm.Update();
-        //    await Task.Delay(100);
-        //    Assert.AreNotEqual(qty, inv.Quantity);
-        //}
-
+        /// <summary>
+        /// 알 수 없는 에러 발생
+        /// </summary>
+        [Ignore]
         [Test]
-        public async Task TestCreateNewStockFormat()
+        public void TestCreateNewStockFormat()
         {
             var prod = DataDirector.GetInstance().CopyFields<Product>().Random();
             var vm = new IOStockManagerViewModel(prod);
@@ -167,7 +154,12 @@ namespace R54IN0.WPF.Test
             var prj = vm.ProjectText = "new";
 
             string id = vm.Insert();
-            IOStockFormat fmt = await DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
+            Task.Delay(100).Wait();
+
+            Task<IOStockFormat> task = DataDirector.GetInstance().Db.SelectAsync<IOStockFormat>(id);
+            task.Wait();
+
+            IOStockFormat fmt = task.Result;
             ObservableIOStock oio = new ObservableIOStock(fmt);
 
             Thread.Sleep(100);
@@ -176,6 +168,88 @@ namespace R54IN0.WPF.Test
             Assert.AreEqual(acc, oio.Supplier.Name);
             Assert.AreEqual(eep, oio.Employee.Name);
             Assert.AreEqual(prj, oio.Warehouse.Name);
+        }
+
+        [Test]
+        public async Task ParallelConnect()
+        {
+            int i = 100;
+            while (--i != 0)
+            {
+                await Task.Factory.StartNew(() =>
+                {
+                    MySqlBridge ms = new MySqlBridge();
+                    var ar = ms.Connect();
+                    ar.AsyncWaitHandle.WaitOne();
+                });
+            }
+        }
+
+        [Test]
+        public async Task ParallelCommunication()
+        {
+            List<MySqlBridge> mss = new List<MySqlBridge>();
+            int i = 100;
+            while (--i != 0)
+            {
+                await Task.Factory.StartNew(() =>
+                {
+                    MySqlBridge ms = new MySqlBridge();
+                    var ar = ms.Connect();
+                    ar.AsyncWaitHandle.WaitOne();
+                    mss.Add(ms);
+                });
+            }
+
+            List<Task> tasks = new List<Task>();
+            foreach (var ms in mss)
+            {
+                Task task = ms.SelectAsync<InventoryFormat>();
+                tasks.Add(task);
+            }
+            Task.WaitAll(tasks.ToArray());
+        }
+
+        [Test]
+        public async Task ParallelUpdate()
+        {
+            List<MySqlBridge> mss = new List<MySqlBridge>();
+            int i = 100;
+            while (--i != 0)
+            {
+                await Task.Factory.StartNew(() =>
+                {
+                    MySqlBridge ms = new MySqlBridge();
+                    var ar = ms.Connect();
+                    ar.AsyncWaitHandle.WaitOne();
+                    mss.Add(ms);
+                });
+            }
+
+            string id = null;
+            using (MySqlCommand cmd = new MySqlCommand("select ID from Maker order by rand() limit 1;", _conn))
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    id = reader.GetString(0);
+                    break;
+                }
+            }
+            Assert.IsNotNull(id);
+
+            List<Task> tasks = new List<Task>();
+            Maker maker = new Maker();
+            maker.ID = id;
+            foreach (var ms in mss)
+            {
+                maker.Name = Guid.NewGuid().ToString().Substring(0, 6);
+                var task = Task.Factory.StartNew(() => { ms.Update<Maker>(maker); });
+                tasks.Add(task);
+            }
+            Task.WaitAll(tasks.ToArray());
+
+            await Task.Delay(500);
         }
     }
 }

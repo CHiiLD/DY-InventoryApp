@@ -69,7 +69,7 @@ namespace R54IN0.Server
             MySqlConnection conn = server.MySQL;
 
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
-            using (DbDataReader reader = cmd.ExecuteReader())
+            using (MySqlDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {

@@ -4,6 +4,10 @@ namespace R54IN0
 {
     public class IOStockFormat : IID, IIOStockFormat
     {
+        private const int MEMO_LENGTH_LIMIT = 256;
+
+        private string _memo;
+
         public string ID { get; set; }
         /// <summary>
         /// 입출고 종류
@@ -28,7 +32,17 @@ namespace R54IN0
         /// <summary>
         /// 비고
         /// </summary>
-        public virtual string Memo { get; set; }
+        public virtual string Memo
+        {
+            get
+            {
+                return _memo;
+            }
+            set
+            {
+                _memo = this.CutString(value, MEMO_LENGTH_LIMIT);
+            }
+        }
 
         /// <summary>
         /// 재고 범위식별자
